@@ -201,6 +201,18 @@ func load_deck(deck_name: String):
 func preview_card(card: Card):
 	$Preview/CardDetails/Card.load_card(card)
 	$Preview/CardDetails/Card.turn_up()
+	var preview_text: RichTextLabel = $Preview/Text
+	preview_text.clear()
+	preview_text.push_font_size(20)
+	preview_text.push_underline()
+	preview_text.append_text(card.name.replace("\n", " "))
+	preview_text.pop()
+	if card.character != "":
+		preview_text.append_text("\nCharacter: %s" % card.character)
+	else:
+		preview_text.append_text("\n")
+	preview_text.append_text("\nGame: %s" % card.game)
+	preview_text.pop_all()
 
 func _on_visible_cards_area_entered(area):
 	var parent = area.get_parent()

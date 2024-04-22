@@ -333,9 +333,9 @@ offset_bottom = 532.0
 [node name="Text" type="RichTextLabel" parent="Preview"]
 layout_mode = 0
 offset_left = 11.0
-offset_top = 11.0
-offset_right = 390.0
-offset_bottom = 431.0
+offset_top = 619.0
+offset_right = 404.0
+offset_bottom = 939.0
 
 [node name="CardDetails" parent="Preview" instance=ExtResource("2_rkvwk")]
 position = Vector2(208, 307)

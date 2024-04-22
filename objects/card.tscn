@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=3 uid="uid://dosulntiwpmvw"]
 
 [ext_resource type="Script" path="res://objects/card.gd" id="1_8v1ch"]
-[ext_resource type="Texture2D" uid="uid://ec8o4ng2fabx" path="res://sprites/card_bg_large.png" id="1_y2t30"]
+[ext_resource type="Texture2D" uid="uid://dicq202oyt24d" path="res://sprites/card_bg_battle.png" id="2_jvxha"]
 [ext_resource type="Texture2D" uid="uid://dd0mmnwesdund" path="res://sprites/card_images/missing_artwork.png" id="3_pvcx2"]
 [ext_resource type="PackedScene" uid="uid://g7yv71p73utl" path="res://objects/attribute.tscn" id="4_a23ep"]
 [ext_resource type="Texture2D" uid="uid://bmnyp650trfv7" path="res://sprites/rarity/rarity_common.png" id="5_3weow"]
@@ -119,7 +119,7 @@ shape = SubResource("RectangleShape2D_qw08w")
 [node name="Content" type="Node2D" parent="."]
 
 [node name="Background" type="Sprite2D" parent="Content"]
-texture = ExtResource("1_y2t30")
+texture = ExtResource("2_jvxha")
 
 [node name="PictureBorder" type="Polygon2D" parent="Content"]
 position = Vector2(0, -8)
