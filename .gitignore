@@ -2,3 +2,5 @@
 .godot/
 scenes/*.tmp
 objects/*.tmp
+*.kra
+*~
