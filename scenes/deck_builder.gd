@@ -113,7 +113,7 @@ func filter_card(card: Card) -> bool:
 	var filter_atk_type: Card.Target = Card.attack_type_from_string(
 		$Filters/AttackType.get_item_text($Filters/AttackType.get_selected_id()))
 	if filter_text != "":
-		if filter_text not in card.name.to_lower() and filter_text not in card.text.to_lower():
+		if filter_text not in card.name.replace("\n", " ").to_lower() and filter_text not in card.text.to_lower():
 			return false
 	if filter_type != Card.Type.ANY and card.type != filter_type:
 		return false

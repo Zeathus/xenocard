@@ -53,7 +53,7 @@ func check_multiple(value, filter):
 	return false
 
 func is_valid(player: Player, card: Card):
-	if not check_multiple(card.name, names):
+	if not check_multiple(card.name.replace("\n", " "), names):
 		return false
 	if not check_multiple(card.character, characters):
 		return false
