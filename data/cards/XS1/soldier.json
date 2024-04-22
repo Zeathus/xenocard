@@ -1,0 +1,17 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 21,
+	"name": "Security Guard",
+	"type": "battle",
+	"rarity": "common",
+	"stats": {
+		"attribute": "human",
+		"hp": 3,
+		"atk": 1,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 1
+	}
+}

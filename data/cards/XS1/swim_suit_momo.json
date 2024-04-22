@@ -1,0 +1,19 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 9,
+	"name": "Swim Suit MOMO",
+	"character": "MOMO",
+	"type": "battle",
+	"rarity": "promo",
+	"stats": {
+		"attribute": "realian",
+		"hp": 4,
+		"atk": 3,
+		"target": "hand"
+	},
+	"requirement": {
+		"cost": 0,
+		"field": ["human"]
+	}
+}

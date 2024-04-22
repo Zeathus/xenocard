@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 106,
+	"name": "Recycler",
+	"type": "event",
+	"rarity": "common",
+	"requirement": {
+		"cost": 0,
+		"field": ["human", "any"]
+	},
+	"text": "Choose one {Weapon} or {Machine} battle card from the junk pile and add it to your $hand."
+}

@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 144,
+	"name": "Unknown Armament",
+	"type": "situation",
+	"rarity": "promo",
+	"requirement": {
+		"cost": 3,
+		"field": ["human", "human", "machine", "any"]
+	},
+	"text": "You can discard this card from your field during your event or block phase to inflict 2 effect damage to all battle cards on the field."
+}

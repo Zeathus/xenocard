@@ -1,0 +1,12 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 127,
+	"name": "Human Sacrifice",
+	"type": "situation",
+	"rarity": "common",
+	"requirement": {
+		"field": ["human", "machine"]
+	},
+	"text": "Every time your battle card is destroyed in battle, <recover> cards equal to the cost of the battle card.\nThis effect cannot be stacked."
+}

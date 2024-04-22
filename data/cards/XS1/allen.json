@@ -1,0 +1,23 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 63,
+	"name": "Allen",
+	"character": "Allen",
+	"type": "battle",
+	"rarity": "common",
+	"stats": {
+		"attribute": "human",
+		"hp": 3,
+		"atk": 2,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 2,
+		"field": ["human", "any", "any"]
+	},
+	"text": "When the E mark is removed from this card, you can move one enemy card from the battlefield to the standby area. This ability cannot be used if the standby area is full.",
+	"effects": [
+		"RetreatCardWhenEMarkRemoved(owner=self;zone=battlefield)"
+	]
+}

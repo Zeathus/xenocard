@@ -1,0 +1,22 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 1,
+	"name": "Lv 1 Shion",
+	"character": "Shion",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "human",
+		"hp": 4,
+		"atk": 1,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 1
+	},
+	"text": "Whenever this card destroys an enemy card, you can <search> one Lv 10 Shion.",
+	"effects": [
+		"SearchOnEnemyDestroyed(name=Lv 10 Shion)"
+	]
+}

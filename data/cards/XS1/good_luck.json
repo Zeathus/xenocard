@@ -1,0 +1,12 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 125,
+	"name": "Good Luck",
+	"type": "situation",
+	"rarity": "common",
+	"requirement": {
+		"field": ["human", "human"]
+	},
+	"text": "{Humans} on your battlefield <evade> normal attacks.\nThis card is discarded after 3 turns."
+}

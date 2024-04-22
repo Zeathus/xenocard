@@ -1,0 +1,22 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 31,
+	"name": "AG-04",
+	"type": "battle",
+	"rarity": "promo",
+	"stats": {
+		"attribute": "machine",
+		"hp": 6,
+		"atk": 2,
+		"target": "hand"
+	},
+	"requirement": {
+		"cost": 2,
+		"field": ["human"]
+	},
+	"text": "Cards attacked by this card are <downed>.",
+	"effects": [
+		"DownAttackTarget"
+	]
+}

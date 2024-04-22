@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 83,
+	"name": "Miyuki's E-Mail",
+	"type": "event",
+	"rarity": "rare",
+	"requirement": {
+		"cost": 1,
+		"field": ["human", "any"]
+	},
+	"text": "Neutralizes the effect of an enemy's event card. The neutralized card is discarded."
+}

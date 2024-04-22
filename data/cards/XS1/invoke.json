@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 114,
+	"name": "Invoke",
+	"type": "event",
+	"rarity": "promo",
+	"requirement": {
+		"cost": 3,
+		"field": ["human", "machine", "machine"]
+	},
+	"text": "<Slow>.\nDestroy all battle and situation cards."
+}

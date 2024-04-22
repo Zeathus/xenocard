@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 95,
+	"name": "U.M.N. Invasion",
+	"type": "event",
+	"rarity": "rare",
+	"requirement": {
+		"cost": 0,
+		"field": ["gnosis"]
+	},
+	"text": "Draw two cards from your lost pile."
+}

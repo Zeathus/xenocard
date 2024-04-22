@@ -1,0 +1,24 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 35,
+	"name": "Proto Dora",
+	"type": "battle",
+	"rarity": "promo",
+	"stats": {
+		"attribute": "machine",
+		"hp": 8,
+		"atk": 10,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 3,
+		"field": ["human", "machine", "any"]
+	},
+	"text": "<Unique>.\nAttacks every other turn.\nThis card's attacks <penetrate>.",
+	"effects": [
+		"Unique",
+		"AttackTime(2)",
+		"Penetrate"
+	]
+}

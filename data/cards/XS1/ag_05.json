@@ -1,0 +1,23 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 36,
+	"name": "AG-05",
+	"type": "battle",
+	"rarity": "promo",
+	"stats": {
+		"attribute": "machine",
+		"hp": 8,
+		"atk": 7,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 4,
+		"field": ["human", "human", "any"]
+	},
+	"text": "Attacks every other turn.\nThis card's attacks <penetrate>.",
+	"effects": [
+		"AttackTime(2)",
+		"Penetrate"
+	]
+}

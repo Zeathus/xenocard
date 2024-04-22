@@ -1,0 +1,12 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 128,
+	"name": "Kukai Foundation",
+	"type": "situation",
+	"rarity": "rare",
+	"requirement": {
+		"field": ["human", "machine", "any"]
+	},
+	"text": "During your battle phase, all battle cards in standby other than {Gnosis} heal 1 HP.\nThis effect cannot be stacked."
+}

@@ -1,0 +1,23 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 55,
+	"name": "Virgil",
+	"character": "Virgil",
+	"type": "battle",
+	"rarity": "uncommon",
+	"stats": {
+		"attribute": "human",
+		"hp": 4,
+		"atk": 2,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 1,
+		"field": ["human", "any"]
+	},
+	"text": "On your enemy's adjust phase when this card is on the battlefield, all {Realians} on your battlefield are destroyed, and 4 effect damage is dealt to the enemy's deck for each.",
+	"effects": [
+		"Virgil"
+	]
+}

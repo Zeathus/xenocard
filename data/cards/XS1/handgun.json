@@ -1,0 +1,23 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 50,
+	"name": "Handgun",
+	"type": "battle",
+	"rarity": "common",
+	"stats": {
+		"attribute": "weapon",
+		"hp": 0,
+		"atk": 1,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 0,
+		"field": ["human"]
+	},
+	"text": "<Unlimited>.\nOnly {Humans} and {Realians} can equip this card.",
+	"effects": [
+		"Unlimited",
+		"EquipsTo(attribute=human;attribute=realian)"
+	]
+}

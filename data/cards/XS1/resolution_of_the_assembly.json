@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 105,
+	"name": "Resolution of the Assembly",
+	"type": "event",
+	"rarity": "common",
+	"requirement": {
+		"cost": 1,
+		"field": ["human", "any"]
+	},
+	"text": "Destroy all {weapons} equipped to battle cards on the field."
+}

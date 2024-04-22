@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 109,
+	"name": "Simulation",
+	"type": "event",
+	"rarity": "common",
+	"requirement": {
+		"cost": 3,
+		"field": ["human", "any"]
+	},
+	"text": "If a situation card is at the top of your junk pile, play it to the situation area."
+}

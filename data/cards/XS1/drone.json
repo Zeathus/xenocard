@@ -1,0 +1,18 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 37,
+	"name": "Drone",
+	"type": "battle",
+	"rarity": "common",
+	"stats": {
+		"attribute": "machine",
+		"hp": 9,
+		"atk": 2,
+		"target": "hand"
+	},
+	"requirement": {
+		"cost": 2,
+		"field": ["human"]
+	}
+}

@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 107,
+	"name": "Revive DX",
+	"type": "event",
+	"rarity": "common",
+	"requirement": {
+		"cost": 1,
+		"field": ["any"]
+	},
+	"text": "Choose two {Human} battle cards from the junk pile and add them to your $hand. There has to be at least two {Human} battle cards in your junk pile to use this card."
+}

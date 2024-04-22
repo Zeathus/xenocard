@@ -1,0 +1,12 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 118,
+	"name": "Start Up",
+	"type": "event",
+	"rarity": "uncommon",
+	"requirement": {
+		"field": ["machine"]
+	},
+	"text": "Remove <downed> status from one card."
+}

@@ -1,0 +1,23 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 60,
+	"name": "Wilhelm",
+	"character": "Wilhelm",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "human",
+		"hp": 3,
+		"atk": 1,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 1,
+		"field": ["human", "human", "human"]
+	},
+	"text": "If this card is destroyed by battle, it destroys the attacking card, then deals 4 effect damage to the enemy's deck",
+	"effects": [
+		"DestroyAttackerWhenDestroyedByBattle"
+	]
+}

@@ -1,0 +1,21 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 23,
+	"name": "U-TIC Soldier",
+	"type": "battle",
+	"rarity": "uncommon",
+	"stats": {
+		"attribute": "human",
+		"hp": 3,
+		"atk": 2,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 1
+	},
+	"text": "If this card is destroyed, the owner of the card must pay 1 cost.",
+	"effects": [
+		"PayCostWhenDestroyed(1)"
+	]
+}

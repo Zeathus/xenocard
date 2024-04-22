@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 148,
+	"name": "Override Code",
+	"type": "situation",
+	"rarity": "common",
+	"requirement": {
+		"cost": 0,
+		"field": ["human", "human"]
+	},
+	"text": "Neither player can end their move phase unless their battlefield is full or there are no {Realians} in standby that can be <deployed>.\nThis card is discarded during your next draw phase."
+}

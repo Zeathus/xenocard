@@ -1,0 +1,23 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 58,
+	"name": "Gaignun",
+	"character": "Gaignun",
+	"type": "battle",
+	"rarity": "uncommon",
+	"stats": {
+		"attribute": "human",
+		"hp": 5,
+		"atk": 4,
+		"target": "hand"
+	},
+	"requirement": {
+		"cost": 1,
+		"field": ["human", "any"]
+	},
+	"text": "When the E mark is removed from this card, all {Realians} on the battlefield go back to their owners' hands.",
+	"effects": [
+		"Gaignun"
+	]
+}

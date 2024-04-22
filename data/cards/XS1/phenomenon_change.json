@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 142,
+	"name": "Phenomenon Change",
+	"type": "situation",
+	"rarity": "promo",
+	"requirement": {
+		"cost": 1,
+		"field": ["any", "any"]
+	},
+	"text": "You can discard this card from your field during your event or block phase to destroy one enemy situation card."
+}

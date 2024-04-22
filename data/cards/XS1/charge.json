@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 112,
+	"name": "Charge",
+	"type": "event",
+	"rarity": "common",
+	"requirement": {
+		"cost": 0,
+		"field": ["machine"]
+	},
+	"text": "<Down> one battle card."
+}

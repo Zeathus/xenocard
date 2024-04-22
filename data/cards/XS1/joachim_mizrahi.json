@@ -1,0 +1,20 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 82,
+	"name": "Joachim Mizrahi",
+	"character": "Joachim Mizrahi",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "human",
+		"hp": 3,
+		"atk": 0,
+		"target": "hand"
+	},
+	"requirement": {
+		"cost": 1,
+		"field": ["human"]
+	},
+	"text": "While this card is on the battlefield with MOMO, MOMO's HP cannot fall under 1 from battle damage."
+}

@@ -1,0 +1,9 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 133,
+	"name": "Collective\nUnconsciousness",
+	"type": "situation",
+	"rarity": "rare",
+	"text": "During your draw phase, look at the top card of your deck and select whether to keep it or place it at the bottom of the deck.\nThis effect cannot be stacked.\nThis card is discarded after 3 turns, unless you have a {Gnosis} on your field."
+}

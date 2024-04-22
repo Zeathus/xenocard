@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 98,
+	"name": "Premonition of Gnosis",
+	"type": "event",
+	"rarity": "uncommon",
+	"requirement": {
+		"cost": 3,
+		"field": ["gnosis", "gnosis"]
+	},
+	"text": "Destroy one card with an E mark."
+}

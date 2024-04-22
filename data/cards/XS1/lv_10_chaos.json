@@ -1,0 +1,23 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 14,
+	"name": "Lv 10 chaos",
+	"character": "chaos",
+	"type": "battle",
+	"rarity": "promo",
+	"stats": {
+		"attribute": "unknown",
+		"hp": 6,
+		"atk": 3,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 1,
+		"field": ["human", "human"]
+	},
+	"text": "You can <level up> a Lv 1 Chaos on your battlefield.\nHeals 3 HP during your adjust phase.",
+	"effects": [
+		"Regen(3)"
+	]
+}

@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 115,
+	"name": "Confusion",
+	"type": "event",
+	"rarity": "common",
+	"requirement": {
+		"cost": 0,
+		"field": ["gnosis"]
+	},
+	"text": "Change the enemy's battle formation, switching the front row with the back row."
+}

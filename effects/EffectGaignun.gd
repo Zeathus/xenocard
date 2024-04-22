@@ -1,0 +1,11 @@
+extends CardEffect
+
+class_name EffectGaignun
+
+# When the E mark is removed from this card, all {Realians}
+# on the battlefield go back to their owners' hands.
+
+func on_e_mark_removed():
+	for c in game_board.get_all_battlefield_cards():
+		if c.attribute == Card.Attribute.REALIAN:
+			events.push_back(EventFieldToHand.new(get_game_board(), c))

@@ -1,0 +1,395 @@
+[gd_scene load_steps=14 format=3 uid="uid://d2tcufci502xh"]
+
+[ext_resource type="Script" path="res://objects/card_status.gd" id="1_ky7jd"]
+[ext_resource type="PackedScene" uid="uid://g7yv71p73utl" path="res://objects/attribute.tscn" id="2_c6fv0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3dq0f"]
+font_size = 28
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h8spx"]
+bg_color = Color(0.23, 0.23, 0.23, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ibhn2"]
+bg_color = Color(0, 0.501961, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_pasle"]
+font_size = 28
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qm351"]
+bg_color = Color(0.23, 0.23, 0.23, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nffmt"]
+bg_color = Color(0.23, 0.23, 0.23, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0745w"]
+bg_color = Color(0.23, 0.23, 0.23, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6cm2t"]
+bg_color = Color(0.212839, 0.439923, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c6k3m"]
+bg_color = Color(0.212839, 0.439923, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_36mnk"]
+bg_color = Color(0.212839, 0.439923, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_krnbx"]
+bg_color = Color(0.212839, 0.439923, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="CardStatus" type="Node2D"]
+script = ExtResource("1_ky7jd")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -80.0
+offset_top = -90.0
+offset_right = 80.0
+offset_bottom = 90.0
+
+[node name="Attribute" parent="Panel" instance=ExtResource("2_c6fv0")]
+position = Vector2(21, 123)
+scale = Vector2(0.15, 0.15)
+
+[node name="LabelHP" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.275
+anchor_top = -0.15
+anchor_right = -0.275
+anchor_bottom = -0.15
+offset_left = 56.0
+offset_top = 32.0
+offset_right = 165.0
+offset_bottom = 77.0
+text = "HP"
+label_settings = SubResource("LabelSettings_3dq0f")
+
+[node name="ValueHP" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.15
+anchor_right = 0.11875
+anchor_bottom = -0.15
+offset_left = 20.0
+offset_top = 32.0
+offset_right = 129.0
+offset_bottom = 77.0
+text = "10/10"
+label_settings = SubResource("LabelSettings_3dq0f")
+horizontal_alignment = 2
+
+[node name="PanelHP" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 42.0
+offset_right = 146.0
+offset_bottom = 72.0
+
+[node name="Off1" type="Panel" parent="Panel/PanelHP"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 14.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h8spx")
+
+[node name="Off2" type="Panel" parent="Panel/PanelHP"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 3.0
+offset_right = 28.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h8spx")
+
+[node name="Off3" type="Panel" parent="Panel/PanelHP"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 3.0
+offset_right = 42.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h8spx")
+
+[node name="Off4" type="Panel" parent="Panel/PanelHP"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 3.0
+offset_right = 56.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h8spx")
+
+[node name="Off5" type="Panel" parent="Panel/PanelHP"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 3.0
+offset_right = 70.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h8spx")
+
+[node name="Off6" type="Panel" parent="Panel/PanelHP"]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 3.0
+offset_right = 84.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h8spx")
+
+[node name="Off7" type="Panel" parent="Panel/PanelHP"]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 3.0
+offset_right = 98.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h8spx")
+
+[node name="Off8" type="Panel" parent="Panel/PanelHP"]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 3.0
+offset_right = 112.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h8spx")
+
+[node name="Off9" type="Panel" parent="Panel/PanelHP"]
+layout_mode = 0
+offset_left = 116.0
+offset_top = 3.0
+offset_right = 126.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h8spx")
+
+[node name="Off10" type="Panel" parent="Panel/PanelHP"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 3.0
+offset_right = 140.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h8spx")
+
+[node name="On1" type="Panel" parent="Panel/PanelHP"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 14.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ibhn2")
+
+[node name="On2" type="Panel" parent="Panel/PanelHP"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 3.0
+offset_right = 28.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ibhn2")
+
+[node name="On3" type="Panel" parent="Panel/PanelHP"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 3.0
+offset_right = 42.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ibhn2")
+
+[node name="On4" type="Panel" parent="Panel/PanelHP"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 3.0
+offset_right = 56.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ibhn2")
+
+[node name="On5" type="Panel" parent="Panel/PanelHP"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 3.0
+offset_right = 70.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ibhn2")
+
+[node name="On6" type="Panel" parent="Panel/PanelHP"]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 3.0
+offset_right = 84.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ibhn2")
+
+[node name="On7" type="Panel" parent="Panel/PanelHP"]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 3.0
+offset_right = 98.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ibhn2")
+
+[node name="On8" type="Panel" parent="Panel/PanelHP"]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 3.0
+offset_right = 112.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ibhn2")
+
+[node name="On9" type="Panel" parent="Panel/PanelHP"]
+layout_mode = 0
+offset_left = 116.0
+offset_top = 3.0
+offset_right = 126.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ibhn2")
+
+[node name="On10" type="Panel" parent="Panel/PanelHP"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 3.0
+offset_right = 140.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ibhn2")
+
+[node name="LabelATK" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.275
+anchor_top = -0.15
+anchor_right = -0.275
+anchor_bottom = -0.15
+offset_left = 56.0
+offset_top = 99.0
+offset_right = 165.0
+offset_bottom = 144.0
+text = "ATK"
+label_settings = SubResource("LabelSettings_3dq0f")
+
+[node name="ValueATK" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.15
+anchor_right = 0.11875
+anchor_bottom = -0.15
+offset_left = 20.0
+offset_top = 99.0
+offset_right = 129.0
+offset_bottom = 144.0
+text = "10"
+label_settings = SubResource("LabelSettings_3dq0f")
+horizontal_alignment = 2
+
+[node name="AttackType" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.275
+anchor_top = -0.15
+anchor_right = -0.275
+anchor_bottom = -0.15
+offset_left = 56.0
+offset_top = 131.0
+offset_right = 192.0
+offset_bottom = 170.0
+text = "Type"
+label_settings = SubResource("LabelSettings_pasle")
+horizontal_alignment = 2
+
+[node name="PanelCharge" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 142.0
+offset_right = 146.0
+offset_bottom = 172.0
+
+[node name="Off1" type="Panel" parent="Panel/PanelCharge"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 14.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h8spx")
+
+[node name="Off2" type="Panel" parent="Panel/PanelCharge"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 3.0
+offset_right = 28.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qm351")
+
+[node name="Off3" type="Panel" parent="Panel/PanelCharge"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 3.0
+offset_right = 42.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_nffmt")
+
+[node name="Off4" type="Panel" parent="Panel/PanelCharge"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 3.0
+offset_right = 56.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0745w")
+
+[node name="On1" type="Panel" parent="Panel/PanelCharge"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 14.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6cm2t")
+
+[node name="On2" type="Panel" parent="Panel/PanelCharge"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 3.0
+offset_right = 28.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_c6k3m")
+
+[node name="On3" type="Panel" parent="Panel/PanelCharge"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 3.0
+offset_right = 42.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_36mnk")
+
+[node name="On4" type="Panel" parent="Panel/PanelCharge"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 3.0
+offset_right = 56.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_krnbx")

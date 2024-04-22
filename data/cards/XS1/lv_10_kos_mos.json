@@ -1,0 +1,25 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 12,
+	"name": "Lv 10 KOS-MOS",
+	"character": "KOS-MOS",
+	"type": "battle",
+	"rarity": "promo",
+	"stats": {
+		"attribute": "machine",
+		"hp": 8,
+		"atk": 2,
+		"target": "spread"
+	},
+	"requirement": {
+		"cost": 1,
+		"field": ["human", "human", "any", "any"]
+	},
+	"text": "You can <level up> a Lv 1 KOS-MOS on your battlefield.\nThis card can only equip {weapons} exclusive to KOS-MOS.\nAttacks every other turn.",
+	"effects": [
+		"LevelUp(name=Lv 1 KOS-MOS)",
+		"AttackTime(2)",
+		"EquipsOnly(name=Third Armament)"
+	]
+}

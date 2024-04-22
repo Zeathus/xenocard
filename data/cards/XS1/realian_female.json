@@ -1,0 +1,19 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 25,
+	"name": "All-Purpose Realian Female",
+	"type": "battle",
+	"rarity": "common",
+	"stats": {
+		"attribute": "realian",
+		"hp": 2,
+		"atk": 1,
+		"target": "hand"
+	},
+	"text": "<Unlimited>.\nDraw one card from your deck during the adjust phase of the turn this card was played.",
+	"effects": [
+		"Unlimited",
+		"DrawCardFirstAdjustPhase"
+	]
+}

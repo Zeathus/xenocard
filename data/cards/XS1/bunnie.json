@@ -1,0 +1,23 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 30,
+	"name": "Bunnie",
+	"character": "Bunnie",
+	"type": "battle",
+	"rarity": "promo",
+	"stats": {
+		"attribute": "unknown",
+		"hp": 5,
+		"atk": 2,
+		"target": "hand"
+	},
+	"requirement": {
+		"cost": 1,
+		"field": ["any", "any"]
+	},
+	"text": "When the E mark is removed from this card, all battle cards on the field are <downed>.",
+	"effects": [
+		"DownAllWhenEMarkRemoved"
+	]
+}

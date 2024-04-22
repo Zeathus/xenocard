@@ -1,0 +1,20 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 65,
+	"name": "Pellegri",
+	"character": "Pellegri",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "human",
+		"hp": 4,
+		"atk": 1,
+		"target": "hand"
+	},
+	"requirement": {
+		"cost": 0,
+		"field": ["human", "machine"]
+	},
+	"text": "When this card is on the battlefield, you can discard it during your event or block phase to gain ATK+1 on all of your {Machines} during that turn."
+}

@@ -1,0 +1,25 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 53,
+	"name": "Third Armament",
+	"type": "battle",
+	"rarity": "promo",
+	"stats": {
+		"attribute": "weapon",
+		"hp": 0,
+		"atk": 10,
+		"target": "spread"
+	},
+	"requirement": {
+		"cost": 1,
+		"field": ["human", "human", "machine"]
+	},
+	"text": "Exclusively or Lv 10 KOS-MOS.\nCan only be played when both KOS-MOS and Shion are on the battlefield.\nAttacks every other turn.",
+	"effects": [
+		"EquipsTo(name=Lv 10 KOS-MOS)",
+		"MustBeOnField(character=Shion;zone=battlefield)",
+		"MustBeOnField(character=KOS-MOS;zone=battlefield)",
+		"AttackTime(2)"
+	]
+}

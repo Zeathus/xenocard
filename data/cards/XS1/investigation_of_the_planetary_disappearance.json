@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 96,
+	"name": "Investigation of the\nPlanetary Disappearance",
+	"type": "event",
+	"rarity": "common",
+	"requirement": {
+		"cost": 0,
+		"field": ["any", "any"]
+	},
+	"text": "Look at the top five cards of your deck and add one of them to your $hand. Return the rest and shuffle your deck."
+}

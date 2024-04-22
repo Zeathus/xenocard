@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 97,
+	"name": "Landing Operations",
+	"type": "event",
+	"rarity": "common",
+	"requirement": {
+		"cost": 0,
+		"field": ["machine"]
+	},
+	"text": "Destroy one situation card."
+}

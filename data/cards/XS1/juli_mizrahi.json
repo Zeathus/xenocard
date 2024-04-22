@@ -1,0 +1,20 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 64,
+	"name": "Juli Mizrahi",
+	"character": "Juli Mizrahi",
+	"type": "battle",
+	"rarity": "common",
+	"stats": {
+		"attribute": "human",
+		"hp": 2,
+		"atk": 1,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 0,
+		"field": ["human"]
+	},
+	"text": "When this card is on the battlefield, you can discard it during your event or block phase to gain ATK+1 on all of your {Humans} during that turn."
+}

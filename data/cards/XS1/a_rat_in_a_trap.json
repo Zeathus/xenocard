@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 139,
+	"name": "A Rat in a Trap",
+	"type": "situation",
+	"rarity": "common",
+	"requirement": {
+		"cost": 0,
+		"field": ["any", "any", "any"]
+	},
+	"text": "When this card is on the field, battle cards cannot withdraw from the battlefield.\nThis card is discarded after 2 turns."
+}

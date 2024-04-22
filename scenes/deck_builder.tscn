@@ -1,0 +1,358 @@
+[gd_scene load_steps=11 format=3 uid="uid://beqafedaf6ood"]
+
+[ext_resource type="Script" path="res://scenes/deck_builder.gd" id="1_gbn5a"]
+[ext_resource type="Texture2D" uid="uid://c4e86agyg5na" path="res://sprites/text_icons/human.png" id="2_4w8la"]
+[ext_resource type="PackedScene" uid="uid://bqt532l8n2w8u" path="res://objects/card_details.tscn" id="2_rkvwk"]
+[ext_resource type="Texture2D" uid="uid://dvdphmaqueyhj" path="res://sprites/text_icons/any.png" id="2_xa34a"]
+[ext_resource type="Texture2D" uid="uid://dv03lkeqro1df" path="res://sprites/text_icons/realian.png" id="3_o6g6v"]
+[ext_resource type="Texture2D" uid="uid://c1j6jw5mvjf43" path="res://sprites/text_icons/machine.png" id="4_fjy1p"]
+[ext_resource type="Texture2D" uid="uid://cyil0a2s7iecn" path="res://sprites/text_icons/gnosis.png" id="5_vx0wu"]
+[ext_resource type="Texture2D" uid="uid://bfgvnipod5tro" path="res://sprites/text_icons/unknown.png" id="6_70cvl"]
+[ext_resource type="Texture2D" uid="uid://d2008vc1rsyy2" path="res://sprites/text_icons/weapon.png" id="7_22red"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pcyqr"]
+size = Vector2(99, 792)
+
+[node name="DeckBuilder" type="Node2D"]
+script = ExtResource("1_gbn5a")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Buttons" type="Panel" parent="."]
+offset_left = -952.0
+offset_top = -531.0
+offset_right = -537.0
+offset_bottom = -427.0
+
+[node name="Deck" type="Panel" parent="."]
+offset_left = -526.0
+offset_top = -269.0
+offset_right = 525.0
+offset_bottom = 347.0
+
+[node name="Meta" type="Panel" parent="."]
+offset_left = -526.0
+offset_top = -531.0
+offset_right = -36.0
+offset_bottom = -279.0
+
+[node name="DeckName" type="LineEdit" parent="Meta"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 128.0
+offset_right = 359.0
+offset_bottom = 175.0
+placeholder_text = "Deck Name"
+
+[node name="ButtonSave" type="Button" parent="Meta"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 186.0
+offset_right = 127.0
+offset_bottom = 233.0
+text = "Save"
+
+[node name="ButtonSaveAs" type="Button" parent="Meta"]
+layout_mode = 0
+offset_left = 133.0
+offset_top = 186.0
+offset_right = 243.0
+offset_bottom = 233.0
+text = "Save As"
+
+[node name="ButtonSort" type="Button" parent="Meta"]
+layout_mode = 0
+offset_left = 249.0
+offset_top = 186.0
+offset_right = 359.0
+offset_bottom = 233.0
+text = "Sort"
+
+[node name="ButtonShuffle" type="Button" parent="Meta"]
+layout_mode = 0
+offset_left = 365.0
+offset_top = 186.0
+offset_right = 475.0
+offset_bottom = 233.0
+text = "Shuffle"
+
+[node name="ButtonDelete" type="Button" parent="Meta"]
+layout_mode = 0
+offset_left = 365.0
+offset_top = 72.0
+offset_right = 475.0
+offset_bottom = 119.0
+text = "Delete"
+
+[node name="ButtonNew" type="Button" parent="Meta"]
+layout_mode = 0
+offset_left = 365.0
+offset_top = 128.0
+offset_right = 475.0
+offset_bottom = 175.0
+text = "New"
+
+[node name="LoadDeck" type="OptionButton" parent="Meta"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 72.0
+offset_right = 359.0
+offset_bottom = 119.0
+
+[node name="List" type="Panel" parent="."]
+offset_left = 537.0
+offset_top = -269.0
+offset_right = 952.0
+offset_bottom = 532.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="List"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 10.0
+offset_right = 397.0
+offset_bottom = 792.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="List/ScrollContainer"]
+custom_minimum_size = Vector2(390, 600)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VisibleCards" type="Area2D" parent="List"]
+input_pickable = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="List/VisibleCards"]
+position = Vector2(207.5, 402)
+shape = SubResource("RectangleShape2D_pcyqr")
+
+[node name="Results" type="Panel" parent="List"]
+layout_mode = 0
+offset_left = 279.0
+offset_top = 4.0
+offset_right = 391.0
+offset_bottom = 33.0
+
+[node name="Label" type="Label" parent="List/Results"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 3.0
+offset_right = 111.0
+offset_bottom = 28.0
+text = "Results: 200"
+horizontal_alignment = 1
+
+[node name="Stats" type="Panel" parent="."]
+offset_left = -526.0
+offset_top = 358.0
+offset_right = 525.0
+offset_bottom = 532.0
+
+[node name="Filters" type="Panel" parent="."]
+offset_left = -26.0
+offset_top = -531.0
+offset_right = 952.0
+offset_bottom = -279.0
+
+[node name="SearchLabel" type="Label" parent="Filters"]
+layout_mode = 0
+offset_left = 503.0
+offset_top = 200.0
+offset_right = 560.0
+offset_bottom = 223.0
+text = "Search:"
+horizontal_alignment = 2
+
+[node name="Search" type="LineEdit" parent="Filters"]
+layout_mode = 0
+offset_left = 563.0
+offset_top = 188.0
+offset_right = 964.0
+offset_bottom = 235.0
+placeholder_text = "Search by name or card text"
+
+[node name="TypeLabel" type="Label" parent="Filters"]
+layout_mode = 0
+offset_left = 607.0
+offset_top = 32.0
+offset_right = 664.0
+offset_bottom = 55.0
+text = "Type:"
+horizontal_alignment = 2
+
+[node name="Type" type="OptionButton" parent="Filters"]
+layout_mode = 0
+offset_left = 667.0
+offset_top = 20.0
+offset_right = 807.0
+offset_bottom = 67.0
+item_count = 4
+selected = 0
+popup/item_0/text = "All"
+popup/item_0/id = 0
+popup/item_1/text = "Battle"
+popup/item_1/id = 1
+popup/item_2/text = "Event"
+popup/item_2/id = 2
+popup/item_3/text = "Situation"
+popup/item_3/id = 3
+
+[node name="HPLabel" type="Label" parent="Filters"]
+layout_mode = 0
+offset_left = 801.0
+offset_top = 88.0
+offset_right = 858.0
+offset_bottom = 111.0
+text = "HP:"
+horizontal_alignment = 2
+
+[node name="HP" type="LineEdit" parent="Filters"]
+layout_mode = 0
+offset_left = 862.0
+offset_top = 76.0
+offset_right = 954.0
+offset_bottom = 123.0
+placeholder_text = "HP"
+editable = false
+
+[node name="ATKLabel" type="Label" parent="Filters"]
+layout_mode = 0
+offset_left = 801.0
+offset_top = 144.0
+offset_right = 858.0
+offset_bottom = 167.0
+text = "ATK:"
+horizontal_alignment = 2
+
+[node name="ATK" type="LineEdit" parent="Filters"]
+layout_mode = 0
+offset_left = 862.0
+offset_top = 132.0
+offset_right = 954.0
+offset_bottom = 179.0
+placeholder_text = "ATK"
+editable = false
+
+[node name="AttributeLabel" type="Label" parent="Filters"]
+layout_mode = 0
+offset_left = 582.0
+offset_top = 88.0
+offset_right = 664.0
+offset_bottom = 111.0
+text = "Attribute:"
+horizontal_alignment = 2
+
+[node name="Attribute" type="OptionButton" parent="Filters"]
+layout_mode = 0
+offset_left = 667.0
+offset_top = 76.0
+offset_right = 807.0
+offset_bottom = 123.0
+disabled = true
+expand_icon = true
+item_count = 7
+selected = 0
+popup/item_0/text = "All"
+popup/item_0/icon = ExtResource("2_xa34a")
+popup/item_0/id = 0
+popup/item_1/text = "Human"
+popup/item_1/icon = ExtResource("2_4w8la")
+popup/item_1/id = 1
+popup/item_2/text = "Realian"
+popup/item_2/icon = ExtResource("3_o6g6v")
+popup/item_2/id = 2
+popup/item_3/text = "Machine"
+popup/item_3/icon = ExtResource("4_fjy1p")
+popup/item_3/id = 3
+popup/item_4/text = "Gnosis"
+popup/item_4/icon = ExtResource("5_vx0wu")
+popup/item_4/id = 4
+popup/item_5/text = "Unknown"
+popup/item_5/icon = ExtResource("6_70cvl")
+popup/item_5/id = 5
+popup/item_6/text = "Weapon"
+popup/item_6/icon = ExtResource("7_22red")
+popup/item_6/id = 6
+
+[node name="AttackTypeLabel" type="Label" parent="Filters"]
+layout_mode = 0
+offset_left = 545.0
+offset_top = 144.0
+offset_right = 664.0
+offset_bottom = 167.0
+text = "Attack Type:"
+horizontal_alignment = 2
+
+[node name="AttackType" type="OptionButton" parent="Filters"]
+layout_mode = 0
+offset_left = 667.0
+offset_top = 132.0
+offset_right = 807.0
+offset_bottom = 179.0
+disabled = true
+expand_icon = true
+item_count = 6
+selected = 0
+popup/item_0/text = "All"
+popup/item_0/id = 0
+popup/item_1/text = "Hand"
+popup/item_1/id = 1
+popup/item_2/text = "Ballistic"
+popup/item_2/id = 2
+popup/item_3/text = "Spread"
+popup/item_3/id = 3
+popup/item_4/text = "Homing"
+popup/item_4/id = 4
+popup/item_5/text = "None"
+popup/item_5/id = 5
+
+[node name="CostLabel" type="Label" parent="Filters"]
+layout_mode = 0
+offset_left = 801.0
+offset_top = 32.0
+offset_right = 858.0
+offset_bottom = 55.0
+text = "Cost:"
+horizontal_alignment = 2
+
+[node name="Cost" type="LineEdit" parent="Filters"]
+layout_mode = 0
+offset_left = 862.0
+offset_top = 20.0
+offset_right = 954.0
+offset_bottom = 67.0
+placeholder_text = "Cost"
+
+[node name="Preview" type="Panel" parent="."]
+offset_left = -952.0
+offset_top = -417.0
+offset_right = -537.0
+offset_bottom = 532.0
+
+[node name="Text" type="RichTextLabel" parent="Preview"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 11.0
+offset_right = 390.0
+offset_bottom = 431.0
+
+[node name="CardDetails" parent="Preview" instance=ExtResource("2_rkvwk")]
+position = Vector2(208, 307)
+scale = Vector2(0.5, 0.5)
+
+[connection signal="pressed" from="Meta/ButtonSave" to="." method="_on_button_save_pressed"]
+[connection signal="pressed" from="Meta/ButtonSaveAs" to="." method="_on_button_save_as_pressed"]
+[connection signal="pressed" from="Meta/ButtonSort" to="." method="_on_button_sort_pressed"]
+[connection signal="pressed" from="Meta/ButtonShuffle" to="." method="_on_button_shuffle_pressed"]
+[connection signal="pressed" from="Meta/ButtonNew" to="." method="_on_button_new_pressed"]
+[connection signal="item_selected" from="Meta/LoadDeck" to="." method="_on_load_deck_item_selected"]
+[connection signal="area_entered" from="List/VisibleCards" to="." method="_on_visible_cards_area_entered"]
+[connection signal="area_exited" from="List/VisibleCards" to="." method="_on_visible_cards_area_exited"]
+[connection signal="text_changed" from="Filters/Search" to="." method="_on_filters_changed"]
+[connection signal="item_selected" from="Filters/Type" to="." method="_on_type_item_selected"]
+[connection signal="text_changed" from="Filters/HP" to="." method="_on_filters_changed"]
+[connection signal="text_changed" from="Filters/ATK" to="." method="_on_filters_changed"]
+[connection signal="item_selected" from="Filters/Attribute" to="." method="_on_attribute_item_selected"]
+[connection signal="item_selected" from="Filters/AttackType" to="." method="_on_attack_type_item_selected"]
+[connection signal="text_changed" from="Filters/Cost" to="." method="_on_filters_changed"]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://d148kbp4pyn05"]
+
+[ext_resource type="Script" path="res://animations/projectile.gd" id="1_n0uys"]
+
+[node name="Projectile" type="Node2D"]
+z_index = 5
+script = ExtResource("1_n0uys")
+
+[node name="Border" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(0, 24, -24, 0, 0, -24, 24, 0)
+
+[node name="Fill" type="Polygon2D" parent="."]
+color = Color(0.627451, 0, 0, 1)
+polygon = PackedVector2Array(0, 20, -20, 0, 0, -20, 20, 0)

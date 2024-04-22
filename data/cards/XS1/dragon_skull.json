@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 99,
+	"name": "Dragon Skull",
+	"type": "event",
+	"rarity": "uncommon",
+	"requirement": {
+		"cost": 1,
+		"field": ["machine", "machine"]
+	},
+	"text": "Destroy one <downed> {Gnosis} card."
+}

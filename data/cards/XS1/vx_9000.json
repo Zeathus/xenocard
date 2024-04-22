@@ -1,0 +1,23 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 39,
+	"name": "VX-9000",
+	"type": "battle",
+	"rarity": "uncommon",
+	"stats": {
+		"attribute": "machine",
+		"hp": 6,
+		"atk": 3,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 3,
+		"field": ["human", "human"]
+	},
+	"text": "<Unique>.\nWhen this card is destroyed in the battle phase, you can destroy one card in the enemy's standby area.",
+	"effects": [
+		"Unique",
+		"DestroyCardWhenDestroyedByBattle(owner=enemy;zone=standby)"
+	]
+}

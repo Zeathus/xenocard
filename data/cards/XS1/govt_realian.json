@@ -1,0 +1,18 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 26,
+	"name": "Gov't Realian",
+	"type": "battle",
+	"rarity": "common",
+	"stats": {
+		"attribute": "realian",
+		"hp": 2,
+		"atk": 2,
+		"target": "hand"
+	},
+	"text": "<Unlimited>.",
+	"effects": [
+		"Unlimited"
+	]
+}

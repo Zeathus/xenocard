@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 89,
+	"name": "Retreat",
+	"type": "event",
+	"rarity": "common",
+	"requirement": {
+		"cost": 1,
+		"field": ["human", "human"]
+	},
+	"text": "Move one enemy battle card to the standby area. You cannot use this card if the standby area is full."
+}

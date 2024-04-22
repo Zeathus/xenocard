@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 138,
+	"name": "Imaginary Space",
+	"type": "situation",
+	"rarity": "common",
+	"requirement": {
+		"cost": 1,
+		"field": ["gnosis", "gnosis", "any"]
+	},
+	"text": "During your draw phase, draw from the lost pile rather than the deck. You cannot draw if you do not have any cards in your lost pile."
+}

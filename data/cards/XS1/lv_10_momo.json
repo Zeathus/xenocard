@@ -1,0 +1,25 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 11,
+	"name": "Lv 10 MOMO",
+	"character": "MOMO",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "realian",
+		"hp": 6,
+		"atk": 3,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 1,
+		"field": ["human", "human"]
+	},
+	"text": "You can <level up> a Lv 1 MOMO on your battlefield.\nWhen this card is on the battlefield, {Gnosis} on the battlefield cannot move.\nGains ATK+1 against {Gnosis}.",
+	"effects": [
+		"LevelUp(name=Lv 1 MOMO)",
+		"ModifyDamageTo(1,attribute=gnosis)",
+		"GlobalPreventMovementOnBattlefield(attribute=gnosis;zone=battlefield)"
+	]
+}

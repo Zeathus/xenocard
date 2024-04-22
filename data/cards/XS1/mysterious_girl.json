@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 135,
+	"name": "Mysterious Girl",
+	"type": "situation",
+	"rarity": "uncommon",
+	"requirement": {
+		"cost": 1,
+		"field": ["any", "any"]
+	},
+	"text": "All battle cards except {Gnosis} gain ATK+1.\nThis card is discarded after 1 turn."
+}

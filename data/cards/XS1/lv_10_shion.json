@@ -1,0 +1,24 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 8,
+	"name": "Lv 10 Shion",
+	"character": "Shion",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "human",
+		"hp": 6,
+		"atk": 3,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 1,
+		"field": ["human", "human", "human"]
+	},
+	"text": "You can <level up> a Lv 1 Shion on your battlefield, ignoring field requirements.\nTakes 1 less battle damage from {Realians}.",
+	"effects": [
+		"LevelUpIgnoreReq(name=Lv 1 Shion)",
+		"ModifyDamageFrom(-1,attribute=realian)"
+	]
+}

@@ -1,0 +1,23 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 70,
+	"name": "Gremlin",
+	"type": "battle",
+	"rarity": "common",
+	"stats": {
+		"attribute": "gnosis",
+		"hp": 1,
+		"atk": 2,
+		"target": "spread"
+	},
+	"requirement": {
+		"cost": 0,
+		"field": ["human", "machine"]
+	},
+	"text": "Discard one {Human} from your field to play this card anywhere on your field.",
+	"effects": [
+		"DestroyAttributeToPlay(human)",
+		"CanSetToBattlefield"
+	]
+}

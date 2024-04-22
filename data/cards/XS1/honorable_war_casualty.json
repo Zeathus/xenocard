@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 110,
+	"name": "Honorable War Casualty",
+	"type": "event",
+	"rarity": "uncommon",
+	"requirement": {
+		"cost": 0,
+		"field": ["human", "human"]
+	},
+	"text": "Discard as many battle cards as you like. For each discarded card, <recover> four cards, up to the number in your lost pile."
+}

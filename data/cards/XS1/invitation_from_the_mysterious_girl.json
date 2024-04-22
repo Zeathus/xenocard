@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 93,
+	"name": "Invitation from\nthe Mysterious Girl",
+	"type": "event",
+	"rarity": "uncommon",
+	"requirement": {
+		"cost": 0,
+		"field": ["human", "any"]
+	},
+	"text": "<Slow>.\nYou <recover> as many cards as possible up to the number of cards on your battlefield with hand attack type."
+}

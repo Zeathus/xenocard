@@ -1,0 +1,23 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 78,
+	"name": "Unicorn",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "gnosis",
+		"hp": 7,
+		"atk": 2,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 0,
+		"field": ["gnosis", "gnosis", "human"]
+	},
+	"text": "Discard one {Human} from your field to play this card anywhere on your field.\nWhen this card is on the battlefield, it heals 3 HP during your adjust phase.",
+	"effects": [
+		"DestroyAttributeToPlay(human)",
+		"CanSetToBattlefield"
+	]
+}

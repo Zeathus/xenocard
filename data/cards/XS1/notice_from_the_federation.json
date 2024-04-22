@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 104,
+	"name": "Notice from the Federation",
+	"type": "event",
+	"rarity": "common",
+	"requirement": {
+		"cost": 0,
+		"field": ["any", "any"]
+	},
+	"text": "Destroy the {weapon} equipped to a battle card."
+}

@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 92,
+	"name": "Federation Cruiser",
+	"type": "event",
+	"rarity": "common",
+	"requirement": {
+		"cost": 0,
+		"field": ["machine"]
+	},
+	"text": "Inflict 2 effect damage to one enemy battle card on the battlefield."
+}

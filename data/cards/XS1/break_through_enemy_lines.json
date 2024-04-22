@@ -1,0 +1,12 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 120,
+	"name": "Break Through Enemy Lines",
+	"type": "event",
+	"rarity": "uncommon",
+	"requirement": {
+		"field": ["machine", "machine"]
+	},
+	"text": "Inflict 2 effect damage to one battle card in standby."
+}

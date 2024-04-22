@@ -1,0 +1,12 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 132,
+	"name": "Gnosify",
+	"type": "situation",
+	"rarity": "uncommon",
+	"requirement": {
+		"field": ["gnosis"]
+	},
+	"text": "During your event or block phase, you can discard two cards from your $hand to draw one card from your list pile."
+}

@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 136,
+	"name": "Territory Shift",
+	"type": "situation",
+	"rarity": "common",
+	"requirement": {
+		"cost": 1,
+		"field": ["gnosis", "gnosis"]
+	},
+	"text": "When a {Gnosis} attacks the deck, the owner of the deck must discard one card from their $hand.\nThis effect cannot be stacked."
+}

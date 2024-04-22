@@ -1,0 +1,23 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 49,
+	"name": "Missile Pod",
+	"type": "battle",
+	"rarity": "common",
+	"stats": {
+		"attribute": "weapon",
+		"hp": 0,
+		"atk": 2,
+		"target": "spread"
+	},
+	"requirement": {
+		"cost": 1,
+		"field": ["human", "human"]
+	},
+	"text": "Only {Humans} and {Realians} can equip this card.\nAfter one use, this card is discarded.",
+	"effects": [
+		"EquipsTo(attribute=human;attribute=realian)",
+		"DiscardWeaponAfterAttack"
+	]
+}

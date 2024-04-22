@@ -1,0 +1,23 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 4,
+	"name": "Lv 1 MOMO",
+	"character": "MOMO",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "realian",
+		"hp": 4,
+		"atk": 1,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 1,
+		"field": ["human"]
+	},
+	"text": "Gains ATK+1 against {Gnosis}.",
+	"effects": [
+		"ModifyDamageTo(1,attribute=gnosis)"
+	]
+}

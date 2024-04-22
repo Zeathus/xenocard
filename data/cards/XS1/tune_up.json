@@ -1,0 +1,12 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 123,
+	"name": "Tune-Up",
+	"type": "situation",
+	"rarity": "common",
+	"requirement": {
+		"field": ["machine", "machine"]
+	},
+	"text": "Your {Machines} take 1 less battle damage.\nThis card is discarded after 3 turns."
+}

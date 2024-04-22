@@ -1,0 +1,12 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 84,
+	"name": "Cure-All",
+	"type": "event",
+	"rarity": "common",
+	"requirement": {
+		"field": ["human"]
+	},
+	"text": "Remove <downed> status from one card."
+}

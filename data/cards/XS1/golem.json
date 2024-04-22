@@ -1,0 +1,24 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 76,
+	"name": "Golem",
+	"type": "battle",
+	"rarity": "uncommon",
+	"stats": {
+		"attribute": "gnosis",
+		"hp": 5,
+		"atk": 3,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 0,
+		"field": ["human", "any"]
+	},
+	"text": "Discard one {Human} from your field to play this card anywhere on your field.\n<Unlimited>.",
+	"effects": [
+		"Unlimited",
+		"DestroyAttributeToPlay(human)",
+		"CanSetToBattlefield"
+	]
+}

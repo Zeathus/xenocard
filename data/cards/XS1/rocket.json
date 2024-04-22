@@ -1,0 +1,23 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 52,
+	"name": "Rocket",
+	"type": "battle",
+	"rarity": "common",
+	"stats": {
+		"attribute": "weapon",
+		"hp": 0,
+		"atk": 3,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 3,
+		"field": ["human", "any"]
+	},
+	"text": "<Unlimited>.\nOnly {Humans} and {Realians} can equip this card.",
+	"effects": [
+		"Unlimited",
+		"EquipsTo(attribute=human;attribute=realian)"
+	]
+}

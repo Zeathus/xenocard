@@ -1,0 +1,24 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 67,
+	"name": "Kobold",
+	"type": "battle",
+	"rarity": "uncommon",
+	"stats": {
+		"attribute": "gnosis",
+		"hp": 5,
+		"atk": 1,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 0,
+		"field": ["human"]
+	},
+	"text": "Discard one {Human} from your field to play this card anywhere on your field.\n<Unlimited>.",
+	"effects": [
+		"Unlimited",
+		"DestroyAttributeToPlay(human)",
+		"CanSetToBattlefield"
+	]
+}

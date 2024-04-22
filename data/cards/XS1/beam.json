@@ -1,0 +1,25 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 47,
+	"name": "Beam",
+	"type": "battle",
+	"rarity": "uncommon",
+	"stats": {
+		"attribute": "weapon",
+		"hp": 0,
+		"atk": 4,
+		"target": "spread"
+	},
+	"requirement": {
+		"cost": 1,
+		"field": ["machine", "any"]
+	},
+	"text": "<Unlimited>.\nOnly {Machines} can equip this card.\nAttacks every other turn.\nAfter one use, this card is discarded.",
+	"effects": [
+		"Unlimited",
+		"EquipsTo(attribute=machine)",
+		"AttackTime(2)",
+		"DiscardWeaponAfterAttack"
+	]
+}

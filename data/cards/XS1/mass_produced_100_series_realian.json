@@ -1,0 +1,19 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 27,
+	"name": "Mass Produced\n100 Series Realian",
+	"type": "battle",
+	"rarity": "uncommon",
+	"stats": {
+		"attribute": "realian",
+		"hp": 2,
+		"atk": 2,
+		"target": "hand"
+	},
+	"text": "<Unlimited>.\nGains ATK+1 against {Gnosis}.",
+	"effects": [
+		"Unlimited",
+		"ModifyDamageTo(1,attribute=gnosis)"
+	]
+}

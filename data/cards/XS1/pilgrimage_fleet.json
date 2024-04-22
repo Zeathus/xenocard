@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 137,
+	"name": "Pilgrimage Fleet",
+	"type": "situation",
+	"rarity": "common",
+	"requirement": {
+		"cost": 0,
+		"field": ["gnosis", "any"]
+	},
+	"text": "{Gnosis} cards in standby heal 1 HP during their owner's adjust phase.\nThis effect cannot be stacked."
+}

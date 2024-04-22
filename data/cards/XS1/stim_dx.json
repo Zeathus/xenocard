@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 108,
+	"name": "Stim DX",
+	"type": "event",
+	"rarity": "rare",
+	"requirement": {
+		"cost": 3,
+		"field": ["human", "human", "any"]
+	},
+	"text": "<Slow>.\nDouble the ATK of one of your battle cards until your adjust phase. Homing and <penetrating> attacks are unaffected."
+}

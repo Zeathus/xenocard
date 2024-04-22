@@ -1,0 +1,23 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 59,
+	"name": "Testament",
+	"character": "Testament",
+	"type": "battle",
+	"rarity": "promo",
+	"stats": {
+		"attribute": "unknown",
+		"hp": 6,
+		"atk": 5,
+		"target": "hand"
+	},
+	"requirement": {
+		"cost": 2,
+		"field": ["gnosis", "gnosis", "human"]
+	},
+	"text": "When the E mark is removed from this card, you can <down> one enemy battle card on the field.",
+	"effects": [
+		"DownCardWhenEMarkRemoved(owner=enemy;type=battle;zone=battlefield;zone=standby)"
+	]
+}

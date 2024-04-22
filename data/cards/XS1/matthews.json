@@ -1,0 +1,23 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 57,
+	"name": "Matthews",
+	"character": "Matthews",
+	"type": "battle",
+	"rarity": "uncommon",
+	"stats": {
+		"attribute": "human",
+		"hp": 5,
+		"atk": 4,
+		"target": "hand"
+	},
+	"requirement": {
+		"cost": 1,
+		"field": ["human"]
+	},
+	"text": "When this card is on the field, both players pay one cost before their draw phase.\nWhen this card is on the battlefield, pay two cost instead.",
+	"effects": [
+		"Matthews"
+	]
+}

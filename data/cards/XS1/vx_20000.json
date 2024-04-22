@@ -1,0 +1,23 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 42,
+	"name": "VX-20000",
+	"type": "battle",
+	"rarity": "uncommon",
+	"stats": {
+		"attribute": "machine",
+		"hp": 5,
+		"atk": 5,
+		"target": "homing"
+	},
+	"requirement": {
+		"cost": 3,
+		"field": ["human", "human", "any"]
+	},
+	"text": "<Unique>.\nAttacks every other turn.",
+	"effects": [
+		"Unique",
+		"AttackTime(2)"
+	]
+}

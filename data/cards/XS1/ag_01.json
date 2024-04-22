@@ -1,0 +1,18 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 34,
+	"name": "AG-01",
+	"type": "battle",
+	"rarity": "uncommon",
+	"stats": {
+		"attribute": "machine",
+		"hp": 4,
+		"atk": 2,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 2,
+		"field": ["human"]
+	}
+}

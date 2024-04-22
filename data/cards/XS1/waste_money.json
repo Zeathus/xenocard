@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 141,
+	"name": "Waste Money",
+	"type": "situation",
+	"rarity": "common",
+	"requirement": {
+		"cost": 0,
+		"field": ["human", "any"]
+	},
+	"text": "Both players draw one additional card during their draw phase."
+}

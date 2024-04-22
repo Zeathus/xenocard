@@ -1,0 +1,22 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 66,
+	"name": "Zohar Emulator",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "machine",
+		"hp": 10,
+		"atk": 0,
+		"target": "hand"
+	},
+	"requirement": {
+		"cost": 1,
+		"field": ["human"]
+	},
+	"text": "<Unique>. This card cannot equip {weapons}.\nWhen this card is on the battlefield, you can discard it during your event or block phase to gain ATK+2 on all of your {Gnosis} during that turn.",
+	"effects": [
+		"Unique"
+	]
+}

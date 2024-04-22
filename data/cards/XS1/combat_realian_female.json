@@ -1,0 +1,18 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 29,
+	"name": "Combat Realian Female",
+	"type": "battle",
+	"rarity": "common",
+	"stats": {
+		"attribute": "realian",
+		"hp": 2,
+		"atk": 1,
+		"target": "ballistic"
+	},
+	"text": "<Unlimited>.",
+	"effects": [
+		"Unlimited"
+	]
+}

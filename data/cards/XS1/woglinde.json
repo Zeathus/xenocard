@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 90,
+	"name": "Woglinde",
+	"type": "event",
+	"rarity": "uncommon",
+	"requirement": {
+		"cost": 1,
+		"field": ["machine"]
+	},
+	"text": "Move one enemy battle card to the standby area. You cannot use this card if the standby area is full."
+}

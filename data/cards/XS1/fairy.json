@@ -1,0 +1,23 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 74,
+	"name": "Fairy",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "gnosis",
+		"hp": 3,
+		"atk": 1,
+		"target": "spread"
+	},
+	"requirement": {
+		"cost": 0,
+		"field": ["human", "human"]
+	},
+	"text": "Discard one {Human} from your field to play this card anywhere on your field.",
+	"effects": [
+		"DestroyAttributeToPlay(human)",
+		"CanSetToBattlefield"
+	]
+}

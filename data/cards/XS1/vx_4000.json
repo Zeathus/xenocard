@@ -1,0 +1,22 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 41,
+	"name": "VX-4000",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "machine",
+		"hp": 5,
+		"atk": 1,
+		"target": "spread"
+	},
+	"requirement": {
+		"cost": 3,
+		"field": ["human", "human"]
+	},
+	"text": "<Unique>.",
+	"effects": [
+		"Unique"
+	]
+}

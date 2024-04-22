@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 143,
+	"name": "Rhine Maiden",
+	"type": "situation",
+	"rarity": "promo",
+	"requirement": {
+		"cost": 2,
+		"field": ["machine", "machine"]
+	},
+	"text": "You can discard this card from your field during your event or block phase to inflict 4 effect damage to the enemy's deck."
+}

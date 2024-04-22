@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 100,
+	"name": "Expulsion Order",
+	"type": "event",
+	"rarity": "rare",
+	"requirement": {
+		"cost": 3,
+		"field": ["human", "human"]
+	},
+	"text": "Destroy one enemy {Human} battle card with an E mark."
+}

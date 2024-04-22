@@ -1,0 +1,25 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 44,
+	"name": "Cannon",
+	"type": "battle",
+	"rarity": "common",
+	"stats": {
+		"attribute": "weapon",
+		"hp": 0,
+		"atk": 8,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 1,
+		"field": ["machine", "machine"]
+	},
+	"text": "<Unlimited>.\nOnly {Machines} can equip this card.\nThis card's attacks <penetrate>.\nAttacks every other turn.",
+	"effects": [
+		"Unlimited",
+		"EquipsTo(attribute=machine)",
+		"AttackTime(2)",
+		"Penetrate"
+	]
+}

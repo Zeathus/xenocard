@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 140,
+	"name": "So Weak!",
+	"type": "situation",
+	"rarity": "promo",
+	"requirement": {
+		"cost": 2,
+		"field": ["human", "human", "any"]
+	},
+	"text": "You can discard this card from your field during your event or block phase to inflict 3 effect damage to one battle card on the battlefield."
+}

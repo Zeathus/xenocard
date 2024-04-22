@@ -1,0 +1,24 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 46,
+	"name": "Aird",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "weapon",
+		"hp": 0,
+		"atk": 5,
+		"target": "homing"
+	},
+	"requirement": {
+		"cost": 1,
+		"field": ["machine"]
+	},
+	"text": "<Unlimited>.\nOnly {Machines} can equip this card.\nAttacks every other turn.",
+	"effects": [
+		"Unlimited",
+		"EquipsTo(attribute=machine)",
+		"AttackTime(2)"
+	]
+}

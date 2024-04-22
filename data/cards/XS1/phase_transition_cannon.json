@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 103,
+	"name": "Phase Transition Cannon",
+	"type": "event",
+	"rarity": "promo",
+	"requirement": {
+		"cost": 4,
+		"field": ["human", "machine", "machine", "gnosis"]
+	},
+	"text": "Destroy all {Gnosis} and {Machines} on the battlefield."
+}

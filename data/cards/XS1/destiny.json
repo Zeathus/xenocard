@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 119,
+	"name": "Destiny",
+	"type": "event",
+	"rarity": "promo",
+	"requirement": {
+		"cost": 1,
+		"field": ["human", "human", "human"]
+	},
+	"text": "Discard one {Human} battle card on your battlefield to play one {Human} battle card from your junk pile in its place. Character cards and <unique> cards cannot be retrieved from the junk pile. Damage taken carries over, and any equipped {weapon} is destroyed."
+}

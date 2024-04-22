@@ -1,0 +1,12 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 130,
+	"name": "Supply Order",
+	"type": "situation",
+	"rarity": "uncommon",
+	"requirement": {
+		"field": ["human", "any"]
+	},
+	"text": "Whenever a {Realian} is destroyed, the owner of the card draws one card from the deck."
+}

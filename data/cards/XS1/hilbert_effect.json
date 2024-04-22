@@ -1,0 +1,12 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 121,
+	"name": "Hilbert Effect",
+	"type": "situation",
+	"rarity": "common",
+	"requirement": {
+		"field": ["machine", "any"]
+	},
+	"text": "All {Gnosis} on the battlefield cannot move and get ATK-1.\nThis card is discarded after 2 turns."
+}

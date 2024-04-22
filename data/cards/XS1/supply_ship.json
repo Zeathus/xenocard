@@ -1,0 +1,12 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 87,
+	"name": "Supply Ship",
+	"type": "event",
+	"rarity": "uncommon",
+	"requirement": {
+		"field": ["machine", "machine"]
+	},
+	"text": "You <recover> as many cards as possible up to five cards."
+}

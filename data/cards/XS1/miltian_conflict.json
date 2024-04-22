@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 116,
+	"name": "Miltian Conflict",
+	"type": "event",
+	"rarity": "rare",
+	"requirement": {
+		"cost": 0,
+		"field": ["machine", "machine"]
+	},
+	"text": "<Down> all battle cards in the back row of the enemy's battlefield."
+}

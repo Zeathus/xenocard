@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 86,
+	"name": "Bio Sphere",
+	"type": "event",
+	"rarity": "common",
+	"requirement": {
+		"cost": 1,
+		"field": ["any", "any"]
+	},
+	"text": "All your battle cards except {Gnosis} heal 3 HP."
+}

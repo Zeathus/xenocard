@@ -1,0 +1,23 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 32,
+	"name": "AG-02-M",
+	"type": "battle",
+	"rarity": "uncommon",
+	"stats": {
+		"attribute": "machine",
+		"hp": 7,
+		"atk": 2,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 2,
+		"field": ["human", "any"]
+	},
+	"text": "<Unique>.\nCards attacked by this card are <downed>.",
+	"effects": [
+		"Unique",
+		"DownAttackTarget"
+	]
+}

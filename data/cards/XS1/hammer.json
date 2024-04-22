@@ -1,0 +1,22 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 16,
+	"name": "Hammer",
+	"character": "Hammer",
+	"type": "battle",
+	"rarity": "uncommon",
+	"stats": {
+		"attribute": "human",
+		"hp": 3,
+		"atk": 1,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 1
+	},
+	"text": "Gains ATK+1 for every {Machine} on your battlefield when not equipped with a {weapon}.\nThis ability is unaffected by event cards.",
+	"effects": [
+		"GainATKForEachAlly(1,attribute=machine;zone=battlefield)"
+	]
+}

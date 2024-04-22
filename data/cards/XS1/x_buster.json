@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 111,
+	"name": "X•Buster",
+	"type": "event",
+	"rarity": "rare",
+	"requirement": {
+		"cost": 0,
+		"field": ["machine"]
+	},
+	"text": "Inflict 1 effect damage to all battle cards on the field."
+}

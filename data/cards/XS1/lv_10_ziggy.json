@@ -1,0 +1,25 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 10,
+	"name": "Lv 10 Ziggy",
+	"character": "Ziggy",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "human",
+		"hp": 7,
+		"atk": 2,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 1,
+		"field": ["human", "human"]
+	},
+	"text": "You can <level up> a Lv 1 Ziggy on your battlefield, ignoring field requirements.\nCards attacked by this card are <downed>.\nThis card cannot equip {weapons}.",
+	"effects": [
+		"LevelUpIgnoreReq(name=Lv 1 Ziggy)",
+		"DownAttackTarget",
+		"NoWeapons"
+	]
+}

@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 91,
+	"name": "Surprise Attack",
+	"type": "event",
+	"rarity": "common",
+	"requirement": {
+		"cost": 0,
+		"field": ["gnosis"]
+	},
+	"text": "Inflict 2 effect damage to one enemy battle card on the battlefield."
+}

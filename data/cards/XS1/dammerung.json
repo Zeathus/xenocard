@@ -1,0 +1,12 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 129,
+	"name": "Dämmerung",
+	"type": "situation",
+	"rarity": "promo",
+	"requirement": {
+		"field": ["human", "human", "human", "any"]
+	},
+	"text": "You <recover> one card on each of your adjust phases, if there are cards in your lost pile."
+}

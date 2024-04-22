@@ -1,0 +1,23 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 6,
+	"name": "Lv 1 Jr.",
+	"character": "Jr.",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "human",
+		"hp": 4,
+		"atk": 1,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 1,
+		"field": ["human"]
+	},
+	"text": "This card also attacks during the enemy battle phase when not equipped with a {weapon}.",
+	"effects": [
+		"CanAttackOnEnemyPhaseNoWeapon"
+	]
+}

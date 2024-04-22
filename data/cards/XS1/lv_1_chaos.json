@@ -1,0 +1,23 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 7,
+	"name": "Lv 1 chaos",
+	"character": "chaos",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "unknown",
+		"hp": 4,
+		"atk": 1,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 1,
+		"field": ["human"]
+	},
+	"text": "Heals 2 HP during your adjust phase.",
+	"effects": [
+		"Regen(2)"
+	]
+}

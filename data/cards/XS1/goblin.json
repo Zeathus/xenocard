@@ -1,0 +1,24 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 68,
+	"name": "Goblin",
+	"type": "battle",
+	"rarity": "common",
+	"stats": {
+		"attribute": "gnosis",
+		"hp": 5,
+		"atk": 2,
+		"target": "hand"
+	},
+	"requirement": {
+		"cost": 0,
+		"field": ["human"]
+	},
+	"text": "Discard one {Human} from your field to play this card anywhere on your field.\n<Unlimited>.\nCards attacked by this card are <downed>.",
+	"effects": [
+		"Unlimited",
+		"DestroyAttributeToPlay(human)",
+		"CanSetToBattlefield"
+	]
+}

@@ -1,0 +1,24 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 40,
+	"name": "VX-10000",
+	"type": "battle",
+	"rarity": "uncommon",
+	"stats": {
+		"attribute": "machine",
+		"hp": 6,
+		"atk": 3,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 3,
+		"field": ["human", "any"]
+	},
+	"text": "<Unique>.\nWhen this card is on the battlefield, all homing attacks miss.\nWhen Shion is on your battlefield, this card is played without cost.",
+	"effects": [
+		"Unique",
+		"GlobalPreventHomingAttacksOnBattlefield",
+		"IgnoreCostIfOnField(character=Shion;zone=battlefield)"
+	]
+}

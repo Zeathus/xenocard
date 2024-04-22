@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 146,
+	"name": "D.S.S.S.",
+	"type": "situation",
+	"rarity": "common",
+	"requirement": {
+		"cost": 0,
+		"field": ["machine"]
+	},
+	"text": "Neither player can end their move phase unless their battlefield is full or there are no {Gnosis} in standby that can be <deployed>.\nThis card is discarded during your draw phase in 3 turns."
+}

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://g7yv71p73utl"]
+
+[ext_resource type="Script" path="res://objects/attribute.gd" id="1_h5vvp"]
+[ext_resource type="Texture2D" uid="uid://delx32664wkt2" path="res://sprites/attributes/background.png" id="2_ixsg4"]
+
+[node name="Attribute" type="Node2D"]
+script = ExtResource("1_h5vvp")
+
+[node name="Shadow" type="Polygon2D" parent="."]
+position = Vector2(-16, 16)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-72, -95, 71, -95, 71, 95, -72, 95)
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("2_ixsg4")
+
+[node name="Icon" type="Sprite2D" parent="."]

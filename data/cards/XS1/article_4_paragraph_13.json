@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 102,
+	"name": "Article 4 Paragraph 13",
+	"type": "event",
+	"rarity": "rare",
+	"requirement": {
+		"cost": 2,
+		"field": ["human", "machine", "any", "any"]
+	},
+	"text": "<Slow>.\nAll {Realians} currently on your battlefield have their ATK set to 0 and their max HP to 1. Any affected {Realians} remaining after the enemy's adjust phase are destroyed, inflicting 6 effect damage to the enemy's deck each."
+}

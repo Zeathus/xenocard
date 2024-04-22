@@ -1,0 +1,14 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 17,
+	"name": "Civilian Child",
+	"type": "battle",
+	"rarity": "common",
+	"stats": {
+		"attribute": "human",
+		"hp": 3,
+		"atk": 1,
+		"target": "hand"
+	}
+}

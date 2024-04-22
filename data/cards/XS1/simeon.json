@@ -1,0 +1,23 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 33,
+	"name": "Simeon",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "machine",
+		"hp": 9,
+		"atk": 3,
+		"target": "spread"
+	},
+	"requirement": {
+		"cost": 4,
+		"field": ["human", "human", "machine", "any"]
+	},
+	"text": "<Unique>.\nAttacks every other turn.\nEach turn, after its normal attack timing, this card inflicts 1 battle damage to all enemy battle cards.",
+	"effects": [
+		"Unique",
+		"AttackTime(2)"
+	]
+}

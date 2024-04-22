@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 145,
+	"name": "Zohar",
+	"type": "situation",
+	"rarity": "promo",
+	"requirement": {
+		"cost": 0,
+		"field": ["any", "any"]
+	},
+	"text": "All battle cards gain ATK+1."
+}

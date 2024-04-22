@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 94,
+	"name": "Mary & Shelley",
+	"type": "event",
+	"rarity": "rare",
+	"requirement": {
+		"cost": 0,
+		"field": ["any", "any"]
+	},
+	"text": "Draw two cards from your deck."
+}

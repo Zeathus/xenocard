@@ -1,0 +1,24 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 38,
+	"name": "VX-7000",
+	"type": "battle",
+	"rarity": "uncommon",
+	"stats": {
+		"attribute": "machine",
+		"hp": 6,
+		"atk": 3,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 4,
+		"field": ["human", "any"]
+	},
+	"text": "<Unique>.\nThis card's attacks <penetrate>.\nWhen Jr. is on your battlefield, this card is played without cost.",
+	"effects": [
+		"Unique",
+		"Penetrate",
+		"IgnoreCostIfOnField(character=Jr.;zone=battlefield)"
+	]
+}

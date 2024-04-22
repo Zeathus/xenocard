@@ -1,0 +1,311 @@
+[gd_scene load_steps=12 format=3 uid="uid://bu0roj477cb2l"]
+
+[ext_resource type="Script" path="res://scenes/game_field.gd" id="1_0jgdo"]
+[ext_resource type="PackedScene" uid="uid://dosulntiwpmvw" path="res://objects/card.tscn" id="1_s5b86"]
+[ext_resource type="PackedScene" uid="uid://bfsb45f6t2kmw" path="res://objects/card_zone.tscn" id="2_p58ou"]
+[ext_resource type="PackedScene" uid="uid://d2tcufci502xh" path="res://objects/card_status.tscn" id="4_dufjl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6oole"]
+font_size = 32
+font_color = Color(1, 1, 1, 0.501961)
+shadow_color = Color(0, 0, 0, 0.501961)
+shadow_offset = Vector2(-4, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_boaqe"]
+size = Vector2(280, 400)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5couf"]
+font_size = 48
+font_color = Color(1, 1, 1, 0.501961)
+shadow_color = Color(0, 0, 0, 0.501961)
+shadow_offset = Vector2(-4, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lp7ng"]
+size = Vector2(560, 190)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_inymr"]
+size = Vector2(120, 180)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lkt4t"]
+font_size = 32
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(-4, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0vxrs"]
+font_size = 64
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(-4, 4)
+
+[node name="GameField" type="Node2D"]
+script = ExtResource("1_0jgdo")
+
+[node name="Battlefield" type="Area2D" parent="."]
+position = Vector2(0, 216)
+
+[node name="Label" type="Label" parent="Battlefield"]
+offset_left = -140.0
+offset_top = -30.0
+offset_right = 140.0
+offset_bottom = 15.0
+text = "BATTLEFIELD"
+label_settings = SubResource("LabelSettings_6oole")
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield"]
+shape = SubResource("RectangleShape2D_boaqe")
+
+[node name="Zone1" parent="Battlefield" instance=ExtResource("2_p58ou")]
+position = Vector2(-72, -104)
+type = 7
+
+[node name="Label" type="Label" parent="Battlefield/Zone1"]
+offset_left = -140.0
+offset_top = -34.0
+offset_right = 140.0
+offset_bottom = 43.0
+text = "1"
+label_settings = SubResource("LabelSettings_5couf")
+horizontal_alignment = 1
+
+[node name="CardStatus" parent="Battlefield/Zone1" instance=ExtResource("4_dufjl")]
+position = Vector2(-152, 0)
+
+[node name="Zone2" parent="Battlefield" instance=ExtResource("2_p58ou")]
+position = Vector2(72, -104)
+type = 7
+index = 1
+
+[node name="Label" type="Label" parent="Battlefield/Zone2"]
+offset_left = -140.0
+offset_top = -34.0
+offset_right = 140.0
+offset_bottom = 43.0
+text = "2"
+label_settings = SubResource("LabelSettings_5couf")
+horizontal_alignment = 1
+
+[node name="CardStatus" parent="Battlefield/Zone2" instance=ExtResource("4_dufjl")]
+position = Vector2(152, 0)
+
+[node name="Zone3" parent="Battlefield" instance=ExtResource("2_p58ou")]
+position = Vector2(-72, 96)
+type = 7
+index = 2
+
+[node name="Label" type="Label" parent="Battlefield/Zone3"]
+offset_left = -140.0
+offset_top = -34.0
+offset_right = 140.0
+offset_bottom = 43.0
+text = "3"
+label_settings = SubResource("LabelSettings_5couf")
+horizontal_alignment = 1
+
+[node name="CardStatus" parent="Battlefield/Zone3" instance=ExtResource("4_dufjl")]
+position = Vector2(-152, 0)
+
+[node name="Zone4" parent="Battlefield" instance=ExtResource("2_p58ou")]
+position = Vector2(72, 96)
+type = 7
+index = 3
+
+[node name="Label" type="Label" parent="Battlefield/Zone4"]
+offset_left = -140.0
+offset_top = -34.0
+offset_right = 140.0
+offset_bottom = 43.0
+text = "4"
+label_settings = SubResource("LabelSettings_5couf")
+horizontal_alignment = 1
+
+[node name="CardStatus" parent="Battlefield/Zone4" instance=ExtResource("4_dufjl")]
+position = Vector2(152, 0)
+
+[node name="Standby" type="Area2D" parent="."]
+position = Vector2(-608, 147)
+
+[node name="Label" type="Label" parent="Standby"]
+offset_left = -140.0
+offset_top = -24.0
+offset_right = 140.0
+offset_bottom = 21.0
+text = "STANDBY"
+label_settings = SubResource("LabelSettings_6oole")
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Standby"]
+shape = SubResource("RectangleShape2D_lp7ng")
+
+[node name="Zone1" parent="Standby" instance=ExtResource("2_p58ou")]
+position = Vector2(-216, -4)
+type = 5
+
+[node name="CardStatus" parent="Standby/Zone1" instance=ExtResource("4_dufjl")]
+position = Vector2(0, 168)
+scale = Vector2(0.75, 0.75)
+
+[node name="Zone2" parent="Standby" instance=ExtResource("2_p58ou")]
+position = Vector2(-72, -4)
+type = 5
+index = 1
+
+[node name="CardStatus" parent="Standby/Zone2" instance=ExtResource("4_dufjl")]
+position = Vector2(0, 168)
+scale = Vector2(0.75, 0.75)
+
+[node name="Zone3" parent="Standby" instance=ExtResource("2_p58ou")]
+position = Vector2(72, -4)
+type = 5
+index = 2
+
+[node name="CardStatus" parent="Standby/Zone3" instance=ExtResource("4_dufjl")]
+position = Vector2(0, 168)
+scale = Vector2(0.75, 0.75)
+
+[node name="Zone4" parent="Standby" instance=ExtResource("2_p58ou")]
+position = Vector2(216, -4)
+type = 5
+index = 3
+
+[node name="CardStatus" parent="Standby/Zone4" instance=ExtResource("4_dufjl")]
+position = Vector2(0, 168)
+scale = Vector2(0.75, 0.75)
+
+[node name="Situation" type="Area2D" parent="."]
+position = Vector2(608, 147)
+
+[node name="Label" type="Label" parent="Situation"]
+offset_left = -140.0
+offset_top = -24.0
+offset_right = 140.0
+offset_bottom = 21.0
+text = "SITUATION"
+label_settings = SubResource("LabelSettings_6oole")
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Situation"]
+shape = SubResource("RectangleShape2D_lp7ng")
+
+[node name="Zone1" parent="Situation" instance=ExtResource("2_p58ou")]
+position = Vector2(-216, -4)
+type = 6
+
+[node name="Zone2" parent="Situation" instance=ExtResource("2_p58ou")]
+position = Vector2(-72, -4)
+type = 6
+index = 1
+
+[node name="Zone3" parent="Situation" instance=ExtResource("2_p58ou")]
+position = Vector2(72, -4)
+type = 6
+index = 2
+
+[node name="Zone4" parent="Situation" instance=ExtResource("2_p58ou")]
+position = Vector2(216, -4)
+type = 6
+index = 3
+
+[node name="Deck" type="Area2D" parent="."]
+position = Vector2(392, 432)
+
+[node name="Card" parent="Deck" instance=ExtResource("1_s5b86")]
+scale = Vector2(0.15, 0.15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deck"]
+shape = SubResource("RectangleShape2D_inymr")
+
+[node name="Label" type="Label" parent="Deck"]
+offset_left = -58.0
+offset_top = -144.0
+offset_right = 58.0
+offset_bottom = -99.0
+text = "DECK"
+label_settings = SubResource("LabelSettings_lkt4t")
+horizontal_alignment = 1
+
+[node name="Count" type="Label" parent="Deck"]
+offset_left = -58.0
+offset_top = -89.0
+offset_right = 58.0
+offset_bottom = 88.0
+text = "5"
+label_settings = SubResource("LabelSettings_0vxrs")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Lost" type="Area2D" parent="."]
+position = Vector2(608, 432)
+
+[node name="Card" parent="Lost" instance=ExtResource("1_s5b86")]
+visible = false
+scale = Vector2(0.15, 0.15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lost"]
+shape = SubResource("RectangleShape2D_inymr")
+
+[node name="Label" type="Label" parent="Lost"]
+offset_left = -58.0
+offset_top = -144.0
+offset_right = 58.0
+offset_bottom = -99.0
+text = "LOST"
+label_settings = SubResource("LabelSettings_lkt4t")
+horizontal_alignment = 1
+
+[node name="Count" type="Label" parent="Lost"]
+z_index = 10
+offset_left = -58.0
+offset_top = -89.0
+offset_right = 58.0
+offset_bottom = 88.0
+text = "5"
+label_settings = SubResource("LabelSettings_0vxrs")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Junk" type="Area2D" parent="."]
+position = Vector2(824, 432)
+
+[node name="Card" parent="Junk" instance=ExtResource("1_s5b86")]
+visible = false
+scale = Vector2(0.15, 0.15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Junk"]
+shape = SubResource("RectangleShape2D_inymr")
+
+[node name="Label" type="Label" parent="Junk"]
+offset_left = -58.0
+offset_top = -144.0
+offset_right = 58.0
+offset_bottom = -99.0
+text = "JUNK"
+label_settings = SubResource("LabelSettings_lkt4t")
+horizontal_alignment = 1
+
+[node name="Count" type="Label" parent="Junk"]
+z_index = 10
+offset_left = -58.0
+offset_top = -89.0
+offset_right = 58.0
+offset_bottom = 88.0
+text = "5"
+label_settings = SubResource("LabelSettings_0vxrs")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Cards" type="Node2D" parent="."]
+
+[connection signal="selected" from="Battlefield/Zone1" to="." method="_on_zone_selected"]
+[connection signal="selected" from="Battlefield/Zone2" to="." method="_on_zone_selected"]
+[connection signal="selected" from="Battlefield/Zone3" to="." method="_on_zone_selected"]
+[connection signal="selected" from="Battlefield/Zone4" to="." method="_on_zone_selected"]
+[connection signal="selected" from="Standby/Zone1" to="." method="_on_zone_selected"]
+[connection signal="selected" from="Standby/Zone2" to="." method="_on_zone_selected"]
+[connection signal="selected" from="Standby/Zone3" to="." method="_on_zone_selected"]
+[connection signal="selected" from="Standby/Zone4" to="." method="_on_zone_selected"]
+[connection signal="selected" from="Situation/Zone1" to="." method="_on_zone_selected"]
+[connection signal="selected" from="Situation/Zone2" to="." method="_on_zone_selected"]
+[connection signal="selected" from="Situation/Zone3" to="." method="_on_zone_selected"]
+[connection signal="selected" from="Situation/Zone4" to="." method="_on_zone_selected"]
+[connection signal="input_event" from="Junk" to="." method="_on_junk_input_event"]

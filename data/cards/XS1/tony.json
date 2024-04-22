@@ -1,0 +1,22 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 62,
+	"name": "Tony",
+	"type": "battle",
+	"rarity": "common",
+	"stats": {
+		"attribute": "human",
+		"hp": 3,
+		"atk": 2,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 2,
+		"field": ["human"]
+	},
+	"text": "When the E mark is removed from this card, you can <down> one enemy card in the standby area.",
+	"effects": [
+		"DownCardWhenEMarkRemoved(owner=enemy;type=battle;zone=standby)"
+	]
+}

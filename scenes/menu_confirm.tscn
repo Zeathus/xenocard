@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://ye2j101d35q0"]
+
+[ext_resource type="Script" path="res://scenes/menu_confirm.gd" id="1_0edek"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g63i2"]
+bg_color = Color(0, 0.278431, 0.580392, 0.784314)
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wavpa"]
+bg_color = Color(0, 0.12549, 0.482353, 0.784314)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_txys0"]
+font_size = 32
+
+[sub_resource type="Theme" id="Theme_gen4n"]
+default_font_size = 32
+
+[node name="MenuConfirm" type="Node2D"]
+script = ExtResource("1_0edek")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -300.0
+offset_top = -150.0
+offset_right = 300.0
+offset_bottom = 150.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_g63i2")
+
+[node name="HeaderPanel" type="Panel" parent="."]
+offset_left = -300.0
+offset_top = -236.0
+offset_right = 300.0
+offset_bottom = -156.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wavpa")
+
+[node name="Label" type="Label" parent="HeaderPanel"]
+layout_mode = 0
+offset_right = 600.0
+offset_bottom = 80.0
+text = "Viewing Cards"
+label_settings = SubResource("LabelSettings_txys0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="YesButton" type="Button" parent="."]
+offset_left = -200.0
+offset_top = -130.0
+offset_right = -40.0
+offset_bottom = -70.0
+theme_override_font_sizes/font_size = 28
+text = "Yes"
+
+[node name="NoButton" type="Button" parent="."]
+offset_left = 40.0
+offset_top = -130.0
+offset_right = 200.0
+offset_bottom = -70.0
+theme_override_font_sizes/font_size = 28
+text = "No"
+
+[node name="HelpText" type="RichTextLabel" parent="."]
+offset_left = -275.0
+offset_top = -56.0
+offset_right = 275.0
+offset_bottom = 134.0
+mouse_filter = 2
+theme = SubResource("Theme_gen4n")
+scroll_active = false
+
+[connection signal="pressed" from="YesButton" to="." method="_on_yes_button_pressed"]
+[connection signal="pressed" from="NoButton" to="." method="_on_no_button_pressed"]

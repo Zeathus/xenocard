@@ -1,0 +1,12 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 122,
+	"name": "Analyze",
+	"type": "situation",
+	"rarity": "common",
+	"requirement": {
+		"field": ["machine"]
+	},
+	"text": "Both players play with their hands revealed."
+}

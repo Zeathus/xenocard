@@ -1,0 +1,24 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 77,
+	"name": "Gargoyle",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "gnosis",
+		"hp": 10,
+		"atk": 5,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 0,
+		"field": ["gnosis", "human", "human"]
+	},
+	"text": "Discard two {Humans} from your field to play this card anywhere on your field.\n<Unique>.\nEach turn, after its normal attack timing, this card inflicts 1 battle damage to all enemy battle cards.",
+	"effects": [
+		"Unique",
+		"DestroyAttributeToPlay(human,human)",
+		"CanSetToBattlefield"
+	]
+}

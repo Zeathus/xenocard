@@ -1,0 +1,24 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 43,
+	"name": "Saber",
+	"type": "battle",
+	"rarity": "common",
+	"stats": {
+		"attribute": "weapon",
+		"hp": 0,
+		"atk": 7,
+		"target": "hand"
+	},
+	"requirement": {
+		"cost": 0,
+		"field": ["machine"]
+	},
+	"text": "<Unlimited>.\nOnly {Machines} can equip this card.\nGains ATK+3 against {Gnosis}.",
+	"effects": [
+		"Unlimited",
+		"EquipsTo(attribute=machine)",
+		"ModifyDamageTo(3,attribute=gnosis)"
+	]
+}

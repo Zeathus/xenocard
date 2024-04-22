@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 134,
+	"name": "Transfiguration",
+	"type": "situation",
+	"rarity": "common",
+	"requirement": {
+		"cost": 1,
+		"field": ["gnosis", "gnosis"]
+	},
+	"text": "During your event or block phase, discard one {Gnosis} from your $hand to <search> one {Gnosis}."
+}

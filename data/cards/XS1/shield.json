@@ -1,0 +1,24 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 45,
+	"name": "Shield",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "weapon",
+		"hp": 0,
+		"atk": 0,
+		"target": "none"
+	},
+	"requirement": {
+		"cost": 2,
+		"field": ["machine"]
+	},
+	"text": "<Unlimited>.\nOnly {Machines} can equip this card.\nEquipped cards take 1 less battle damage.",
+	"effects": [
+		"Unlimited",
+		"EquipsTo(attribute=machine)",
+		"ModifyBattleDamageFrom(-1,type=battle)"
+	]
+}

@@ -1,0 +1,12 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 117,
+	"name": "Song of the Mysterious Girl",
+	"type": "event",
+	"rarity": "common",
+	"requirement": {
+		"field": ["gnosis", "any"]
+	},
+	"text": "Neutralizes the effect of the enemy's event card. The neutralized card is discarded."
+}

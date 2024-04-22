@@ -1,0 +1,12 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 88,
+	"name": "Supply Fleet",
+	"type": "event",
+	"rarity": "rare",
+	"requirement": {
+		"field": ["human", "human"]
+	},
+	"text": "You <recover> as many cards as possible up to the number of battle cards on your field."
+}

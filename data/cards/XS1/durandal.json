@@ -1,0 +1,23 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 81,
+	"name": "Durandal",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "machine",
+		"hp": 8,
+		"atk": 3,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 3,
+		"field": ["human", "machine", "any"]
+	},
+	"text": "<Unique>.\nThis card cannot equip {weapons}.",
+	"effects": [
+		"Unique",
+		"NoWeapons"
+	]
+}

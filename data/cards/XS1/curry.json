@@ -1,0 +1,12 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 85,
+	"name": "Curry",
+	"type": "event",
+	"rarity": "common",
+	"requirement": {
+		"field": ["any"]
+	},
+	"text": "One of your non-{Gnosis} battle cards heal to full HP."
+}

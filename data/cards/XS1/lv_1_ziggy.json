@@ -1,0 +1,24 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 3,
+	"name": "Lv 1 Ziggy",
+	"character": "Ziggy",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "human",
+		"hp": 5,
+		"atk": 2,
+		"target": "hand"
+	},
+	"requirement": {
+		"cost": 1,
+		"field": ["human"]
+	},
+	"text": "Cards attacked by this card are <downed>.\nThis card cannot equip {weapons}.",
+	"effects": [
+		"DownAttackTarget",
+		"NoWeapons"
+	]
+}

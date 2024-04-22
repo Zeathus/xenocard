@@ -1,0 +1,20 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 80,
+	"name": "Kirschwasser",
+	"character": "Kirschwasser",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "realian",
+		"hp": 3,
+		"atk": 1,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 1,
+		"field": ["any", "any"]
+	},
+	"text": "While this card is on the battlefield with Albedo or MOMO, those cards gain ATK+1."
+}

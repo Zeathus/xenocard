@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 113,
+	"name": "Precise Shooting",
+	"type": "event",
+	"rarity": "common",
+	"requirement": {
+		"cost": 0,
+		"field": ["machine"]
+	},
+	"text": "Inflict 1 effect damage to a battle card."
+}

@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://bfsb45f6t2kmw"]
+
+[ext_resource type="Script" path="res://objects/card_zone.gd" id="1_q0sy3"]
+[ext_resource type="Texture2D" uid="uid://c5rtkf26es6fb" path="res://sprites/zone_bg.png" id="1_sfufd"]
+[ext_resource type="Script" path="res://scripts/ZoneBackground.gd" id="2_lbcau"]
+[ext_resource type="Script" path="res://objects/select_border.gd" id="4_mw5sq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n4mub"]
+size = Vector2(120, 180)
+
+[node name="CardZone" type="Node2D"]
+script = ExtResource("1_q0sy3")
+
+[node name="Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
+shape = SubResource("RectangleShape2D_n4mub")
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -1
+texture_filter = 2
+texture_repeat = 2
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_sfufd")
+region_enabled = true
+region_rect = Rect2(20, 30, 512, 752)
+script = ExtResource("2_lbcau")
+
+[node name="SelectBorder" type="Line2D" parent="."]
+visible = false
+scale = Vector2(0.15, 0.15)
+points = PackedVector2Array(-430, -630, -430, -420, -430, -210, -430, 0, -430, 210, -430, 420, -430, 630, -215, 630, 0, 630, 215, 630, 430, 630, 430, 420, 430, 210, 430, 0, 430, -210, 430, -420, 430, -630, 215, -630, 0, -630, -215, -630)
+closed = true
+width = 32.0
+default_color = Color(0, 0.447059, 0.690196, 1)
+joint_mode = 2
+antialiased = true
+script = ExtResource("4_mw5sq")
+
+[connection signal="input_event" from="Area" to="." method="_on_area_input_event"]

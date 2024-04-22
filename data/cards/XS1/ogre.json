@@ -1,0 +1,23 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 69,
+	"name": "Ogre",
+	"type": "battle",
+	"rarity": "common",
+	"stats": {
+		"attribute": "gnosis",
+		"hp": 7,
+		"atk": 3,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 0,
+		"field": ["human", "any", "any"]
+	},
+	"text": "Discard one {Human} from your field to play this card anywhere on your field.",
+	"effects": [
+		"DestroyAttributeToPlay(human)",
+		"CanSetToBattlefield"
+	]
+}

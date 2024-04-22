@@ -1,0 +1,23 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 61,
+	"name": "Cherenkov",
+	"character": "Cherenkov",
+	"type": "battle",
+	"rarity": "uncommon",
+	"stats": {
+		"attribute": "human",
+		"hp": 3,
+		"atk": 2,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 1,
+		"field": ["human"]
+	},
+	"text": "If this card is destroyed, and the top card of your junk pile is a {Human}, {Realian} or {Machine}, play that card in this card's place during the adjust phase. The new card will have 1 HP.",
+	"effects": [
+		"Cherenkov"
+	]
+}

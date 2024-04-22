@@ -1,0 +1,24 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 5,
+	"name": "Lv 1 KOS-MOS",
+	"character": "KOS-MOS",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "machine",
+		"hp": 6,
+		"atk": 3,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 5,
+		"field": ["human", "any"]
+	},
+	"text": "When Shion is on your battlefield, this card is played without cost.\nThis card cannot equip {weapons}.",
+	"effects": [
+		"IgnoreCostIfOnField(character=Shion;zone=battlefield)",
+		"NoWeapons"
+	]
+}

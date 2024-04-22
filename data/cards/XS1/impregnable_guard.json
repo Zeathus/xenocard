@@ -1,0 +1,13 @@
+{
+	"game": "Xenosaga 1",
+	"set": "XS1",
+	"id": 101,
+	"name": "Impregnable Guard",
+	"type": "event",
+	"rarity": "uncommon",
+	"requirement": {
+		"cost": 0,
+		"field": ["machine", "any"]
+	},
+	"text": "Your deck will be immune to battle damage this turn."
+}
