@@ -9,7 +9,7 @@
 	"stats": {
 		"attribute": "human",
 		"hp": 3,
-		"atk": 2,
+		"atk": 1,
 		"target": "ballistic"
 	},
 	"requirement": {

@@ -4,7 +4,7 @@
 	"id": 29,
 	"name": "Combat Realian Female",
 	"type": "battle",
-	"rarity": "common",
+	"rarity": "uncommon",
 	"stats": {
 		"attribute": "realian",
 		"hp": 2,

@@ -7,7 +7,7 @@
 	"rarity": "promo",
 	"requirement": {
 		"cost": 3,
-		"field": ["human", "machine", "machine"]
+		"field": ["machine", "machine", "human"]
 	},
 	"text": "<Slow>.\nDestroy all battle and situation cards on the field."
 }

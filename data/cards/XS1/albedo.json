@@ -16,5 +16,5 @@
 		"cost": 1,
 		"field": ["human", "any"]
 	},
-	"text": "When this card is alone on your battlefield at the end of the move phase, add the number of cards in your junk pile to its ATK until your adjust phase. Afterwards, the cards in the junk pile are removed from the game.\nThis card cannot equip {weapons}."
+	"text": "When this card is alone on your battlefield at the end of your move phase, add the number of cards in your junk pile to its ATK until your adjust phase. Afterwards, the cards in the junk pile are removed from the game.\nThis card cannot equip {weapons}."
 }

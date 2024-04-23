@@ -6,7 +6,7 @@
 	"type": "situation",
 	"rarity": "uncommon",
 	"requirement": {
-		"cost": 1,
+		"cost": 2,
 		"field": ["any", "any"]
 	},
 	"text": "All {Gnosis} battle cards gain ATK+1.\n<Duration> 2."

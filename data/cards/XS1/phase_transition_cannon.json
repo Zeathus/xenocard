@@ -7,7 +7,7 @@
 	"rarity": "promo",
 	"requirement": {
 		"cost": 4,
-		"field": ["human", "machine", "machine", "gnosis"]
+		"field": ["machine", "machine", "human", "gnosis"]
 	},
 	"text": "Destroy all {Gnosis} and {Machines} on the battlefield."
 }

@@ -12,7 +12,7 @@
 		"target": "spread"
 	},
 	"requirement": {
-		"cost": 1,
+		"cost": 2,
 		"field": ["human", "human"]
 	},
 	"text": "Only {Humans} and {Realians} can equip this card.\nConverts attack type to spread.\n<One-time use>.",

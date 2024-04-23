@@ -13,7 +13,7 @@
 	},
 	"requirement": {
 		"cost": 3,
-		"field": ["human", "machine", "any"]
+		"field": ["human", "machine", "any", "any"]
 	},
 	"text": "<Unique>.\nAttacks every other turn.\nThis card's attacks <penetrate>.",
 	"effects": [

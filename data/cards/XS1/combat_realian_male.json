@@ -4,7 +4,7 @@
 	"id": 28,
 	"name": "Combat Realian Male",
 	"type": "battle",
-	"rarity": "common",
+	"rarity": "uncommon",
 	"stats": {
 		"attribute": "realian",
 		"hp": 2,

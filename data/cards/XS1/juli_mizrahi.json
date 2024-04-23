@@ -16,5 +16,5 @@
 		"cost": 0,
 		"field": ["human"]
 	},
-	"text": "When this card is on the battlefield, you can discard it during your event or block phase to gain ATK+1 on all of your {Humans} during that turn."
+	"text": "When this card is on the battlefield, you can discard it during your event or block phase to gain ATK+1 on all of your {Humans} until the adjust phase."
 }

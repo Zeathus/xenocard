@@ -13,7 +13,7 @@
 	},
 	"requirement": {
 		"cost": 0,
-		"field": ["human", "any"]
+		"field": ["gnosis", "any"]
 	},
 	"text": "Discard all battle cards from your field to play this card anywhere on your field.\nIf this card is on the battlefield during your draw phase, draw two cards from the lost pile instead of the deck."
 }

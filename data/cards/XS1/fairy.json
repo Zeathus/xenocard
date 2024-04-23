@@ -4,7 +4,7 @@
 	"id": 74,
 	"name": "Fairy",
 	"type": "battle",
-	"rarity": "rare",
+	"rarity": "common",
 	"stats": {
 		"attribute": "gnosis",
 		"hp": 3,
