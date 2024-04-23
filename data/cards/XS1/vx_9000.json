@@ -15,7 +15,7 @@
 		"cost": 3,
 		"field": ["human", "human"]
 	},
-	"text": "<Unique>.\nWhen this card is destroyed in the battle phase, you can destroy one card in the enemy's standby area.",
+	"text": "<Unique>.\nWhen this card is destroyed by battle damage, you can destroy one card in the enemy's standby area.",
 	"effects": [
 		"Unique",
 		"DestroyCardWhenDestroyedByBattle(owner=enemy;zone=standby)"

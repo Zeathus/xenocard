@@ -9,5 +9,5 @@
 		"cost": 0,
 		"field": ["machine", "any"]
 	},
-	"text": "Your deck will be immune to battle damage this turn."
+	"text": "Your deck will be immune to battle damage until the enemy's next adjust phase."
 }

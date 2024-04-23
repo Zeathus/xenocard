@@ -9,5 +9,5 @@
 		"cost": 1,
 		"field": ["any", "any"]
 	},
-	"text": "All battle cards except {Gnosis} gain ATK+1.\nThis card is discarded after 1 turn."
+	"text": "All {Gnosis} battle cards gain ATK+1.\n<Duration> 2."
 }

@@ -8,5 +8,5 @@
 	"requirement": {
 		"field": ["machine", "machine"]
 	},
-	"text": "Your {Machines} take 1 less battle damage.\nThis card is discarded after 3 turns."
+	"text": "Your {Machines} take 1 less battle damage.\n<Duration> 6."
 }

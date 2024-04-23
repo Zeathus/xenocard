@@ -8,5 +8,5 @@
 	"requirement": {
 		"field": ["human", "human"]
 	},
-	"text": "{Humans} on your battlefield <evade> normal attacks.\nThis card is discarded after 3 turns."
+	"text": "{Humans} on your battlefield <evade> normal attacks.\n<Duration> 7."
 }

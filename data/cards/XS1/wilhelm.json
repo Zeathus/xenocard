@@ -16,7 +16,7 @@
 		"cost": 1,
 		"field": ["human", "human", "human"]
 	},
-	"text": "If this card is destroyed by battle, it destroys the attacking card, then deals 4 effect damage to the enemy's deck",
+	"text": "If this card is destroyed by a normal attack, it destroys the attacking card, then deals 4 effect damage to the enemy's deck.",
 	"effects": [
 		"DestroyAttackerWhenDestroyedByBattle"
 	]

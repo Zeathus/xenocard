@@ -8,5 +8,5 @@
 	"requirement": {
 		"field": ["machine"]
 	},
-	"text": "Remove <downed> status from one card."
+	"text": "Remove <downed> status from one of your battle cards."
 }

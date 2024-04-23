@@ -15,5 +15,9 @@
 	"requirement": {
 		"cost": 0,
 		"field": ["human"]
-	}
+	},
+	"text": "Gains ATK+1 against {Gnosis}.",
+	"effects": [
+		"ModifyDamageTo(1,attribute=gnosis)"
+	]
 }

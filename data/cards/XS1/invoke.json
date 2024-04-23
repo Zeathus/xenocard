@@ -9,5 +9,5 @@
 		"cost": 3,
 		"field": ["human", "machine", "machine"]
 	},
-	"text": "<Slow>.\nDestroy all battle and situation cards."
+	"text": "<Slow>.\nDestroy all battle and situation cards on the field."
 }

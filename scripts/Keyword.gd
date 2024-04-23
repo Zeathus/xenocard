@@ -101,6 +101,8 @@ static func get_hint(keyword: String) -> String:
 			return "[u]Deploy[/u]\nWhen a card is deployed, it is moved from the standby area to the battlefield."
 		"duration":
 			return "[u]Duration[/u]\nThe card is discarded after the specified number of adjust phases. Each player's adjust phase count individually."
+		"one-time use":
+			return "[u]One-time use[/u]\nThe card is discarded after a single attack, even if there was no target."
 		#
 		### TERMS ###
 		#

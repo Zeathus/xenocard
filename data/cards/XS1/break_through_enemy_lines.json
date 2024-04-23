@@ -8,5 +8,5 @@
 	"requirement": {
 		"field": ["machine", "machine"]
 	},
-	"text": "Inflict 2 effect damage to one battle card in standby."
+	"text": "Inflict 2 effect damage to one enemy battle card in standby."
 }

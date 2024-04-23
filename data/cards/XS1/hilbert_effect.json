@@ -8,5 +8,5 @@
 	"requirement": {
 		"field": ["machine", "any"]
 	},
-	"text": "All {Gnosis} on the battlefield cannot move and get ATK-1.\nThis card is discarded after 2 turns."
+	"text": "All {Gnosis} on the battlefield cannot move and get ATK-1.\nThis effect cannot be stacked.\n<Duration> 4."
 }

@@ -9,5 +9,5 @@
 		"cost": 0,
 		"field": ["any", "any", "any"]
 	},
-	"text": "When this card is on the field, battle cards cannot withdraw from the battlefield.\nThis card is discarded after 2 turns."
+	"text": "When this card is on the field, battle cards cannot withdraw from the battlefield.\n<Duration> 4."
 }

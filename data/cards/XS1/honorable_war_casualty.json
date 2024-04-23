@@ -9,5 +9,5 @@
 		"cost": 0,
 		"field": ["human", "human"]
 	},
-	"text": "Discard as many battle cards as you like. For each discarded card, <recover> four cards, up to the number in your lost pile."
+	"text": "Discard as many battle cards as you like from your field. For each discarded card, <recover> four cards, up to the number in your lost pile."
 }

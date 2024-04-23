@@ -9,5 +9,5 @@
 		"cost": 0,
 		"field": ["machine"]
 	},
-	"text": "Neither player can end their move phase unless their battlefield is full or there are no {Gnosis} in standby that can be <deployed>.\nThis card is discarded during your draw phase in 3 turns."
+	"text": "Neither player can end their move phase unless their battlefield is full or there are no {Gnosis} in standby that can be <deployed>.\n<Duration> 6."
 }

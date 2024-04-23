@@ -9,5 +9,5 @@
 		"cost": 0,
 		"field": ["machine", "machine"]
 	},
-	"text": "Neither player can end their move phase unless their battlefield is full or there are no cards in standby that can be <deployed>.\nThis card is discarded during your next draw phase."
+	"text": "Neither player can end their move phase unless their battlefield is full or there are no cards in standby that can be <deployed>.\n<Duration> 2."
 }

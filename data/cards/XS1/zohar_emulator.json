@@ -15,7 +15,7 @@
 		"cost": 1,
 		"field": ["human"]
 	},
-	"text": "<Unique>. This card cannot equip {weapons}.\nWhen this card is on the battlefield, you can discard it during your event or block phase to gain ATK+2 on all of your {Gnosis} during that turn.",
+	"text": "<Unique>. This card cannot equip {weapons}.\nWhen this card is on the battlefield, you can discard it during your event or block phase to gain ATK+2 on all of your {Gnosis} until the adjust phase.",
 	"effects": [
 		"Unique"
 	]

@@ -8,5 +8,5 @@
 	"requirement": {
 		"field": ["gnosis"]
 	},
-	"text": "During your event or block phase, you can discard two cards from your $hand to draw one card from your list pile."
+	"text": "During your event or block phase, you can discard two cards from your $hand to draw one card from your lost pile."
 }

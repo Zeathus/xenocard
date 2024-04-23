@@ -8,5 +8,5 @@
 	"requirement": {
 		"field": ["human", "human"]
 	},
-	"text": "{Humans} on your battlefield gain ATK+1.\nThis card is discarded after 3 turns."
+	"text": "{Humans} on your battlefield gain ATK+1.\n<Duration> 5."
 }

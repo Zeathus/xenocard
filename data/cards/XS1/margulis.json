@@ -16,8 +16,8 @@
 		"cost": 1,
 		"field": ["human", "any"]
 	},
-	"text": "When the E mark is removed from this card, you can destroy one situation card.",
+	"text": "When the E mark is removed from this card, you can destroy one enemy situation card.",
 	"effects": [
-		"DestroyCardWhenEMarkRemoved(type=situation;zone=situation)"
+		"DestroyCardWhenEMarkRemoved(type=situation;zone=situation;owner=enemy)"
 	]
 }

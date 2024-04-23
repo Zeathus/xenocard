@@ -15,7 +15,7 @@
 		"cost": 1,
 		"field": ["machine", "any"]
 	},
-	"text": "<Unlimited>.\nOnly {Machines} can equip this card.\nAttacks every other turn.\nAfter one use, this card is discarded.",
+	"text": "<Unlimited>.\nOnly {Machines} can equip this card.\nAttacks every other turn.\n<One-time use>.",
 	"effects": [
 		"Unlimited",
 		"EquipsTo(attribute=machine)",

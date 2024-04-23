@@ -9,5 +9,5 @@
 		"cost": 2,
 		"field": ["human", "human"]
 	},
-	"text": "Both players skip their battle phases.\nThis card is discarded after 1 turn."
+	"text": "Both players skip their battle phases.\n<Duration> 2."
 }

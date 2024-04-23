@@ -15,7 +15,7 @@
 		"cost": 1,
 		"field": ["human", "human"]
 	},
-	"text": "Only {Humans} and {Realians} can equip this card.\nConverts attack type to spread.\nAfter one use, this card is discarded.",
+	"text": "Only {Humans} and {Realians} can equip this card.\nConverts attack type to spread.\n<One-time use>.",
 	"effects": [
 		"EquipsTo(attribute=human;attribute=realian)",
 		"DiscardWeaponAfterAttack"

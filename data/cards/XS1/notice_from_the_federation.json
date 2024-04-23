@@ -9,5 +9,5 @@
 		"cost": 0,
 		"field": ["any", "any"]
 	},
-	"text": "Destroy the {weapon} equipped to a battle card."
+	"text": "Destroy the {weapon} equipped to an enemy battle card."
 }

@@ -9,5 +9,5 @@
 		"cost": 1,
 		"field": ["machine", "machine"]
 	},
-	"text": "Destroy one <downed> {Gnosis} card."
+	"text": "Destroy one <downed> enemy {Gnosis} card."
 }
