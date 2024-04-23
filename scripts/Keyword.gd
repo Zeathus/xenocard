@@ -76,7 +76,9 @@ static func expand_term(keyword: String) -> String:
 
 static func get_hint(keyword: String) -> String:
 	match keyword.to_lower():
+		#
 		### KEYWORDS ###
+		#
 		"down", "downed":
 			return "[u]Downed[/u]\nThe card cannot attack and its effects are neutralized. Removed during the owner's adjust phase."
 		"search":
@@ -90,14 +92,18 @@ static func get_hint(keyword: String) -> String:
 		"recover", "recovers":
 			return "[u]Recover[/u]\nMove cards from the top of the lost pile into the deck.\nShuffle your deck afterwards."
 		"slow":
-			return "[u]Slow[/u]\nThe card can only be used during your event phase, not your block phase."
+			return "[u]Slow[/u]\nThe card can only be played during your event phase, not your block phase."
 		"evade":
-			return "[u]Evade[/u]\nAttacks ignore the card. Ballistic attacks hit the card or deck behind it instead."
+			return "[u]Evade[/u]\nAttacks ignore the card.\nBallistic attacks hit the card or deck behind it instead."
 		"penetrate", "penetrates", "penetrating":
-			return "[u]Penetrate[/u]\nIf the attack destroys its target, any damage exceeding the target's HP is inflicted to the next card or deck behind it."
+			return "[u]Penetrate[/u]\nIf the attack destroys its target, any damage exceeding the target's HP is dealt to the next card or deck behind it. Does not apply to equipped weapons."
 		"deploy", "deployed":
 			return "[u]Deploy[/u]\nWhen a card is deployed, it is moved from the standby area to the battlefield."
+		"duration":
+			return "[u]Duration[/u]\nThe card is discarded after the specified number of adjust phases. Each player's adjust phase count individually."
+		#
 		### TERMS ###
+		#
 		"field requirements":
 			return "To set a card, the attributes listed as field requirements must be present on your field. Cards with an E mark do not count towards field requirements."
 		"field":
@@ -105,7 +111,7 @@ static func get_hint(keyword: String) -> String:
 		"battlefield":
 			return "The battlefield are the four zones in the center. It does not include the standby or situation areas. Cards in these zones attack during the battle phase."
 		"standby area", "standby":
-			return "Cards set from the hand are set to the standby area. Cards in standby do not attack."
+			return "Battle cards set from the hand are set to the standby area. Cards in standby do not attack."
 		"situation area":
 			return "The situation area is specifically for situation cards that are currently active."
 		"cost":
@@ -124,12 +130,22 @@ static func get_hint(keyword: String) -> String:
 			return "When cost is paid or a deck is hit by an attack, cards are sent to the lost pile."
 		"removed from the game", "remove from the game":
 			return "Cards removed from the game cannot be obtained again."
-		"e mark":
+		"e mark", "e marks":
 			return "When cards are set, they get an E mark. Cards with an E mark do not count for field requirements and cannot activate their effects. E marks are removed before the battle phase."
 		"character cards", "character card":
-			return "For each character, you can only have one battle card with their name on your field at a time. For example, Lv 1 Shion and Lv 10 Shion are the same character."
+			return "For each character, you can only have one battle card of them on your field at a time. For example, Lv 1 Shion and Lv 10 Shion are the same character."
 		"cannot be stacked":
 			return "If there is more than one of these cards on your field, the effect only applies once. If a different card has the same effect, the effect is applied twice."
+		"normal attack", "normal attacks":
+			return "Normal attacks are battle phase attacks that use a battle card's ATK and attack type."
+		"discard", "discarded", "discards":
+			return "Cards may be discarded by card effects used by the card's owner. Discarded cards are moved into the junk pile. This does not count as the card being destroyed."
+		"destroy", "destroyed", "destroys":
+			return "Cards are destroyed when they reach 0 HP or by card effects. Destroyed cards are moved into the junk pile. This does not count as the card being discarded."
+		"battle damage":
+			return "Battle damage includes all damage dealt by normal attacks during the battle phase. Some effects of battle cards also deal battle damage."
+		"effect damage":
+			return "Effect damage is primarily damage dealt by event and situation cards, and by some battle card effects."
 	return "Unknown keyword"
 
 static func get_all_terms() -> String:
@@ -137,8 +153,7 @@ static func get_all_terms() -> String:
 		"field requirements",
 		"field",
 		"battlefield",
-		"standby area",
-		"standby",
+		"standby area", "standby",
 		"situation area",
 		"cost",
 		"hand",
@@ -149,11 +164,15 @@ static func get_all_terms() -> String:
 		"junk",
 		"lost pile",
 		"lost",
-		"removed from the game",
-		"remove from the game",
-		"e mark",
+		"removed from the game", "remove from the game",
+		"e mark", "e marks",
 		"character cards", "character card",
-		"cannot be stacked"
+		"cannot be stacked",
+		"normal attack", "normal attacks",
+		"discard", "discarded", "discards",
+		"destroy", "destroyed", "destroys",
+		"battle damage",
+		"effect damage"
 	]
 	var ret: String = ""
 	for i in terms:
