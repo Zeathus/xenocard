@@ -193,6 +193,9 @@ func get_effects() -> Array[CardEffect]:
 	for e in effects:
 		if e.is_active():
 			ret.push_back(e)
+	for e in applied_effects:
+		if e.is_active():
+			ret.push_back(e)
 	if equipped_weapon:
 		ret += equipped_weapon.get_effects()
 	for c in owner.field.get_all_cards() + owner.get_enemy().field.get_all_cards():
@@ -412,11 +415,17 @@ func get_base_atk() -> int:
 		return equipped_weapon.atk
 	return atk
 
-# Opponent is either Card or Player
-func get_atk(opponent) -> int:
+func get_atk() -> int:
 	var ret = get_base_atk()
 	for e in get_effects():
-		ret = e.get_atk(opponent, ret)
+		ret = e.get_atk(ret)
+	return ret
+
+# Opponent is either Card or Player
+func get_atk_against(opponent) -> int:
+	var ret = get_atk()
+	for e in get_effects():
+		ret = e.get_atk_against(opponent, ret)
 	return ret
 
 func get_atk_time() -> int:
@@ -497,7 +506,7 @@ func get_behind():
 func can_attack(game_board: GameBoard) -> bool:
 	if downed or zone != Zone.BATTLEFIELD:
 		return false
-	if atk == 0:
+	if get_atk() == 0:
 		return false
 	return true
 

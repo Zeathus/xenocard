@@ -6,6 +6,7 @@ var global_target: Card
 var param: String
 var events: Array[Event]
 var host: Card = null
+var duration: int = -1
 
 func _init(game_board: GameBoard, card: Card, param: String = ""):
 	self.game_board = game_board
@@ -83,7 +84,10 @@ func get_field_requirements(req: Array[Card.Attribute]) -> Array[Card.Attribute]
 func get_cost(cost: int) -> int:
 	return cost
 
-func get_atk(target, atk: int) -> int:
+func get_atk(atk: int) -> int:
+	return atk
+
+func get_atk_against(target, atk: int) -> int:
 	return atk
 
 func get_atk_time(time: int) -> int:
@@ -145,6 +149,9 @@ func set_requirements():
 
 func skips_e_mark() -> bool:
 	return false
+
+func after_move_phase():
+	pass
 
 func stops_normal_draw() -> bool:
 	return false

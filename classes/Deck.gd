@@ -40,6 +40,9 @@ func remove_at(index: int):
 func erase(card: Card):
 	cards.erase(card)
 
+func clear():
+	cards.clear()
+
 func set_owner(player: Player):
 	for card in self.cards:
 		card.owner = player

@@ -4,6 +4,7 @@ class_name EventPhaseAdjust
 
 var player: Player
 var phase_effects: Array
+var state: int = 0
 
 func _init(_game_board: GameBoard, _player: Player, _phase_effects: Array):
 	super(_game_board)
@@ -38,4 +39,18 @@ func on_finish():
 func process(delta):
 	if pass_to_child("process", [delta]):
 		return
-	finish()
+	match state:
+		0: 
+			for card in game_board.get_all_field_cards():
+				var to_erase = []
+				for e in card.applied_effects:
+					if e.duration == -1:
+						continue
+					e.duration -= 1
+					if e.duration == 0:
+						to_erase.push_back(e)
+				for e in to_erase:
+					card.applied_effects.erase(e)
+		1:
+			finish()
+	state += 1

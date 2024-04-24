@@ -61,7 +61,7 @@ func attack():
 		return
 	for t in targets:
 		var behind_target = t.get_behind()
-		var damage_event: EventDamage = EventDamage.new(game_board, attacker, t, attacker.get_atk(t), Damage.new(Damage.BATTLE | Damage.NORMAL_ATTACK))
+		var damage_event: EventDamage = EventDamage.new(game_board, attacker, t, attacker.get_atk_against(t), Damage.new(Damage.BATTLE | Damage.NORMAL_ATTACK))
 		adopt_children(damage_event)
 		queue_event(damage_event)
 		var remaining_damage = damage_event.remaining_damage

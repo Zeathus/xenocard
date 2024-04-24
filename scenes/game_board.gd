@@ -160,6 +160,7 @@ func end_phase():
 		Phase.ADJUST:
 			next_player()
 			begin_turn()
+	refresh()
 
 func begin_turn():
 	var turn_player: Player = get_turn_player()
