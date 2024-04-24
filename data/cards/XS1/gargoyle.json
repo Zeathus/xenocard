@@ -19,6 +19,7 @@
 	"effects": [
 		"Unique",
 		"DiscardAttributeToPlay(human,human)",
-		"CanSetToBattlefield"
+		"CanSetToBattlefield",
+		"ExtraAttack(1,owner=enemy;zone=standby;zone=battlefield)"
 	]
 }
