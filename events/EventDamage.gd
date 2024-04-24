@@ -5,10 +5,10 @@ class_name EventDamage
 var attacker: Card
 var target
 var damage: int
-var source: Card.DamageSource
+var source: Damage
 var remaining_damage: int = 0
 
-func _init(_game_board: GameBoard, _attacker: Card, _target, _damage: int, _source: Card.DamageSource):
+func _init(_game_board: GameBoard, _attacker: Card, _target, _damage: int, _source: Damage):
 	super(_game_board)
 	attacker = _attacker
 	target = _target

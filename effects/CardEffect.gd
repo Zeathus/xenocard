@@ -12,7 +12,7 @@ func _init(game_board: GameBoard, card: Card, param: String = ""):
 	self.global_target = null
 	self.param = param
 	post_init()
-	
+
 func post_init():
 	pass
 
@@ -58,10 +58,10 @@ func handle_set_targets(targets: Array[Card]):
 func can_set_to_battlefield() -> bool:
 	return false
 
-func on_destroyed(attacker: Card, source: Card.DamageSource):
+func on_destroyed(attacker: Card, source: Damage):
 	pass
 
-func on_destroy(destroyed: Card, source: Card.DamageSource):
+func on_destroy(destroyed: Card, source: Damage):
 	pass
 
 func ignore_unique(card: Card) -> bool:
@@ -82,7 +82,7 @@ func get_atk(target, atk: int) -> int:
 func get_atk_time(time: int) -> int:
 	return time
 
-func take_damage(game_board: GameBoard, attacker: Card, damage: int, source: Card.DamageSource) -> int:
+func take_damage(game_board: GameBoard, attacker: Card, damage: int, source: Damage) -> int:
 	return damage
 
 func handle_occupied_zone(game_board: GameBoard, zone: Card.Zone, index: int) -> bool:

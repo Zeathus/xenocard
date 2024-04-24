@@ -7,7 +7,7 @@ var filter: CardFilter
 func post_init():
 	filter = CardFilter.new(param)
 
-func on_destroy(destroyed: Card, source: Card.DamageSource):
+func on_destroy(destroyed: Card, source: Damage):
 	if destroyed.owner == card.owner:
 		return
 	events.push_back(EventConfirm.new(

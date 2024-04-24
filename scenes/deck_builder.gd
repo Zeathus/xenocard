@@ -23,7 +23,9 @@ func load_cards():
 		var card_file = sub_dir.get_next()
 		while card_file != "":
 			card_file = card_file.substr(0, card_file.find(".json"))
-			all_cards.push_back(Card.new("%s/%s" % [set_name, card_file]))
+			var card = Card.new("%s/%s" % [set_name, card_file])
+			card.validate_effects()
+			all_cards.push_back(card)
 			card_file = sub_dir.get_next()
 		set_name = dir.get_next()
 		sub_dir.list_dir_end()

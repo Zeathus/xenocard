@@ -15,7 +15,7 @@ func targets_to_select_for_effect() -> Array[CardFilter]:
 
 func handle_effect_targets(targets: Array[Card]):
 	for t in targets:
-		events.push_back(EventDestroy.new(get_game_board(), card, t, Card.DamageSource.EFFECT))
+		events.push_back(EventDestroy.new(get_game_board(), card, t, Damage.new(Damage.EFFECT | Damage.DESTROY)))
 
 func has_valid_targets() -> bool:
 	for t in game_board.get_all_field_cards():

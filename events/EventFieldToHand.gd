@@ -13,7 +13,7 @@ func get_name() -> String:
 
 func on_start():
 	if card.equipped_weapon:
-		queue_event(EventDestroy.new(game_board, card, card.equipped_weapon, Card.DamageSource.EFFECT))
+		queue_event(EventDestroy.new(game_board, card, card.equipped_weapon, Damage.new(Damage.EFFECT | Damage.DISCARD)))
 	var position = card.instance.global_position
 	card.owner.field.remove_card(card)
 	card.owner.hand.add_card(card)

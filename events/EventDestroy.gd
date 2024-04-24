@@ -4,10 +4,10 @@ class_name EventDestroy
 
 var attacker: Card
 var target: Card
-var source: Card.DamageSource
+var source: Damage
 var destroyed: bool = false
 
-func _init(_game_board: GameBoard, _attacker: Card, _target: Card, _source: Card.DamageSource):
+func _init(_game_board: GameBoard, _attacker: Card, _target: Card, _source: Damage):
 	super(_game_board)
 	attacker = _attacker
 	target = _target

@@ -6,7 +6,9 @@ class_name EffectCherenkov
 # {Human}, {Realian} or {Machine}, play that card in this card's place
 # during the adjust phase. The new card will have 1 HP.
 
-func on_destroyed(attacker: Card, source: Card.DamageSource):
+func on_destroyed(attacker: Card, source: Damage):
+	if not source.normal_attack():
+		return
 	var top_card = card.owner.junk.top()
 	if top_card == null:
 		return

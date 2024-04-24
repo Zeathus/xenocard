@@ -1,14 +1,14 @@
 extends CardEffect
 
-class_name EffectDestroyCardWhenDestroyedByBattle
+class_name EffectDestroyCardWhenDestroyedByAttack
 
 var filter: CardFilter
 
 func post_init():
 	filter = CardFilter.new(param)
 
-func on_destroyed(attacker: Card, source: Card.DamageSource):
-	if source == Card.DamageSource.BATTLE:
+func on_destroyed(attacker: Card, source: Damage):
+	if source.normal_attack():
 		events.push_back(EventEffect.new(get_game_board(), self, true))
 
 func targets_to_select_for_effect() -> Array[CardFilter]:
@@ -16,7 +16,7 @@ func targets_to_select_for_effect() -> Array[CardFilter]:
 
 func handle_effect_targets(targets: Array[Card]):
 	for t in targets:
-		events.push_back(EventDestroy.new(get_game_board(), card, t, Card.DamageSource.EFFECT))
+		events.push_back(EventDestroy.new(get_game_board(), card, t, Damage.new(Damage.EFFECT | Damage.DESTROY)))
 
 func has_valid_targets() -> bool:
 	for t in game_board.get_all_field_cards():

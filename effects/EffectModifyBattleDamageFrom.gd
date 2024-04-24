@@ -11,8 +11,8 @@ func post_init():
 	if len(params) >= 2:
 		filter = CardFilter.new(params[1])
 
-func take_damage(game_board: GameBoard, attacker: Card, damage: int, source: Card.DamageSource) -> int:
-	if source != Card.DamageSource.BATTLE:
+func take_damage(game_board: GameBoard, attacker: Card, damage: int, source: Damage) -> int:
+	if not source.battle():
 		return damage
 	if filter and not filter.is_valid(card.owner, attacker):
 		return damage

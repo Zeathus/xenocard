@@ -5,7 +5,6 @@ enum Attribute {ANY, HUMAN, REALIAN, MACHINE, GNOSIS, MONSTER, BLADE, WEAPON, NO
 enum Target {ANY, HAND, BALLISTIC, SPREAD, HOMING, NONE}
 enum Rarity {COMMON, UNCOMMON, RARE, PROMO}
 enum Zone {NONE, DECK, LOST, JUNK, HAND, STANDBY, SITUATION, BATTLEFIELD}
-enum DamageSource {NONE, BATTLE, EFFECT, REPLACE}
 
 static var scene = preload("res://objects/card.tscn")
 
@@ -155,6 +154,18 @@ func init_effects(game_board: GameBoard):
 			param = i.substr(i.find("(") + 1, i.rfind(")") - i.find("(") - 1)
 			i = i.substr(0, i.find("("))
 		effects.push_back(CardEffect.parse(i).new(game_board, self, param))
+
+func validate_effects():
+	for i in effect_names:
+		var param: String = ""
+		if "(" in i and ")" in i and i.find("(") < i.rfind(")"):
+			param = i.substr(i.find("(") + 1, i.rfind(")") - i.find("(") - 1)
+			i = i.substr(0, i.find("("))
+		var effect = CardEffect.parse(i)
+		if effect == CardEffect:
+			print("Previous error was for the card '%s'" % name)
+		else:
+			effect.new(null, self, param)
 
 func is_card() -> bool:
 	return true

@@ -44,7 +44,7 @@ func pay_cost(cost: int) -> int:
 	self.field.refresh()
 	return cost_paid
 
-func take_damage(game_board: GameBoard, attacker: Card, damage: int, source: Card.DamageSource):
+func take_damage(game_board: GameBoard, attacker: Card, damage: int, source: Damage):
 	for i in range(damage):
 		var card: Card = self.deck.draw(false)
 		if card:

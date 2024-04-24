@@ -17,7 +17,7 @@
 	},
 	"text": "Discard one {Human} from your field to play this card anywhere on your field.",
 	"effects": [
-		"DestroyAttributeToPlay(human)",
+		"DiscardAttributeToPlay(human)",
 		"CanSetToBattlefield"
 	]
 }

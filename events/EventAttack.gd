@@ -57,7 +57,7 @@ func attack():
 		return
 	for t in targets:
 		var behind_target = t.get_behind()
-		var damage_event: EventDamage = EventDamage.new(game_board, attacker, t, attacker.get_atk(t), Card.DamageSource.BATTLE)
+		var damage_event: EventDamage = EventDamage.new(game_board, attacker, t, attacker.get_atk(t), Damage.new(Damage.BATTLE | Damage.NORMAL_ATTACK))
 		adopt_children(damage_event)
 		queue_event(damage_event)
 		var remaining_damage = damage_event.remaining_damage
@@ -74,7 +74,7 @@ func penetrating_attack(game_board: GameBoard, target_to_hit, remaining_damage: 
 	if remaining_damage <= 0:
 		return false
 	var behind_target = target_to_hit.get_behind()
-	var damage_event: EventDamage = EventDamage.new(game_board, attacker, target_to_hit, remaining_damage, Card.DamageSource.BATTLE)
+	var damage_event: EventDamage = EventDamage.new(game_board, attacker, target_to_hit, remaining_damage, Damage.new(Damage.BATTLE | Damage.NORMAL_ATTACK | Damage.PENETRATING))
 	adopt_children(damage_event)
 	queue_event(damage_event)
 	remaining_damage = damage_event.remaining_damage

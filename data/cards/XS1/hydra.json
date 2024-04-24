@@ -18,7 +18,7 @@
 	"text": "Discard two {Humans} from your field to play this card anywhere on your field.\n<Unlimited>.",
 	"effects": [
 		"Unlimited",
-		"DestroyAttributeToPlay(human,human)",
+		"DiscardAttributeToPlay(human,human)",
 		"CanSetToBattlefield"
 	]
 }

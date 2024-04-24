@@ -112,10 +112,10 @@ func handle_occupied_zone(zone: Card.Zone, index: int):
 	var occupant: Card = player.field.get_card(zone, index)
 	if to_set.type == Card.Type.BATTLE and to_set.attribute == Card.Attribute.WEAPON:
 		if occupant.equipped_weapon != null:
-			queue_event(EventDestroy.new(game_board, to_set, occupant.equipped_weapon, Card.DamageSource.REPLACE))
+			queue_event(EventDestroy.new(game_board, to_set, occupant.equipped_weapon, Damage.new(Damage.DISCARD)))
 		occupant.equip(to_set)
 	else:
-		queue_event(EventDestroy.new(game_board, to_set, occupant, Card.DamageSource.REPLACE))
+		queue_event(EventDestroy.new(game_board, to_set, occupant, Damage.new(Damage.DISCARD)))
 
 func targets_to_set() -> Array[Callable]:
 	var ret: Array[Callable] = []

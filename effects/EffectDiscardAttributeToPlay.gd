@@ -1,6 +1,6 @@
 extends CardEffect
 
-class_name EffectDestroyAttributeToPlay
+class_name EffectDiscardAttributeToPlay
 
 var requirements: Array[Card.Attribute]
 
@@ -23,4 +23,4 @@ func can_replace_target() -> bool:
 
 func handle_set_targets(targets: Array[Card]):
 	for target in targets:
-		events.push_back(EventDestroy.new(get_game_board(), card, target, Card.DamageSource.EFFECT))
+		events.push_back(EventDestroy.new(get_game_board(), card, target, Damage.new(Damage.EFFECT | Damage.DISCARD)))
