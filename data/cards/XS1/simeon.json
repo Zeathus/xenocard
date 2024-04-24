@@ -18,6 +18,7 @@
 	"text": "<Unique>.\nAttacks every other turn.\nEach turn, after its normal attack timing, this card inflicts 1 battle damage to all enemy battle cards.",
 	"effects": [
 		"Unique",
-		"AttackTime(2)"
+		"AttackTime(2)",
+		"ExtraAttack(1,owner=enemy;zone=standby;zone=battlefield)"
 	]
 }

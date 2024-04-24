@@ -17,6 +17,10 @@ func get_name() -> String:
 	return "Attack"
 
 func on_start():
+	for e in attacker.get_effects():
+		if e.attack_stopped():
+			finish()
+			return
 	var anim_targets: Array[Node2D] = []
 	for t in attacker.get_attack_targets(game_board):
 		targets.push_back(t)
@@ -45,7 +49,7 @@ func process(delta):
 		if len(targets) == 0:
 			return
 		for e in attacker.get_effects():
-			e.after_attack(targets)
+			e.after_attack_hit(targets)
 			for event in e.get_events():
 				queue_event(event)
 				game_board.refresh()

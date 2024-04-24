@@ -497,9 +497,8 @@ func get_behind():
 func can_attack(game_board: GameBoard) -> bool:
 	if downed or zone != Zone.BATTLEFIELD:
 		return false
-	for e in get_effects():
-		if e.attack_stopped():
-			return false
+	if atk == 0:
+		return false
 	return true
 
 func is_destroyed() -> bool:

@@ -5,6 +5,7 @@ var card: Card
 var global_target: Card
 var param: String
 var events: Array[Event]
+var host: Card = null
 
 func _init(game_board: GameBoard, card: Card, param: String = ""):
 	self.game_board = game_board
@@ -16,7 +17,13 @@ func _init(game_board: GameBoard, card: Card, param: String = ""):
 func post_init():
 	pass
 
+func set_host(_host: Card) -> CardEffect:
+	host = _host
+	return self
+
 func is_active() -> bool:
+	if host:
+		return not host.downed
 	return not card.downed
 
 func is_global() -> bool:
@@ -94,7 +101,10 @@ func on_deck_attacked(player: Player):
 func on_target_attacked(target: Card):
 	pass
 
-func after_attack(targets):
+func after_attack_hit(targets):
+	pass
+
+func after_attack_turn():
 	pass
 
 func on_turn_start():

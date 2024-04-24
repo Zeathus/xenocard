@@ -22,4 +22,4 @@ func applies_to(target: Card) -> bool:
 	return super.applies_to(target)
 
 func apply_effect(target: Card) -> CardEffect:
-	return EffectPreventMovement.new(game_board, target, param)
+	return EffectPreventMovement.new(game_board, target, param).set_host(card)
