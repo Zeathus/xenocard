@@ -24,8 +24,20 @@ func on_start():
 			e.on_turn_start_enemy()
 			for event in e.get_events():
 				queue_event(event)
-	if player.can_draw():
+
+	var can_normal_draw = true
+	for c in player.field.get_all_cards():
+		for e in c.get_effects():
+			if e.stops_normal_draw():
+				can_normal_draw = false
+	if can_normal_draw and player.can_draw():
 		queue_event(EventDrawCard.new(game_board, player))
+
+	for c in player.field.get_all_cards():
+		for e in c.get_effects():
+			e.after_normal_draw()
+			for event in e.get_events():
+				queue_event(event)
 
 func on_finish():
 	game_board.end_phase()

@@ -15,5 +15,11 @@
 		"cost": 0,
 		"field": ["gnosis", "any"]
 	},
-	"text": "Discard all battle cards from your field to play this card anywhere on your field.\nIf this card is on the battlefield during your draw phase, draw two cards from the lost pile instead of the deck."
+	"text": "Discard all battle cards from your field to play this card anywhere on your field.\nIf this card is on the battlefield during your draw phase, draw two cards from the lost pile instead of the deck.",
+	"effects": [
+		"DiscardAllToPlay(owner=self;zone=battlefield;zone=standby)",
+		"CanSetToBattlefield",
+		"StopNormalDrawOnBattlefield",
+		"DrawPhaseDrawFromLostOnBattlefield(2)"
+	]
 }

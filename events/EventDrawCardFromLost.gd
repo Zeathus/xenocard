@@ -1,6 +1,6 @@
 extends Event
 
-class_name EventDrawCard
+class_name EventDrawCardFromLost
 
 var player: Player
 var card: Card
@@ -10,15 +10,15 @@ func _init(_game_board: GameBoard, _player: Player):
 	player = _player
 
 func get_name() -> String:
-	return "DrawCard"
+	return "DrawCardFromLost"
 
 func on_start():
-	var card = player.draw()
+	card = player.draw_lost()
 	if card == null:
 		return
 	game_board.prepare_card(card)
 	player.hand.add_card(card)
-	card.instance.global_position = player.field.get_deck_node().global_position
+	card.instance.global_position = player.field.get_lost_node().global_position
 	queue_event(EventAnimation.new(game_board,
 		AddToHandAnimation.new(card.instance, player.hand)
 	))

@@ -143,6 +143,12 @@ func penetrates():
 func set_requirements():
 	return true
 
+func stops_normal_draw() -> bool:
+	return false
+
+func after_normal_draw():
+	pass
+
 func effect():
 	pass
 

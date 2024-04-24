@@ -19,6 +19,6 @@
 	"text": "You can <level up> a Lv 1 Shion on your battlefield, ignoring field requirements.\nTakes 1 less battle damage from {Realians}.",
 	"effects": [
 		"LevelUpIgnoreReq(name=Lv 1 Shion)",
-		"ModifyDamageFrom(-1,attribute=realian)"
+		"ModifyBattleDamageFrom(-1,attribute=realian)"
 	]
 }

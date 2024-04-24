@@ -10,7 +10,7 @@ func on_destroyed(attacker: Card, source: Damage):
 	if not source.normal_attack():
 		return
 	var top_card = card.owner.junk.top()
-	if top_card == null:
+	if top_card == null or top_card.name == "Cherenkov":
 		return
 	if top_card.attribute not in [Card.Attribute.HUMAN, Card.Attribute.REALIAN, Card.Attribute.MACHINE]:
 		return

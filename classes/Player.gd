@@ -34,6 +34,11 @@ func draw(do_init=true) -> Card:
 	self.field.refresh()
 	return card
 
+func draw_lost(do_init=true) -> Card:
+	var card: Card = self.lost.draw(do_init)
+	self.field.refresh()
+	return card
+
 func pay_cost(cost: int) -> int:
 	var cost_paid: int = 0
 	for i in range(cost):

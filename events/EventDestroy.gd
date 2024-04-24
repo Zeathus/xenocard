@@ -33,7 +33,7 @@ func on_start():
 	queue_event(EventAnimation.new(game_board, anim))
 
 func on_finish():
-	pass
+	game_board.refresh()
 
 func process(delta):
 	if pass_to_child("process", [delta]):
