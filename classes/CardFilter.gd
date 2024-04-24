@@ -68,3 +68,9 @@ func is_valid(player: Player, card: Card):
 	if owner == 1 and card.owner == player:
 		return false
 	return true
+
+func owner_only() -> bool:
+	return owner == 0
+
+func enemy_only() -> bool:
+	return owner == 1

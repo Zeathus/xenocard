@@ -24,13 +24,6 @@ func on_start():
 			e.adjust()
 			for event in e.get_events():
 				queue_event(event)
-		var old_value = card.e_mark
-		card.set_e_mark(false)
-		if old_value and not card.e_mark:
-			for e in card.get_effects():
-				e.on_e_mark_removed()
-				for event in e.get_events():
-					queue_event(event)
 		if card.downed and card.downed_turn != card.turn_count:
 			card.undown()
 	for card in player.get_enemy().field.get_all_cards():
