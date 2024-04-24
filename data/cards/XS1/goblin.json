@@ -19,6 +19,7 @@
 	"effects": [
 		"Unlimited",
 		"DiscardAttributeToPlay(human)",
-		"CanSetToBattlefield"
+		"CanSetToBattlefield",
+		"DownAttackTarget"
 	]
 }

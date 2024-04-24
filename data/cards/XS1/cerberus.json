@@ -18,6 +18,7 @@
 	"text": "Discard two {Humans} from your field to play this card anywhere on your field.\nCards attacked by this card are <downed>.",
 	"effects": [
 		"DiscardAttributeToPlay(human,human)",
-		"CanSetToBattlefield"
+		"CanSetToBattlefield",
+		"DownAttackTarget"
 	]
 }
