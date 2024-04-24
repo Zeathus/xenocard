@@ -8,6 +8,9 @@ func post_init():
 	for i in param.split(","):
 		requirements.push_back(Card.attribute_from_string(i))
 
+func skips_e_mark() -> bool:
+	return true
+
 func targets_to_select_for_set(list: Array[Callable]):
 	for r in requirements:
 		list.push_back(func valid(card: Card) -> bool:

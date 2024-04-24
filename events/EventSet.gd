@@ -86,6 +86,12 @@ func play(new_zone: Card.Zone, index: int):
 		i.call(to_set)
 	to_set.modify_for_set.clear()
 	if to_set.zone == Card.Zone.HAND:
+		var should_set_e_mark = true
+		if to_set.type == Card.Type.BATTLE and to_set.attribute != Card.Attribute.WEAPON:
+			for e in to_set.get_effects():
+				if e.skips_e_mark():
+					should_set_e_mark = false
+		var cost_to_pay = to_set.get_cost()
 		var real_pos = to_set.instance.global_position
 		if player.field.get_card(new_zone, index):
 			handle_occupied_zone(new_zone, index)
@@ -97,11 +103,11 @@ func play(new_zone: Card.Zone, index: int):
 		to_set.instance.global_position = real_pos
 		if to_set.uses_one_card_per_turn():
 			player.used_one_card_per_turn = true
-		if to_set.type == Card.Type.BATTLE and to_set.attribute != Card.Attribute.WEAPON:
+		if should_set_e_mark:
 			to_set.set_e_mark(true)
-	var cost_paid: int = player.pay_cost(to_set.get_cost())
-	for i in range(cost_paid):
-		queue_event(EventPayCost.new(game_board, player))
+		var cost_paid: int = player.pay_cost(cost_to_pay)
+		for i in range(cost_paid):
+			queue_event(EventPayCost.new(game_board, player))
 	to_set.zone = new_zone
 	to_set.zone_index = index
 

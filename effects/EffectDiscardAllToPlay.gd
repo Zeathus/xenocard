@@ -7,6 +7,9 @@ var filter: CardFilter
 func post_init():
 	filter = CardFilter.new(param)
 
+func skips_e_mark() -> bool:
+	return true
+
 func can_replace_card(card: Card) -> bool:
 	return filter.is_valid(self.card.owner, card)
 

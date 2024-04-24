@@ -143,6 +143,9 @@ func penetrates():
 func set_requirements():
 	return true
 
+func skips_e_mark() -> bool:
+	return false
+
 func stops_normal_draw() -> bool:
 	return false
 

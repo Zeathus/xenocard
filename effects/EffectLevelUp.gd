@@ -7,6 +7,23 @@ var filter: CardFilter
 func post_init():
 	filter = CardFilter.new(param)
 
+func has_levelable_card() -> bool:
+	if card.zone == Card.Zone.HAND:
+		for c in card.owner.field.get_battlefield_cards():
+			if filter.is_valid(card.owner, c):
+				return true
+	return false
+
+func skips_e_mark() -> bool:
+	if has_levelable_card():
+		return true
+	return super.skips_e_mark()
+
+func get_cost(cost: int) -> int:
+	if has_levelable_card():
+		return 0
+	return super.get_cost(cost)
+
 func ignore_unique(card: Card) -> bool:
 	if card.zone == Card.Zone.BATTLEFIELD and filter.is_valid(self.card.owner, card):
 		return true
