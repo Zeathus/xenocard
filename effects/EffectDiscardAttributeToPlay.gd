@@ -18,6 +18,8 @@ func targets_to_select_for_set(list: Array[Callable]):
 				return false
 			if card.attribute != r:
 				return false
+			if card.e_mark:
+				return false
 			return true
 		)
 

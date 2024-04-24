@@ -12,6 +12,8 @@ func post_init():
 		filter = CardFilter.new(params[1])
 
 func get_atk(atk: int) -> int:
+	if card.equipped_weapon:
+		return atk
 	for c in card.owner.field.get_battlefield_cards() + card.owner.field.get_standby_cards():
 		if filter:
 			if filter.is_valid(card.owner, c):

@@ -96,6 +96,9 @@ func get_atk_time(time: int) -> int:
 func take_damage(game_board: GameBoard, attacker: Card, damage: int, source: Damage) -> int:
 	return damage
 
+func take_set_damage(game_board: GameBoard, attacker: Card, damage: int, source: Damage) -> int:
+	return damage
+
 func handle_occupied_zone(game_board: GameBoard, zone: Card.Zone, index: int) -> bool:
 	return false
 
@@ -105,7 +108,7 @@ func on_deck_attacked(player: Player):
 func on_target_attacked(target: Card):
 	pass
 
-func after_attack_hit(targets):
+func after_attack(targets):
 	pass
 
 func after_attack_turn():
