@@ -28,6 +28,8 @@ func on_start():
 		return
 	for e in target.get_effects():
 		damage = e.take_damage(game_board, attacker, damage, source)
+	for e in target.get_effects():
+		damage = e.take_set_damage(game_board, attacker, damage, source)
 	var new_hp: int = max(target.hp - damage, 0)
 	var capped_damage = target.hp - new_hp
 	target.hp = new_hp

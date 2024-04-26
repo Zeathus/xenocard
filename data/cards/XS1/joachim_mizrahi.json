@@ -16,5 +16,8 @@
 		"cost": 1,
 		"field": ["human"]
 	},
-	"text": "While this card is on the battlefield with MOMO, MOMO's HP cannot fall under 1 from battle damage."
+	"text": "While this card is on your battlefield with MOMO, MOMO's HP cannot fall under 1 from battle damage.",
+	"effects": [
+		"GlobalPrevent0HPOnBattlefield(owner=self;character=MOMO)"
+	]
 }

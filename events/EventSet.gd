@@ -86,8 +86,9 @@ func play(new_zone: Card.Zone, index: int):
 		i.call(to_set)
 	to_set.modify_for_set.clear()
 	if to_set.zone == Card.Zone.HAND:
-		var should_set_e_mark = true
+		var should_set_e_mark = false
 		if to_set.type == Card.Type.BATTLE and to_set.attribute != Card.Attribute.WEAPON:
+			should_set_e_mark = true
 			for e in to_set.get_effects():
 				if e.skips_e_mark():
 					should_set_e_mark = false

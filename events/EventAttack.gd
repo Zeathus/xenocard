@@ -26,8 +26,7 @@ func on_start():
 		targets.push_back(t)
 		anim_targets.push_back(t.instance if t.is_card() else t.field.get_deck_node())
 	if len(targets) == 0:
-		attacker.atk_timer = 0
-		finish()
+		attack_done = true
 		return
 	var anim: AttackAnimation = AttackAnimation.new(attacker.instance, anim_targets)
 	queue_event(EventAnimation.new(game_board, anim))
@@ -46,10 +45,8 @@ func process(delta):
 		handled_post_effects = true
 		attacker.atk_timer = 0
 		game_board.refresh()
-		if len(targets) == 0:
-			return
 		for e in attacker.get_effects():
-			e.after_attack_hit(targets)
+			e.after_attack(targets)
 			for event in e.get_events():
 				queue_event(event)
 				game_board.refresh()
