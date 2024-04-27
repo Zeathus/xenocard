@@ -235,7 +235,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Lost" type="Area2D" parent="."]
-position = Vector2(608, 432)
+position = Vector2(576, 432)
 
 [node name="Card" parent="Lost" instance=ExtResource("1_s5b86")]
 visible = false
@@ -265,7 +265,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Junk" type="Area2D" parent="."]
-position = Vector2(824, 432)
+position = Vector2(760, 432)
 
 [node name="Card" parent="Junk" instance=ExtResource("1_s5b86")]
 visible = false

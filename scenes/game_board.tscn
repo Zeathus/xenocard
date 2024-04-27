@@ -117,7 +117,16 @@ offset_right = 209.0
 offset_bottom = -375.0
 text = "Events:"
 
+[node name="ButtonExit" type="Button" parent="."]
+offset_left = -942.0
+offset_top = -520.0
+offset_right = -842.0
+offset_bottom = -472.0
+text = "Exit"
+metadata/_edit_use_anchors_ = true
+
 [connection signal="zone_selected" from="FieldPlayer" to="." method="_on_zone_selected"]
 [connection signal="zone_selected" from="FieldEnemy" to="." method="_on_zone_selected"]
 [connection signal="pressed" from="Phases/EndPhase" to="." method="_on_end_phase_pressed"]
 [connection signal="pressed" from="TestButton" to="." method="_on_test_button_pressed"]
+[connection signal="pressed" from="ButtonExit" to="." method="_on_button_exit_pressed"]

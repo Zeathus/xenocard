@@ -341,6 +341,14 @@ offset_bottom = 939.0
 position = Vector2(208, 307)
 scale = Vector2(0.5, 0.5)
 
+[node name="ButtonExit" type="Button" parent="."]
+offset_left = -894.0
+offset_top = -504.0
+offset_right = -594.0
+offset_bottom = -456.0
+text = "Exit"
+metadata/_edit_use_anchors_ = true
+
 [connection signal="pressed" from="Meta/ButtonSave" to="." method="_on_button_save_pressed"]
 [connection signal="pressed" from="Meta/ButtonSaveAs" to="." method="_on_button_save_as_pressed"]
 [connection signal="pressed" from="Meta/ButtonSort" to="." method="_on_button_sort_pressed"]
@@ -356,3 +364,4 @@ scale = Vector2(0.5, 0.5)
 [connection signal="item_selected" from="Filters/Attribute" to="." method="_on_attribute_item_selected"]
 [connection signal="item_selected" from="Filters/AttackType" to="." method="_on_attack_type_item_selected"]
 [connection signal="text_changed" from="Filters/Cost" to="." method="_on_filters_changed"]
+[connection signal="pressed" from="ButtonExit" to="." method="_on_button_exit_pressed"]

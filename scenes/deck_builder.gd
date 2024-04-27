@@ -274,3 +274,7 @@ func _on_button_new_pressed():
 	$Meta/DeckName.text = ""
 	$Meta/LoadDeck.select(-1)
 	refresh_deck()
+
+
+func _on_button_exit_pressed():
+	get_parent().end_scene()

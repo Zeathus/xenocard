@@ -258,3 +258,6 @@ func _on_end_phase_pressed():
 
 func _on_test_button_pressed():
 	pass
+
+func _on_button_exit_pressed():
+	get_parent().end_scene()
