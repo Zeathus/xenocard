@@ -146,7 +146,9 @@ func get_zone_score(card: Card, zone: Card.Zone, index: int) -> int:
 							score += damage
 					else:
 						score -= 4
-					score += card.hp
+					if player.field.get_card(zone, index + 2) != null:
+						# Hand cards protect cards in the back row
+						score += card.hp
 				else:
 					# No need to have a hand card in the back
 					score -= 2
