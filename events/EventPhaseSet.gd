@@ -21,6 +21,14 @@ func on_finish():
 func process(delta):
 	if pass_to_child("process", [delta]):
 		return
+	if player.has_controller() and not player.controller.is_waiting():
+		if player.controller.has_response():
+			player.controller.receive()
+		else:
+			player.controller.request(
+				[Controller.Action.SET, Controller.Action.END_PHASE],
+				[set_card, on_end_phase_pressed]
+			)
 
 func on_hand_card_selected(hand: GameHand, card: Card):
 	if pass_to_child("on_hand_card_selected", [hand, card]):
@@ -31,6 +39,11 @@ func on_hand_card_selected(hand: GameHand, card: Card):
 func on_zone_selected(field: GameField, zone_owner: Player, zone: Card.Zone, index: int):
 	if pass_to_child("on_zone_selected", [field, zone_owner, zone, index]):
 		return
+
+func set_card(card: Card, zone: Card.Zone, index: int):
+	var set_event: EventSet = EventSet.new(game_board, player, card)
+	set_event.on_zone_selected(player.field, player, zone, index)
+	queue_event(set_event)
 
 func on_end_phase_pressed():
 	if not has_children():

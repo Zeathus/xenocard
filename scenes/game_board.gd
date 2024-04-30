@@ -40,6 +40,8 @@ func _ready():
 		self
 	))
 	players[1].show_hand = true
+	players[1].controller = ControllerAI.new(self, players[1])
+	players[1].controller.start()
 	for p in players:
 		for i in range(5):
 			queue_event(EventDrawCard.new(self, p))
@@ -135,7 +137,7 @@ func begin_phase(phase: Phase):
 			queue_event(EventPhaseSet.new(self, player, phase_effects[Phase.SET]))
 		Phase.BLOCK:
 			$Phases/Phase/Label.text = "%dP Block Phase" % ((turn_player_id + 1) % 2 + 1)
-			queue_event(EventPhaseBlock.new(self, get_turn_enemy(), phase_effects[Phase.BLOCK]))
+			queue_event(EventPhaseBlock.new(self, player, phase_effects[Phase.BLOCK]))
 		Phase.BATTLE:
 			$Phases/Phase/Label.text = "%dP Battle Phase" % (turn_player_id + 1)
 			queue_event(EventPhaseBattle.new(self, player, phase_effects[Phase.BATTLE]))
@@ -183,6 +185,9 @@ func prepare_card(card: Card) -> Card:
 	return card
 
 func get_turn_player() -> Player:
+	var player_id: int = turn_player_id
+	if turn_phase == Phase.BLOCK:
+		player_id = (player_id + 1) % 2
 	return players[turn_player_id]
 
 func get_turn_enemy() -> Player:
@@ -241,17 +246,23 @@ func _on_card_hovered(card):
 func on_hand_card_selected(hand: GameHand, card: Card):
 	if not is_free():
 		return
+	if get_turn_player().has_controller():
+		return
 	if event_processing():
 		get_event().on_hand_card_selected(hand, card)
 
 func _on_zone_selected(field: GameField, zone_owner: Player, zone: Card.Zone, index: int):
 	if not is_free():
 		return
+	if get_turn_player().has_controller():
+		return
 	if event_processing():
 		get_event().on_zone_selected(field, zone_owner, zone, index)
 
 func _on_end_phase_pressed():
 	if not is_free():
+		return
+	if get_turn_player().has_controller():
 		return
 	if event_processing():
 		get_event().on_end_phase_pressed()
@@ -260,4 +271,7 @@ func _on_test_button_pressed():
 	pass
 
 func _on_button_exit_pressed():
+	for p in players:
+		if p.has_controller():
+			p.controller.stop()
 	get_parent().end_scene()

@@ -21,6 +21,14 @@ func on_finish():
 func process(delta):
 	if pass_to_child("process", [delta]):
 		return
+	if player.has_controller() and not player.controller.is_waiting():
+		if player.controller.has_response():
+			player.controller.receive()
+		else:
+			player.controller.request(
+				[Controller.Action.EVENT, Controller.Action.END_PHASE],
+				[Callable(), on_end_phase_pressed]
+			)
 
 func on_end_phase_pressed():
 	if not has_children():

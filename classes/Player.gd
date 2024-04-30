@@ -9,6 +9,7 @@ var hand: GameHand
 var show_hand: bool
 var game_board: GameBoard
 var used_one_card_per_turn: bool
+var controller: Controller
 
 func _init(id: int, deck: Deck, field: GameField, hand: GameHand, game_board: GameBoard):
 	self.id = id
@@ -25,6 +26,10 @@ func _init(id: int, deck: Deck, field: GameField, hand: GameHand, game_board: Ga
 	self.field.game_board = game_board
 	self.field.set_player(self)
 	self.used_one_card_per_turn = false
+	self.controller = null
+
+func has_controller() -> bool:
+	return self.controller != null
 
 func can_draw() -> bool:
 	return self.deck.can_draw()
