@@ -2,6 +2,12 @@ extends Controller
 
 class_name ControllerAI
 
+var delay: float = 0.5
+
+func _prepare_handling(actions: Array[Action]):
+	if delay > 0:
+		OS.delay_msec(delay * 1000)
+
 func _handle_request(action: Action) -> bool:
 	match action:
 		Action.END_PHASE:
@@ -24,16 +30,18 @@ func _handle_request(action: Action) -> bool:
 	return false
 
 func do_set_battle_card() -> bool:
-	var free_zone: int = -1
-	for i in range(4):
-		if player.field.get_card(Card.Zone.STANDBY, i) == null:
-			free_zone = i
-			break
-	if free_zone == -1:
-		return false
 	var best_card: Card = null
 	var best_score: int = 0
+	var best_zone: Card.Zone = Card.Zone.NONE
+	var best_index: int = -1
 	for card in player.hand.cards:
+		var free_zones: Array
+		for zone in [Card.Zone.STANDBY, Card.Zone.BATTLEFIELD]:
+			for i in range(4):
+				if card.can_play(game_board, zone, i):
+					free_zones.push_back([zone, i])
+		if free_zones.is_empty():
+			continue
 		if card.type != Card.Type.BATTLE or card.attribute == Card.Attribute.WEAPON:
 			continue
 		if not card.selectable(game_board):
@@ -44,8 +52,17 @@ func do_set_battle_card() -> bool:
 		if score > best_score:
 			best_card = card
 			best_score = score
+			best_zone = free_zones[0][0]
+			best_index = free_zones[0][1]
+			var best_zone_score = get_zone_score(card, best_zone, best_index)
+			for i in range(1, len(free_zones)):
+				var zone_score = get_zone_score(card, free_zones[i][0], free_zones[i][1])
+				if zone_score > best_zone_score:
+					best_zone = free_zones[i][0]
+					best_index = free_zones[i][1]
+					best_zone_score = zone_score
 	if best_score > 0:
-		response_args = [best_card, Card.Zone.STANDBY, free_zone]
+		response_args = [best_card, best_zone, best_index]
 		return true
 	return false
 
@@ -163,7 +180,7 @@ func get_zone_score(card: Card, zone: Card.Zone, index: int) -> int:
 					else:
 						score += damage
 				else:
-					var damage = card.get_atk()
+					var damage = card.get_atk() * 2
 					score += damage
 					if damage >= player.get_enemy().deck.size() - 1:
 						score += 100
@@ -187,6 +204,8 @@ func get_zone_score(card: Card, zone: Card.Zone, index: int) -> int:
 					score /= 2
 				if damage >= player.get_enemy().deck.size() - 1:
 					score += 100
+		if card.zone == Card.Zone.STANDBY and len(player.field.get_standby_cards()) >= 4:
+			score += 10
 	else:
 		if card.attribute == Card.Attribute.HUMAN:
 			score += 2
