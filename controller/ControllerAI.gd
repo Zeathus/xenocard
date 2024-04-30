@@ -177,11 +177,21 @@ func get_zone_score(card: Card, zone: Card.Zone, index: int) -> int:
 					var damage = card.get_atk_against(target)
 					if damage >= target.hp:
 						score += 10
+					elif damage >= target.hp / 2:
+						score += 2 + damage
+					elif damage >= target.hp / 3:
+						score += 1 + damage
+					elif damage >= target.hp / 4:
+						score += damage - 1
+					elif damage >= target.hp / 5:
+						score += damage - 2
 					else:
-						score += damage
+						score += damage - 3
 				else:
-					var damage = card.get_atk() * 2
+					var damage = card.get_atk()
 					score += damage
+					if enemy_field.get_battlefield_cards().is_empty():
+						score += 2
 					if damage >= player.get_enemy().deck.size() - 1:
 						score += 100
 				if index <= 1:
@@ -205,7 +215,8 @@ func get_zone_score(card: Card, zone: Card.Zone, index: int) -> int:
 				if damage >= player.get_enemy().deck.size() - 1:
 					score += 100
 		if card.zone == Card.Zone.STANDBY and len(player.field.get_standby_cards()) >= 4:
-			score += 10
+			if player.field.get_card(zone, index) == null:
+				score += 10
 	else:
 		if card.attribute == Card.Attribute.HUMAN:
 			score += 2

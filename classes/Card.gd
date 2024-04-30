@@ -389,10 +389,12 @@ func can_equip(weapon: Card):
 	return false
 
 func equip(weapon: Card):
+	atk_timer = 0
 	weapon.equipped_by = self
 	equipped_weapon = weapon
 
 func unequip():
+	atk_timer = 0
 	equipped_weapon.equipped_by = null
 	equipped_weapon = null
 

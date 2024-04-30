@@ -19,7 +19,7 @@ func get_name() -> String:
 func on_start():
 	for e in attacker.get_effects():
 		if e.attack_stopped():
-			finish()
+			attack_done = true
 			return
 	var anim_targets: Array[Node2D] = []
 	for t in attacker.get_attack_targets(game_board):
