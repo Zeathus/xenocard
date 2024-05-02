@@ -60,7 +60,6 @@ func request(actions: Array[Action], handlers: Array[Callable]):
 	waiting = true
 	mutex.unlock()
 	semaphore.post()
-	print("Received request")
 
 func receive():
 	mutex.lock()
@@ -71,7 +70,6 @@ func receive():
 	response = -1
 	response_args.clear()
 	mutex.unlock()
-	print("Handled response")
 
 func _prepare_handling(actions: Array[Action]):
 	pass

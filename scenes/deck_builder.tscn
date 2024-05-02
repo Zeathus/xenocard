@@ -99,6 +99,14 @@ offset_top = 72.0
 offset_right = 359.0
 offset_bottom = 119.0
 
+[node name="ButtonOpenDeckDir" type="Button" parent="Meta"]
+layout_mode = 0
+offset_left = 247.0
+offset_top = 17.0
+offset_right = 475.0
+offset_bottom = 64.0
+text = "Open Deck Directory"
+
 [node name="List" type="Panel" parent="."]
 offset_left = 537.0
 offset_top = -269.0
@@ -355,6 +363,7 @@ metadata/_edit_use_anchors_ = true
 [connection signal="pressed" from="Meta/ButtonShuffle" to="." method="_on_button_shuffle_pressed"]
 [connection signal="pressed" from="Meta/ButtonNew" to="." method="_on_button_new_pressed"]
 [connection signal="item_selected" from="Meta/LoadDeck" to="." method="_on_load_deck_item_selected"]
+[connection signal="pressed" from="Meta/ButtonOpenDeckDir" to="." method="_on_button_open_deck_dir_pressed"]
 [connection signal="area_entered" from="List/VisibleCards" to="." method="_on_visible_cards_area_entered"]
 [connection signal="area_exited" from="List/VisibleCards" to="." method="_on_visible_cards_area_exited"]
 [connection signal="text_changed" from="Filters/Search" to="." method="_on_filters_changed"]

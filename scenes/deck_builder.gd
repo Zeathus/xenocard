@@ -275,6 +275,8 @@ func _on_button_new_pressed():
 	$Meta/LoadDeck.select(-1)
 	refresh_deck()
 
-
 func _on_button_exit_pressed():
 	get_parent().end_scene()
+
+func _on_button_open_deck_dir_pressed():
+	OS.shell_open("%s/decks" % OS.get_user_data_dir())
