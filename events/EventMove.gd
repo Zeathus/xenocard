@@ -56,4 +56,5 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Card.Zone, ind
 			anims.push_back(MoveAnimation.new(to_move.equipped_weapon.instance, new_pos, 30))
 		to_move.move(game_board, zone, index)
 		queue_event(EventAnimations.new(game_board, anims))
+		game_board.hide_valid_zones()
 		awaiting_anims = true

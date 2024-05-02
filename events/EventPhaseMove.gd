@@ -5,6 +5,7 @@ class_name EventPhaseMove
 var player: Player
 var phase_effects: Array
 var state: int = 0
+var in_sub_event: bool = false
 
 func _init(_game_board: GameBoard, _player: Player, _phase_effects: Array):
 	super(_game_board)
@@ -14,9 +15,11 @@ func get_name() -> String:
 	return "PhaseMove"
 
 func on_start():
-	pass
+	if not player.has_controller():
+		show_selectable()
 
 func on_finish():
+	hide_selectable()
 	game_board.end_phase()
 
 func process(delta):
@@ -26,6 +29,9 @@ func process(delta):
 		0:
 			if player.field.battler_count() == 0:
 				state = 1
+			if in_sub_event:
+				in_sub_event = false
+				show_selectable()
 			elif player.has_controller() and not player.controller.is_waiting():
 				if player.controller.has_response():
 					player.controller.receive()
@@ -35,6 +41,7 @@ func process(delta):
 						[move_card, on_end_phase_pressed]
 					)
 		1:
+			hide_selectable()
 			for card in player.field.get_all_cards():
 				for e in card.get_effects():
 					e.after_move_phase()
@@ -54,8 +61,19 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Card.Zone, ind
 		return
 	var card: Card = field.get_card(zone, index)
 	if card and card.selectable(game_board):
+		hide_selectable()
 		queue_event(EventMove.new(game_board, player, card))
+		in_sub_event = true
 
 func on_end_phase_pressed():
 	if not has_children() and state == 0:
 		state = 1
+
+func show_selectable():
+	for card in player.field.get_battler_cards():
+		var valid: bool = card.can_move()
+		card.set_selectable(valid)
+
+func hide_selectable():
+	for card in player.field.get_battler_cards():
+		card.set_selectable(false)
