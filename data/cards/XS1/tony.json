@@ -3,6 +3,7 @@
 	"set": "XS1",
 	"id": 62,
 	"name": "Tony",
+	"character": "Tony",
 	"type": "battle",
 	"rarity": "common",
 	"stats": {
