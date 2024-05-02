@@ -17,6 +17,8 @@ func _init(node: Node2D, destination: Vector2, speed: int):
 	self.time = 0
 	original_scale = node.scale
 	target_scale = node.scale
+	if node.has_method("set_in_motion"):
+		node.set_in_motion(true)
 
 func update(delta):
 	if is_done():
@@ -29,6 +31,8 @@ func update(delta):
 	if move.length() >= distance.length():
 		node.global_position = destination
 		node.scale = target_scale
+		if node.has_method("set_in_motion"):
+			node.set_in_motion(false)
 		finish()
 	else:
 		node.global_position += move
@@ -36,4 +40,6 @@ func update(delta):
 			target_scale * ((original_distance - distance.length()) / original_distance)
 	if time >= 2.0:
 		node.scale = target_scale
+		if node.has_method("set_in_motion"):
+			node.set_in_motion(false)
 		finish()

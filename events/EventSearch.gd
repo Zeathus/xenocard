@@ -31,13 +31,20 @@ func on_finish():
 func process(delta):
 	if pass_to_child("process", [delta]):
 		return
-	if menu.is_done():
+	if menu and menu.is_done():
 		menu.finish()
+		menu = null
+	elif menu == null:
 		finish()
 
 func handle_card(index: int, card: Card):
 	if index != -1:
 		card = player.deck.draw_at(index)
 		game_board.refresh()
-		player.hand.add_card(game_board.prepare_card(card))
+		game_board.prepare_card(card)
+		player.hand.add_card(card)
+		card.instance.global_position = player.field.get_deck_node().global_position
+		queue_event(EventAnimation.new(game_board,
+			AddToHandAnimation.new(card.instance, player.hand)
+		))
 	player.deck.shuffle()

@@ -351,6 +351,17 @@ joint_mode = 2
 antialiased = true
 script = ExtResource("7_x3kli")
 
+[node name="ValidBorder" type="Line2D" parent="."]
+visible = false
+scale = Vector2(1.05, 1.05)
+points = PackedVector2Array(-430, -630, -430, -420, -430, -210, -430, 0, -430, 210, -430, 420, -430, 630, -215, 630, 0, 630, 215, 630, 430, 630, 430, 420, 430, 210, 430, 0, 430, -210, 430, -420, 430, -630, 215, -630, 0, -630, -215, -630)
+closed = true
+width = 24.0
+default_color = Color(0, 0.447059, 0.690196, 1)
+joint_mode = 2
+antialiased = true
+script = ExtResource("7_x3kli")
+
 [connection signal="gui_input" from="Panel" to="." method="_on_panel_gui_input"]
 [connection signal="mouse_entered" from="Panel" to="." method="_on_panel_mouse_entered"]
 [connection signal="mouse_exited" from="Panel" to="." method="_on_panel_mouse_exited"]

@@ -14,9 +14,10 @@ var hand: GameHand
 var hand_move: float
 var hand_original_x_position: float
 
-func _init(node: Node2D, hand: GameHand):
+func _init(node: Node2D, hand: GameHand, speed_mod: float = 1.0):
 	self.node = node
 	self.hand = hand
+	self.max_time /= speed_mod
 	self.time = 0
 	var original_position: Vector2 = node.global_position
 	destination = hand.get_new_card_position()
@@ -36,7 +37,7 @@ func update(delta):
 		return
 	if time == 0:
 		original_distance = destination.distance_to(node.global_position)
-		speed = original_distance / max_time
+		speed = (original_distance / max_time)
 	time += delta
 	var distance: Vector2 = destination - node.global_position
 	var move: Vector2 = distance.normalized() * speed * delta
