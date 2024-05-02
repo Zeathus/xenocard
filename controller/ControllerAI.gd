@@ -34,7 +34,26 @@ func do_set_battle_card() -> bool:
 	var best_score: int = 0
 	var best_zone: Card.Zone = Card.Zone.NONE
 	var best_index: int = -1
+	var best_targets: Array[Card] = []
 	for card in player.hand.cards:
+		var score: int = 0
+		var to_select: Array[Callable] = []
+		var targets: Array[Card] = []
+		for e in card.effects:
+			e.targets_to_select_for_set(to_select)
+		for i in to_select:
+			for target in player.field.get_battler_cards():
+				if not target in targets and i.call(target):
+					if get_atk_score(target) < get_atk_score(card) or target.max_hp > card.hp - 1:
+						targets.push_back(target)
+						break
+			if targets.size() == to_select.size():
+				break
+		if targets.size() < to_select.size():
+			continue
+		for t in targets:
+			score -= t.hp / 2
+			score -= get_atk_score(t) / 2
 		var free_zones: Array
 		for zone in [Card.Zone.STANDBY, Card.Zone.BATTLEFIELD]:
 			for i in range(4):
@@ -46,12 +65,13 @@ func do_set_battle_card() -> bool:
 			continue
 		if not card.selectable(game_board):
 			continue
-		var score: int = get_base_score(card)
+		score += get_base_score(card)
 		score += card.max_hp
 		score += get_atk_score(card)
 		if score > best_score:
 			best_card = card
 			best_score = score
+			best_targets = targets
 			best_zone = free_zones[0][0]
 			best_index = free_zones[0][1]
 			var best_zone_score = get_zone_score(card, best_zone, best_index)
@@ -62,7 +82,7 @@ func do_set_battle_card() -> bool:
 					best_index = free_zones[i][1]
 					best_zone_score = zone_score
 	if best_score > 0:
-		response_args = [best_card, best_zone, best_index]
+		response_args = [best_card, best_zone, best_index, best_targets]
 		return true
 	return false
 
@@ -91,7 +111,7 @@ func do_set_weapon_card() -> bool:
 				best_card = card
 				best_score = score
 	if best_score > 0:
-		response_args = [best_card, best_holder.zone, best_holder.zone_index]
+		response_args = [best_card, best_holder.zone, best_holder.zone_index, []]
 		return true
 	return false
 

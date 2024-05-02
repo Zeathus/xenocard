@@ -528,7 +528,10 @@ func deselect():
 		instance.find_child("SelectBorder").visible = false
 
 func is_selected():
-	return instance and instance.find_child("SelectBorder").visible
+	if instance == null:
+		return false
+	var border = instance.find_child("SelectBorder")
+	return border and border.visible
 
 func is_hovered():
 	return instance and instance.is_hovering

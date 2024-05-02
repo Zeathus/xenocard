@@ -40,8 +40,9 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Card.Zone, ind
 	if pass_to_child("on_zone_selected", [field, zone_owner, zone, index]):
 		return
 
-func set_card(card: Card, zone: Card.Zone, index: int):
+func set_card(card: Card, zone: Card.Zone, index: int, targets: Array[Card]):
 	var set_event: EventSet = EventSet.new(game_board, player, card)
+	set_event.targets = targets
 	set_event.on_zone_selected(player.field, player, zone, index)
 	queue_event(set_event)
 
