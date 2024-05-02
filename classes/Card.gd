@@ -405,8 +405,7 @@ func can_move_to(game_board: GameBoard, new_zone: Zone, index: int) -> bool:
 
 func move(game_board: GameBoard, new_zone: Zone, index: int):
 	var player: Player = owner
-	if game_board.turn_phase == GameBoard.Phase.MOVE:
-		player.field.move_card(self, new_zone, index)
+	player.field.move_card(self, new_zone, index)
 
 func set_e_mark(val: bool):
 	self.e_mark = val
