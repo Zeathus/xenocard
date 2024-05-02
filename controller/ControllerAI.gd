@@ -240,4 +240,7 @@ func get_zone_score(card: Card, zone: Card.Zone, index: int) -> int:
 	else:
 		if card.attribute == Card.Attribute.HUMAN:
 			score += 2
+		if card.zone == Card.Zone.BATTLEFIELD and len(player.field.get_standby_cards()) >= 3:
+			if player.field.get_card(zone, index) == null:
+				score -= 10
 	return score
