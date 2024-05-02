@@ -40,8 +40,8 @@ func _ready():
 		self
 	))
 	players[1].show_hand = true
-	players[1].controller = ControllerAI.new(self, players[1])
-	players[1].controller.start()
+	#players[1].controller = ControllerAI.new(self, players[1])
+	#players[1].controller.start()
 	for p in players:
 		for i in range(5):
 			queue_event(EventDrawCard.new(self, p, 2))
