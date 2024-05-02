@@ -29,6 +29,9 @@ func _ready():
 			$Situation/Zone3, $Situation/Zone4
 		]
 	}
+	if global_rotation != 0:
+		for i in [$Deck/Count, $Lost/Count, $Junk/Count]:
+			i.rotation = -global_rotation
 
 func standby_count():
 	var count: int = 0
