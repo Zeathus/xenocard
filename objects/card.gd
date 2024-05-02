@@ -22,6 +22,7 @@ func _process(delta):
 		$Content.scale = original_scale * 1.25
 		$Overlay.scale = original_scale * 1.25
 		$SelectBorder.scale = original_scale * 1.25
+		$ValidBorder.scale = original_scale * 1.25
 		$Back.scale = original_scale * 1.25
 		$Content.rotation = -global_rotation
 		$Overlay.rotation = -global_rotation
@@ -30,6 +31,7 @@ func _process(delta):
 		$Content.scale = original_scale
 		$Overlay.scale = original_scale
 		$SelectBorder.scale = original_scale
+		$ValidBorder.scale = original_scale
 		$Back.scale = original_scale
 		$Content.rotation = 0
 		$Overlay.rotation = 0

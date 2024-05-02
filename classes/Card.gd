@@ -537,6 +537,10 @@ func set_targeted(val: bool):
 	if instance:
 		instance.find_child("SelectBorder").visible = val
 
+func set_selectable(val: bool):
+	if instance:
+		instance.find_child("ValidBorder").visible = val
+
 func on_turn_start():
 	turn_count += 1
 
