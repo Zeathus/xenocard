@@ -39,6 +39,8 @@ func _process(delta):
 			z_index += 20
 		elif card.type == Card.Type.BATTLE and card.attribute == Card.Attribute.WEAPON and card.equipped_by:
 			z_index += 2
+	if in_motion:
+		z_index += 30
 
 func load_card(card: Card):
 	self.card = card
