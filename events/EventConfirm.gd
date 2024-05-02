@@ -11,6 +11,7 @@ var event_yes: Event = null
 var event_no: Event = null
 var help: String
 var menu = null
+var wait_for_finish: bool = false
 
 func _init(_game_board: GameBoard, _player: Player, _message: String, _on_yes, _on_no, _help: String=""):
 	super(_game_board)
@@ -30,6 +31,8 @@ func get_name() -> String:
 	return "Confirm"
 
 func on_start():
+	if player.has_controller():
+		return
 	menu = confirm_scene.instantiate()
 	menu.set_message(message)
 	menu.set_help(help)
@@ -37,16 +40,30 @@ func on_start():
 	game_board.add_menu(menu)
 
 func on_finish():
+	if player.has_controller():
+		return
 	game_board.remove_menu(menu)
 
 func process(delta):
 	if pass_to_child("process", [delta]):
 		return
-	if menu and menu.is_done():
-		menu.finish()
-		menu = null
-	if menu == null and not has_children():
+	if wait_for_finish:
 		finish()
+	elif player.has_controller():
+		if not player.controller.is_waiting():
+			if player.controller.has_response():
+				player.controller.receive()
+			else:
+				player.controller.request(
+					[Controller.Action.CONFIRM],
+					[func(x): handle_answer(x); wait_for_finish = true]
+				)
+	else:
+		if menu and menu.is_done():
+			menu.finish()
+			wait_for_finish = true
+		if wait_for_finish and not has_children():
+			finish()
 
 func handle_answer(answer: bool):
 	if answer:

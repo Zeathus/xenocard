@@ -27,6 +27,9 @@ func _handle_request(action: Action) -> bool:
 		Action.MOVE:
 			if do_move_card():
 				return true
+		Action.CONFIRM:
+			response_args = [true]
+			return true
 	return false
 
 func do_set_battle_card() -> bool:
