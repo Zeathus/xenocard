@@ -102,6 +102,17 @@ func refresh_deck_list():
 	$Meta/LoadDeck.clear()
 	for i in Deck.list_decks():
 		$Meta/LoadDeck.add_item(i)
+	if deck.name != "":
+		for i in range($Meta/LoadDeck.item_count):
+			if $Meta/LoadDeck.get_item_text(i) == deck.name:
+				$Meta/LoadDeck.select(i)
+				break
+
+func refresh_preset_list():
+	$Meta/LoadPreset.clear()
+	$Meta/LoadPreset.add_item("Load a Preset")
+	for i in Deck.list_presets():
+		$Meta/LoadPreset.add_item(i)
 
 func filter_card(card: Card) -> bool:
 	var filter_text: String = $Filters/Search.text.to_lower()
@@ -184,6 +195,7 @@ func _ready():
 	setup_card_list()
 	refresh_card_list()
 	refresh_deck_list()
+	refresh_preset_list()
 	$Meta/LoadDeck.select(-1)
 
 func add_to_deck(card: Card):
@@ -195,8 +207,8 @@ func remove_from_deck(index: int):
 	deck.remove_at(index)
 	refresh_deck()
 
-func load_deck(deck_name: String):
-	deck = Deck.load(deck_name)
+func load_deck(deck_name: String, preset: bool = false):
+	deck = Deck.load(deck_name, preset)
 	$Meta/DeckName.text = deck.name
 	refresh_deck()
 
@@ -268,6 +280,13 @@ func _on_button_sort_pressed():
 func _on_load_deck_item_selected(index):
 	var deck_name: String = $Meta/LoadDeck.get_item_text(index)
 	load_deck(deck_name)
+
+func _on_load_preset_item_selected(index):
+	var deck_name: String = $Meta/LoadPreset.get_item_text(index)
+	if deck_name != "Load a Preset":
+		$Meta/LoadDeck.select(-1)
+		$Meta/LoadPreset.select(0)
+		load_deck(deck_name, true)
 
 func _on_button_new_pressed():
 	deck = Deck.new()

@@ -30,7 +30,7 @@ func _ready():
 		var options: Dictionary = player_options[i]
 		var player: Player = Player.new(
 			i,
-			Deck.load(options["deck"]),
+			Deck.load(options["deck"]["name"], options["deck"]["preset"]),
 			[$FieldPlayer, $FieldEnemy][i],
 			[$HandPlayer, $HandEnemy][i],
 			self

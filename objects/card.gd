@@ -7,7 +7,8 @@ signal on_hover(card: Card)
 @export var selectable: bool = true
 var original_scale: Vector2
 var original_z: int
-var is_hovering: bool
+var is_hovering: bool = false
+var old_is_hovering: bool = false
 var in_motion: bool = false
 var card: Card
 
@@ -18,24 +19,27 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if old_is_hovering != is_hovering:
+		old_is_hovering = is_hovering
+		if is_hovering:
+			$Content.scale = original_scale * 1.25
+			$Overlay.scale = original_scale * 1.25
+			$SelectBorder.scale = original_scale * 1.25
+			$ValidBorder.scale = original_scale * 1.25
+			$Back.scale = original_scale * 1.25
+			$Content.rotation = -global_rotation
+			$Overlay.rotation = -global_rotation
+		else:
+			$Content.scale = original_scale
+			$Overlay.scale = original_scale
+			$SelectBorder.scale = original_scale
+			$ValidBorder.scale = original_scale
+			$Back.scale = original_scale
+			$Content.rotation = 0
+			$Overlay.rotation = 0
+	z_index = original_z
 	if is_hovering:
-		$Content.scale = original_scale * 1.25
-		$Overlay.scale = original_scale * 1.25
-		$SelectBorder.scale = original_scale * 1.25
-		$ValidBorder.scale = original_scale * 1.25
-		$Back.scale = original_scale * 1.25
-		$Content.rotation = -global_rotation
-		$Overlay.rotation = -global_rotation
-		z_index = original_z + 1
-	else:
-		$Content.scale = original_scale
-		$Overlay.scale = original_scale
-		$SelectBorder.scale = original_scale
-		$ValidBorder.scale = original_scale
-		$Back.scale = original_scale
-		$Content.rotation = 0
-		$Overlay.rotation = 0
-		z_index = original_z
+		z_index += 1
 	if card:
 		if card.zone == Card.Zone.HAND:
 			z_index += 20

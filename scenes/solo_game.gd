@@ -17,7 +17,11 @@ func refresh():
 
 func load_decks(node: OptionButton, presets: bool = false):
 	node.clear()
-	var decks: Array[String] = Deck.list_decks()
+	var decks: Array[String]
+	if presets:
+		decks = Deck.list_presets()
+	else:
+		decks = Deck.list_decks()
 	for deck in decks:
 		node.add_item(deck)
 
@@ -34,10 +38,19 @@ func _on_button_start_pressed():
 
 func add_player_options(game: GameBoard, node: Node):
 	var options = {
-		"deck": get_deck(len(game.player_options)),
+		"deck": {
+			"name": get_deck(len(game.player_options)),
+			"preset": node.find_child("DeckPreset").button_pressed
+		},
 		"ai": node.find_child("ControllerAI").button_pressed
 	}
 	game.player_options.push_back(options)
 
 func _on_button_exit_pressed():
 	get_parent().end_scene()
+
+func _on_p1_deck_preset_toggled(toggled_on):
+	load_decks($P1/Deck, toggled_on)
+
+func _on_p2_deck_preset_toggled(toggled_on):
+	load_decks($P2/Deck, toggled_on)
