@@ -184,6 +184,8 @@ func has_stats() -> bool:
 
 func get_resources() -> Array[Attribute]:
 	var attr: Array[Attribute] = []
+	if self.e_mark:
+		return attr
 	if self.type == Type.BATTLE:
 		attr.push_back(self.attribute)
 	return attr
