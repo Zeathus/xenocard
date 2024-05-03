@@ -16,6 +16,8 @@ var card_held: Node2D
 var event_queue: Array[Event]
 var free_menu = null
 var phase_effects: Dictionary
+var player_options: Array[Dictionary] = []
+var game_options: Dictionary = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,24 +26,20 @@ func _ready():
 	card_zones = []
 	for node in find_children("Zone?", "Node2D"):
 		card_zones.push_back(node)
-	players.push_back(Player.new(
-		0,
-		Deck.load("Default"),
-		$FieldPlayer,
-		$HandPlayer,
-		self
-	))
-	players[0].show_hand = true
-	players.push_back(Player.new(
-		1,
-		Deck.load("Default"),
-		$FieldEnemy,
-		$HandEnemy,
-		self
-	))
-	players[1].show_hand = true
-	players[1].controller = ControllerAI.new(self, players[1])
-	players[1].controller.start()
+	for i in range(2):
+		var options: Dictionary = player_options[i]
+		var player: Player = Player.new(
+			i,
+			Deck.load(options["deck"]),
+			[$FieldPlayer, $FieldEnemy][i],
+			[$HandPlayer, $HandEnemy][i],
+			self
+		)
+		player.show_hand = (not options["ai"]) or game_options["reveal_hands"]
+		if options["ai"]:
+			player.controller = ControllerAI.new(self, player)
+			player.controller.start()
+		players.push_back(player)
 	for p in players:
 		for i in range(5):
 			queue_event(EventDrawCard.new(self, p, 2))

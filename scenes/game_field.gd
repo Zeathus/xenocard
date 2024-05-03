@@ -30,7 +30,7 @@ func _ready():
 		]
 	}
 	if global_rotation != 0:
-		for i in [$Deck/Count, $Lost/Count, $Junk/Count]:
+		for i in [$Deck/Count, $Lost/Count, $Junk/Count, $Deck/Label, $Lost/Label, $Junk/Label]:
 			i.rotation = -global_rotation
 
 func standby_count():
@@ -109,6 +109,7 @@ func add_card(card: Card):
 		var pos = card.instance.global_position
 		$Cards.add_child(card.instance)
 		card.instance.global_position = pos
+		card.instance.turn_up()
 
 func move_card(card: Card, zone: Card.Zone, index: int):
 	var old_card: Card = get_card(zone, index)

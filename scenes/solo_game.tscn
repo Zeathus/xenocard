@@ -1,0 +1,259 @@
+[gd_scene load_steps=6 format=3 uid="uid://bdv1nehgqv2uf"]
+
+[ext_resource type="Script" path="res://scenes/solo_game.gd" id="1_pecbt"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_xyhnc"]
+resource_local_to_scene = false
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_amskh"]
+resource_local_to_scene = false
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_0euxj"]
+resource_local_to_scene = false
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_diwr6"]
+resource_local_to_scene = false
+
+[node name="SoloGame" type="Node2D"]
+position = Vector2(0, -24)
+script = ExtResource("1_pecbt")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="P2" type="Panel" parent="."]
+offset_left = -436.0
+offset_top = -144.0
+offset_right = 164.0
+offset_bottom = -14.0
+metadata/_edit_use_anchors_ = true
+
+[node name="DeckLabel" type="Label" parent="P2"]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 24.0
+offset_right = 330.0
+offset_bottom = 47.0
+text = "Deck"
+metadata/_edit_use_anchors_ = true
+
+[node name="DeckCustom" type="CheckBox" parent="P2"]
+layout_mode = 0
+offset_left = 399.0
+offset_top = 20.0
+offset_right = 487.0
+offset_bottom = 51.0
+button_pressed = true
+button_group = SubResource("ButtonGroup_xyhnc")
+text = "Custom"
+metadata/_edit_use_anchors_ = true
+
+[node name="DeckPreset" type="CheckBox" parent="P2"]
+layout_mode = 0
+offset_left = 495.0
+offset_top = 20.0
+offset_right = 573.0
+offset_bottom = 51.0
+button_group = SubResource("ButtonGroup_xyhnc")
+text = "Preset"
+metadata/_edit_use_anchors_ = true
+
+[node name="Deck" type="OptionButton" parent="P2"]
+layout_mode = 0
+offset_left = 235.0
+offset_top = 56.0
+offset_right = 577.0
+offset_bottom = 103.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ControllerLabel" type="Label" parent="P2"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 24.0
+offset_right = 136.0
+offset_bottom = 47.0
+text = "Controlled by"
+metadata/_edit_use_anchors_ = true
+
+[node name="ControllerPlayer" type="CheckBox" parent="P2"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 63.0
+offset_right = 119.0
+offset_bottom = 94.0
+button_group = SubResource("ButtonGroup_amskh")
+text = "Player"
+metadata/_edit_use_anchors_ = true
+
+[node name="ControllerAI" type="CheckBox" parent="P2"]
+layout_mode = 0
+offset_left = 127.0
+offset_top = 63.0
+offset_right = 196.0
+offset_bottom = 94.0
+button_pressed = true
+button_group = SubResource("ButtonGroup_amskh")
+text = "AI"
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerPanel" type="Panel" parent="P2"]
+layout_mode = 0
+offset_top = -46.0
+offset_right = 600.0
+offset_bottom = -6.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="P2/PlayerPanel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 585.0
+offset_bottom = 31.0
+text = "North Player"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="P1" type="Panel" parent="."]
+offset_left = -436.0
+offset_top = 16.0
+offset_right = 164.0
+offset_bottom = 146.0
+metadata/_edit_use_anchors_ = true
+
+[node name="DeckLabel" type="Label" parent="P1"]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 24.0
+offset_right = 330.0
+offset_bottom = 47.0
+text = "Deck"
+metadata/_edit_use_anchors_ = true
+
+[node name="DeckCustom" type="CheckBox" parent="P1"]
+layout_mode = 0
+offset_left = 399.0
+offset_top = 20.0
+offset_right = 487.0
+offset_bottom = 51.0
+button_pressed = true
+button_group = SubResource("ButtonGroup_0euxj")
+text = "Custom"
+metadata/_edit_use_anchors_ = true
+
+[node name="DeckPreset" type="CheckBox" parent="P1"]
+layout_mode = 0
+offset_left = 495.0
+offset_top = 20.0
+offset_right = 573.0
+offset_bottom = 51.0
+button_group = SubResource("ButtonGroup_0euxj")
+text = "Preset"
+metadata/_edit_use_anchors_ = true
+
+[node name="Deck" type="OptionButton" parent="P1"]
+layout_mode = 0
+offset_left = 235.0
+offset_top = 56.0
+offset_right = 577.0
+offset_bottom = 103.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ControllerLabel" type="Label" parent="P1"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 24.0
+offset_right = 136.0
+offset_bottom = 47.0
+text = "Controlled by"
+metadata/_edit_use_anchors_ = true
+
+[node name="ControllerPlayer" type="CheckBox" parent="P1"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 63.0
+offset_right = 119.0
+offset_bottom = 94.0
+button_pressed = true
+button_group = SubResource("ButtonGroup_diwr6")
+text = "Player"
+metadata/_edit_use_anchors_ = true
+
+[node name="ControllerAI" type="CheckBox" parent="P1"]
+layout_mode = 0
+offset_left = 127.0
+offset_top = 63.0
+offset_right = 196.0
+offset_bottom = 94.0
+button_group = SubResource("ButtonGroup_diwr6")
+text = "AI"
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerPanel" type="Panel" parent="P1"]
+layout_mode = 0
+offset_top = 137.0
+offset_right = 600.0
+offset_bottom = 177.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="P1/PlayerPanel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 585.0
+offset_bottom = 31.0
+text = "South Player"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Options" type="Panel" parent="."]
+offset_left = 185.0
+offset_top = -144.0
+offset_right = 485.0
+offset_bottom = 193.0
+
+[node name="Title" type="Panel" parent="Options"]
+layout_mode = 0
+offset_top = -46.0
+offset_right = 300.0
+offset_bottom = -6.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Options/Title"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0133333
+anchor_right = -0.0133333
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 291.0
+offset_bottom = 31.0
+text = "Game Options"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="RevealHands" type="CheckBox" parent="Options"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 20.0
+offset_right = 175.0
+offset_bottom = 51.0
+text = "Play with hands revealed"
+
+[node name="ButtonStart" type="Button" parent="."]
+offset_left = -150.0
+offset_top = 216.0
+offset_right = 150.0
+offset_bottom = 264.0
+disabled = true
+text = "Start Game"
+metadata/_edit_use_anchors_ = true
+
+[node name="ButtonExit" type="Button" parent="."]
+offset_left = -942.0
+offset_top = -496.0
+offset_right = -842.0
+offset_bottom = -448.0
+text = "Exit"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="ButtonStart" to="." method="_on_button_start_pressed"]
+[connection signal="pressed" from="ButtonExit" to="." method="_on_button_exit_pressed"]

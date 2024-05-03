@@ -117,6 +117,7 @@ offset_bottom = 314.0
 text = "Test"
 
 [node name="TestLabel" type="Label" parent="."]
+visible = false
 offset_left = 153.0
 offset_top = -398.0
 offset_right = 209.0
