@@ -31,7 +31,8 @@ func on_start():
 			effect.get_help_text()
 		))
 		return
-	update_targets()
+	if not effect.card.owner.has_controller():
+		update_targets()
 
 func on_finish():
 	for t in targets:
@@ -67,6 +68,17 @@ func process(delta):
 			activated = true
 		else:
 			finish()
+	else:
+		var player: Player = effect.card.owner
+		if player.has_controller() and not player.controller.is_waiting():
+			if player.controller.has_response():
+				player.controller.receive()
+			else:
+				player.controller.request(
+					[Controller.Action.TARGET],
+					[try_target],
+					[[targets_required[len(targets)], targets]]
+				)
 
 func on_hand_card_selected(hand: GameHand, card: Card):
 	if pass_to_child("on_hand_card_selected", [hand, card]):

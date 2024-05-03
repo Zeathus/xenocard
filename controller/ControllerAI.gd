@@ -8,7 +8,7 @@ func _prepare_handling(actions: Array[Action]):
 	if delay > 0:
 		OS.delay_msec(delay * 1000)
 
-func _handle_request(action: Action) -> bool:
+func _handle_request(action: Action, args: Array) -> bool:
 	match action:
 		Action.END_PHASE:
 			# End Phase is always checked last, so if this is
@@ -30,6 +30,9 @@ func _handle_request(action: Action) -> bool:
 		Action.CONFIRM:
 			response_args = [true]
 			return true
+		Action.TARGET:
+			if do_target(args[0], args[1]):
+				return true
 	return false
 
 func do_set_battle_card() -> bool:
@@ -247,3 +250,18 @@ func get_zone_score(card: Card, zone: Card.Zone, index: int) -> int:
 			if player.field.get_card(zone, index) == null:
 				score -= 10
 	return score
+
+func do_target(filter: CardFilter, targeted: Array[Card]) -> bool:
+	var best_target: Card = null
+	var best_score: int = 0
+	for card in game_board.get_all_field_cards():
+		if card in targeted:
+			continue
+		if filter.is_valid(player, card):
+			var score: int = get_atk_score(card)
+			if best_target == null or score > best_score:
+				best_target = card
+				best_score = score
+	if best_target:
+		response_args = [best_target]
+	return true

@@ -1,6 +1,6 @@
 class_name Controller
 
-enum Action {END_PHASE, MOVE, EVENT, SET, BLOCK, CONFIRM}
+enum Action {END_PHASE, MOVE, EVENT, SET, BLOCK, CONFIRM, TARGET}
 
 var game_board: GameBoard
 var player: Player
@@ -10,6 +10,7 @@ var semaphore: Semaphore
 var finished: bool
 var requested_actions: Array[Action]
 var request_handlers: Array[Callable]
+var request_args: Array
 var waiting: bool
 var response: int
 var response_args: Array
@@ -50,12 +51,15 @@ func has_response() -> bool:
 	mutex.unlock()
 	return ret
 
-func request(actions: Array[Action], handlers: Array[Callable]):
+func request(actions: Array[Action], handlers: Array[Callable], args: Array = []):
 	assert(len(actions) == len(handlers))
+	while len(args) < len(handlers):
+		args.push_back([])
 	mutex.lock()
 	assert(not waiting and response == -1)
 	requested_actions = actions
 	request_handlers = handlers
+	request_args = args
 	response = -1
 	waiting = true
 	mutex.unlock()
@@ -74,7 +78,7 @@ func receive():
 func _prepare_handling(actions: Array[Action]):
 	pass
 
-func _handle_request(action: Action) -> bool:
+func _handle_request(action: Action, args: Array) -> bool:
 	return false
 
 func _main():
@@ -88,7 +92,7 @@ func _main():
 			mutex.unlock()
 			_prepare_handling(actions)
 			for i in range(len(actions)):
-				if _handle_request(actions[i]):
+				if _handle_request(actions[i], request_args[i]):
 					mutex.lock()
 					response = i
 					waiting = false
