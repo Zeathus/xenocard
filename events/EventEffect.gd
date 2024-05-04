@@ -7,6 +7,7 @@ var targets_required: Array[CardFilter]
 var targets: Array[Card] = []
 var activated: bool = false
 var optional: bool
+var state: int = 0
 
 func _init(_game_board: GameBoard, _effect: CardEffect, _optional=false):
 	super(_game_board)

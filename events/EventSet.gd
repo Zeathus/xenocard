@@ -73,7 +73,7 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Card.Zone, ind
 				new_pos += Vector2(28, 42)
 			else:
 				new_pos -= Vector2(28, 42)
-		var anim: GameAnimation = MoveAnimation.new(to_set.instance, new_pos, 30)
+		var anim: GameAnimation = AnimationMove.new(to_set.instance, new_pos, 30)
 		if to_set.type == Card.Type.BATTLE and to_set.attribute == Card.Attribute.WEAPON:
 			anim.target_scale = Vector2(0.075, 0.075)
 		else:

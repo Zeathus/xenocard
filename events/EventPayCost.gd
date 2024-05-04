@@ -17,7 +17,7 @@ func on_start():
 	anon_card.global_position = player.field.get_deck_node().global_position
 	anon_card.visible = true
 	queue_event(EventAnimation.new(game_board,
-		MoveAnimation.new(anon_card, player.field.get_lost_node().global_position, 15)
+		AnimationMove.new(anon_card, player.field.get_lost_node().global_position, 15)
 	))
 
 func on_finish():

@@ -19,7 +19,7 @@ func on_start():
 	card.owner.hand.add_card(card)
 	card.instance.global_position = position
 	queue_event(EventAnimation.new(game_board,
-		AddToHandAnimation.new(card.instance, card.owner.hand)
+		AnimationAddToHand.new(card.instance, card.owner.hand)
 	))
 
 func on_finish():

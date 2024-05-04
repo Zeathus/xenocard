@@ -42,21 +42,21 @@ func do_move(field: GameField, zone_owner: Player, zone: Card.Zone, index: int):
 	var other_card = field.get_card(zone, index)
 	if other_card:
 		var new_pos = field.get_zone(to_move.zone, to_move.zone_index).global_position
-		anims.push_back(MoveAnimation.new(other_card.instance, new_pos, 30))
+		anims.push_back(AnimationMove.new(other_card.instance, new_pos, 30))
 		if other_card.equipped_weapon:
 			if other_card.instance.global_rotation == 0:
 				new_pos += Vector2(28, 42)
 			else:
 				new_pos -= Vector2(28, 42)
-			anims.push_back(MoveAnimation.new(other_card.equipped_weapon.instance, new_pos, 30))
+			anims.push_back(AnimationMove.new(other_card.equipped_weapon.instance, new_pos, 30))
 	var new_pos = field.get_zone(zone, index).global_position
-	anims.push_back(MoveAnimation.new(to_move.instance, new_pos, 30))
+	anims.push_back(AnimationMove.new(to_move.instance, new_pos, 30))
 	if to_move.equipped_weapon:
 		if to_move.instance.global_rotation == 0:
 			new_pos += Vector2(28, 42)
 		else:
 			new_pos -= Vector2(28, 42)
-		anims.push_back(MoveAnimation.new(to_move.equipped_weapon.instance, new_pos, 30))
+		anims.push_back(AnimationMove.new(to_move.equipped_weapon.instance, new_pos, 30))
 	to_move.move(game_board, zone, index)
 	queue_event(EventAnimations.new(game_board, anims))
 	awaiting_anims = true

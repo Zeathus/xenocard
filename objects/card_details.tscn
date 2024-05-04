@@ -10,4 +10,10 @@ selectable = false
 [node name="Text" parent="Card/Content" index="12"]
 mouse_filter = 0
 
+[node name="Label" parent="Card/Overlay/EMark" index="0"]
+layout_mode = 0
+
+[node name="Label" parent="Card/Overlay/Downed" index="0"]
+layout_mode = 0
+
 [editable path="Card"]

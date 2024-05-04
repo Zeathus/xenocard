@@ -61,6 +61,6 @@ func handle_card(index: int, card: Card):
 		player.hand.add_card(card)
 		card.instance.global_position = player.field.get_deck_node().global_position
 		queue_event(EventAnimation.new(game_board,
-			AddToHandAnimation.new(card.instance, player.hand)
+			AnimationAddToHand.new(card.instance, player.hand)
 		))
 	player.deck.shuffle()

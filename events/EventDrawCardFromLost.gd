@@ -20,7 +20,7 @@ func on_start():
 	player.hand.add_card(card)
 	card.instance.global_position = player.field.get_lost_node().global_position
 	queue_event(EventAnimation.new(game_board,
-		AddToHandAnimation.new(card.instance, player.hand)
+		AnimationAddToHand.new(card.instance, player.hand)
 	))
 
 func on_finish():

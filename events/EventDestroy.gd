@@ -28,7 +28,7 @@ func on_start():
 	if target.equipped_weapon:
 		queue_event(EventDestroy.new(game_board, attacker, target.equipped_weapon, source))
 		target.unequip()
-	var anim: MoveAnimation = MoveAnimation.new(target.instance, target.owner.field.get_junk_node().global_position, 30)
+	var anim: AnimationMove = AnimationMove.new(target.instance, target.owner.field.get_junk_node().global_position, 30)
 	anim.target_scale = Vector2(0.15, 0.15)
 	queue_event(EventAnimation.new(game_board, anim))
 
