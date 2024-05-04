@@ -51,6 +51,11 @@ func _on_button_exit_pressed():
 
 func _on_p1_deck_preset_toggled(toggled_on):
 	load_decks($P1/Deck, toggled_on)
+	refresh()
 
 func _on_p2_deck_preset_toggled(toggled_on):
 	load_decks($P2/Deck, toggled_on)
+	refresh()
+
+func _on_deck_item_selected(index):
+	refresh()

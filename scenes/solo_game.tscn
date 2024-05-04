@@ -256,6 +256,8 @@ text = "Exit"
 metadata/_edit_use_anchors_ = true
 
 [connection signal="toggled" from="P2/DeckPreset" to="." method="_on_p2_deck_preset_toggled"]
+[connection signal="item_selected" from="P2/Deck" to="." method="_on_deck_item_selected"]
 [connection signal="toggled" from="P1/DeckPreset" to="." method="_on_p1_deck_preset_toggled"]
+[connection signal="item_selected" from="P1/Deck" to="." method="_on_deck_item_selected"]
 [connection signal="pressed" from="ButtonStart" to="." method="_on_button_start_pressed"]
 [connection signal="pressed" from="ButtonExit" to="." method="_on_button_exit_pressed"]
