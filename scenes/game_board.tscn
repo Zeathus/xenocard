@@ -117,11 +117,10 @@ offset_bottom = 314.0
 text = "Test"
 
 [node name="TestLabel" type="Label" parent="."]
-visible = false
-offset_left = 153.0
-offset_top = -398.0
-offset_right = 209.0
-offset_bottom = -375.0
+offset_left = -935.0
+offset_top = -286.0
+offset_right = -879.0
+offset_bottom = -263.0
 text = "Events:"
 
 [node name="ButtonExit" type="Button" parent="."]
