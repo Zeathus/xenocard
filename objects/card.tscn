@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dosulntiwpmvw"]
+[gd_scene load_steps=28 format=3 uid="uid://dosulntiwpmvw"]
 
 [ext_resource type="Script" path="res://objects/card.gd" id="1_8v1ch"]
 [ext_resource type="Texture2D" uid="uid://dicq202oyt24d" path="res://sprites/card_bg_battle.png" id="2_jvxha"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bmnyp650trfv7" path="res://sprites/rarity/rarity_common.png" id="5_3weow"]
 [ext_resource type="Texture2D" uid="uid://cd8gb1b5tt6em" path="res://sprites/card_back.png" id="6_y577d"]
 [ext_resource type="Script" path="res://objects/select_border.gd" id="7_x3kli"]
+[ext_resource type="PackedScene" uid="uid://de2wv2ykfcwhh" path="res://objects/effect_indicator.tscn" id="8_qhpge"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f3feu"]
 
@@ -392,6 +393,9 @@ default_color = Color(0.25098, 0.623529, 1, 1)
 joint_mode = 2
 antialiased = true
 script = ExtResource("7_x3kli")
+
+[node name="EffectIndicator" parent="." instance=ExtResource("8_qhpge")]
+visible = false
 
 [connection signal="gui_input" from="Panel" to="." method="_on_panel_gui_input"]
 [connection signal="mouse_entered" from="Panel" to="." method="_on_panel_mouse_entered"]

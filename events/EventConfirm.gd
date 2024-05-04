@@ -40,9 +40,7 @@ func on_start():
 	game_board.add_menu(menu)
 
 func on_finish():
-	if player.has_controller():
-		return
-	game_board.remove_menu(menu)
+	pass
 
 func process(delta):
 	if pass_to_child("process", [delta]):
@@ -60,6 +58,7 @@ func process(delta):
 				)
 	else:
 		if menu and menu.is_done():
+			game_board.remove_menu(menu)
 			menu.finish()
 			wait_for_finish = true
 

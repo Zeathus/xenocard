@@ -1,0 +1,135 @@
+[gd_scene load_steps=5 format=3 uid="uid://de2wv2ykfcwhh"]
+
+[ext_resource type="Script" path="res://objects/effect_indicator.gd" id="1_8tjyy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qog21"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 40
+border_width_top = 40
+border_width_right = 40
+border_width_bottom = 40
+border_color = Color(0, 1, 1, 0.501961)
+corner_radius_top_left = 900
+corner_radius_top_right = 900
+corner_radius_bottom_right = 900
+corner_radius_bottom_left = 900
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_opkl3"]
+bg_color = Color(0, 1, 1, 0.501961)
+corner_radius_top_left = 100
+corner_radius_top_right = 5
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_h61kh"]
+font_size = 120
+font_color = Color(0, 0.501961, 0.501961, 1)
+outline_size = 30
+
+[node name="EffectIndicator" type="Node2D"]
+script = ExtResource("1_8tjyy")
+
+[node name="Circle" type="Panel" parent="."]
+offset_left = -450.0
+offset_top = -450.0
+offset_right = 450.0
+offset_bottom = 450.0
+pivot_offset = Vector2(450, 450)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qog21")
+
+[node name="Line1" type="Panel" parent="Circle"]
+layout_mode = 0
+offset_left = -46.0001
+offset_top = 134.0
+offset_right = 354.0
+offset_bottom = 174.0
+rotation = 0.785398
+pivot_offset = Vector2(200, 20)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_opkl3")
+
+[node name="Line2" type="Panel" parent="Circle"]
+layout_mode = 0
+offset_left = 546.0
+offset_top = 134.0
+offset_right = 946.0
+offset_bottom = 174.0
+rotation = 2.35619
+pivot_offset = Vector2(200, 20)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_opkl3")
+
+[node name="Line3" type="Panel" parent="Circle"]
+layout_mode = 0
+offset_left = 546.0
+offset_top = 726.0
+offset_right = 946.0
+offset_bottom = 766.0
+rotation = 3.92699
+pivot_offset = Vector2(200, 20)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_opkl3")
+
+[node name="Line4" type="Panel" parent="Circle"]
+layout_mode = 0
+offset_left = -45.9999
+offset_top = 726.001
+offset_right = 354.0
+offset_bottom = 766.001
+rotation = 5.49779
+pivot_offset = Vector2(200, 20)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_opkl3")
+
+[node name="Line5" type="Panel" parent="Circle"]
+layout_mode = 0
+offset_left = -74.0
+offset_top = 430.0
+offset_right = 126.0
+offset_bottom = 470.0
+pivot_offset = Vector2(100, 20)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_opkl3")
+
+[node name="Line6" type="Panel" parent="Circle"]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 6.0
+offset_right = 550.0
+offset_bottom = 46.0
+rotation = 1.5708
+pivot_offset = Vector2(100, 20)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_opkl3")
+
+[node name="Line7" type="Panel" parent="Circle"]
+layout_mode = 0
+offset_left = 774.0
+offset_top = 430.0
+offset_right = 974.0
+offset_bottom = 470.0
+rotation = 3.14159
+pivot_offset = Vector2(100, 20)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_opkl3")
+
+[node name="Line8" type="Panel" parent="Circle"]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 854.0
+offset_right = 550.0
+offset_bottom = 894.0
+rotation = 4.71239
+pivot_offset = Vector2(100, 20)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_opkl3")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -457.0
+offset_top = -90.0
+offset_right = 457.0
+offset_bottom = 102.0
+text = "ACTIVATE"
+label_settings = SubResource("LabelSettings_h61kh")
+horizontal_alignment = 1

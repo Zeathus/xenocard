@@ -7,7 +7,6 @@ var targets_required: Array[CardFilter]
 var targets: Array[Card] = []
 var activated: bool = false
 var optional: bool
-var state: int = 0
 
 func _init(_game_board: GameBoard, _effect: CardEffect, _optional=false):
 	super(_game_board)
@@ -22,6 +21,7 @@ func on_start():
 	if not effect.has_valid_targets():
 		finish()
 		return
+	queue_event(EventAnimation.new(game_board, AnimationEffectStart.new(effect.card)))
 	if optional:
 		queue_event(EventConfirm.new(
 			game_board,
@@ -67,6 +67,7 @@ func process(delta):
 			for event in effect.get_events():
 				queue_event(event)
 			activated = true
+			queue_event(EventAnimation.new(game_board, AnimationEffectEnd.new(effect.card)))
 		else:
 			finish()
 	else:

@@ -11,9 +11,13 @@ selectable = false
 mouse_filter = 0
 
 [node name="Label" parent="Card/Overlay/EMark" index="0"]
-layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 286.0
+offset_bottom = 698.0
 
 [node name="Label" parent="Card/Overlay/Downed" index="0"]
-layout_mode = 0
+offset_top = 0.0
+offset_bottom = 546.0
 
 [editable path="Card"]
