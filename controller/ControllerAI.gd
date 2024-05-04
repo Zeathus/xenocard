@@ -33,6 +33,9 @@ func _handle_request(action: Action, args: Array) -> bool:
 		Action.TARGET:
 			if do_target(args[0], args[1]):
 				return true
+		Action.SEARCH:
+			if do_search(args[0]):
+				return true
 	return false
 
 func do_set_battle_card() -> bool:
@@ -264,4 +267,24 @@ func do_target(filter: CardFilter, targeted: Array[Card]) -> bool:
 				best_score = score
 	if best_target:
 		response_args = [best_target]
+	return true
+
+func do_search(filter: CardFilter):
+	var best_target: Card = null
+	var best_index: int = -1
+	var best_score: int = 0
+	for i in range(len(player.deck.cards)):
+		var card: Card = player.deck.cards[i]
+		if filter.is_valid(player, card):
+			var score: int = 10
+			if player.hand.cards.all(func(x): return x.name != card.name):
+				score += 10
+			if best_target == null or score > best_score:
+				best_target = card
+				best_index = i
+				best_score = score
+	if best_target:
+		response_args = [best_index, best_target]
+	else:
+		response_args = [-1, null]
 	return true

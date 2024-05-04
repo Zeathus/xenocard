@@ -62,8 +62,6 @@ func process(delta):
 		if menu and menu.is_done():
 			menu.finish()
 			wait_for_finish = true
-		if wait_for_finish and not has_children():
-			finish()
 
 func handle_answer(answer: bool):
 	if answer:
