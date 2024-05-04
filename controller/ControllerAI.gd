@@ -45,6 +45,8 @@ func do_set_battle_card() -> bool:
 	var best_index: int = -1
 	var best_targets: Array[Card] = []
 	for card in player.hand.cards:
+		if card.type != Card.Type.BATTLE or card.attribute == Card.Attribute.WEAPON:
+			continue
 		var score: int = 0
 		var to_select: Array[Callable] = []
 		var targets: Array[Card] = []
@@ -69,8 +71,6 @@ func do_set_battle_card() -> bool:
 				if card.can_play(game_board, zone, i):
 					free_zones.push_back([zone, i])
 		if free_zones.is_empty():
-			continue
-		if card.type != Card.Type.BATTLE or card.attribute == Card.Attribute.WEAPON:
 			continue
 		if not card.selectable(game_board):
 			continue
@@ -120,12 +120,13 @@ func do_set_weapon_card() -> bool:
 				best_card = card
 				best_score = score
 	if best_score > 0:
-		response_args = [best_card, best_holder.zone, best_holder.zone_index, []]
+		var targets: Array[Card] = []
+		response_args = [best_card, best_holder.zone, best_holder.zone_index, targets]
 		return true
 	return false
 
 func do_set_situation_card() -> bool:
-	if len(player.field.get_standby_cards()) >= 4:
+	if len(player.field.get_situation_cards()) >= 4:
 		return false
 	return false
 
