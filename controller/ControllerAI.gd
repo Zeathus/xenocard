@@ -176,6 +176,7 @@ func get_atk_score(card: Card) -> int:
 			score += card.get_atk()
 	if card.can_attack_on_enemy_phase():
 		score *= 2
+	score /= card.get_atk_time()
 	return score
 
 func get_zone_score(card: Card, zone: Card.Zone, index: int) -> int:
