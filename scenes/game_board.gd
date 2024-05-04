@@ -244,15 +244,11 @@ func _on_card_hovered(card):
 func on_hand_card_selected(hand: GameHand, card: Card):
 	if not is_free():
 		return
-	if get_turn_player().has_controller():
-		return
 	if event_processing():
 		get_event().on_hand_card_selected(hand, card)
 
 func _on_zone_selected(field: GameField, zone_owner: Player, zone: Card.Zone, index: int):
 	if not is_free():
-		return
-	if get_turn_player().has_controller():
 		return
 	if event_processing():
 		get_event().on_zone_selected(field, zone_owner, zone, index)

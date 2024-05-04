@@ -176,6 +176,9 @@ func get_events() -> Array[Event]:
 func equips_to(holder: Card) -> bool:
 	return false
 
+func get_controlling_player() -> Player:
+	return card.owner
+
 func get_confirm_message() -> String:
 	return "Activate %s's Effect?" % [card.name]
 

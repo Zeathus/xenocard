@@ -7,6 +7,7 @@ var targets_required: Array[CardFilter]
 var targets: Array[Card] = []
 var activated: bool = false
 var optional: bool
+var cancelled: bool = false
 
 func _init(_game_board: GameBoard, _effect: CardEffect, _optional=false):
 	super(_game_board)
@@ -28,7 +29,7 @@ func on_start():
 			effect.card.owner,
 			effect.get_confirm_message(),
 			func(): update_targets(),
-			func(): finish(),
+			func(): cancelled = true,
 			effect.get_help_text()
 		))
 		return
@@ -61,7 +62,13 @@ func try_target(card: Card):
 func process(delta):
 	if pass_to_child("process", [delta]):
 		return
-	if len(targets) == len(targets_required):
+	if cancelled:
+		if not activated:
+			queue_event(EventAnimation.new(game_board, AnimationEffectEnd.new(effect.card)))
+			activated = true
+		else:
+			finish()
+	elif len(targets) == len(targets_required):
 		if not activated:
 			effect.handle_effect_targets(targets)
 			for event in effect.get_events():
@@ -85,10 +92,14 @@ func process(delta):
 func on_hand_card_selected(hand: GameHand, card: Card):
 	if pass_to_child("on_hand_card_selected", [hand, card]):
 		return
+	if effect.get_controlling_player().has_controller():
+		return
 	try_target(card)
 
 func on_zone_selected(field: GameField, zone_owner: Player, zone: Card.Zone, index: int):
 	if pass_to_child("on_zone_selected", [field, zone_owner, zone, index]):
+		return
+	if effect.get_controlling_player().has_controller():
 		return
 	var card = field.get_card(zone, index)
 	if card:

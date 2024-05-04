@@ -13,8 +13,8 @@ func update(delta):
 	if is_done():
 		return
 	var indicator: Node = card.instance.find_child("EffectIndicator")
-	indicator.modulate.a = 1.0 - min(time * 2, 1.0)
-	if time >= 0.5:
+	indicator.modulate.a = 1.0 - min(time * 4, 1.0)
+	if time >= 0.25:
 		indicator.visible = false
 		finish()
 	time += delta

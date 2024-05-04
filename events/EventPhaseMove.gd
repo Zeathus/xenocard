@@ -59,6 +59,8 @@ func move_card(card: Card, zone: Card.Zone, index: int):
 func on_zone_selected(field: GameField, zone_owner: Player, zone: Card.Zone, index: int):
 	if pass_to_child("on_zone_selected", [field, zone_owner, zone, index]):
 		return
+	if player.has_controller():
+		return
 	var card: Card = field.get_card(zone, index)
 	if card and card.selectable(game_board):
 		hide_selectable()

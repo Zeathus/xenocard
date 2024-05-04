@@ -16,9 +16,9 @@ func update(delta):
 	if time == 0:
 		indicator.visible = true
 	var scale: float = 1.0
-	scale += (1.0 - min(time * 2, 1.0)) * 3
+	scale += (1.0 - min(time * 3, 1.0)) * 3
 	indicator.scale = Vector2(scale, scale)
-	indicator.modulate.a = min(time * 2, 1.0)
-	if time >= 0.75:
+	indicator.modulate.a = min(time * 3, 1.0)
+	if time >= 0.5:
 		finish()
 	time += delta

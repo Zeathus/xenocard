@@ -39,6 +39,8 @@ func process(delta):
 func on_hand_card_selected(hand: GameHand, card: Card):
 	if pass_to_child("on_hand_card_selected", [hand, card]):
 		return
+	if player.has_controller():
+		return
 	if card.selectable(game_board):
 		hide_selectable()
 		queue_event(EventSet.new(game_board, player, card))
@@ -46,6 +48,8 @@ func on_hand_card_selected(hand: GameHand, card: Card):
 
 func on_zone_selected(field: GameField, zone_owner: Player, zone: Card.Zone, index: int):
 	if pass_to_child("on_zone_selected", [field, zone_owner, zone, index]):
+		return
+	if player.has_controller():
 		return
 
 func set_card(card: Card, zone: Card.Zone, index: int, targets: Array[Card]):
