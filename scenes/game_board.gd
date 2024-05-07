@@ -90,6 +90,7 @@ func add_menu(menu, z_index=0):
 
 func remove_menu(menu):
 	$Menus.remove_child(menu)
+	menu.queue_free()
 
 func event_to_str(event: Event) -> String:
 	var ret: String = event.get_name()

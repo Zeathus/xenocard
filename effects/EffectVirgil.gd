@@ -11,5 +11,11 @@ func adjust_enemy():
 		return
 	for c in card.owner.field.get_battlefield_cards():
 		if c.attribute == Card.Attribute.REALIAN:
+			push_event()
+			break
+
+func effect():
+	for c in card.owner.field.get_battlefield_cards():
+		if c.attribute == Card.Attribute.REALIAN:
 			events.push_back(EventDestroy.new(card.owner.game_board, card, c, Damage.new(Damage.EFFECT | Damage.DESTROY)))
 			events.push_back(EventDamage.new(card.owner.game_board, card, card.owner.get_enemy(), 4, Damage.new(Damage.EFFECT)))

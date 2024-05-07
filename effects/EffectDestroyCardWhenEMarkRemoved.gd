@@ -8,7 +8,7 @@ func post_init():
 	filter = CardFilter.new(param)
 
 func on_e_mark_removed():
-	events.push_back(EventEffect.new(get_game_board(), self, true))
+	push_event(true)
 
 func targets_to_select_for_effect() -> Array[CardFilter]:
 	return [filter]

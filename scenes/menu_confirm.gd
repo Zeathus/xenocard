@@ -26,7 +26,6 @@ func is_done():
 func finish():
 	if handler != null:
 		handler.call(answer)
-	queue_free()
 
 func _on_yes_button_pressed():
 	answer = true

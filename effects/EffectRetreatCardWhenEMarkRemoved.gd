@@ -25,7 +25,7 @@ func on_e_mark_removed():
 		if len(card.owner.field.get_battlefield_cards()) == 0 and \
 			len(card.owner.get_enemy().field.get_battlefield_cards()) == 0:
 			return
-	events.push_back(EventEffect.new(get_game_board(), self, true))
+	push_event(true)
 
 func targets_to_select_for_effect() -> Array[CardFilter]:
 	return [filter]

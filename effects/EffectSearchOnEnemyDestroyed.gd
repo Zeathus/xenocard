@@ -10,11 +10,7 @@ func post_init():
 func on_destroy(destroyed: Card, source: Damage):
 	if destroyed.owner == card.owner:
 		return
-	events.push_back(EventConfirm.new(
-		game_board,
-		card.owner,
-		get_confirm_message(),
-		EventSearch.new(game_board, card.owner, filter, ""),
-		Callable(),
-		get_help_text()
-	))
+	push_event(true)
+
+func effect():
+	events.push_back(EventSearch.new(game_board, card.owner, filter, "Select a card to add to your hand"))

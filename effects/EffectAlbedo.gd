@@ -12,6 +12,9 @@ func after_move_phase():
 	for c in card.owner.field.get_battlefield_cards():
 		if c != card:
 			return
+	push_event()
+
+func effect():
 	var atk_effect = EffectModifyATK.new(game_board, card, "%d" % card.owner.junk.size())
 	atk_effect.duration = 1
 	card.applied_effects.push_back(atk_effect)

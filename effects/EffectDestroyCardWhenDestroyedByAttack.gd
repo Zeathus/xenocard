@@ -9,14 +9,14 @@ func post_init():
 
 func on_destroyed(attacker: Card, source: Damage):
 	if source.normal_attack():
-		events.push_back(EventEffect.new(get_game_board(), self, true))
+		push_event(true)
 
 func targets_to_select_for_effect() -> Array[CardFilter]:
 	return [filter]
 
 func handle_effect_targets(targets: Array[Card]):
 	for t in targets:
-		events.push_back(EventDestroy.new(get_game_board(), card, t, Damage.new(Damage.EFFECT | Damage.DESTROY)))
+		events.push_back(EventDestroy.new(game_board, card, t, Damage.new(Damage.EFFECT | Damage.DESTROY)))
 
 func has_valid_targets() -> bool:
 	for t in game_board.get_all_field_cards():

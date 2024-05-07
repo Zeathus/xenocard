@@ -90,4 +90,3 @@ func is_done():
 func finish():
 	if handler != null:
 		handler.call(selected_index, selected_card)
-	queue_free()

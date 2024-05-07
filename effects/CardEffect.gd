@@ -57,6 +57,9 @@ func can_replace_target() -> bool:
 func can_replace_card(card: Card) -> bool:
 	return false
 
+func effect():
+	pass
+
 func handle_effect_targets(targets: Array[Card]):
 	pass
 
@@ -162,8 +165,8 @@ func stops_normal_draw() -> bool:
 func after_normal_draw():
 	pass
 
-func effect():
-	pass
+func push_event(optional: bool = false):
+	events.push_back(EventEffect.new(game_board, self, optional))
 
 func get_game_board() -> GameBoard:
 	return card.owner.game_board

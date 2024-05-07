@@ -22,7 +22,7 @@ corner_radius_bottom_right = 100
 corner_radius_bottom_left = 5
 
 [sub_resource type="LabelSettings" id="LabelSettings_h61kh"]
-font_size = 120
+font_size = 240
 font_color = Color(0, 0.501961, 0.501961, 1)
 outline_size = 30
 
@@ -30,6 +30,7 @@ outline_size = 30
 script = ExtResource("1_8tjyy")
 
 [node name="Circle" type="Panel" parent="."]
+z_index = 40
 offset_left = -450.0
 offset_top = -450.0
 offset_right = 450.0
@@ -127,9 +128,9 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_opkl3")
 
 [node name="Label" type="Label" parent="."]
 offset_left = -457.0
-offset_top = -90.0
+offset_top = -186.0
 offset_right = 457.0
-offset_bottom = 102.0
-text = "ACTIVATE"
+offset_bottom = 246.0
+text = "発動"
 label_settings = SubResource("LabelSettings_h61kh")
 horizontal_alignment = 1
