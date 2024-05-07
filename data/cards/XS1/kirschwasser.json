@@ -18,6 +18,6 @@
 	},
 	"text": "While this card is on your battlefield with Albedo or MOMO, those cards gain ATK+1.",
 	"effects": [
-		"GlobalModifyATK(1,owner=self;character=Albedo;character=MOMO;zone=battlefield)"
+		"GlobalModifyATKOnBattlefield(1,owner=self;character=Albedo;character=MOMO;zone=battlefield)"
 	]
 }

@@ -6,6 +6,7 @@ var player: Player
 var to_set: Card
 var targets: Array[Card]
 var targets_required: Array[Callable]
+var ready_to_finish: bool = false
 
 func _init(_game_board: GameBoard, _player: Player, _to_set: Card):
 	super(_game_board)
@@ -34,9 +35,20 @@ func update_valid_zones():
 	else:
 		player.field.show_valid_zones(to_set)
 
+func handle_set_effects():
+	for e in to_set.get_effects():
+		e.on_set()
+		for event in e.get_events():
+			queue_event(event)
+	ready_to_finish = true
+	if not has_children():
+		finish()
+
 func process(delta):
 	if pass_to_child("process", [delta]):
 		return
+	if ready_to_finish:
+		finish()
 
 func on_hand_card_selected(hand: GameHand, card: Card):
 	if pass_to_child("on_hand_card_selected", [hand, card]):
@@ -78,7 +90,7 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Card.Zone, ind
 			anim.target_scale = Vector2(0.075, 0.075)
 		else:
 			anim.target_scale = Vector2(0.15, 0.15)
-		anim.set_on_finish(func(): finish())
+		anim.set_on_finish(func(): handle_set_effects())
 		queue_event(EventAnimation.new(game_board, anim))
 
 func play(new_zone: Card.Zone, index: int):
@@ -87,7 +99,8 @@ func play(new_zone: Card.Zone, index: int):
 	to_set.modify_for_set.clear()
 	if to_set.zone == Card.Zone.HAND:
 		var should_set_e_mark = false
-		if to_set.type == Card.Type.BATTLE and to_set.attribute != Card.Attribute.WEAPON:
+		if (to_set.type == Card.Type.BATTLE and to_set.attribute != Card.Attribute.WEAPON) or \
+			to_set.type == Card.Type.SITUATION:
 			should_set_e_mark = true
 			for e in to_set.get_effects():
 				if e.skips_e_mark():

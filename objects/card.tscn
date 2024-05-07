@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dosulntiwpmvw"]
+[gd_scene load_steps=29 format=3 uid="uid://dosulntiwpmvw"]
 
 [ext_resource type="Script" path="res://objects/card.gd" id="1_8v1ch"]
 [ext_resource type="Texture2D" uid="uid://dicq202oyt24d" path="res://sprites/card_bg_battle.png" id="2_jvxha"]
@@ -114,6 +114,11 @@ corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
+
+[sub_resource type="LabelSettings" id="LabelSettings_jaef4"]
+font_size = 256
+outline_size = 96
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Card" type="Node2D"]
 script = ExtResource("1_8v1ch")
@@ -396,6 +401,18 @@ script = ExtResource("7_x3kli")
 
 [node name="EffectIndicator" parent="." instance=ExtResource("8_qhpge")]
 visible = false
+
+[node name="Duration" type="Node2D" parent="."]
+visible = false
+
+[node name="Value" type="Label" parent="Duration"]
+offset_left = -360.0
+offset_top = -535.0
+offset_right = -136.0
+offset_bottom = -11.0
+text = "0"
+label_settings = SubResource("LabelSettings_jaef4")
+horizontal_alignment = 1
 
 [connection signal="gui_input" from="Panel" to="." method="_on_panel_gui_input"]
 [connection signal="mouse_entered" from="Panel" to="." method="_on_panel_mouse_entered"]

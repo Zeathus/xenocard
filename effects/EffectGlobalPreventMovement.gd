@@ -1,15 +1,12 @@
 extends CardEffect
 
-class_name EffectGlobalModifyATK
+class_name EffectGlobalPreventMovement
 
-var amount: int = 0
 var filter: CardFilter
 
 func post_init():
-	var arg = param.split(",")
-	amount = int(arg[0])
-	if len(arg) > 1:
-		filter = CardFilter.new(arg[1])
+	if len(param) > 0:
+		filter = CardFilter.new(param)
 
 func is_active() -> bool:
 	return super.is_active()
@@ -23,4 +20,4 @@ func applies_to(target: Card) -> bool:
 	return super.applies_to(target)
 
 func apply_effect(target: Card) -> CardEffect:
-	return EffectModifyATK.new(game_board, target, param).set_host(card)
+	return EffectPreventMovement.new(game_board, target, param).set_host(card)

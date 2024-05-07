@@ -128,6 +128,13 @@ func refresh():
 func set_in_motion(val: bool):
 	in_motion = val
 
+func set_duration(val: int):
+	if val <= 0:
+		$Duration.visible = false
+	else:
+		$Duration.visible = true
+		$Duration/Value.text = "%d" % val
+
 #func _on_hitbox_input_event(viewport, event, shape_idx):
 #	if event is InputEventMouseButton:
 #		if event.pressed:

@@ -6,6 +6,7 @@ var player: Player
 var to_set: Card
 var zone: Card.Zone
 var zone_index: int
+var ready_to_finish: bool = false
 
 func _init(_game_board: GameBoard, _player: Player, _to_set: Card, _zone: Card.Zone, _index: int):
 	super(_game_board)
@@ -34,8 +35,17 @@ func on_start():
 		anim.target_scale = Vector2(0.075, 0.075)
 	else:
 		anim.target_scale = Vector2(0.15, 0.15)
-	anim.set_on_finish(func(): finish())
+	anim.set_on_finish(func(): handle_set_effects())
 	queue_event(EventAnimation.new(game_board, anim))
+
+func handle_set_effects():
+	for e in to_set.get_effects():
+		e.on_set()
+		for event in e.get_events():
+			queue_event(event)
+	ready_to_finish = true
+	if not has_children():
+		finish()
 
 func on_finish():
 	pass

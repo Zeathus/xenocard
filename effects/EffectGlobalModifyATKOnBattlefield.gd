@@ -1,6 +1,6 @@
 extends CardEffect
 
-class_name EffectGlobalModifyATK
+class_name EffectGlobalModifyATKOnBattlefield
 
 var amount: int = 0
 var filter: CardFilter
@@ -12,6 +12,8 @@ func post_init():
 		filter = CardFilter.new(arg[1])
 
 func is_active() -> bool:
+	if card.zone != Card.Zone.BATTLEFIELD:
+		return false
 	return super.is_active()
 
 func is_global() -> bool:

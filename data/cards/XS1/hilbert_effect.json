@@ -8,5 +8,10 @@
 	"requirement": {
 		"field": ["machine", "any"]
 	},
-	"text": "All {Gnosis} on the battlefield cannot move and get ATK-1.\nThis effect cannot be stacked.\n<Duration> 4."
+	"text": "All {Gnosis} on the battlefield cannot move and get ATK-1.\nThis effect cannot be stacked.\n<Duration> 4.",
+	"effects": [
+		"Duration(4)",
+		"GlobalModifyATK(-1,attribute=gnosis;zone=battlefield)",
+		"GlobalPreventMovement(attribute=gnosis;zone=battlefield)"
+	]
 }

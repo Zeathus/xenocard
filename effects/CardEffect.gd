@@ -69,6 +69,9 @@ func handle_set_targets(targets: Array[Card]):
 func can_set_to_battlefield() -> bool:
 	return false
 
+func on_set():
+	pass
+
 func on_destroyed(attacker: Card, source: Damage):
 	pass
 

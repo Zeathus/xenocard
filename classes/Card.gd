@@ -422,6 +422,8 @@ func get_atk() -> int:
 	var ret = get_base_atk()
 	for e in get_effects():
 		ret = e.get_atk(ret)
+	if ret < 0:
+		ret = 0
 	return ret
 
 # Opponent is either Card or Player
@@ -429,6 +431,8 @@ func get_atk_against(opponent) -> int:
 	var ret = get_atk()
 	for e in get_effects():
 		ret = e.get_atk_against(opponent, ret)
+	if ret < 0:
+		ret = 0
 	return ret
 
 func get_atk_time() -> int:
