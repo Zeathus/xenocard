@@ -8,5 +8,8 @@
 	"requirement": {
 		"field": ["human", "any"]
 	},
-	"text": "Whenever a {Realian} is destroyed, the owner of the card draws one card from the deck."
+	"text": "Whenever a {Realian} is destroyed, the owner of the card draws one card from the deck.",
+	"effects": [
+		"GlobalDrawWhenDestroyed(attribute=realian;owner=self)"
+	]
 }
