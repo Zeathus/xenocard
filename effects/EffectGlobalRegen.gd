@@ -1,6 +1,6 @@
 extends CardEffect
 
-class_name EffectGlobalModifyATK
+class_name EffectGlobalRegen
 
 var amount: int = 0
 var filter: CardFilter
