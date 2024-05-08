@@ -8,5 +8,9 @@
 	"requirement": {
 		"field": ["human", "machine"]
 	},
-	"text": "Every time your battle card is destroyed in battle, <recover> cards equal to the cost of the battle card.\nThis effect cannot be stacked."
+	"text": "Every time your battle card is destroyed in battle, <recover> cards equal to the cost of the battle card.\nThis effect cannot be stacked.",
+	"effects": [
+		"GlobalRecoverCostWhenDestroyed(owner=self;type=battle)",
+		"NonStacking"
+	]
 }

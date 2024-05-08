@@ -22,7 +22,7 @@ func on_start():
 	if not effect.has_valid_targets():
 		finish()
 		return
-	queue_event(EventAnimation.new(game_board, AnimationEffectStart.new(effect.card)))
+	queue_event(EventAnimation.new(game_board, AnimationEffectStart.new(effect.host)))
 	if optional:
 		queue_event(EventConfirm.new(
 			game_board,
@@ -64,7 +64,7 @@ func process(delta):
 		return
 	if cancelled:
 		if not activated:
-			queue_event(EventAnimation.new(game_board, AnimationEffectEnd.new(effect.card)))
+			queue_event(EventAnimation.new(game_board, AnimationEffectEnd.new(effect.host)))
 			activated = true
 		else:
 			finish()
@@ -75,7 +75,7 @@ func process(delta):
 			for event in effect.get_events():
 				queue_event(event)
 			activated = true
-			queue_event(EventAnimation.new(game_board, AnimationEffectEnd.new(effect.card)))
+			queue_event(EventAnimation.new(game_board, AnimationEffectEnd.new(effect.host)))
 		else:
 			finish()
 	else:

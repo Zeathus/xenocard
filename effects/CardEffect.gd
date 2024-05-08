@@ -12,6 +12,7 @@ var stackable: bool = true
 func _init(game_board: GameBoard, card: Card, param: String = ""):
 	self.game_board = game_board
 	self.card = card
+	self.host = card
 	self.global_target = null
 	self.param = param
 	post_init()
@@ -24,9 +25,7 @@ func set_host(_host: Card) -> CardEffect:
 	return self
 
 func is_active() -> bool:
-	if host:
-		return not host.downed
-	return not card.downed
+	return not host.downed
 
 func is_global() -> bool:
 	return false
