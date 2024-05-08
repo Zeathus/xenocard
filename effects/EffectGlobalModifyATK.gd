@@ -23,4 +23,4 @@ func applies_to(target: Card) -> bool:
 	return super.applies_to(target)
 
 func apply_effect(target: Card) -> CardEffect:
-	return EffectModifyATK.new(game_board, target, param).set_host(card)
+	return EffectModifyATK.new(game_board, target, "%d" % amount).set_host(card)

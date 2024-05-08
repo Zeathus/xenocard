@@ -8,5 +8,9 @@
 	"requirement": {
 		"field": ["machine", "machine"]
 	},
-	"text": "Your {Machines} take 1 less battle damage.\n<Duration> 6."
+	"text": "Your {Machines} take 1 less battle damage.\n<Duration> 6.",
+	"effects": [
+		"GlobalModifyBattleDamageFrom(-1,attribute=machine;owner=self)",
+		"Duration(6)"
+	]
 }
