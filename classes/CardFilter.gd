@@ -18,7 +18,13 @@ func _init(str: String):
 			"character":
 				characters.push_back(value)
 			"attribute":
-				attributes.push_back(Card.attribute_from_string(value))
+				var attribute = Card.attribute_from_string(value.replace("!", ""))
+				if value.begins_with("!"):
+					for i in Card.Attribute.values():
+						if i != attribute:
+							attributes.push_back(i)
+				else:
+					attributes.push_back(attribute)
 			"zone":
 				match value.to_lower():
 					"battlefield":
