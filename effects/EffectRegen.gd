@@ -8,7 +8,8 @@ func post_init():
 	amount = int(param)
 
 func adjust():
-	push_event()
+	if card.hp < card.max_hp:
+		push_event()
 
 func effect():
 	card.heal(amount)

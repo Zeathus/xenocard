@@ -8,5 +8,9 @@
 	"requirement": {
 		"field": ["human", "machine", "any"]
 	},
-	"text": "During your adjust phase, all your battle cards in standby except {Gnosis} heal 1 HP.\nThis effect cannot be stacked."
+	"text": "During your adjust phase, all your battle cards in standby except {Gnosis} heal 1 HP.\nThis effect cannot be stacked.",
+	"effects": [
+		"GlobalRegen(1,zone=standby;owner=self;attribute=!gnosis)",
+		"NonStacking"
+	]
 }
