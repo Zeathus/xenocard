@@ -208,23 +208,25 @@ func get_effects() -> Array[CardEffect]:
 	var global_effects: Array[CardEffect] = []
 	for c in owner.field.get_all_cards() + owner.get_enemy().field.get_all_cards():
 		for e in c.get_global_effects():
-			if e.applies_to(self):
-				var global_effect: CardEffect = e.apply_effect(self)
-				if global_effect.is_active():
-					global_effect.set_stackable(c.can_effects_stack())
-					var keep: bool = true
-					if not global_effect.is_stackable():
-						for ge in global_effects:
-							if ge.is_stackable():
-								continue
-							if not ge.host.equals(global_effect.host):
-								continue
-							if ge.get_script() != global_effect.get_script():
-								continue
-							keep = false
-							break
-					if keep:
-						global_effects.push_back(global_effect)
+			if not e.applies_to(self):
+				continue
+			var global_effect: CardEffect = e.apply_effect(self)
+			if not global_effect.is_active():
+				continue
+			global_effect.set_stackable(c.can_effects_stack())
+			var keep: bool = true
+			if not global_effect.is_stackable():
+				for ge in global_effects:
+					if ge.is_stackable():
+						continue
+					if not ge.host.equals(global_effect.host):
+						continue
+					if ge.get_script() != global_effect.get_script():
+						continue
+					keep = false
+					break
+			if keep:
+				global_effects.push_back(global_effect)
 	return ret + global_effects
 
 func get_global_effects() -> Array[CardEffect]:
