@@ -8,5 +8,9 @@
 	"requirement": {
 		"field": ["human", "human"]
 	},
-	"text": "{Humans} on your battlefield gain ATK+1.\n<Duration> 5."
+	"text": "{Humans} on your battlefield gain ATK+1.\n<Duration> 5.",
+	"effects": [
+		"GlobalModifyATK(1,attribute=human;zone=battlefield;owner=self)",
+		"Duration(5)"
+	]
 }
