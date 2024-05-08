@@ -600,7 +600,7 @@ func instantiate() -> Node2D:
 	self.instance = scene.instantiate()
 	self.instance.load_card(self)
 	self.instance.global_scale = Vector2(0.15, 0.15)
-	if self.owner.show_hand:
+	if self.owner.show_hand or self.owner.reveal_hand:
 		self.instance.turn_up()
 	else:
 		self.instance.turn_down()

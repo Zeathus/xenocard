@@ -175,6 +175,9 @@ func is_stackable():
 func set_stackable(val: bool):
 	stackable = val
 
+func reveal_hand(player: Player):
+	return false
+
 func push_event(optional: bool = false):
 	events.push_back(EventEffect.new(game_board, self, optional))
 

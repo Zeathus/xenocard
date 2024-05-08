@@ -8,5 +8,8 @@
 	"requirement": {
 		"field": ["machine"]
 	},
-	"text": "Both players play with their hands revealed."
+	"text": "Both players play with their hands revealed.",
+	"effects": [
+		"RevealHand(both)"
+	]
 }

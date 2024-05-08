@@ -170,10 +170,14 @@ func begin_turn():
 	begin_phase(Phase.DRAW)
 
 func refresh():
-	var player: Player = get_turn_player()
-	var enemy: Player = get_turn_enemy()
-	player.field.refresh()
-	enemy.field.refresh()
+	for player in [get_turn_player(), get_turn_enemy()]:
+		player.field.refresh()
+		player.set_reveal_hand(false)
+		for card in get_all_field_cards():
+			for e in card.get_effects():
+					var reveal_hand = e.reveal_hand(player)
+					if reveal_hand:
+						player.set_reveal_hand(reveal_hand)
 
 func next_player():
 	turn_player_id = (turn_player_id + 1) % 2

@@ -7,6 +7,7 @@ var junk: Deck
 var field: GameField
 var hand: GameHand
 var show_hand: bool
+var reveal_hand: bool
 var game_board: GameBoard
 var used_one_battle_card_per_turn: bool
 var used_one_situation_card_per_turn: bool
@@ -76,6 +77,14 @@ func get_enemy() -> Player:
 		if p != self:
 			return p
 	return null
+
+func set_reveal_hand(val: bool):
+	reveal_hand = val
+	for card in hand.cards:
+		if reveal_hand or show_hand:
+			card.instance.turn_up()
+		else:
+			card.instance.turn_down()
 
 func is_card() -> bool:
 	return false
