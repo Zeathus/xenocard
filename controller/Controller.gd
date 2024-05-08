@@ -86,6 +86,7 @@ func _main():
 		semaphore.wait()
 		mutex.lock()
 		if finished:
+			mutex.unlock()
 			return
 		if waiting:
 			var actions: Array[Action] = requested_actions.duplicate()
