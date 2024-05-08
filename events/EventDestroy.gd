@@ -28,7 +28,13 @@ func on_start():
 	if target.equipped_weapon:
 		queue_event(EventDestroy.new(game_board, attacker, target.equipped_weapon, source))
 		target.unequip()
-	var anim: AnimationMove = AnimationMove.new(target.instance, target.owner.field.get_junk_node().global_position, 30)
+	var destination = target.owner.field.get_junk_node()
+	for e in target.get_effects():
+		match e.redirect_when_destroyed(attacker, source):
+			Card.Zone.LOST:
+				destination = target.owner.field.get_lost_node()
+				break
+	var anim: AnimationMove = AnimationMove.new(target.instance, destination.global_position, 30)
 	anim.target_scale = Vector2(0.15, 0.15)
 	queue_event(EventAnimation.new(game_board, anim))
 
@@ -60,6 +66,14 @@ func destroy():
 	target.owner.field.remove_card(target)
 	target.free_instance()
 	game_board.refresh()
-	target.zone = Card.Zone.JUNK
+	var zone = Card.Zone.JUNK
+	var pile = target.owner.junk
+	for e in target.get_effects():
+		match e.redirect_when_destroyed(attacker, source):
+			Card.Zone.LOST:
+				zone = Card.Zone.LOST
+				pile = target.owner.lost
+				break
+	target.zone = zone
 	target.zone_index = 0
-	target.owner.junk.add(target)
+	pile.add(target)

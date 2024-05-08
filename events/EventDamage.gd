@@ -34,7 +34,7 @@ func on_start():
 	var capped_damage = target.hp - new_hp
 	target.hp = new_hp
 	if target.is_destroyed():
-		queue_event(EventDestroy.new(game_board, attacker, target, source))
+		queue_event(EventDestroy.new(game_board, attacker, target, Damage.new(source.flags | Damage.DESTROY)))
 	remaining_damage = max(damage - capped_damage, 0)
 	game_board.refresh()
 

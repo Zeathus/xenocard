@@ -197,6 +197,9 @@ func get_events() -> Array[Event]:
 func equips_to(holder: Card) -> bool:
 	return false
 
+func redirect_when_destroyed(attacker: Card, source: Damage) -> Card.Zone:
+	return Card.Zone.NONE
+
 func get_controlling_player() -> Player:
 	return card.owner
 
