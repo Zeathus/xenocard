@@ -118,9 +118,19 @@ func queue_next_event(event: Event):
 func is_free() -> bool:
 	return free_menu == null and not $CardDetails.visible
 
+func skips_phase(phase: Phase, player: Player):
+	for card in get_all_field_cards():
+		for e in card.get_effects():
+			if e.skips_phase(phase, player):
+				return true
+	return false
+
 func begin_phase(phase: Phase):
 	turn_phase = phase
 	var player: Player = get_turn_player()
+	if skips_phase(turn_phase, player):
+		end_phase()
+		return
 	match turn_phase:
 		Phase.DRAW:
 			$Phases/Phase/Label.text = "%dP Draw Phase" % (turn_player_id + 1)

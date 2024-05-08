@@ -9,5 +9,9 @@
 		"cost": 2,
 		"field": ["human", "human"]
 	},
-	"text": "Both players skip their battle phases.\n<Duration> 2."
+	"text": "Both players skip their battle phases.\n<Duration> 2.",
+	"effects": [
+		"SkipBattlePhase(both)",
+		"Duration(2)"
+	]
 }

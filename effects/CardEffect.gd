@@ -178,6 +178,9 @@ func set_stackable(val: bool):
 func reveal_hand(player: Player):
 	return false
 
+func skips_phase(phase: GameBoard.Phase, player: Player):
+	return false
+
 func evades_attack(attacker: Card):
 	return false
 
