@@ -8,5 +8,9 @@
 	"requirement": {
 		"field": ["human", "human"]
 	},
-	"text": "{Humans} on your battlefield <evade> normal attacks.\n<Duration> 5."
+	"text": "{Humans} on your battlefield <evade> normal attacks.\n<Duration> 5.",
+	"effects": [
+		"GlobalEvade(attribute=human;zone=battlefield;owner=self)",
+		"Duration(5)"
+	]
 }

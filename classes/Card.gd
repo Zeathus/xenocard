@@ -497,20 +497,21 @@ func get_attack_targets(game_board: GameBoard) -> Array:
 			if self.zone_index >= 2:
 				return []
 			var opponent = enemy.field.get_card(Zone.BATTLEFIELD, (self.zone_index + 1) % 2)
-			if opponent != null:
+			if opponent != null and not opponent.evades_attack(self):
 				return [opponent]
 		Target.BALLISTIC:
 			var opponent = enemy.field.get_card(Zone.BATTLEFIELD, (self.zone_index + 1) % 2)
-			if opponent != null:
+			if opponent != null and not opponent.evades_attack(self):
 				return [opponent]
 			opponent = enemy.field.get_card(Zone.BATTLEFIELD, (self.zone_index + 1) % 2 + 2)
-			if opponent != null:
+			if opponent != null and not opponent.evades_attack(self):
 				return [opponent]
 			return [enemy]
 		Target.SPREAD:
 			var targets = []
 			for opponent in enemy.field.get_battlefield_cards():
-				targets.push_back(opponent)
+				if not opponent.evades_attack(self):
+					targets.push_back(opponent)
 			return targets
 		Target.HOMING:
 			return [enemy]
@@ -559,6 +560,12 @@ func is_destroyed() -> bool:
 func heal(amount: int):
 	self.hp = min(self.max_hp, self.hp + amount)
 	owner.game_board.refresh()
+
+func evades_attack(attacker: Card):
+	for e in get_effects():
+		if e.evades_attack(attacker):
+			return true
+	return false
 
 func select():
 	if instance:
