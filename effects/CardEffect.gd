@@ -7,6 +7,7 @@ var param: String
 var events: Array[Event]
 var host: Card = null
 var duration: int = -1
+var stackable: bool = true
 
 func _init(game_board: GameBoard, card: Card, param: String = ""):
 	self.game_board = game_board
@@ -167,6 +168,12 @@ func stops_normal_draw() -> bool:
 
 func after_normal_draw():
 	pass
+
+func is_stackable():
+	return stackable
+
+func set_stackable(val: bool):
+	stackable = val
 
 func push_event(optional: bool = false):
 	events.push_back(EventEffect.new(game_board, self, optional))

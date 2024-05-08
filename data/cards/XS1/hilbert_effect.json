@@ -12,6 +12,7 @@
 	"effects": [
 		"Duration(4)",
 		"GlobalModifyATK(-1,attribute=gnosis;zone=battlefield)",
-		"GlobalPreventMovement(attribute=gnosis;zone=battlefield)"
+		"GlobalPreventMovement(attribute=gnosis;zone=battlefield)",
+		"NonStacking"
 	]
 }

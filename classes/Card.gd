@@ -38,6 +38,7 @@ var game: String
 var set_name: String
 var set_id: int = -1
 var id: String
+var identifier: String
 var name: String
 var character: String
 var type: Type
@@ -111,6 +112,10 @@ func load_data(json):
 		self.character = json["character"]
 	else:
 		self.character = ""
+	if "identifier" in json:
+		self.identifier = json["identifier"]
+	else:
+		self.identifier = "%s/%d" % [set_name, set_id]
 	self.type = type_from_string(json["type"])
 	match json["rarity"]:
 		"common":
@@ -200,13 +205,28 @@ func get_effects() -> Array[CardEffect]:
 			ret.push_back(e)
 	if equipped_weapon:
 		ret += equipped_weapon.get_effects()
+	var global_effects: Array[CardEffect] = []
 	for c in owner.field.get_all_cards() + owner.get_enemy().field.get_all_cards():
 		for e in c.get_global_effects():
 			if e.applies_to(self):
 				var global_effect: CardEffect = e.apply_effect(self)
 				if global_effect.is_active():
-					ret.push_back(global_effect)
-	return ret
+					global_effect.set_stackable(c.can_effects_stack())
+					var keep: bool = true
+					if not global_effect.is_stackable():
+						for ge in global_effects:
+							if ge.is_stackable():
+								continue
+							if not ge.host.equals(global_effect.host):
+								continue
+							print(ge.get_script(), " ", global_effect.get_script())
+							if ge.get_script() != global_effect.get_script():
+								continue
+							keep = false
+							break
+					if keep:
+						global_effects.push_back(global_effect)
+	return ret + global_effects
 
 func get_global_effects() -> Array[CardEffect]:
 	var ret: Array[CardEffect] = []
@@ -214,6 +234,15 @@ func get_global_effects() -> Array[CardEffect]:
 		if e.is_global() and e.is_active():
 			ret.push_back(e)
 	return ret
+
+func can_effects_stack() -> bool:
+	for e in effects:
+		if not e.is_stackable():
+			return false
+	return true
+
+func equals(other: Card) -> bool:
+	return identifier == other.identifier
 
 func ignore_unique(card: Card) -> bool:
 	for e in get_effects():
