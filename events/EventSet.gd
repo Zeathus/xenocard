@@ -116,7 +116,10 @@ func play(new_zone: Card.Zone, index: int):
 			player.field.add_card(to_set)
 		to_set.instance.global_position = real_pos
 		if to_set.uses_one_card_per_turn():
-			player.used_one_card_per_turn = true
+			if to_set.type == Card.Type.BATTLE:
+				player.used_one_battle_card_per_turn = true
+			elif to_set.type == Card.Type.SITUATION:
+				player.used_one_situation_card_per_turn = true
 		if should_set_e_mark:
 			to_set.set_e_mark(true)
 		var cost_paid: int = player.pay_cost(cost_to_pay)

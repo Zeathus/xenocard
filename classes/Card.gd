@@ -219,7 +219,6 @@ func get_effects() -> Array[CardEffect]:
 								continue
 							if not ge.host.equals(global_effect.host):
 								continue
-							print(ge.get_script(), " ", global_effect.get_script())
 							if ge.get_script() != global_effect.get_script():
 								continue
 							keep = false
@@ -294,7 +293,7 @@ func requirements_met(game_board: GameBoard) -> bool:
 	return true
 
 func uses_one_card_per_turn() -> bool:
-	var ret = (type == Type.BATTLE)
+	var ret = (type == Type.BATTLE or type == Type.SITUATION)
 	for e in get_effects():
 		ret = e.uses_one_card_per_turn(ret)
 	return ret
@@ -332,8 +331,11 @@ func selectable(game_board: GameBoard) -> bool:
 				return false
 			if self.type != Type.BATTLE and self.type != Type.SITUATION:
 				return false
-			if uses_one_card_per_turn() and owner.used_one_card_per_turn:
-				return false
+			if uses_one_card_per_turn():
+				if self.type == Type.BATTLE and owner.used_one_battle_card_per_turn:
+					return false
+				if self.type == Type.SITUATION and owner.used_one_situation_card_per_turn:
+					return false
 			return true
 	return false
 
@@ -394,8 +396,11 @@ func can_play(game_board: GameBoard, new_zone: Zone, index: int) -> bool:
 	for e in get_effects():
 		if not e.set_requirements():
 			return false
-	if uses_one_card_per_turn() and player.used_one_card_per_turn:
-		return false
+	if uses_one_card_per_turn():
+		if self.type == Type.BATTLE and owner.used_one_battle_card_per_turn:
+			return false
+		if self.type == Type.SITUATION and owner.used_one_situation_card_per_turn:
+			return false
 	var card_in_zone = player.field.get_card(new_zone, index)
 	if type == Type.BATTLE and attribute == Attribute.WEAPON:
 		if card_in_zone == null:

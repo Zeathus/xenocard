@@ -165,7 +165,8 @@ func end_phase():
 
 func begin_turn():
 	var turn_player: Player = get_turn_player()
-	turn_player.used_one_card_per_turn = false
+	turn_player.used_one_battle_card_per_turn = false
+	turn_player.used_one_situation_card_per_turn = false
 	begin_phase(Phase.DRAW)
 
 func refresh():
