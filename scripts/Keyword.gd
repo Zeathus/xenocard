@@ -10,7 +10,7 @@ static func _static_init():
 	regex_icon = RegEx.new()
 	regex_icon.compile("\\{([^\\}]+)\\}")
 	regex_terms = RegEx.new()
-	regex_terms.compile("(?i)[ ,.](%s)[ ,.]" % get_all_terms())
+	regex_terms.compile("(?i)(^|[ ,.])(%s)[ ,.]" % get_all_terms())
 
 static func expand_keywords(str: String) -> String:
 	var expanded: String = str
@@ -35,9 +35,9 @@ static func expand_keywords(str: String) -> String:
 		if not result:
 			break
 		expanded = \
-			expanded.substr(0, result.get_start() + 1) + \
-			Keyword.expand_term(result.get_string(1)) + \
-			expanded.substr(result.get_end() - 1)
+			expanded.substr(0, result.get_start(2)) + \
+			Keyword.expand_term(result.get_string(2)) + \
+			expanded.substr(result.get_end(2))
 	expanded = expanded.replace("$", "")
 	return expanded
 
