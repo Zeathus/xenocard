@@ -25,8 +25,6 @@ func on_start():
 			e.adjust()
 			for event in e.get_events():
 				queue_event(event)
-		if card.downed and card.downed_turn != card.turn_count:
-			card.undown()
 	for card in player.get_enemy().field.get_all_cards():
 		for e in card.get_effects():
 			e.adjust_enemy()
@@ -52,5 +50,9 @@ func process(delta):
 				for e in to_erase:
 					card.applied_effects.erase(e)
 		1:
+			for card in player.field.get_all_cards():
+				if card.downed and card.downed_turn != card.turn_count:
+					card.undown()
+		2:
 			finish()
 	state += 1
