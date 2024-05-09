@@ -201,7 +201,7 @@ func get_turn_player() -> Player:
 	return players[player_id]
 
 func get_turn_enemy() -> Player:
-	return players[(turn_player_id + 1) % 2]
+	return get_turn_player().get_enemy()
 
 func hide_valid_zones():
 	get_turn_player().field.hide_valid_zones()
