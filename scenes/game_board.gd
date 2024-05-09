@@ -71,9 +71,10 @@ func _process(delta):
 			$CardDetails.visible = false
 	elif free_menu:
 		if free_menu.is_done():
+			$Menus.remove_child(free_menu)
 			free_menu.finish()
 			free_menu = null
-	elif event_processing():
+	if event_processing():
 		var event = get_event()
 		event.process(delta)
 		if event.is_done():
