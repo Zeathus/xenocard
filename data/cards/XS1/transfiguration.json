@@ -9,5 +9,9 @@
 		"cost": 1,
 		"field": ["gnosis", "gnosis"]
 	},
-	"text": "During your event or block phase, discard one {Gnosis} from your $hand to <search> one {Gnosis}."
+	"text": "During your event or block phase, discard one {Gnosis} from your $hand to <search> one {Gnosis}.",
+	"event_effects": [
+		"Discard(1,owner=self;zone=hand;attribute=gnosis)",
+		"Search(attribute=gnosis)"
+	]
 }

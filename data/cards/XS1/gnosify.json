@@ -10,7 +10,7 @@
 	},
 	"text": "During your event or block phase, you can discard two cards from your $hand to draw one card from your lost pile.",
 	"event_effects": [
-		"DiscardFromHand(2)",
+		"Discard(2,owner=self;zone=hand)",
 		"DrawFromLost(1)"
 	]
 }
