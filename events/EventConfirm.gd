@@ -12,8 +12,9 @@ var event_no: Event = null
 var help: String
 var menu = null
 var wait_for_finish: bool = false
+var card_preview: Card
 
-func _init(_game_board: GameBoard, _player: Player, _message: String, _on_yes, _on_no, _help: String=""):
+func _init(_game_board: GameBoard, _player: Player, _message: String, _on_yes, _on_no, _help: String="", _card: Card=null):
 	super(_game_board)
 	player = _player
 	message = _message
@@ -26,6 +27,7 @@ func _init(_game_board: GameBoard, _player: Player, _message: String, _on_yes, _
 	else:
 		event_no = _on_no
 	help = _help
+	card_preview = _card
 
 func get_name() -> String:
 	return "Confirm"
@@ -36,6 +38,7 @@ func on_start():
 	menu = confirm_scene.instantiate()
 	menu.set_message(message)
 	menu.set_help(help)
+	menu.set_card(card_preview)
 	menu.set_handler(handle_answer)
 	game_board.add_menu(menu)
 

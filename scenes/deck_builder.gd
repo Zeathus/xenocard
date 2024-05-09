@@ -200,7 +200,7 @@ func _ready():
 
 func add_to_deck(card: Card):
 	if deck.size() < 40:
-		deck.add(card)
+		deck.add_bottom(card)
 		refresh_deck()
 
 func remove_from_deck(index: int):

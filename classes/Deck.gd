@@ -28,11 +28,14 @@ func draw_at(index: int) -> Card:
 	card.instantiate()
 	return card
 
-func add(card: Card):
+func add_bottom(card: Card):
 	cards.push_back(card)
 
+func add_top(card: Card):
+	cards.push_front(card)
+
 func top() -> Card:
-	return self.cards.back()
+	return self.cards.front()
 
 func remove_at(index: int):
 	cards.remove_at(index)

@@ -52,7 +52,7 @@ func pay_cost(cost: int) -> int:
 	for i in range(cost):
 		var card: Card = self.deck.draw(false)
 		if card:
-			self.lost.add(card)
+			self.lost.add_top(card)
 			cost_paid += 1
 	self.field.refresh()
 	return cost_paid
@@ -62,7 +62,7 @@ func recover(amt: int) -> int:
 	for i in range(amt):
 		var card: Card = self.lost.draw(false)
 		if card:
-			self.deck.add(card)
+			self.deck.add_top(card)
 			recovered += 1
 	self.field.refresh()
 	return recovered
@@ -71,7 +71,7 @@ func take_damage(game_board: GameBoard, attacker: Card, damage: int, source: Dam
 	for i in range(damage):
 		var card: Card = self.deck.draw(false)
 		if card:
-			self.lost.add(card)
+			self.lost.add_top(card)
 	self.field.refresh()
 	return damage
 

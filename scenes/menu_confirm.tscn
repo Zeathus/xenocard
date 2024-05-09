@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://ye2j101d35q0"]
+[gd_scene load_steps=7 format=3 uid="uid://ye2j101d35q0"]
 
 [ext_resource type="Script" path="res://scenes/menu_confirm.gd" id="1_0edek"]
+[ext_resource type="PackedScene" uid="uid://bqt532l8n2w8u" path="res://objects/card_details.tscn" id="2_n5wvw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g63i2"]
 bg_color = Color(0, 0.278431, 0.580392, 0.784314)
@@ -19,6 +20,7 @@ font_size = 32
 default_font_size = 32
 
 [node name="MenuConfirm" type="Node2D"]
+z_index = 1000
 script = ExtResource("1_0edek")
 
 [node name="Panel" type="Panel" parent="."]
@@ -68,6 +70,11 @@ offset_bottom = 134.0
 mouse_filter = 2
 theme = SubResource("Theme_gen4n")
 scroll_active = false
+
+[node name="CardDetails" parent="." instance=ExtResource("2_n5wvw")]
+visible = false
+position = Vector2(520, -32)
+scale = Vector2(0.5, 0.5)
 
 [connection signal="pressed" from="YesButton" to="." method="_on_yes_button_pressed"]
 [connection signal="pressed" from="NoButton" to="." method="_on_no_button_pressed"]

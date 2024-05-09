@@ -79,4 +79,4 @@ func destroy():
 				break
 	target.zone = zone
 	target.zone_index = 0
-	pile.add(target)
+	pile.add_top(target)

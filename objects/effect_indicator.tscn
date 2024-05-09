@@ -27,10 +27,10 @@ font_color = Color(0, 0.501961, 0.501961, 1)
 outline_size = 30
 
 [node name="EffectIndicator" type="Node2D"]
+z_index = 40
 script = ExtResource("1_8tjyy")
 
 [node name="Circle" type="Panel" parent="."]
-z_index = 40
 offset_left = -450.0
 offset_top = -450.0
 offset_right = 450.0

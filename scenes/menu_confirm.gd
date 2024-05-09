@@ -20,6 +20,15 @@ func set_help(val: String):
 			break
 		text_size -= 2
 
+func set_card(card: Card):
+	if card == null:
+		$CardDetails.visible = false
+	else:
+		position.x -= 128
+		$CardDetails.visible = true
+		$CardDetails/Card.turn_up()
+		$CardDetails/Card.load_card(card)
+
 func is_done():
 	return done
 
