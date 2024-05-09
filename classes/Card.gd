@@ -344,7 +344,7 @@ func selectable(game_board: GameBoard) -> bool:
 			if not can_move():
 				return false
 			return true
-		GameBoard.Phase.EVENT:
+		GameBoard.Phase.EVENT, GameBoard.Phase.BLOCK:
 			if self.type == Type.EVENT:
 				if not requirements_met(game_board):
 					return false

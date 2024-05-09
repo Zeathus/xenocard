@@ -1,14 +1,16 @@
 extends Event
 
-class_name EventPhaseEvent
+class_name EventPhaseEventBlock
 
 var player: Player
 var phase_effects: Array
+var block: bool
 var in_sub_event: bool = false
 
-func _init(_game_board: GameBoard, _player: Player, _phase_effects: Array):
+func _init(_game_board: GameBoard, _player: Player, _phase_effects: Array, _block: bool = false):
 	super(_game_board)
 	player = _player
+	block = _block
 
 func get_name() -> String:
 	return "PhaseEvent"
@@ -31,9 +33,10 @@ func process(delta):
 		if player.controller.has_response():
 			player.controller.receive()
 		else:
+			var action = Controller.Action.BLOCK if block else Controller.Action.EVENT
 			player.controller.request(
-				[Controller.Action.EVENT, Controller.Action.END_PHASE],
-				[Callable(), on_end_phase_pressed]
+				[action, Controller.Action.END_PHASE],
+				[activate_card, on_end_phase_pressed]
 			)
 
 func show_selectable():
@@ -49,6 +52,12 @@ func hide_selectable():
 		card.set_selectable(false)
 	for card in player.field.get_all_cards():
 		card.set_selectable(false)
+
+func activate_card(card: Card):
+	if card.zone == Card.Zone.HAND:
+		on_hand_card_selected(card.owner.hand, card)
+	else:
+		on_zone_selected(card.owner.field, card.owner, card.zone, card.zone_index)
 
 func on_hand_card_selected(hand: GameHand, card: Card):
 	if pass_to_child("on_hand_card_selected", [hand, card]):

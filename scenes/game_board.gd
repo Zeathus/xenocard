@@ -136,13 +136,13 @@ func begin_phase(phase: Phase):
 			queue_event(EventPhaseMove.new(self, player, phase_effects[Phase.MOVE]))
 		Phase.EVENT:
 			$Phases/Phase/Label.text = "%dP Event Phase" % (turn_player_id + 1)
-			queue_event(EventPhaseEvent.new(self, player, phase_effects[Phase.EVENT]))
+			queue_event(EventPhaseEventBlock.new(self, player, phase_effects[Phase.EVENT], false))
 		Phase.SET:
 			$Phases/Phase/Label.text = "%dP Set Phase" % (turn_player_id + 1)
 			queue_event(EventPhaseSet.new(self, player, phase_effects[Phase.SET]))
 		Phase.BLOCK:
 			$Phases/Phase/Label.text = "%dP Block Phase" % ((turn_player_id + 1) % 2 + 1)
-			queue_event(EventPhaseBlock.new(self, player, phase_effects[Phase.BLOCK]))
+			queue_event(EventPhaseEventBlock.new(self, player, phase_effects[Phase.BLOCK], true))
 		Phase.BATTLE:
 			$Phases/Phase/Label.text = "%dP Battle Phase" % (turn_player_id + 1)
 			queue_event(EventPhaseBattle.new(self, player, phase_effects[Phase.BATTLE]))
@@ -198,7 +198,7 @@ func get_turn_player() -> Player:
 	var player_id: int = turn_player_id
 	if turn_phase == Phase.BLOCK:
 		player_id = (player_id + 1) % 2
-	return players[turn_player_id]
+	return players[player_id]
 
 func get_turn_enemy() -> Player:
 	return players[(turn_player_id + 1) % 2]
