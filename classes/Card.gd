@@ -212,8 +212,17 @@ func get_resources() -> Array[Attribute]:
 
 func get_effects() -> Array[CardEffect]:
 	var ret: Array[CardEffect] = []
+	var stackable: bool = true
+	if not can_effects_stack():
+		for card in owner.game_board.get_all_field_cards():
+			if card == self:
+				break
+			if card.equals(self) and not card.e_mark and not card.downed:
+				stackable = false
+				break
 	for e in effects:
-		if e.is_active():
+		e.set_stackable(stackable)
+		if e.is_stackable() and e.is_active():
 			ret.push_back(e)
 	for e in applied_effects:
 		if e.is_active():

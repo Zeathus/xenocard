@@ -26,3 +26,6 @@ func adjust():
 
 func adjust_enemy():
 	adjust()
+
+func is_stackable():
+	return true

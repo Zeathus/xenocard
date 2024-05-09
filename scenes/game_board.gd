@@ -209,14 +209,14 @@ func hide_valid_zones():
 
 func get_all_field_cards() -> Array[Card]:
 	var result: Array[Card] = []
-	for p in players:
-		result += p.field.get_all_cards()
+	result += get_turn_player().field.get_all_cards()
+	result += get_turn_enemy().field.get_all_cards()
 	return result
 
 func get_all_battlefield_cards() -> Array[Card]:
 	var result: Array[Card] = []
-	for p in players:
-		result += p.field.get_battlefield_cards()
+	result += get_turn_player().field.get_battlefield_cards()
+	result += get_turn_enemy().field.get_battlefield_cards()
 	return result
 
 func add_phase_effect(phase: Phase, effect: CardEffect):
