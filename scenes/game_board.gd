@@ -12,7 +12,6 @@ var players: Array[Player]
 var turn_player_id: int = 0
 var turn_phase: Phase = Phase.DRAW
 var card_zones: Array[Node2D]
-var card_held: Node2D
 var event_queue: Array[Event]
 var free_menu = null
 var phase_effects: Dictionary
@@ -80,10 +79,6 @@ func _process(delta):
 		if event.is_done():
 			event_queue.pop_front()
 		return
-	#if card_held:
-		#card_held.global_position = get_global_mouse_position()
-		#if Input.is_action_just_released("left_click"):
-			#_on_card_dropped(card_held)
 
 func add_menu(menu, z_index=0):
 	menu.z_index = z_index
@@ -226,18 +221,6 @@ func get_all_battlefield_cards() -> Array[Card]:
 
 func add_phase_effect(phase: Phase, effect: CardEffect):
 	phase_effects[phase].push_back(effect)
-
-func _on_card_grabbed(card: Node2D):
-	card_held = card
-
-func _on_card_dropped(card: Node2D):
-	var hovered_areas = $Mouse.get_overlapping_areas()
-	for node in card_zones:
-		var area: Area2D = node.find_child("Area")
-		if area in hovered_areas:
-			get_turn_player().field.snap_card_to_zone(card.card, node)
-			break
-	card_held = null
 
 func _on_card_show_details(card):
 	$CardDetails.visible = true
