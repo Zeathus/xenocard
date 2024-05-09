@@ -66,7 +66,7 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Card.Zone, ind
 	if player.has_controller():
 		return
 	var card: Card = field.get_card(zone, index)
-	if card.selectable(game_board):
+	if card and card.selectable(game_board):
 		hide_selectable()
 		queue_event(EventAnimation.new(game_board, AnimationEffectStart.new(card)))
 		for e in card.event_effects:

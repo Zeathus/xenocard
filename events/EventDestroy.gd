@@ -63,7 +63,10 @@ func process(delta):
 func destroy():
 	if target.zone == Card.Zone.LOST or target.zone == Card.Zone.JUNK:
 		return
-	target.owner.field.remove_card(target)
+	if target.zone == Card.Zone.HAND:
+		target.owner.hand.remove(target)
+	else:
+		target.owner.field.remove_card(target)
 	target.free_instance()
 	game_board.refresh()
 	var zone = Card.Zone.JUNK
