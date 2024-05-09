@@ -62,7 +62,9 @@ var downed_turn: int
 var equipped_weapon: Card
 var equipped_by: Card
 var effect_names: Array[String]
+var event_effect_names: Array[String]
 var effects: Array[CardEffect]
+var event_effects: Array[CardEffect]
 var applied_effects: Array[CardEffect]
 var turn_count: int
 var modify_for_set: Array[Callable] = []
@@ -151,6 +153,11 @@ func load_data(json):
 		for i in json["effects"]:
 			self.effect_names.push_back(i)
 
+	self.event_effect_names = []
+	if "event_effects" in json:
+		for i in json["event_effects"]:
+			self.event_effect_names.push_back(i)
+
 func init_effects(game_board: GameBoard):
 	effects.clear()
 	for i in effect_names:
@@ -159,6 +166,14 @@ func init_effects(game_board: GameBoard):
 			param = i.substr(i.find("(") + 1, i.rfind(")") - i.find("(") - 1)
 			i = i.substr(0, i.find("("))
 		effects.push_back(CardEffect.parse(i).new(game_board, self, param))
+
+	event_effects.clear()
+	for i in event_effect_names:
+		var param: String = ""
+		if "(" in i and ")" in i and i.find("(") < i.rfind(")"):
+			param = i.substr(i.find("(") + 1, i.rfind(")") - i.find("(") - 1)
+			i = i.substr(0, i.find("("))
+		event_effects.push_back(CardEffect.parse(i).new(game_board, self, param))
 
 func validate_effects():
 	for i in effect_names:
@@ -242,6 +257,17 @@ func can_effects_stack() -> bool:
 			return false
 	return true
 
+func has_event_effect() -> bool:
+	return not event_effects.is_empty()
+
+func can_activate_event_effect() -> bool:
+	if downed or not has_event_effect():
+		return false
+	for e in event_effects:
+		if not e.has_valid_targets():
+			return false
+	return true
+
 func equals(other: Card) -> bool:
 	return identifier == other.identifier
 
@@ -311,7 +337,7 @@ func selectable(game_board: GameBoard) -> bool:
 		return false
 	match game_board.turn_phase:
 		GameBoard.Phase.MOVE:
-			if self.zone != Zone.STANDBY && self.zone != Zone.BATTLEFIELD:
+			if self.zone != Zone.STANDBY and self.zone != Zone.BATTLEFIELD:
 				return false
 			if self.e_mark:
 				return false
@@ -319,12 +345,22 @@ func selectable(game_board: GameBoard) -> bool:
 				return false
 			return true
 		GameBoard.Phase.EVENT:
-			if not requirements_met(game_board):
-				return false
-			if self.zone != Zone.HAND:
-				return false
-			if self.type != Type.EVENT:
-				return false
+			if self.type == Type.EVENT:
+				if not requirements_met(game_board):
+					return false
+				if self.zone != Zone.HAND:
+					return false
+				if self.type != Type.EVENT:
+					return false
+			else:
+				if self.zone != Zone.STANDBY and self.zone != Zone.BATTLEFIELD and self.zone != Zone.SITUATION:
+					return false
+				if self.e_mark:
+					return false
+				if not self.has_event_effect():
+					return false
+				if not self.can_activate_event_effect():
+					return false
 			return true
 		GameBoard.Phase.SET:
 			if not requirements_met(game_board):
