@@ -12,6 +12,9 @@ func _init(_card: Card):
 func update(delta):
 	if is_done():
 		return
+	if card.instance == null:
+		finish()
+		return
 	var indicator: Node = card.instance.find_child("EffectIndicator")
 	if time == 0:
 		indicator.visible = true

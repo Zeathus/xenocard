@@ -16,5 +16,9 @@
 		"cost": 0,
 		"field": ["human"]
 	},
-	"text": "When this card is on the battlefield, you can discard it during your event or block phase to gain ATK+1 on all of your {Humans} until the adjust phase."
+	"text": "When this card is on the battlefield, you can discard it during your event or block phase to gain ATK+1 on all of your {Humans} until the adjust phase.",
+	"event_effects": [
+		"GlobalApplyModifyATK(1,1,attribute=human;owner=self)",
+		"DiscardSelf"
+	]
 }

@@ -19,5 +19,9 @@
 	"effects": [
 		"Unique",
 		"NoWeapons"
+	],
+	"event_effects": [
+		"GlobalApplyModifyATK(2,1,attribute=gnosis;owner=self)",
+		"DiscardSelf"
 	]
 }
