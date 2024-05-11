@@ -39,7 +39,7 @@ func _process(delta):
 
 func add_card(card: Card):
 	card.reset()
-	card.zone = Card.Zone.HAND
+	card.zone = Enum.Zone.HAND
 	cards.push_back(card)
 	add_child(card.instance)
 	card.instance.selected.connect(_on_card_selected)

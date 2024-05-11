@@ -1,36 +1,30 @@
 class_name Card
 
-enum Type {ANY, BATTLE, EVENT, SITUATION}
-enum Attribute {ANY, HUMAN, REALIAN, MACHINE, GNOSIS, MONSTER, BLADE, WEAPON, NOPON, UNKNOWN}
-enum Target {ANY, HAND, BALLISTIC, SPREAD, HOMING, NONE}
-enum Rarity {COMMON, UNCOMMON, RARE, PROMO}
-enum Zone {NONE, DECK, LOST, JUNK, HAND, STANDBY, SITUATION, BATTLEFIELD}
-
 static var scene = preload("res://objects/card.tscn")
 
 static var attribute_icons = {
-	Attribute.ANY: preload("res://sprites/attributes/background.png"),
-	Attribute.HUMAN: preload("res://sprites/attributes/human.png"),
-	Attribute.REALIAN: preload("res://sprites/attributes/realian.png"),
-	Attribute.MACHINE: preload("res://sprites/attributes/machine.png"),
-	Attribute.GNOSIS: preload("res://sprites/attributes/gnosis.png"),
-	Attribute.MONSTER: preload("res://sprites/attributes/monster.png"),
-	Attribute.BLADE: preload("res://sprites/attributes/blade.png"),
-	Attribute.WEAPON: preload("res://sprites/attributes/weapon.png"),
-	Attribute.UNKNOWN: preload("res://sprites/attributes/unknown.png")
+	Enum.Attribute.ANY: preload("res://sprites/attributes/background.png"),
+	Enum.Attribute.HUMAN: preload("res://sprites/attributes/human.png"),
+	Enum.Attribute.REALIAN: preload("res://sprites/attributes/realian.png"),
+	Enum.Attribute.MACHINE: preload("res://sprites/attributes/machine.png"),
+	Enum.Attribute.GNOSIS: preload("res://sprites/attributes/gnosis.png"),
+	Enum.Attribute.MONSTER: preload("res://sprites/attributes/monster.png"),
+	Enum.Attribute.BLADE: preload("res://sprites/attributes/blade.png"),
+	Enum.Attribute.WEAPON: preload("res://sprites/attributes/weapon.png"),
+	Enum.Attribute.UNKNOWN: preload("res://sprites/attributes/unknown.png")
 }
 
 static var type_backgrounds = {
-	Type.BATTLE: preload("res://sprites/card_bg_battle.png"),
-	Type.EVENT: preload("res://sprites/card_bg_event.png"),
-	Type.SITUATION: preload("res://sprites/card_bg_situation.png")
+	Enum.Type.BATTLE: preload("res://sprites/card_bg_battle.png"),
+	Enum.Type.EVENT: preload("res://sprites/card_bg_event.png"),
+	Enum.Type.SITUATION: preload("res://sprites/card_bg_situation.png")
 }
 
 static var rarity_icons = {
-	Rarity.COMMON: preload("res://sprites/rarity/rarity_common.png"),
-	Rarity.UNCOMMON: preload("res://sprites/rarity/rarity_uncommon.png"),
-	Rarity.RARE: preload("res://sprites/rarity/rarity_rare.png"),
-	Rarity.PROMO: preload("res://sprites/rarity/rarity_promo.png")
+	Enum.Rarity.COMMON: preload("res://sprites/rarity/rarity_common.png"),
+	Enum.Rarity.UNCOMMON: preload("res://sprites/rarity/rarity_uncommon.png"),
+	Enum.Rarity.RARE: preload("res://sprites/rarity/rarity_rare.png"),
+	Enum.Rarity.PROMO: preload("res://sprites/rarity/rarity_promo.png")
 }
 
 static var path: String = "data/cards"
@@ -41,20 +35,20 @@ var id: String
 var identifier: String
 var name: String
 var character: String
-var type: Type
-var rarity: Rarity
-var attribute: Attribute
+var type: Enum.Type
+var rarity: Enum.Rarity
+var attribute: Enum.Attribute
 var hp: int
 var max_hp: int
 var atk: int
 var atk_timer: int
-var target: Target
+var target: Enum.AttackType
 var cost: int
-var field: Array[Attribute]
+var field: Array[Enum.Attribute]
 var text: String
 var instance: Node2D
 var owner: Player
-var zone: Zone
+var zone: Enum.Zone
 var zone_index: int
 var e_mark: bool
 var downed: bool
@@ -71,7 +65,7 @@ var modify_for_set: Array[Callable] = []
 
 func _init(id: String):
 	self.instance = null
-	self.zone = Zone.DECK
+	self.zone = Enum.Zone.DECK
 	self.zone_index = 0
 	self.e_mark = false
 	self.downed = false
@@ -121,13 +115,13 @@ func load_data(json):
 	self.type = type_from_string(json["type"])
 	match json["rarity"]:
 		"common":
-			self.rarity = Rarity.COMMON
+			self.rarity = Enum.Rarity.COMMON
 		"uncommon":
-			self.rarity = Rarity.UNCOMMON
+			self.rarity = Enum.Rarity.UNCOMMON
 		"rare":
-			self.rarity = Rarity.RARE
+			self.rarity = Enum.Rarity.RARE
 		"promo":
-			self.rarity = Rarity.PROMO
+			self.rarity = Enum.Rarity.PROMO
 	self.cost = 0
 	self.field = []
 	if "requirement" in json:
@@ -141,7 +135,7 @@ func load_data(json):
 	else:
 		self.text = ""
 	
-	if self.type == Type.BATTLE:
+	if self.type == Enum.Type.BATTLE:
 		self.max_hp = json["stats"]["hp"]
 		self.hp = self.max_hp
 		self.atk = json["stats"]["atk"]
@@ -194,19 +188,19 @@ func is_player() -> bool:
 	return false
 
 func is_battler() -> bool:
-	return self.type == Type.BATTLE and self.attribute != Attribute.WEAPON
+	return self.type == Enum.Type.BATTLE and self.attribute != Enum.Attribute.WEAPON
 
 func is_equippable() -> bool:
-	return self.type == Type.BATTLE and self.attribute == Attribute.WEAPON
+	return self.type == Enum.Type.BATTLE and self.attribute == Enum.Attribute.WEAPON
 
 func has_stats() -> bool:
-	return self.type == Type.BATTLE
+	return self.type == Enum.Type.BATTLE
 
-func get_resources() -> Array[Attribute]:
-	var attr: Array[Attribute] = []
+func get_resources() -> Array[Enum.Attribute]:
+	var attr: Array[Enum.Attribute] = []
 	if self.e_mark:
 		return attr
-	if self.type == Type.BATTLE:
+	if self.type == Enum.Type.BATTLE:
 		attr.push_back(self.attribute)
 	return attr
 
@@ -301,8 +295,8 @@ func conflicts_with_card(card: Card) -> bool:
 			return true
 	return false
 
-func get_field_requirements() -> Array[Attribute]:
-	var ret: Array[Attribute] = self.field
+func get_field_requirements() -> Array[Enum.Attribute]:
+	var ret: Array[Enum.Attribute] = self.field
 	for e in get_effects():
 		ret = e.get_field_requirements(ret)
 	return ret
@@ -314,7 +308,7 @@ func requirements_met(game_board: GameBoard) -> bool:
 	var resources = player.get_resources()
 	var any_needed: int = 0
 	for attr in get_field_requirements():
-		if attr == Attribute.ANY:
+		if attr == Enum.Attribute.ANY:
 			any_needed += 1
 			continue
 		if resources.find(attr) == -1:
@@ -330,7 +324,7 @@ func requirements_met(game_board: GameBoard) -> bool:
 	return true
 
 func uses_one_card_per_turn() -> bool:
-	var ret = (type == Type.BATTLE or type == Type.SITUATION)
+	var ret = (type == Enum.Type.BATTLE or type == Enum.Type.SITUATION)
 	for e in get_effects():
 		ret = e.uses_one_card_per_turn(ret)
 	return ret
@@ -345,24 +339,24 @@ func selectable(game_board: GameBoard) -> bool:
 	if game_board.get_turn_player() != owner:
 		return false
 	match game_board.turn_phase:
-		GameBoard.Phase.MOVE:
-			if self.zone != Zone.STANDBY and self.zone != Zone.BATTLEFIELD:
+		Enum.Phase.MOVE:
+			if self.zone != Enum.Zone.STANDBY and self.zone != Enum.Zone.BATTLEFIELD:
 				return false
 			if self.e_mark:
 				return false
 			if not can_move():
 				return false
 			return true
-		GameBoard.Phase.EVENT, GameBoard.Phase.BLOCK:
-			if self.type == Type.EVENT:
+		Enum.Phase.EVENT, Enum.Phase.BLOCK:
+			if self.type == Enum.Type.EVENT:
 				if not requirements_met(game_board):
 					return false
-				if self.zone != Zone.HAND:
+				if self.zone != Enum.Zone.HAND:
 					return false
-				if self.type != Type.EVENT:
+				if self.type != Enum.Type.EVENT:
 					return false
 			else:
-				if self.zone != Zone.STANDBY and self.zone != Zone.BATTLEFIELD and self.zone != Zone.SITUATION:
+				if self.zone != Enum.Zone.STANDBY and self.zone != Enum.Zone.BATTLEFIELD and self.zone != Enum.Zone.SITUATION:
 					return false
 				if self.e_mark:
 					return false
@@ -371,17 +365,17 @@ func selectable(game_board: GameBoard) -> bool:
 				if not self.can_activate_event_effect():
 					return false
 			return true
-		GameBoard.Phase.SET:
+		Enum.Phase.SET:
 			if not requirements_met(game_board):
 				return false
-			if self.zone != Zone.HAND:
+			if self.zone != Enum.Zone.HAND:
 				return false
-			if self.type != Type.BATTLE and self.type != Type.SITUATION:
+			if self.type != Enum.Type.BATTLE and self.type != Enum.Type.SITUATION:
 				return false
 			if uses_one_card_per_turn():
-				if self.type == Type.BATTLE and owner.used_one_battle_card_per_turn:
+				if self.type == Enum.Type.BATTLE and owner.used_one_battle_card_per_turn:
 					return false
-				if self.type == Type.SITUATION and owner.used_one_situation_card_per_turn:
+				if self.type == Enum.Type.SITUATION and owner.used_one_situation_card_per_turn:
 					return false
 			return true
 	return false
@@ -389,7 +383,7 @@ func selectable(game_board: GameBoard) -> bool:
 func targets_to_select() -> Array[Callable]:
 	var ret: Array[Callable] = []
 	match owner.game_board.turn_phase:
-		GameBoard.Phase.SET:
+		Enum.Phase.SET:
 			for e in get_effects():
 				e.targets_to_select_for_set(ret)
 	return ret
@@ -400,25 +394,25 @@ func can_set_to_battlefield() -> bool:
 			return true
 	return false
 
-func is_valid_zone(new_zone: Zone, index: int) -> bool:
+func is_valid_zone(new_zone: Enum.Zone, index: int) -> bool:
 	var ret: bool = true
-	if self.zone == Zone.HAND:
-		if type == Type.BATTLE and attribute == Attribute.WEAPON:
-			if new_zone != Zone.BATTLEFIELD and new_zone != Zone.STANDBY:
+	if self.zone == Enum.Zone.HAND:
+		if type == Enum.Type.BATTLE and attribute == Enum.Attribute.WEAPON:
+			if new_zone != Enum.Zone.BATTLEFIELD and new_zone != Enum.Zone.STANDBY:
 				ret = false
-		elif type == Type.BATTLE:
-			if new_zone == Zone.BATTLEFIELD:
+		elif type == Enum.Type.BATTLE:
+			if new_zone == Enum.Zone.BATTLEFIELD:
 				if not can_set_to_battlefield():
 					ret = false
-			elif new_zone != Zone.STANDBY:
+			elif new_zone != Enum.Zone.STANDBY:
 				ret = false
-		elif type == Type.SITUATION:
-			if new_zone != Zone.SITUATION:
+		elif type == Enum.Type.SITUATION:
+			if new_zone != Enum.Zone.SITUATION:
 				ret = false
-	elif self.zone == Zone.STANDBY or self.zone == Zone.BATTLEFIELD:
-		if new_zone != Zone.STANDBY and new_zone != Zone.BATTLEFIELD:
+	elif self.zone == Enum.Zone.STANDBY or self.zone == Enum.Zone.BATTLEFIELD:
+		if new_zone != Enum.Zone.STANDBY and new_zone != Enum.Zone.BATTLEFIELD:
 			ret = false
-		if new_zone == Zone.BATTLEFIELD and self.e_mark:
+		if new_zone == Enum.Zone.BATTLEFIELD and self.e_mark:
 			ret = false
 	for e in get_effects():
 		ret = e.is_valid_zone(new_zone, index, ret)
@@ -436,7 +430,7 @@ func can_replace_card(card: Card) -> bool:
 			return true
 	return false
 
-func can_play(game_board: GameBoard, new_zone: Zone, index: int) -> bool:
+func can_play(game_board: GameBoard, new_zone: Enum.Zone, index: int) -> bool:
 	if not self.is_valid_zone(new_zone, index):
 		return false
 	var player: Player = owner
@@ -444,12 +438,12 @@ func can_play(game_board: GameBoard, new_zone: Zone, index: int) -> bool:
 		if not e.set_requirements():
 			return false
 	if uses_one_card_per_turn():
-		if self.type == Type.BATTLE and owner.used_one_battle_card_per_turn:
+		if self.type == Enum.Type.BATTLE and owner.used_one_battle_card_per_turn:
 			return false
-		if self.type == Type.SITUATION and owner.used_one_situation_card_per_turn:
+		if self.type == Enum.Type.SITUATION and owner.used_one_situation_card_per_turn:
 			return false
 	var card_in_zone = player.field.get_card(new_zone, index)
-	if type == Type.BATTLE and attribute == Attribute.WEAPON:
+	if type == Enum.Type.BATTLE and attribute == Enum.Attribute.WEAPON:
 		if card_in_zone == null:
 			return false
 		if not card_in_zone.can_equip(self):
@@ -481,12 +475,12 @@ func unequip():
 	equipped_weapon.equipped_by = null
 	equipped_weapon = null
 
-func can_move_to(game_board: GameBoard, new_zone: Zone, index: int) -> bool:
+func can_move_to(game_board: GameBoard, new_zone: Enum.Zone, index: int) -> bool:
 	if not self.is_valid_zone(new_zone, index):
 		return false
 	return true
 
-func move(game_board: GameBoard, new_zone: Zone, index: int):
+func move(game_board: GameBoard, new_zone: Enum.Zone, index: int):
 	var player: Player = owner
 	player.field.move_card(self, new_zone, index)
 
@@ -530,42 +524,42 @@ func get_cost() -> int:
 		ret = e.get_cost(ret)
 	return ret
 
-func get_target() -> Target:
-	if equipped_weapon and equipped_weapon.target != Target.NONE:
+func get_target() -> Enum.AttackType:
+	if equipped_weapon and equipped_weapon.target != Enum.AttackType.NONE:
 		return equipped_weapon.target
 	return self.target
 
 func get_attack_targets(game_board: GameBoard) -> Array:
 	var enemy: Player = owner.get_enemy()
 	match get_target():
-		Target.HAND:
+		Enum.AttackType.HAND:
 			if self.zone_index >= 2:
 				return []
-			var opponent = enemy.field.get_card(Zone.BATTLEFIELD, (self.zone_index + 1) % 2)
+			var opponent = enemy.field.get_card(Enum.Zone.BATTLEFIELD, (self.zone_index + 1) % 2)
 			if opponent != null and not opponent.evades_attack(self):
 				return [opponent]
-		Target.BALLISTIC:
-			var opponent = enemy.field.get_card(Zone.BATTLEFIELD, (self.zone_index + 1) % 2)
+		Enum.AttackType.BALLISTIC:
+			var opponent = enemy.field.get_card(Enum.Zone.BATTLEFIELD, (self.zone_index + 1) % 2)
 			if opponent != null and not opponent.evades_attack(self):
 				return [opponent]
-			opponent = enemy.field.get_card(Zone.BATTLEFIELD, (self.zone_index + 1) % 2 + 2)
+			opponent = enemy.field.get_card(Enum.Zone.BATTLEFIELD, (self.zone_index + 1) % 2 + 2)
 			if opponent != null and not opponent.evades_attack(self):
 				return [opponent]
 			return [enemy]
-		Target.SPREAD:
+		Enum.AttackType.SPREAD:
 			var targets = []
 			for opponent in enemy.field.get_battlefield_cards():
 				if not opponent.evades_attack(self):
 					targets.push_back(opponent)
 			return targets
-		Target.HOMING:
+		Enum.AttackType.HOMING:
 			return [enemy]
 	return []
 
 func penetrates():
-	if equipped_weapon and equipped_weapon.target != Target.NONE:
+	if equipped_weapon and equipped_weapon.target != Enum.AttackType.NONE:
 		return equipped_weapon.penetrates()
-	if self.target != Target.BALLISTIC:
+	if self.target != Enum.AttackType.BALLISTIC:
 		return false
 	for e in get_effects():
 		if e.penetrates():
@@ -582,18 +576,18 @@ func undown():
 	self.instance.set_downed(self.downed)
 
 func get_behind():
-	if zone != Zone.BATTLEFIELD:
+	if zone != Enum.Zone.BATTLEFIELD:
 		return null
 	var behind_index = zone_index + 2
 	if behind_index > 3:
 		return owner
-	var behind_card = owner.field.get_card(Zone.BATTLEFIELD, behind_index)
+	var behind_card = owner.field.get_card(Enum.Zone.BATTLEFIELD, behind_index)
 	if behind_card:
 		return behind_card
 	return owner
 
 func can_attack(game_board: GameBoard) -> bool:
-	if downed or zone != Zone.BATTLEFIELD:
+	if downed or zone != Enum.Zone.BATTLEFIELD:
 		return false
 	if get_atk() == 0:
 		return false
@@ -663,89 +657,89 @@ func free_instance():
 		self.instance.queue_free()
 		self.instance = null
 
-static func type_from_string(str: String) -> Type:
+static func type_from_string(str: String) -> Enum.Type:
 	match str.to_lower():
 		"battle":
-			return Type.BATTLE
+			return Enum.Type.BATTLE
 		"event":
-			return Type.EVENT
+			return Enum.Type.EVENT
 		"situation":
-			return Type.SITUATION
-	return Type.ANY
+			return Enum.Type.SITUATION
+	return Enum.Type.ANY
 
-static func attribute_from_string(str: String) -> Attribute:
+static func attribute_from_string(str: String) -> Enum.Attribute:
 	match str.to_lower():
 		"any":
-			return Attribute.ANY
+			return Enum.Attribute.ANY
 		"human":
-			return Attribute.HUMAN
+			return Enum.Attribute.HUMAN
 		"realian":
-			return Attribute.REALIAN
+			return Enum.Attribute.REALIAN
 		"machine":
-			return Attribute.MACHINE
+			return Enum.Attribute.MACHINE
 		"gnosis":
-			return Attribute.GNOSIS
+			return Enum.Attribute.GNOSIS
 		"weapon":
-			return Attribute.WEAPON
+			return Enum.Attribute.WEAPON
 		"monster":
-			return Attribute.MONSTER
+			return Enum.Attribute.MONSTER
 		"blade":
-			return Attribute.BLADE
+			return Enum.Attribute.BLADE
 		"nopon":
-			return Attribute.NOPON
+			return Enum.Attribute.NOPON
 		"unknown":
-			return Attribute.UNKNOWN
-	return Attribute.ANY
+			return Enum.Attribute.UNKNOWN
+	return Enum.Attribute.ANY
 
-static func attack_type_from_string(str: String) -> Target:
+static func attack_type_from_string(str: String) -> Enum.AttackType:
 	match str.to_lower():
 		"hand":
-			return Target.HAND
+			return Enum.AttackType.HAND
 		"ballistic":
-			return Target.BALLISTIC
+			return Enum.AttackType.BALLISTIC
 		"spread":
-			return Target.SPREAD
+			return Enum.AttackType.SPREAD
 		"homing":
-			return Target.HOMING
+			return Enum.AttackType.HOMING
 		"none":
-			return Target.NONE
-	return Target.ANY
+			return Enum.AttackType.NONE
+	return Enum.AttackType.ANY
 
-static func get_type_name(type: Type) -> String:
+static func get_type_name(type: Enum.Type) -> String:
 	match type:
-		Type.BATTLE:
+		Enum.Type.BATTLE:
 			return "Battle"
-		Type.EVENT:
+		Enum.Type.EVENT:
 			return "Event"
-		Type.SITUATION:
+		Enum.Type.SITUATION:
 			return "Situation"
 	return "N/A"
 
-static func get_target_name(target: Target) -> String:
+static func get_target_name(target: Enum.AttackType) -> String:
 	match target:
-		Target.HAND:
+		Enum.AttackType.HAND:
 			return "Hand"
-		Target.BALLISTIC:
+		Enum.AttackType.BALLISTIC:
 			return "Ballistic"
-		Target.SPREAD:
+		Enum.AttackType.SPREAD:
 			return "Spread"
-		Target.HOMING:
+		Enum.AttackType.HOMING:
 			return "Homing"
-		Target.NONE:
+		Enum.AttackType.NONE:
 			return ""
 	return "N/A"
 
-static func get_attribute_icon(attr: Attribute):
+static func get_attribute_icon(attr: Enum.Attribute):
 	if attr in attribute_icons:
 		return attribute_icons[attr]
 	return null
 
-static func get_type_background(type: Type):
+static func get_type_background(type: Enum.Type):
 	if type in type_backgrounds:
 		return type_backgrounds[type]
 	return null
 
-static func get_rarity_icon(rare: Rarity):
+static func get_rarity_icon(rare: Enum.Rarity):
 	if rare in rarity_icons:
 		return rarity_icons[rare]
 	return null

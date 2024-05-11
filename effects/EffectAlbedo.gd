@@ -7,7 +7,7 @@ class_name EffectAlbedo
 # Afterwards, the cards in the junk pile are removed from the game.
 
 func after_move_phase():
-	if card.zone != Card.Zone.BATTLEFIELD:
+	if card.zone != Enum.Zone.BATTLEFIELD:
 		return
 	for c in card.owner.field.get_battlefield_cards():
 		if c != card:

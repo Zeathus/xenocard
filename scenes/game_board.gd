@@ -2,15 +2,13 @@ extends Node2D
 
 class_name GameBoard
 
-enum Phase {DRAW, MOVE, EVENT, SET, BLOCK, BATTLE, ADJUST}
-
 var quick_details_enabled: bool = true
 var quick_detail_card: Card = null
 var quick_detail_card_timer: float = 0
 
 var players: Array[Player]
 var turn_player_id: int = 0
-var turn_phase: Phase = Phase.DRAW
+var turn_phase: Enum.Phase = Enum.Phase.DRAW
 var card_zones: Array[Node2D]
 var event_queue: Array[Event]
 var free_menu = null
@@ -20,8 +18,8 @@ var game_options: Dictionary = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for i in Phase:
-		phase_effects[Phase[i]] = []
+	for i in Enum.Phase:
+		phase_effects[Enum.Phase[i]] = []
 	card_zones = []
 	for node in find_children("Zone?", "Node2D"):
 		card_zones.push_back(node)
@@ -114,57 +112,57 @@ func queue_next_event(event: Event):
 func is_free() -> bool:
 	return free_menu == null and not $CardDetails.visible
 
-func skips_phase(phase: Phase, player: Player):
+func skips_phase(phase: Enum.Phase, player: Player):
 	for card in get_all_field_cards():
 		for e in card.get_effects():
 			if e.skips_phase(phase, player):
 				return true
 	return false
 
-func begin_phase(phase: Phase):
+func begin_phase(phase: Enum.Phase):
 	turn_phase = phase
 	var player: Player = get_turn_player()
 	if skips_phase(turn_phase, player):
 		end_phase()
 		return
 	match turn_phase:
-		Phase.DRAW:
+		Enum.Phase.DRAW:
 			$Phases/Phase/Label.text = "%dP Draw Phase" % (turn_player_id + 1)
-			queue_event(EventPhaseDraw.new(self, player, phase_effects[Phase.DRAW]))
-		Phase.MOVE:
+			queue_event(EventPhaseDraw.new(self, player, phase_effects[Enum.Phase.DRAW]))
+		Enum.Phase.MOVE:
 			$Phases/Phase/Label.text = "%dP Move Phase" % (turn_player_id + 1)
-			queue_event(EventPhaseMove.new(self, player, phase_effects[Phase.MOVE]))
-		Phase.EVENT:
+			queue_event(EventPhaseMove.new(self, player, phase_effects[Enum.Phase.MOVE]))
+		Enum.Phase.EVENT:
 			$Phases/Phase/Label.text = "%dP Event Phase" % (turn_player_id + 1)
-			queue_event(EventPhaseEventBlock.new(self, player, phase_effects[Phase.EVENT], false))
-		Phase.SET:
+			queue_event(EventPhaseEventBlock.new(self, player, phase_effects[Enum.Phase.EVENT], false))
+		Enum.Phase.SET:
 			$Phases/Phase/Label.text = "%dP Set Phase" % (turn_player_id + 1)
-			queue_event(EventPhaseSet.new(self, player, phase_effects[Phase.SET]))
-		Phase.BLOCK:
+			queue_event(EventPhaseSet.new(self, player, phase_effects[Enum.Phase.SET]))
+		Enum.Phase.BLOCK:
 			$Phases/Phase/Label.text = "%dP Block Phase" % ((turn_player_id + 1) % 2 + 1)
-			queue_event(EventPhaseEventBlock.new(self, player, phase_effects[Phase.BLOCK], true))
-		Phase.BATTLE:
+			queue_event(EventPhaseEventBlock.new(self, player, phase_effects[Enum.Phase.BLOCK], true))
+		Enum.Phase.BATTLE:
 			$Phases/Phase/Label.text = "%dP Battle Phase" % (turn_player_id + 1)
-			queue_event(EventPhaseBattle.new(self, player, phase_effects[Phase.BATTLE]))
-		Phase.ADJUST:
+			queue_event(EventPhaseBattle.new(self, player, phase_effects[Enum.Phase.BATTLE]))
+		Enum.Phase.ADJUST:
 			$Phases/Phase/Label.text = "%dP Adjust Phase" % (turn_player_id + 1)
-			queue_event(EventPhaseAdjust.new(self, player, phase_effects[Phase.ADJUST]))
+			queue_event(EventPhaseAdjust.new(self, player, phase_effects[Enum.Phase.ADJUST]))
 
 func end_phase():
 	match turn_phase:
-		Phase.DRAW:
-			begin_phase(Phase.MOVE)
-		Phase.MOVE:
-			begin_phase(Phase.EVENT)
-		Phase.EVENT:
-			begin_phase(Phase.SET)
-		Phase.SET:
-			begin_phase(Phase.BLOCK)
-		Phase.BLOCK:
-			begin_phase(Phase.BATTLE)
-		Phase.BATTLE:
-			begin_phase(Phase.ADJUST)
-		Phase.ADJUST:
+		Enum.Phase.DRAW:
+			begin_phase(Enum.Phase.MOVE)
+		Enum.Phase.MOVE:
+			begin_phase(Enum.Phase.EVENT)
+		Enum.Phase.EVENT:
+			begin_phase(Enum.Phase.SET)
+		Enum.Phase.SET:
+			begin_phase(Enum.Phase.BLOCK)
+		Enum.Phase.BLOCK:
+			begin_phase(Enum.Phase.BATTLE)
+		Enum.Phase.BATTLE:
+			begin_phase(Enum.Phase.ADJUST)
+		Enum.Phase.ADJUST:
 			next_player()
 			begin_turn()
 	refresh()
@@ -173,7 +171,7 @@ func begin_turn():
 	var turn_player: Player = get_turn_player()
 	turn_player.used_one_battle_card_per_turn = false
 	turn_player.used_one_situation_card_per_turn = false
-	begin_phase(Phase.DRAW)
+	begin_phase(Enum.Phase.DRAW)
 
 func refresh():
 	for player in [get_turn_player(), get_turn_enemy()]:
@@ -196,7 +194,7 @@ func prepare_card(card: Card) -> Card:
 
 func get_turn_player() -> Player:
 	var player_id: int = turn_player_id
-	if turn_phase == Phase.BLOCK:
+	if turn_phase == Enum.Phase.BLOCK:
 		player_id = (player_id + 1) % 2
 	return players[player_id]
 
@@ -219,7 +217,7 @@ func get_all_battlefield_cards() -> Array[Card]:
 	result += get_turn_enemy().field.get_battlefield_cards()
 	return result
 
-func add_phase_effect(phase: Phase, effect: CardEffect):
+func add_phase_effect(phase: Enum.Phase, effect: CardEffect):
 	phase_effects[phase].push_back(effect)
 
 func _on_card_show_details(card):
@@ -232,8 +230,8 @@ func _on_card_hovered(card):
 	$QuickDetails/Right.visible = false
 	var display = $QuickDetails/Left
 	var display_card = $QuickDetails/Left/Card
-	if (card.owner == players[0] and card.zone == Card.Zone.STANDBY) or \
-		(card.owner == players[1] and card.zone == Card.Zone.SITUATION):
+	if (card.owner == players[0] and card.zone == Enum.Zone.STANDBY) or \
+		(card.owner == players[1] and card.zone == Enum.Zone.SITUATION):
 		display = $QuickDetails/Right
 		display_card = $QuickDetails/Right/Card
 	display.visible = true
@@ -247,7 +245,7 @@ func on_hand_card_selected(hand: GameHand, card: Card):
 	if event_processing():
 		get_event().on_hand_card_selected(hand, card)
 
-func _on_zone_selected(field: GameField, zone_owner: Player, zone: Card.Zone, index: int):
+func _on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, index: int):
 	if not is_free():
 		return
 	if event_processing():

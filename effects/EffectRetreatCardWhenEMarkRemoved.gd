@@ -33,8 +33,8 @@ func targets_to_select_for_effect() -> Array[CardFilter]:
 func handle_effect_targets(targets: Array[Card]):
 	for t in targets:
 		for i in range(4):
-			if t.owner.field.get_card(Card.Zone.STANDBY, i) == null:
-				events.push_back(EventAutoMove.new(game_board, t.owner, t, Card.Zone.STANDBY, i))
+			if t.owner.field.get_card(Enum.Zone.STANDBY, i) == null:
+				events.push_back(EventAutoMove.new(game_board, t.owner, t, Enum.Zone.STANDBY, i))
 				break
 
 func has_valid_targets() -> bool:

@@ -2,7 +2,7 @@ extends CardEffect
 
 class_name EffectDiscardAttributeToPlay
 
-var requirements: Array[Card.Attribute]
+var requirements: Array[Enum.Attribute]
 
 func post_init():
 	for i in param.split(","):

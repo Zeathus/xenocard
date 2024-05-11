@@ -12,7 +12,7 @@ func post_init():
 		filter = CardFilter.new(arg[1])
 
 func is_active() -> bool:
-	if card.zone != Card.Zone.BATTLEFIELD:
+	if card.zone != Enum.Zone.BATTLEFIELD:
 		return false
 	return super.is_active()
 

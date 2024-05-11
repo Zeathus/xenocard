@@ -41,9 +41,9 @@ func _process(delta):
 	if is_hovering:
 		z_index += 1
 	if card:
-		if card.zone == Card.Zone.HAND:
+		if card.zone == Enum.Zone.HAND:
 			z_index += 20
-		elif card.type == Card.Type.BATTLE and card.attribute == Card.Attribute.WEAPON and card.equipped_by:
+		elif card.type == Enum.Type.BATTLE and card.attribute == Enum.Attribute.WEAPON and card.equipped_by:
 			z_index += 2
 	if in_motion:
 		z_index += 30

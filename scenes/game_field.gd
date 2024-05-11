@@ -2,7 +2,7 @@ extends Node2D
 
 class_name GameField
 
-signal zone_selected(field: GameField, zone_owner: Player, zone: Card.Zone, index: int)
+signal zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, index: int)
 
 var player: Player
 var game_board: GameBoard
@@ -16,15 +16,15 @@ func _ready():
 	battlefield = [null, null, null, null]
 	situation = [null, null, null, null]
 	zones = {
-		Card.Zone.STANDBY: [
+		Enum.Zone.STANDBY: [
 			$Standby/Zone1, $Standby/Zone2,
 			$Standby/Zone3, $Standby/Zone4
 		],
-		Card.Zone.BATTLEFIELD: [
+		Enum.Zone.BATTLEFIELD: [
 			$Battlefield/Zone1, $Battlefield/Zone2,
 			$Battlefield/Zone3, $Battlefield/Zone4
 		],
-		Card.Zone.SITUATION: [
+		Enum.Zone.SITUATION: [
 			$Situation/Zone1, $Situation/Zone2,
 			$Situation/Zone3, $Situation/Zone4
 		]
@@ -90,14 +90,14 @@ func remove_card(card: Card):
 	if get_card(card.zone, card.zone_index) == card:
 		set_card(null, card.zone, card.zone_index)
 
-func set_card(card: Card, zone: Card.Zone, index: int):
+func set_card(card: Card, zone: Enum.Zone, index: int):
 	add_card(card)
 	match zone:
-		Card.Zone.STANDBY:
+		Enum.Zone.STANDBY:
 			standby[index] = card
-		Card.Zone.BATTLEFIELD:
+		Enum.Zone.BATTLEFIELD:
 			battlefield[index] = card
-		Card.Zone.SITUATION:
+		Enum.Zone.SITUATION:
 			situation[index] = card
 	if card != null:
 		card.zone = zone
@@ -105,24 +105,24 @@ func set_card(card: Card, zone: Card.Zone, index: int):
 	refresh()
 
 func add_card(card: Card):
-	if card != null and card.zone in [Card.Zone.HAND, Card.Zone.DECK, Card.Zone.LOST, Card.Zone.JUNK]:
+	if card != null and card.zone in [Enum.Zone.HAND, Enum.Zone.DECK, Enum.Zone.LOST, Enum.Zone.JUNK]:
 		var pos = card.instance.global_position
 		$Cards.add_child(card.instance)
 		card.instance.global_position = pos
 		card.instance.turn_up()
 
-func move_card(card: Card, zone: Card.Zone, index: int):
+func move_card(card: Card, zone: Enum.Zone, index: int):
 	var old_card: Card = get_card(zone, index)
 	set_card(old_card, card.zone, card.zone_index)
 	set_card(card, zone, index)
 
-func get_card(zone: Card.Zone, index: int) -> Card:
+func get_card(zone: Enum.Zone, index: int) -> Card:
 	match zone:
-		Card.Zone.STANDBY:
+		Enum.Zone.STANDBY:
 			return standby[index]
-		Card.Zone.BATTLEFIELD:
+		Enum.Zone.BATTLEFIELD:
 			return battlefield[index]
-		Card.Zone.SITUATION:
+		Enum.Zone.SITUATION:
 			return situation[index]
 	return null
 
@@ -130,44 +130,44 @@ func set_player(player: Player):
 	self.player = player
 	refresh()
 
-func get_zone(type: Card.Zone, index: int):
+func get_zone(type: Enum.Zone, index: int):
 	if type in zones:
 		return zones[type][index]
 	return null
 
 func show_valid_targets(card: Card):
 	var filter = card.targets_to_select()[len(game_board.targeted_cards)]
-	for zone in [Card.Zone.STANDBY, Card.Zone.BATTLEFIELD, Card.Zone.SITUATION]:
+	for zone in [Enum.Zone.STANDBY, Enum.Zone.BATTLEFIELD, Enum.Zone.SITUATION]:
 		for index in range(4):
 			var border = get_zone(zone, index).find_child("SelectBorder")
 			var candidate = get_card(zone, index)
 			border.visible = candidate and filter.call(candidate)
 
 func show_valid_effect_targets(effect: CardEffect, filter: CardFilter):
-	for zone in [Card.Zone.STANDBY, Card.Zone.BATTLEFIELD, Card.Zone.SITUATION]:
+	for zone in [Enum.Zone.STANDBY, Enum.Zone.BATTLEFIELD, Enum.Zone.SITUATION]:
 		for index in range(4):
 			var border = get_zone(zone, index).find_child("SelectBorder")
 			var candidate = get_card(zone, index)
 			border.visible = candidate and filter.is_valid(effect.card.owner, candidate)
 
 func show_valid_set_targets(filter: Callable):
-	for zone in [Card.Zone.STANDBY, Card.Zone.BATTLEFIELD, Card.Zone.SITUATION]:
+	for zone in [Enum.Zone.STANDBY, Enum.Zone.BATTLEFIELD, Enum.Zone.SITUATION]:
 		for index in range(4):
 			var border = get_zone(zone, index).find_child("SelectBorder")
 			var candidate = get_card(zone, index)
 			border.visible = candidate and filter.call(candidate)
 
 func show_valid_zones(card: Card):
-	for zone in [Card.Zone.STANDBY, Card.Zone.BATTLEFIELD, Card.Zone.SITUATION]:
+	for zone in [Enum.Zone.STANDBY, Enum.Zone.BATTLEFIELD, Enum.Zone.SITUATION]:
 		for index in range(4):
 			var border = get_zone(zone, index).find_child("SelectBorder")
-			if game_board.turn_phase == GameBoard.Phase.SET:
+			if game_board.turn_phase == Enum.Phase.SET:
 				border.visible = card.can_play(game_board, zone, index)
-			elif game_board.turn_phase == GameBoard.Phase.MOVE:
+			elif game_board.turn_phase == Enum.Phase.MOVE:
 				border.visible = card.can_move_to(game_board, zone, index)
 
 func hide_valid_zones():
-	for zone in [Card.Zone.STANDBY, Card.Zone.BATTLEFIELD, Card.Zone.SITUATION]:
+	for zone in [Enum.Zone.STANDBY, Enum.Zone.BATTLEFIELD, Enum.Zone.SITUATION]:
 		for index in range(4):
 			var border = get_zone(zone, index).find_child("SelectBorder")
 			border.visible = false
@@ -191,7 +191,7 @@ func refresh():
 		var top_junk: Card = player.junk.top()
 		$Junk/Card.load_card(top_junk)
 		$Junk/Card.turn_up()
-	for zone_type in [Card.Zone.STANDBY, Card.Zone.BATTLEFIELD]:
+	for zone_type in [Enum.Zone.STANDBY, Enum.Zone.BATTLEFIELD]:
 		for i in range(4):
 			var card: Card = get_card(zone_type, i)
 			var status = get_zone(zone_type, i).find_child("CardStatus")

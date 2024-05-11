@@ -2,7 +2,7 @@ extends CardEffect
 
 class_name EffectSendToLostWhenDestroyed
 
-func redirect_when_destroyed(attacker: Card, source: Damage) -> Card.Zone:
+func redirect_when_destroyed(attacker: Card, source: Damage) -> Enum.Zone:
 	if source.destroy():
-		return Card.Zone.LOST
+		return Enum.Zone.LOST
 	return super(attacker, source)

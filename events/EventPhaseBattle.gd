@@ -36,10 +36,10 @@ func process(delta):
 							queue_event(event)
 		1:
 			var target_order = [
-				Card.Target.HAND,
-				Card.Target.BALLISTIC,
-				Card.Target.SPREAD,
-				Card.Target.HOMING
+				Enum.AttackType.HAND,
+				Enum.AttackType.BALLISTIC,
+				Enum.AttackType.SPREAD,
+				Enum.AttackType.HOMING
 			]
 			for target in target_order:
 				for card in player.field.get_battlefield_cards():
@@ -50,7 +50,7 @@ func process(delta):
 						to_attack.push_back(card)
 		2:
 			if last_attacker:
-				if last_attacker.zone == Card.Zone.BATTLEFIELD:
+				if last_attacker.zone == Enum.Zone.BATTLEFIELD:
 					for e in last_attacker.get_effects():
 						e.after_attack_turn()
 						for event in e.get_events():

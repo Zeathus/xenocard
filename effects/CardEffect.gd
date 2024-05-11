@@ -81,10 +81,10 @@ func on_destroy(destroyed: Card, source: Damage):
 func ignore_unique(card: Card) -> bool:
 	return false
 
-func is_valid_zone(new_zone: Card.Zone, index: int, ret: bool) -> bool:
+func is_valid_zone(new_zone: Enum.Zone, index: int, ret: bool) -> bool:
 	return ret
 
-func get_field_requirements(req: Array[Card.Attribute]) -> Array[Card.Attribute]:
+func get_field_requirements(req: Array[Enum.Attribute]) -> Array[Enum.Attribute]:
 	return req
 
 func get_cost(cost: int) -> int:
@@ -105,7 +105,7 @@ func take_damage(game_board: GameBoard, attacker: Card, damage: int, source: Dam
 func take_set_damage(game_board: GameBoard, attacker: Card, damage: int, source: Damage) -> int:
 	return damage
 
-func handle_occupied_zone(game_board: GameBoard, zone: Card.Zone, index: int) -> bool:
+func handle_occupied_zone(game_board: GameBoard, zone: Enum.Zone, index: int) -> bool:
 	return false
 
 func on_deck_attacked(player: Player):
@@ -132,7 +132,7 @@ func adjust():
 func adjust_enemy():
 	pass
 
-func can_move_to(new_zone: Card.Zone, index: int) -> bool:
+func can_move_to(new_zone: Enum.Zone, index: int) -> bool:
 	return true
 
 func can_move() -> bool:
@@ -177,7 +177,7 @@ func set_stackable(val: bool):
 func reveal_hand(player: Player):
 	return false
 
-func skips_phase(phase: GameBoard.Phase, player: Player):
+func skips_phase(phase: Enum.Phase, player: Player):
 	return false
 
 func evades_attack(attacker: Card):
@@ -197,8 +197,8 @@ func get_events() -> Array[Event]:
 func equips_to(holder: Card) -> bool:
 	return false
 
-func redirect_when_destroyed(attacker: Card, source: Damage) -> Card.Zone:
-	return Card.Zone.NONE
+func redirect_when_destroyed(attacker: Card, source: Damage) -> Enum.Zone:
+	return Enum.Zone.NONE
 
 func get_controlling_player() -> Player:
 	return card.owner

@@ -41,11 +41,11 @@ func _handle_request(action: Action, args: Array) -> bool:
 func do_set_battle_card() -> bool:
 	var best_card: Card = null
 	var best_score: int = 0
-	var best_zone: Card.Zone = Card.Zone.NONE
+	var best_zone: Enum.Zone = Enum.Zone.NONE
 	var best_index: int = -1
 	var best_targets: Array[Card] = []
 	for card in player.hand.cards:
-		if card.type != Card.Type.BATTLE or card.attribute == Card.Attribute.WEAPON:
+		if card.type != Enum.Type.BATTLE or card.attribute == Enum.Attribute.WEAPON:
 			continue
 		var score: int = 0
 		var to_select: Array[Callable] = []
@@ -66,7 +66,7 @@ func do_set_battle_card() -> bool:
 			score -= t.hp / 2
 			score -= get_atk_score(t) / 2
 		var free_zones: Array
-		for zone in [Card.Zone.STANDBY, Card.Zone.BATTLEFIELD]:
+		for zone in [Enum.Zone.STANDBY, Enum.Zone.BATTLEFIELD]:
 			for i in range(4):
 				if card.can_play(game_board, zone, i):
 					free_zones.push_back([zone, i])
@@ -100,7 +100,7 @@ func do_set_weapon_card() -> bool:
 	var best_card: Card = null
 	var best_score: int = 0
 	for card in player.hand.cards:
-		if card.type != Card.Type.BATTLE or card.attribute != Card.Attribute.WEAPON:
+		if card.type != Enum.Type.BATTLE or card.attribute != Enum.Attribute.WEAPON:
 			continue
 		if not card.selectable(game_board):
 			continue
@@ -132,15 +132,15 @@ func do_set_situation_card() -> bool:
 
 func do_move_card() -> bool:
 	var best_card: Card = null
-	var best_zone: Card.Zone = Card.Zone.NONE
+	var best_zone: Enum.Zone = Enum.Zone.NONE
 	var best_index: int = -1
 	var best_score: int = 0
 	for card in player.field.get_battler_cards():
 		if not card.selectable(game_board):
 			continue
 		var current_score = get_zone_score(card, card.zone, card.zone_index)
-		for zone in [Card.Zone.BATTLEFIELD, Card.Zone.STANDBY]:
-			if zone == Card.Zone.STANDBY and zone == card.zone:
+		for zone in [Enum.Zone.BATTLEFIELD, Enum.Zone.STANDBY]:
+			if zone == Enum.Zone.STANDBY and zone == card.zone:
 				continue
 			for index in range(4):
 				if zone == card.zone and index == card.zone_index:
@@ -166,25 +166,25 @@ func get_base_score(card: Card) -> int:
 func get_atk_score(card: Card) -> int:
 	var score: int = 0
 	match card.get_target():
-		Card.Target.HAND:
+		Enum.AttackType.HAND:
 			score += card.get_atk() / 2
-		Card.Target.BALLISTIC:
+		Enum.AttackType.BALLISTIC:
 			score += card.get_atk()
-		Card.Target.SPREAD:
+		Enum.AttackType.SPREAD:
 			score += card.get_atk() * 2
-		Card.Target.HOMING:
+		Enum.AttackType.HOMING:
 			score += card.get_atk()
 	if card.can_attack_on_enemy_phase():
 		score *= 2
 	score /= card.get_atk_time()
 	return score
 
-func get_zone_score(card: Card, zone: Card.Zone, index: int) -> int:
+func get_zone_score(card: Card, zone: Enum.Zone, index: int) -> int:
 	var score: int = 0
 	var enemy_field: GameField = player.get_enemy().field
-	if zone == Card.Zone.BATTLEFIELD:
+	if zone == Enum.Zone.BATTLEFIELD:
 		match card.get_target():
-			Card.Target.HAND:
+			Enum.AttackType.HAND:
 				if index <= 1:
 					# Hand cards should be in the front if not in standby
 					var target = enemy_field.get_card(zone, (index + 1) % 2)
@@ -202,7 +202,7 @@ func get_zone_score(card: Card, zone: Card.Zone, index: int) -> int:
 				else:
 					# No need to have a hand card in the back
 					score -= 2
-			Card.Target.BALLISTIC:
+			Enum.AttackType.BALLISTIC:
 				var target = enemy_field.get_card(zone, (index + 1) % 2)
 				if target == null:
 					target = enemy_field.get_card(zone, 2 + ((index + 1) % 2))
@@ -231,7 +231,7 @@ func get_zone_score(card: Card, zone: Card.Zone, index: int) -> int:
 					score /= 2
 				else:
 					score += 1
-			Card.Target.SPREAD:
+			Enum.AttackType.SPREAD:
 				for target in enemy_field.get_battlefield_cards():
 					var damage = card.get_atk_against(target)
 					if damage >= target.hp:
@@ -240,20 +240,20 @@ func get_zone_score(card: Card, zone: Card.Zone, index: int) -> int:
 						score += damage
 				if index <= 1:
 					score /= 3
-			Card.Target.HOMING:
+			Enum.AttackType.HOMING:
 				var damage = card.get_atk()
 				score += damage
 				if index <= 2:
 					score /= 2
 				if damage >= player.get_enemy().deck.size() - 1:
 					score += 100
-		if card.zone == Card.Zone.STANDBY and len(player.field.get_standby_cards()) >= 4:
+		if card.zone == Enum.Zone.STANDBY and len(player.field.get_standby_cards()) >= 4:
 			if player.field.get_card(zone, index) == null:
 				score += 10
 	else:
-		if card.attribute == Card.Attribute.HUMAN:
+		if card.attribute == Enum.Attribute.HUMAN:
 			score += 2
-		if card.zone == Card.Zone.BATTLEFIELD and len(player.field.get_standby_cards()) >= 3:
+		if card.zone == Enum.Zone.BATTLEFIELD and len(player.field.get_standby_cards()) >= 3:
 			if player.field.get_card(zone, index) == null:
 				score -= 10
 	return score

@@ -2,9 +2,9 @@ class_name CardFilter
 
 var names: Array[String] = []
 var characters: Array[String] = []
-var attributes: Array[Card.Attribute] = []
-var zones: Array[Card.Zone] = []
-var types: Array[Card.Type] = []
+var attributes: Array[Enum.Attribute] = []
+var zones: Array[Enum.Zone] = []
+var types: Array[Enum.Type] = []
 var owner: int = -1
 
 func _init(str: String):
@@ -20,7 +20,7 @@ func _init(str: String):
 			"attribute":
 				var attribute = Card.attribute_from_string(value.replace("!", ""))
 				if value.begins_with("!"):
-					for i in Card.Attribute.values():
+					for i in Enum.Attribute.values():
 						if i != attribute:
 							attributes.push_back(i)
 				else:
@@ -28,13 +28,13 @@ func _init(str: String):
 			"zone":
 				match value.to_lower():
 					"battlefield":
-						zones.push_back(Card.Zone.BATTLEFIELD)
+						zones.push_back(Enum.Zone.BATTLEFIELD)
 					"standby":
-						zones.push_back(Card.Zone.STANDBY)
+						zones.push_back(Enum.Zone.STANDBY)
 					"situation":
-						zones.push_back(Card.Zone.SITUATION)
+						zones.push_back(Enum.Zone.SITUATION)
 					"hand":
-						zones.push_back(Card.Zone.HAND)
+						zones.push_back(Enum.Zone.HAND)
 					_:
 						print("Invalid zone filter '%s'" % value)
 			"type":

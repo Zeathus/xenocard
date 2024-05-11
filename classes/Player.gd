@@ -75,8 +75,8 @@ func take_damage(game_board: GameBoard, attacker: Card, damage: int, source: Dam
 	self.field.refresh()
 	return damage
 
-func get_resources() -> Array[Card.Attribute]:
-	var resources: Array[Card.Attribute] = []
+func get_resources() -> Array[Enum.Attribute]:
+	var resources: Array[Enum.Attribute] = []
 	for card in self.field.get_all_cards():
 		for attr in card.get_resources():
 			resources.push_back(attr)

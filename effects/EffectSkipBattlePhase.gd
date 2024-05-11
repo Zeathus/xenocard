@@ -13,8 +13,8 @@ func post_init():
 	elif param == "both" or param == "all":
 		players = [true, true]
 
-func skips_phase(phase: GameBoard.Phase, player: Player):
-	if phase != GameBoard.Phase.BATTLE:
+func skips_phase(phase: Enum.Phase, player: Player):
+	if phase != Enum.Phase.BATTLE:
 		return false
 	if players[0] and player == card.owner:
 		return true

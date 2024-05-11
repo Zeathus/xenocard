@@ -102,7 +102,7 @@ func on_hand_card_selected(hand: GameHand, card: Card):
 		return
 	try_target(card)
 
-func on_zone_selected(field: GameField, zone_owner: Player, zone: Card.Zone, index: int):
+func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, index: int):
 	if pass_to_child("on_zone_selected", [field, zone_owner, zone, index]):
 		return
 	if effect.get_controlling_player().has_controller():
