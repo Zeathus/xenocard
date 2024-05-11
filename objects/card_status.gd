@@ -8,7 +8,7 @@ func show_card(card: Card):
 	$Panel/ValueHP.text = "%d/%d" % [card.hp, card.max_hp]
 	$Panel/ValueATK.text = "%d" % card.get_atk()
 	$Panel/AttackType.text = Card.get_target_name(card.get_target())
-	$Panel/Attribute.set_attribute(card.attribute)
+	$Panel/Attribute.set_attribute(Attribute)
 	refresh_bar($Panel/PanelHP, card.hp, card.max_hp)
 	refresh_bar($Panel/PanelCharge, card.atk_timer, card.get_atk_time())
 

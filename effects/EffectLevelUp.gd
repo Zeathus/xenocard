@@ -1,4 +1,4 @@
-extends CardEffect
+extends Effect
 
 class_name EffectLevelUp
 
@@ -8,7 +8,7 @@ func post_init():
 	filter = CardFilter.new(param)
 
 func has_levelable_card() -> bool:
-	if card.zone == Card.Zone.HAND:
+	if card.zone == Zone.HAND:
 		for c in card.owner.field.get_battlefield_cards():
 			if filter.is_valid(card.owner, c):
 				return true
@@ -25,12 +25,12 @@ func get_cost(cost: int) -> int:
 	return super.get_cost(cost)
 
 func ignore_unique(card: Card) -> bool:
-	if card.zone == Card.Zone.BATTLEFIELD and filter.is_valid(self.card.owner, card):
+	if card.zone == Zone.BATTLEFIELD and filter.is_valid(self.card.owner, card):
 		return true
 	return super.ignore_unique(card)
 
-func is_valid_zone(new_zone: Card.Zone, index: int, ret: bool) -> bool:
-	if card.zone == Card.Zone.HAND:
+func is_valid_zone(new_zone: int, index: int, ret: bool) -> bool:
+	if card.zone == Zone.HAND:
 		for c in card.owner.field.get_battlefield_cards():
 			if filter.is_valid(card.owner, c):
 				return c.zone == new_zone and c.zone_index == index
@@ -41,7 +41,7 @@ func can_replace_card(card: Card) -> bool:
 		return true
 	return false
 
-func handle_occupied_zone(game_board: GameBoard, zone: Card.Zone, index: int) -> bool:
+func handle_occupied_zone(game_board: GameBoard, zone: int, index: int) -> bool:
 	var occupying: Card = card.owner.field.get_card(zone, index)
 	card.hp = card.max_hp - (occupying.max_hp - occupying.hp)
 	return false

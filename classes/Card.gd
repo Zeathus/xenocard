@@ -1,11 +1,5 @@
 class_name Card
 
-enum Type {ANY, BATTLE, EVENT, SITUATION}
-enum Attribute {ANY, HUMAN, REALIAN, MACHINE, GNOSIS, MONSTER, BLADE, WEAPON, NOPON, UNKNOWN}
-enum Target {ANY, HAND, BALLISTIC, SPREAD, HOMING, NONE}
-enum Rarity {COMMON, UNCOMMON, RARE, PROMO}
-enum Zone {NONE, DECK, LOST, JUNK, HAND, STANDBY, SITUATION, BATTLEFIELD}
-
 static var scene = preload("res://objects/card.tscn")
 
 static var attribute_icons = {
@@ -41,31 +35,30 @@ var id: String
 var identifier: String
 var name: String
 var character: String
-var type: Type
-var rarity: Rarity
-var attribute: Attribute
+var type: int
+var rarity: int
+var attribute: int
 var hp: int
 var max_hp: int
 var atk: int
 var atk_timer: int
-var target: Target
+var target: int
 var cost: int
-var field: Array[Attribute]
+var field: Array[int]
 var text: String
 var instance: Node2D
 var owner: Player
-var zone: Zone
+var zone: int
 var zone_index: int
 var e_mark: bool
 var downed: bool
 var downed_turn: int
 var equipped_weapon: Card
 var equipped_by: Card
-var effect_names: Array[String]
-var event_effect_names: Array[String]
-var effects: Array[CardEffect]
-var event_effects: Array[CardEffect]
-var applied_effects: Array[CardEffect]
+var effect_data: Dictionary
+var effects: Dictionary
+var event_effects: Array[Effect]
+var applied_effects: Array[Effect]
 var turn_count: int
 var modify_for_set: Array[Callable] = []
 
@@ -90,102 +83,31 @@ func reset():
 	init_effects(owner.game_board)
 	applied_effects.clear()
 
-func load_json(id: String):
-	var card_set: String = id.substr(0, id.find("/"))
-	self.id = id.substr(len(card_set) + 1)
-	var file_name: String = "res://%s/%s/%s.json" % [path, card_set, self.id]
-	if FileAccess.file_exists(file_name):
-		var file = FileAccess.open(file_name, FileAccess.READ)
-		var json = JSON.new()
-		var error = json.parse(file.get_as_text())
-		if error == OK:
-			load_data(json.data)
-		else:
-			push_error("Failed to to parse card file '%s'" % file_name)
-	else:
-		push_error("Failed to find card file '%s'" % file_name)
-
-func load_data(json):
-	self.game = json["game"]
-	self.set_name = json["set"]
-	self.set_id = json["id"]
-	self.name = json["name"]
-	if "character" in json:
-		self.character = json["character"]
-	else:
-		self.character = ""
-	if "identifier" in json:
-		self.identifier = json["identifier"]
-	else:
-		self.identifier = "%s/%d" % [set_name, set_id]
-	self.type = type_from_string(json["type"])
-	match json["rarity"]:
-		"common":
-			self.rarity = Rarity.COMMON
-		"uncommon":
-			self.rarity = Rarity.UNCOMMON
-		"rare":
-			self.rarity = Rarity.RARE
-		"promo":
-			self.rarity = Rarity.PROMO
-	self.cost = 0
-	self.field = []
-	if "requirement" in json:
-		if "cost" in json["requirement"]:
-			self.cost = json["requirement"]["cost"]
-		if "field" in json["requirement"]:
-			for i in json["requirement"]["field"]:
-				self.field.push_back(attribute_from_string(i))
-	if "text" in json:
-		self.text = json["text"]
-	else:
-		self.text = ""
-	
-	if self.type == Type.BATTLE:
-		self.max_hp = json["stats"]["hp"]
-		self.hp = self.max_hp
-		self.atk = json["stats"]["atk"]
-		self.attribute = attribute_from_string(json["stats"]["attribute"])
-		self.target = attack_type_from_string(json["stats"]["target"])
-	
-	self.effect_names = []
-	if "effects" in json:
-		for i in json["effects"]:
-			self.effect_names.push_back(i)
-
-	self.event_effect_names = []
-	if "event_effects" in json:
-		for i in json["event_effects"]:
-			self.event_effect_names.push_back(i)
-
 func init_effects(game_board: GameBoard):
 	effects.clear()
-	for i in effect_names:
-		var param: String = ""
-		if "(" in i and ")" in i and i.find("(") < i.rfind(")"):
-			param = i.substr(i.find("(") + 1, i.rfind(")") - i.find("(") - 1)
-			i = i.substr(0, i.find("("))
-		effects.push_back(CardEffect.parse(i).new(game_board, self, param))
-
-	event_effects.clear()
-	for i in event_effect_names:
-		var param: String = ""
-		if "(" in i and ")" in i and i.find("(") < i.rfind(")"):
-			param = i.substr(i.find("(") + 1, i.rfind(")") - i.find("(") - 1)
-			i = i.substr(0, i.find("("))
-		event_effects.push_back(CardEffect.parse(i).new(game_board, self, param))
+	for trigger in effect_data:
+		var trigger_effects: Array[CardEffect] = []
+		for effect in effect_data[trigger]:
+			trigger_effects.push_back(CardEffect.new(game_board, self, effect))
+		effects[trigger] = trigger_effects
+		#var param: String = ""
+		#if "(" in i and ")" in i and i.find("(") < i.rfind(")"):
+			#param = i.substr(i.find("(") + 1, i.rfind(")") - i.find("(") - 1)
+			#i = i.substr(0, i.find("("))
+		#effects.push_back(Effect.parse(i).new(game_board, self, param))
 
 func validate_effects():
-	for i in effect_names:
-		var param: String = ""
-		if "(" in i and ")" in i and i.find("(") < i.rfind(")"):
-			param = i.substr(i.find("(") + 1, i.rfind(")") - i.find("(") - 1)
-			i = i.substr(0, i.find("("))
-		var effect = CardEffect.parse(i)
-		if effect == CardEffect:
-			print("Previous error was for the card '%s'" % name)
-		else:
-			effect.new(null, self, param)
+	pass
+	#for i in effect_names:
+		#var param: String = ""
+		#if "(" in i and ")" in i and i.find("(") < i.rfind(")"):
+			#param = i.substr(i.find("(") + 1, i.rfind(")") - i.find("(") - 1)
+			#i = i.substr(0, i.find("("))
+		#var effect = Effect.parse(i)
+		#if effect == Effect:
+			#print("Previous error was for the card '%s'" % name)
+		#else:
+			#effect.new(null, self, param)
 
 func is_card() -> bool:
 	return true
@@ -202,59 +124,59 @@ func is_equippable() -> bool:
 func has_stats() -> bool:
 	return self.type == Type.BATTLE
 
-func get_resources() -> Array[Attribute]:
-	var attr: Array[Attribute] = []
+func get_resources() -> Array[int]:
+	var attr: Array[int] = []
 	if self.e_mark:
 		return attr
 	if self.type == Type.BATTLE:
 		attr.push_back(self.attribute)
 	return attr
 
-func get_effects() -> Array[CardEffect]:
+func get_effects(trigger: Trigger = CardEffect.Trigger.PASSIVE) -> Array[CardEffect]:
 	var ret: Array[CardEffect] = []
-	var stackable: bool = true
-	if not can_effects_stack():
-		for card in owner.game_board.get_all_field_cards():
-			if card == self:
-				break
-			if card.equals(self) and not card.e_mark and not card.downed:
-				stackable = false
-				break
-	for e in effects:
-		e.set_stackable(stackable)
+	#var stackable: bool = true
+	#if not can_effects_stack():
+		#for card in owner.game_board.get_all_field_cards():
+			#if card == self:
+				#break
+			#if card.equals(self) and not card.e_mark and not card.downed:
+				#stackable = false
+				#break
+	for e in effects[trigger]:
+		#e.set_stackable(stackable)
 		if e.is_stackable() and e.is_active():
 			ret.push_back(e)
-	for e in applied_effects:
-		if e.is_active():
-			ret.push_back(e)
+	#for e in applied_effects:
+		#if e.is_active():
+			#ret.push_back(e)
 	if equipped_weapon:
-		ret += equipped_weapon.get_effects()
-	var global_effects: Array[CardEffect] = []
-	for c in owner.field.get_all_cards() + owner.get_enemy().field.get_all_cards():
-		for e in c.get_global_effects():
-			if not e.applies_to(self):
-				continue
-			var global_effect: CardEffect = e.apply_effect(self)
-			if not global_effect.is_active():
-				continue
-			global_effect.set_stackable(c.can_effects_stack())
-			var keep: bool = true
-			if not global_effect.is_stackable():
-				for ge in global_effects:
-					if ge.is_stackable():
-						continue
-					if not ge.host.equals(global_effect.host):
-						continue
-					if ge.get_script() != global_effect.get_script():
-						continue
-					keep = false
-					break
-			if keep:
-				global_effects.push_back(global_effect)
-	return ret + global_effects
+		ret += equipped_weapon.get_effects(trigger)
+	#var global_effects: Array[Effect] = []
+	#for c in owner.field.get_all_cards() + owner.get_enemy().field.get_all_cards():
+		#for e in c.get_global_effects():
+			#if not e.applies_to(self):
+				#continue
+			#var global_effect: Effect = e.apply_effect(self)
+			#if not global_effect.is_active():
+				#continue
+			#global_effect.set_stackable(c.can_effects_stack())
+			#var keep: bool = true
+			#if not global_effect.is_stackable():
+				#for ge in global_effects:
+					#if ge.is_stackable():
+						#continue
+					#if not ge.host.equals(global_effect.host):
+						#continue
+					#if ge.get_script() != global_effect.get_script():
+						#continue
+					#keep = false
+					#break
+			#if keep:
+				#global_effects.push_back(global_effect)
+	return ret #+ global_effects
 
-func get_global_effects() -> Array[CardEffect]:
-	var ret: Array[CardEffect] = []
+func get_global_effects() -> Array[Effect]:
+	var ret: Array[Effect] = []
 	for e in effects:
 		if e.is_global() and e.is_active():
 			ret.push_back(e)
@@ -281,10 +203,7 @@ func equals(other: Card) -> bool:
 	return identifier == other.identifier
 
 func ignore_unique(card: Card) -> bool:
-	for e in get_effects():
-		if e.ignore_unique(card):
-			return true
-	return false
+	return get_effects().any(func(e): e.ignore_unique(card))
 
 func has_card_conflict(game_board: GameBoard) -> bool:
 	for card in owner.game_board.get_all_field_cards():
@@ -296,13 +215,12 @@ func conflicts_with_card(card: Card) -> bool:
 	if character != "" and character == card.character and owner == card.owner:
 		if not ignore_unique(card):
 			return true
-	for e in get_effects():
-		if e.conflicts_with_card(card):
-			return true
+	if get_effects().any(func(e): e.conflicts_with_card(card)):
+		return true
 	return false
 
-func get_field_requirements() -> Array[Attribute]:
-	var ret: Array[Attribute] = self.field
+func get_field_requirements() -> Array[int]:
+	var ret: Array[int] = self.field
 	for e in get_effects():
 		ret = e.get_field_requirements(ret)
 	return ret
@@ -400,7 +318,7 @@ func can_set_to_battlefield() -> bool:
 			return true
 	return false
 
-func is_valid_zone(new_zone: Zone, index: int) -> bool:
+func is_valid_zone(new_zone: int, index: int) -> bool:
 	var ret: bool = true
 	if self.zone == Zone.HAND:
 		if type == Type.BATTLE and attribute == Attribute.WEAPON:
@@ -436,7 +354,7 @@ func can_replace_card(card: Card) -> bool:
 			return true
 	return false
 
-func can_play(game_board: GameBoard, new_zone: Zone, index: int) -> bool:
+func can_play(game_board: GameBoard, new_zone: int, index: int) -> bool:
 	if not self.is_valid_zone(new_zone, index):
 		return false
 	var player: Player = owner
@@ -481,12 +399,12 @@ func unequip():
 	equipped_weapon.equipped_by = null
 	equipped_weapon = null
 
-func can_move_to(game_board: GameBoard, new_zone: Zone, index: int) -> bool:
+func can_move_to(game_board: GameBoard, new_zone: int, index: int) -> bool:
 	if not self.is_valid_zone(new_zone, index):
 		return false
 	return true
 
-func move(game_board: GameBoard, new_zone: Zone, index: int):
+func move(game_board: GameBoard, new_zone: int, index: int):
 	var player: Player = owner
 	player.field.move_card(self, new_zone, index)
 
@@ -530,21 +448,21 @@ func get_cost() -> int:
 		ret = e.get_cost(ret)
 	return ret
 
-func get_target() -> Target:
-	if equipped_weapon and equipped_weapon.target != Target.NONE:
+func get_target() -> AttackType:
+	if equipped_weapon and equipped_weapon.target != AttackType.NONE:
 		return equipped_weapon.target
 	return self.target
 
 func get_attack_targets(game_board: GameBoard) -> Array:
 	var enemy: Player = owner.get_enemy()
 	match get_target():
-		Target.HAND:
+		AttackType.HAND:
 			if self.zone_index >= 2:
 				return []
 			var opponent = enemy.field.get_card(Zone.BATTLEFIELD, (self.zone_index + 1) % 2)
 			if opponent != null and not opponent.evades_attack(self):
 				return [opponent]
-		Target.BALLISTIC:
+		AttackType.BALLISTIC:
 			var opponent = enemy.field.get_card(Zone.BATTLEFIELD, (self.zone_index + 1) % 2)
 			if opponent != null and not opponent.evades_attack(self):
 				return [opponent]
@@ -552,20 +470,20 @@ func get_attack_targets(game_board: GameBoard) -> Array:
 			if opponent != null and not opponent.evades_attack(self):
 				return [opponent]
 			return [enemy]
-		Target.SPREAD:
+		AttackType.SPREAD:
 			var targets = []
 			for opponent in enemy.field.get_battlefield_cards():
 				if not opponent.evades_attack(self):
 					targets.push_back(opponent)
 			return targets
-		Target.HOMING:
+		AttackType.HOMING:
 			return [enemy]
 	return []
 
 func penetrates():
-	if equipped_weapon and equipped_weapon.target != Target.NONE:
+	if equipped_weapon and equipped_weapon.target != AttackType.NONE:
 		return equipped_weapon.penetrates()
-	if self.target != Target.BALLISTIC:
+	if self.target != AttackType.BALLISTIC:
 		return false
 	for e in get_effects():
 		if e.penetrates():
@@ -662,90 +580,3 @@ func free_instance():
 	if self.instance:
 		self.instance.queue_free()
 		self.instance = null
-
-static func type_from_string(str: String) -> Type:
-	match str.to_lower():
-		"battle":
-			return Type.BATTLE
-		"event":
-			return Type.EVENT
-		"situation":
-			return Type.SITUATION
-	return Type.ANY
-
-static func attribute_from_string(str: String) -> Attribute:
-	match str.to_lower():
-		"any":
-			return Attribute.ANY
-		"human":
-			return Attribute.HUMAN
-		"realian":
-			return Attribute.REALIAN
-		"machine":
-			return Attribute.MACHINE
-		"gnosis":
-			return Attribute.GNOSIS
-		"weapon":
-			return Attribute.WEAPON
-		"monster":
-			return Attribute.MONSTER
-		"blade":
-			return Attribute.BLADE
-		"nopon":
-			return Attribute.NOPON
-		"unknown":
-			return Attribute.UNKNOWN
-	return Attribute.ANY
-
-static func attack_type_from_string(str: String) -> Target:
-	match str.to_lower():
-		"hand":
-			return Target.HAND
-		"ballistic":
-			return Target.BALLISTIC
-		"spread":
-			return Target.SPREAD
-		"homing":
-			return Target.HOMING
-		"none":
-			return Target.NONE
-	return Target.ANY
-
-static func get_type_name(type: Type) -> String:
-	match type:
-		Type.BATTLE:
-			return "Battle"
-		Type.EVENT:
-			return "Event"
-		Type.SITUATION:
-			return "Situation"
-	return "N/A"
-
-static func get_target_name(target: Target) -> String:
-	match target:
-		Target.HAND:
-			return "Hand"
-		Target.BALLISTIC:
-			return "Ballistic"
-		Target.SPREAD:
-			return "Spread"
-		Target.HOMING:
-			return "Homing"
-		Target.NONE:
-			return ""
-	return "N/A"
-
-static func get_attribute_icon(attr: Attribute):
-	if attr in attribute_icons:
-		return attribute_icons[attr]
-	return null
-
-static func get_type_background(type: Type):
-	if type in type_backgrounds:
-		return type_backgrounds[type]
-	return null
-
-static func get_rarity_icon(rare: Rarity):
-	if rare in rarity_icons:
-		return rarity_icons[rare]
-	return null

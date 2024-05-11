@@ -16,8 +16,10 @@
 		"field": ["human", "human", "any"]
 	},
 	"text": "Attacks every other turn.\nThis card's attacks <penetrate>.",
-	"effects": [
-		"AttackTime(2)",
-		"Penetrate"
-	]
+	"effects": {
+		"passive": [
+			"AttackTime(2)",
+			"Penetrate"
+		]
+	}
 }

@@ -1,4 +1,4 @@
-extends CardEffect
+extends Effect
 
 class_name EffectRegenOnBattlefield
 
@@ -11,5 +11,5 @@ func adjust():
 	push_event()
 
 func effect():
-	if card.zone == Card.Zone.BATTLEFIELD:
+	if card.zone == Zone.BATTLEFIELD:
 		card.heal(amount)

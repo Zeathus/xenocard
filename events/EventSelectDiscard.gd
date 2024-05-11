@@ -47,7 +47,7 @@ func on_hand_card_selected(hand: GameHand, card: Card):
 		queue_event(EventDestroy.new(game_board, card, card, Damage.new(Damage.DISCARD)))
 		in_sub_event = true
 
-func on_zone_selected(field: GameField, zone_owner: Player, zone: Card.Zone, index: int):
+func on_zone_selected(field: GameField, zone_owner: Player, zone: int, index: int):
 	if pass_to_child("on_zone_selected", [field, zone_owner, zone, index]):
 		return
 	if player.has_controller():

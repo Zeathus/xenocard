@@ -1,4 +1,4 @@
-extends CardEffect
+extends Effect
 
 class_name EffectGlobalModifyATKOnBattlefield
 
@@ -12,7 +12,7 @@ func post_init():
 		filter = CardFilter.new(arg[1])
 
 func is_active() -> bool:
-	if card.zone != Card.Zone.BATTLEFIELD:
+	if card.zone != Zone.BATTLEFIELD:
 		return false
 	return super.is_active()
 
@@ -24,5 +24,5 @@ func applies_to(target: Card) -> bool:
 		return filter.is_valid(card.owner, target)
 	return super.applies_to(target)
 
-func apply_effect(target: Card) -> CardEffect:
+func apply_effect(target: Card) -> Effect:
 	return EffectModifyATK.new(game_board, target, param).set_host(card)

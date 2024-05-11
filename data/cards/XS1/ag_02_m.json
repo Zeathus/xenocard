@@ -16,8 +16,12 @@
 		"field": ["human", "any"]
 	},
 	"text": "<Unique>.\nCards attacked by this card are <downed>.",
-	"effects": [
-		"Unique",
-		"DownAttackTarget"
-	]
+	"effects": {
+		"passive": [
+			"Unique"
+		],
+		"attack_hit": [
+			"Down(target)"
+		]
+	}
 }

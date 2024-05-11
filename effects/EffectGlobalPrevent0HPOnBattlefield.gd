@@ -1,4 +1,4 @@
-extends CardEffect
+extends Effect
 
 class_name EffectGlobalPrevent0HPOnBattlefield
 
@@ -9,7 +9,7 @@ func post_init():
 		filter = CardFilter.new(param)
 
 func is_active() -> bool:
-	if card.zone != Card.Zone.BATTLEFIELD:
+	if card.zone != Zone.BATTLEFIELD:
 		return false
 	return super.is_active()
 
@@ -21,5 +21,5 @@ func applies_to(target: Card) -> bool:
 		return filter.is_valid(card.owner, target)
 	return super.applies_to(target)
 
-func apply_effect(target: Card) -> CardEffect:
+func apply_effect(target: Card) -> Effect:
 	return EffectPrevent0HP.new(game_board, target, param).set_host(card)

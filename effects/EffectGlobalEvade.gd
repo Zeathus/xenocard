@@ -1,4 +1,4 @@
-extends CardEffect
+extends Effect
 
 class_name EffectGlobalEvade
 
@@ -19,5 +19,5 @@ func applies_to(target: Card) -> bool:
 		return filter.is_valid(card.owner, target)
 	return super.applies_to(target)
 
-func apply_effect(target: Card) -> CardEffect:
+func apply_effect(target: Card) -> Effect:
 	return EffectEvade.new(game_board, target).set_host(card)

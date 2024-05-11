@@ -1,8 +1,8 @@
-extends CardEffect
+extends Effect
 
 class_name EffectPlayToZoneWith1HP
 
-var zone: Card.Zone
+var zone: int
 var zone_index: int
 
 func post_init():

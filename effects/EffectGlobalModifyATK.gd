@@ -1,4 +1,4 @@
-extends CardEffect
+extends Effect
 
 class_name EffectGlobalModifyATK
 
@@ -22,5 +22,5 @@ func applies_to(target: Card) -> bool:
 		return filter.is_valid(card.owner, target)
 	return super.applies_to(target)
 
-func apply_effect(target: Card) -> CardEffect:
+func apply_effect(target: Card) -> Effect:
 	return EffectModifyATK.new(game_board, target, "%d" % amount).set_host(card)

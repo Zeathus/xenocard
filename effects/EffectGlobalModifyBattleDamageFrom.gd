@@ -1,4 +1,4 @@
-extends CardEffect
+extends Effect
 
 class_name EffectGlobalModifyBattleDamage
 
@@ -25,7 +25,7 @@ func applies_to(target: Card) -> bool:
 		return target_filter.is_valid(card.owner, target)
 	return super.applies_to(target)
 
-func apply_effect(target: Card) -> CardEffect:
+func apply_effect(target: Card) -> Effect:
 	var params = "%d" % amount
 	if attacker_filter != "":
 		params += ",%s" % attacker_filter

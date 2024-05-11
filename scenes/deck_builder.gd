@@ -116,24 +116,24 @@ func refresh_preset_list():
 
 func filter_card(card: Card) -> bool:
 	var filter_text: String = $Filters/Search.text.to_lower()
-	var filter_type: Card.Type = Card.type_from_string(
+	var filter_type: int = CardData.type_from_string(
 		$Filters/Type.get_item_text($Filters/Type.get_selected_id()))
 	var filter_cost: String = $Filters/Cost.text
-	var filter_attribute: Card.Attribute = Card.attribute_from_string(
+	var filter_attribute: int = CardData.attribute_from_string(
 		$Filters/Attribute.get_item_text($Filters/Attribute.get_selected_id()))
 	var filter_hp: String = $Filters/HP.text
 	var filter_atk: String = $Filters/ATK.text
-	var filter_atk_type: Card.Target = Card.attack_type_from_string(
+	var filter_atk_type: int = CardData.attack_type_from_string(
 		$Filters/AttackType.get_item_text($Filters/AttackType.get_selected_id()))
 	if filter_text != "":
 		if filter_text not in card.name.replace("\n", " ").to_lower() and filter_text not in card.text.to_lower():
 			return false
-	if filter_type != Card.Type.ANY and card.type != filter_type:
+	if filter_type != Type.ANY and card.type != filter_type:
 		return false
-	if filter_type == Card.Type.BATTLE:
-		if filter_attribute != Card.Attribute.ANY and card.attribute != filter_attribute:
+	if filter_type == Type.BATTLE:
+		if filter_attribute != Attribute.ANY and card.attribute != filter_attribute:
 			return false
-		if filter_atk_type != Card.Target.ANY and card.target != filter_atk_type:
+		if filter_atk_type != AttackType.ANY and card.target != filter_atk_type:
 			return false
 		if not filter_integer(card.max_hp, filter_hp):
 			return false

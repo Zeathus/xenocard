@@ -219,7 +219,7 @@ func get_all_battlefield_cards() -> Array[Card]:
 	result += get_turn_enemy().field.get_battlefield_cards()
 	return result
 
-func add_phase_effect(phase: Phase, effect: CardEffect):
+func add_phase_effect(phase: Phase, effect: Effect):
 	phase_effects[phase].push_back(effect)
 
 func _on_card_show_details(card):
@@ -232,8 +232,8 @@ func _on_card_hovered(card):
 	$QuickDetails/Right.visible = false
 	var display = $QuickDetails/Left
 	var display_card = $QuickDetails/Left/Card
-	if (card.owner == players[0] and card.zone == Card.Zone.STANDBY) or \
-		(card.owner == players[1] and card.zone == Card.Zone.SITUATION):
+	if (card.owner == players[0] and card.zone == Zone.STANDBY) or \
+		(card.owner == players[1] and card.zone == Zone.SITUATION):
 		display = $QuickDetails/Right
 		display_card = $QuickDetails/Right/Card
 	display.visible = true
@@ -247,7 +247,7 @@ func on_hand_card_selected(hand: GameHand, card: Card):
 	if event_processing():
 		get_event().on_hand_card_selected(hand, card)
 
-func _on_zone_selected(field: GameField, zone_owner: Player, zone: Card.Zone, index: int):
+func _on_zone_selected(field: GameField, zone_owner: Player, zone: int, index: int):
 	if not is_free():
 		return
 	if event_processing():

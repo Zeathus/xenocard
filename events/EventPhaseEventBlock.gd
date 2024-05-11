@@ -54,10 +54,10 @@ func hide_selectable():
 		card.set_selectable(false)
 
 func activate_card(card: Card):
-	if card.zone == Card.Zone.HAND:
+	if card.zone == Zone.HAND:
 		on_hand_card_selected(card.owner.hand, card)
 	else:
-		on_zone_selected(card.owner.field, card.owner, card.zone, card.zone_index)
+		on_zone_selected(card.owner.field, card.owner, Zone, card.zone_index)
 
 func on_hand_card_selected(hand: GameHand, card: Card):
 	if pass_to_child("on_hand_card_selected", [hand, card]):
@@ -69,7 +69,7 @@ func on_hand_card_selected(hand: GameHand, card: Card):
 		queue_event(EventSet.new(game_board, player, card))
 		in_sub_event = true
 
-func on_zone_selected(field: GameField, zone_owner: Player, zone: Card.Zone, index: int):
+func on_zone_selected(field: GameField, zone_owner: Player, zone: int, index: int):
 	if pass_to_child("on_zone_selected", [field, zone_owner, zone, index]):
 		return
 	if player.has_controller():

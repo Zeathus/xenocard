@@ -1,4 +1,4 @@
-extends CardEffect
+extends Effect
 
 class_name EffectModifyATK
 

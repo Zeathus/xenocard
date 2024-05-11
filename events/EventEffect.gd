@@ -2,7 +2,7 @@ extends Event
 
 class_name EventEffect
 
-var effect: CardEffect
+var effect: Effect
 var targets_required: Array[CardFilter]
 var targets: Array[Card] = []
 var activated: bool = false
@@ -10,7 +10,7 @@ var optional: bool
 var cancelled: bool = false
 var animate: bool
 
-func _init(_game_board: GameBoard, _effect: CardEffect, _optional=false):
+func _init(_game_board: GameBoard, _effect: Effect, _optional=false):
 	super(_game_board)
 	effect = _effect
 	optional = _optional
@@ -102,7 +102,7 @@ func on_hand_card_selected(hand: GameHand, card: Card):
 		return
 	try_target(card)
 
-func on_zone_selected(field: GameField, zone_owner: Player, zone: Card.Zone, index: int):
+func on_zone_selected(field: GameField, zone_owner: Player, zone: int, index: int):
 	if pass_to_child("on_zone_selected", [field, zone_owner, zone, index]):
 		return
 	if effect.get_controlling_player().has_controller():

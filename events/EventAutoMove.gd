@@ -4,11 +4,11 @@ class_name EventAutoMove
 
 var player: Player
 var to_move: Card
-var zone: Card.Zone
+var zone: int
 var zone_index: int
 var awaiting_anims: bool = false
 
-func _init(_game_board: GameBoard, _player: Player, _to_move: Card, _zone: Card.Zone, _zone_index: int):
+func _init(_game_board: GameBoard, _player: Player, _to_move: Card, _zone: int, _zone_index: int):
 	super(_game_board)
 	player = _player
 	to_move = _to_move
@@ -33,7 +33,7 @@ func process(delta):
 	else:
 		do_move(player.field, player, zone, zone_index)
 
-func do_move(field: GameField, zone_owner: Player, zone: Card.Zone, index: int):
+func do_move(field: GameField, zone_owner: Player, zone: int, index: int):
 	if has_children():
 		return
 	if zone_owner != player:

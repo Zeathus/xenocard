@@ -16,7 +16,9 @@
 		"field": ["human"]
 	},
 	"text": "Cards attacked by this card are <downed>.",
-	"effects": [
-		"DownAttackTarget"
-	]
+	"effects": {
+		"attack_hit": [
+			"Down(target)"
+		]
+	}
 }

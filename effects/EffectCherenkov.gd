@@ -1,4 +1,4 @@
-extends CardEffect
+extends Effect
 
 class_name EffectCherenkov
 
@@ -14,11 +14,11 @@ func on_destroyed(attacker: Card, source: Damage):
 	top_card = card.owner.junk.top()
 	if top_card == null or top_card.name == "Cherenkov":
 		return
-	if top_card.attribute not in [Card.Attribute.HUMAN, Card.Attribute.REALIAN, Card.Attribute.MACHINE]:
+	if top_Attribute not in [Attribute.HUMAN, Attribute.REALIAN, Attribute.MACHINE]:
 		return
 	push_event()
 
 func effect():
 	game_board.add_phase_effect(GameBoard.Phase.ADJUST,
-		EffectPlayToZoneWith1HP.new(game_board, top_card, "%d,%d" % [card.zone, card.zone_index])
+		EffectPlayToZoneWith1HP.new(game_board, top_card, "%d,%d" % [Zone, card.zone_index])
 	)

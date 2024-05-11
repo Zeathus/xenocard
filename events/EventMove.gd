@@ -29,7 +29,7 @@ func process(delta):
 	if awaiting_anims:
 		finish()
 
-func on_zone_selected(field: GameField, zone_owner: Player, zone: Card.Zone, index: int):
+func on_zone_selected(field: GameField, zone_owner: Player, zone: int, index: int):
 	if has_children():
 		return
 	if zone_owner != player:

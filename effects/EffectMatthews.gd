@@ -1,4 +1,4 @@
-extends CardEffect
+extends Effect
 
 class_name EffectMatthews
 
@@ -18,7 +18,7 @@ func turn_start(player: Player):
 	push_event()
 
 func effect():
-	var cost_to_pay = 2 if card.zone == Card.Zone.BATTLEFIELD else 1
+	var cost_to_pay = 2 if card.zone == Zone.BATTLEFIELD else 1
 	var cost_paid = effect_player.pay_cost(cost_to_pay)
 	for i in range(cost_paid):
 		events.push_back(EventPayCost.new(card.owner.game_board, effect_player))

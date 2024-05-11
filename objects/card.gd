@@ -41,9 +41,9 @@ func _process(delta):
 	if is_hovering:
 		z_index += 1
 	if card:
-		if card.zone == Card.Zone.HAND:
+		if card.zone == Zone.HAND:
 			z_index += 20
-		elif card.type == Card.Type.BATTLE and card.attribute == Card.Attribute.WEAPON and card.equipped_by:
+		elif card.type == Type.BATTLE a card.attribute e == Attribute.WEAPON and card.equipped_by:
 			z_index += 2
 	if in_motion:
 		z_index += 30
@@ -74,7 +74,7 @@ func set_downed(val: bool):
 	$Overlay/Downed.visible = val
 
 func refresh():
-	$Content/Background.texture = Card.get_type_background(card.type)
+	$Content/Background.texture = Card.get_type_background(Type)
 	$Content/Name.text = ""
 	$Content/SmallName.text = ""
 	$Content/TwoLineName.text = ""
@@ -100,7 +100,7 @@ func refresh():
 	$Content/Text.pop_all()
 	$Content/Cost/Value.text = "%d" % card.cost
 	$Content/SerialNumber.text = "%s #%03d" % [card.set_name, card.set_id]
-	$Content/Rarity.texture = Card.get_rarity_icon(card.rarity)
+	$Content/Rarity.texture = Card.get_rarity_icon(Rarity)
 	var field_icons: Array[Node2D] = [
 		$Content/Field/Value1, $Content/Field/Value2,
 		$Content/Field/Value3, $Content/Field/Value4
@@ -112,12 +112,12 @@ func refresh():
 		else:
 			field_icons[i].visible = false
 	if card.has_stats():
-		$Content/Attribute.set_attribute(card.attribute)
+		$Content/Attribute.set_attribute(Attribute)
 		$Content/Stats/HP/Value.text = "%d" % card.max_hp
 		$Content/Stats/Attack/Value.text = "%d" % card.atk
 		$Content/Stats/AttackType.text = Card.get_target_name(card.target)
 	else:
-		$Content/TypeOther.text = Card.get_type_name(card.type)
+		$Content/TypeOther.text = Card.get_type_name(Type)
 	var image_file: String = "res://sprites/card_images/%s/%s.png" % [card.set_name, card.id]
 	if ResourceLoader.exists(image_file):
 		$Content/Picture.texture = load(image_file)

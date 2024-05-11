@@ -1,6 +1,6 @@
-extends CardEffect
+extends Effect
 
 class_name EffectPreventHomingAttacks
 
 func attack_stopped() -> bool:
-	return card.get_target() == Card.Target.HOMING
+	return card.get_target() == AttackType.HOMING

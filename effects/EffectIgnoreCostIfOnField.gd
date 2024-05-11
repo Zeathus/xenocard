@@ -1,4 +1,4 @@
-extends CardEffect
+extends Effect
 
 class_name EffectIgnoreCostIfOnField
 
@@ -8,7 +8,7 @@ func post_init():
 	filter = CardFilter.new(param)
 
 func is_active() -> bool:
-	return card.zone == Card.Zone.HAND
+	return card.zone == Zone.HAND
 
 func get_cost(cost: int) -> int:
 	for c in card.owner.field.get_all_cards():

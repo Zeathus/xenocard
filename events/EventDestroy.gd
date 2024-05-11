@@ -23,7 +23,7 @@ func get_name() -> String:
 	return "Destroy"
 
 func on_start():
-	if target.zone == Card.Zone.LOST or target.zone == Card.Zone.JUNK:
+	if target.zone == Zone.LOST or target.zone == Zone.JUNK:
 		return
 	if target.equipped_weapon:
 		queue_event(EventDestroy.new(game_board, attacker, target.equipped_weapon, source))
@@ -31,7 +31,7 @@ func on_start():
 	var destination = target.owner.field.get_junk_node()
 	for e in target.get_effects():
 		match e.redirect_when_destroyed(attacker, source):
-			Card.Zone.LOST:
+			Zone.LOST:
 				destination = target.owner.field.get_lost_node()
 				break
 	var anim: AnimationMove = AnimationMove.new(target.instance, destination.global_position, 30)
@@ -61,20 +61,20 @@ func process(delta):
 	state += 1
 
 func destroy():
-	if target.zone == Card.Zone.LOST or target.zone == Card.Zone.JUNK:
+	if target.zone == Zone.LOST or target.zone == Zone.JUNK:
 		return
-	if target.zone == Card.Zone.HAND:
+	if target.zone == Zone.HAND:
 		target.owner.hand.remove(target)
 	else:
 		target.owner.field.remove_card(target)
 	target.free_instance()
 	game_board.refresh()
-	var zone = Card.Zone.JUNK
+	var zone = Zone.JUNK
 	var pile = target.owner.junk
 	for e in target.get_effects():
 		match e.redirect_when_destroyed(attacker, source):
-			Card.Zone.LOST:
-				zone = Card.Zone.LOST
+			Zone.LOST:
+				zone = Zone.LOST
 				pile = target.owner.lost
 				break
 	target.zone = zone

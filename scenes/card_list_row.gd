@@ -23,26 +23,26 @@ func load_card():
 	else:
 		$Panel/Picture.texture = load("res://sprites/card_images/missing_artwork.png")
 		push_error("Failed to find card image '%s'" % image_file)
-	match card.type:
-		Card.Type.BATTLE:
+	match Type:
+		Type.BATTLE:
 			$Panel/PictureBorder.color = Color.DARK_RED
-		Card.Type.EVENT:
+		Type.EVENT:
 			$Panel/PictureBorder.color = Color.GOLDENROD
-		Card.Type.SITUATION:
+		Type.SITUATION:
 			$Panel/PictureBorder.color = Color.ROYAL_BLUE
 	$Panel/Name.text = card.name.replace("\n", " ")
-	if card.type == Card.Type.BATTLE:
+	ifcard.type== Type.BATTLE:
 		$Panel/Attribute.visible = true
-		$Panel/Attribute.set_attribute(card.attribute)
+		$Panel/Attribute.set_attribute(Attribute)
 		$Panel/TypeBattle.visible = true
 		$Panel/Type.visible = false
 		$Panel/TypeBattle.text = "Battle"
-		if card.target != Card.Target.NONE:
+		if card.target != AttackType.NONE:
 			$Panel/TypeBattle.text += " | %s" % Card.get_target_name(card.target)
 		$Panel/Stat2.visible = true
-		if card.attribute == Card.Attribute.WEAPON:
+		if card.attribute == Attribute.WEAPON:
 			$Panel/Stat1.visible = false
-			if card.target == Card.Target.NONE:
+			if card.target == AttackType.NONE:
 				$Panel/Stat2.visible = false
 			else:
 				$Panel/Stat2.text = "ATK %d " % card.atk
@@ -54,9 +54,9 @@ func load_card():
 		$Panel/Attribute.visible = false
 		$Panel/TypeBattle.visible = false
 		$Panel/Type.visible = true
-		if card.type == Card.Type.EVENT:
+		ifcard.type== Type.EVENT:
 			$Panel/Type.text = "Event"
-		elif card.type == Card.Type.SITUATION:
+		elifcard.type== Type.SITUATION:
 			$Panel/Type.text = "Situation"
 		$Panel/Stat1.visible = false
 		$Panel/Stat2.visible = false

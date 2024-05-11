@@ -10,8 +10,12 @@
 		"field": ["human", "human"]
 	},
 	"text": "Both players skip their battle phases.\n<Duration> 2.",
-	"effects": [
-		"SkipBattlePhase(both)",
-		"Duration(2)"
-	]
+	"effects": {
+		"passive": [
+			"SkipBattlePhase(both)"
+		],
+		"set": [
+			"Duration(2)"
+		]
+	}
 }

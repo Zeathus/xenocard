@@ -2,9 +2,9 @@ class_name CardFilter
 
 var names: Array[String] = []
 var characters: Array[String] = []
-var attributes: Array[Card.Attribute] = []
-var zones: Array[Card.Zone] = []
-var types: Array[Card.Type] = []
+var attributes: Array[int] = []
+var zones: Array[int] = []
+var types: Array[int] = []
 var owner: int = -1
 
 func _init(str: String):
@@ -18,9 +18,9 @@ func _init(str: String):
 			"character":
 				characters.push_back(value)
 			"attribute":
-				var attribute = Card.attribute_from_string(value.replace("!", ""))
+				var attribute = Attribute_from_string(value.replace("!", ""))
 				if value.begins_with("!"):
-					for i in Card.Attribute.values():
+					for i in Attribute.values():
 						if i != attribute:
 							attributes.push_back(i)
 				else:
@@ -28,17 +28,17 @@ func _init(str: String):
 			"zone":
 				match value.to_lower():
 					"battlefield":
-						zones.push_back(Card.Zone.BATTLEFIELD)
+						zones.push_back(Zone.BATTLEFIELD)
 					"standby":
-						zones.push_back(Card.Zone.STANDBY)
+						zones.push_back(Zone.STANDBY)
 					"situation":
-						zones.push_back(Card.Zone.SITUATION)
+						zones.push_back(Zone.SITUATION)
 					"hand":
-						zones.push_back(Card.Zone.HAND)
+						zones.push_back(Zone.HAND)
 					_:
 						print("Invalid zone filter '%s'" % value)
 			"type":
-				types.push_back(Card.type_from_string(value))
+				types.push_back(Type_from_string(value))
 			"owner":
 				match value.to_lower():
 					"self":
@@ -63,11 +63,11 @@ func is_valid(player: Player, card: Card):
 		return false
 	if not check_multiple(card.character, characters):
 		return false
-	if not check_multiple(card.attribute, attributes):
+	if not check_multiple(Attribute, attributes):
 		return false
-	if not check_multiple(card.zone, zones):
+	if not check_multiple(Zone, zones):
 		return false
-	if not check_multiple(card.type, types):
+	if not check_multiple(Type, types):
 		return false
 	if owner == 0 and card.owner != player:
 		return false

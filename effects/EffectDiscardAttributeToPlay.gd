@@ -1,12 +1,12 @@
-extends CardEffect
+extends Effect
 
 class_name EffectDiscardAttributeToPlay
 
-var requirements: Array[Card.Attribute]
+var requirements: Array[int]
 
 func post_init():
 	for i in param.split(","):
-		requirements.push_back(Card.attribute_from_string(i))
+		requirements.push_back(Attribute_from_string(i))
 
 func skips_e_mark() -> bool:
 	return true

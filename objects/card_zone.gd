@@ -1,8 +1,8 @@
 extends Node2D
 
-signal selected(zone: Card.Zone, index: int)
+signal selected(zone: int, index: int)
 
-@export var type: Card.Zone
+@export var type: int
 @export var index: int
 
 func _on_area_input_event(viewport, event, shape_idx):
