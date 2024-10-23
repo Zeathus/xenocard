@@ -728,18 +728,3 @@ static func get_target_name(target: Enum.AttackType) -> String:
 		Enum.AttackType.NONE:
 			return ""
 	return "N/A"
-
-static func get_attribute_icon(attr: Enum.Attribute):
-	if attr in attribute_icons:
-		return attribute_icons[attr]
-	return null
-
-static func get_type_background(type: Enum.Type):
-	if type in type_backgrounds:
-		return type_backgrounds[type]
-	return null
-
-static func get_rarity_icon(rare: Enum.Rarity):
-	if rare in rarity_icons:
-		return rarity_icons[rare]
-	return null
