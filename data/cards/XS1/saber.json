@@ -17,7 +17,12 @@
 	},
 	"text": "<Unlimited>.\nOnly {Machines} can equip this card.\nGains ATK+3 against {Gnosis}.",
 	"effects": [
-		"Unlimited",
+		{
+			"trigger": "passive",
+			"effect": [
+				"Unlimited"
+			]
+		},
 		"EquipsTo(attribute=machine)",
 		"ModifyDamageTo(3,attribute=gnosis)"
 	]

@@ -121,29 +121,45 @@ func load_json(json: Dictionary):
 		attribute = Enum.attribute_from_string(json["stats"]["attribute"])
 		attack_type = Enum.attack_type_from_string(json["stats"]["target"])
 
-	effect_names = []
-	if "effects" in json:
-		for i in json["effects"]:
-			effect_names.push_back(i)
-
-	event_effect_names = []
-	if "event_effects" in json:
-		for i in json["event_effects"]:
-			event_effect_names.push_back(i)
-
+	#effect_names = []
 	#if "effects" in json:
-		#for effect_dict in json["effects"]:
-			#if effect_dict is String:
-				#continue
-			#if "trigger" not in effect_dict:
-				#print("Trigger missing for effect for card '%s'" % name)
-				#continue
-			#if effect_dict["trigger"].to_upper() not in Enum.Trigger:
-				#print("Invalid effect Trigger '%s' for card '%s'" % [effect_dict["trigger"].to_upper(), name])
-				#continue
-			#var effect_data = EffectData.new(Enum.Trigger[effect_dict["trigger"].to_upper()])
-			#
-			#effects.push_back(effect_data)
+		#for i in json["effects"]:
+			#effect_names.push_back(i)
+#
+	#event_effect_names = []
+	#if "event_effects" in json:
+		#for i in json["event_effects"]:
+			#event_effect_names.push_back(i)
+
+	if "effects" in json:
+		for effect_dict in json["effects"]:
+			if effect_dict is String:
+				continue
+			if "trigger" not in effect_dict:
+				print("Trigger missing for effect for card '%s'" % name)
+				continue
+			if effect_dict["trigger"].to_upper() not in Enum.Trigger:
+				print("Invalid effect Trigger '%s' for card '%s'" % [effect_dict["trigger"].to_upper(), name])
+				continue
+			var effect_data = EffectData.new(Enum.Trigger[effect_dict["trigger"].to_upper()])
+			if "effect" not in effect_dict:
+				print("Effect missing for effect for card '%s'" % name)
+				continue
+			for e in effect_dict["effect"]:
+				if true: # validity check
+					effect_data.effects.push_back(e)
+			if "requirement" in effect_dict:
+				for r in effect_dict["requirement"]:
+					if true: # validity check
+						effect_data.requirements.push_back(r)
+			if "ignores_down" in effect_dict:
+				effect_data.ignores_down = effect_dict["ignores_down"]
+			if "global" in effect_dict:
+				effect_data.global = effect_dict["global"]
+			if "stackable" in effect_dict:
+				effect_data.stackable = effect_dict["stackable"]
+			
+			effects.push_back(effect_data)
 
 func get_image() -> Resource:
 	var image_file: String = "res://sprites/card_images/%s/%s.png" % [set_name, id]

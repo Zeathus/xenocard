@@ -13,6 +13,11 @@
 	},
 	"text": "<Unlimited>.",
 	"effects": [
-		"Unlimited"
+		{
+			"trigger": "passive",
+			"effect": [
+				"Unlimited"
+			]
+		}
 	]
 }

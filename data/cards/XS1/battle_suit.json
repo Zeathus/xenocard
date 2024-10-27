@@ -17,7 +17,12 @@
 	},
 	"text": "<Unlimited>.\nOnly {Humans} and {Realians} can equip this card.\nEquipped cards take 1 less battle damage.",
 	"effects": [
-		"Unlimited",
+		{
+			"trigger": "passive",
+			"effect": [
+				"Unlimited"
+			]
+		},
 		"EquipsTo(attribute=human;attribute=realian)",
 		"ModifyBattleDamageFrom(-1,type=battle)"
 	]

@@ -17,7 +17,12 @@
 	},
 	"text": "<Unlimited>.\nOnly {Humans} and {Realians} can equip this card.",
 	"effects": [
-		"Unlimited",
+		{
+			"trigger": "passive",
+			"effect": [
+				"Unlimited"
+			]
+		},
 		"EquipsTo(attribute=human;attribute=realian)"
 	]
 }
