@@ -43,5 +43,5 @@ func can_replace_card(card: Card) -> bool:
 
 func handle_occupied_zone(game_board: GameBoard, zone: Enum.Zone, index: int) -> bool:
 	var occupying: Card = card.owner.field.get_card(zone, index)
-	card.hp = card.max_hp - (occupying.max_hp - occupying.hp)
+	card.hp = card.get_max_hp() - (occupying.get_max_hp() - occupying.hp)
 	return false

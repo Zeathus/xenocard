@@ -58,13 +58,13 @@ func save():
 		"cards": []
 	}
 	for card in cards:
-		json_data["cards"].push_back("%s/%s" % [card.set_name, card.id])
+		json_data["cards"].push_back("%s/%s" % [card.get_set_name(), card.get_id()])
 	var json_string = JSON.stringify(json_data)
 	deck_file.store_line(json_string)
 
 func sort():
 	cards.sort_custom(func compare(a, b):
-		if a.set_id < b.set_id:
+		if a.get_set_id() < b.get_set_id():
 			return true
 		return false
 	)

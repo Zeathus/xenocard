@@ -12,9 +12,9 @@ func on_destroyed(attacker: Card, source: Damage):
 	if not source.normal_attack():
 		return
 	top_card = card.owner.junk.top()
-	if top_card == null or top_card.name == "Cherenkov":
+	if top_card == null or top_card.get_name() == "Cherenkov":
 		return
-	if top_card.attribute not in [Enum.Attribute.HUMAN, Enum.Attribute.REALIAN, Enum.Attribute.MACHINE]:
+	if top_card.get_attribute() not in [Enum.Attribute.HUMAN, Enum.Attribute.REALIAN, Enum.Attribute.MACHINE]:
 		return
 	push_event()
 

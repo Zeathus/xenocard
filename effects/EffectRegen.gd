@@ -8,7 +8,7 @@ func post_init():
 	amount = int(param)
 
 func adjust():
-	if card.hp < card.max_hp:
+	if card.hp < card.get_max_hp():
 		push_event()
 
 func effect():

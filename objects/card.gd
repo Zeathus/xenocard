@@ -43,7 +43,7 @@ func _process(delta):
 	if card:
 		if card.zone == Enum.Zone.HAND:
 			z_index += 20
-		elif card.type == Enum.Type.BATTLE and card.attribute == Enum.Attribute.WEAPON and card.equipped_by:
+		elif card.get_type() == Enum.Type.BATTLE and card.get_attribute() == Enum.Attribute.WEAPON and card.equipped_by:
 			z_index += 2
 	if in_motion:
 		z_index += 30
@@ -74,21 +74,22 @@ func set_downed(val: bool):
 	$Overlay/Downed.visible = val
 
 func refresh():
-	$Content/Background.texture = Card.get_type_background(card.type)
+	$Content/Background.texture = Enum.get_type_background(card.get_original_type())
 	$Content/Name.text = ""
 	$Content/SmallName.text = ""
 	$Content/TwoLineName.text = ""
-	if "\n" in card.name:
-		$Content/TwoLineName.text = card.name
-	elif len(card.name) <= 20:
-		$Content/Name.text = card.name
+	var name = card.get_name()
+	if "\n" in name:
+		$Content/TwoLineName.text = name
+	elif len(name) <= 20:
+		$Content/Name.text = name
 	else:
-		$Content/SmallName.text = card.name
+		$Content/SmallName.text = name
 	$Content/TypeBattle.visible = card.has_stats()
 	$Content/TypeOther.visible = !card.has_stats()
 	$Content/Attribute.visible = card.has_stats()
 	$Content/Stats.visible = card.has_stats()
-	var expanded_text: String = Keyword.expand_keywords(card.text)
+	var expanded_text: String = Keyword.expand_keywords(card.get_text())
 	var text_size: int = 36
 	while true:
 		$Content/Text.clear()
@@ -98,32 +99,28 @@ func refresh():
 			break
 		text_size -= 2
 	$Content/Text.pop_all()
-	$Content/Cost/Value.text = "%d" % card.cost
-	$Content/SerialNumber.text = "%s #%03d" % [card.set_name, card.set_id]
-	$Content/Rarity.texture = Card.get_rarity_icon(card.rarity)
+	$Content/Cost/Value.text = "%d" % card.get_original_cost()
+	$Content/SerialNumber.text = "%s #%03d" % [card.get_set_name(), card.get_set_id()]
+	$Content/Rarity.texture = Enum.get_rarity_icon(card.get_rarity())
 	var field_icons: Array[Node2D] = [
 		$Content/Field/Value1, $Content/Field/Value2,
 		$Content/Field/Value3, $Content/Field/Value4
 	]
 	for i in range(len(field_icons)):
-		if len(card.field) > i:
+		var field = card.get_original_field_requirements()
+		if len(field) > i:
 			field_icons[i].visible = true
-			field_icons[i].set_attribute(card.field[i])
+			field_icons[i].set_attribute(field[i])
 		else:
 			field_icons[i].visible = false
 	if card.has_stats():
-		$Content/Attribute.set_attribute(card.attribute)
-		$Content/Stats/HP/Value.text = "%d" % card.max_hp
-		$Content/Stats/Attack/Value.text = "%d" % card.atk
-		$Content/Stats/AttackType.text = Card.get_target_name(card.target)
+		$Content/Attribute.set_attribute(card.get_original_attribute())
+		$Content/Stats/HP/Value.text = "%d" % card.get_original_max_hp()
+		$Content/Stats/Attack/Value.text = "%d" % card.get_original_atk()
+		$Content/Stats/AttackType.text = Enum.get_attack_type_name(card.get_original_attack_type())
 	else:
-		$Content/TypeOther.text = Card.get_type_name(card.type)
-	var image_file: String = "res://sprites/card_images/%s/%s.png" % [card.set_name, card.id]
-	if ResourceLoader.exists(image_file):
-		$Content/Picture.texture = load(image_file)
-	else:
-		$Content/Picture.texture = load("res://sprites/card_images/missing_artwork.png")
-		push_error("Failed to find card image '%s'" % image_file)
+		$Content/TypeOther.text = Enum.get_type_name(card.get_original_type())
+	$Content/Picture.texture = card.get_image()
 
 func set_in_motion(val: bool):
 	in_motion = val

@@ -74,7 +74,6 @@ static func get_attack_type_name(target: AttackType) -> String:
 			return ""
 	return "N/A"
 
-
 static func get_attribute_icon(attr: Attribute):
 	if attr in attribute_icons:
 		return attribute_icons[attr]

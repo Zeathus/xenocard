@@ -10,12 +10,12 @@ func adjust_enemy():
 	if card.zone != Enum.Zone.BATTLEFIELD:
 		return
 	for c in card.owner.field.get_battlefield_cards():
-		if c.attribute == Enum.Attribute.REALIAN:
+		if c.get_attribute() == Enum.Attribute.REALIAN:
 			push_event()
 			break
 
 func effect():
 	for c in card.owner.field.get_battlefield_cards():
-		if c.attribute == Enum.Attribute.REALIAN:
+		if c.get_attribute() == Enum.Attribute.REALIAN:
 			events.push_back(EventDestroy.new(card.owner.game_board, card, c, Damage.new(Damage.EFFECT | Damage.DESTROY)))
 			events.push_back(EventDamage.new(card.owner.game_board, card, card.owner.get_enemy(), 4, Damage.new(Damage.EFFECT)))

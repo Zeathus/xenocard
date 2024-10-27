@@ -5,11 +5,11 @@ func show_card(card: Card):
 		self.visible = false
 		return
 	self.visible = true
-	$Panel/ValueHP.text = "%d/%d" % [card.hp, card.max_hp]
+	$Panel/ValueHP.text = "%d/%d" % [card.hp, card.get_max_hp()]
 	$Panel/ValueATK.text = "%d" % card.get_atk()
-	$Panel/AttackType.text = Card.get_target_name(card.get_target())
-	$Panel/Attribute.set_attribute(card.attribute)
-	refresh_bar($Panel/PanelHP, card.hp, card.max_hp)
+	$Panel/AttackType.text = Enum.get_attack_type_name(card.get_attack_type())
+	$Panel/Attribute.set_attribute(card.get_attribute())
+	refresh_bar($Panel/PanelHP, card.hp, card.get_max_hp())
 	refresh_bar($Panel/PanelCharge, card.atk_timer, card.get_atk_time())
 
 func _ready():

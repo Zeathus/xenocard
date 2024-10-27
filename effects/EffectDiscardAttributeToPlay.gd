@@ -6,7 +6,7 @@ var requirements: Array[Enum.Attribute]
 
 func post_init():
 	for i in param.split(","):
-		requirements.push_back(Card.attribute_from_string(i))
+		requirements.push_back(Enum.attribute_from_string(i))
 
 func skips_e_mark() -> bool:
 	return true
@@ -16,7 +16,7 @@ func targets_to_select_for_set(list: Array[Callable]):
 		list.push_back(func valid(card: Card) -> bool:
 			if card.owner != game_board.get_turn_player():
 				return false
-			if card.attribute != r:
+			if card.get_attribute() != r:
 				return false
 			if card.e_mark:
 				return false

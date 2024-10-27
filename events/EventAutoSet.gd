@@ -25,13 +25,13 @@ func on_start():
 		return
 	play(zone, zone_index)
 	var new_pos: Vector2 = to_set.owner.field.get_zone(zone, zone_index).global_position
-	if to_set.type == Enum.Type.BATTLE and to_set.attribute == Enum.Attribute.WEAPON:
+	if to_set.get_type() == Enum.Type.BATTLE and to_set.get_attribute() == Enum.Attribute.WEAPON:
 		if to_set.instance.global_rotation == 0:
 			new_pos += Vector2(28, 42)
 		else:
 			new_pos -= Vector2(28, 42)
 	var anim: GameAnimation = AnimationMove.new(to_set.instance, new_pos, 30)
-	if to_set.type == Enum.Type.BATTLE and to_set.attribute == Enum.Attribute.WEAPON:
+	if to_set.get_type() == Enum.Type.BATTLE and to_set.get_attribute() == Enum.Attribute.WEAPON:
 		anim.target_scale = Vector2(0.075, 0.075)
 	else:
 		anim.target_scale = Vector2(0.15, 0.15)
@@ -77,7 +77,7 @@ func play(new_zone: Enum.Zone, index: int):
 	for i in to_set.modify_for_set:
 		i.call(to_set)
 	to_set.modify_for_set.clear()
-	if to_set.type != Enum.Type.BATTLE or to_set.attribute != Enum.Attribute.WEAPON:
+	if to_set.get_type() != Enum.Type.BATTLE or to_set.get_attribute() != Enum.Attribute.WEAPON:
 		player.field.set_card(to_set, zone, zone_index)
 	else:
 		player.field.add_card(to_set)
@@ -90,7 +90,7 @@ func handle_occupied_zone(zone: Enum.Zone, index: int):
 		if e.handle_occupied_zone(game_board, zone, index):
 			return
 	var occupant: Card = player.field.get_card(zone, index)
-	if to_set.type == Enum.Type.BATTLE and to_set.attribute == Enum.Attribute.WEAPON:
+	if to_set.get_type() == Enum.Type.BATTLE and to_set.get_attribute() == Enum.Attribute.WEAPON:
 		if occupant.equipped_weapon != null:
 			queue_event(EventDestroy.new(game_board, to_set, occupant.equipped_weapon, Damage.new(Damage.EFFECT | Damage.DISCARD)))
 		occupant.equip(to_set)

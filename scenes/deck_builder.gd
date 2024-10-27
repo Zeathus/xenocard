@@ -33,7 +33,7 @@ func load_cards():
 
 func sort_card_list():
 	all_cards.sort_custom(func sort_id(a, b):
-		if a.set_id < b.set_id:
+		if a.get_set_id() < b.get_set_id():
 			return true
 		return false
 	)
@@ -116,30 +116,30 @@ func refresh_preset_list():
 
 func filter_card(card: Card) -> bool:
 	var filter_text: String = $Filters/Search.text.to_lower()
-	var filter_type: Enum.Type = Card.type_from_string(
+	var filter_type: Enum.Type = Enum.type_from_string(
 		$Filters/Type.get_item_text($Filters/Type.get_selected_id()))
 	var filter_cost: String = $Filters/Cost.text
-	var filter_attribute: Enum.Attribute = Card.attribute_from_string(
+	var filter_attribute: Enum.Attribute = Enum.attribute_from_string(
 		$Filters/Attribute.get_item_text($Filters/Attribute.get_selected_id()))
 	var filter_hp: String = $Filters/HP.text
 	var filter_atk: String = $Filters/ATK.text
-	var filter_atk_type: Enum.AttackType = Card.attack_type_from_string(
+	var filter_atk_type: Enum.AttackType = Enum.attack_type_from_string(
 		$Filters/AttackType.get_item_text($Filters/AttackType.get_selected_id()))
 	if filter_text != "":
-		if filter_text not in card.name.replace("\n", " ").to_lower() and filter_text not in card.text.to_lower():
+		if filter_text not in card.get_name().replace("\n", " ").to_lower() and filter_text not in card.get_text().to_lower():
 			return false
-	if filter_type != Enum.Type.ANY and card.type != filter_type:
+	if filter_type != Enum.Type.ANY and card.get_original_type() != filter_type:
 		return false
 	if filter_type == Enum.Type.BATTLE:
-		if filter_attribute != Enum.Attribute.ANY and card.attribute != filter_attribute:
+		if filter_attribute != Enum.Attribute.ANY and card.get_original_attribute() != filter_attribute:
 			return false
-		if filter_atk_type != Enum.AttackType.ANY and card.target != filter_atk_type:
+		if filter_atk_type != Enum.AttackType.ANY and card.get_original_attack_type() != filter_atk_type:
 			return false
-		if not filter_integer(card.max_hp, filter_hp):
+		if not filter_integer(card.get_original_max_hp(), filter_hp):
 			return false
-		if not filter_integer(card.atk, filter_atk):
+		if not filter_integer(card.get_original_atk(), filter_atk):
 			return false
-	if not filter_integer(card.cost, filter_cost):
+	if not filter_integer(card.get_original_cost(), filter_cost):
 		return false
 	return true
 
@@ -219,13 +219,13 @@ func preview_card(card: Card):
 	preview_text.clear()
 	preview_text.push_font_size(20)
 	preview_text.push_underline()
-	preview_text.append_text(card.name.replace("\n", " "))
+	preview_text.append_text(card.get_name().replace("\n", " "))
 	preview_text.pop()
-	if card.character != "":
-		preview_text.append_text("\nCharacter: %s" % card.character)
+	if card.is_character():
+		preview_text.append_text("\nCharacter: %s" % card.get_character())
 	else:
 		preview_text.append_text("\n")
-	preview_text.append_text("\nGame: %s" % card.game)
+	preview_text.append_text("\nGame: %s" % card.get_game())
 	preview_text.pop_all()
 
 func _on_visible_cards_area_entered(area):

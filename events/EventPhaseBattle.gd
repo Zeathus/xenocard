@@ -43,10 +43,10 @@ func process(delta):
 			]
 			for target in target_order:
 				for card in player.field.get_battlefield_cards():
-					if card.get_target() == target:
+					if card.get_attack_type() == target:
 						to_attack.push_back(card)
 				for card in player.get_enemy().field.get_battlefield_cards():
-					if card.get_target() == target and card.can_attack_on_enemy_phase():
+					if card.get_attack_type() == target and card.can_attack_on_enemy_phase():
 						to_attack.push_back(card)
 		2:
 			if last_attacker:

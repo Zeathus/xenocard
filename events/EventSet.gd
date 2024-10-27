@@ -80,13 +80,13 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, ind
 			for event in e.get_events():
 				queue_event(event)
 		var new_pos: Vector2 = field.get_zone(zone, index).global_position
-		if to_set.type == Enum.Type.BATTLE and to_set.attribute == Enum.Attribute.WEAPON:
+		if to_set.get_type() == Enum.Type.BATTLE and to_set.get_attribute() == Enum.Attribute.WEAPON:
 			if to_set.instance.global_rotation == 0:
 				new_pos += Vector2(28, 42)
 			else:
 				new_pos -= Vector2(28, 42)
 		var anim: GameAnimation = AnimationMove.new(to_set.instance, new_pos, 30)
-		if to_set.type == Enum.Type.BATTLE and to_set.attribute == Enum.Attribute.WEAPON:
+		if to_set.get_type() == Enum.Type.BATTLE and to_set.get_attribute() == Enum.Attribute.WEAPON:
 			anim.target_scale = Vector2(0.075, 0.075)
 		else:
 			anim.target_scale = Vector2(0.15, 0.15)
@@ -99,8 +99,8 @@ func play(new_zone: Enum.Zone, index: int):
 	to_set.modify_for_set.clear()
 	if to_set.zone == Enum.Zone.HAND:
 		var should_set_e_mark = false
-		if (to_set.type == Enum.Type.BATTLE and to_set.attribute != Enum.Attribute.WEAPON) or \
-			to_set.type == Enum.Type.SITUATION:
+		if (to_set.get_type() == Enum.Type.BATTLE and to_set.get_attribute() != Enum.Attribute.WEAPON) or \
+			to_set.get_type() == Enum.Type.SITUATION:
 			should_set_e_mark = true
 			for e in to_set.get_effects():
 				if e.skips_e_mark():
@@ -110,15 +110,15 @@ func play(new_zone: Enum.Zone, index: int):
 		if player.field.get_card(new_zone, index):
 			handle_occupied_zone(new_zone, index)
 		player.hand.remove(to_set)
-		if to_set.type != Enum.Type.BATTLE or to_set.attribute != Enum.Attribute.WEAPON:
+		if to_set.get_type() != Enum.Type.BATTLE or to_set.get_attribute() != Enum.Attribute.WEAPON:
 			player.field.set_card(to_set, new_zone, index)
 		else:
 			player.field.add_card(to_set)
 		to_set.instance.global_position = real_pos
 		if to_set.uses_one_card_per_turn():
-			if to_set.type == Enum.Type.BATTLE:
+			if to_set.get_type() == Enum.Type.BATTLE:
 				player.used_one_battle_card_per_turn = true
-			elif to_set.type == Enum.Type.SITUATION:
+			elif to_set.get_type() == Enum.Type.SITUATION:
 				player.used_one_situation_card_per_turn = true
 		if should_set_e_mark:
 			to_set.set_e_mark(true)
@@ -133,7 +133,7 @@ func handle_occupied_zone(zone: Enum.Zone, index: int):
 		if e.handle_occupied_zone(game_board, zone, index):
 			return
 	var occupant: Card = player.field.get_card(zone, index)
-	if to_set.type == Enum.Type.BATTLE and to_set.attribute == Enum.Attribute.WEAPON:
+	if to_set.get_type() == Enum.Type.BATTLE and to_set.get_attribute() == Enum.Attribute.WEAPON:
 		if occupant.equipped_weapon != null:
 			queue_event(EventDestroy.new(game_board, to_set, occupant.equipped_weapon, Damage.new(Damage.DISCARD)))
 		occupant.equip(to_set)

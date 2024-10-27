@@ -18,7 +18,7 @@ func _init(str: String):
 			"character":
 				characters.push_back(value)
 			"attribute":
-				var attribute = Card.attribute_from_string(value.replace("!", ""))
+				var attribute = Enum.attribute_from_string(value.replace("!", ""))
 				if value.begins_with("!"):
 					for i in Enum.Attribute.values():
 						if i != attribute:
@@ -38,7 +38,7 @@ func _init(str: String):
 					_:
 						print("Invalid zone filter '%s'" % value)
 			"type":
-				types.push_back(Card.type_from_string(value))
+				types.push_back(Enum.type_from_string(value))
 			"owner":
 				match value.to_lower():
 					"self":
@@ -59,15 +59,15 @@ func check_multiple(value, filter):
 	return false
 
 func is_valid(player: Player, card: Card):
-	if not check_multiple(card.name.replace("\n", " "), names):
+	if not check_multiple(card.get_name().replace("\n", " "), names):
 		return false
-	if not check_multiple(card.character, characters):
+	if not check_multiple(card.get_character(), characters):
 		return false
-	if not check_multiple(card.attribute, attributes):
+	if not check_multiple(card.get_attribute(), attributes):
 		return false
 	if not check_multiple(card.zone, zones):
 		return false
-	if not check_multiple(card.type, types):
+	if not check_multiple(card.get_type(), types):
 		return false
 	if owner == 0 and card.owner != player:
 		return false

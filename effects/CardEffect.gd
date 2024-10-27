@@ -204,7 +204,7 @@ func get_controlling_player() -> Player:
 	return card.owner
 
 func get_confirm_message() -> String:
-	return "Activate %s's Effect?" % [card.name]
+	return "Activate %s's Effect?" % [card.get_name()]
 
 func get_help_text() -> String:
 	var expanded_text: String = Keyword.expand_keywords(card.text)

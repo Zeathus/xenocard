@@ -19,6 +19,8 @@ var attack_type: Enum.AttackType
 var cost: int
 var field: Array[Enum.Attribute]
 var text: String
+var effect_names: Array[String]
+var event_effect_names: Array[String]
 
 func _init(_id: String):
 	var json = get_json(_id)
@@ -50,9 +52,9 @@ static func load_cards():
 	dir.list_dir_end()
 
 func get_json(_id: String) -> Dictionary:
-	var card_set: String = id.substr(0, id.find("/"))
+	var card_set: String = _id.substr(0, _id.find("/"))
 	id = _id.substr(len(card_set) + 1)
-	var file_name: String = "res://%s/%s/%s.json" % [path, card_set, id]
+	var file_name: String = "%s/%s/%s.json" % [path, card_set, id]
 	if FileAccess.file_exists(file_name):
 		var file = FileAccess.open(file_name, FileAccess.READ)
 		var json = JSON.new()
@@ -107,6 +109,15 @@ func load_json(json: Dictionary):
 		attribute = Enum.attribute_from_string(json["stats"]["attribute"])
 		attack_type = Enum.attack_type_from_string(json["stats"]["target"])
 
+	effect_names = []
+	if "effects" in json:
+		for i in json["effects"]:
+			effect_names.push_back(i)
+
+	event_effect_names = []
+	if "event_effects" in json:
+		for i in json["event_effects"]:
+			event_effect_names.push_back(i)
 	#if "effects" in json:
 		#if json["effects"] is Dictionary:
 			#effect_data = {}
@@ -115,3 +126,11 @@ func load_json(json: Dictionary):
 					#print("Invalid effect Trigger: '%s'" % trigger)
 					#continue
 				#effect_data[CardEffect.Trigger[trigger.to_upper()]] = json["effects"][trigger]
+
+func get_image() -> Resource:
+	var image_file: String = "res://sprites/card_images/%s/%s.png" % [set_name, id]
+	if ResourceLoader.exists(image_file):
+		return load(image_file)
+	else:
+		push_error("Failed to find card image '%s'" % image_file)
+		return load("res://sprites/card_images/missing_artwork.png")
