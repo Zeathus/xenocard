@@ -146,5 +146,17 @@ func get_image() -> Resource:
 		push_error("Failed to find card image '%s'" % image_file)
 		return load("res://sprites/card_images/missing_artwork.png")
 
+func get_baked_image() -> Resource:
+	var image_file: String = "res://sprites/card_images_baked/%s/%s.png" % [set_name, id]
+	if FileAccess.file_exists(image_file):
+		return load(image_file)
+	else:
+		push_error("Failed to find card image '%s'" % image_file)
+		return load("res://sprites/card_images/missing_artwork.png")
+
+func has_baked_image() -> bool:
+	var image_file: String = "res://sprites/card_images_baked/%s/%s.png" % [set_name, id]
+	return FileAccess.file_exists(image_file)
+
 func get_full_id() -> String:
 	return "%s/%s" % [set_name, id]
