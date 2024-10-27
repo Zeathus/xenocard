@@ -1,6 +1,6 @@
 class_name CardData
 
-static var data: Array[CardData]
+static var data: Dictionary
 static var path: String = "res://data/cards"
 
 var game: String
@@ -28,7 +28,7 @@ func _init(_id: String):
 		load_json(json)
 
 static func load_cards():
-	data = []
+	data = {}
 	var dir = DirAccess.open(path)
 	if not dir:
 		print("Failed to find card directory.")
@@ -44,12 +44,23 @@ static func load_cards():
 		var card_file = sub_dir.get_next()
 		while card_file != "":
 			card_file = card_file.substr(0, card_file.find(".json"))
-			var card = CardData.new("%s/%s" % [set_name, card_file])
-			data.push_back(card)
+			var card_id = "%s/%s" % [set_name, card_file]
+			var card = CardData.new(card_id)
+			data[card_id] = card
 			card_file = sub_dir.get_next()
 		set_name = dir.get_next()
 		sub_dir.list_dir_end()
 	dir.list_dir_end()
+
+static func get_data(_id: String) -> CardData:
+	if _id in data:
+		return data[_id]
+	var new_data = CardData.new(_id)
+	data[_id] = new_data
+	return new_data
+
+static func get_count() -> int:
+	return len(data)
 
 func get_json(_id: String) -> Dictionary:
 	var card_set: String = _id.substr(0, _id.find("/"))

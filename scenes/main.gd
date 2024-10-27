@@ -5,6 +5,7 @@ var main_menu = preload("res://scenes/main_menu.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_child(main_menu.instantiate())
+	load_card_data()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -21,3 +22,7 @@ func end_scene():
 	last_child.queue_free()
 	remove_child(last_child)
 	get_child(get_child_count() - 1).visible = true
+
+func load_card_data():
+	CardData.load_cards()
+	print("Loaded %d cards." % CardData.get_count())

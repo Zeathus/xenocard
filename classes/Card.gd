@@ -47,7 +47,7 @@ var turn_count: int
 var modify_for_set: Array[Callable] = []
 
 func _init(_id: String):
-	self.data = CardData.new(_id)
+	self.data = CardData.get_data(_id)
 	self.hp = data.max_hp
 	self.instance = null
 	self.zone = Enum.Zone.DECK
