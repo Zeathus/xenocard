@@ -5,12 +5,14 @@ signal on_hover()
 
 @export var selectable: bool = true
 var original_scale: Vector2
+var original_z: int
 var is_hovering: bool = false
 var old_is_hovering: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	original_scale = $Content.scale
+	original_z = z_index
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -32,6 +34,9 @@ func _process(delta):
 			$Back.scale = original_scale
 			$Content.rotation = 0
 			$Overlay.rotation = 0
+	z_index = original_z
+	if is_hovering:
+		z_index += 1
 
 func show_card(card: CardData):
 	$Content/Background.texture = Enum.get_type_background(card.type)
