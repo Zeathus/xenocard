@@ -21,6 +21,7 @@ var field: Array[Enum.Attribute]
 var text: String
 var effect_names: Array[String]
 var event_effect_names: Array[String]
+var effects: Array[EffectData]
 
 func _init(_id: String):
 	var json = get_json(_id)
@@ -129,14 +130,20 @@ func load_json(json: Dictionary):
 	if "event_effects" in json:
 		for i in json["event_effects"]:
 			event_effect_names.push_back(i)
+
 	#if "effects" in json:
-		#if json["effects"] is Dictionary:
-			#effect_data = {}
-			#for trigger in json["effects"]:
-				#if not trigger.to_upper() in CardEffect.Trigger:
-					#print("Invalid effect Trigger: '%s'" % trigger)
-					#continue
-				#effect_data[CardEffect.Trigger[trigger.to_upper()]] = json["effects"][trigger]
+		#for effect_dict in json["effects"]:
+			#if effect_dict is String:
+				#continue
+			#if "trigger" not in effect_dict:
+				#print("Trigger missing for effect for card '%s'" % name)
+				#continue
+			#if effect_dict["trigger"].to_upper() not in Enum.Trigger:
+				#print("Invalid effect Trigger '%s' for card '%s'" % [effect_dict["trigger"].to_upper(), name])
+				#continue
+			#var effect_data = EffectData.new(Enum.Trigger[effect_dict["trigger"].to_upper()])
+			#
+			#effects.push_back(effect_data)
 
 func get_image() -> Resource:
 	var image_file: String = "res://sprites/card_images/%s/%s.png" % [set_name, id]

@@ -143,7 +143,7 @@ func show_valid_targets(card: Card):
 			var candidate = get_card(zone, index)
 			border.visible = candidate and filter.call(candidate)
 
-func show_valid_effect_targets(effect: CardEffect, filter: CardFilter):
+func show_valid_effect_targets(effect: Effect, filter: CardFilter):
 	for zone in [Enum.Zone.STANDBY, Enum.Zone.BATTLEFIELD, Enum.Zone.SITUATION]:
 		for index in range(4):
 			var border = get_zone(zone, index).find_child("SelectBorder")
@@ -189,7 +189,7 @@ func refresh():
 	$Junk/Card.visible = player.junk.size() > 0
 	if player.junk.size() > 0:
 		var top_junk: Card = player.junk.top()
-		$Junk/Card.load_card(top_junk)
+		$Junk/Card.show_card(top_junk.data)
 		$Junk/Card.turn_up()
 	for zone_type in [Enum.Zone.STANDBY, Enum.Zone.BATTLEFIELD]:
 		for i in range(4):

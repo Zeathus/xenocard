@@ -217,7 +217,7 @@ func get_all_battlefield_cards() -> Array[Card]:
 	result += get_turn_enemy().field.get_battlefield_cards()
 	return result
 
-func add_phase_effect(phase: Enum.Phase, effect: CardEffect):
+func add_phase_effect(phase: Enum.Phase, effect: Effect):
 	phase_effects[phase].push_back(effect)
 
 func _on_card_show_details(card):

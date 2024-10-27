@@ -40,9 +40,9 @@ var downed: bool
 var downed_turn: int
 var equipped_weapon: Card
 var equipped_by: Card
-var effects: Array[CardEffect]
-var event_effects: Array[CardEffect]
-var applied_effects: Array[CardEffect]
+var effects: Array[Effect]
+var event_effects: Array[Effect]
+var applied_effects: Array[Effect]
 var turn_count: int
 var modify_for_set: Array[Callable] = []
 
@@ -75,7 +75,7 @@ func init_effects(game_board: GameBoard):
 		if "(" in i and ")" in i and i.find("(") < i.rfind(")"):
 			param = i.substr(i.find("(") + 1, i.rfind(")") - i.find("(") - 1)
 			i = i.substr(0, i.find("("))
-		effects.push_back(CardEffect.parse(i).new(game_board, self, param))
+		effects.push_back(Effect.parse(i).new(game_board, self, param))
 
 	event_effects.clear()
 	for i in data.event_effect_names:
@@ -83,7 +83,7 @@ func init_effects(game_board: GameBoard):
 		if "(" in i and ")" in i and i.find("(") < i.rfind(")"):
 			param = i.substr(i.find("(") + 1, i.rfind(")") - i.find("(") - 1)
 			i = i.substr(0, i.find("("))
-		event_effects.push_back(CardEffect.parse(i).new(game_board, self, param))
+		event_effects.push_back(Effect.parse(i).new(game_board, self, param))
 
 func validate_effects():
 	for i in data.effect_names:
@@ -91,8 +91,8 @@ func validate_effects():
 		if "(" in i and ")" in i and i.find("(") < i.rfind(")"):
 			param = i.substr(i.find("(") + 1, i.rfind(")") - i.find("(") - 1)
 			i = i.substr(0, i.find("("))
-		var effect = CardEffect.parse(i)
-		if effect == CardEffect:
+		var effect = Effect.parse(i)
+		if effect == Effect:
 			print("Previous error was for the card '%s'" % get_name())
 		else:
 			effect.new(null, self, param)
@@ -120,8 +120,8 @@ func get_resources() -> Array[Enum.Attribute]:
 		attr.push_back(get_attribute())
 	return attr
 
-func get_effects() -> Array[CardEffect]:
-	var ret: Array[CardEffect] = []
+func get_effects() -> Array[Effect]:
+	var ret: Array[Effect] = []
 	var stackable: bool = true
 	if not can_effects_stack():
 		for card in owner.game_board.get_all_field_cards():
@@ -139,12 +139,12 @@ func get_effects() -> Array[CardEffect]:
 			ret.push_back(e)
 	if equipped_weapon:
 		ret += equipped_weapon.get_effects()
-	var global_effects: Array[CardEffect] = []
+	var global_effects: Array[Effect] = []
 	for c in owner.field.get_all_cards() + owner.get_enemy().field.get_all_cards():
 		for e in c.get_global_effects():
 			if not e.applies_to(self):
 				continue
-			var global_effect: CardEffect = e.apply_effect(self)
+			var global_effect: Effect = e.apply_effect(self)
 			if not global_effect.is_active():
 				continue
 			global_effect.set_stackable(c.can_effects_stack())
@@ -163,8 +163,8 @@ func get_effects() -> Array[CardEffect]:
 				global_effects.push_back(global_effect)
 	return ret + global_effects
 
-func get_global_effects() -> Array[CardEffect]:
-	var ret: Array[CardEffect] = []
+func get_global_effects() -> Array[Effect]:
+	var ret: Array[Effect] = []
 	for e in effects:
 		if e.is_global() and e.is_active():
 			ret.push_back(e)
@@ -541,7 +541,7 @@ func get_image() -> Resource:
 	return data.get_image()
 
 func penetrates():
-	if equipped_weapon and equipped_weapon.target != Enum.AttackType.NONE:
+	if equipped_weapon and equipped_weapon.get_attack_type() != Enum.AttackType.NONE:
 		return equipped_weapon.penetrates()
 	if get_attack_type() != Enum.AttackType.BALLISTIC:
 		return false
