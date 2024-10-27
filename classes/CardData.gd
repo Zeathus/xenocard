@@ -145,3 +145,6 @@ func get_image() -> Resource:
 	else:
 		push_error("Failed to find card image '%s'" % image_file)
 		return load("res://sprites/card_images/missing_artwork.png")
+
+func get_full_id() -> String:
+	return "%s/%s" % [set_name, id]

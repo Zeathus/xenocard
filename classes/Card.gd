@@ -1,6 +1,6 @@
 class_name Card
 
-static var scene = preload("res://objects/card.tscn")
+static var scene = load("res://objects/card_node.tscn")
 
 static var attribute_icons = {
 	Enum.Attribute.ANY: preload("res://sprites/attributes/background.png"),
@@ -605,7 +605,7 @@ func is_selected():
 	return border and border.visible
 
 func is_hovered():
-	return instance and instance.is_hovering
+	return instance and instance.is_hovering()
 
 func set_targeted(val: bool):
 	if instance:

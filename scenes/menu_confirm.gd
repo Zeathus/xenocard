@@ -26,8 +26,8 @@ func set_card(card: Card):
 	else:
 		position.x -= 128
 		$CardDetails.visible = true
-		$CardDetails/Card.turn_up()
-		$CardDetails/Card.load_card(card)
+		$CardDetails/CardNode.turn_up()
+		$CardDetails/CardNode.show_card(card.data)
 
 func is_done():
 	return done

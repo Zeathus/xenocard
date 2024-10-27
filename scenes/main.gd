@@ -1,6 +1,6 @@
 extends Node2D
 
-var main_menu = preload("res://scenes/main_menu.tscn")
+var main_menu = load("res://scenes/main_menu.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

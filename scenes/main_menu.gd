@@ -1,7 +1,7 @@
 extends Node2D
 
-var decks_scene = preload("res://scenes/deck_builder.tscn")
-var solo_game_scene = preload("res://scenes/solo_game.tscn")
+var decks_scene = load("res://scenes/deck_builder.tscn")
+var solo_game_scene = load("res://scenes/solo_game.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

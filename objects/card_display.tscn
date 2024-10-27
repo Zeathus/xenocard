@@ -1,13 +1,13 @@
 [gd_scene load_steps=29 format=3 uid="uid://dosulntiwpmvw"]
 
-[ext_resource type="Script" path="res://objects/card.gd" id="1_8v1ch"]
-[ext_resource type="Texture2D" uid="uid://dicq202oyt24d" path="res://sprites/card_bg_battle.png" id="2_jvxha"]
-[ext_resource type="Texture2D" uid="uid://dd0mmnwesdund" path="res://sprites/card_images/missing_artwork.png" id="3_pvcx2"]
-[ext_resource type="PackedScene" uid="uid://g7yv71p73utl" path="res://objects/attribute.tscn" id="4_a23ep"]
-[ext_resource type="Texture2D" uid="uid://bmnyp650trfv7" path="res://sprites/rarity/rarity_common.png" id="5_3weow"]
-[ext_resource type="Texture2D" uid="uid://cd8gb1b5tt6em" path="res://sprites/card_back.png" id="6_y577d"]
-[ext_resource type="Script" path="res://objects/select_border.gd" id="7_x3kli"]
-[ext_resource type="PackedScene" uid="uid://de2wv2ykfcwhh" path="res://objects/effect_indicator.tscn" id="8_qhpge"]
+[ext_resource type="Script" path="res://objects/card_display.gd" id="1_wdlaa"]
+[ext_resource type="Texture2D" uid="uid://dicq202oyt24d" path="res://sprites/card_bg_battle.png" id="2_fgroy"]
+[ext_resource type="Texture2D" uid="uid://dd0mmnwesdund" path="res://sprites/card_images/missing_artwork.png" id="3_7uojd"]
+[ext_resource type="PackedScene" uid="uid://g7yv71p73utl" path="res://objects/attribute.tscn" id="4_bj62e"]
+[ext_resource type="Texture2D" uid="uid://bmnyp650trfv7" path="res://sprites/rarity/rarity_common.png" id="5_ty2re"]
+[ext_resource type="Texture2D" uid="uid://cd8gb1b5tt6em" path="res://sprites/card_back.png" id="6_8gxj3"]
+[ext_resource type="Script" path="res://objects/select_border.gd" id="7_eqlu4"]
+[ext_resource type="PackedScene" uid="uid://de2wv2ykfcwhh" path="res://objects/effect_indicator.tscn" id="8_o73k1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f3feu"]
 
@@ -121,7 +121,7 @@ outline_size = 96
 outline_color = Color(0, 0, 0, 1)
 
 [node name="Card" type="Node2D"]
-script = ExtResource("1_8v1ch")
+script = ExtResource("1_wdlaa")
 
 [node name="Panel" type="Panel" parent="."]
 offset_left = -401.0
@@ -139,7 +139,7 @@ shape = SubResource("RectangleShape2D_qw08w")
 [node name="Content" type="Node2D" parent="."]
 
 [node name="Background" type="Sprite2D" parent="Content"]
-texture = ExtResource("2_jvxha")
+texture = ExtResource("2_fgroy")
 
 [node name="PictureBorder" type="Polygon2D" parent="Content"]
 position = Vector2(0, -8)
@@ -149,7 +149,7 @@ polygon = PackedVector2Array(-365, -490, -365, 38, 364, 38, 364, -490)
 [node name="Picture" type="Sprite2D" parent="Content"]
 position = Vector2(0, -234)
 scale = Vector2(0.8, 0.8)
-texture = ExtResource("3_pvcx2")
+texture = ExtResource("3_7uojd")
 
 [node name="Name" type="Label" parent="Content"]
 offset_left = -360.0
@@ -198,7 +198,7 @@ text = "Battle"
 label_settings = SubResource("LabelSettings_fy67i")
 horizontal_alignment = 2
 
-[node name="Attribute" parent="Content" instance=ExtResource("4_a23ep")]
+[node name="Attribute" parent="Content" instance=ExtResource("4_bj62e")]
 position = Vector2(337, -541)
 scale = Vector2(0.35, 0.35)
 
@@ -256,22 +256,22 @@ text = "Field
 "
 label_settings = SubResource("LabelSettings_3ahw8")
 
-[node name="Value1" parent="Content/Field" instance=ExtResource("4_a23ep")]
+[node name="Value1" parent="Content/Field" instance=ExtResource("4_bj62e")]
 position = Vector2(160, 37)
 rotation = 0.261799
 scale = Vector2(0.35, 0.35)
 
-[node name="Value2" parent="Content/Field" instance=ExtResource("4_a23ep")]
+[node name="Value2" parent="Content/Field" instance=ExtResource("4_bj62e")]
 position = Vector2(224, 37)
 rotation = 0.261799
 scale = Vector2(0.35, 0.35)
 
-[node name="Value3" parent="Content/Field" instance=ExtResource("4_a23ep")]
+[node name="Value3" parent="Content/Field" instance=ExtResource("4_bj62e")]
 position = Vector2(288, 37)
 rotation = 0.261799
 scale = Vector2(0.35, 0.35)
 
-[node name="Value4" parent="Content/Field" instance=ExtResource("4_a23ep")]
+[node name="Value4" parent="Content/Field" instance=ExtResource("4_bj62e")]
 position = Vector2(352, 37)
 rotation = 0.261799
 scale = Vector2(0.35, 0.35)
@@ -306,7 +306,7 @@ scroll_active = false
 [node name="Rarity" type="Sprite2D" parent="Content"]
 position = Vector2(311, 549)
 scale = Vector2(0.8, 0.8)
-texture = ExtResource("5_3weow")
+texture = ExtResource("5_ty2re")
 
 [node name="SerialNumber" type="Label" parent="Content"]
 offset_left = -363.0
@@ -375,7 +375,7 @@ fit_content = true
 scroll_active = false
 
 [node name="Back" type="Sprite2D" parent="."]
-texture = ExtResource("6_y577d")
+texture = ExtResource("6_8gxj3")
 
 [node name="SelectBorder" type="Line2D" parent="."]
 visible = false
@@ -386,7 +386,7 @@ width = 24.0
 default_color = Color(1, 0.623529, 0.25098, 1)
 joint_mode = 2
 antialiased = true
-script = ExtResource("7_x3kli")
+script = ExtResource("7_eqlu4")
 
 [node name="ValidBorder" type="Line2D" parent="."]
 visible = false
@@ -397,9 +397,9 @@ width = 24.0
 default_color = Color(0.25098, 0.623529, 1, 1)
 joint_mode = 2
 antialiased = true
-script = ExtResource("7_x3kli")
+script = ExtResource("7_eqlu4")
 
-[node name="EffectIndicator" parent="." instance=ExtResource("8_qhpge")]
+[node name="EffectIndicator" parent="." instance=ExtResource("8_o73k1")]
 visible = false
 
 [node name="Duration" type="Node2D" parent="."]

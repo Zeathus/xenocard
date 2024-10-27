@@ -1,21 +1,16 @@
 extends Node2D
 
-signal selected(card: Card)
-signal show_details(card: Card)
-signal on_hover(card: Card)
+signal selected(button_index: int)
+signal on_hover()
 
 @export var selectable: bool = true
 var original_scale: Vector2
-var original_z: int
 var is_hovering: bool = false
 var old_is_hovering: bool = false
-var in_motion: bool = false
-var card: Card
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	original_scale = $Content.scale
-	original_z = z_index
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -37,20 +32,55 @@ func _process(delta):
 			$Back.scale = original_scale
 			$Content.rotation = 0
 			$Overlay.rotation = 0
-	z_index = original_z
-	if is_hovering:
-		z_index += 1
-	if card:
-		if card.zone == Enum.Zone.HAND:
-			z_index += 20
-		elif card.get_type() == Enum.Type.BATTLE and card.get_attribute() == Enum.Attribute.WEAPON and card.equipped_by:
-			z_index += 2
-	if in_motion:
-		z_index += 30
 
-func load_card(card: Card):
-	self.card = card
-	self.refresh()
+func show_card(card: CardData):
+	$Content/Background.texture = Enum.get_type_background(card.type)
+	$Content/Name.text = ""
+	$Content/SmallName.text = ""
+	$Content/TwoLineName.text = ""
+	var name = card.name
+	if "\n" in name:
+		$Content/TwoLineName.text = name
+	elif len(name) <= 20:
+		$Content/Name.text = name
+	else:
+		$Content/SmallName.text = name
+	$Content/TypeBattle.visible = (card.type == Enum.Type.BATTLE)
+	$Content/TypeOther.visible = (card.type != Enum.Type.BATTLE)
+	$Content/Attribute.visible = (card.type == Enum.Type.BATTLE)
+	$Content/Stats.visible = (card.type == Enum.Type.BATTLE)
+	var expanded_text: String = Keyword.expand_keywords(card.text)
+	var text_size: int = 36
+	while true:
+		$Content/Text.clear()
+		$Content/Text.push_font_size(text_size)
+		$Content/Text.append_text(expanded_text)
+		if $Content/Text.get_content_height() <= $Content/Text.size.y:
+			break
+		text_size -= 2
+	$Content/Text.pop_all()
+	$Content/Cost/Value.text = "%d" % card.cost
+	$Content/SerialNumber.text = "%s #%03d" % [card.set_name, card.set_id]
+	$Content/Rarity.texture = Enum.get_rarity_icon(card.rarity)
+	var field_icons: Array[Node2D] = [
+		$Content/Field/Value1, $Content/Field/Value2,
+		$Content/Field/Value3, $Content/Field/Value4
+	]
+	for i in range(len(field_icons)):
+		var field = card.field
+		if len(field) > i:
+			field_icons[i].visible = true
+			field_icons[i].set_attribute(field[i])
+		else:
+			field_icons[i].visible = false
+	if card.type == Enum.Type.BATTLE:
+		$Content/Attribute.set_attribute(card.attribute)
+		$Content/Stats/HP/Value.text = "%d" % card.max_hp
+		$Content/Stats/Attack/Value.text = "%d" % card.atk
+		$Content/Stats/AttackType.text = Enum.get_attack_type_name(card.attack_type)
+	else:
+		$Content/TypeOther.text = Enum.get_type_name(card.type)
+	$Content/Picture.texture = card.get_image()
 
 func is_face_down() -> bool:
 	return $Back.visible
@@ -73,74 +103,12 @@ func set_e_mark(val: bool):
 func set_downed(val: bool):
 	$Overlay/Downed.visible = val
 
-func refresh():
-	$Content/Background.texture = Enum.get_type_background(card.get_original_type())
-	$Content/Name.text = ""
-	$Content/SmallName.text = ""
-	$Content/TwoLineName.text = ""
-	var name = card.get_name()
-	if "\n" in name:
-		$Content/TwoLineName.text = name
-	elif len(name) <= 20:
-		$Content/Name.text = name
-	else:
-		$Content/SmallName.text = name
-	$Content/TypeBattle.visible = card.has_stats()
-	$Content/TypeOther.visible = !card.has_stats()
-	$Content/Attribute.visible = card.has_stats()
-	$Content/Stats.visible = card.has_stats()
-	var expanded_text: String = Keyword.expand_keywords(card.get_text())
-	var text_size: int = 36
-	while true:
-		$Content/Text.clear()
-		$Content/Text.push_font_size(text_size)
-		$Content/Text.append_text(expanded_text)
-		if $Content/Text.get_content_height() <= $Content/Text.size.y:
-			break
-		text_size -= 2
-	$Content/Text.pop_all()
-	$Content/Cost/Value.text = "%d" % card.get_original_cost()
-	$Content/SerialNumber.text = "%s #%03d" % [card.get_set_name(), card.get_set_id()]
-	$Content/Rarity.texture = Enum.get_rarity_icon(card.get_rarity())
-	var field_icons: Array[Node2D] = [
-		$Content/Field/Value1, $Content/Field/Value2,
-		$Content/Field/Value3, $Content/Field/Value4
-	]
-	for i in range(len(field_icons)):
-		var field = card.get_original_field_requirements()
-		if len(field) > i:
-			field_icons[i].visible = true
-			field_icons[i].set_attribute(field[i])
-		else:
-			field_icons[i].visible = false
-	if card.has_stats():
-		$Content/Attribute.set_attribute(card.get_original_attribute())
-		$Content/Stats/HP/Value.text = "%d" % card.get_original_max_hp()
-		$Content/Stats/Attack/Value.text = "%d" % card.get_original_atk()
-		$Content/Stats/AttackType.text = Enum.get_attack_type_name(card.get_original_attack_type())
-	else:
-		$Content/TypeOther.text = Enum.get_type_name(card.get_original_type())
-	$Content/Picture.texture = card.get_image()
-
-func set_in_motion(val: bool):
-	in_motion = val
-
 func set_duration(val: int):
 	if val <= 0:
 		$Duration.visible = false
 	else:
 		$Duration.visible = true
 		$Duration/Value.text = "%d" % val
-
-#func _on_hitbox_input_event(viewport, event, shape_idx):
-#	if event is InputEventMouseButton:
-#		if event.pressed:
-#			if event.button_index == 1:
-#				if selectable:
-#					selected.emit(self.card)
-#			elif event.button_index == 2:
-#				if self.is_face_up():
-#					show_details.emit(self)
 
 func _on_text_meta_hover_started(meta):
 	$Tooltip/Text.clear()
@@ -152,7 +120,7 @@ func _on_text_meta_hover_ended(meta):
 	$Tooltip.visible = false
 
 func _on_panel_mouse_entered():
-	on_hover.emit(self.card)
+	on_hover.emit()
 	if !selectable:
 		return
 	is_hovering = true
@@ -163,9 +131,5 @@ func _on_panel_mouse_exited():
 func _on_panel_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.pressed:
-			if event.button_index == 1:
-				if selectable:
-					selected.emit(self.card)
-			elif event.button_index == 2:
-				if self.is_face_up():
-					show_details.emit(self.card)
+			if selectable and event.button_index == 1 or event.button_index == 2:
+				selected.emit(event.button_index)

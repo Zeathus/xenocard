@@ -222,21 +222,21 @@ func add_phase_effect(phase: Enum.Phase, effect: CardEffect):
 
 func _on_card_show_details(card):
 	$CardDetails.visible = true
-	$CardDetails/Card.turn_up()
-	$CardDetails/Card.load_card(card)
+	$CardDetails/CardNode.turn_up()
+	$CardDetails/CardNode.show_card(card.data)
 
 func _on_card_hovered(card):
 	$QuickDetails/Left.visible = false
 	$QuickDetails/Right.visible = false
 	var display = $QuickDetails/Left
-	var display_card = $QuickDetails/Left/Card
+	var display_card = $QuickDetails/Left/CardNode
 	if (card.owner == players[0] and card.zone == Enum.Zone.STANDBY) or \
 		(card.owner == players[1] and card.zone == Enum.Zone.SITUATION):
 		display = $QuickDetails/Right
-		display_card = $QuickDetails/Right/Card
+		display_card = $QuickDetails/Right/CardNode
 	display.visible = true
 	display_card.turn_up()
-	display_card.load_card(card)
+	display_card.show_card(card.data)
 	quick_detail_card = card
 
 func on_hand_card_selected(hand: GameHand, card: Card):

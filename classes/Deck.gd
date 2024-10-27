@@ -70,49 +70,9 @@ func sort():
 	)
 
 static func load(name: String, preset: bool = false) -> Deck:
-	var file_name: String
-	if preset:
-		file_name = "res://data/decks/preset/%s.json" % name
-	else:
-		file_name = "user://decks/%s.json" % name
-	if FileAccess.file_exists(file_name):
-		var file = FileAccess.open(file_name, FileAccess.READ)
-		var json = JSON.new()
-		var error = json.parse(file.get_as_text())
-		if error == OK:
-			var deck = Deck.new()
-			deck.name = json.data["name"]
-			for i in json.data["cards"]:
-				deck.cards.push_back(Card.new(i))
-			return deck
-		else:
-			push_error("Failed to to parse deck file '%s'" % file_name)
-	else:
-		push_error("Failed to find deck file '%s'" % file_name)
-	return null
-
-static func list_decks() -> Array[String]:
-	var dir = DirAccess.open("user://decks/")
-	var deck_names: Array[String] = []
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if not dir.current_is_dir():
-				var deck_name = file_name.substr(0, file_name.find(".json"))
-				deck_names.push_back(deck_name)
-			file_name = dir.get_next()
-	return deck_names
-
-static func list_presets() -> Array[String]:
-	var dir = DirAccess.open("res://data/decks/preset/")
-	var deck_names: Array[String] = []
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if not dir.current_is_dir():
-				var deck_name = file_name.substr(0, file_name.find(".json"))
-				deck_names.push_back(deck_name)
-			file_name = dir.get_next()
-	return deck_names
+	var deck_data = DeckData.load(name, preset)
+	var deck = Deck.new()
+	deck.name = deck_data.name
+	for card_data in deck_data.cards:
+		deck.cards.push_back(Card.new(card_data.get_full_id()))
+	return deck

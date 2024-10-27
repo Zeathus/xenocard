@@ -1,6 +1,6 @@
 extends Node2D
 
-var game_scene = preload("res://scenes/game_board.tscn")
+var game_scene = load("res://scenes/game_board.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,9 +19,9 @@ func load_decks(node: OptionButton, presets: bool = false):
 	node.clear()
 	var decks: Array[String]
 	if presets:
-		decks = Deck.list_presets()
+		decks = DeckData.list_presets()
 	else:
-		decks = Deck.list_decks()
+		decks = DeckData.list_decks()
 	for deck in decks:
 		node.add_item(deck)
 
