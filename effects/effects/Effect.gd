@@ -1,6 +1,7 @@
 class_name Effect
 
 var game_board: GameBoard
+var target: Card
 var card: Card
 var global_target: Card
 var param: String
@@ -8,9 +9,11 @@ var events: Array[Event]
 var host: Card = null
 var duration: int = -1
 var stackable: bool = true
+var parent: CardEffect
 
 func _init(game_board: GameBoard, card: Card, param: String = ""):
 	self.game_board = game_board
+	self.target = card
 	self.card = card
 	self.host = card
 	self.global_target = null
@@ -159,9 +162,6 @@ func set_requirements():
 func skips_e_mark() -> bool:
 	return false
 
-func after_move_phase():
-	pass
-
 func stops_normal_draw() -> bool:
 	return false
 
@@ -182,9 +182,6 @@ func skips_phase(phase: Enum.Phase, player: Player):
 
 func evades_attack(attacker: Card):
 	return false
-
-func push_event(optional: bool = false):
-	events.push_back(EventEffect.new(game_board, self, optional))
 
 func get_game_board() -> GameBoard:
 	return card.owner.game_board

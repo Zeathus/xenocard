@@ -18,7 +18,29 @@
 	},
 	"text": "When this card is alone on your battlefield at the end of your move phase, add the number of cards in your junk pile to its ATK until your adjust phase. Afterwards, the cards in the junk pile are removed from the game.\nThis card cannot equip {weapons}.",
 	"effects": [
-		"Albedo",
-		"NoWeapons"
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"effect": [
+				"NoWeapons"
+			]
+		},
+		{
+			"trigger": "after_move_phase",
+			"requirement": [
+				"AloneOnBattlefield"
+			],
+			"effect": [
+				"ApplyEffect",
+				"RemoveJunkFromGame"
+			],
+			"applied_effect": {
+				"trigger": "passive",
+				"duration": 1,
+				"effect": [
+					"ModifyATK(5)"
+				]
+			}
+		}
 	]
 }

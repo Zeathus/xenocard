@@ -1,34 +1,41 @@
 class_name CardEffect
 
 var trigger: Enum.Trigger
-var requirements: Array
-var effects: Array
+var requirements: Array[Requirement]
+var effects: Array[Effect]
 var host: Card
-var target: Card
 var ignores_down: bool
 var global: bool
 var stackable: bool
+var duration: int
 var events: Array[Event]
+var applied_effect: EffectData
 
 func _init(_trigger: Enum.Trigger, _host: Card):
 	trigger = _trigger
 	host = _host
-	target = _host
 	requirements = []
 	effects = []
 	ignores_down = false
 	global = false
 	stackable = true
+	duration = -1
 
 func set_host(_host: Card) -> CardEffect:
 	host = _host
 	return self
 
+func trigger_by(t: Enum.Trigger):
+	return trigger == t
+
 func is_active() -> bool:
+	for r in requirements:
+		if not r.met():
+			return false
 	return (ignores_down or not host.downed)
 
 func is_global() -> bool:
-	return false
+	return global
 
 func applies_to(target: Card) -> bool:
 	return true
@@ -37,6 +44,8 @@ func apply_effect(target: Card) -> Effect:
 	return null
 
 func uses_one_card_per_turn(value: bool) -> bool:
+	for e in effects:
+		value = e.uses_one_card_per_turn(value)
 	return value
 
 func conflicts_with_card(card: Card) -> bool:
@@ -58,7 +67,8 @@ func can_replace_card(card: Card) -> bool:
 	return false
 
 func effect():
-	pass
+	for e in effects:
+		e.effect()
 
 func handle_effect_targets(targets: Array[Card]):
 	pass
@@ -91,9 +101,13 @@ func get_cost(cost: int) -> int:
 	return cost
 
 func get_atk(atk: int) -> int:
+	for e in effects:
+		atk = e.get_atk(atk)
 	return atk
 
 func get_atk_against(target, atk: int) -> int:
+	for e in effects:
+		atk = e.get_atk_against(target, atk)
 	return atk
 
 func get_atk_time(time: int) -> int:
@@ -159,9 +173,6 @@ func set_requirements():
 func skips_e_mark() -> bool:
 	return false
 
-func after_move_phase():
-	pass
-
 func stops_normal_draw() -> bool:
 	return false
 
@@ -184,7 +195,7 @@ func evades_attack(attacker: Card):
 	return false
 
 func push_event(optional: bool = false):
-	events.push_back(EventEffect.new(game_board, self, optional))
+	events.push_back(EventEffect.new(get_game_board(), self, optional))
 
 func get_game_board() -> GameBoard:
 	return host.owner.game_board

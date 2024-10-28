@@ -19,6 +19,7 @@
 	"effects": [
 		{
 			"trigger": "passive",
+			"ignores_down": true,
 			"effect": [
 				"Unlimited"
 			]

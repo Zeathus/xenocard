@@ -133,32 +133,10 @@ func load_json(json: Dictionary):
 
 	if "effects" in json:
 		for effect_dict in json["effects"]:
-			if effect_dict is String:
+			var effect_data = EffectData.parse(effect_dict, name)
+			if effect_data == null:
+				print("Failed to get effect data")
 				continue
-			if "trigger" not in effect_dict:
-				print("Trigger missing for effect for card '%s'" % name)
-				continue
-			if effect_dict["trigger"].to_upper() not in Enum.Trigger:
-				print("Invalid effect Trigger '%s' for card '%s'" % [effect_dict["trigger"].to_upper(), name])
-				continue
-			var effect_data = EffectData.new(Enum.Trigger[effect_dict["trigger"].to_upper()])
-			if "effect" not in effect_dict:
-				print("Effect missing for effect for card '%s'" % name)
-				continue
-			for e in effect_dict["effect"]:
-				if true: # validity check
-					effect_data.effects.push_back(e)
-			if "requirement" in effect_dict:
-				for r in effect_dict["requirement"]:
-					if true: # validity check
-						effect_data.requirements.push_back(r)
-			if "ignores_down" in effect_dict:
-				effect_data.ignores_down = effect_dict["ignores_down"]
-			if "global" in effect_dict:
-				effect_data.global = effect_dict["global"]
-			if "stackable" in effect_dict:
-				effect_data.stackable = effect_dict["stackable"]
-			
 			effects.push_back(effect_data)
 
 func get_image() -> Resource:

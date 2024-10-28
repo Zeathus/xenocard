@@ -78,8 +78,8 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, ind
 	if card and card.selectable(game_board):
 		hide_selectable()
 		queue_event(EventAnimation.new(game_board, AnimationEffectStart.new(card)))
-		for e in card.event_effects:
-			queue_event(EventEffect.new(game_board, e))
+		#for e in card.event_effects:
+		#	queue_event(EventEffect.new(game_board, e))
 		queue_event(EventAnimation.new(game_board, AnimationEffectEnd.new(card)))
 		in_sub_event = true
 
