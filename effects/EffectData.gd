@@ -28,8 +28,7 @@ func instantiate(host: Card) -> CardEffect:
 		if "(" in i and ")" in i and i.find("(") < i.rfind(")"):
 			param = i.substr(i.find("(") + 1, i.rfind(")") - i.find("(") - 1)
 			i = i.substr(0, i.find("("))
-		var effect = Effect.parse(i).new(host.owner.game_board, host, param)
-		effect.parent = instance
+		var effect = Effect.parse(i).new(instance, host.owner.game_board, host, param)
 		instance.effects.push_back(effect)
 	for i in requirements:
 		var param: String = ""

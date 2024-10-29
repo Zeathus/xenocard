@@ -181,9 +181,7 @@ func can_effects_stack() -> bool:
 func trigger_effects(trigger: Enum.Trigger, event: Event):
 	for e in get_effects():
 		if e.trigger_by(trigger):
-			e.effect()
-			for ev in e.get_events():
-				event.queue_event(ev)
+			event.queue_event(e.get_event())
 
 func has_event_effect() -> bool:
 	return not event_effects.is_empty()

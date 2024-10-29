@@ -38,7 +38,7 @@
 				"trigger": "passive",
 				"duration": 1,
 				"effect": [
-					"ModifyATK(5)"
+					"ModifyATK(=junk)"
 				]
 			}
 		}

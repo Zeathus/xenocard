@@ -2,11 +2,11 @@ extends Effect
 
 class_name EffectModifyATK
 
-var amount: int = 0
+var formula: String = "0"
 
 func post_init():
-	amount = int(param)
+	formula = Formula.prepare(param, parent.host, parent.get_game_board())
 
 func get_atk(atk: int) -> int:
-	atk += amount
+	atk += Formula.calc(formula, parent.host, parent.get_game_board())
 	return atk

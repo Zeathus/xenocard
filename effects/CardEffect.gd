@@ -195,7 +195,10 @@ func evades_attack(attacker: Card):
 	return false
 
 func push_event(optional: bool = false):
-	events.push_back(EventEffect.new(get_game_board(), self, optional))
+	events.push_back(get_event(optional))
+
+func get_event(optional: bool = false):
+	return EventEffect.new(get_game_board(), self, optional)
 
 func get_game_board() -> GameBoard:
 	return host.owner.game_board

@@ -11,8 +11,9 @@ var duration: int = -1
 var stackable: bool = true
 var parent: CardEffect
 
-func _init(game_board: GameBoard, card: Card, param: String = ""):
-	self.game_board = game_board
+func _init(_parent: CardEffect, _game_board: GameBoard, card: Card, param: String = ""):
+	self.parent = _parent
+	self.game_board = _game_board
 	self.target = card
 	self.card = card
 	self.host = card

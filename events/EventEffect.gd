@@ -36,7 +36,7 @@ func on_start():
 			effect.get_help_text()
 		))
 		return
-	if not effect.card.owner.has_controller():
+	if not effect.host.owner.has_controller():
 		update_targets()
 
 func on_finish():

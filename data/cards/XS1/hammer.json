@@ -17,6 +17,12 @@
 	},
 	"text": "Gains ATK+1 for every {Machine} on your battlefield when not equipped with a {weapon}.\nThis ability is unaffected by event cards.",
 	"effects": [
-		"GainATKForEachAlly(1,attribute=machine;zone=battlefield)"
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"effect": [
+				"ModifyATK(count(attribute=machine;zone=battlefield;owner=self))"
+			]
+		}
 	]
 }
