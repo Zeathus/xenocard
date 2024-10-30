@@ -10,8 +10,5 @@ func post_init():
 	damage = int(arg[0])
 	filter = CardFilter.new(arg[1])
 
-func after_attack_turn():
-	push_event()
-
-func effect():
-	events.push_back(EventSpecialAttack.new(game_board, card, damage, filter))
+func effect(variables: Dictionary = {}):
+	parent.events.push_back(EventSpecialAttack.new(game_board, parent.host, damage, filter))

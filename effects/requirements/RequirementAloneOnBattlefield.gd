@@ -2,7 +2,7 @@ extends Requirement
 
 class_name RequirementAloneOnBattlefield
 
-func met() -> bool:
+func met(variables: Dictionary = {}) -> bool:
 	if effect.host.zone != Enum.Zone.BATTLEFIELD:
 		return false
 	for c in effect.host.owner.field.get_battlefield_cards():

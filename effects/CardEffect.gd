@@ -5,7 +5,7 @@ var requirements: Array[Requirement]
 var effects: Array[Effect]
 var host: Card
 var ignores_down: bool
-var global: bool
+var global: CardFilter
 var optional: bool
 var stackable: bool
 var animated: bool
@@ -19,7 +19,7 @@ func _init(_trigger: Enum.Trigger, _host: Card):
 	requirements = []
 	effects = []
 	ignores_down = false
-	global = false
+	global = null
 	optional = false
 	stackable = true
 	animated = true
@@ -32,17 +32,19 @@ func set_host(_host: Card) -> CardEffect:
 func trigger_by(t: Enum.Trigger):
 	return trigger == t
 
-func is_active() -> bool:
+func is_active(variables: Dictionary = {}) -> bool:
 	for r in requirements:
-		if not r.met():
+		if not r.met(variables):
 			return false
 	return (ignores_down or not host.downed)
 
 func is_global() -> bool:
-	return global
+	return global != null
 
-func applies_to(target: Card) -> bool:
-	return true
+func applies_to(target: Card, variables: Dictionary = {}) -> bool:
+	if not is_global():
+		return false
+	return global.is_valid(host.owner, target, variables)
 
 func apply_effect(target: Card) -> Effect:
 	return null
@@ -198,6 +200,9 @@ func can_move() -> bool:
 	return true
 
 func can_equip_weapon(weapon: Card) -> bool:
+	for e in effects:
+		if not e.can_equip_weapon(weapon):
+			return false
 	return true
 
 func can_attack_on_enemy_phase() -> bool:
@@ -285,3 +290,12 @@ func get_user():
 	if user.equipped_by:
 		user = user.equipped_by
 	return user
+
+func with_target(card: Card) -> CardEffect:
+	var copy = CardEffect.new(trigger, host)
+	copy.optional = optional
+	copy.stackable = stackable
+	copy.animated = animated
+	for e in effects:
+		copy.effects.push_back(e.get_script().new(copy, get_game_board(), card, e.param))
+	return copy

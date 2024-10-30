@@ -2,19 +2,15 @@ class_name Effect
 
 var game_board: GameBoard
 var target: Card
-var global_target: Card
 var param: String
-var host: Card = null
 var duration: int = -1
 var stackable: bool = true
 var parent: CardEffect
 
-func _init(_parent: CardEffect, _game_board: GameBoard, card: Card, param: String = ""):
+func _init(_parent: CardEffect, _game_board: GameBoard, _target: Card, param: String = ""):
 	self.parent = _parent
 	self.game_board = _game_board
-	self.target = card
-	self.host = card
-	self.global_target = null
+	self.target = _target
 	self.param = param
 	post_init()
 
@@ -22,11 +18,11 @@ func post_init():
 	pass
 
 func set_host(_host: Card) -> Effect:
-	host = _host
+	parent.host = _host
 	return self
 
 func is_active() -> bool:
-	return not host.downed
+	return not parent.host.downed
 
 func is_global() -> bool:
 	return false

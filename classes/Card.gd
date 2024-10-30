@@ -122,7 +122,7 @@ func get_resources() -> Array[Enum.Attribute]:
 		attr.push_back(get_attribute())
 	return attr
 
-func get_effects(trigger: Enum.Trigger) -> Array[CardEffect]:
+func get_effects(trigger: Enum.Trigger, variables: Dictionary = {}) -> Array[CardEffect]:
 	var ret: Array[CardEffect] = []
 	var stackable: bool = true
 	if not can_effects_stack():
@@ -135,45 +135,48 @@ func get_effects(trigger: Enum.Trigger) -> Array[CardEffect]:
 	for e in effects:
 		if not e.trigger_by(trigger):
 			continue
+		if e.is_global():
+			continue
 		e.set_stackable(stackable)
-		if e.is_stackable() and e.is_active():
+		if e.is_stackable() and e.is_active(variables):
 			ret.push_back(e)
 	for e in applied_effects:
 		if not e.trigger_by(trigger):
 			continue
-		if e.is_active():
+		if e.is_active(variables):
 			ret.push_back(e)
 	if equipped_weapon:
 		ret += equipped_weapon.get_effects(trigger)
-	#var global_effects: Array[CardEffect] = []
-	#for c in owner.field.get_all_cards() + owner.get_enemy().field.get_all_cards():
-		#for e in c.get_global_effects():
-			#if not e.applies_to(self):
-				#continue
-			#var global_effect: Effect = e.apply_effect(self)
-			#if not global_effect.is_active():
-				#continue
-			#global_effect.set_stackable(c.can_effects_stack())
-			#var keep: bool = true
-			#if not global_effect.is_stackable():
-				#for ge in global_effects:
-					#if ge.is_stackable():
-						#continue
-					#if not ge.host.equals(global_effect.host):
-						#continue
-					#if ge.get_script() != global_effect.get_script():
-						#continue
-					#keep = false
-					#break
-			#if keep:
-				#global_effects.push_back(global_effect)
-	return ret #+ global_effects
+	var global_effects: Array[CardEffect] = []
+	for c in owner.field.get_all_cards() + owner.get_enemy().field.get_all_cards():
+		for e in c.get_global_effects(trigger, self, variables):
+			var keep: bool = true
+			if not e.is_stackable():
+				for ge in global_effects:
+					if ge.is_stackable():
+						continue
+					if not ge.host.equals(e.host):
+						continue
+					#if ge.get_script() != e.get_script():
+					#	continue
+					keep = false
+					break
+			if keep:
+				global_effects.push_back(e.with_target(self))
+	return ret + global_effects
 
-func get_global_effects() -> Array[Effect]:
-	var ret: Array[Effect] = []
+func get_global_effects(trigger: Enum.Trigger, target: Card, variables: Dictionary = {}) -> Array[CardEffect]:
+	var ret: Array[CardEffect] = []
 	for e in effects:
-		if e.is_global() and e.is_active():
-			ret.push_back(e)
+		if not e.is_global():
+			continue
+		if not e.trigger_by(trigger):
+			continue
+		if not e.is_active():
+			continue
+		if not e.applies_to(target, variables):
+			continue
+		ret.push_back(e)
 	return ret
 
 func can_effects_stack() -> bool:
@@ -184,7 +187,7 @@ func can_effects_stack() -> bool:
 
 func trigger_effects(trigger: Enum.Trigger, event: Event, variables: Dictionary = {}):
 	variables["self"] = self
-	for e in get_effects(trigger):
+	for e in get_effects(trigger, variables):
 		event.queue_event(e.get_event(variables))
 
 func has_event_effect() -> bool:
