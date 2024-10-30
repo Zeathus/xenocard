@@ -3,16 +3,18 @@ extends Event
 class_name EventEffect
 
 var effect: CardEffect
+var variables: Dictionary
 var targets_required: Array[CardFilter]
 var targets: Array[Card] = []
 var activated: bool = false
 var optional: bool
 var cancelled: bool = false
-var animate: bool
+var animate: bool = true
 
-func _init(_game_board: GameBoard, _effect: CardEffect, _optional=false):
+func _init(_game_board: GameBoard, _effect: CardEffect, _variables: Dictionary, _optional=false):
 	super(_game_board)
 	effect = _effect
+	variables = _variables
 	optional = _optional
 	targets_required = effect.targets_to_select_for_effect()
 
@@ -23,7 +25,7 @@ func on_start():
 	if not effect.has_valid_targets():
 		finish()
 		return
-	animate = effect.host.instance and not effect.host.instance.find_child("EffectIndicator").visible
+	animate = animate and effect.host.instance and not effect.host.instance.find_child("EffectIndicator").visible
 	if animate:
 		queue_event(EventAnimation.new(game_board, AnimationEffectStart.new(effect.host)))
 	if optional:
@@ -75,7 +77,7 @@ func process(delta):
 	elif len(targets) == len(targets_required):
 		if not activated:
 			effect.handle_effect_targets(targets)
-			effect.effect()
+			effect.effect(variables)
 			for event in effect.get_events():
 				queue_event(event)
 			activated = true

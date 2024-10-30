@@ -61,7 +61,7 @@ func can_replace_target() -> bool:
 func can_replace_card(card: Card) -> bool:
 	return false
 
-func effect():
+func effect(variables: Dictionary = {}):
 	pass
 
 func handle_effect_targets(targets: Array[Card]):

@@ -6,12 +6,13 @@ var attributes: Array[Enum.Attribute] = []
 var zones: Array[Enum.Zone] = []
 var types: Array[Enum.Type] = []
 var owner: int = -1
+var relation: int = -1
 
 func _init(str: String):
 	for param in str.split(";"):
 		var filter = param.split("=")
 		var field = filter[0]
-		var value = filter[1]
+		var value = filter[1] if len(filter) > 1 else ""
 		match field:
 			"name":
 				names.push_back(value)
@@ -49,6 +50,10 @@ func _init(str: String):
 						owner = -1
 					_:
 						print("Invalid owner filter '%s'" % value)
+			"self":
+				relation = 0
+			"target":
+				relation = 1
 
 func check_multiple(value, filter):
 	if len(filter) == 0:
@@ -58,7 +63,7 @@ func check_multiple(value, filter):
 			return true
 	return false
 
-func is_valid(player: Player, card: Card):
+func is_valid(player: Player, card: Card, variables: Dictionary = {}):
 	if not check_multiple(card.get_name().replace("\n", " "), names):
 		return false
 	if not check_multiple(card.get_character(), characters):
@@ -72,6 +77,10 @@ func is_valid(player: Player, card: Card):
 	if owner == 0 and card.owner != player:
 		return false
 	if owner == 1 and card.owner == player:
+		return false
+	if relation == 0 and false:
+		return false
+	if relation == 1 and ("target" not in variables or card != variables["target"]):
 		return false
 	return true
 

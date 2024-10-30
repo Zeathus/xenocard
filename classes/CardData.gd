@@ -121,16 +121,6 @@ func load_json(json: Dictionary):
 		attribute = Enum.attribute_from_string(json["stats"]["attribute"])
 		attack_type = Enum.attack_type_from_string(json["stats"]["target"])
 
-	#effect_names = []
-	#if "effects" in json:
-		#for i in json["effects"]:
-			#effect_names.push_back(i)
-#
-	#event_effect_names = []
-	#if "event_effects" in json:
-		#for i in json["event_effects"]:
-			#event_effect_names.push_back(i)
-
 	if "effects" in json:
 		for effect_dict in json["effects"]:
 			var effect_data = EffectData.parse(effect_dict, name)

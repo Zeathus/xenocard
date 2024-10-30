@@ -6,7 +6,9 @@ var effects: Array[Effect]
 var host: Card
 var ignores_down: bool
 var global: bool
+var optional: bool
 var stackable: bool
+var animated: bool
 var duration: int
 var events: Array[Event]
 var applied_effect: EffectData
@@ -18,7 +20,9 @@ func _init(_trigger: Enum.Trigger, _host: Card):
 	effects = []
 	ignores_down = false
 	global = false
+	optional = false
 	stackable = true
+	animated = true
 	duration = -1
 
 func set_host(_host: Card) -> CardEffect:
@@ -49,6 +53,9 @@ func uses_one_card_per_turn(value: bool) -> bool:
 	return value
 
 func conflicts_with_card(card: Card) -> bool:
+	for e in effects:
+		if e.conflicts_with_card(card):
+			return true
 	return false
 
 func targets_to_select_for_effect() -> Array[CardFilter]:
@@ -66,9 +73,9 @@ func can_replace_target() -> bool:
 func can_replace_card(card: Card) -> bool:
 	return false
 
-func effect():
+func effect(variables: Dictionary = {}):
 	for e in effects:
-		e.effect()
+		e.effect(variables)
 
 func handle_effect_targets(targets: Array[Card]):
 	pass
@@ -194,11 +201,13 @@ func skips_phase(phase: Enum.Phase, player: Player):
 func evades_attack(attacker: Card):
 	return false
 
-func push_event(optional: bool = false):
-	events.push_back(get_event(optional))
+func push_event(variables: Dictionary = {}):
+	events.push_back(get_event(variables))
 
-func get_event(optional: bool = false):
-	return EventEffect.new(get_game_board(), self, optional)
+func get_event(variables: Dictionary = {}):
+	var event = EventEffect.new(get_game_board(), self, variables, optional)
+	event.animate = animated
+	return event
 
 func get_game_board() -> GameBoard:
 	return host.owner.game_board

@@ -5,6 +5,9 @@ var requirements: Array[String]
 var effects: Array[String]
 var ignores_down: bool
 var global: bool
+var optional: bool
+var stackable: bool
+var animated: bool
 var duration: int
 var applied_effect: EffectData
 
@@ -14,6 +17,9 @@ func _init(_trigger: Enum.Trigger):
 	effects = []
 	ignores_down = false
 	global = false
+	optional = false
+	stackable = true
+	animated = true
 	duration = -1
 	applied_effect = null
 
@@ -21,6 +27,9 @@ func instantiate(host: Card) -> CardEffect:
 	var instance = CardEffect.new(trigger, host)
 	instance.ignores_down = ignores_down
 	instance.global = global
+	instance.optional = optional
+	instance.stackable = stackable
+	instance.animated = animated
 	instance.duration = duration
 	instance.applied_effect = applied_effect
 	for i in effects:
@@ -63,8 +72,12 @@ static func parse(data, card_name) -> EffectData:
 		effect_data.ignores_down = data["ignores_down"]
 	if "global" in data:
 		effect_data.global = data["global"]
+	if "optional" in data:
+		effect_data.optional = data["optional"]
 	if "stackable" in data:
 		effect_data.stackable = data["stackable"]
+	if "animated" in data:
+		effect_data.animated = data["animated"]
 	if "duration" in data:
 		effect_data.duration = data["duration"]
 	if "applied_effect" in data:
