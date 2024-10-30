@@ -39,7 +39,7 @@ func on_start():
 	queue_event(EventAnimation.new(game_board, anim))
 
 func handle_set_effects():
-	for e in to_set.get_effects():
+	for e in to_set.get_effects(Enum.Trigger.SET):
 		e.on_set()
 		for event in e.get_events():
 			queue_event(event)
@@ -86,7 +86,7 @@ func play(new_zone: Enum.Zone, index: int):
 	to_set.zone_index = index
 
 func handle_occupied_zone(zone: Enum.Zone, index: int):
-	for e in to_set.get_effects():
+	for e in to_set.get_effects(Enum.Trigger.PASSIVE):
 		if e.handle_occupied_zone(game_board, zone, index):
 			return
 	var occupant: Card = player.field.get_card(zone, index)

@@ -122,7 +122,7 @@ func get_resources() -> Array[Enum.Attribute]:
 		attr.push_back(get_attribute())
 	return attr
 
-func get_effects() -> Array[CardEffect]:
+func get_effects(trigger: Enum.Trigger) -> Array[CardEffect]:
 	var ret: Array[CardEffect] = []
 	var stackable: bool = true
 	if not can_effects_stack():
@@ -133,14 +133,18 @@ func get_effects() -> Array[CardEffect]:
 				stackable = false
 				break
 	for e in effects:
+		if not e.trigger_by(trigger):
+			continue
 		e.set_stackable(stackable)
 		if e.is_stackable() and e.is_active():
 			ret.push_back(e)
 	for e in applied_effects:
+		if not e.trigger_by(trigger):
+			continue
 		if e.is_active():
 			ret.push_back(e)
 	if equipped_weapon:
-		ret += equipped_weapon.get_effects()
+		ret += equipped_weapon.get_effects(trigger)
 	#var global_effects: Array[CardEffect] = []
 	#for c in owner.field.get_all_cards() + owner.get_enemy().field.get_all_cards():
 		#for e in c.get_global_effects():
@@ -180,9 +184,8 @@ func can_effects_stack() -> bool:
 
 func trigger_effects(trigger: Enum.Trigger, event: Event, variables: Dictionary = {}):
 	variables["self"] = self
-	for e in get_effects():
-		if e.trigger_by(trigger):
-			event.queue_event(e.get_event(variables))
+	for e in get_effects(trigger):
+		event.queue_event(e.get_event(variables))
 
 func has_event_effect() -> bool:
 	return not event_effects.is_empty()
@@ -199,7 +202,7 @@ func equals(other: Card) -> bool:
 	return get_identifier() == other.get_identifier()
 
 func ignore_unique(card: Card) -> bool:
-	for e in get_effects():
+	for e in get_effects(Enum.Trigger.PASSIVE):
 		if e.ignore_unique(card):
 			return true
 	return false
@@ -214,7 +217,7 @@ func conflicts_with_card(card: Card) -> bool:
 	if is_character() and get_character() == card.get_character() and owner == card.owner:
 		if not ignore_unique(card):
 			return true
-	for e in get_effects():
+	for e in get_effects(Enum.Trigger.PASSIVE):
 		if e.conflicts_with_card(card):
 			return true
 	return false
@@ -224,7 +227,7 @@ func get_original_field_requirements() -> Array[Enum.Attribute]:
 
 func get_field_requirements() -> Array[Enum.Attribute]:
 	var ret: Array[Enum.Attribute] = get_original_field_requirements()
-	for e in get_effects():
+	for e in get_effects(Enum.Trigger.PASSIVE):
 		ret = e.get_field_requirements(ret)
 	return ret
 
@@ -245,7 +248,7 @@ func requirements_met(game_board: GameBoard) -> bool:
 		return false
 	if has_card_conflict(game_board):
 		return false
-	for e in get_effects():
+	for e in get_effects(Enum.Trigger.PASSIVE):
 		if not e.set_requirements():
 			return false
 	return true
@@ -253,12 +256,12 @@ func requirements_met(game_board: GameBoard) -> bool:
 func uses_one_card_per_turn() -> bool:
 	var type = get_type()
 	var ret = (type == Enum.Type.BATTLE or type == Enum.Type.SITUATION)
-	for e in get_effects():
+	for e in get_effects(Enum.Trigger.PASSIVE):
 		ret = e.uses_one_card_per_turn(ret)
 	return ret
 
 func can_move() -> bool:
-	for e in get_effects():
+	for e in get_effects(Enum.Trigger.PASSIVE):
 		if not e.can_move():
 			return false
 	return true
@@ -312,12 +315,12 @@ func targets_to_select() -> Array[Callable]:
 	var ret: Array[Callable] = []
 	match owner.game_board.turn_phase:
 		Enum.Phase.SET:
-			for e in get_effects():
+			for e in get_effects(Enum.Trigger.PASSIVE):
 				e.targets_to_select_for_set(ret)
 	return ret
 
 func can_set_to_battlefield() -> bool:
-	for e in get_effects():
+	for e in get_effects(Enum.Trigger.PASSIVE):
 		if e.can_set_to_battlefield():
 			return true
 	return false
@@ -343,18 +346,18 @@ func is_valid_zone(new_zone: Enum.Zone, index: int) -> bool:
 			ret = false
 		if new_zone == Enum.Zone.BATTLEFIELD and self.e_mark:
 			ret = false
-	for e in get_effects():
+	for e in get_effects(Enum.Trigger.PASSIVE):
 		ret = e.is_valid_zone(new_zone, index, ret)
 	return ret
 
 func can_replace_target() -> bool:
-	for e in get_effects():
+	for e in get_effects(Enum.Trigger.PASSIVE):
 		if e.can_replace_target():
 			return true
 	return false
 
 func can_replace_card(card: Card) -> bool:
-	for e in get_effects():
+	for e in get_effects(Enum.Trigger.PASSIVE):
 		if e.can_replace_card(card):
 			return true
 	return false
@@ -363,7 +366,7 @@ func can_play(game_board: GameBoard, new_zone: Enum.Zone, index: int) -> bool:
 	if not self.is_valid_zone(new_zone, index):
 		return false
 	var player: Player = owner
-	for e in get_effects():
+	for e in get_effects(Enum.Trigger.PASSIVE):
 		if not e.set_requirements():
 			return false
 	var type = get_type()
@@ -387,10 +390,10 @@ func can_play(game_board: GameBoard, new_zone: Enum.Zone, index: int) -> bool:
 	return true
 
 func can_equip(weapon: Card):
-	for e in get_effects():
+	for e in get_effects(Enum.Trigger.PASSIVE):
 		if not e.can_equip_weapon(weapon):
 			return false
-	for e in weapon.get_effects():
+	for e in weapon.get_effects(Enum.Trigger.PASSIVE):
 		if e.equips_to(self):
 			return true
 	return false
@@ -473,7 +476,7 @@ func get_base_atk() -> int:
 
 func get_atk() -> int:
 	var ret = get_base_atk()
-	for e in get_effects():
+	for e in get_effects(Enum.Trigger.PASSIVE):
 		ret = e.get_atk(ret)
 	if ret < 0:
 		ret = 0
@@ -482,7 +485,7 @@ func get_atk() -> int:
 # Opponent is either Card or Player
 func get_atk_against(opponent) -> int:
 	var ret = get_atk()
-	for e in get_effects():
+	for e in get_effects(Enum.Trigger.PASSIVE):
 		ret = e.get_atk_against(opponent, ret)
 	if ret < 0:
 		ret = 0
@@ -492,7 +495,7 @@ func get_atk_time() -> int:
 	if equipped_weapon and equipped_weapon.get_original_atk() > 0:
 		return equipped_weapon.get_atk_time()
 	var ret = 1
-	for e in get_effects():
+	for e in get_effects(Enum.Trigger.PASSIVE):
 		ret = e.get_atk_time(ret)
 	return ret
 
@@ -501,7 +504,7 @@ func get_original_cost() -> int:
 
 func get_cost() -> int:
 	var ret = get_original_cost()
-	for e in get_effects():
+	for e in get_effects(Enum.Trigger.PASSIVE):
 		ret = e.get_cost(ret)
 	return ret
 
@@ -553,7 +556,7 @@ func penetrates():
 		return equipped_weapon.penetrates()
 	if get_attack_type() != Enum.AttackType.BALLISTIC:
 		return false
-	for e in get_effects():
+	for e in get_effects(Enum.Trigger.PASSIVE):
 		if e.penetrates():
 			return true
 	return false
@@ -593,7 +596,7 @@ func heal(amount: int):
 	owner.game_board.refresh()
 
 func evades_attack(attacker: Card):
-	for e in get_effects():
+	for e in get_effects(Enum.Trigger.PASSIVE):
 		if e.evades_attack(attacker):
 			return true
 	return false
@@ -627,7 +630,7 @@ func on_turn_start():
 	turn_count += 1
 
 func can_attack_on_enemy_phase() -> bool:
-	for e in get_effects():
+	for e in get_effects(Enum.Trigger.PASSIVE):
 		if e.can_attack_on_enemy_phase():
 			return true
 	return false

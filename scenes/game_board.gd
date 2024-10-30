@@ -114,7 +114,7 @@ func is_free() -> bool:
 
 func skips_phase(phase: Enum.Phase, player: Player):
 	for card in get_all_field_cards():
-		for e in card.get_effects():
+		for e in card.get_effects(Enum.Trigger.PASSIVE):
 			if e.skips_phase(phase, player):
 				return true
 	return false
@@ -178,10 +178,10 @@ func refresh():
 		player.field.refresh()
 		player.set_reveal_hand(false)
 		for card in get_all_field_cards():
-			for e in card.get_effects():
-					var reveal_hand = e.reveal_hand(player)
-					if reveal_hand:
-						player.set_reveal_hand(reveal_hand)
+			for e in card.get_effects(Enum.Trigger.PASSIVE):
+				var reveal_hand = e.reveal_hand(player)
+				if reveal_hand:
+					player.set_reveal_hand(reveal_hand)
 
 func next_player():
 	turn_player_id = (turn_player_id + 1) % 2

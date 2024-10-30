@@ -36,7 +36,7 @@ func update_valid_zones():
 		player.field.show_valid_zones(to_set)
 
 func handle_set_effects():
-	for e in to_set.get_effects():
+	for e in to_set.get_effects(Enum.Trigger.SET):
 		e.on_set()
 		for event in e.get_events():
 			queue_event(event)
@@ -102,7 +102,7 @@ func play(new_zone: Enum.Zone, index: int):
 		if (to_set.get_type() == Enum.Type.BATTLE and to_set.get_attribute() != Enum.Attribute.WEAPON) or \
 			to_set.get_type() == Enum.Type.SITUATION:
 			should_set_e_mark = true
-			for e in to_set.get_effects():
+			for e in to_set.get_effects(Enum.Trigger.PASSIVE):
 				if e.skips_e_mark():
 					should_set_e_mark = false
 		var cost_to_pay = to_set.get_cost()
@@ -129,7 +129,7 @@ func play(new_zone: Enum.Zone, index: int):
 	to_set.zone_index = index
 
 func handle_occupied_zone(zone: Enum.Zone, index: int):
-	for e in to_set.get_effects():
+	for e in to_set.get_effects(Enum.Trigger.PASSIVE):
 		if e.handle_occupied_zone(game_board, zone, index):
 			return
 	var occupant: Card = player.field.get_card(zone, index)
@@ -142,6 +142,6 @@ func handle_occupied_zone(zone: Enum.Zone, index: int):
 
 func targets_to_set() -> Array[Callable]:
 	var ret: Array[Callable] = []
-	for e in to_set.get_effects():
+	for e in to_set.get_effects(Enum.Trigger.PASSIVE):
 		e.targets_to_select_for_set(ret)
 	return ret

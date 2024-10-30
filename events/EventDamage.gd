@@ -26,9 +26,9 @@ func on_start():
 	if target.is_player():
 		target.take_damage(game_board, attacker, damage, source)
 		return
-	for e in target.get_effects():
+	for e in target.get_effects(Enum.Trigger.PASSIVE):
 		damage = e.take_damage(game_board, attacker, damage, source)
-	for e in target.get_effects():
+	for e in target.get_effects(Enum.Trigger.PASSIVE):
 		damage = e.take_set_damage(game_board, attacker, damage, source)
 	var new_hp: int = max(target.hp - damage, 0)
 	var capped_damage = target.hp - new_hp

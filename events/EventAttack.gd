@@ -17,7 +17,7 @@ func get_name() -> String:
 	return "Attack"
 
 func on_start():
-	for e in attacker.get_effects():
+	for e in attacker.get_effects(Enum.Trigger.PASSIVE):
 		if e.attack_stopped():
 			attack_done = true
 			return
@@ -45,7 +45,7 @@ func process(delta):
 		handled_post_effects = true
 		attacker.atk_timer = 0
 		game_board.refresh()
-		for e in attacker.get_effects():
+		for e in attacker.get_effects(Enum.Trigger.AFTER_ATTACK):
 			e.after_attack(targets)
 			for event in e.get_events():
 				queue_event(event)
@@ -78,11 +78,10 @@ func penetrating_attack(game_board: GameBoard, target_to_hit, remaining_damage: 
 	adopt_children(damage_event)
 	queue_event(damage_event)
 	remaining_damage = damage_event.remaining_damage
-	for e in attacker.get_effects():
-		if target_to_hit.is_player():
-			e.on_deck_attacked(target_to_hit)
-		else:
-			e.on_target_attacked(target_to_hit)
+	if target_to_hit.is_player():
+		attacker.trigger_effects(Enum.Trigger.DECK_HIT, self)
+	else:
+		attacker.trigger_effects(Enum.Trigger.ATTACK_HIT, self, {"target": target_to_hit})
 	if remaining_damage > 0 and behind_target and attacker.penetrates():
 		penetrating_attack(game_board, behind_target, remaining_damage)
 	return true

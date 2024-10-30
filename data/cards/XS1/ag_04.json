@@ -17,6 +17,12 @@
 	},
 	"text": "Cards attacked by this card are <downed>.",
 	"effects": [
-		"DownAttackTarget"
+		{
+			"trigger": "attack_hit",
+			"animated": false,
+			"effect": [
+				"Down(target)"
+			]
+		}
 	]
 }

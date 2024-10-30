@@ -15,26 +15,26 @@ func get_name() -> String:
 func on_start():
 	for c in player.field.get_all_cards():
 		c.on_turn_start()
-		for e in c.get_effects():
+		for e in c.get_effects(Enum.Trigger.TURN_START):
 			e.on_turn_start()
 			for event in e.get_events():
 				queue_event(event)
 	for c in player.get_enemy().field.get_all_cards():
-		for e in c.get_effects():
+		for e in c.get_effects(Enum.Trigger.TURN_START):
 			e.on_turn_start_enemy()
 			for event in e.get_events():
 				queue_event(event)
 
 	var can_normal_draw = true
 	for c in player.field.get_all_cards():
-		for e in c.get_effects():
+		for e in c.get_effects(Enum.Trigger.PASSIVE):
 			if e.stops_normal_draw():
 				can_normal_draw = false
 	if can_normal_draw and player.can_draw():
 		queue_event(EventDrawCard.new(game_board, player))
 
 	for c in player.field.get_all_cards():
-		for e in c.get_effects():
+		for e in c.get_effects(Enum.Trigger.AFTER_NORMAL_DRAW):
 			e.after_normal_draw()
 			for event in e.get_events():
 				queue_event(event)

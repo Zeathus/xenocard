@@ -21,12 +21,12 @@ func on_start():
 			queue_event(event)
 	phase_effects.clear()
 	for card in player.field.get_all_cards():
-		for e in card.get_effects():
+		for e in card.get_effects(Enum.Trigger.ADJUST_PHASE):
 			e.adjust()
 			for event in e.get_events():
 				queue_event(event)
 	for card in player.get_enemy().field.get_all_cards():
-		for e in card.get_effects():
+		for e in card.get_effects(Enum.Trigger.ADJUST_PHASE):
 			e.adjust_enemy()
 			for event in e.get_events():
 				queue_event(event)
