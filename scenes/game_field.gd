@@ -143,12 +143,12 @@ func show_valid_targets(card: Card):
 			var candidate = get_card(zone, index)
 			border.visible = candidate and filter.call(candidate)
 
-func show_valid_effect_targets(effect: Effect, filter: CardFilter):
+func show_valid_effect_targets(effect: CardEffect, filter: CardFilter):
 	for zone in [Enum.Zone.STANDBY, Enum.Zone.BATTLEFIELD, Enum.Zone.SITUATION]:
 		for index in range(4):
 			var border = get_zone(zone, index).find_child("SelectBorder")
 			var candidate = get_card(zone, index)
-			border.visible = candidate and filter.is_valid(effect.card.owner, candidate)
+			border.visible = candidate and filter.is_valid(effect.host.owner, candidate)
 
 func show_valid_set_targets(filter: Callable):
 	for zone in [Enum.Zone.STANDBY, Enum.Zone.BATTLEFIELD, Enum.Zone.SITUATION]:

@@ -31,7 +31,7 @@ func on_start():
 	if optional:
 		queue_event(EventConfirm.new(
 			game_board,
-			effect.card.owner,
+			effect.host.owner,
 			effect.get_confirm_message(),
 			func(): update_targets(),
 			func(): cancelled = true,
@@ -50,8 +50,8 @@ func update_targets():
 	game_board.hide_valid_zones()
 	if len(targets) < len(targets_required):
 		var filter: CardFilter = targets_required[len(targets)]
-		effect.card.owner.field.show_valid_effect_targets(effect, filter)
-		effect.card.owner.get_enemy().field.show_valid_effect_targets(effect, filter)
+		effect.host.owner.field.show_valid_effect_targets(effect, filter)
+		effect.host.owner.get_enemy().field.show_valid_effect_targets(effect, filter)
 
 func try_target(card: Card):
 	if len(targets) == len(targets_required):
@@ -60,7 +60,7 @@ func try_target(card: Card):
 		card.deselect()
 		targets.erase(card)
 	elif len(targets) < len(targets_required):
-		if targets_required[len(targets)].is_valid(effect.card.owner, card):
+		if targets_required[len(targets)].is_valid(effect.host.owner, card):
 			card.select()
 			targets.push_back(card)
 
@@ -88,7 +88,7 @@ func process(delta):
 		else:
 			finish()
 	else:
-		var player: Player = effect.card.owner
+		var player: Player = effect.host.owner
 		if player.has_controller() and not player.controller.is_waiting():
 			if player.controller.has_response():
 				player.controller.receive()

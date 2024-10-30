@@ -59,7 +59,7 @@ func conflicts_with_card(card: Card) -> bool:
 	return false
 
 func targets_to_select_for_effect() -> Array[CardFilter]:
-	var targets = []
+	var targets: Array[CardFilter] = []
 	for e in effects:
 		for t in e.targets_to_select_for_effect():
 			targets.push_back(t)
@@ -89,7 +89,10 @@ func effect_with_targets(targets: Array[Card], variables: Dictionary = {}):
 	for e in effects:
 		var targets_for_effect = len(e.targets_to_select_for_effect())
 		if targets_for_effect > 0:
-			var eff_targets = targets.slice(target_idx, target_idx + targets_for_effect - 1)
+			if target_idx + targets_for_effect > len(targets):
+				print("Not enough targets for effect")
+				return
+			var eff_targets = targets.slice(target_idx, target_idx + targets_for_effect)
 			var eff_variables = {
 				"effect_targets": eff_targets,
 				"all_effect_targets": targets
