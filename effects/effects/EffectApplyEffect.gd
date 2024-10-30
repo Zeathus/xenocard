@@ -5,7 +5,7 @@ class_name EffectApplyEffect
 var filter: CardFilter = null
 
 func post_init():
-	filter = CardFilter.new(param if param != "" else "self")
+	filter = CardFilter.new(param)
 
 func effect(variables: Dictionary = {}):
 	for c in parent.get_game_board().get_all_field_cards():

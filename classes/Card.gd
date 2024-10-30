@@ -178,10 +178,11 @@ func can_effects_stack() -> bool:
 			return false
 	return true
 
-func trigger_effects(trigger: Enum.Trigger, event: Event):
+func trigger_effects(trigger: Enum.Trigger, event: Event, variables: Dictionary = {}):
+	variables["self"] = self
 	for e in get_effects():
 		if e.trigger_by(trigger):
-			event.queue_event(e.get_event())
+			event.queue_event(e.get_event(variables))
 
 func has_event_effect() -> bool:
 	return not event_effects.is_empty()

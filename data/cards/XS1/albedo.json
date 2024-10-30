@@ -31,7 +31,7 @@
 				"AloneOnBattlefield"
 			],
 			"effect": [
-				"ApplyEffect",
+				"ApplyEffect(self)",
 				"RemoveJunkFromGame"
 			],
 			"applied_effect": {

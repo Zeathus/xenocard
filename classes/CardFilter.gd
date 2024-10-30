@@ -78,7 +78,7 @@ func is_valid(player: Player, card: Card, variables: Dictionary = {}):
 		return false
 	if owner == 1 and card.owner == player:
 		return false
-	if relation == 0 and false:
+	if relation == 0 and ("self" not in variables or card != variables["self"]):
 		return false
 	if relation == 1 and ("target" not in variables or card != variables["target"]):
 		return false
