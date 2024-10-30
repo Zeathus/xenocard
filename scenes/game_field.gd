@@ -164,7 +164,14 @@ func show_valid_zones(card: Card):
 			if game_board.turn_phase == Enum.Phase.SET:
 				border.visible = card.can_play(game_board, zone, index)
 			elif game_board.turn_phase == Enum.Phase.MOVE:
-				border.visible = card.can_move_to(game_board, zone, index)
+				if card.can_move_to(game_board, zone, index):
+					var other_card = get_card(zone, index)
+					if other_card == null or (other_card.can_move() and other_card.can_move_to(game_board, card.zone, card.zone_index)):
+						border.visible = true
+					else:
+						border.visible = false
+				else:
+					border.visible = false
 
 func hide_valid_zones():
 	for zone in [Enum.Zone.STANDBY, Enum.Zone.BATTLEFIELD, Enum.Zone.SITUATION]:

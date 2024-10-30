@@ -209,9 +209,15 @@ func adjust_enemy():
 	pass
 
 func can_move_to(new_zone: Enum.Zone, index: int) -> bool:
+	for e in effects:
+		if not e.can_move_to(new_zone, index):
+			return false
 	return true
 
 func can_move() -> bool:
+	for e in effects:
+		if not e.can_move():
+			return false
 	return true
 
 func can_equip_weapon(weapon: Card) -> bool:
