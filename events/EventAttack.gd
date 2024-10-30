@@ -45,11 +45,8 @@ func process(delta):
 		handled_post_effects = true
 		attacker.atk_timer = 0
 		game_board.refresh()
-		for e in attacker.get_effects(Enum.Trigger.AFTER_ATTACK):
-			e.after_attack(targets)
-			for event in e.get_events():
-				queue_event(event)
-				game_board.refresh()
+		attacker.trigger_effects(Enum.Trigger.AFTER_ATTACK, self)
+		game_board.refresh()
 	else:
 		finish()
 

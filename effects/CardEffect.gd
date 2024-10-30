@@ -66,7 +66,9 @@ func targets_to_select_for_effect() -> Array[CardFilter]:
 	return targets
 
 func targets_to_select_for_set(list: Array[Callable]):
-	pass
+	for e in effects:
+		# Adds callables to the list
+		e.targets_to_select_for_set(list)
 
 func has_valid_targets() -> bool:
 	for e in effects:
@@ -75,6 +77,9 @@ func has_valid_targets() -> bool:
 	return true
 
 func can_replace_target() -> bool:
+	for e in effects:
+		if e.can_replace_target():
+			return true
 	return false
 
 func can_replace_card(card: Card) -> bool:
@@ -104,9 +109,13 @@ func effect_with_targets(targets: Array[Card], variables: Dictionary = {}):
 			e.effect(variables)
 
 func handle_set_targets(targets: Array[Card]):
-	pass
+	for e in effects:
+		e.handle_set_targets(targets)
 
 func can_set_to_battlefield() -> bool:
+	for e in effects:
+		if e.can_set_to_battlefield():
+			return true
 	return false
 
 func on_set():
@@ -146,9 +155,13 @@ func get_atk_time(time: int) -> int:
 	return time
 
 func take_damage(game_board: GameBoard, attacker: Card, damage: int, source: Damage) -> int:
+	for e in effects:
+		damage = e.take_damage(game_board, attacker, damage, source)
 	return damage
 
 func take_set_damage(game_board: GameBoard, attacker: Card, damage: int, source: Damage) -> int:
+	for e in effects:
+		damage = e.take_set_damage(game_board, attacker, damage, source)
 	return damage
 
 func handle_occupied_zone(game_board: GameBoard, zone: Enum.Zone, index: int) -> bool:
@@ -206,6 +219,9 @@ func set_requirements():
 	return true
 
 func skips_e_mark() -> bool:
+	for e in effects:
+		if e.skips_e_mark():
+			return true
 	return false
 
 func stops_normal_draw() -> bool:

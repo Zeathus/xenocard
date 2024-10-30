@@ -21,11 +21,17 @@
 			"trigger": "passive",
 			"ignores_down": true,
 			"effect": [
-				"Unlimited"
+				"Unlimited",
+				"DiscardAttributeToPlay(human)",
+				"CanSetToBattlefield"
 			]
 		},
-		"DiscardAttributeToPlay(human)",
-		"CanSetToBattlefield",
-		"DownAttackTarget"
+		{
+			"trigger": "attack_hit",
+			"animated": false,
+			"effect": [
+				"Down(target)"
+			]
+		}
 	]
 }

@@ -19,7 +19,7 @@ func effect(variables: Dictionary = {}):
 
 func has_valid_targets() -> bool:
 	for t in game_board.get_all_battlefield_cards():
-		if filter.is_valid(card.owner, t):
+		if filter.is_valid(parent.host.owner, t):
 			for i in range(4):
 				if t.owner.field.get_card(Enum.Zone.STANDBY, i) == null:
 					return true

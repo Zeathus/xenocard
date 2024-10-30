@@ -2,10 +2,8 @@ class_name Effect
 
 var game_board: GameBoard
 var target: Card
-var card: Card
 var global_target: Card
 var param: String
-var events: Array[Event]
 var host: Card = null
 var duration: int = -1
 var stackable: bool = true
@@ -15,7 +13,6 @@ func _init(_parent: CardEffect, _game_board: GameBoard, card: Card, param: Strin
 	self.parent = _parent
 	self.game_board = _game_board
 	self.target = card
-	self.card = card
 	self.host = card
 	self.global_target = null
 	self.param = param
@@ -184,35 +181,11 @@ func skips_phase(phase: Enum.Phase, player: Player):
 func evades_attack(attacker: Card):
 	return false
 
-func get_game_board() -> GameBoard:
-	return card.owner.game_board
-
-func get_events() -> Array[Event]:
-	var ret: Array[Event] = events
-	events = []
-	return ret
-
 func equips_to(holder: Card) -> bool:
 	return false
 
 func redirect_when_destroyed(attacker: Card, source: Damage) -> Enum.Zone:
 	return Enum.Zone.NONE
-
-func get_controlling_player() -> Player:
-	return card.owner
-
-func get_confirm_message() -> String:
-	return "Activate %s's Effect?" % [card.get_name()]
-
-func get_help_text() -> String:
-	var expanded_text: String = Keyword.expand_keywords(card.get_text())
-	return expanded_text
-
-func get_user():
-	var user: Card = card
-	if user.equipped_by:
-		user = user.equipped_by
-	return user
 
 static func parse(effect: String) -> Object:
 	var effect_script: GDScript = load("res://effects/effects/Effect%s.gd" % effect)

@@ -17,8 +17,20 @@
 	},
 	"text": "Discard two {Humans} from your field to play this card anywhere on your field.\nCards attacked by this card are <downed>.",
 	"effects": [
-		"DiscardAttributeToPlay(human,human)",
-		"CanSetToBattlefield",
-		"DownAttackTarget"
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"effect": [
+				"DiscardAttributeToPlay(human,human)",
+				"CanSetToBattlefield"
+			]
+		},
+		{
+			"trigger": "attack_hit",
+			"animated": false,
+			"effect": [
+				"Down(target)"
+			]
+		}
 	]
 }
