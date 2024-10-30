@@ -17,9 +17,9 @@ func effect(variables: Dictionary = {}):
 				parent.events.push_back(EventAutoMove.new(game_board, t.owner, t, Enum.Zone.STANDBY, i))
 				break
 
-func has_valid_targets() -> bool:
+func has_valid_targets(variables: Dictionary = {}) -> bool:
 	for t in game_board.get_all_battlefield_cards():
-		if filter.is_valid(parent.host.owner, t):
+		if filter.is_valid(parent.host.owner, t, variables):
 			for i in range(4):
 				if t.owner.field.get_card(Enum.Zone.STANDBY, i) == null:
 					return true

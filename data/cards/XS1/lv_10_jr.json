@@ -18,7 +18,21 @@
 	},
 	"text": "You can <level up> a Lv 1 Jr. on your battlefield.\nThis card also attacks during the enemy battle phase when not equipped with a {weapon}.",
 	"effects": [
-		"LevelUp(name=Lv 1 Jr.)",
-		"CanAttackOnEnemyPhaseNoWeapon"
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"effect": [
+				"LevelUp(name=Lv 1 Jr.)"
+			]
+		},
+		{
+			"trigger": "passive",
+			"requirement": [
+				"NoWeapon"
+			],
+			"effect": [
+				"CanAttackOnEnemyPhase"
+			]
+		}
 	]
 }

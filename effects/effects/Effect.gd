@@ -45,7 +45,7 @@ func targets_to_select_for_effect() -> Array[CardFilter]:
 func targets_to_select_for_set(list: Array[Callable]):
 	pass
 
-func has_valid_targets() -> bool:
+func has_valid_targets(variables: Dictionary = {}) -> bool:
 	return true
 
 func can_replace_target() -> bool:

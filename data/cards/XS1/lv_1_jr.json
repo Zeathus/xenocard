@@ -18,6 +18,14 @@
 	},
 	"text": "This card also attacks during the enemy battle phase when not equipped with a {weapon}.",
 	"effects": [
-		"CanAttackOnEnemyPhaseNoWeapon"
+		{
+			"trigger": "passive",
+			"requirement": [
+				"NoWeapon"
+			],
+			"effect": [
+				"CanAttackOnEnemyPhase"
+			]
+		}
 	]
 }

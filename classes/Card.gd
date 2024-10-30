@@ -41,7 +41,6 @@ var downed_turn: int
 var equipped_weapon: Card
 var equipped_by: Card
 var effects: Array[CardEffect]
-var event_effects: Array[Effect]
 var applied_effects: Array[CardEffect]
 var turn_count: int
 var modify_for_set: Array[Callable] = []
@@ -72,20 +71,6 @@ func init_effects(game_board: GameBoard):
 	effects.clear()
 	for e in data.effects:
 		effects.push_back(e.instantiate(self))
-	#for i in data.effect_names:
-		#var param: String = ""
-		#if "(" in i and ")" in i and i.find("(") < i.rfind(")"):
-			#param = i.substr(i.find("(") + 1, i.rfind(")") - i.find("(") - 1)
-			#i = i.substr(0, i.find("("))
-		#effects.push_back(Effect.parse(i).new(game_board, self, param))
-#
-	#event_effects.clear()
-	#for i in data.event_effect_names:
-		#var param: String = ""
-		#if "(" in i and ")" in i and i.find("(") < i.rfind(")"):
-			#param = i.substr(i.find("(") + 1, i.rfind(")") - i.find("(") - 1)
-			#i = i.substr(0, i.find("("))
-		#event_effects.push_back(Effect.parse(i).new(game_board, self, param))
 
 func validate_effects():
 	for i in data.effect_names:
@@ -191,13 +176,13 @@ func trigger_effects(trigger: Enum.Trigger, event: Event, variables: Dictionary 
 		event.queue_event(e.get_event(variables))
 
 func has_event_effect() -> bool:
-	return not event_effects.is_empty()
+	return len(get_effects(Enum.Trigger.ACTIVATE)) > 0
 
 func can_activate_event_effect() -> bool:
 	if downed or not has_event_effect():
 		return false
-	for e in event_effects:
-		if not e.has_valid_targets():
+	for e in get_effects(Enum.Trigger.ACTIVATE):
+		if not e.has_valid_targets({"self": self}):
 			return false
 	return true
 

@@ -22,7 +22,7 @@ func get_name() -> String:
 	return "Effect"
 
 func on_start():
-	if not effect.has_valid_targets():
+	if not effect.has_valid_targets(variables):
 		finish()
 		return
 	animate = animate and effect.host.instance and not effect.host.instance.find_child("EffectIndicator").visible
