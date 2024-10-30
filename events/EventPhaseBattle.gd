@@ -30,10 +30,7 @@ func process(delta):
 				var old_value = card.e_mark
 				card.set_e_mark(false)
 				if old_value and not card.e_mark:
-					for e in card.get_effects(Enum.Trigger.E_MARK_REMOVED):
-						e.on_e_mark_removed()
-						for event in e.get_events():
-							queue_event(event)
+					card.trigger_effects(Enum.Trigger.E_MARK_REMOVED, self)
 		1:
 			var target_order = [
 				Enum.AttackType.HAND,

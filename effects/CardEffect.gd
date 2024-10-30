@@ -118,6 +118,8 @@ func get_atk_against(target, atk: int) -> int:
 	return atk
 
 func get_atk_time(time: int) -> int:
+	for e in effects:
+		time = e.get_atk_time(time)
 	return time
 
 func take_damage(game_board: GameBoard, attacker: Card, damage: int, source: Damage) -> int:
@@ -172,6 +174,9 @@ func on_e_mark_removed():
 	pass
 
 func penetrates():
+	for e in effects:
+		if e.penetrates():
+			return true
 	return false
 
 func set_requirements():
@@ -218,6 +223,9 @@ func get_events() -> Array[Event]:
 	return ret
 
 func equips_to(holder: Card) -> bool:
+	for e in effects:
+		if e.equips_to(holder):
+			return true
 	return false
 
 func redirect_when_destroyed(attacker: Card, source: Damage) -> Enum.Zone:

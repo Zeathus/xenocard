@@ -21,10 +21,10 @@
 			"trigger": "passive",
 			"ignores_down": true,
 			"effect": [
-				"Unlimited"
+				"Unlimited",
+				"EquipsTo(attribute=machine)",
+				"AttackTime(2)"
 			]
-		},
-		"EquipsTo(attribute=machine)",
-		"AttackTime(2)"
+		}
 	]
 }

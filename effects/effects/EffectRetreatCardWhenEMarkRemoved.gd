@@ -7,25 +7,25 @@ var filter: CardFilter
 func post_init():
 	filter = CardFilter.new(param)
 
-func on_e_mark_removed():
-	if filter.owner_only():
-		if len(card.owner.field.get_standby_cards()) >= 4:
-			return
-		if len(card.owner.field.get_battlefield_cards()) == 0:
-			return
-	elif filter.enemy_only():
-		if len(card.owner.get_enemy().field.get_standby_cards()) >= 4:
-			return
-		if len(card.owner.get_enemy().field.get_battlefield_cards()) == 0:
-			return
-	else:
-		if len(card.owner.field.get_standby_cards()) >= 4 and \
-			len(card.owner.get_enemy().field.get_standby_cards()) >= 4:
-			return
-		if len(card.owner.field.get_battlefield_cards()) == 0 and \
-			len(card.owner.get_enemy().field.get_battlefield_cards()) == 0:
-			return
-	push_event(true)
+#func on_e_mark_removed():
+	#if filter.owner_only():
+		#if len(card.owner.field.get_standby_cards()) >= 4:
+			#return
+		#if len(card.owner.field.get_battlefield_cards()) == 0:
+			#return
+	#elif filter.enemy_only():
+		#if len(card.owner.get_enemy().field.get_standby_cards()) >= 4:
+			#return
+		#if len(card.owner.get_enemy().field.get_battlefield_cards()) == 0:
+			#return
+	#else:
+		#if len(card.owner.field.get_standby_cards()) >= 4 and \
+			#len(card.owner.get_enemy().field.get_standby_cards()) >= 4:
+			#return
+		#if len(card.owner.field.get_battlefield_cards()) == 0 and \
+			#len(card.owner.get_enemy().field.get_battlefield_cards()) == 0:
+			#return
+	#push_event(true)
 
 func targets_to_select_for_effect() -> Array[CardFilter]:
 	return [filter]
