@@ -76,8 +76,10 @@ func process(delta):
 			finish()
 	elif len(targets) == len(targets_required):
 		if not activated:
-			effect.handle_effect_targets(targets)
-			effect.effect(variables)
+			if len(targets) > 0:
+				effect.effect_with_targets(targets, variables)
+			else:
+				effect.effect(variables)
 			for event in effect.get_events():
 				queue_event(event)
 			activated = true

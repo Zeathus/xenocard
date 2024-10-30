@@ -59,12 +59,19 @@ func conflicts_with_card(card: Card) -> bool:
 	return false
 
 func targets_to_select_for_effect() -> Array[CardFilter]:
-	return []
+	var targets = []
+	for e in effects:
+		for t in e.targets_to_select_for_effect():
+			targets.push_back(t)
+	return targets
 
 func targets_to_select_for_set(list: Array[Callable]):
 	pass
 
 func has_valid_targets() -> bool:
+	for e in effects:
+		if not e.has_valid_targets():
+			return false
 	return true
 
 func can_replace_target() -> bool:
@@ -77,8 +84,21 @@ func effect(variables: Dictionary = {}):
 	for e in effects:
 		e.effect(variables)
 
-func handle_effect_targets(targets: Array[Card]):
-	pass
+func effect_with_targets(targets: Array[Card], variables: Dictionary = {}):
+	var target_idx = 0
+	for e in effects:
+		var targets_for_effect = len(e.targets_to_select_for_effect())
+		if targets_for_effect > 0:
+			var eff_targets = targets.slice(target_idx, target_idx + targets_for_effect - 1)
+			var eff_variables = {
+				"effect_targets": eff_targets,
+				"all_effect_targets": targets
+			}
+			eff_variables.merge(variables)
+			e.effect(eff_variables)
+			target_idx += targets_for_effect
+		else:
+			e.effect(variables)
 
 func handle_set_targets(targets: Array[Card]):
 	pass
