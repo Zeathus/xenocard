@@ -28,7 +28,8 @@
 		{
 			"trigger": "after_move_phase",
 			"requirement": [
-				"AloneOnBattlefield"
+				"AloneOnBattlefield",
+				"Formula(junk>0)"
 			],
 			"effect": [
 				"ApplyEffect(self)",

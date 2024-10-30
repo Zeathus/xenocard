@@ -44,7 +44,7 @@ func instantiate(host: Card) -> CardEffect:
 		if "(" in i and ")" in i and i.find("(") < i.rfind(")"):
 			param = i.substr(i.find("(") + 1, i.rfind(")") - i.find("(") - 1)
 			i = i.substr(0, i.find("("))
-		var req = Requirement.parse(i).new(instance)
+		var req = Requirement.parse(i).new(instance, param)
 		instance.requirements.push_back(req)
 	return instance
 

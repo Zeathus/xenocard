@@ -1,9 +1,15 @@
 class_name Requirement
 
 var effect: CardEffect
+var param: String
 
-func _init(_effect: CardEffect):
+func _init(_effect: CardEffect, _param: String = ""):
 	effect = _effect
+	param = _param
+	post_init()
+
+func post_init():
+	pass
 
 func met() -> bool:
 	return true
