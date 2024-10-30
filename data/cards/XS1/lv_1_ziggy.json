@@ -18,7 +18,19 @@
 	},
 	"text": "Cards attacked by this card are <downed>.\nThis card cannot equip {weapons}.",
 	"effects": [
-		"DownAttackTarget",
-		"NoWeapons"
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"effect": [
+				"NoWeapons"
+			]
+		},
+		{
+			"trigger": "attack_hit",
+			"animated": false,
+			"effect": [
+				"Down(target)"
+			]
+		}
 	]
 }

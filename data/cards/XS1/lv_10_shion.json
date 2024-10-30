@@ -18,7 +18,18 @@
 	},
 	"text": "You can <level up> a Lv 1 Shion on your battlefield, ignoring field requirements.\nTakes 1 less battle damage from {Realians}.",
 	"effects": [
-		"LevelUpIgnoreReq(name=Lv 1 Shion)",
-		"ModifyBattleDamageFrom(-1,attribute=realian)"
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"effect": [
+				"LevelUpIgnoreReq(name=Lv 1 Shion)"
+			]
+		},
+		{
+			"trigger": "passive",
+			"effect": [
+				"ModifyBattleDamageFrom(-1,attribute=realian)"
+			]
+		}
 	]
 }
