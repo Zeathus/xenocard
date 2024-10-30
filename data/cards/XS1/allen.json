@@ -23,8 +23,8 @@
 			"animated": false,
 			"optional": true,
 			"requirement": [
-				"Formula(standby<4)",
-				"Formula(battlefield>0)"
+				"Formula(count(owner=enemy;zone=battlefield)<4)",
+				"Formula(count(owner=enemy;zone=battlefield)>0)"
 			],
 			"effect": [
 				"RetreatCard(owner=enemy;zone=battlefield)"
