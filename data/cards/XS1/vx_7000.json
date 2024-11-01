@@ -17,8 +17,28 @@
 	},
 	"text": "<Unique>.\nThis card's attacks <penetrate>.\nWhen Jr. is on your battlefield, this card is played without cost.",
 	"effects": [
-		"Unique",
-		"Penetrate",
-		"IgnoreCostIfOnField(character=Jr.;zone=battlefield)"
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"effect": [
+				"Unique"
+			]
+		},
+		{
+			"trigger": "passive",
+			"effect": [
+				"Penetrate"
+			]
+		},
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"requirement": [
+				"Formula(count(owner=self;zone=battlefield;character=Jr.))"
+			],
+			"effect": [
+				"IgnoreCost"
+			]
+		}
 	]
 }

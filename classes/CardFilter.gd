@@ -54,6 +54,8 @@ func _init(str: String):
 				relation = 0
 			"target":
 				relation = 1
+			"attacker":
+				relation = 2
 
 func check_multiple(value, filter):
 	if len(filter) == 0:
@@ -81,6 +83,8 @@ func is_valid(player: Player, card: Card, variables: Dictionary = {}):
 	if relation == 0 and ("self" not in variables or card != variables["self"]):
 		return false
 	if relation == 1 and ("target" not in variables or card != variables["target"]):
+		return false
+	if relation == 2 and ("attacker" not in variables or card != variables["attacker"]):
 		return false
 	return true
 

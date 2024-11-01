@@ -233,6 +233,9 @@ func can_attack_on_enemy_phase() -> bool:
 	return false
 
 func attack_stopped() -> bool:
+	for e in effects:
+		if e.attack_stopped():
+			return true
 	return false
 
 func on_e_mark_removed():

@@ -17,11 +17,31 @@
 	},
 	"text": "<Unique>. This card cannot equip {weapons}.\nWhen this card is on the battlefield, you can discard it during your event or block phase to gain ATK+2 on all of your {Gnosis} until the adjust phase.",
 	"effects": [
-		"Unique",
-		"NoWeapons"
-	],
-	"event_effects": [
-		"GlobalApplyModifyATK(2,1,attribute=gnosis;owner=self)",
-		"DiscardSelf"
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"effect": [
+				"Unique",
+				"NoWeapons"
+			]
+		},
+		{
+			"trigger": "activate",
+			"optional": true,
+			"requirement": [
+				"FilterSelf(zone=battlefield)"
+			],
+			"effect": [
+				"ApplyEffect(owner=self;attribute=gnosis)",
+				"Discard(self)"
+			],
+			"applied_effect": {
+				"trigger": "passive",
+				"duration": 1,
+				"effect": [
+					"ModifyATK(2)"
+				]
+			}
+		}
 	]
 }
