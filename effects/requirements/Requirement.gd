@@ -11,7 +11,7 @@ func _init(_effect: CardEffect, _param: String = ""):
 func post_init():
 	pass
 
-func met() -> bool:
+func met(variables: Dictionary = {}) -> bool:
 	return true
 
 static func parse(effect: String) -> Object:

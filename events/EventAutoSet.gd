@@ -39,10 +39,7 @@ func on_start():
 	queue_event(EventAnimation.new(game_board, anim))
 
 func handle_set_effects():
-	for e in to_set.get_effects(Enum.Trigger.SET):
-		e.on_set()
-		for event in e.get_events():
-			queue_event(event)
+	to_set.trigger_effects(Enum.Trigger.SET, self)
 	ready_to_finish = true
 	if not has_children():
 		finish()
@@ -53,6 +50,8 @@ func on_finish():
 func process(delta):
 	if pass_to_child("process", [delta]):
 		return
+	if !finished and ready_to_finish and not has_children():
+		finish()
 
 func play(new_zone: Enum.Zone, index: int):
 	if player.field.get_card(zone, zone_index):

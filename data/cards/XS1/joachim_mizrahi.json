@@ -18,6 +18,15 @@
 	},
 	"text": "While this card is on your battlefield with MOMO, MOMO's HP cannot fall under 1 from battle damage.",
 	"effects": [
-		"GlobalPrevent0HPOnBattlefield(owner=self;character=MOMO)"
+		{
+			"trigger": "passive",
+			"global": "owner=self;character=MOMO",
+			"requirement": [
+				"FilterSelf(zone=battlefield)"
+			],
+			"effect": [
+				"Prevent0HP"
+			]
+		}
 	]
 }

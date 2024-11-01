@@ -5,7 +5,7 @@ var requirements: Array[Requirement]
 var effects: Array[Effect]
 var host: Card
 var ignores_down: bool
-var global: bool
+var global: CardFilter
 var optional: bool
 var stackable: bool
 var animated: bool
@@ -19,7 +19,7 @@ func _init(_trigger: Enum.Trigger, _host: Card):
 	requirements = []
 	effects = []
 	ignores_down = false
-	global = false
+	global = null
 	optional = false
 	stackable = true
 	animated = true
@@ -32,17 +32,19 @@ func set_host(_host: Card) -> CardEffect:
 func trigger_by(t: Enum.Trigger):
 	return trigger == t
 
-func is_active() -> bool:
+func is_active(variables: Dictionary = {}) -> bool:
 	for r in requirements:
-		if not r.met():
+		if not r.met(variables):
 			return false
 	return (ignores_down or not host.downed)
 
 func is_global() -> bool:
-	return global
+	return global != null
 
-func applies_to(target: Card) -> bool:
-	return true
+func applies_to(target: Card, variables: Dictionary = {}) -> bool:
+	if not is_global():
+		return false
+	return global.is_valid(host.owner, target, variables)
 
 func apply_effect(target: Card) -> Effect:
 	return null
@@ -59,31 +61,66 @@ func conflicts_with_card(card: Card) -> bool:
 	return false
 
 func targets_to_select_for_effect() -> Array[CardFilter]:
-	return []
+	var targets: Array[CardFilter] = []
+	for e in effects:
+		for t in e.targets_to_select_for_effect():
+			targets.push_back(t)
+	return targets
 
 func targets_to_select_for_set(list: Array[Callable]):
-	pass
+	for e in effects:
+		# Adds callables to the list
+		e.targets_to_select_for_set(list)
 
-func has_valid_targets() -> bool:
+func has_valid_targets(variables: Dictionary = {}) -> bool:
+	for e in effects:
+		if not e.has_valid_targets(variables):
+			return false
 	return true
 
 func can_replace_target() -> bool:
+	for e in effects:
+		if e.can_replace_target():
+			return true
 	return false
 
 func can_replace_card(card: Card) -> bool:
+	for e in effects:
+		if e.can_replace_card(card):
+			return true
 	return false
 
 func effect(variables: Dictionary = {}):
 	for e in effects:
 		e.effect(variables)
 
-func handle_effect_targets(targets: Array[Card]):
-	pass
+func effect_with_targets(targets: Array[Card], variables: Dictionary = {}):
+	var target_idx = 0
+	for e in effects:
+		var targets_for_effect = len(e.targets_to_select_for_effect())
+		if targets_for_effect > 0:
+			if target_idx + targets_for_effect > len(targets):
+				print("Not enough targets for effect")
+				return
+			var eff_targets = targets.slice(target_idx, target_idx + targets_for_effect)
+			var eff_variables = {
+				"effect_targets": eff_targets,
+				"all_effect_targets": targets
+			}
+			eff_variables.merge(variables)
+			e.effect(eff_variables)
+			target_idx += targets_for_effect
+		else:
+			e.effect(variables)
 
 func handle_set_targets(targets: Array[Card]):
-	pass
+	for e in effects:
+		e.handle_set_targets(targets)
 
 func can_set_to_battlefield() -> bool:
+	for e in effects:
+		if e.can_set_to_battlefield():
+			return true
 	return false
 
 func on_set():
@@ -96,15 +133,24 @@ func on_destroy(destroyed: Card, source: Damage):
 	pass
 
 func ignore_unique(card: Card) -> bool:
+	for e in effects:
+		if e.ignore_unique(card):
+			return true
 	return false
 
 func is_valid_zone(new_zone: Enum.Zone, index: int, ret: bool) -> bool:
+	for e in effects:
+		ret = e.is_valid_zone(new_zone, index, ret)
 	return ret
 
 func get_field_requirements(req: Array[Enum.Attribute]) -> Array[Enum.Attribute]:
+	for e in effects:
+		req = e.get_field_requirements(req)
 	return req
 
 func get_cost(cost: int) -> int:
+	for e in effects:
+		cost = e.get_cost(cost)
 	return cost
 
 func get_atk(atk: int) -> int:
@@ -123,12 +169,19 @@ func get_atk_time(time: int) -> int:
 	return time
 
 func take_damage(game_board: GameBoard, attacker: Card, damage: int, source: Damage) -> int:
+	for e in effects:
+		damage = e.take_damage(game_board, attacker, damage, source)
 	return damage
 
 func take_set_damage(game_board: GameBoard, attacker: Card, damage: int, source: Damage) -> int:
+	for e in effects:
+		damage = e.take_set_damage(game_board, attacker, damage, source)
 	return damage
 
 func handle_occupied_zone(game_board: GameBoard, zone: Enum.Zone, index: int) -> bool:
+	for e in effects:
+		if e.handle_occupied_zone(game_board, zone, index):
+			return true
 	return false
 
 func on_deck_attacked(player: Player):
@@ -156,15 +209,27 @@ func adjust_enemy():
 	pass
 
 func can_move_to(new_zone: Enum.Zone, index: int) -> bool:
+	for e in effects:
+		if not e.can_move_to(new_zone, index):
+			return false
 	return true
 
 func can_move() -> bool:
+	for e in effects:
+		if not e.can_move():
+			return false
 	return true
 
 func can_equip_weapon(weapon: Card) -> bool:
+	for e in effects:
+		if not e.can_equip_weapon(weapon):
+			return false
 	return true
 
 func can_attack_on_enemy_phase() -> bool:
+	for e in effects:
+		if e.can_attack_on_enemy_phase():
+			return true
 	return false
 
 func attack_stopped() -> bool:
@@ -183,6 +248,9 @@ func set_requirements():
 	return true
 
 func skips_e_mark() -> bool:
+	for e in effects:
+		if e.skips_e_mark():
+			return true
 	return false
 
 func stops_normal_draw() -> bool:
@@ -246,3 +314,12 @@ func get_user():
 	if user.equipped_by:
 		user = user.equipped_by
 	return user
+
+func with_target(card: Card) -> CardEffect:
+	var copy = CardEffect.new(trigger, host)
+	copy.optional = optional
+	copy.stackable = stackable
+	copy.animated = animated
+	for e in effects:
+		copy.effects.push_back(e.get_script().new(copy, get_game_board(), card, e.param))
+	return copy

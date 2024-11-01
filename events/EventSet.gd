@@ -36,10 +36,7 @@ func update_valid_zones():
 		player.field.show_valid_zones(to_set)
 
 func handle_set_effects():
-	for e in to_set.get_effects(Enum.Trigger.SET):
-		e.on_set()
-		for event in e.get_events():
-			queue_event(event)
+	to_set.trigger_effects(Enum.Trigger.SET, self)
 	ready_to_finish = true
 	if not has_children():
 		finish()

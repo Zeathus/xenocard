@@ -17,9 +17,20 @@
 	},
 	"text": "Discard two {Humans} from your field to play this card anywhere on your field.\n<Unique>.\nEach turn, after its normal attack timing, this card inflicts 1 battle damage to all enemy battle cards.",
 	"effects": [
-		"Unique",
-		"DiscardAttributeToPlay(human,human)",
-		"CanSetToBattlefield",
-		"ExtraAttack(1,owner=enemy;zone=standby;zone=battlefield)"
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"effect": [
+				"Unique",
+				"DiscardAttributeToPlay(human,human)",
+				"CanSetToBattlefield"
+			]
+		},
+		{
+			"trigger": "after_attack_timing",
+			"effect": [
+				"ExtraAttack(1,owner=enemy;zone=standby;zone=battlefield)"
+			]
+		}
 	]
 }

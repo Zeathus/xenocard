@@ -48,10 +48,7 @@ func process(delta):
 		2:
 			if last_attacker:
 				if last_attacker.zone == Enum.Zone.BATTLEFIELD:
-					for e in last_attacker.get_effects(Enum.Trigger.AFTER_ATTACK_TIMING):
-						e.after_attack_turn()
-						for event in e.get_events():
-							queue_event(event)
+					last_attacker.trigger_effects(Enum.Trigger.AFTER_ATTACK_TIMING, self)
 				last_attacker = null
 				if has_children():
 					return

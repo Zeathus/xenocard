@@ -2,24 +2,25 @@ extends Effect
 
 class_name EffectDiscard
 
-var amount: int
 var filter: CardFilter
 
 func post_init():
-	var arg = param.split(",")
-	amount = int(arg[0])
-	filter = CardFilter.new(arg[1])
+	filter = CardFilter.new(param)
 
-func effect():
-	for i in amount:
-		events.push_back(EventSelectDiscard.new(game_board, card.owner, filter))
+func effect(variables: Dictionary = {}):
+	for c in parent.host.owner.hand.cards:
+		if filter.is_valid(parent.host.owner, c, variables):
+			parent.events.push_back(EventDestroy.new(parent.get_game_board(), parent.host, c, Damage.new(Damage.EFFECT | Damage.DISCARD)))
+	for c in parent.host.owner.field.get_all_cards():
+		if filter.is_valid(parent.host.owner, c, variables):
+			parent.events.push_back(EventDestroy.new(parent.get_game_board(), parent.host, c, Damage.new(Damage.EFFECT | Damage.DISCARD)))
 
-func has_valid_targets() -> bool:
+func has_valid_targets(variables: Dictionary = {}) -> bool:
 	var count = 0
-	for c in card.owner.hand.cards:
-		if filter.is_valid(card.owner, c):
+	for c in parent.host.owner.hand.cards:
+		if filter.is_valid(parent.host.owner, c, variables):
 			count += 1
-	for c in card.owner.field.get_all_cards():
-		if filter.is_valid(card.owner, c):
+	for c in parent.host.owner.field.get_all_cards():
+		if filter.is_valid(parent.host.owner, c, variables):
 			count += 1
-	return count >= amount
+	return count > 0

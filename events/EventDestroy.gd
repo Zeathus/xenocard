@@ -46,14 +46,14 @@ func process(delta):
 		return
 	match state:
 		0:
-			for e in target.get_effects(Enum.Trigger.DESTROYED):
-				e.on_destroyed(attacker, source)
-				for event in e.get_events():
-					queue_event(event)
-			for e in attacker.get_effects(Enum.Trigger.DESTROY):
-				e.on_destroy(target, source)
-				for event in e.get_events():
-					queue_event(event)
+			target.trigger_effects(Enum.Trigger.DESTROYED, self, {
+				"attacker": attacker,
+				"source": source
+			})
+			attacker.trigger_effects(Enum.Trigger.DESTROY, self, {
+				"target": target,
+				"source": source
+			})
 		1:
 			destroy()
 		2:

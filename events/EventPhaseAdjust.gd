@@ -17,19 +17,15 @@ func get_name() -> String:
 func on_start():
 	for e in phase_effects:
 		e.effect()
-		for event in e.get_events():
+		for event in e.parent.get_events():
 			queue_event(event)
 	phase_effects.clear()
 	for card in player.field.get_all_cards():
-		for e in card.get_effects(Enum.Trigger.ADJUST_PHASE):
-			e.adjust()
-			for event in e.get_events():
-				queue_event(event)
+		card.trigger_effects(Enum.Trigger.ADJUST_PHASE, self)
+		card.trigger_effects(Enum.Trigger.ADJUST_PHASE_PLAYER, self)
 	for card in player.get_enemy().field.get_all_cards():
-		for e in card.get_effects(Enum.Trigger.ADJUST_PHASE):
-			e.adjust_enemy()
-			for event in e.get_events():
-				queue_event(event)
+		card.trigger_effects(Enum.Trigger.ADJUST_PHASE, self)
+		card.trigger_effects(Enum.Trigger.ADJUST_PHASE_ENEMY, self)
 
 func on_finish():
 	game_board.end_phase()

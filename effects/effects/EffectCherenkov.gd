@@ -8,17 +8,12 @@ class_name EffectCherenkov
 
 var top_card: Card
 
-func on_destroyed(attacker: Card, source: Damage):
-	if not source.normal_attack():
-		return
-	top_card = card.owner.junk.top()
-	if top_card == null or top_card.get_name() == "Cherenkov":
+func effect(variables: Dictionary = {}):
+	top_card = parent.host.owner.junk.top()
+	if top_card == null or top_card.get_name() == parent.host.get_name():
 		return
 	if top_card.get_attribute() not in [Enum.Attribute.HUMAN, Enum.Attribute.REALIAN, Enum.Attribute.MACHINE]:
 		return
-	push_event()
-
-func effect():
 	game_board.add_phase_effect(Enum.Phase.ADJUST,
-		EffectPlayToZoneWith1HP.new(game_board, top_card, "%d,%d" % [card.zone, card.zone_index])
+		EffectPlayToZoneWith1HP.new(parent, game_board, top_card, "%d,%d" % [parent.host.zone, parent.host.zone_index])
 	)

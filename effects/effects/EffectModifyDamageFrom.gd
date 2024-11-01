@@ -12,7 +12,7 @@ func post_init():
 		filter = CardFilter.new(params[1])
 
 func take_damage(game_board: GameBoard, attacker: Card, damage: int, source: Damage) -> int:
-	if filter and not filter.is_valid(card.owner, attacker):
+	if filter and not filter.is_valid(parent.host.owner, attacker):
 		return damage
 	damage += amount
 	if damage < 0:

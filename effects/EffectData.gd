@@ -4,7 +4,7 @@ var trigger: Enum.Trigger
 var requirements: Array[String]
 var effects: Array[String]
 var ignores_down: bool
-var global: bool
+var global: CardFilter
 var optional: bool
 var stackable: bool
 var animated: bool
@@ -16,7 +16,7 @@ func _init(_trigger: Enum.Trigger):
 	requirements = []
 	effects = []
 	ignores_down = false
-	global = false
+	global = null
 	optional = false
 	stackable = true
 	animated = true
@@ -71,7 +71,7 @@ static func parse(data, card_name) -> EffectData:
 	if "ignores_down" in data:
 		effect_data.ignores_down = data["ignores_down"]
 	if "global" in data:
-		effect_data.global = data["global"]
+		effect_data.global = CardFilter.new(data["global"])
 	if "optional" in data:
 		effect_data.optional = data["optional"]
 	if "stackable" in data:

@@ -17,9 +17,23 @@
 	},
 	"text": "Exclusively or Lv 10 KOS-MOS.\nCan only be played when both KOS-MOS and Shion are on the battlefield.\nAttacks every other turn.",
 	"effects": [
-		"EquipsTo(name=Lv 10 KOS-MOS)",
-		"MustBeOnField(character=Shion;zone=battlefield)",
-		"MustBeOnField(character=KOS-MOS;zone=battlefield)",
-		"AttackTime(2)"
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"requirement": [
+				"Formula(count(character=Shion;zone=battlefield))>0",
+				"Formula(count(character=KOS-MOS;zone=battlefield))>0"
+			],
+			"effect": [
+				"EquipsTo(name=Lv 10 KOS-MOS)"
+			]
+		},
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"effect": [
+				"AttackTime(2)"
+			]
+		}
 	]
 }
