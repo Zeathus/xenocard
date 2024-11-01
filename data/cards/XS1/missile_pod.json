@@ -17,7 +17,19 @@
 	},
 	"text": "Only {Humans} and {Realians} can equip this card.\n<One-time use>.",
 	"effects": [
-		"EquipsTo(attribute=human;attribute=realian)",
-		"DiscardWeaponAfterAttack"
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"effect": [
+				"EquipsTo(attribute=human;attribute=realian)"
+			]
+		},
+		{
+			"trigger": "after_attack",
+			"ignores_down": true,
+			"effect": [
+				"DiscardWeapon(self)"
+			]
+		}
 	]
 }

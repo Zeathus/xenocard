@@ -254,6 +254,9 @@ func skips_e_mark() -> bool:
 	return false
 
 func stops_normal_draw() -> bool:
+	for e in effects:
+		if e.stops_normal_draw():
+			return true
 	return false
 
 func after_normal_draw():

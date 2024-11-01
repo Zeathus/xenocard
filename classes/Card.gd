@@ -614,7 +614,7 @@ func set_selectable(val: bool):
 	if instance:
 		instance.find_child("ValidBorder").visible = val
 
-func on_turn_start():
+func on_turn_start(is_enemy: bool = true):
 	turn_count += 1
 
 func can_attack_on_enemy_phase() -> bool:

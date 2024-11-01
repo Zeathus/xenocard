@@ -14,10 +14,11 @@ func get_name() -> String:
 
 func on_start():
 	for c in player.field.get_all_cards():
-		c.on_turn_start()
+		c.on_turn_start(false)
 		c.trigger_effects(Enum.Trigger.TURN_START, self)
 		c.trigger_effects(Enum.Trigger.TURN_START_PLAYER, self)
 	for c in player.get_enemy().field.get_all_cards():
+		c.on_turn_start(true)
 		c.trigger_effects(Enum.Trigger.TURN_START, self)
 		c.trigger_effects(Enum.Trigger.TURN_START_ENEMY, self)
 

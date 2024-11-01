@@ -16,7 +16,7 @@
 		"cost": 2,
 		"field": ["human", "gnosis"]
 	},
-	"text": "When the E mark is removed from this card, you can <down> one enemy battle card on the battlefield.",
+	"text": "When the E mark is removed from this card, you can <down> one enemy card on the battlefield.",
 	"effects": [
 		"DownCardWhenEMarkRemoved(owner=enemy;type=battle;zone=battlefield)"
 	]

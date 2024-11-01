@@ -20,6 +20,14 @@
 				"Unlimited"
 			]
 		},
-		"DrawCardFirstAdjustPhase"
+		{
+			"trigger": "adjust_phase",
+			"requirement": [
+				"Formula(turncount==0)"
+			],
+			"effect": [
+				"DrawCard"
+			]
+		}
 	]
 }
