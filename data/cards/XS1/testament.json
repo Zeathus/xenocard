@@ -18,6 +18,12 @@
 	},
 	"text": "When the E mark is removed from this card, you can <down> one enemy battle card on the battlefield.",
 	"effects": [
-		"DownCardWhenEMarkRemoved(owner=enemy;type=battle;zone=battlefield)"
+		{
+			"trigger": "e_mark_removed",
+			"optional": true,
+			"effect": [
+				"DownTarget(owner=enemy;type=battle;zone=battlefield)"
+			]
+		}
 	]
 }
