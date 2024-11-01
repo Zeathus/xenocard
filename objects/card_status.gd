@@ -7,6 +7,8 @@ func show_card(card: Card):
 	self.visible = true
 	$Panel/ValueHP.text = "%d/%d" % [card.hp, card.get_max_hp()]
 	var original_atk = card.get_original_atk()
+	if card.equipped_weapon and card.equipped_weapon.get_original_atk() != 0:
+		original_atk = card.equipped_weapon.get_original_atk()
 	var atk = card.get_atk()
 	if atk > original_atk:
 		$Panel/ValueATK.text = "⮝%d" % atk
