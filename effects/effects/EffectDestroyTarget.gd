@@ -1,6 +1,6 @@
 extends Effect
 
-class_name EffectRetreatTarget
+class_name EffectDestroyTarget
 
 var filter: CardFilter
 
@@ -12,15 +12,10 @@ func targets_to_select_for_effect() -> Array[CardFilter]:
 
 func effect(variables: Dictionary = {}):
 	for t in variables["effect_targets"]:
-		for i in range(4):
-			if t.owner.field.get_card(Enum.Zone.STANDBY, i) == null:
-				parent.events.push_back(EventAutoMove.new(game_board, t.owner, t, Enum.Zone.STANDBY, i))
-				break
+		parent.events.push_back(EventDestroy.new(parent.get_game_board(), parent.host, t, Damage.new(Damage.EFFECT | Damage.DESTROY)))
 
 func has_valid_targets(variables: Dictionary = {}) -> bool:
-	for t in game_board.get_all_battlefield_cards():
+	for t in game_board.get_all_field_cards():
 		if filter.is_valid(parent.host.owner, t, variables):
-			for i in range(4):
-				if t.owner.field.get_card(Enum.Zone.STANDBY, i) == null:
-					return true
+			return true
 	return false

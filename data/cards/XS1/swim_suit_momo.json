@@ -18,6 +18,11 @@
 	},
 	"text": "Gains ATK+1 against {Gnosis}.",
 	"effects": [
-		"ModifyDamageTo(1,attribute=gnosis)"
+		{
+			"trigger": "passive",
+			"effect": [
+				"ModifyDamageTo(1,attribute=gnosis)"
+			]
+		}
 	]
 }

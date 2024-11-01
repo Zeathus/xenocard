@@ -38,6 +38,8 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, ind
 		var anims: Array[GameAnimation] = []
 		var other_card = field.get_card(zone, index)
 		if other_card:
+			if not (other_card.can_move() and other_card.can_move_to(game_board, to_move.zone, to_move.zone_index)):
+				return
 			var new_pos = field.get_zone(to_move.zone, to_move.zone_index).global_position
 			anims.push_back(AnimationMove.new(other_card.instance, new_pos, 30))
 			if other_card.equipped_weapon:

@@ -18,6 +18,12 @@
 	},
 	"text": "When the E mark is removed from this card, you can destroy one enemy situation card.",
 	"effects": [
-		"DestroyCardWhenEMarkRemoved(type=situation;zone=situation;owner=enemy)"
+		{
+			"trigger": "e_mark_removed",
+			"optional": true,
+			"effect": [
+				"DestroyTarget(type=situation;zone=situation;owner=enemy)"
+			]
+		}
 	]
 }

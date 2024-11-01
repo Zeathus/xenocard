@@ -72,9 +72,9 @@ func targets_to_select_for_set(list: Array[Callable]):
 		# Adds callables to the list
 		e.targets_to_select_for_set(list)
 
-func has_valid_targets() -> bool:
+func has_valid_targets(variables: Dictionary = {}) -> bool:
 	for e in effects:
-		if not e.has_valid_targets():
+		if not e.has_valid_targets(variables):
 			return false
 	return true
 
@@ -85,6 +85,9 @@ func can_replace_target() -> bool:
 	return false
 
 func can_replace_card(card: Card) -> bool:
+	for e in effects:
+		if e.can_replace_card(card):
+			return true
 	return false
 
 func effect(variables: Dictionary = {}):
@@ -130,15 +133,24 @@ func on_destroy(destroyed: Card, source: Damage):
 	pass
 
 func ignore_unique(card: Card) -> bool:
+	for e in effects:
+		if e.ignore_unique(card):
+			return true
 	return false
 
 func is_valid_zone(new_zone: Enum.Zone, index: int, ret: bool) -> bool:
+	for e in effects:
+		ret = e.is_valid_zone(new_zone, index, ret)
 	return ret
 
 func get_field_requirements(req: Array[Enum.Attribute]) -> Array[Enum.Attribute]:
+	for e in effects:
+		req = e.get_field_requirements(req)
 	return req
 
 func get_cost(cost: int) -> int:
+	for e in effects:
+		cost = e.get_cost(cost)
 	return cost
 
 func get_atk(atk: int) -> int:
@@ -167,6 +179,9 @@ func take_set_damage(game_board: GameBoard, attacker: Card, damage: int, source:
 	return damage
 
 func handle_occupied_zone(game_board: GameBoard, zone: Enum.Zone, index: int) -> bool:
+	for e in effects:
+		if e.handle_occupied_zone(game_board, zone, index):
+			return true
 	return false
 
 func on_deck_attacked(player: Player):
@@ -194,9 +209,15 @@ func adjust_enemy():
 	pass
 
 func can_move_to(new_zone: Enum.Zone, index: int) -> bool:
+	for e in effects:
+		if not e.can_move_to(new_zone, index):
+			return false
 	return true
 
 func can_move() -> bool:
+	for e in effects:
+		if not e.can_move():
+			return false
 	return true
 
 func can_equip_weapon(weapon: Card) -> bool:
@@ -206,6 +227,9 @@ func can_equip_weapon(weapon: Card) -> bool:
 	return true
 
 func can_attack_on_enemy_phase() -> bool:
+	for e in effects:
+		if e.can_attack_on_enemy_phase():
+			return true
 	return false
 
 func attack_stopped() -> bool:
@@ -230,6 +254,9 @@ func skips_e_mark() -> bool:
 	return false
 
 func stops_normal_draw() -> bool:
+	for e in effects:
+		if e.stops_normal_draw():
+			return true
 	return false
 
 func after_normal_draw():

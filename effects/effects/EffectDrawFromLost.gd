@@ -7,9 +7,9 @@ var amount: int
 func post_init():
 	amount = int(param)
 
-func effect():
+func effect(variables: Dictionary = {}):
 	for i in range(amount):
-		events.push_back(EventDrawCardFromLost.new(game_board, card.owner))
+		parent.events.push_back(EventDrawCardFromLost.new(parent.get_game_board(), parent.host.owner))
 
-func has_valid_targets() -> bool:
-	return card.owner.lost.size() >= amount
+func has_valid_targets(variables: Dictionary = {}) -> bool:
+	return parent.host.owner.lost.size() >= amount
