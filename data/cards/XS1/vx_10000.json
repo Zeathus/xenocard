@@ -17,8 +17,32 @@
 	},
 	"text": "<Unique>.\nWhen this card is on the battlefield, all homing attacks miss.\nWhen Shion is on your battlefield, this card is played without cost.",
 	"effects": [
-		"Unique",
-		"GlobalPreventHomingAttacksOnBattlefield",
-		"IgnoreCostIfOnField(character=Shion;zone=battlefield)"
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"effect": [
+				"Unique"
+			]
+		},
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"requirement": [
+				"Formula(count(owner=self;zone=battlefield;character=Shion))"
+			],
+			"effect": [
+				"IgnoreCost"
+			]
+		},
+		{
+			"trigger": "passive",
+			"global": "type=battle",
+			"requirement": [
+				"FilterSelf(zone=battlefield)"
+			],
+			"effect": [
+				"PreventHomingAttacks"
+			]
+		}
 	]
 }

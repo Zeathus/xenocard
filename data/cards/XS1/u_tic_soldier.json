@@ -16,6 +16,11 @@
 	},
 	"text": "If this card is destroyed, the owner of the card must pay 1 cost.",
 	"effects": [
-		"PayCostWhenDestroyed(1)"
+		{
+			"trigger": "destroyed",
+			"effect": [
+				"PayCost(1)"
+			]
+		}
 	]
 }
