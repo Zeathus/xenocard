@@ -10,7 +10,16 @@
 	},
 	"text": "{Humans} on your battlefield gain ATK+1.\n<Duration> 5.",
 	"effects": [
-		"GlobalModifyATK(1,attribute=human;zone=battlefield;owner=self)",
-		"Duration(5)"
+		{
+			"trigger": "passive",
+			"global": "owner=self;attribute=human;zone=battlefield",
+			"duration": 5,
+			"effect": [
+				"ModifyATK(1)"
+			],
+			"on_end": [
+				"Discard(self)"
+			]
+		}
 	]
 }
