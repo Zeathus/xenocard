@@ -17,9 +17,20 @@
 	},
 	"text": "<Unlimited>.\nOnly {Machines} can equip this card.\nThis card's attacks <penetrate>.\nAttacks every other turn.",
 	"effects": [
-		"Unlimited",
-		"EquipsTo(attribute=machine)",
-		"AttackTime(2)",
-		"Penetrate"
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"effect": [
+				"Unlimited",
+				"EquipsTo(attribute=machine)",
+				"AttackTime(2)"
+			]
+		},
+		{
+			"trigger": "passive",
+			"effect": [
+				"Penetrate"
+			]
+		}
 	]
 }

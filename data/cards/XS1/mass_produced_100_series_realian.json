@@ -13,7 +13,18 @@
 	},
 	"text": "<Unlimited>.\nGains ATK+1 against {Gnosis}.",
 	"effects": [
-		"Unlimited",
-		"ModifyDamageTo(1,attribute=gnosis)"
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"effect": [
+				"Unlimited"
+			]
+		},
+		{
+			"trigger": "passive",
+			"effect": [
+				"ModifyDamageTo(1,attribute=gnosis)"
+			]
+		}
 	]
 }

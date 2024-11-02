@@ -1,38 +1,18 @@
 extends Node2D
 
-var card_row_scene = preload("res://scenes/card_list_row.tscn")
-var card_scene = preload("res://objects/card.tscn")
+var card_row_scene = load("res://scenes/card_list_row.tscn")
+var card_scene = load("res://objects/card_display.tscn")
 
-var all_cards: Array[Card]
-var deck: Deck = Deck.new()
+var all_cards: Array[CardData]
+var deck: DeckData = DeckData.new()
 
 func load_cards():
 	all_cards = []
-	var dir = DirAccess.open("res://data/cards")
-	if not dir:
-		print("Failed to find card directory.")
-		return
-	dir.list_dir_begin()
-	var set_name = dir.get_next()
-	while set_name != "":
-		if not dir.current_is_dir():
-			set_name = dir.get_next()
-			continue
-		var sub_dir = DirAccess.open("res://data/cards/%s" % set_name)
-		sub_dir.list_dir_begin()
-		var card_file = sub_dir.get_next()
-		while card_file != "":
-			card_file = card_file.substr(0, card_file.find(".json"))
-			var card = Card.new("%s/%s" % [set_name, card_file])
-			card.validate_effects()
-			all_cards.push_back(card)
-			card_file = sub_dir.get_next()
-		set_name = dir.get_next()
-		sub_dir.list_dir_end()
-	dir.list_dir_end()
+	for key in CardData.data:
+		all_cards.push_back(CardData.data[key])
 
 func sort_card_list():
-	all_cards.sort_custom(func sort_id(a, b):
+	all_cards.sort_custom(func sort_id(a: CardData, b: CardData):
 		if a.set_id < b.set_id:
 			return true
 		return false
@@ -56,7 +36,7 @@ func refresh_card_list():
 	var y_pos = 0
 	var matches = 0
 	for row in container.get_children():
-		var card: Card = row.get_card()
+		var card: CardData = row.get_card()
 		var show = filter_card(card)
 		row.visible = show
 		row.position.y = y_pos
@@ -81,26 +61,27 @@ func refresh_deck():
 		var node = null
 		if i < len(children):
 			node = children[i]
-			for con in node.show_details.get_connections():
-				node.show_details.disconnect(con.callable)
+			for con in node.selected.get_connections():
+				node.selected.disconnect(con.callable)
 		else:
 			node = card_scene.instantiate()
 			node.scale = Vector2(0.12, 0.12)
-			node.on_hover.connect(preview_card)
+			node.on_hover.connect(func preview(): preview_card(deck.cards[i]))
 			$Deck.add_child(node)
-		node.show_details.connect(func remove(card: Card):
-			remove_from_deck(i)
+		node.selected.connect(func remove(button_index: int):
+			if button_index == 2:
+				remove_from_deck(i)
 		)
 		node.visible = true
 		node.turn_up()
 		node.z_index = i
 		node.position.x = 64 + card_spacing.x * (i % cards_per_row)
 		node.position.y = 88 + card_spacing.y * floor(i / cards_per_row)
-		node.load_card(deck.cards[i])
+		node.show_card(deck.cards[i])
 
 func refresh_deck_list():
 	$Meta/LoadDeck.clear()
-	for i in Deck.list_decks():
+	for i in DeckData.list_decks():
 		$Meta/LoadDeck.add_item(i)
 	if deck.name != "":
 		for i in range($Meta/LoadDeck.item_count):
@@ -111,19 +92,19 @@ func refresh_deck_list():
 func refresh_preset_list():
 	$Meta/LoadPreset.clear()
 	$Meta/LoadPreset.add_item("Load a Preset")
-	for i in Deck.list_presets():
+	for i in DeckData.list_presets():
 		$Meta/LoadPreset.add_item(i)
 
-func filter_card(card: Card) -> bool:
+func filter_card(card: CardData) -> bool:
 	var filter_text: String = $Filters/Search.text.to_lower()
-	var filter_type: Enum.Type = Card.type_from_string(
+	var filter_type: Enum.Type = Enum.type_from_string(
 		$Filters/Type.get_item_text($Filters/Type.get_selected_id()))
 	var filter_cost: String = $Filters/Cost.text
-	var filter_attribute: Enum.Attribute = Card.attribute_from_string(
+	var filter_attribute: Enum.Attribute = Enum.attribute_from_string(
 		$Filters/Attribute.get_item_text($Filters/Attribute.get_selected_id()))
 	var filter_hp: String = $Filters/HP.text
 	var filter_atk: String = $Filters/ATK.text
-	var filter_atk_type: Enum.AttackType = Card.attack_type_from_string(
+	var filter_atk_type: Enum.AttackType = Enum.attack_type_from_string(
 		$Filters/AttackType.get_item_text($Filters/AttackType.get_selected_id()))
 	if filter_text != "":
 		if filter_text not in card.name.replace("\n", " ").to_lower() and filter_text not in card.text.to_lower():
@@ -133,7 +114,7 @@ func filter_card(card: Card) -> bool:
 	if filter_type == Enum.Type.BATTLE:
 		if filter_attribute != Enum.Attribute.ANY and card.attribute != filter_attribute:
 			return false
-		if filter_atk_type != Enum.AttackType.ANY and card.target != filter_atk_type:
+		if filter_atk_type != Enum.AttackType.ANY and card.attack_type != filter_atk_type:
 			return false
 		if not filter_integer(card.max_hp, filter_hp):
 			return false
@@ -198,7 +179,7 @@ func _ready():
 	refresh_preset_list()
 	$Meta/LoadDeck.select(-1)
 
-func add_to_deck(card: Card):
+func add_to_deck(card: CardData):
 	if deck.size() < 40:
 		deck.add_bottom(card)
 		refresh_deck()
@@ -208,13 +189,13 @@ func remove_from_deck(index: int):
 	refresh_deck()
 
 func load_deck(deck_name: String, preset: bool = false):
-	deck = Deck.load(deck_name, preset)
+	deck = DeckData.load(deck_name, preset)
 	$Meta/DeckName.text = deck.name
 	refresh_deck()
 
-func preview_card(card: Card):
-	$Preview/CardDetails/Card.load_card(card)
-	$Preview/CardDetails/Card.turn_up()
+func preview_card(card: CardData):
+	$Preview/CardDetails/CardNode.show_card(card)
+	$Preview/CardDetails/CardNode.turn_up()
 	var preview_text: RichTextLabel = $Preview/Text
 	preview_text.clear()
 	preview_text.push_font_size(20)
@@ -289,7 +270,7 @@ func _on_load_preset_item_selected(index):
 		load_deck(deck_name, true)
 
 func _on_button_new_pressed():
-	deck = Deck.new()
+	deck = DeckData.new()
 	$Meta/DeckName.text = ""
 	$Meta/LoadDeck.select(-1)
 	refresh_deck()

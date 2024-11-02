@@ -29,7 +29,7 @@ func on_start():
 		queue_event(EventDestroy.new(game_board, attacker, target.equipped_weapon, source))
 		target.unequip()
 	var destination = target.owner.field.get_junk_node()
-	for e in target.get_effects():
+	for e in target.get_effects(Enum.Trigger.PASSIVE):
 		match e.redirect_when_destroyed(attacker, source):
 			Enum.Zone.LOST:
 				destination = target.owner.field.get_lost_node()
@@ -46,14 +46,15 @@ func process(delta):
 		return
 	match state:
 		0:
-			for e in target.get_effects():
-				e.on_destroyed(attacker, source)
-				for event in e.get_events():
-					queue_event(event)
-			for e in attacker.get_effects():
-				e.on_destroy(target, source)
-				for event in e.get_events():
-					queue_event(event)
+			if source.destroy():
+				target.trigger_effects(Enum.Trigger.DESTROYED, self, {
+					"attacker": attacker,
+					"source": source
+				})
+				attacker.trigger_effects(Enum.Trigger.DESTROY, self, {
+					"target": target,
+					"source": source
+				})
 		1:
 			destroy()
 		2:
@@ -71,7 +72,7 @@ func destroy():
 	game_board.refresh()
 	var zone = Enum.Zone.JUNK
 	var pile = target.owner.junk
-	for e in target.get_effects():
+	for e in target.get_effects(Enum.Trigger.PASSIVE):
 		match e.redirect_when_destroyed(attacker, source):
 			Enum.Zone.LOST:
 				zone = Enum.Zone.LOST

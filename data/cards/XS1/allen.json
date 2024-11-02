@@ -18,6 +18,17 @@
 	},
 	"text": "When the E mark is removed from this card, you can move one enemy card from the battlefield to the standby area. This ability cannot be used if the standby area is full.",
 	"effects": [
-		"RetreatCardWhenEMarkRemoved(owner=enemy;zone=battlefield)"
+		{
+			"trigger": "e_mark_removed",
+			"animated": false,
+			"optional": true,
+			"requirement": [
+				"Formula(count(owner=enemy;zone=standby)<4)",
+				"Formula(count(owner=enemy;zone=battlefield)>0)"
+			],
+			"effect": [
+				"RetreatTarget(owner=enemy;zone=battlefield)"
+			]
+		}
 	]
 }

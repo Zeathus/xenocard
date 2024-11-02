@@ -5,11 +5,20 @@ func show_card(card: Card):
 		self.visible = false
 		return
 	self.visible = true
-	$Panel/ValueHP.text = "%d/%d" % [card.hp, card.max_hp]
-	$Panel/ValueATK.text = "%d" % card.get_atk()
-	$Panel/AttackType.text = Card.get_target_name(card.get_target())
-	$Panel/Attribute.set_attribute(card.attribute)
-	refresh_bar($Panel/PanelHP, card.hp, card.max_hp)
+	$Panel/ValueHP.text = "%d/%d" % [card.hp, card.get_max_hp()]
+	var original_atk = card.get_original_atk()
+	if card.equipped_weapon and card.equipped_weapon.get_original_atk() != 0:
+		original_atk = card.equipped_weapon.get_original_atk()
+	var atk = card.get_atk()
+	if atk > original_atk:
+		$Panel/ValueATK.text = "⮝%d" % atk
+	elif atk < original_atk:
+		$Panel/ValueATK.text = "⮟%d" % atk
+	else:
+		$Panel/ValueATK.text = "%d" % atk
+	$Panel/AttackType.text = Enum.get_attack_type_name(card.get_attack_type())
+	$Panel/Attribute.set_attribute(card.get_attribute())
+	refresh_bar($Panel/PanelHP, card.hp, card.get_max_hp())
 	refresh_bar($Panel/PanelCharge, card.atk_timer, card.get_atk_time())
 
 func _ready():

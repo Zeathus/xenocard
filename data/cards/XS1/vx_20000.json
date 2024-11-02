@@ -17,7 +17,13 @@
 	},
 	"text": "<Unique>.\nAttacks every other turn.",
 	"effects": [
-		"Unique",
-		"AttackTime(2)"
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"effect": [
+				"Unique",
+				"AttackTime(2)"
+			]
+		}
 	]
 }

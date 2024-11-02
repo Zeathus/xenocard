@@ -114,7 +114,7 @@ func is_free() -> bool:
 
 func skips_phase(phase: Enum.Phase, player: Player):
 	for card in get_all_field_cards():
-		for e in card.get_effects():
+		for e in card.get_effects(Enum.Trigger.PASSIVE):
 			if e.skips_phase(phase, player):
 				return true
 	return false
@@ -122,9 +122,6 @@ func skips_phase(phase: Enum.Phase, player: Player):
 func begin_phase(phase: Enum.Phase):
 	turn_phase = phase
 	var player: Player = get_turn_player()
-	if skips_phase(turn_phase, player):
-		end_phase()
-		return
 	match turn_phase:
 		Enum.Phase.DRAW:
 			$Phases/Phase/Label.text = "%dP Draw Phase" % (turn_player_id + 1)
@@ -178,10 +175,10 @@ func refresh():
 		player.field.refresh()
 		player.set_reveal_hand(false)
 		for card in get_all_field_cards():
-			for e in card.get_effects():
-					var reveal_hand = e.reveal_hand(player)
-					if reveal_hand:
-						player.set_reveal_hand(reveal_hand)
+			for e in card.get_effects(Enum.Trigger.PASSIVE):
+				var reveal_hand = e.reveal_hand(player)
+				if reveal_hand:
+					player.set_reveal_hand(reveal_hand)
 
 func next_player():
 	turn_player_id = (turn_player_id + 1) % 2
@@ -217,26 +214,26 @@ func get_all_battlefield_cards() -> Array[Card]:
 	result += get_turn_enemy().field.get_battlefield_cards()
 	return result
 
-func add_phase_effect(phase: Enum.Phase, effect: CardEffect):
+func add_phase_effect(phase: Enum.Phase, effect: Effect):
 	phase_effects[phase].push_back(effect)
 
 func _on_card_show_details(card):
 	$CardDetails.visible = true
-	$CardDetails/Card.turn_up()
-	$CardDetails/Card.load_card(card)
+	$CardDetails/CardNode.turn_up()
+	$CardDetails/CardNode.show_card(card.data)
 
 func _on_card_hovered(card):
 	$QuickDetails/Left.visible = false
 	$QuickDetails/Right.visible = false
 	var display = $QuickDetails/Left
-	var display_card = $QuickDetails/Left/Card
+	var display_card = $QuickDetails/Left/CardNode
 	if (card.owner == players[0] and card.zone == Enum.Zone.STANDBY) or \
 		(card.owner == players[1] and card.zone == Enum.Zone.SITUATION):
 		display = $QuickDetails/Right
-		display_card = $QuickDetails/Right/Card
+		display_card = $QuickDetails/Right/CardNode
 	display.visible = true
 	display_card.turn_up()
-	display_card.load_card(card)
+	display_card.show_card(card.data)
 	quick_detail_card = card
 
 func on_hand_card_selected(hand: GameHand, card: Card):

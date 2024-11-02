@@ -11,7 +11,16 @@
 	},
 	"text": "All {Gnosis} battle cards gain ATK+1.\n<Duration> 2.",
 	"effects": [
-		"GlobalModifyATK(1,attribute=gnosis)",
-		"Duration(2)"
+		{
+			"trigger": "passive",
+			"global": "attribute=gnosis",
+			"duration": 2,
+			"effect": [
+				"ModifyATK(1)"
+			],
+			"on_end": [
+				"Discard(self)"
+			]
+		}
 	]
 }

@@ -17,8 +17,23 @@
 	},
 	"text": "Discard one {Human} from your field to play this card anywhere on your field.\nWhen this card is on the battlefield, it heals 3 HP during your adjust phase.",
 	"effects": [
-		"DiscardAttributeToPlay(human)",
-		"CanSetToBattlefield",
-		"RegenOnBattlefield(3)"
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"effect": [
+				"DiscardAttributeToPlay(human)",
+				"CanSetToBattlefield"
+			]
+		},
+		{
+			"trigger": "adjust_phase_player",
+			"requirement": [
+				"Formula(hp<maxhp)",
+				"FilterSelf(zone=battlefield)"
+			],
+			"effect": [
+				"Heal(3,self)"
+			]
+		}
 	]
 }

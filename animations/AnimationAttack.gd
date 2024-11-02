@@ -2,7 +2,7 @@ extends GameAnimation
 
 class_name AnimationAttack
 
-static var projectile_scene = preload("res://animations/projectile.tscn")
+static var projectile_scene = load("res://animations/projectile.tscn")
 var attacker: Node2D
 var targets: Array[Node2D]
 var projectiles: Array[Node2D]

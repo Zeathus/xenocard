@@ -17,8 +17,14 @@
 	},
 	"text": "<Unlimited>.\nOnly {Machines} can equip this card.\nAttacks every other turn.",
 	"effects": [
-		"Unlimited",
-		"EquipsTo(attribute=machine)",
-		"AttackTime(2)"
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"effect": [
+				"Unlimited",
+				"EquipsTo(attribute=machine)",
+				"AttackTime(2)"
+			]
+		}
 	]
 }

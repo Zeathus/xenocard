@@ -17,7 +17,22 @@
 	},
 	"text": "<Unique>.\nWhen this card is destroyed by battle damage, you can destroy one card in the enemy's standby area.",
 	"effects": [
-		"Unique",
-		"DestroyCardWhenDestroyedByAttack(owner=enemy;zone=standby)"
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"effect": [
+				"Unique"
+			]
+		},
+		{
+			"trigger": "destroyed",
+			"optional": true,
+			"requirement": [
+				"DamageType(battle)"
+			],
+			"effect": [
+				"DestroyTarget(owner=enemy;zone=standby)"
+			]
+		}
 	]
 }

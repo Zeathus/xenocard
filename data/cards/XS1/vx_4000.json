@@ -17,6 +17,12 @@
 	},
 	"text": "<Unique>.",
 	"effects": [
-		"Unique"
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"effect": [
+				"Unique"
+			]
+		}
 	]
 }

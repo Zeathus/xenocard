@@ -1,23 +1,200 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqt532l8n2w8u"]
+[gd_scene load_steps=22 format=3 uid="uid://bqt532l8n2w8u"]
 
-[ext_resource type="PackedScene" uid="uid://dosulntiwpmvw" path="res://objects/card.tscn" id="1_jq7yv"]
+[ext_resource type="PackedScene" uid="uid://dosulntiwpmvw" path="res://objects/card_display.tscn" id="1_pmsej"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f3feu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qw08w"]
+size = Vector2(800, 1200)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rdleq"]
+font_size = 48
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(-4, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_owst0"]
+line_spacing = -12.0
+font_size = 40
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(-4, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_uis4s"]
+line_spacing = -12.0
+font_size = 40
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(-4, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fy67i"]
+font_size = 48
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(-4, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ylnjb"]
+font_size = 48
+font_color = Color(0.545098, 0.972549, 0.976471, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(-4, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jti33"]
+font_size = 48
+font_color = Color(1, 1, 0.52549, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(-4, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_guvnp"]
+font_size = 48
+font_color = Color(0.980392, 0.521569, 0.501961, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(-4, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hirw7"]
+font_size = 48
+font_color = Color(1, 1, 0.52549, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(-4, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_arssg"]
+font_size = 48
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(-4, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3ahw8"]
+font_size = 48
+font_color = Color(0.713726, 0.760784, 0.984314, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(-4, 4)
+
+[sub_resource type="Theme" id="Theme_b0mdc"]
+default_font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_g0d37"]
+font_size = 32
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(-4, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i1q37"]
+bg_color = Color(0.25098, 0.623529, 1, 0.25098)
+corner_radius_top_left = 44
+corner_radius_top_right = 44
+corner_radius_bottom_right = 44
+corner_radius_bottom_left = 44
+
+[sub_resource type="LabelSettings" id="LabelSettings_grgb1"]
+font_size = 256
+outline_size = 96
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wjyuf"]
+bg_color = Color(1, 0.623529, 0.25098, 0.25098)
+corner_radius_top_left = 44
+corner_radius_top_right = 44
+corner_radius_bottom_right = 44
+corner_radius_bottom_left = 44
+
+[sub_resource type="LabelSettings" id="LabelSettings_oymet"]
+font_size = 192
+outline_size = 96
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bd2rd"]
+bg_color = Color(0.247059, 0.247059, 0.231373, 0.862745)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.741176, 0.741176, 0.741176, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="LabelSettings" id="LabelSettings_jaef4"]
+font_size = 256
+outline_size = 96
+outline_color = Color(0, 0, 0, 1)
 
 [node name="CardDetails" type="Node2D"]
 
-[node name="Card" parent="." instance=ExtResource("1_jq7yv")]
+[node name="CardNode" parent="." instance=ExtResource("1_pmsej")]
 selectable = false
 
-[node name="Text" parent="Card/Content" index="12"]
-mouse_filter = 0
+[node name="Panel" parent="CardNode" index="0"]
+theme_override_styles/panel = SubResource("StyleBoxEmpty_f3feu")
 
-[node name="Label" parent="Card/Overlay/EMark" index="0"]
+[node name="CollisionShape2D" parent="CardNode/Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_qw08w")
+
+[node name="Name" parent="CardNode/Content" index="3"]
+label_settings = SubResource("LabelSettings_rdleq")
+
+[node name="SmallName" parent="CardNode/Content" index="4"]
+label_settings = SubResource("LabelSettings_owst0")
+
+[node name="TwoLineName" parent="CardNode/Content" index="5"]
+label_settings = SubResource("LabelSettings_uis4s")
+
+[node name="TypeBattle" parent="CardNode/Content" index="6"]
+label_settings = SubResource("LabelSettings_fy67i")
+
+[node name="TypeOther" parent="CardNode/Content" index="7"]
+label_settings = SubResource("LabelSettings_fy67i")
+
+[node name="HP" parent="CardNode/Content/Stats" index="0"]
+label_settings = SubResource("LabelSettings_ylnjb")
+
+[node name="Value" parent="CardNode/Content/Stats/HP" index="0"]
+label_settings = SubResource("LabelSettings_jti33")
+
+[node name="Attack" parent="CardNode/Content/Stats" index="1"]
+label_settings = SubResource("LabelSettings_guvnp")
+
+[node name="Value" parent="CardNode/Content/Stats/Attack" index="0"]
+label_settings = SubResource("LabelSettings_hirw7")
+
+[node name="AttackType" parent="CardNode/Content/Stats" index="2"]
+label_settings = SubResource("LabelSettings_arssg")
+
+[node name="Field" parent="CardNode/Content" index="10"]
+label_settings = SubResource("LabelSettings_3ahw8")
+
+[node name="Cost" parent="CardNode/Content" index="11"]
+label_settings = SubResource("LabelSettings_3ahw8")
+
+[node name="Value" parent="CardNode/Content/Cost" index="0"]
+label_settings = SubResource("LabelSettings_hirw7")
+
+[node name="Text" parent="CardNode/Content" index="12"]
+mouse_filter = 0
+theme = SubResource("Theme_b0mdc")
+
+[node name="SerialNumber" parent="CardNode/Content" index="14"]
+label_settings = SubResource("LabelSettings_g0d37")
+
+[node name="EMark" parent="CardNode/Overlay" index="0"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_i1q37")
+
+[node name="Label" parent="CardNode/Overlay/EMark" index="0"]
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 286.0
 offset_bottom = 698.0
+label_settings = SubResource("LabelSettings_grgb1")
 
-[node name="Label" parent="Card/Overlay/Downed" index="0"]
+[node name="Downed" parent="CardNode/Overlay" index="1"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_wjyuf")
+
+[node name="Label" parent="CardNode/Overlay/Downed" index="0"]
 offset_top = 0.0
 offset_bottom = 546.0
+label_settings = SubResource("LabelSettings_oymet")
 
-[editable path="Card"]
+[node name="Tooltip" parent="CardNode" index="4"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_bd2rd")
+
+[node name="Text" parent="CardNode/Tooltip" index="0"]
+theme = SubResource("Theme_b0mdc")
+
+[node name="Value" parent="CardNode/Duration" index="0"]
+label_settings = SubResource("LabelSettings_jaef4")
+
+[editable path="CardNode"]

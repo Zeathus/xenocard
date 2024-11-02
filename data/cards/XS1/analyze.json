@@ -10,6 +10,11 @@
 	},
 	"text": "Both players play with their hands revealed.",
 	"effects": [
-		"RevealHand(both)"
+		{
+			"trigger": "passive",
+			"effect": [
+				"RevealHand(both)"
+			]
+		}
 	]
 }

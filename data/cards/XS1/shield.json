@@ -17,8 +17,14 @@
 	},
 	"text": "<Unlimited>.\nOnly {Machines} can equip this card.\nEquipped cards take 1 less battle damage.",
 	"effects": [
-		"Unlimited",
-		"EquipsTo(attribute=machine)",
-		"ModifyBattleDamageFrom(-1,type=battle)"
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"effect": [
+				"Unlimited",
+				"EquipsTo(attribute=machine)",
+				"ModifyBattleDamageFrom(-1,type=battle)"
+			]
+		}
 	]
 }

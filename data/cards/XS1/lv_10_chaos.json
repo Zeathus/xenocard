@@ -18,6 +18,21 @@
 	},
 	"text": "You can <level up> a Lv 1 Chaos on your battlefield.\nHeals 3 HP during your adjust phase.",
 	"effects": [
-		"Regen(3)"
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"effect": [
+				"LevelUp(name=Lv 1 chaos)"
+			]
+		},
+		{
+			"trigger": "adjust_phase_player",
+			"requirement": [
+				"Formula(hp<maxhp)"
+			],
+			"effect": [
+				"Heal(3,self)"
+			]
+		}
 	]
 }

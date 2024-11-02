@@ -17,6 +17,15 @@
 	},
 	"text": "Whenever this card destroys an enemy card, you can <search> one Lv 10 Shion.",
 	"effects": [
-		"SearchOnEnemyDestroyed(name=Lv 10 Shion)"
+		{
+			"trigger": "destroy",
+			"optional": true,
+			"requirement": [
+				"FilterAttackTarget(owner=enemy)"
+			],
+			"effect": [
+				"Search(name=Lv 10 Shion)"
+			]
+		}
 	]
 }

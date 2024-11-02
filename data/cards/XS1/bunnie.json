@@ -18,6 +18,11 @@
 	},
 	"text": "When the E mark is removed from this card, all battle cards on the field are <downed>.",
 	"effects": [
-		"DownAllWhenEMarkRemoved"
+		{
+			"trigger": "e_mark_removed",
+			"effect": [
+				"Down(type=battle)"
+			]
+		}
 	]
 }

@@ -13,7 +13,21 @@
 	},
 	"text": "<Unlimited>.\nDraw one card from your deck during the adjust phase of the turn this card was played.",
 	"effects": [
-		"Unlimited",
-		"DrawCardFirstAdjustPhase"
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"effect": [
+				"Unlimited"
+			]
+		},
+		{
+			"trigger": "adjust_phase",
+			"requirement": [
+				"Formula(turncount==0)"
+			],
+			"effect": [
+				"DrawCard"
+			]
+		}
 	]
 }

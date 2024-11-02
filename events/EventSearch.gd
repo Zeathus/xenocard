@@ -2,7 +2,7 @@ extends Event
 
 class_name EventSearch
 
-static var browse_scene = preload("res://scenes/menu_browse_cards.tscn")
+static var browse_scene = load("res://scenes/menu_browse_cards.tscn")
 var player: Player
 var filter: CardFilter
 var message: String

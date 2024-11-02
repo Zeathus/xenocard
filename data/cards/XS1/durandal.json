@@ -17,7 +17,13 @@
 	},
 	"text": "<Unique>.\nThis card cannot equip {weapons}.",
 	"effects": [
-		"Unique",
-		"NoWeapons"
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"effect": [
+				"Unique",
+				"NoWeapons"
+			]
+		}
 	]
 }

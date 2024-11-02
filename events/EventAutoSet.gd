@@ -25,13 +25,13 @@ func on_start():
 		return
 	play(zone, zone_index)
 	var new_pos: Vector2 = to_set.owner.field.get_zone(zone, zone_index).global_position
-	if to_set.type == Enum.Type.BATTLE and to_set.attribute == Enum.Attribute.WEAPON:
+	if to_set.get_type() == Enum.Type.BATTLE and to_set.get_attribute() == Enum.Attribute.WEAPON:
 		if to_set.instance.global_rotation == 0:
 			new_pos += Vector2(28, 42)
 		else:
 			new_pos -= Vector2(28, 42)
 	var anim: GameAnimation = AnimationMove.new(to_set.instance, new_pos, 30)
-	if to_set.type == Enum.Type.BATTLE and to_set.attribute == Enum.Attribute.WEAPON:
+	if to_set.get_type() == Enum.Type.BATTLE and to_set.get_attribute() == Enum.Attribute.WEAPON:
 		anim.target_scale = Vector2(0.075, 0.075)
 	else:
 		anim.target_scale = Vector2(0.15, 0.15)
@@ -39,10 +39,7 @@ func on_start():
 	queue_event(EventAnimation.new(game_board, anim))
 
 func handle_set_effects():
-	for e in to_set.get_effects():
-		e.on_set()
-		for event in e.get_events():
-			queue_event(event)
+	to_set.trigger_effects(Enum.Trigger.SET, self)
 	ready_to_finish = true
 	if not has_children():
 		finish()
@@ -53,6 +50,8 @@ func on_finish():
 func process(delta):
 	if pass_to_child("process", [delta]):
 		return
+	if !finished and ready_to_finish and not has_children():
+		finish()
 
 func play(new_zone: Enum.Zone, index: int):
 	if player.field.get_card(zone, zone_index):
@@ -77,7 +76,7 @@ func play(new_zone: Enum.Zone, index: int):
 	for i in to_set.modify_for_set:
 		i.call(to_set)
 	to_set.modify_for_set.clear()
-	if to_set.type != Enum.Type.BATTLE or to_set.attribute != Enum.Attribute.WEAPON:
+	if to_set.get_type() != Enum.Type.BATTLE or to_set.get_attribute() != Enum.Attribute.WEAPON:
 		player.field.set_card(to_set, zone, zone_index)
 	else:
 		player.field.add_card(to_set)
@@ -86,11 +85,11 @@ func play(new_zone: Enum.Zone, index: int):
 	to_set.zone_index = index
 
 func handle_occupied_zone(zone: Enum.Zone, index: int):
-	for e in to_set.get_effects():
+	for e in to_set.get_effects(Enum.Trigger.PASSIVE):
 		if e.handle_occupied_zone(game_board, zone, index):
 			return
 	var occupant: Card = player.field.get_card(zone, index)
-	if to_set.type == Enum.Type.BATTLE and to_set.attribute == Enum.Attribute.WEAPON:
+	if to_set.get_type() == Enum.Type.BATTLE and to_set.get_attribute() == Enum.Attribute.WEAPON:
 		if occupant.equipped_weapon != null:
 			queue_event(EventDestroy.new(game_board, to_set, occupant.equipped_weapon, Damage.new(Damage.EFFECT | Damage.DISCARD)))
 		occupant.equip(to_set)

@@ -18,8 +18,14 @@
 	},
 	"text": "You can <level up> a Lv 1 KOS-MOS on your battlefield.\nThis card can only equip {weapons} exclusive to KOS-MOS.\nAttacks every other turn.",
 	"effects": [
-		"LevelUp(name=Lv 1 KOS-MOS)",
-		"AttackTime(2)",
-		"EquipsOnly(name=Third Armament)"
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"effect": [
+				"LevelUp(name=Lv 1 KOS-MOS)",
+				"EquipsOnly(name=Third Armament)",
+				"AttackTime(2)"
+			]
+		}
 	]
 }

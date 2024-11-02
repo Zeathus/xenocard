@@ -10,9 +10,18 @@
 	},
 	"text": "All {Gnosis} on the battlefield cannot move and get ATK-1.\nThis effect cannot be stacked.\n<Duration> 4.",
 	"effects": [
-		"Duration(4)",
-		"GlobalModifyATK(-1,attribute=gnosis;zone=battlefield)",
-		"GlobalPreventMovement(attribute=gnosis;zone=battlefield)",
-		"NonStacking"
+		{
+			"trigger": "passive",
+			"global": "attribute=gnosis;zone=battlefield",
+			"duration": 4,
+			"stackable": false,
+			"effect": [
+				"ModifyATK(-1)",
+				"PreventMovement"
+			],
+			"on_end": [
+				"Discard(self)"
+			]
+		}
 	]
 }
