@@ -14,6 +14,7 @@ static func calc(formula: String, card: Card, game_board: GameBoard) -> int:
 		"junk": card.owner.junk.size(),
 		"lost": card.owner.lost.size(),
 		"deck": card.owner.deck.size(),
+		"hand": card.owner.hand.size(),
 		"maxhp": card.get_max_hp(),
 		"hp": card.hp,
 		"turncount": card.turn_count

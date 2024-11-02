@@ -10,6 +10,12 @@
 	},
 	"text": "When your cards are destroyed, they go into the lost pile rather than the junk pile.",
 	"effects": [
-		"GlobalSendToLostWhenDestroyed(owner=self)"
+		{
+			"trigger": "passive",
+			"global": "owner=self",
+			"effect": [
+				"SendToLostWhenDestroyed"
+			]
+		}
 	]
 }

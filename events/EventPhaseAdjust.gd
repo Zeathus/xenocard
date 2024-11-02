@@ -47,6 +47,8 @@ func process(delta):
 							for event in e.events:
 								queue_event(event)
 							e.events.clear()
+							if e.duration != 0:
+								break
 						if e.duration == 0:
 							to_erase.push_back(e)
 				for e in to_erase:
@@ -62,6 +64,8 @@ func process(delta):
 							for event in e.events:
 								queue_event(event)
 							e.events.clear()
+							if e.duration != 0:
+								break
 						if e.duration == 0:
 							to_erase.push_back(e)
 				for e in to_erase:

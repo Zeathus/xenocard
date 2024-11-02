@@ -46,14 +46,15 @@ func process(delta):
 		return
 	match state:
 		0:
-			target.trigger_effects(Enum.Trigger.DESTROYED, self, {
-				"attacker": attacker,
-				"source": source
-			})
-			attacker.trigger_effects(Enum.Trigger.DESTROY, self, {
-				"target": target,
-				"source": source
-			})
+			if source.destroy():
+				target.trigger_effects(Enum.Trigger.DESTROYED, self, {
+					"attacker": attacker,
+					"source": source
+				})
+				attacker.trigger_effects(Enum.Trigger.DESTROY, self, {
+					"target": target,
+					"source": source
+				})
 		1:
 			destroy()
 		2:

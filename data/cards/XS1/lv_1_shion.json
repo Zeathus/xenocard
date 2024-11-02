@@ -20,6 +20,9 @@
 		{
 			"trigger": "destroy",
 			"optional": true,
+			"requirement": [
+				"FilterAttackTarget(owner=enemy)"
+			],
 			"effect": [
 				"Search(name=Lv 10 Shion)"
 			]

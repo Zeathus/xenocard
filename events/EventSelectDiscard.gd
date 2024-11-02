@@ -5,11 +5,13 @@ class_name EventSelectDiscard
 var player: Player
 var in_sub_event: bool = false
 var filter: CardFilter
+var cause: Card
 
-func _init(_game_board: GameBoard, _player: Player, _filter: CardFilter = null):
+func _init(_game_board: GameBoard, _player: Player, _filter: CardFilter = null, _cause: Card = null):
 	super(_game_board)
 	player = _player
 	filter = _filter
+	cause = _cause
 
 func get_name() -> String:
 	return "SelectDiscard"
@@ -44,7 +46,7 @@ func on_hand_card_selected(hand: GameHand, card: Card):
 		return
 	if not filter or filter.is_valid(player, card):
 		hide_selectable()
-		queue_event(EventDestroy.new(game_board, card, card, Damage.new(Damage.DISCARD)))
+		queue_event(EventDestroy.new(game_board, cause if cause else card, card, Damage.new(Damage.DISCARD)))
 		in_sub_event = true
 
 func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, index: int):
@@ -55,11 +57,11 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, ind
 	var card: Card = field.get_card(zone, index)
 	if card and (not filter or filter.is_valid(player, card)):
 		hide_selectable()
-		queue_event(EventDestroy.new(game_board, card, card, Damage.new(Damage.DISCARD)))
+		queue_event(EventDestroy.new(game_board, cause if cause else card, card, Damage.new(Damage.DISCARD)))
 		in_sub_event = true
 
 func discard_card(card: Card):
-	queue_event(EventDestroy.new(game_board, card, card, Damage.new(Damage.DISCARD)))
+	queue_event(EventDestroy.new(game_board, cause if cause else card, card, Damage.new(Damage.DISCARD)))
 
 func show_selectable():
 	for card in player.hand.cards:

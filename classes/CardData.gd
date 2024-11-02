@@ -125,7 +125,7 @@ func load_json(json: Dictionary):
 		for effect_dict in json["effects"]:
 			var effect_data = EffectData.parse(effect_dict, name)
 			if effect_data == null:
-				print("Failed to get effect data")
+				print("Failed to get effect data for ", name)
 				continue
 			effects.push_back(effect_data)
 

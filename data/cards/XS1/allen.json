@@ -29,7 +29,6 @@
 			"effect": [
 				"RetreatTarget(owner=enemy;zone=battlefield)"
 			]
-		},
-		"RetreatCardWhenEMarkRemoved(owner=enemy;zone=battlefield)"
+		}
 	]
 }

@@ -10,16 +10,16 @@ func post_init():
 	amount = int(arg[0])
 	filter = CardFilter.new(arg[1])
 
-func effect():
+func effect(variables: Dictionary = {}):
 	for i in amount:
-		events.push_back(EventSelectDiscard.new(game_board, card.owner, filter))
+		parent.events.push_back(EventSelectDiscard.new(parent.get_game_board(), parent.host.owner, filter, parent.host))
 
-func has_valid_targets() -> bool:
+func has_valid_targets(variables: Dictionary = {}) -> bool:
 	var count = 0
-	for c in card.owner.hand.cards:
-		if filter.is_valid(card.owner, c):
+	for c in parent.host.owner.hand.cards:
+		if filter.is_valid(parent.host.owner, c):
 			count += 1
-	for c in card.owner.field.get_all_cards():
-		if filter.is_valid(card.owner, c):
+	for c in parent.host.owner.field.get_all_cards():
+		if filter.is_valid(parent.host.owner, c):
 			count += 1
 	return count >= amount

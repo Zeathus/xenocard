@@ -286,6 +286,9 @@ func skips_phase(phase: Enum.Phase, player: Player):
 	return false
 
 func evades_attack(attacker: Card):
+	for e in effects:
+		if e.evades_attack(attacker):
+			return true
 	return false
 
 func push_event(variables: Dictionary = {}):
@@ -311,6 +314,10 @@ func equips_to(holder: Card) -> bool:
 	return false
 
 func redirect_when_destroyed(attacker: Card, source: Damage) -> Enum.Zone:
+	for e in effects:
+		var redirect = e.redirect_when_destroyed(attacker, source)
+		if redirect != Enum.Zone.NONE:
+			return redirect
 	return Enum.Zone.NONE
 
 func get_controlling_player() -> Player:
