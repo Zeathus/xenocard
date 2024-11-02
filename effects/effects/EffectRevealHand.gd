@@ -14,8 +14,8 @@ func post_init():
 		players = [true, true]
 
 func reveal_hand(player: Player):
-	if players[0] and player == card.owner:
+	if players[0] and player == parent.host.owner:
 		return true
-	if players[1] and player == card.owner.get_enemy():
+	if players[1] and player == parent.host.owner.get_enemy():
 		return true
 	return false

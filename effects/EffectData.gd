@@ -10,6 +10,7 @@ var stackable: bool
 var animated: bool
 var duration: int
 var applied_effect: EffectData
+var effects_on_end: Array[String]
 
 func _init(_trigger: Enum.Trigger):
 	trigger = _trigger
@@ -22,6 +23,7 @@ func _init(_trigger: Enum.Trigger):
 	animated = true
 	duration = -1
 	applied_effect = null
+	effects_on_end = []
 
 func instantiate(host: Card) -> CardEffect:
 	var instance = CardEffect.new(trigger, host)
@@ -46,6 +48,13 @@ func instantiate(host: Card) -> CardEffect:
 			i = i.substr(0, i.find("("))
 		var req = Requirement.parse(i).new(instance, param)
 		instance.requirements.push_back(req)
+	for i in effects_on_end:
+		var param: String = ""
+		if "(" in i and ")" in i and i.find("(") < i.rfind(")"):
+			param = i.substr(i.find("(") + 1, i.rfind(")") - i.find("(") - 1)
+			i = i.substr(0, i.find("("))
+		var effect = Effect.parse(i).new(instance, host.owner.game_board, host, param)
+		instance.effects_on_end.push_back(effect)
 	return instance
 
 static func parse(data, card_name) -> EffectData:
@@ -68,6 +77,10 @@ static func parse(data, card_name) -> EffectData:
 		for r in data["requirement"]:
 			if true: # validity check
 				effect_data.requirements.push_back(r)
+	if "on_end" in data:
+		for e in data["on_end"]:
+			if true: # validity check
+				effect_data.effects_on_end.push_back(e)
 	if "ignores_down" in data:
 		effect_data.ignores_down = data["ignores_down"]
 	if "global" in data:

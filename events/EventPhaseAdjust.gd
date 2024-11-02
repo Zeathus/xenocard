@@ -37,12 +37,33 @@ func process(delta):
 		0: 
 			for card in game_board.get_all_field_cards():
 				var to_erase = []
+				for e in card.effects:
+					if e.duration == -1:
+						continue
+					e.duration -= 1
+					if e.duration == 0:
+						for on_end in e.effects_on_end:
+							on_end.effect({"self": card})
+							for event in e.events:
+								queue_event(event)
+							e.events.clear()
+						if e.duration == 0:
+							to_erase.push_back(e)
+				for e in to_erase:
+					card.effects.erase(e)
+				to_erase.clear()
 				for e in card.applied_effects:
 					if e.duration == -1:
 						continue
 					e.duration -= 1
 					if e.duration == 0:
-						to_erase.push_back(e)
+						for on_end in e.effects_on_end:
+							on_end.effect({"self": card})
+							for event in e.events:
+								queue_event(event)
+							e.events.clear()
+						if e.duration == 0:
+							to_erase.push_back(e)
 				for e in to_erase:
 					card.applied_effects.erase(e)
 		1:

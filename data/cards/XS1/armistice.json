@@ -11,7 +11,15 @@
 	},
 	"text": "Both players skip their battle phases.\n<Duration> 2.",
 	"effects": [
-		"SkipBattlePhase(both)",
-		"Duration(2)"
+		{
+			"trigger": "passive",
+			"duration": 2,
+			"effect": [
+				"SkipBattlePhase(both)"
+			],
+			"on_end": [
+				"Discard(self)"
+			]
+		}
 	]
 }

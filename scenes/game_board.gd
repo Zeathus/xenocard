@@ -122,9 +122,6 @@ func skips_phase(phase: Enum.Phase, player: Player):
 func begin_phase(phase: Enum.Phase):
 	turn_phase = phase
 	var player: Player = get_turn_player()
-	if skips_phase(turn_phase, player):
-		end_phase()
-		return
 	match turn_phase:
 		Enum.Phase.DRAW:
 			$Phases/Phase/Label.text = "%dP Draw Phase" % (turn_player_id + 1)

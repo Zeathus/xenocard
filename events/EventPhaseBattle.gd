@@ -31,6 +31,8 @@ func process(delta):
 				card.set_e_mark(false)
 				if old_value and not card.e_mark:
 					card.trigger_effects(Enum.Trigger.E_MARK_REMOVED, self)
+			if game_board.skips_phase(Enum.Phase.BATTLE, player):
+				finish()
 		1:
 			var target_order = [
 				Enum.AttackType.HAND,

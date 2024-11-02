@@ -12,6 +12,7 @@ var animated: bool
 var duration: int
 var events: Array[Event]
 var applied_effect: EffectData
+var effects_on_end: Array[Effect]
 
 func _init(_trigger: Enum.Trigger, _host: Card):
 	trigger = _trigger
@@ -24,6 +25,7 @@ func _init(_trigger: Enum.Trigger, _host: Card):
 	stackable = true
 	animated = true
 	duration = -1
+	effects_on_end = []
 
 func set_host(_host: Card) -> CardEffect:
 	host = _host
@@ -269,9 +271,15 @@ func set_stackable(val: bool):
 	stackable = val
 
 func reveal_hand(player: Player):
+	for e in effects:
+		if e.reveal_hand(player):
+			return true
 	return false
 
 func skips_phase(phase: Enum.Phase, player: Player):
+	for e in effects:
+		if e.skips_phase(phase, player):
+			return true
 	return false
 
 func evades_attack(attacker: Card):
