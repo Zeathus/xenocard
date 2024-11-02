@@ -109,29 +109,31 @@ func get_resources() -> Array[Enum.Attribute]:
 
 func get_effects(trigger: Enum.Trigger, variables: Dictionary = {}) -> Array[CardEffect]:
 	var ret: Array[CardEffect] = []
-	var stackable: bool = true
-	if not can_effects_stack():
-		for card in owner.game_board.get_all_field_cards():
-			if card == self:
-				break
-			if card.equals(self) and not card.e_mark and not card.downed:
-				stackable = false
-				break
+	# Check if this is the first player-owned card for non-stackable effects
+	var first_of_its_kind: bool = false
+	for card in owner.game_board.get_all_field_cards():
+		if card == self:
+			first_of_its_kind = true
+		if card.equals(self) and not card.downed and owner == card.owner:
+			break
+	# Get all personal effects
 	for e in effects:
 		if not e.trigger_by(trigger):
 			continue
 		if e.is_global():
 			continue
-		e.set_stackable(stackable)
-		if e.is_stackable() and e.is_active(variables):
+		if (e.is_stackable() or first_of_its_kind) and e.is_active(variables):
 			ret.push_back(e)
+	# Get all temporary effects applied from elsewhere
 	for e in applied_effects:
 		if not e.trigger_by(trigger):
 			continue
 		if e.is_active(variables):
 			ret.push_back(e)
+	# Get weapon effects
 	if equipped_weapon:
 		ret += equipped_weapon.get_effects(trigger)
+	# Get globally applied effects
 	var global_effects: Array[CardEffect] = []
 	for c in owner.field.get_all_cards() + owner.get_enemy().field.get_all_cards():
 		for e in c.get_global_effects(trigger, self, variables):
@@ -142,8 +144,8 @@ func get_effects(trigger: Enum.Trigger, variables: Dictionary = {}) -> Array[Car
 						continue
 					if not ge.host.equals(e.host):
 						continue
-					#if ge.get_script() != e.get_script():
-					#	continue
+					if ge.host.owner != e.host.owner:
+						continue
 					keep = false
 					break
 			if keep:

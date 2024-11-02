@@ -7,7 +7,7 @@ static func _static_init() -> void:
 	count_regex = RegEx.new()
 	count_regex.compile("count\\(([^\\)]+)\\)")
 	formula_regex = RegEx.new()
-	formula_regex.compile("[0-9]+(([*+-/<>=]=?[0-9]+)+)?")
+	formula_regex.compile("-?[0-9]+(([*+-/<>=]=?[0-9]+)+)?")
 
 static func calc(formula: String, card: Card, game_board: GameBoard) -> int:
 	var values = {
