@@ -159,7 +159,7 @@ func get_global_effects(trigger: Enum.Trigger, target: Card, variables: Dictiona
 			continue
 		if not e.trigger_by(trigger):
 			continue
-		if not e.is_active():
+		if not e.is_active(variables):
 			continue
 		if not e.applies_to(target, variables):
 			continue

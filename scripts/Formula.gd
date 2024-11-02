@@ -17,7 +17,9 @@ static func calc(formula: String, card: Card, game_board: GameBoard) -> int:
 		"hand": card.owner.hand.size(),
 		"maxhp": card.get_max_hp(),
 		"hp": card.hp,
-		"turncount": card.turn_count
+		"turncount": card.turn_count,
+		"originalcost": card.get_original_cost(),
+		"cost": card.get_cost()
 	}
 	for key in values:
 		formula = formula.replace(key, str(values[key]))
