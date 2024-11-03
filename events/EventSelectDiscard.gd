@@ -35,8 +35,8 @@ func process(delta):
 		else:
 			player.controller.request(
 				[Controller.Action.DISCARD],
-				[discard_card],
-				[filter]
+				[func(c): discard_card(c); in_sub_event = true],
+				[[filter]]
 			)
 
 func on_hand_card_selected(hand: GameHand, card: Card):

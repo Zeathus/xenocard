@@ -71,16 +71,22 @@ static func parse(data, card_name) -> EffectData:
 		return null
 	var effect_data = EffectData.new(Enum.Trigger[data["trigger"].to_upper()])
 	for e in data["effect"]:
-		if true: # validity check
+		if EffectData.exists("effects", "Effect", e): # validity check
 			effect_data.effects.push_back(e)
+		else:
+			print("Failed to find effect '", e, "' for card '", card_name, "'")
 	if "requirement" in data:
 		for r in data["requirement"]:
-			if true: # validity check
+			if EffectData.exists("requirements", "Requirement", r): # validity check
 				effect_data.requirements.push_back(r)
+			else:
+				print("Failed to find requirement '", r, "' for card '", card_name, "'")
 	if "on_end" in data:
 		for e in data["on_end"]:
-			if true: # validity check
+			if EffectData.exists("effects", "Effect", e): # validity check
 				effect_data.effects_on_end.push_back(e)
+			else:
+				print("Failed to find effect '", e, "' for card '", card_name, "'")
 	if "ignores_down" in data:
 		effect_data.ignores_down = data["ignores_down"]
 	if "global" in data:
@@ -96,3 +102,9 @@ static func parse(data, card_name) -> EffectData:
 	if "applied_effect" in data:
 		effect_data.applied_effect = EffectData.parse(data["applied_effect"], card_name)
 	return effect_data
+
+static func exists(folder: String, category: String, definition: String) -> bool:
+	if "(" in definition:
+		definition = definition.substr(0,definition.find("("))
+	var script: GDScript = load("res://effects/%s/%s%s.gd" % [folder, category, definition])
+	return script != null

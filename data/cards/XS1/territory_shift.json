@@ -9,5 +9,23 @@
 		"cost": 1,
 		"field": ["gnosis", "gnosis"]
 	},
-	"text": "When a {Gnosis} attacks the deck, the owner of the deck must discard one card from their $hand.\nThis effect cannot be stacked."
+	"text": "When a {Gnosis} attacks the deck, the owner of the deck must discard one card from their $hand.\nThis effect cannot be stacked.",
+	"effects": [
+		{
+			"trigger": "deck_hit",
+			"global": "owner=self;attribute=gnosis",
+			"stackable": false,
+			"effect": [
+				"EnemyDiscardTarget(1,owner=self;zone=hand)"
+			]
+		},
+		{
+			"trigger": "deck_hit",
+			"global": "owner=enemy;attribute=gnosis",
+			"stackable": false,
+			"effect": [
+				"DiscardTarget(1,owner=self;zone=hand)"
+			]
+		}
+	]
 }

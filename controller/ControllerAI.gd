@@ -36,6 +36,9 @@ func _handle_request(action: Action, args: Array) -> bool:
 		Action.SEARCH:
 			if do_search(args[0]):
 				return true
+		Action.DISCARD:
+			if do_discard(args[0]):
+				return true
 	return false
 
 func do_set_battle_card() -> bool:
@@ -291,4 +294,19 @@ func do_search(filter: CardFilter):
 		response_args = [best_index, best_target]
 	else:
 		response_args = [-1, null]
+	return true
+
+func do_discard(filter: CardFilter):
+	var best_target: Card = null
+	var best_score: int = 0
+	for card in player.game_board.get_all_field_cards() + player.hand.cards + player.get_enemy().hand.cards:
+		if filter.is_valid(player, card):
+			var score: int = 10
+			if best_target == null or score > best_score:
+				best_target = card
+				best_score = score
+	if best_target:
+		response_args = [best_target]
+	else:
+		response_args = [null]
 	return true

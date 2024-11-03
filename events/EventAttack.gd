@@ -60,9 +60,9 @@ func attack():
 		queue_event(damage_event)
 		var remaining_damage = damage_event.remaining_damage
 		if t.is_player():
-			attacker.trigger_effects(Enum.Trigger.DECK_HIT, self)
+			attacker.trigger_effects(Enum.Trigger.DECK_HIT, self, {"damage": damage_event.damage})
 		else:
-			attacker.trigger_effects(Enum.Trigger.ATTACK_HIT, self, {"target": t})
+			attacker.trigger_effects(Enum.Trigger.ATTACK_HIT, self, {"damage": damage_event.damage, "target": t})
 		if remaining_damage > 0 and behind_target and attacker.penetrates():
 			penetrating_attack(game_board, behind_target, remaining_damage)
 	sort_children()
