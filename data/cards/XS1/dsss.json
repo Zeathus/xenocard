@@ -9,5 +9,31 @@
 		"cost": 0,
 		"field": ["machine"]
 	},
-	"text": "Neither player can end their move phase unless their battlefield is full or there are no {Gnosis} in standby that can be <deployed>.\n<Duration> 6."
+	"text": "Neither player can end their move phase unless their battlefield is full or there are no {Gnosis} in standby that can be <deployed>.\n<Duration> 6.",
+	"effects": [
+		{
+			"trigger": "passive",
+			"duration": 6,
+			"requirement": [
+				"Formula(count(owner=self;zone=battlefield)<4)",
+				"HasDeployableAttributeInStandby(self,gnosis)"
+			],
+			"effect": [
+				"CannotEndPhase(move,self)"
+			],
+			"on_end": [
+				"Discard(self)"
+			]
+		},
+		{
+			"trigger": "passive",
+			"requirement": [
+				"Formula(count(owner=enemy;zone=battlefield)<4)",
+				"HasDeployableAttributeInStandby(enemy,gnosis)"
+			],
+			"effect": [
+				"CannotEndPhase(move,enemy)"
+			]
+		}
+	]
 }

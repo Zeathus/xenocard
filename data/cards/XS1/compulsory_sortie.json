@@ -9,5 +9,31 @@
 		"cost": 0,
 		"field": ["machine", "machine"]
 	},
-	"text": "Neither player can end their move phase unless their battlefield is full or there are no cards in standby that can be <deployed>.\n<Duration> 2."
+	"text": "Neither player can end their move phase unless their battlefield is full or there are no cards in standby that can be <deployed>.\n<Duration> 2.",
+	"effects": [
+		{
+			"trigger": "passive",
+			"duration": 2,
+			"requirement": [
+				"Formula(count(owner=self;zone=battlefield)<4)",
+				"HasDeployableInStandby(self)"
+			],
+			"effect": [
+				"CannotEndPhase(move,self)"
+			],
+			"on_end": [
+				"Discard(self)"
+			]
+		},
+		{
+			"trigger": "passive",
+			"requirement": [
+				"Formula(count(owner=enemy;zone=battlefield)<4)",
+				"HasDeployableInStandby(enemy)"
+			],
+			"effect": [
+				"CannotEndPhase(move,enemy)"
+			]
+		}
+	]
 }

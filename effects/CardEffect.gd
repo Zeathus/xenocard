@@ -285,6 +285,12 @@ func skips_phase(phase: Enum.Phase, player: Player):
 			return true
 	return false
 
+func can_end_phase(phase: Enum.Phase, player: Player) -> bool:
+	for e in effects:
+		if not e.can_end_phase(phase, player):
+			return false
+	return true
+
 func evades_attack(attacker: Card):
 	for e in effects:
 		if e.evades_attack(attacker):

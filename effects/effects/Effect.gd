@@ -174,6 +174,9 @@ func reveal_hand(player: Player):
 func skips_phase(phase: Enum.Phase, player: Player):
 	return false
 
+func can_end_phase(phase: Enum.Phase, player: Player) -> bool:
+	return true
+
 func evades_attack(attacker: Card):
 	return false
 

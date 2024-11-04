@@ -625,6 +625,16 @@ func can_attack_on_enemy_phase() -> bool:
 			return true
 	return false
 
+func is_deployable() -> bool:
+	if zone != Enum.Zone.STANDBY:
+		return false
+	if not can_move():
+		return false
+	for i in range(4):
+		if can_move_to(owner.game_board, Enum.Zone.BATTLEFIELD, i):
+			return true
+	return false
+
 func instantiate() -> Node2D:
 	if self.instance:
 		return self.instance
@@ -641,75 +651,3 @@ func free_instance():
 	if self.instance:
 		self.instance.queue_free()
 		self.instance = null
-
-#static func type_from_string(str: String) -> Enum.Type:
-	#match str.to_lower():
-		#"battle":
-			#return Enum.Type.BATTLE
-		#"event":
-			#return Enum.Type.EVENT
-		#"situation":
-			#return Enum.Type.SITUATION
-	#return Enum.Type.ANY
-#
-#static func attribute_from_string(str: String) -> Enum.Attribute:
-	#match str.to_lower():
-		#"any":
-			#return Enum.Attribute.ANY
-		#"human":
-			#return Enum.Attribute.HUMAN
-		#"realian":
-			#return Enum.Attribute.REALIAN
-		#"machine":
-			#return Enum.Attribute.MACHINE
-		#"gnosis":
-			#return Enum.Attribute.GNOSIS
-		#"weapon":
-			#return Enum.Attribute.WEAPON
-		#"monster":
-			#return Enum.Attribute.MONSTER
-		#"blade":
-			#return Enum.Attribute.BLADE
-		#"nopon":
-			#return Enum.Attribute.NOPON
-		#"unknown":
-			#return Enum.Attribute.UNKNOWN
-	#return Enum.Attribute.ANY
-#
-#static func attack_type_from_string(str: String) -> Enum.AttackType:
-	#match str.to_lower():
-		#"hand":
-			#return Enum.AttackType.HAND
-		#"ballistic":
-			#return Enum.AttackType.BALLISTIC
-		#"spread":
-			#return Enum.AttackType.SPREAD
-		#"homing":
-			#return Enum.AttackType.HOMING
-		#"none":
-			#return Enum.AttackType.NONE
-	#return Enum.AttackType.ANY
-#
-#static func get_type_name(type: Enum.Type) -> String:
-	#match type:
-		#Enum.Type.BATTLE:
-			#return "Battle"
-		#Enum.Type.EVENT:
-			#return "Event"
-		#Enum.Type.SITUATION:
-			#return "Situation"
-	#return "N/A"
-#
-#static func get_target_name(target: Enum.AttackType) -> String:
-	#match target:
-		#Enum.AttackType.HAND:
-			#return "Hand"
-		#Enum.AttackType.BALLISTIC:
-			#return "Ballistic"
-		#Enum.AttackType.SPREAD:
-			#return "Spread"
-		#Enum.AttackType.HOMING:
-			#return "Homing"
-		#Enum.AttackType.NONE:
-			#return ""
-	#return "N/A"

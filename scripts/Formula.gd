@@ -10,19 +10,24 @@ static func _static_init() -> void:
 	formula_regex.compile("-?[0-9]+(([*+-/<>=]=?[0-9]+)+)?")
 
 static func calc(formula: String, card: Card, game_board: GameBoard) -> int:
-	var values = {
-		"junk": card.owner.junk.size(),
-		"lost": card.owner.lost.size(),
-		"deck": card.owner.deck.size(),
-		"hand": card.owner.hand.size(),
-		"maxhp": card.get_max_hp(),
-		"hp": card.hp,
-		"turncount": card.turn_count,
-		"originalcost": card.get_original_cost(),
-		"cost": card.get_cost()
-	}
-	for key in values:
-		formula = formula.replace(key, str(values[key]))
+	while "junk" in formula:
+		formula = formula.replace("junk", str(card.owner.junk.size()))
+	while "lost" in formula:
+		formula = formula.replace("lost", str(card.owner.lost.size()))
+	while "deck" in formula:
+		formula = formula.replace("deck", str(card.owner.deck.size()))
+	while "hand" in formula:
+		formula = formula.replace("hand", str(card.owner.hand.size()))
+	while "maxhp" in formula:
+		formula = formula.replace("maxhp", str(card.get_max_hp()))
+	while "hp" in formula:
+		formula = formula.replace("hp", str(card.hp))
+	while "turncount" in formula:
+		formula = formula.replace("turncount", str(card.turn_count))
+	while "originalcost" in formula:
+		formula = formula.replace("originalcost", str(card.get_original_cost()))
+	while "cost" in formula:
+		formula = formula.replace("cost", str(card.get_cost()))
 	var expr = count_regex.search(formula)
 	while expr:
 		var card_filter = CardFilter.new(expr.get_string(1))

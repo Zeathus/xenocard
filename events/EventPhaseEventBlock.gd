@@ -84,4 +84,5 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, ind
 
 func on_end_phase_pressed():
 	if not has_children():
-		finish()
+		if player.can_end_phase(Enum.Phase.BLOCK):
+			finish()
