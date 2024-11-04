@@ -103,6 +103,11 @@ font_size = 192
 outline_size = 96
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_jaef4"]
+font_size = 192
+outline_size = 80
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bd2rd"]
 bg_color = Color(0.247059, 0.247059, 0.231373, 0.862745)
 border_width_left = 4
@@ -114,11 +119,6 @@ corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
-
-[sub_resource type="LabelSettings" id="LabelSettings_jaef4"]
-font_size = 256
-outline_size = 96
-outline_color = Color(0, 0, 0, 1)
 
 [node name="Card" type="Node2D"]
 script = ExtResource("1_wdlaa")
@@ -355,6 +355,16 @@ label_settings = SubResource("LabelSettings_oymet")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Duration" type="Label" parent="Overlay"]
+visible = false
+offset_left = -93.0
+offset_top = -225.0
+offset_right = 341.0
+offset_bottom = 67.0
+text = "0 ◷"
+label_settings = SubResource("LabelSettings_jaef4")
+horizontal_alignment = 2
+
 [node name="Tooltip" type="Panel" parent="."]
 visible = false
 offset_left = 406.0
@@ -401,18 +411,6 @@ script = ExtResource("7_eqlu4")
 
 [node name="EffectIndicator" parent="." instance=ExtResource("8_o73k1")]
 visible = false
-
-[node name="Duration" type="Node2D" parent="."]
-visible = false
-
-[node name="Value" type="Label" parent="Duration"]
-offset_left = -360.0
-offset_top = -535.0
-offset_right = -136.0
-offset_bottom = -11.0
-text = "0"
-label_settings = SubResource("LabelSettings_jaef4")
-horizontal_alignment = 1
 
 [connection signal="gui_input" from="Panel" to="." method="_on_panel_gui_input"]
 [connection signal="mouse_entered" from="Panel" to="." method="_on_panel_mouse_entered"]

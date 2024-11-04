@@ -110,10 +110,10 @@ func set_downed(val: bool):
 
 func set_duration(val: int):
 	if val <= 0:
-		$Duration.visible = false
+		$Overlay/Duration.visible = false
 	else:
-		$Duration.visible = true
-		$Duration/Value.text = "%d" % val
+		$Overlay/Duration.visible = true
+		$Overlay/Duration.text = "%d ◷" % val
 
 func _on_text_meta_hover_started(meta):
 	$Tooltip/Text.clear()

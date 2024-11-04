@@ -179,6 +179,12 @@ func refresh():
 				var reveal_hand = e.reveal_hand(player)
 				if reveal_hand:
 					player.set_reveal_hand(reveal_hand)
+			var duration = 0
+			for e in card.effects:
+				if e.duration > 0:
+					duration = e.duration
+					break
+			card.instance.set_duration(duration)
 
 func next_player():
 	turn_player_id = (turn_player_id + 1) % 2

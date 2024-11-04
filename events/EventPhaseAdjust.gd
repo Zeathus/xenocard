@@ -42,6 +42,7 @@ func process(delta):
 						continue
 					e.duration -= 1
 					if e.duration == 0:
+						card.instance.set_duration(e.duration)
 						for on_end in e.effects_on_end:
 							on_end.effect({"self": card})
 							for event in e.events:
@@ -51,6 +52,7 @@ func process(delta):
 								break
 						if e.duration == 0:
 							to_erase.push_back(e)
+					card.instance.set_duration(e.duration)
 				for e in to_erase:
 					card.effects.erase(e)
 				to_erase.clear()

@@ -56,6 +56,9 @@ func set_in_motion(val: bool):
 func is_hovering() -> bool:
 	return $Card.is_hovering
 
+func set_duration(duration: int):
+	$Card.set_duration(duration)
+
 func _on_card_selected(button_index: int) -> void:
 	if button_index == 2:
 		show_details.emit(self.card)
