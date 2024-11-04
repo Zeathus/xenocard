@@ -9,5 +9,14 @@
 		"cost": 3,
 		"field": ["machine", "human", "human", "any"]
 	},
-	"text": "You can discard this card from your field during your event or block phase to inflict 2 effect damage to all battle cards on the field."
+	"text": "You can discard this card from your field during your event or block phase to inflict 2 effect damage to all battle cards on the field.",
+	"effects": [
+		{
+			"trigger": "activate",
+			"effect": [
+				"Damage(2,zone=battlefield;zone=standby)",
+				"Destroy(self)"
+			]
+		}
+	]
 }

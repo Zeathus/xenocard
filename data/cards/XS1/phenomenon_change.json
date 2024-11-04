@@ -9,5 +9,14 @@
 		"cost": 1,
 		"field": ["any", "any"]
 	},
-	"text": "You can discard this card from your field during your event or block phase to destroy one enemy situation card."
+	"text": "You can discard this card from your field during your event or block phase to destroy one enemy situation card.",
+	"effects": [
+		{
+			"trigger": "activate",
+			"effect": [
+				"DestroyTarget(owner=enemy;type=situation)",
+				"Discard(self)"
+			]
+		}
+	]
 }

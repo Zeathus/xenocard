@@ -32,6 +32,10 @@ func on_start():
 
 	for c in player.field.get_all_cards():
 		c.trigger_effects(Enum.Trigger.AFTER_NORMAL_DRAW, self)
+		c.trigger_effects(Enum.Trigger.AFTER_NORMAL_DRAW_PLAYER, self)
+	for c in player.get_enemy().field.get_all_cards():
+		c.trigger_effects(Enum.Trigger.AFTER_NORMAL_DRAW, self)
+		c.trigger_effects(Enum.Trigger.AFTER_NORMAL_DRAW_ENEMY, self)
 
 func on_finish():
 	game_board.end_phase()

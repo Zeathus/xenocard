@@ -18,7 +18,7 @@
 			]
 		},
 		{
-			"trigger": "after_normal_draw",
+			"trigger": "after_normal_draw_player",
 			"stackable": false,
 			"effect": [
 				"DrawFromLost(1)"

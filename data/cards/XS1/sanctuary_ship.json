@@ -35,7 +35,7 @@
 			]
 		},
 		{
-			"trigger": "after_normal_draw",
+			"trigger": "after_normal_draw_player",
 			"requirement": [
 				"FilterSelf(zone=battlefield)"
 			],
