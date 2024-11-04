@@ -2,7 +2,7 @@ extends Event
 
 class_name EventConfirm
 
-static var confirm_scene = preload("res://scenes/menu_confirm.tscn")
+static var confirm_scene = load("res://scenes/menu_confirm.tscn")
 var player: Player
 var message: String
 var on_yes: Callable

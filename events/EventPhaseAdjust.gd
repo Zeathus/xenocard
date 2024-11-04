@@ -17,19 +17,15 @@ func get_name() -> String:
 func on_start():
 	for e in phase_effects:
 		e.effect()
-		for event in e.get_events():
+		for event in e.parent.get_events():
 			queue_event(event)
 	phase_effects.clear()
 	for card in player.field.get_all_cards():
-		for e in card.get_effects():
-			e.adjust()
-			for event in e.get_events():
-				queue_event(event)
+		card.trigger_effects(Enum.Trigger.ADJUST_PHASE, self)
+		card.trigger_effects(Enum.Trigger.ADJUST_PHASE_PLAYER, self)
 	for card in player.get_enemy().field.get_all_cards():
-		for e in card.get_effects():
-			e.adjust_enemy()
-			for event in e.get_events():
-				queue_event(event)
+		card.trigger_effects(Enum.Trigger.ADJUST_PHASE, self)
+		card.trigger_effects(Enum.Trigger.ADJUST_PHASE_ENEMY, self)
 
 func on_finish():
 	game_board.end_phase()
@@ -41,12 +37,39 @@ func process(delta):
 		0: 
 			for card in game_board.get_all_field_cards():
 				var to_erase = []
+				for e in card.effects:
+					if e.duration == -1:
+						continue
+					e.duration -= 1
+					if e.duration == 0:
+						card.instance.set_duration(e.duration)
+						for on_end in e.effects_on_end:
+							on_end.effect({"self": card})
+							for event in e.events:
+								queue_event(event)
+							e.events.clear()
+							if e.duration != 0:
+								break
+						if e.duration == 0:
+							to_erase.push_back(e)
+					card.instance.set_duration(e.duration)
+				for e in to_erase:
+					card.effects.erase(e)
+				to_erase.clear()
 				for e in card.applied_effects:
 					if e.duration == -1:
 						continue
 					e.duration -= 1
 					if e.duration == 0:
-						to_erase.push_back(e)
+						for on_end in e.effects_on_end:
+							on_end.effect({"self": card})
+							for event in e.events:
+								queue_event(event)
+							e.events.clear()
+							if e.duration != 0:
+								break
+						if e.duration == 0:
+							to_erase.push_back(e)
 				for e in to_erase:
 					card.applied_effects.erase(e)
 		1:

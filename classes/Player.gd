@@ -96,6 +96,13 @@ func set_reveal_hand(val: bool):
 		else:
 			card.instance.turn_down()
 
+func can_end_phase(phase: Enum.Phase):
+	for card in game_board.get_all_field_cards():
+		for e in card.get_effects(Enum.Trigger.PASSIVE):
+			if not e.can_end_phase(phase, self):
+				return false
+	return true
+
 func is_card() -> bool:
 	return false
 

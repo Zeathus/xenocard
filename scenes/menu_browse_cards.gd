@@ -1,6 +1,6 @@
 extends Node2D
 
-var card_scene = preload("res://objects/card.tscn")
+var card_scene = load("res://objects/card_node.tscn")
 var cards: Array[Card]
 var filter: CardFilter = null
 var use_filter: bool = true

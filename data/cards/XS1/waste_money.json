@@ -9,5 +9,19 @@
 		"cost": 0,
 		"field": ["human", "any"]
 	},
-	"text": "Both players draw one additional card during their draw phase."
+	"text": "Both players draw one additional card during their draw phase.",
+	"effects": [
+		{
+			"trigger": "after_normal_draw_player",
+			"effect": [
+				"DrawCard"
+			]
+		},
+		{
+			"trigger": "after_normal_draw_enemy",
+			"effect": [
+				"EnemyDrawCard"
+			]
+		}
+	]
 }

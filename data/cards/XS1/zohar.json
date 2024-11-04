@@ -9,5 +9,14 @@
 		"cost": 0,
 		"field": ["any", "any"]
 	},
-	"text": "All battle cards gain ATK+1."
+	"text": "All battle cards gain ATK+1.",
+	"effects": [
+		{
+			"trigger": "passive",
+			"global": "type=battle",
+			"effect": [
+				"ModifyATK(1)"
+			]
+		}
+	]
 }

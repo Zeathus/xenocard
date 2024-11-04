@@ -17,9 +17,31 @@
 	},
 	"text": "Discard all battle cards from your field to play this card anywhere on your field.\nIf this card is on the battlefield during your draw phase, draw two cards from the lost pile instead of the deck.",
 	"effects": [
-		"DiscardAllToPlay(owner=self;zone=battlefield;zone=standby)",
-		"CanSetToBattlefield",
-		"StopNormalDrawOnBattlefield",
-		"DrawPhaseDrawFromLostOnBattlefield(2)"
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"effect": [
+				"DiscardAllToPlay(owner=self;zone=battlefield;zone=standby)",
+				"CanSetToBattlefield"
+			]
+		},
+		{
+			"trigger": "passive",
+			"requirement": [
+				"FilterSelf(zone=battlefield)"
+			],
+			"effect": [
+				"StopNormalDraw"
+			]
+		},
+		{
+			"trigger": "after_normal_draw_player",
+			"requirement": [
+				"FilterSelf(zone=battlefield)"
+			],
+			"effect": [
+				"DrawFromLost(2)"
+			]
+		}
 	]
 }

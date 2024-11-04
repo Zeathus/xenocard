@@ -36,6 +36,9 @@ func _handle_request(action: Action, args: Array) -> bool:
 		Action.SEARCH:
 			if do_search(args[0]):
 				return true
+		Action.DISCARD:
+			if do_discard(args[0]):
+				return true
 	return false
 
 func do_set_battle_card() -> bool:
@@ -45,7 +48,7 @@ func do_set_battle_card() -> bool:
 	var best_index: int = -1
 	var best_targets: Array[Card] = []
 	for card in player.hand.cards:
-		if card.type != Enum.Type.BATTLE or card.attribute == Enum.Attribute.WEAPON:
+		if card.get_type() != Enum.Type.BATTLE or card.get_attribute() == Enum.Attribute.WEAPON:
 			continue
 		var score: int = 0
 		var to_select: Array[Callable] = []
@@ -55,7 +58,7 @@ func do_set_battle_card() -> bool:
 		for i in to_select:
 			for target in player.field.get_battler_cards():
 				if not target in targets and i.call(target):
-					if get_atk_score(target) < get_atk_score(card) or target.max_hp > card.hp - 1:
+					if get_atk_score(target) < get_atk_score(card) or target.get_max_hp() > card.hp - 1:
 						targets.push_back(target)
 						break
 			if targets.size() == to_select.size():
@@ -75,7 +78,7 @@ func do_set_battle_card() -> bool:
 		if not card.selectable(game_board):
 			continue
 		score += get_base_score(card)
-		score += card.max_hp
+		score += card.get_max_hp()
 		score += get_atk_score(card)
 		if score > best_score:
 			best_card = card
@@ -100,7 +103,7 @@ func do_set_weapon_card() -> bool:
 	var best_card: Card = null
 	var best_score: int = 0
 	for card in player.hand.cards:
-		if card.type != Enum.Type.BATTLE or card.attribute != Enum.Attribute.WEAPON:
+		if card.get_type() != Enum.Type.BATTLE or card.get_attribute() != Enum.Attribute.WEAPON:
 			continue
 		if not card.selectable(game_board):
 			continue
@@ -111,7 +114,7 @@ func do_set_weapon_card() -> bool:
 				continue
 			var score: int = get_base_score(card)
 			score += holder.hp
-			if card.atk != 0:
+			if card.get_atk() != 0:
 				score += get_atk_score(card) - get_atk_score(holder)
 			else:
 				score += 3
@@ -165,7 +168,7 @@ func get_base_score(card: Card) -> int:
 
 func get_atk_score(card: Card) -> int:
 	var score: int = 0
-	match card.get_target():
+	match card.get_attack_type():
 		Enum.AttackType.HAND:
 			score += card.get_atk() / 2
 		Enum.AttackType.BALLISTIC:
@@ -183,7 +186,7 @@ func get_zone_score(card: Card, zone: Enum.Zone, index: int) -> int:
 	var score: int = 0
 	var enemy_field: GameField = player.get_enemy().field
 	if zone == Enum.Zone.BATTLEFIELD:
-		match card.get_target():
+		match card.get_attack_type():
 			Enum.AttackType.HAND:
 				if index <= 1:
 					# Hand cards should be in the front if not in standby
@@ -251,7 +254,7 @@ func get_zone_score(card: Card, zone: Enum.Zone, index: int) -> int:
 			if player.field.get_card(zone, index) == null:
 				score += 10
 	else:
-		if card.attribute == Enum.Attribute.HUMAN:
+		if card.get_attribute() == Enum.Attribute.HUMAN:
 			score += 2
 		if card.zone == Enum.Zone.BATTLEFIELD and len(player.field.get_standby_cards()) >= 3:
 			if player.field.get_card(zone, index) == null:
@@ -281,7 +284,7 @@ func do_search(filter: CardFilter):
 		var card: Card = player.deck.cards[i]
 		if filter.is_valid(player, card):
 			var score: int = 10
-			if player.hand.cards.all(func(x): return x.name != card.name):
+			if player.hand.cards.all(func(x): return x.get_name() != card.get_name()):
 				score += 10
 			if best_target == null or score > best_score:
 				best_target = card
@@ -291,4 +294,19 @@ func do_search(filter: CardFilter):
 		response_args = [best_index, best_target]
 	else:
 		response_args = [-1, null]
+	return true
+
+func do_discard(filter: CardFilter):
+	var best_target: Card = null
+	var best_score: int = 0
+	for card in player.game_board.get_all_field_cards() + player.hand.cards + player.get_enemy().hand.cards:
+		if filter.is_valid(player, card):
+			var score: int = 10
+			if best_target == null or score > best_score:
+				best_target = card
+				best_score = score
+	if best_target:
+		response_args = [best_target]
+	else:
+		response_args = [null]
 	return true

@@ -9,5 +9,14 @@
 		"cost": 2,
 		"field": ["machine", "machine"]
 	},
-	"text": "You can discard this card from your field during your event or block phase to inflict 4 effect damage to the enemy's deck."
+	"text": "You can discard this card from your field during your event or block phase to inflict 4 effect damage to the enemy's deck.",
+	"effects": [
+		{
+			"trigger": "activate",
+			"effect": [
+				"DamageDeck(4)",
+				"Destroy(self)"
+			]
+		}
+	]
 }

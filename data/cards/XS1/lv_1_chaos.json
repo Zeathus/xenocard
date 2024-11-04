@@ -18,6 +18,14 @@
 	},
 	"text": "Heals 2 HP during your adjust phase.",
 	"effects": [
-		"Regen(2)"
+		{
+			"trigger": "adjust_phase_player",
+			"requirement": [
+				"Formula(hp<maxhp)"
+			],
+			"effect": [
+				"Heal(2,self)"
+			]
+		}
 	]
 }

@@ -148,7 +148,7 @@ func show_valid_effect_targets(effect: CardEffect, filter: CardFilter):
 		for index in range(4):
 			var border = get_zone(zone, index).find_child("SelectBorder")
 			var candidate = get_card(zone, index)
-			border.visible = candidate and filter.is_valid(effect.card.owner, candidate)
+			border.visible = candidate and filter.is_valid(effect.host.owner, candidate)
 
 func show_valid_set_targets(filter: Callable):
 	for zone in [Enum.Zone.STANDBY, Enum.Zone.BATTLEFIELD, Enum.Zone.SITUATION]:
@@ -164,7 +164,14 @@ func show_valid_zones(card: Card):
 			if game_board.turn_phase == Enum.Phase.SET:
 				border.visible = card.can_play(game_board, zone, index)
 			elif game_board.turn_phase == Enum.Phase.MOVE:
-				border.visible = card.can_move_to(game_board, zone, index)
+				if card.can_move_to(game_board, zone, index):
+					var other_card = get_card(zone, index)
+					if other_card == null or (other_card.can_move() and other_card.can_move_to(game_board, card.zone, card.zone_index)):
+						border.visible = true
+					else:
+						border.visible = false
+				else:
+					border.visible = false
 
 func hide_valid_zones():
 	for zone in [Enum.Zone.STANDBY, Enum.Zone.BATTLEFIELD, Enum.Zone.SITUATION]:
@@ -189,7 +196,7 @@ func refresh():
 	$Junk/Card.visible = player.junk.size() > 0
 	if player.junk.size() > 0:
 		var top_junk: Card = player.junk.top()
-		$Junk/Card.load_card(top_junk)
+		$Junk/Card.show_card(top_junk.data)
 		$Junk/Card.turn_up()
 	for zone_type in [Enum.Zone.STANDBY, Enum.Zone.BATTLEFIELD]:
 		for i in range(4):

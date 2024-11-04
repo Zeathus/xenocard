@@ -9,5 +9,18 @@
 		"cost": 1,
 		"field": ["any", "any", "any"]
 	},
-	"text": "When this card is on the field, battle cards cannot withdraw from the battlefield.\n<Duration> 4."
+	"text": "When this card is on the field, battle cards cannot withdraw from the battlefield.\n<Duration> 4.",
+	"effects": [
+		{
+			"trigger": "passive",
+			"global": "zone=battlefield",
+			"duration": 4,
+			"effect": [
+				"PreventMovement"
+			],
+			"on_end": [
+				"Discard(self)"
+			]
+		}
+	]
 }

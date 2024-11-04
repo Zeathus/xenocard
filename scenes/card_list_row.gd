@@ -2,27 +2,22 @@ extends Node2D
 
 class_name CardListRow
 
-signal row_hovered(card: Card)
-signal add_card(card: Card)
+signal row_hovered(card: CardData)
+signal add_card(card: CardData)
 
-var card: Card = null
+var card: CardData = null
 var loaded: bool = false
 
-func get_card() -> Card:
+func get_card() -> CardData:
 	return card
 
-func set_card(_card: Card):
+func set_card(_card: CardData):
 	card = _card
 
 func load_card():
 	if loaded:
 		return
-	var image_file: String = "res://sprites/card_images/%s/%s.png" % [card.set_name, card.id]
-	if ResourceLoader.exists(image_file):
-		$Panel/Picture.texture = load(image_file)
-	else:
-		$Panel/Picture.texture = load("res://sprites/card_images/missing_artwork.png")
-		push_error("Failed to find card image '%s'" % image_file)
+	$Panel/Picture.texture = card.get_image()
 	match card.type:
 		Enum.Type.BATTLE:
 			$Panel/PictureBorder.color = Color.DARK_RED
@@ -37,18 +32,18 @@ func load_card():
 		$Panel/TypeBattle.visible = true
 		$Panel/Type.visible = false
 		$Panel/TypeBattle.text = "Battle"
-		if card.target != Enum.AttackType.NONE:
-			$Panel/TypeBattle.text += " | %s" % Card.get_target_name(card.target)
+		if card.attack_type != Enum.AttackType.NONE:
+			$Panel/TypeBattle.text += " | %s" % Enum.get_attack_type_name(card.attack_type)
 		$Panel/Stat2.visible = true
 		if card.attribute == Enum.Attribute.WEAPON:
 			$Panel/Stat1.visible = false
-			if card.target == Enum.AttackType.NONE:
+			if card.attack_type == Enum.AttackType.NONE:
 				$Panel/Stat2.visible = false
 			else:
 				$Panel/Stat2.text = "ATK %d " % card.atk
 		else:
 			$Panel/Stat1.visible = true
-			$Panel/Stat1.text = " HP %d" % card.hp
+			$Panel/Stat1.text = " HP %d" % card.max_hp
 			$Panel/Stat2.text = "ATK %d " % card.atk
 	else:
 		$Panel/Attribute.visible = false
@@ -66,9 +61,10 @@ func load_card():
 		$Panel/Field3, $Panel/Field4
 	]
 	for i in range(len(field_icons)):
-		if len(card.field) > i:
+		var field = card.field
+		if len(field) > i:
 			field_icons[i].visible = true
-			field_icons[i].set_attribute(card.field[i])
+			field_icons[i].set_attribute(field[i])
 		else:
 			field_icons[i].visible = false
 	loaded = true

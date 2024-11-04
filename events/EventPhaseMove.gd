@@ -43,10 +43,7 @@ func process(delta):
 		1:
 			hide_selectable()
 			for card in player.field.get_all_cards():
-				for e in card.get_effects():
-					e.after_move_phase()
-					for event in e.get_events():
-						queue_event(event)
+				card.trigger_effects(Enum.Trigger.AFTER_MOVE_PHASE, self)
 			state = 2
 		2:
 			finish()
@@ -69,7 +66,8 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, ind
 
 func on_end_phase_pressed():
 	if not has_children() and state == 0:
-		state = 1
+		if player.can_end_phase(Enum.Phase.MOVE):
+			state = 1
 
 func show_selectable():
 	for card in player.field.get_battler_cards():

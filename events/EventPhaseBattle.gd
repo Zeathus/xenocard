@@ -30,10 +30,10 @@ func process(delta):
 				var old_value = card.e_mark
 				card.set_e_mark(false)
 				if old_value and not card.e_mark:
-					for e in card.get_effects():
-						e.on_e_mark_removed()
-						for event in e.get_events():
-							queue_event(event)
+					card.trigger_effects(Enum.Trigger.E_MARK_REMOVED, self)
+			if game_board.skips_phase(Enum.Phase.BATTLE, player):
+				state = 3
+				return
 		1:
 			var target_order = [
 				Enum.AttackType.HAND,
@@ -43,18 +43,15 @@ func process(delta):
 			]
 			for target in target_order:
 				for card in player.field.get_battlefield_cards():
-					if card.get_target() == target:
+					if card.get_attack_type() == target:
 						to_attack.push_back(card)
 				for card in player.get_enemy().field.get_battlefield_cards():
-					if card.get_target() == target and card.can_attack_on_enemy_phase():
+					if card.get_attack_type() == target and card.can_attack_on_enemy_phase():
 						to_attack.push_back(card)
 		2:
 			if last_attacker:
 				if last_attacker.zone == Enum.Zone.BATTLEFIELD:
-					for e in last_attacker.get_effects():
-						e.after_attack_turn()
-						for event in e.get_events():
-							queue_event(event)
+					last_attacker.trigger_effects(Enum.Trigger.AFTER_ATTACK_TIMING, self)
 				last_attacker = null
 				if has_children():
 					return

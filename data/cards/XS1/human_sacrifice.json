@@ -8,9 +8,18 @@
 	"requirement": {
 		"field": ["human", "machine"]
 	},
-	"text": "Every time your battle card is destroyed in battle, <recover> cards equal to the cost of the battle card.\nThis effect cannot be stacked.",
+	"text": "Every time your battle card is destroyed by battle damage, <recover> cards equal to the original cost of the battle card.\nThis effect cannot be stacked.",
 	"effects": [
-		"GlobalRecoverCostWhenDestroyed(owner=self;type=battle)",
-		"NonStacking"
+		{
+			"trigger": "destroyed",
+			"global": "owner=self;type=battle",
+			"stackable": false,
+			"requirement": [
+				"DamageType(battle)"
+			],
+			"effect": [
+				"Recover(originalcost)"
+			]
+		}
 	]
 }

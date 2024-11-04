@@ -10,7 +10,12 @@
 	},
 	"text": "During your adjust phase, all your battle cards in standby except {Gnosis} heal 1 HP.\nThis effect cannot be stacked.",
 	"effects": [
-		"GlobalRegen(1,zone=standby;owner=self;attribute=!gnosis)",
-		"NonStacking"
+		{
+			"trigger": "adjust_phase_player",
+			"stackable": false,
+			"effect": [
+				"Heal(1,zone=standby;owner=self;attribute=!gnosis)"
+			]
+		}
 	]
 }

@@ -18,8 +18,28 @@
 	},
 	"text": "You can <level up> a Lv 1 MOMO on your battlefield.\nWhen this card is on the battlefield, {Gnosis} on the battlefield cannot move.\nGains ATK+1 against {Gnosis}.",
 	"effects": [
-		"LevelUp(name=Lv 1 MOMO)",
-		"ModifyDamageTo(1,attribute=gnosis)",
-		"GlobalPreventMovementOnBattlefield(attribute=gnosis;zone=battlefield)"
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"effect": [
+				"LevelUp(name=Lv 1 MOMO)"
+			]
+		},
+		{
+			"trigger": "passive",
+			"effect": [
+				"ModifyDamageTo(1,attribute=gnosis)"
+			]
+		},
+		{
+			"trigger": "passive",
+			"global": "attribute=gnosis;zone=battlefield",
+			"requirement": [
+				"FilterSelf(zone=battlefield)"
+			],
+			"effect": [
+				"PreventMovement"
+			]
+		}
 	]
 }

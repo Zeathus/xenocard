@@ -17,8 +17,14 @@
 	},
 	"text": "Discard one {Human} from your field to play this card anywhere on your field.\n<Unlimited>.",
 	"effects": [
-		"Unlimited",
-		"DiscardAttributeToPlay(human)",
-		"CanSetToBattlefield"
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"effect": [
+				"Unlimited",
+				"DiscardAttributeToPlay(human)",
+				"CanSetToBattlefield"
+			]
+		}
 	]
 }

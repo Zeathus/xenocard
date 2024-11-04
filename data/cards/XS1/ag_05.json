@@ -17,7 +17,18 @@
 	},
 	"text": "Attacks every other turn.\nThis card's attacks <penetrate>.",
 	"effects": [
-		"AttackTime(2)",
-		"Penetrate"
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"effect": [
+				"AttackTime(2)"
+			]
+		},
+		{
+			"trigger": "passive",
+			"effect": [
+				"Penetrate"
+			]
+		}
 	]
 }

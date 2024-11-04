@@ -18,6 +18,14 @@
 	},
 	"text": "If this card is destroyed by a normal attack, and the top card of your junk pile is a {Human}, {Realian} or {Machine}, play that card in this card's place during the adjust phase. The new card will have 1 HP.",
 	"effects": [
-		"Cherenkov"
+		{
+			"trigger": "destroyed",
+			"requirement": [
+				"DamageType(normal)"
+			],
+			"effect": [
+				"Cherenkov"
+			]
+		}
 	]
 }

@@ -10,6 +10,13 @@
 	},
 	"text": "Whenever a {Realian} is destroyed, the owner of the card draws one card from the deck.",
 	"effects": [
-		"GlobalDrawWhenDestroyed(attribute=realian;owner=self)"
+		{
+			"trigger": "destroyed",
+			"global": "owner=self;attribute=realian",
+			"stackable": false,
+			"effect": [
+				"DrawCard"
+			]
+		}
 	]
 }

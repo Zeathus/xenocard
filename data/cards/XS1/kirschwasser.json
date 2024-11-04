@@ -18,6 +18,15 @@
 	},
 	"text": "While this card is on your battlefield with Albedo or MOMO, those cards gain ATK+1.",
 	"effects": [
-		"GlobalModifyATKOnBattlefield(1,owner=self;character=Albedo;character=MOMO;zone=battlefield)"
+		{
+			"trigger": "passive",
+			"global": "owner=self;character=Albedo;character=MOMO;zone=battlefield",
+			"requirement": [
+				"FilterSelf(zone=battlefield)"
+			],
+			"effect": [
+				"ModifyATK(1)"
+			]
+		}
 	]
 }

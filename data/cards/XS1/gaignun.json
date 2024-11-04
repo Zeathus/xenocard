@@ -18,6 +18,14 @@
 	},
 	"text": "When the E mark is removed from this card, all {Realians} on the battlefield go back to their owners' hands.",
 	"effects": [
-		"Gaignun"
+		{
+			"trigger": "e_mark_removed",
+			"requirement": [
+				"Formula(count(attribute=realian;zone=battlefield)>0)"
+			],
+			"effect": [
+				"ReturnToHand(attribute=realian;zone=battlefield)"
+			]
+		}
 	]
 }

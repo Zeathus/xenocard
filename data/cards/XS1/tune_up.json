@@ -10,7 +10,16 @@
 	},
 	"text": "Your {Machines} take 1 less battle damage.\n<Duration> 6.",
 	"effects": [
-		"GlobalModifyBattleDamageFrom(-1,attribute=machine;owner=self)",
-		"Duration(6)"
+		{
+			"trigger": "passive",
+			"global": "owner=self;attribute=machine",
+			"duration": 6,
+			"effect": [
+				"ModifyBattleDamageFrom(-1,type=battle)"
+			],
+			"on_end": [
+				"Discard(self)"
+			]
+		}
 	]
 }

@@ -3,16 +3,18 @@ extends Event
 class_name EventEffect
 
 var effect: CardEffect
+var variables: Dictionary
 var targets_required: Array[CardFilter]
 var targets: Array[Card] = []
 var activated: bool = false
 var optional: bool
 var cancelled: bool = false
-var animate: bool
+var animate: bool = true
 
-func _init(_game_board: GameBoard, _effect: CardEffect, _optional=false):
+func _init(_game_board: GameBoard, _effect: CardEffect, _variables: Dictionary, _optional=false):
 	super(_game_board)
 	effect = _effect
+	variables = _variables
 	optional = _optional
 	targets_required = effect.targets_to_select_for_effect()
 
@@ -20,23 +22,23 @@ func get_name() -> String:
 	return "Effect"
 
 func on_start():
-	if not effect.has_valid_targets():
+	if not effect.has_valid_targets(variables):
 		finish()
 		return
-	animate = effect.host.instance and not effect.host.instance.find_child("EffectIndicator").visible
+	animate = animate and effect.host.instance and not effect.host.instance.find_child("EffectIndicator").visible
 	if animate:
 		queue_event(EventAnimation.new(game_board, AnimationEffectStart.new(effect.host)))
 	if optional:
 		queue_event(EventConfirm.new(
 			game_board,
-			effect.card.owner,
+			effect.host.owner,
 			effect.get_confirm_message(),
 			func(): update_targets(),
 			func(): cancelled = true,
 			effect.get_help_text()
 		))
 		return
-	if not effect.card.owner.has_controller():
+	if not effect.host.owner.has_controller():
 		update_targets()
 
 func on_finish():
@@ -48,8 +50,8 @@ func update_targets():
 	game_board.hide_valid_zones()
 	if len(targets) < len(targets_required):
 		var filter: CardFilter = targets_required[len(targets)]
-		effect.card.owner.field.show_valid_effect_targets(effect, filter)
-		effect.card.owner.get_enemy().field.show_valid_effect_targets(effect, filter)
+		effect.host.owner.field.show_valid_effect_targets(effect, filter)
+		effect.host.owner.get_enemy().field.show_valid_effect_targets(effect, filter)
 
 func try_target(card: Card):
 	if len(targets) == len(targets_required):
@@ -58,7 +60,7 @@ func try_target(card: Card):
 		card.deselect()
 		targets.erase(card)
 	elif len(targets) < len(targets_required):
-		if targets_required[len(targets)].is_valid(effect.card.owner, card):
+		if targets_required[len(targets)].is_valid(effect.host.owner, card):
 			card.select()
 			targets.push_back(card)
 
@@ -74,8 +76,10 @@ func process(delta):
 			finish()
 	elif len(targets) == len(targets_required):
 		if not activated:
-			effect.handle_effect_targets(targets)
-			effect.effect()
+			if len(targets) > 0:
+				effect.effect_with_targets(targets, variables)
+			else:
+				effect.effect(variables)
 			for event in effect.get_events():
 				queue_event(event)
 			activated = true
@@ -84,7 +88,7 @@ func process(delta):
 		else:
 			finish()
 	else:
-		var player: Player = effect.card.owner
+		var player: Player = effect.host.owner
 		if player.has_controller() and not player.controller.is_waiting():
 			if player.controller.has_response():
 				player.controller.receive()

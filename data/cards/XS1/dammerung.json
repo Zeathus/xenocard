@@ -10,6 +10,11 @@
 	},
 	"text": "You <recover> one card on each of your adjust phases, if there are cards in your lost pile.",
 	"effects": [
-		"RecoverOnAdjust(1)"
+		{
+			"trigger": "adjust_phase_player",
+			"effect": [
+				"Recover(1)"
+			]
+		}
 	]
 }

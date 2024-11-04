@@ -60,7 +60,8 @@ func set_card(card: Card, zone: Enum.Zone, index: int, targets: Array[Card]):
 
 func on_end_phase_pressed():
 	if not has_children():
-		finish()
+		if player.can_end_phase(Enum.Phase.SET):
+			finish()
 
 func show_selectable():
 	for card in player.hand.cards:

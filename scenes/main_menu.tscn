@@ -32,6 +32,13 @@ offset_bottom = 104.0
 text = "Exit"
 metadata/_edit_use_anchors_ = true
 
+[node name="ButtonTest" type="Button" parent="."]
+offset_left = -944.0
+offset_top = 494.0
+offset_right = -846.0
+offset_bottom = 525.0
+text = "Test Button"
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -304)
 scale = Vector2(3, 3)
@@ -40,3 +47,4 @@ texture = ExtResource("1_0mlpt")
 [connection signal="pressed" from="ButtonSolo" to="." method="_on_button_solo_pressed"]
 [connection signal="pressed" from="ButtonDecks" to="." method="_on_button_decks_pressed"]
 [connection signal="pressed" from="ButtonExit" to="." method="_on_button_exit_pressed"]
+[connection signal="pressed" from="ButtonTest" to="." method="_on_button_test_pressed"]

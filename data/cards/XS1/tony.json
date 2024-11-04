@@ -18,6 +18,12 @@
 	},
 	"text": "When the E mark is removed from this card, you can <down> one enemy card in the standby area.",
 	"effects": [
-		"DownCardWhenEMarkRemoved(owner=enemy;type=battle;zone=standby)"
+		{
+			"trigger": "e_mark_removed",
+			"optional": true,
+			"effect": [
+				"DownTarget(owner=enemy;type=battle;zone=standby)"
+			]
+		}
 	]
 }

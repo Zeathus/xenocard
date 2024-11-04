@@ -9,5 +9,21 @@
 		"cost": 0,
 		"field": ["gnosis", "any"]
 	},
-	"text": "{Gnosis} cards in standby heal 1 HP during their owner's adjust phase.\nThis effect cannot be stacked."
+	"text": "{Gnosis} cards in standby heal 1 HP during their owner's adjust phase.\nThis effect cannot be stacked.",
+	"effects": [
+		{
+			"trigger": "adjust_phase_player",
+			"stackable": false,
+			"effect": [
+				"Heal(1,zone=standby;owner=self;attribute=gnosis)"
+			]
+		},
+		{
+			"trigger": "adjust_phase_enemy",
+			"stackable": false,
+			"effect": [
+				"Heal(1,zone=standby;owner=enemy;attribute=gnosis)"
+			]
+		}
+	]
 }
