@@ -459,6 +459,8 @@ func get_max_hp() -> int:
 		ret = e.get_max_hp(ret)
 	if ret < 1:
 		ret = 1
+	if ret < hp:
+		hp = ret
 	return ret
 
 func get_original_atk() -> int:

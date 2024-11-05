@@ -9,5 +9,29 @@
 		"cost": 2,
 		"field": ["human", "machine", "any", "any"]
 	},
-	"text": "<Slow>.\nAll {Realians} currently on your battlefield have their ATK set to 0 and their max HP to 1. Any affected {Realians} remaining after the enemy's adjust phase are destroyed, inflicting 6 effect damage to the enemy's deck each."
+	"text": "<Slow>.\nAll {Realians} currently on your battlefield have their ATK set to 0 and their max HP to 1. Any affected {Realians} remaining after the enemy's adjust phase are destroyed, inflicting 6 effect damage to the enemy's deck each.",
+	"effects": [
+		{
+			"trigger": "activate",
+			"requirement": [
+				"Phase(event)"
+			],
+			"effect": [
+				"ApplyEffect(owner=self;attribute=realian;zone=battlefield)",
+				"Discard(self)"
+			],
+			"applied_effect": {
+				"trigger": "passive",
+				"duration": 2,
+				"effect": [
+					"ModifyATK(-99)",
+					"ModifyMaxHP(-99)"
+				],
+				"on_end": [
+					"DamageDeck(6)",
+					"Destroy(self)"
+				]
+			}
+		}
+	]
 }
