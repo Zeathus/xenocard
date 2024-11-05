@@ -15,6 +15,11 @@ func get_name() -> String:
 	return "DrawCard"
 
 func on_start():
+	for c in game_board.get_all_field_cards():
+		for e in c.get_effects(Enum.Trigger.PASSIVE):
+			if e.redirects_draw_to_lost(player):
+				queue_event(EventDrawCardFromLost.new(game_board, player))
+				return
 	var card = player.draw()
 	if card == null:
 		return

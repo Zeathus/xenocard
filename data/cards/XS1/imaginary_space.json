@@ -9,19 +9,15 @@
 		"cost": 1,
 		"field": ["gnosis", "gnosis", "any"]
 	},
-	"text": "During your draw phase, draw from the lost pile rather than the deck. You cannot draw if you do not have any cards in your lost pile.",
+	"text": "During your draw phase, draw from the lost pile rather than the deck.",
 	"effects": [
 		{
 			"trigger": "passive",
+			"requirement": [
+				"Phase(draw)"
+			],
 			"effect": [
-				"StopNormalDraw"
-			]
-		},
-		{
-			"trigger": "after_normal_draw_player",
-			"stackable": false,
-			"effect": [
-				"DrawFromLost(1)"
+				"RedirectDrawToLost(self)"
 			]
 		}
 	]

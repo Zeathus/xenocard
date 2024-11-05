@@ -159,6 +159,9 @@ func skips_e_mark() -> bool:
 func stops_normal_draw() -> bool:
 	return false
 
+func redirects_draw_to_lost(player: Player) -> bool:
+	return false
+
 func after_normal_draw():
 	pass
 

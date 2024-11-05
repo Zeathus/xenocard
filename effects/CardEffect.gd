@@ -264,6 +264,12 @@ func stops_normal_draw() -> bool:
 			return true
 	return false
 
+func redirects_draw_to_lost(player: Player) -> bool:
+	for e in effects:
+		if e.redirects_draw_to_lost(player):
+			return true
+	return false
+
 func after_normal_draw():
 	pass
 

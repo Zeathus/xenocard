@@ -15,7 +15,7 @@
 		"cost": 0,
 		"field": ["gnosis", "any"]
 	},
-	"text": "Discard all battle cards from your field to play this card anywhere on your field.\nIf this card is on the battlefield during your draw phase, draw two cards from the lost pile instead of the deck.",
+	"text": "Discard all battle cards from your field to play this card anywhere on your field.\nIf this card is on the battlefield during your draw phase, draw from the lost pile rather than the deck and draw one additional card.",
 	"effects": [
 		{
 			"trigger": "passive",
@@ -28,10 +28,11 @@
 		{
 			"trigger": "passive",
 			"requirement": [
+				"Phase(draw)",
 				"FilterSelf(zone=battlefield)"
 			],
 			"effect": [
-				"StopNormalDraw"
+				"RedirectDrawToLost(self)"
 			]
 		},
 		{
@@ -40,7 +41,7 @@
 				"FilterSelf(zone=battlefield)"
 			],
 			"effect": [
-				"DrawFromLost(2)"
+				"DrawCard"
 			]
 		}
 	]
