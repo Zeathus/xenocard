@@ -9,5 +9,13 @@
 		"cost": 3,
 		"field": ["human", "human"]
 	},
-	"text": "Destroy one enemy {Human} battle card with an E mark."
+	"text": "Destroy one enemy {Human} battle card with an E mark.",
+	"effects": [
+		{
+			"trigger": "activate",
+			"effect": [
+				
+			]
+		}
+	]
 }

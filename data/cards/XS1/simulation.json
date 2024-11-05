@@ -9,5 +9,13 @@
 		"cost": 3,
 		"field": ["human", "any"]
 	},
-	"text": "If a situation card is at the top of your junk pile, play it to the situation area."
+	"text": "If a situation card is at the top of your junk pile, play it to the situation area.",
+	"effects": [
+		{
+			"trigger": "activate",
+			"effect": [
+				
+			]
+		}
+	]
 }

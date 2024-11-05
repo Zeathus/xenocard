@@ -9,5 +9,13 @@
 		"cost": 1,
 		"field": ["human", "any"]
 	},
-	"text": "Destroy all {weapons} equipped to battle cards on the field."
+	"text": "Destroy all {weapons} equipped to battle cards on the field.",
+	"effects": [
+		{
+			"trigger": "activate",
+			"effect": [
+				
+			]
+		}
+	]
 }

@@ -9,5 +9,13 @@
 		"cost": 0,
 		"field": ["gnosis"]
 	},
-	"text": "Change the enemy's battle formation, switching the front row with the back row."
+	"text": "Change the enemy's battle formation, switching the front row with the back row.",
+	"effects": [
+		{
+			"trigger": "activate",
+			"effect": [
+				
+			]
+		}
+	]
 }

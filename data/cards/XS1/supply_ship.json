@@ -8,5 +8,13 @@
 	"requirement": {
 		"field": ["machine", "machine"]
 	},
-	"text": "You <recover> as many cards as possible up to five cards."
+	"text": "You <recover> as many cards as possible up to five cards.",
+	"effects": [
+		{
+			"trigger": "activate",
+			"effect": [
+				
+			]
+		}
+	]
 }

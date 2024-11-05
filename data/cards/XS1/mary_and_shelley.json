@@ -9,5 +9,13 @@
 		"cost": 0,
 		"field": ["any", "any"]
 	},
-	"text": "Draw two cards from your deck."
+	"text": "Draw two cards from your deck.",
+	"effects": [
+		{
+			"trigger": "activate",
+			"effect": [
+				
+			]
+		}
+	]
 }

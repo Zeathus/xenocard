@@ -14,7 +14,8 @@
 		{
 			"trigger": "activate",
 			"requirement": [
-				"Phase(event)"
+				"Phase(event)",
+				"Formula(count(owner=self;zone=battlefield;attribute=realian)>0)"
 			],
 			"effect": [
 				"ApplyEffect(owner=self;attribute=realian;zone=battlefield)",

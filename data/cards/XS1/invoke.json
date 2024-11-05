@@ -9,5 +9,13 @@
 		"cost": 3,
 		"field": ["machine", "machine", "human"]
 	},
-	"text": "<Slow>.\nDestroy all battle and situation cards on the field."
+	"text": "<Slow>.\nDestroy all battle and situation cards on the field.",
+	"effects": [
+		{
+			"trigger": "activate",
+			"effect": [
+				
+			]
+		}
+	]
 }

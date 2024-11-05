@@ -9,5 +9,13 @@
 		"cost": 0,
 		"field": ["gnosis"]
 	},
-	"text": "Draw two cards from your lost pile."
+	"text": "Draw two cards from your lost pile.",
+	"effects": [
+		{
+			"trigger": "activate",
+			"effect": [
+				
+			]
+		}
+	]
 }

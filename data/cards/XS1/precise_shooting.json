@@ -9,5 +9,13 @@
 		"cost": 0,
 		"field": ["machine"]
 	},
-	"text": "Inflict 1 effect damage to an enemy battle card."
+	"text": "Inflict 1 effect damage to an enemy battle card.",
+	"effects": [
+		{
+			"trigger": "activate",
+			"effect": [
+				
+			]
+		}
+	]
 }

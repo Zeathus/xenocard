@@ -9,5 +9,13 @@
 		"cost": 0,
 		"field": ["human", "any"]
 	},
-	"text": "Choose one {Weapon} or {Machine} battle card from the junk pile and add it to your $hand."
+	"text": "Choose one {Weapon} or {Machine} battle card from the junk pile and add it to your $hand.",
+	"effects": [
+		{
+			"trigger": "activate",
+			"effect": [
+				
+			]
+		}
+	]
 }

@@ -13,7 +13,7 @@
 		{
 			"trigger": "activate",
 			"effect": [
-				"HealTarget(owner=self;zone=standby;zone=battlefield;type=battle;attribute=!gnosis,99)",
+				"HealTarget(owner=self;zone=standby;zone=battlefield;type=battle;attribute=!gnosis;formula=maxhp-hp>0,99)",
 				"Discard(self)"
 			]
 		}

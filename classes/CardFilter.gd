@@ -7,6 +7,7 @@ var zones: Array[Enum.Zone] = []
 var types: Array[Enum.Type] = []
 var owner: int = -1
 var relation: int = -1
+var formula: String = ""
 
 func _init(str: String):
 	for param in str.split(";"):
@@ -56,6 +57,8 @@ func _init(str: String):
 				relation = 1
 			"attacker":
 				relation = 2
+			"formula":
+				formula = value
 
 func check_multiple(value, filter):
 	if len(filter) == 0:
@@ -85,6 +88,8 @@ func is_valid(player: Player, card: Card, variables: Dictionary = {}):
 	if relation == 1 and ("target" not in variables or card != variables["target"]):
 		return false
 	if relation == 2 and ("attacker" not in variables or card != variables["attacker"]):
+		return false
+	if formula != "" and not Formula.calc(formula, card, card.owner.game_board):
 		return false
 	return true
 

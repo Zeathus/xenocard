@@ -9,5 +9,13 @@
 		"cost": 0,
 		"field": ["any", "any"]
 	},
-	"text": "Look at the top five cards of your deck and add one of them to your $hand. Return the rest and shuffle your deck."
+	"text": "Look at the top five cards of your deck and add one of them to your $hand. Return the rest and shuffle your deck.",
+	"effects": [
+		{
+			"trigger": "activate",
+			"effect": [
+				
+			]
+		}
+	]
 }

@@ -9,5 +9,13 @@
 		"cost": 0,
 		"field": ["machine", "machine"]
 	},
-	"text": "<Down> all battle cards in the back row of the enemy's battlefield."
+	"text": "<Down> all battle cards in the back row of the enemy's battlefield.",
+	"effects": [
+		{
+			"trigger": "activate",
+			"effect": [
+				
+			]
+		}
+	]
 }

@@ -9,5 +9,14 @@
 		"cost": 0,
 		"field": ["machine"]
 	},
-	"text": "<Down> one enemy battle card."
+	"text": "<Down> one enemy battle card.",
+	"effects": [
+		{
+			"trigger": "activate",
+			"effect": [
+				"DownTarget(owner=enemy;type=battle)",
+				"Discard(self)"
+			]
+		}
+	]
 }

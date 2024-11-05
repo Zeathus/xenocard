@@ -9,5 +9,13 @@
 		"cost": 4,
 		"field": ["machine", "machine", "human", "gnosis"]
 	},
-	"text": "Destroy all {Gnosis} and {Machines} on the battlefield."
+	"text": "Destroy all {Gnosis} and {Machines} on the battlefield.",
+	"effects": [
+		{
+			"trigger": "activate",
+			"effect": [
+				
+			]
+		}
+	]
 }

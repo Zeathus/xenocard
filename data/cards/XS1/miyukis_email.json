@@ -9,5 +9,13 @@
 		"cost": 1,
 		"field": ["human", "any"]
 	},
-	"text": "Neutralizes the effect of an enemy's event card. The neutralized card is discarded."
+	"text": "Neutralizes the effect of an enemy's event card. The neutralized card is discarded.",
+	"effects": [
+		{
+			"trigger": "activate",
+			"effect": [
+				
+			]
+		}
+	]
 }

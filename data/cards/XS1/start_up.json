@@ -8,5 +8,13 @@
 	"requirement": {
 		"field": ["machine"]
 	},
-	"text": "Remove <downed> status from one of your battle cards."
+	"text": "Remove <downed> status from one of your battle cards.",
+	"effects": [
+		{
+			"trigger": "activate",
+			"effect": [
+				
+			]
+		}
+	]
 }

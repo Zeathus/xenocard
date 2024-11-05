@@ -9,5 +9,13 @@
 		"cost": 1,
 		"field": ["human", "human"]
 	},
-	"text": "Move one enemy battle card to the standby area. You cannot use this card if the standby area is full."
+	"text": "Move one enemy battle card to the standby area. You cannot use this card if the standby area is full.",
+	"effects": [
+		{
+			"trigger": "activate",
+			"effect": [
+				
+			]
+		}
+	]
 }

@@ -8,5 +8,13 @@
 	"requirement": {
 		"field": ["human", "human"]
 	},
-	"text": "You <recover> as many cards as possible up to the number of battle cards on your field."
+	"text": "You <recover> as many cards as possible up to the number of battle cards on your field.",
+	"effects": [
+		{
+			"trigger": "activate",
+			"effect": [
+				
+			]
+		}
+	]
 }

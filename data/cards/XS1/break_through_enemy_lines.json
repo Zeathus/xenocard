@@ -8,5 +8,14 @@
 	"requirement": {
 		"field": ["machine", "machine"]
 	},
-	"text": "Inflict 2 effect damage to one enemy battle card in standby."
+	"text": "Inflict 2 effect damage to one enemy battle card in standby.",
+	"effects": [
+		{
+			"trigger": "activate",
+			"effect": [
+				"DamageTarget(2,owner=enemy;zone=standby)",
+				"Discard(self)"
+			]
+		}
+	]
 }

@@ -9,5 +9,13 @@
 		"cost": 1,
 		"field": ["machine", "machine"]
 	},
-	"text": "Destroy one <downed> enemy {Gnosis} card."
+	"text": "Destroy one <downed> enemy {Gnosis} card.",
+	"effects": [
+		{
+			"trigger": "activate",
+			"effect": [
+				
+			]
+		}
+	]
 }

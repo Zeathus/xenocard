@@ -15,7 +15,7 @@
 			"trigger": "activate",
 			"effect": [
 				"DamageDeck(4)",
-				"Destroy(self)"
+				"Discard(self)"
 			]
 		}
 	]

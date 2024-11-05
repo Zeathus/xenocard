@@ -9,5 +9,13 @@
 		"cost": 0,
 		"field": ["machine", "any"]
 	},
-	"text": "Your deck will be immune to battle damage until the enemy's next adjust phase."
+	"text": "Your deck will be immune to battle damage until the enemy's next adjust phase.",
+	"effects": [
+		{
+			"trigger": "activate",
+			"effect": [
+				
+			]
+		}
+	]
 }

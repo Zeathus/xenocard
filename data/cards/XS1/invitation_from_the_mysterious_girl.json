@@ -9,5 +9,13 @@
 		"cost": 0,
 		"field": ["human", "any"]
 	},
-	"text": "<Slow>.\nYou <recover> as many cards as possible up to the total ATK of cards on your battlefield with hand attack type."
+	"text": "<Slow>.\nYou <recover> as many cards as possible up to the total ATK of cards on your battlefield with hand attack type.",
+	"effects": [
+		{
+			"trigger": "activate",
+			"effect": [
+				
+			]
+		}
+	]
 }

@@ -15,7 +15,7 @@
 			"trigger": "activate",
 			"effect": [
 				"DamageTarget(3,zone=battlefield)",
-				"Destroy(self)"
+				"Discard(self)"
 			]
 		}
 	]

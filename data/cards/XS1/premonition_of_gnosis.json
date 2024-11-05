@@ -9,5 +9,13 @@
 		"cost": 3,
 		"field": ["gnosis", "gnosis"]
 	},
-	"text": "Destroy one enemy card with an E mark."
+	"text": "Destroy one enemy card with an E mark.",
+	"effects": [
+		{
+			"trigger": "activate",
+			"effect": [
+				
+			]
+		}
+	]
 }
