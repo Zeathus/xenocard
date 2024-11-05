@@ -48,9 +48,6 @@ func applies_to(target: Card, variables: Dictionary = {}) -> bool:
 		return false
 	return global.is_valid(host.owner, target, variables)
 
-func apply_effect(target: Card) -> Effect:
-	return null
-
 func uses_one_card_per_turn(value: bool) -> bool:
 	for e in effects:
 		value = e.uses_one_card_per_turn(value)
@@ -125,15 +122,6 @@ func can_set_to_battlefield() -> bool:
 			return true
 	return false
 
-func on_set():
-	pass
-
-func on_destroyed(attacker: Card, source: Damage):
-	pass
-
-func on_destroy(destroyed: Card, source: Damage):
-	pass
-
 func ignore_unique(card: Card) -> bool:
 	for e in effects:
 		if e.ignore_unique(card):
@@ -191,30 +179,6 @@ func handle_occupied_zone(game_board: GameBoard, zone: Enum.Zone, index: int) ->
 			return true
 	return false
 
-func on_deck_attacked(player: Player):
-	pass
-
-func on_target_attacked(target: Card):
-	pass
-
-func after_attack(targets):
-	pass
-
-func after_attack_turn():
-	pass
-
-func on_turn_start():
-	pass
-
-func on_turn_start_enemy():
-	pass
-
-func adjust():
-	pass
-
-func adjust_enemy():
-	pass
-
 func can_move_to(new_zone: Enum.Zone, index: int) -> bool:
 	for e in effects:
 		if not e.can_move_to(new_zone, index):
@@ -245,9 +209,6 @@ func attack_stopped() -> bool:
 			return true
 	return false
 
-func on_e_mark_removed():
-	pass
-
 func penetrates():
 	for e in effects:
 		if e.penetrates():
@@ -255,6 +216,9 @@ func penetrates():
 	return false
 
 func set_requirements():
+	for e in effects:
+		if not e.set_requirements():
+			return false
 	return true
 
 func skips_e_mark() -> bool:
@@ -274,9 +238,6 @@ func redirects_draw_to_lost(player: Player) -> bool:
 		if e.redirects_draw_to_lost(player):
 			return true
 	return false
-
-func after_normal_draw():
-	pass
 
 func is_stackable():
 	return stackable

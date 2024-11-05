@@ -27,12 +27,6 @@ func is_active() -> bool:
 func is_global() -> bool:
 	return false
 
-func applies_to(target: Card) -> bool:
-	return true
-
-func apply_effect(target: Card) -> Effect:
-	return null
-
 func uses_one_card_per_turn(value: bool) -> bool:
 	return value
 
@@ -65,15 +59,6 @@ func handle_set_targets(targets: Array[Card]):
 
 func can_set_to_battlefield() -> bool:
 	return false
-
-func on_set():
-	pass
-
-func on_destroyed(attacker: Card, source: Damage):
-	pass
-
-func on_destroy(destroyed: Card, source: Damage):
-	pass
 
 func ignore_unique(card: Card) -> bool:
 	return false
@@ -108,30 +93,6 @@ func take_set_damage(game_board: GameBoard, attacker: Card, damage: int, source:
 func handle_occupied_zone(game_board: GameBoard, zone: Enum.Zone, index: int) -> bool:
 	return false
 
-func on_deck_attacked(player: Player):
-	pass
-
-func on_target_attacked(target: Card):
-	pass
-
-func after_attack(targets):
-	pass
-
-func after_attack_turn():
-	pass
-
-func on_turn_start():
-	pass
-
-func on_turn_start_enemy():
-	pass
-
-func adjust():
-	pass
-
-func adjust_enemy():
-	pass
-
 func can_move_to(new_zone: Enum.Zone, index: int) -> bool:
 	return true
 
@@ -147,9 +108,6 @@ func can_attack_on_enemy_phase() -> bool:
 func attack_stopped() -> bool:
 	return false
 
-func on_e_mark_removed():
-	pass
-
 func penetrates():
 	return false
 
@@ -164,9 +122,6 @@ func stops_normal_draw() -> bool:
 
 func redirects_draw_to_lost(player: Player) -> bool:
 	return false
-
-func after_normal_draw():
-	pass
 
 func is_stackable():
 	return stackable
