@@ -87,6 +87,9 @@ func get_field_requirements(req: Array[Enum.Attribute]) -> Array[Enum.Attribute]
 func get_cost(cost: int) -> int:
 	return cost
 
+func get_max_hp(max_hp: int) -> int:
+	return max_hp
+
 func get_atk(atk: int) -> int:
 	return atk
 

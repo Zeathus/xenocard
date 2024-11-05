@@ -66,7 +66,9 @@ func on_hand_card_selected(hand: GameHand, card: Card):
 		return
 	if card.selectable(game_board):
 		hide_selectable()
-		queue_event(EventSet.new(game_board, player, card))
+		queue_event(EventAnimation.new(game_board, AnimationEffectStart.new(card)))
+		card.trigger_effects(Enum.Trigger.ACTIVATE, self, {"block": block})
+		queue_event(EventAnimation.new(game_board, AnimationEffectEnd.new(card)))
 		in_sub_event = true
 
 func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, index: int):

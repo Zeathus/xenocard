@@ -8,5 +8,14 @@
 	"requirement": {
 		"field": ["any"]
 	},
-	"text": "One of your non-{Gnosis} battle cards heal to full HP."
+	"text": "Heal one of your non-{Gnosis} battle cards to full HP.",
+	"effects": [
+		{
+			"trigger": "activate",
+			"effect": [
+				"HealTarget(owner=self;zone=standby;zone=battlefield;type=battle;attribute=!gnosis,99)",
+				"Discard(self)"
+			]
+		}
+	]
 }

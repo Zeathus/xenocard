@@ -281,10 +281,10 @@ func selectable(game_board: GameBoard) -> bool:
 					return false
 				if self.e_mark:
 					return false
-				if not has_event_effect():
-					return false
-				if not can_activate_event_effect():
-					return false
+			if not has_event_effect():
+				return false
+			if not can_activate_event_effect():
+				return false
 			return true
 		Enum.Phase.SET:
 			if not requirements_met(game_board):
@@ -454,7 +454,12 @@ func get_original_max_hp() -> int:
 	return data.max_hp
 
 func get_max_hp() -> int:
-	return get_original_max_hp()
+	var ret = get_original_max_hp()
+	for e in get_effects(Enum.Trigger.PASSIVE):
+		ret = e.get_max_hp(ret)
+	if ret < 1:
+		ret = 1
+	return ret
 
 func get_original_atk() -> int:
 	return data.atk

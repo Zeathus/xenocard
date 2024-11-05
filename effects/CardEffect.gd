@@ -155,6 +155,11 @@ func get_cost(cost: int) -> int:
 		cost = e.get_cost(cost)
 	return cost
 
+func get_max_hp(max_hp: int) -> int:
+	for e in effects:
+		max_hp = e.get_max_hp(max_hp)
+	return max_hp
+
 func get_atk(atk: int) -> int:
 	for e in effects:
 		atk = e.get_atk(atk)
