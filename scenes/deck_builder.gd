@@ -37,10 +37,10 @@ func refresh_card_list():
 	var matches = 0
 	for row in container.get_children():
 		var card: CardData = row.get_card()
-		var show = filter_card(card)
-		row.visible = show
+		var show_card = filter_card(card)
+		row.visible = show_card
 		row.position.y = y_pos
-		if show:
+		if show_card:
 			y_pos += 134
 			matches += 1
 	container.custom_minimum_size.y = y_pos

@@ -6,7 +6,7 @@ var timer: float
 func _ready():
 	timer = 0.0
 	for p in points:
-		original_pos.push_back(Vector2i(p.x, p.y))
+		original_pos.push_back(Vector2i(round(p.x), round(p.y)))
 
 func _process(delta):
 	if not visible:

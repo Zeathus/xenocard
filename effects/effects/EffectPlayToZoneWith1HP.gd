@@ -7,7 +7,7 @@ var zone_index: int
 
 func post_init():
 	var arg = param.split(",")
-	zone = int(arg[0])
+	zone = arg[0]
 	zone_index = int(arg[1])
 
 func effect(variables: Dictionary = {}):

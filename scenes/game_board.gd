@@ -78,8 +78,8 @@ func _process(delta):
 			event_queue.pop_front()
 		return
 
-func add_menu(menu, z_index=0):
-	menu.z_index = z_index
+func add_menu(menu, _z_index=0):
+	menu.z_index = _z_index
 	$Menus.add_child(menu)
 
 func remove_menu(menu):

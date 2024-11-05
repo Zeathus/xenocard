@@ -68,12 +68,3 @@ func get_new_card_position() -> Vector2:
 
 func _on_card_selected(card: Card):
 	game_board.on_hand_card_selected(self, card)
-	return
-	if not game_board.is_free():
-		return
-	if game_board.selected_card == card:
-		game_board.select_card(null)
-	elif card.selectable(game_board):
-		game_board.select_card(card)
-	else:
-		game_board.select_card(null)

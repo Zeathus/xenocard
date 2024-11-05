@@ -12,8 +12,8 @@ static func _static_init():
 	regex_terms = RegEx.new()
 	regex_terms.compile("(?i)(^|[ ,.])(%s)[ ,.]" % get_all_terms())
 
-static func expand_keywords(str: String) -> String:
-	var expanded: String = str
+static func expand_keywords(word: String) -> String:
+	var expanded: String = word
 	while true:
 		var result = regex_hint.search(expanded)
 		if not result:

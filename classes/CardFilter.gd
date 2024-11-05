@@ -9,8 +9,8 @@ var owner: int = -1
 var relation: int = -1
 var formula: String = ""
 
-func _init(str: String):
-	for param in str.split(";"):
+func _init(filter_str: String):
+	for param in filter_str.split(";"):
 		var filter = param.split("=")
 		var field = filter[0]
 		var value = filter[1] if len(filter) > 1 else ""

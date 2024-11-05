@@ -6,7 +6,7 @@ var delay: float = 0.5
 
 func _prepare_handling(actions: Array[Action]):
 	if delay > 0:
-		OS.delay_msec(delay * 1000)
+		OS.delay_msec(floor(delay * 1000))
 
 func _handle_request(action: Action, args: Array) -> bool:
 	match action:

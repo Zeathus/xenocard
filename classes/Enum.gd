@@ -57,22 +57,22 @@ static var rarity_icons = {
 	Enum.Rarity.PROMO: preload("res://sprites/rarity/rarity_promo.png")
 }
 
-static func type_from_string(str: String) -> Enum.Type:
-	str = str.to_upper()
-	if str in Enum.Type:
-		return Enum.Type[str]
+static func type_from_string(value: String) -> Enum.Type:
+	value = value.to_upper()
+	if value in Enum.Type:
+		return Enum.Type[value]
 	return Enum.Type.ANY
 
-static func attribute_from_string(str: String) -> Enum.Attribute:
-	str = str.to_upper()
-	if str in Enum.Attribute:
-		return Enum.Attribute[str]
+static func attribute_from_string(value: String) -> Enum.Attribute:
+	value = value.to_upper()
+	if value in Enum.Attribute:
+		return Enum.Attribute[value]
 	return Enum.Attribute.ANY
 
-static func attack_type_from_string(str: String) -> Enum.AttackType:
-	str = str.to_upper()
-	if str in Enum.AttackType:
-		return Enum.AttackType[str]
+static func attack_type_from_string(value: String) -> Enum.AttackType:
+	value = value.to_upper()
+	if value in Enum.AttackType:
+		return Enum.AttackType[value]
 	return Enum.AttackType.ANY
 
 static func get_type_name(type: Type) -> String:

@@ -43,13 +43,13 @@ func show_card(card: CardData):
 	$Content/Name.text = ""
 	$Content/SmallName.text = ""
 	$Content/TwoLineName.text = ""
-	var name = card.name
-	if "\n" in name:
-		$Content/TwoLineName.text = name
-	elif len(name) <= 20:
-		$Content/Name.text = name
+	var card_name = card.name
+	if "\n" in card_name:
+		$Content/TwoLineName.text = card_name
+	elif len(card_name) <= 20:
+		$Content/Name.text = card_name
 	else:
-		$Content/SmallName.text = name
+		$Content/SmallName.text = card_name
 	$Content/TypeBattle.visible = (card.type == Enum.Type.BATTLE)
 	$Content/TypeOther.visible = (card.type != Enum.Type.BATTLE)
 	$Content/Attribute.visible = (card.type == Enum.Type.BATTLE)

@@ -68,7 +68,7 @@ func request(actions: Array[Action], handlers: Array[Callable], args: Array = []
 func receive():
 	mutex.lock()
 	assert(not waiting and response != -1)
-	var action: Action = requested_actions[response]
+	# var action: Action = requested_actions[response]
 	var handler: Callable = request_handlers[response]
 	handler.callv(response_args)
 	response = -1
