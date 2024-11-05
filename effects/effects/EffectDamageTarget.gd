@@ -1,6 +1,6 @@
 extends Effect
 
-class_name EffectDestroyTarget
+class_name EffectDamageTarget
 
 var amount: int
 var filter: CardFilter = null
