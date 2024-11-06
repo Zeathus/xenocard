@@ -116,7 +116,7 @@ corner_radius_bottom_right = 44
 corner_radius_bottom_left = 44
 
 [sub_resource type="LabelSettings" id="LabelSettings_oymet"]
-font_size = 192
+font_size = 220
 outline_size = 96
 outline_color = Color(0, 0, 0, 1)
 
@@ -356,9 +356,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_i1q37")
 [node name="Label" type="Label" parent="Overlay/EMark"]
 layout_mode = 0
 offset_left = 585.0
-offset_top = 65.0
+offset_top = 105.0
 offset_right = 871.0
-offset_bottom = 763.0
+offset_bottom = 458.0
+theme_override_fonts/font = SubResource("FontVariation_d3wog")
 text = "E"
 label_settings = SubResource("LabelSettings_grgb1")
 
@@ -376,6 +377,7 @@ layout_mode = 0
 offset_top = 85.0
 offset_right = 799.0
 offset_bottom = 631.0
+theme_override_fonts/font = SubResource("FontVariation_d3wog")
 text = "DOWN"
 label_settings = SubResource("LabelSettings_oymet")
 horizontal_alignment = 1
@@ -387,6 +389,7 @@ offset_left = -93.0
 offset_top = -225.0
 offset_right = 341.0
 offset_bottom = 67.0
+theme_override_fonts/font = SubResource("FontVariation_d3wog")
 text = "0 ◷"
 label_settings = SubResource("LabelSettings_jaef4")
 horizontal_alignment = 2
@@ -412,6 +415,7 @@ fit_content = true
 scroll_active = false
 
 [node name="Back" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("6_8gxj3")
 
 [node name="SelectBorder" type="Line2D" parent="."]
