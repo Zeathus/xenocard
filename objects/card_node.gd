@@ -53,6 +53,12 @@ func set_downed(val: bool):
 func set_in_motion(val: bool):
 	in_motion = val
 
+func set_help_text(text: String):
+	$Card.set_help_text(text)
+
+func hide_help_text():
+	$Card.hide_help_text()
+
 func is_hovering() -> bool:
 	return $Card.is_hovering
 

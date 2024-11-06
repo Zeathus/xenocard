@@ -401,19 +401,22 @@ horizontal_alignment = 2
 
 [node name="HelpText" type="Label" parent="."]
 visible = false
-offset_left = -400.0
-offset_top = -958.0
-offset_right = 400.0
-offset_bottom = -727.0
+offset_left = -1000.0
+offset_top = -932.0
+offset_right = 1000.0
+offset_bottom = -701.0
 theme_override_fonts/font = SubResource("FontVariation_d3wog")
 text = "Help Text"
 label_settings = SubResource("LabelSettings_rtdw1")
 horizontal_alignment = 1
+uppercase = true
 
 [node name="Arrow" type="Label" parent="HelpText"]
-offset_top = 187.0
-offset_right = 800.0
-offset_bottom = 391.0
+layout_mode = 0
+offset_left = 855.0
+offset_top = 123.0
+offset_right = 1142.0
+offset_bottom = 337.0
 theme_override_fonts/font = SubResource("FontVariation_d3wog")
 text = "⮟"
 label_settings = SubResource("LabelSettings_rtdw1")

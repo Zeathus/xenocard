@@ -120,7 +120,7 @@ func set_help_text(text: String):
 	$HelpText.text = text
 
 func hide_help_text():
-	$Overlay/HelpText.visible = false
+	$HelpText.visible = false
 
 func _on_text_meta_hover_started(meta):
 	$Tooltip/Text.clear()

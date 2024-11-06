@@ -10,6 +10,7 @@ var activated: bool = false
 var optional: bool
 var cancelled: bool = false
 var animate: bool = true
+var activations: int = 0
 
 func _init(_game_board: GameBoard, _effect: CardEffect, _variables: Dictionary, _optional=false):
 	super(_game_board)
@@ -42,6 +43,7 @@ func on_start():
 		update_targets()
 
 func on_finish():
+	effect.host.hide_help_text()
 	for t in targets:
 		t.deselect()
 	game_board.hide_valid_zones()
@@ -54,6 +56,12 @@ func update_targets():
 		effect.host.owner.get_enemy().field.show_valid_effect_targets(effect, filter)
 
 func try_target(card: Card):
+	if activations > 0 and card == effect.host:
+		if not has_children():
+			targets = []
+			activated = true
+			finish()
+		return
 	if len(targets) == len(targets_required):
 		return
 	if card in targets:
@@ -85,6 +93,11 @@ func process(delta):
 			activated = true
 			if animate:
 				queue_event(EventAnimation.new(game_board, AnimationEffectEnd.new(effect.host)))
+		elif effect.repeatable:
+			activations += 1
+			effect.host.set_help_text("Click to end effect")
+			activated = false
+			targets = []
 		else:
 			finish()
 	else:

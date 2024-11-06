@@ -18,7 +18,7 @@
 				"Formula(lost>0)"
 			],
 			"effect": [
-				"DiscardTarget(1,owner=self;type=battle)",
+				"DiscardTarget(1,owner=self;type=battle;zone=standby;zone=battlefield)",
 				"Recover(4)"
 			]
 		}
