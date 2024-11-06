@@ -21,6 +21,7 @@ func effect(variables: Dictionary = {}):
 		card_hp = t.hp
 		card_zone_index = t.zone_index
 	search_event = EventSearchJunk.new(game_board, parent.host.owner, junk_filter, "Select a card to set to the battlefield", handle_junk_target)
+	search_event.forced = true
 	parent.events.push_back(search_event)
 
 func has_valid_targets(variables: Dictionary = {}) -> bool:

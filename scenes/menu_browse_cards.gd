@@ -18,7 +18,7 @@ func set_message(val: String):
 	$HeaderPanel/Label.text = val
 
 func set_forced(val: bool):
-	$CloseButton.visible = val
+	$CloseButton.visible = not val
 
 func set_filter(filter: CardFilter):
 	$UseFilter.visible = filter != null

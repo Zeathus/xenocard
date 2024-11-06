@@ -9,6 +9,7 @@ var message: String
 var menu = null
 var wait_for_finish: bool = false
 var handler: Callable
+var forced: bool = false
 
 func _init(_game_board: GameBoard, _player: Player, _filter: CardFilter, _message: String, _handler: Callable = Callable(self, "handle_card")):
 	super(_game_board)
@@ -28,6 +29,7 @@ func on_start():
 	menu.set_filter(filter)
 	menu.set_cards(player.junk.cards)
 	menu.set_handler(handler)
+	menu.set_forced(forced)
 	game_board.add_menu(menu)
 
 func on_finish():
