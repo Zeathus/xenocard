@@ -2,6 +2,7 @@ extends Controller
 
 class_name ControllerAI
 
+var last_can_end_move_phase: bool = true
 var delay: float = 0.5
 
 func _prepare_handling(actions: Array[Action]):
@@ -134,6 +135,22 @@ func do_set_situation_card() -> bool:
 	return false
 
 func do_move_card() -> bool:
+	# Check if move phase can be ended.
+	# Right now this can only be prevented by situation cards
+	# that force cards to the battlefield, so assume this is
+	# always the reason, and make it move to the battlefield.
+	var can_end_move_phase: bool = true
+	for card in game_board.get_all_field_cards():
+		for e in card.get_effects(Enum.Trigger.PASSIVE):
+			if not e.can_end_phase(Enum.Phase.MOVE, player):
+				can_end_move_phase = false
+				break
+	if not last_can_end_move_phase and can_end_move_phase:
+		# We just fulfilled the conditions to end the phase, just end it
+		last_can_end_move_phase = true
+		return false
+	last_can_end_move_phase = can_end_move_phase
+	# Decide the best card to move and where to
 	var best_card: Card = null
 	var best_zone: Enum.Zone = Enum.Zone.NONE
 	var best_index: int = -1
@@ -144,6 +161,10 @@ func do_move_card() -> bool:
 		var current_score = get_zone_score(card, card.zone, card.zone_index)
 		for zone in [Enum.Zone.BATTLEFIELD, Enum.Zone.STANDBY]:
 			if zone == Enum.Zone.STANDBY and zone == card.zone:
+				# Do not move cards amongst the standby area
+				continue
+			if not can_end_move_phase and zone == Enum.Zone.STANDBY:
+				# Do not move cards back to standby
 				continue
 			for index in range(4):
 				if zone == card.zone and index == card.zone_index:
@@ -152,6 +173,10 @@ func do_move_card() -> bool:
 				var occupant: Card = player.field.get_card(zone, index)
 				if occupant and score <= get_zone_score(occupant, zone, index):
 					continue
+				if not can_end_move_phase and occupant == null:
+					if zone == Enum.Zone.BATTLEFIELD and card.zone == Enum.Zone.STANDBY:
+						# Enforce moving to unoccupied battlefield spaces when phase can't be ended
+						score += 100
 				if score > best_score and score > current_score:
 					best_card = card
 					best_zone = zone
