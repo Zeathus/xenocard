@@ -415,7 +415,6 @@ fit_content = true
 scroll_active = false
 
 [node name="Back" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("6_8gxj3")
 
 [node name="SelectBorder" type="Line2D" parent="."]

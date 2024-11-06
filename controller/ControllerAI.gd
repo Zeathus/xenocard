@@ -116,7 +116,11 @@ func do_set_weapon_card() -> bool:
 			var score: int = get_base_score(card)
 			score += holder.hp
 			if card.get_atk() != 0:
-				score += get_atk_score(card) - get_atk_score(holder)
+				var atk_score_diff = get_atk_score(card) - get_atk_score(holder)
+				if atk_score_diff == 0:
+					score = 0
+				else:
+					score += atk_score_diff
 			else:
 				score += 3
 			if score > best_score:
