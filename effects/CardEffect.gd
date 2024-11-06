@@ -9,6 +9,7 @@ var global: CardFilter
 var optional: bool
 var stackable: bool
 var animated: bool
+var repeatable: bool
 var duration: int
 var events: Array[Event]
 var applied_effect: EffectData
@@ -24,6 +25,7 @@ func _init(_trigger: Enum.Trigger, _host: Card):
 	optional = false
 	stackable = true
 	animated = true
+	repeatable = false
 	duration = -1
 	effects_on_end = []
 

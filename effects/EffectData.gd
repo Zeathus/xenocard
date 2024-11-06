@@ -8,6 +8,7 @@ var global: CardFilter
 var optional: bool
 var stackable: bool
 var animated: bool
+var repeatable: bool
 var duration: int
 var applied_effect: EffectData
 var effects_on_end: Array[String]
@@ -21,6 +22,7 @@ func _init(_trigger: Enum.Trigger):
 	optional = false
 	stackable = true
 	animated = true
+	repeatable = false
 	duration = -1
 	applied_effect = null
 	effects_on_end = []
@@ -32,6 +34,7 @@ func instantiate(host: Card) -> CardEffect:
 	instance.optional = optional
 	instance.stackable = stackable
 	instance.animated = animated
+	instance.repeatable = repeatable
 	instance.duration = duration
 	instance.applied_effect = applied_effect
 	for i in effects:
@@ -97,6 +100,8 @@ static func parse(data, card_name) -> EffectData:
 		effect_data.stackable = data["stackable"]
 	if "animated" in data:
 		effect_data.animated = data["animated"]
+	if "repeatable" in data:
+		effect_data.repeatable = data["repeatable"]
 	if "duration" in data:
 		effect_data.duration = data["duration"]
 	if "applied_effect" in data:

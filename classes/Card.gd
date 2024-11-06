@@ -630,6 +630,14 @@ func set_selectable(val: bool):
 	if instance:
 		instance.find_child("ValidBorder").visible = val
 
+func set_help_text(text: String):
+	if instance:
+		instance.set_help_text(text)
+
+func hide_help_text():
+	if instance:
+		instance.hide_help_text()
+
 func on_turn_start(is_enemy: bool = true):
 	turn_count += 1
 

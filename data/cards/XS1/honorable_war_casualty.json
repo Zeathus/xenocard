@@ -13,8 +13,13 @@
 	"effects": [
 		{
 			"trigger": "activate",
+			"repeatable": true,
+			"requirement": [
+				"Formula(lost>0)"
+			],
 			"effect": [
-				
+				"DiscardTarget(1,owner=self;type=battle)",
+				"Recover(4)"
 			]
 		}
 	]

@@ -115,6 +115,13 @@ func set_duration(val: int):
 		$Overlay/Duration.visible = true
 		$Overlay/Duration.text = "%d ◷" % val
 
+func set_help_text(text: String):
+	$HelpText.visible = true
+	$HelpText.text = text
+
+func hide_help_text():
+	$Overlay/HelpText.visible = false
+
 func _on_text_meta_hover_started(meta):
 	$Tooltip/Text.clear()
 	$Tooltip/Text.append_text(Keyword.get_hint(meta))
