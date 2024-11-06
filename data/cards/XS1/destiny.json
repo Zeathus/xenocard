@@ -9,12 +9,13 @@
 		"cost": 1,
 		"field": ["human", "human", "human"]
 	},
-	"text": "Discard one {Human} battle card on your battlefield to play one {Human} battle card from your junk pile in its place. Character cards and <unique> cards cannot be retrieved from the junk pile. Damage taken carries over, and any equipped {weapon} is destroyed.",
+	"text": "Discard one {Human} battle card on your battlefield to play one {Human} battle card from your junk pile in its place. Character cards and <unique> cards cannot be retrieved from the junk pile. Damage taken carries over, and any equipped {weapon} is discarded.",
 	"effects": [
 		{
 			"trigger": "activate",
 			"effect": [
-				
+				"Destiny",
+				"Discard(self)"
 			]
 		}
 	]

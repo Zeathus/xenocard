@@ -407,6 +407,13 @@ func move(game_board: GameBoard, new_zone: Enum.Zone, index: int):
 	var player: Player = owner
 	player.field.move_card(self, new_zone, index)
 
+func set_hp(val: int):
+	var max_hp = self.get_max_hp()
+	if val > max_hp:
+		self.hp = max_hp
+	else:
+		self.hp = val
+
 func set_e_mark(val: bool):
 	self.e_mark = val
 	self.instance.set_e_mark(val)

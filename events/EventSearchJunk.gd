@@ -1,6 +1,6 @@
 extends Event
 
-class_name EventSearch
+class_name EventSearchJunk
 
 static var browse_scene = load("res://scenes/menu_browse_cards.tscn")
 var player: Player
@@ -18,7 +18,7 @@ func _init(_game_board: GameBoard, _player: Player, _filter: CardFilter, _messag
 	handler = _handler
 
 func get_name() -> String:
-	return "Search"
+	return "SearchJunk"
 
 func on_start():
 	if player.has_controller():
@@ -26,7 +26,7 @@ func on_start():
 	menu = browse_scene.instantiate()
 	menu.set_message(message)
 	menu.set_filter(filter)
-	menu.set_cards(player.deck.cards)
+	menu.set_cards(player.junk.cards)
 	menu.set_handler(handler)
 	game_board.add_menu(menu)
 
@@ -57,12 +57,12 @@ func process(delta):
 
 func handle_card(index: int, card: Card):
 	if index != -1:
-		card = player.deck.draw_at(index)
+		card = player.junk.draw_at(index)
 		game_board.refresh()
 		game_board.prepare_card(card)
 		player.hand.add_card(card)
-		card.instance.global_position = player.field.get_deck_node().global_position
+		card.instance.global_position = player.field.get_junk_node().global_position
 		queue_event(EventAnimation.new(game_board,
 			AnimationAddToHand.new(card.instance, player.hand)
 		))
-	player.deck.shuffle()
+	player.junk.shuffle()

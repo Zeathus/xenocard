@@ -9,6 +9,8 @@ var owner: int = -1
 var relation: int = -1
 var formula: String = ""
 var downed: String = ""
+var unique: String = ""
+var e_mark: String = ""
 
 func _init(filter_str: String):
 	for param in filter_str.split(";"):
@@ -60,6 +62,10 @@ func _init(filter_str: String):
 				relation = 2
 			"downed":
 				downed = value
+			"unique":
+				unique = value
+			"emark":
+				e_mark = value
 			"formula":
 				formula = value
 
@@ -93,6 +99,10 @@ func is_valid(player: Player, card: Card, variables: Dictionary = {}):
 	if relation == 2 and ("attacker" not in variables or card != variables["attacker"]):
 		return false
 	if downed != "" and downed != str(card.downed):
+		return false
+	if unique != "" and unique != ("true" if card.conflicts_with_card(card) else "false"):
+		return false
+	if e_mark != "" and e_mark != str(card.e_mark):
 		return false
 	if formula != "" and not Formula.calc(formula, card, card.owner.game_board):
 		return false
