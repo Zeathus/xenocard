@@ -14,7 +14,7 @@
 		{
 			"trigger": "activate",
 			"effect": [
-				"DownTarget(owner=enemy;type=battle)",
+				"DownTarget(owner=enemy;type=battle;downed=false)",
 				"Discard(self)"
 			]
 		}

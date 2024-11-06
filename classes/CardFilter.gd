@@ -8,6 +8,7 @@ var types: Array[Enum.Type] = []
 var owner: int = -1
 var relation: int = -1
 var formula: String = ""
+var downed: String = ""
 
 func _init(filter_str: String):
 	for param in filter_str.split(";"):
@@ -57,6 +58,8 @@ func _init(filter_str: String):
 				relation = 1
 			"attacker":
 				relation = 2
+			"downed":
+				downed = value
 			"formula":
 				formula = value
 
@@ -88,6 +91,8 @@ func is_valid(player: Player, card: Card, variables: Dictionary = {}):
 	if relation == 1 and ("target" not in variables or card != variables["target"]):
 		return false
 	if relation == 2 and ("attacker" not in variables or card != variables["attacker"]):
+		return false
+	if downed != "" and downed != str(card.downed):
 		return false
 	if formula != "" and not Formula.calc(formula, card, card.owner.game_board):
 		return false

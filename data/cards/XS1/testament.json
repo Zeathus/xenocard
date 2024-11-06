@@ -22,7 +22,7 @@
 			"trigger": "e_mark_removed",
 			"optional": true,
 			"effect": [
-				"DownTarget(owner=enemy;type=battle;zone=battlefield)"
+				"DownTarget(owner=enemy;type=battle;zone=battlefield;downed=false)"
 			]
 		}
 	]
