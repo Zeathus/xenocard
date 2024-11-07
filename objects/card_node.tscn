@@ -1,12 +1,153 @@
-[gd_scene load_steps=3 format=3 uid="uid://dpm1bqbevvyb7"]
+[gd_scene load_steps=13 format=3 uid="uid://dpm1bqbevvyb7"]
 
 [ext_resource type="Script" path="res://objects/card_node.gd" id="1_wdlaa"]
-[ext_resource type="PackedScene" uid="uid://dosulntiwpmvw" path="res://objects/card_display.tscn" id="2_2gm7b"]
+[ext_resource type="PackedScene" uid="uid://dx5fpm3ycrj0b" path="res://objects/card_display.tscn" id="2_2gm7b"]
+[ext_resource type="FontFile" uid="uid://cwo0ya5s4od8f" path="res://fonts/Roboto/RobotoCondensed-VariableFont_wght.ttf" id="3_dqdvf"]
+[ext_resource type="Script" path="res://objects/select_border.gd" id="4_skjdn"]
+[ext_resource type="PackedScene" uid="uid://de2wv2ykfcwhh" path="res://objects/effect_indicator.tscn" id="5_5egaa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4nfh4"]
+bg_color = Color(0.25098, 0.623529, 1, 0.25098)
+corner_radius_top_left = 44
+corner_radius_top_right = 44
+corner_radius_bottom_right = 44
+corner_radius_bottom_left = 44
+
+[sub_resource type="FontVariation" id="FontVariation_dhdjw"]
+base_font = ExtResource("3_dqdvf")
+variation_embolden = 0.25
+spacing_glyph = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_hxlnm"]
+font_size = 256
+outline_size = 96
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8f86m"]
+bg_color = Color(1, 0.623529, 0.25098, 0.25098)
+corner_radius_top_left = 44
+corner_radius_top_right = 44
+corner_radius_bottom_right = 44
+corner_radius_bottom_left = 44
+
+[sub_resource type="LabelSettings" id="LabelSettings_0q25d"]
+font_size = 220
+outline_size = 96
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0halo"]
+font_size = 192
+outline_size = 80
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fyayn"]
+font_size = 200
+outline_size = 64
+outline_color = Color(0, 0, 0, 1)
 
 [node name="CardNode" type="Node2D"]
 script = ExtResource("1_wdlaa")
 
 [node name="Card" parent="." instance=ExtResource("2_2gm7b")]
+
+[node name="Overlay" type="Node2D" parent="."]
+
+[node name="EMark" type="Panel" parent="Overlay"]
+visible = false
+offset_left = -400.0
+offset_top = -600.0
+offset_right = 400.0
+offset_bottom = 600.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4nfh4")
+
+[node name="Label" type="Label" parent="Overlay/EMark"]
+layout_mode = 0
+offset_left = 585.0
+offset_top = 105.0
+offset_right = 871.0
+offset_bottom = 458.0
+theme_override_fonts/font = SubResource("FontVariation_dhdjw")
+text = "E"
+label_settings = SubResource("LabelSettings_hxlnm")
+
+[node name="Downed" type="Panel" parent="Overlay"]
+visible = false
+offset_left = -400.0
+offset_top = -600.0
+offset_right = 400.0
+offset_bottom = 600.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8f86m")
+
+[node name="Label" type="Label" parent="Overlay/Downed"]
+layout_mode = 0
+offset_top = 85.0
+offset_right = 799.0
+offset_bottom = 631.0
+theme_override_fonts/font = SubResource("FontVariation_dhdjw")
+text = "DOWN"
+label_settings = SubResource("LabelSettings_0q25d")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Duration" type="Label" parent="Overlay"]
+visible = false
+offset_left = -93.0
+offset_top = -225.0
+offset_right = 341.0
+offset_bottom = 67.0
+theme_override_fonts/font = SubResource("FontVariation_dhdjw")
+text = "0 ◷"
+label_settings = SubResource("LabelSettings_0halo")
+horizontal_alignment = 2
+
+[node name="HelpText" type="Label" parent="."]
+visible = false
+offset_left = -1500.0
+offset_top = -1030.0
+offset_right = 1500.0
+offset_bottom = -729.0
+theme_override_fonts/font = SubResource("FontVariation_dhdjw")
+text = "Help Text"
+label_settings = SubResource("LabelSettings_fyayn")
+horizontal_alignment = 1
+
+[node name="Arrow" type="Label" parent="HelpText"]
+layout_mode = 0
+offset_left = 1355.0
+offset_top = 180.0
+offset_right = 1642.0
+offset_bottom = 522.0
+theme_override_fonts/font = SubResource("FontVariation_dhdjw")
+text = "⮟"
+label_settings = SubResource("LabelSettings_fyayn")
+horizontal_alignment = 1
+
+[node name="SelectBorder" type="Line2D" parent="."]
+visible = false
+scale = Vector2(1.05, 1.05)
+points = PackedVector2Array(-430, -630, -430, -420, -430, -210, -430, 0, -430, 210, -430, 420, -430, 630, -215, 630, 0, 630, 215, 630, 430, 630, 430, 420, 430, 210, 430, 0, 430, -210, 430, -420, 430, -630, 215, -630, 0, -630, -215, -630)
+closed = true
+width = 24.0
+default_color = Color(1, 0.623529, 0.25098, 1)
+joint_mode = 2
+antialiased = true
+script = ExtResource("4_skjdn")
+
+[node name="ValidBorder" type="Line2D" parent="."]
+visible = false
+scale = Vector2(1.05, 1.05)
+points = PackedVector2Array(-430, -630, -430, -420, -430, -210, -430, 0, -430, 210, -430, 420, -430, 630, -215, 630, 0, 630, 215, 630, 430, 630, 430, 420, 430, 210, 430, 0, 430, -210, 430, -420, 430, -630, 215, -630, 0, -630, -215, -630)
+closed = true
+width = 24.0
+default_color = Color(0.25098, 0.623529, 1, 1)
+joint_mode = 2
+antialiased = true
+script = ExtResource("4_skjdn")
+
+[node name="EffectIndicator" parent="." instance=ExtResource("5_5egaa")]
+visible = false
 
 [connection signal="on_hover" from="Card" to="." method="_on_card_on_hover"]
 [connection signal="selected" from="Card" to="." method="_on_card_selected"]

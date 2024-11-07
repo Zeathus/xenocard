@@ -16,7 +16,13 @@ func _ready():
 func _process(delta):
 	z_index = original_z
 	if $Card.is_hovering:
+		$Overlay.rotation = -global_rotation
 		z_index += 1
+	else:
+		$Overlay.rotation = 0
+	$Overlay.scale = $Card/Content.scale
+	$SelectBorder.scale = $Card/Content.scale
+	$ValidBorder.scale = $Card/Content.scale
 	if card:
 		if card.zone == Enum.Zone.HAND:
 			z_index += 20
@@ -45,25 +51,30 @@ func flip():
 	$Card.flip()
 
 func set_e_mark(val: bool):
-	$Card.set_e_mark(val)
+	$Overlay/EMark.visible = val
 
 func set_downed(val: bool):
-	$Card.set_downed(val)
+	$Overlay/Downed.visible = val
+
+func set_duration(val: int):
+	if val <= 0:
+		$Overlay/Duration.visible = false
+	else:
+		$Overlay/Duration.visible = true
+		$Overlay/Duration.text = "%d ◷" % val
+
+func set_help_text(text: String):
+	$HelpText.visible = true
+	$HelpText.text = text
 
 func set_in_motion(val: bool):
 	in_motion = val
 
-func set_help_text(text: String):
-	$Card.set_help_text(text)
-
 func hide_help_text():
-	$Card.hide_help_text()
+	$HelpText.visible = false
 
 func is_hovering() -> bool:
 	return $Card.is_hovering
-
-func set_duration(duration: int):
-	$Card.set_duration(duration)
 
 func _on_card_selected(button_index: int) -> void:
 	if button_index == 2:

@@ -20,20 +20,12 @@ func _process(delta):
 		old_is_hovering = is_hovering
 		if is_hovering:
 			$Content.scale = original_scale * 1.25
-			$Overlay.scale = original_scale * 1.25
-			$SelectBorder.scale = original_scale * 1.25
-			$ValidBorder.scale = original_scale * 1.25
 			$Back.scale = original_scale * 1.25
 			$Content.rotation = -global_rotation
-			$Overlay.rotation = -global_rotation
 		else:
 			$Content.scale = original_scale
-			$Overlay.scale = original_scale
-			$SelectBorder.scale = original_scale
-			$ValidBorder.scale = original_scale
 			$Back.scale = original_scale
 			$Content.rotation = 0
-			$Overlay.rotation = 0
 	z_index = original_z
 	if is_hovering:
 		z_index += 1
@@ -101,26 +93,6 @@ func turn_up():
 
 func flip():
 	$Back.visible = !$Back.visible
-
-func set_e_mark(val: bool):
-	$Overlay/EMark.visible = val
-
-func set_downed(val: bool):
-	$Overlay/Downed.visible = val
-
-func set_duration(val: int):
-	if val <= 0:
-		$Overlay/Duration.visible = false
-	else:
-		$Overlay/Duration.visible = true
-		$Overlay/Duration.text = "%d ◷" % val
-
-func set_help_text(text: String):
-	$HelpText.visible = true
-	$HelpText.text = text
-
-func hide_help_text():
-	$HelpText.visible = false
 
 func _on_text_meta_hover_started(meta):
 	$Tooltip/Text.clear()
