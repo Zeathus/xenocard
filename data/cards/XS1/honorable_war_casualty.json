@@ -20,6 +20,9 @@
 			"effect": [
 				"DiscardTarget(1,owner=self;type=battle;zone=standby;zone=battlefield)",
 				"Recover(4)"
+			],
+			"finally": [
+				"Discard(self)"
 			]
 		}
 	]

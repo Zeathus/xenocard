@@ -14,6 +14,7 @@ var duration: int
 var events: Array[Event]
 var applied_effect: EffectData
 var effects_on_end: Array[Effect]
+var finally: Array[Effect]
 
 func _init(_trigger: Enum.Trigger, _host: Card):
 	trigger = _trigger
@@ -28,6 +29,7 @@ func _init(_trigger: Enum.Trigger, _host: Card):
 	repeatable = false
 	duration = -1
 	effects_on_end = []
+	finally = []
 
 func set_host(_host: Card) -> CardEffect:
 	host = _host

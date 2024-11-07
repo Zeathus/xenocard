@@ -43,6 +43,12 @@ func on_start():
 		update_targets()
 
 func on_finish():
+	for e in effect.finally:
+		e.effect({"self": effect.host})
+		for event in effect.events:
+			queue_event(event)
+		effect.events.clear()
+		parent.adopt_children(self)
 	effect.host.hide_help_text()
 	for t in targets:
 		t.deselect()
@@ -93,7 +99,7 @@ func process(delta):
 			activated = true
 			if animate:
 				queue_event(EventAnimation.new(game_board, AnimationEffectEnd.new(effect.host)))
-		elif effect.repeatable:
+		elif effect.repeatable and not effect.host.owner.has_controller() and effect.has_valid_targets({"self": effect.host}):
 			activations += 1
 			effect.host.set_help_text("Click to end effect")
 			activated = false
@@ -112,7 +118,20 @@ func process(delta):
 					[[targets_required[len(targets)], targets]]
 				)
 
+func try_cancel_effect() -> bool:
+	if pass_to_child("can_cancel"):
+		children = [children[0]]
+		pass_to_child("cancel")
+		targets = []
+		activated = true
+		finish()
+		return true
+	return false
+
 func on_hand_card_selected(hand: GameHand, card: Card):
+	if effect.repeatable and card == effect.host and activations > 0:
+		if try_cancel_effect():
+			return
 	if pass_to_child("on_hand_card_selected", [hand, card]):
 		return
 	if effect.get_controlling_player().has_controller():
@@ -120,10 +139,13 @@ func on_hand_card_selected(hand: GameHand, card: Card):
 	try_target(card)
 
 func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, index: int):
+	var card = field.get_card(zone, index)
+	if effect.repeatable and card == effect.host and activations > 0 and has_children():
+		if try_cancel_effect():
+			return
 	if pass_to_child("on_zone_selected", [field, zone_owner, zone, index]):
 		return
 	if effect.get_controlling_player().has_controller():
 		return
-	var card = field.get_card(zone, index)
 	if card:
 		try_target(card)

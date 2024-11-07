@@ -12,6 +12,7 @@ var repeatable: bool
 var duration: int
 var applied_effect: EffectData
 var effects_on_end: Array[String]
+var finally: Array[String]
 
 func _init(_trigger: Enum.Trigger):
 	trigger = _trigger
@@ -26,6 +27,7 @@ func _init(_trigger: Enum.Trigger):
 	duration = -1
 	applied_effect = null
 	effects_on_end = []
+	finally = []
 
 func instantiate(host: Card) -> CardEffect:
 	var instance = CardEffect.new(trigger, host)
@@ -58,6 +60,13 @@ func instantiate(host: Card) -> CardEffect:
 			i = i.substr(0, i.find("("))
 		var effect = Effect.parse(i).new(instance, host.owner.game_board, host, param)
 		instance.effects_on_end.push_back(effect)
+	for i in finally:
+		var param: String = ""
+		if "(" in i and ")" in i and i.find("(") < i.rfind(")"):
+			param = i.substr(i.find("(") + 1, i.rfind(")") - i.find("(") - 1)
+			i = i.substr(0, i.find("("))
+		var effect = Effect.parse(i).new(instance, host.owner.game_board, host, param)
+		instance.finally.push_back(effect)
 	return instance
 
 static func parse(data, card_name) -> EffectData:
@@ -88,6 +97,12 @@ static func parse(data, card_name) -> EffectData:
 		for e in data["on_end"]:
 			if EffectData.exists("effects", "Effect", e): # validity check
 				effect_data.effects_on_end.push_back(e)
+			else:
+				print("Failed to find effect '", e, "' for card '", card_name, "'")
+	if "finally" in data:
+		for e in data["finally"]:
+			if EffectData.exists("effects", "Effect", e): # validity check
+				effect_data.finally.push_back(e)
 			else:
 				print("Failed to find effect '", e, "' for card '", card_name, "'")
 	if "ignores_down" in data:

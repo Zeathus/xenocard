@@ -23,6 +23,9 @@ func on_start():
 func on_finish():
 	hide_selectable()
 
+func can_cancel() -> bool:
+	return not has_children()
+
 func process(delta):
 	if pass_to_child("process", [delta]):
 		return

@@ -2,6 +2,7 @@ class_name Event
 
 var game_board: GameBoard
 var started: bool = false
+var parent: Event
 var children: Array[Event] = []
 var blocking: bool = true
 var finished: bool = false
@@ -62,6 +63,9 @@ func cancel():
 	success = false
 	finish()
 
+func can_cancel() -> bool:
+	return false
+
 func is_done():
 	return finished
 
@@ -98,6 +102,7 @@ func sort_children():
 	)
 
 func queue_event(event: Event):
+	event.parent = self
 	children.push_back(event)
 
 func on_hand_card_selected(hand: GameHand, card: Card):
