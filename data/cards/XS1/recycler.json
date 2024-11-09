@@ -14,7 +14,8 @@
 		{
 			"trigger": "activate",
 			"effect": [
-				
+				"SearchJunk(attribute=weapon;attribute=machine)",
+				"Discard(self)"
 			]
 		}
 	]
