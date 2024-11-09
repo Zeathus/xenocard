@@ -14,7 +14,8 @@
 		{
 			"trigger": "activate",
 			"effect": [
-				
+				"Destroy(zone=battlefield;attribute=gnosis;attribute=machine)",
+				"Discard(self)"
 			]
 		}
 	]

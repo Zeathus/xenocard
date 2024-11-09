@@ -14,7 +14,8 @@
 		{
 			"trigger": "activate",
 			"effect": [
-				
+				"DestroyTarget(owner=enemy;emark=true)",
+				"Discard(self)"
 			]
 		}
 	]
