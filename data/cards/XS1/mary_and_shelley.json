@@ -14,7 +14,9 @@
 		{
 			"trigger": "activate",
 			"effect": [
-				
+				"DrawCard",
+				"DrawCard",
+				"Discard(self)"
 			]
 		}
 	]
