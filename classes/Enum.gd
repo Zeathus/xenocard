@@ -29,7 +29,8 @@ enum Trigger {
 	TURN_START_PLAYER,
 	TURN_START_ENEMY,
 	TURN_END,
-	ACTIVATE
+	ACTIVATE,
+	COUNTER
 }
 
 static var attribute_icons = {

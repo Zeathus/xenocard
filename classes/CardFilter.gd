@@ -13,6 +13,7 @@ var formula: String = ""
 var downed: String = ""
 var unique: String = ""
 var e_mark: String = ""
+var weapon: String = ""
 
 func _init(filter_str: String):
 	for param in filter_str.split(";"):
@@ -72,6 +73,8 @@ func _init(filter_str: String):
 				unique = value
 			"emark":
 				e_mark = value
+			"weapon":
+				weapon = value
 			"formula":
 				formula = value
 
@@ -113,6 +116,8 @@ func is_valid(player: Player, card: Card, variables: Dictionary = {}):
 	if unique != "" and unique != ("true" if card.conflicts_with_card(card) else "false"):
 		return false
 	if e_mark != "" and e_mark != str(card.e_mark):
+		return false
+	if weapon != "" and weapon != str(card.equipped_weapon != null):
 		return false
 	if formula != "" and not Formula.calc(formula, card, card.owner.game_board):
 		return false
