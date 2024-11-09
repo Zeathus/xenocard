@@ -4,6 +4,7 @@ var names: Array[String] = []
 var characters: Array[String] = []
 var attributes: Array[Enum.Attribute] = []
 var zones: Array[Enum.Zone] = []
+var zone_indices: Array[int] = []
 var types: Array[Enum.Type] = []
 var attack_types: Array[Enum.AttackType] = []
 var owner: int = -1
@@ -43,6 +44,8 @@ func _init(filter_str: String):
 						zones.push_back(Enum.Zone.HAND)
 					_:
 						print("Invalid zone filter '%s'" % value)
+			"zoneindex":
+				zone_indices.push_back(int(value)-1)
 			"type":
 				types.push_back(Enum.type_from_string(value))
 			"attacktype":
@@ -88,6 +91,8 @@ func is_valid(player: Player, card: Card, variables: Dictionary = {}):
 	if not check_multiple(card.get_attribute(), attributes):
 		return false
 	if not check_multiple(card.zone, zones):
+		return false
+	if not check_multiple(card.zone_index, zone_indices):
 		return false
 	if not check_multiple(card.get_type(), types):
 		return false

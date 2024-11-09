@@ -14,7 +14,8 @@
 		{
 			"trigger": "activate",
 			"effect": [
-				
+				"Down(owner=enemy;type=battle;zone=battlefield;zoneindex=3;zoneindex=4)",
+				"Discard(self)"
 			]
 		}
 	]
