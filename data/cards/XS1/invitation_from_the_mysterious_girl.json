@@ -13,8 +13,12 @@
 	"effects": [
 		{
 			"trigger": "activate",
+			"requirement": [
+				"Phase(event)"
+			],
 			"effect": [
-				
+				"RecoverSumOfATK(owner=self;zone=battlefield;attacktype=hand)",
+				"Discard(self)"
 			]
 		}
 	]

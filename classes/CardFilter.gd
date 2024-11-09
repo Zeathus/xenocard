@@ -5,6 +5,7 @@ var characters: Array[String] = []
 var attributes: Array[Enum.Attribute] = []
 var zones: Array[Enum.Zone] = []
 var types: Array[Enum.Type] = []
+var attack_types: Array[Enum.AttackType] = []
 var owner: int = -1
 var relation: int = -1
 var formula: String = ""
@@ -44,6 +45,8 @@ func _init(filter_str: String):
 						print("Invalid zone filter '%s'" % value)
 			"type":
 				types.push_back(Enum.type_from_string(value))
+			"attacktype":
+				attack_types.push_back(Enum.attack_type_from_string(value))
 			"owner":
 				match value.to_lower():
 					"self":
@@ -87,6 +90,8 @@ func is_valid(player: Player, card: Card, variables: Dictionary = {}):
 	if not check_multiple(card.zone, zones):
 		return false
 	if not check_multiple(card.get_type(), types):
+		return false
+	if not check_multiple(card.get_attack_type(), attack_types):
 		return false
 	if owner == 0 and card.owner != player:
 		return false

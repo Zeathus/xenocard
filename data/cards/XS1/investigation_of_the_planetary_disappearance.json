@@ -14,7 +14,8 @@
 		{
 			"trigger": "activate",
 			"effect": [
-				
+				"Excavate(5,any)",
+				"Discard(self)"
 			]
 		}
 	]
