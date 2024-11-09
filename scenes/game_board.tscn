@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dj6tetacep1ij" path="res://scenes/game_hand.tscn" id="3_t4rtj"]
 [ext_resource type="Script" path="res://scenes/mouse.gd" id="4_u1qqp"]
 [ext_resource type="PackedScene" uid="uid://bqt532l8n2w8u" path="res://objects/card_details.tscn" id="5_1q0hl"]
-[ext_resource type="PackedScene" uid="uid://dx5fpm3ycrj0b" path="res://objects/card_display.tscn" id="6_akm2x"]
+[ext_resource type="PackedScene" uid="uid://dosulntiwpmvw" path="res://objects/card_display.tscn" id="6_akm2x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_02nxv"]
 size = Vector2(240, 50)

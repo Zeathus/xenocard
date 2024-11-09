@@ -14,8 +14,19 @@
 		{
 			"trigger": "activate",
 			"effect": [
-				
-			]
+				"ApplyEffectToPlayer",
+				"Discard(self)"
+			],
+			"applied_effect": {
+				"trigger": "passive",
+				"duration": 1,
+				"effect": [
+					"ModifyBattleDamageFrom(-9999,type=battle)"
+				],
+				"on_end": [
+					"ExtendIfTurnPlayer(self)"
+				]
+			}
 		}
 	]
 }

@@ -35,8 +35,10 @@ func process(delta):
 		return
 	match state:
 		0: 
+			# Update duration of card effects
 			for card in game_board.get_all_field_cards():
 				var to_erase = []
+				# Self-owned durations
 				for e in card.effects:
 					if e.duration == -1:
 						continue
@@ -56,6 +58,7 @@ func process(delta):
 				for e in to_erase:
 					card.effects.erase(e)
 				to_erase.clear()
+				# Applied durations
 				for e in card.applied_effects:
 					if e.duration == -1:
 						continue
@@ -72,6 +75,26 @@ func process(delta):
 							to_erase.push_back(e)
 				for e in to_erase:
 					card.applied_effects.erase(e)
+				to_erase.clear()
+				# Player applied effects
+				for p: Player in [player, player.get_enemy()]:
+					for e in p.applied_effects:
+						if e.duration == -1:
+							continue
+						e.duration -= 1
+						if e.duration == 0:
+							for on_end in e.effects_on_end:
+								on_end.effect()
+								for event in e.events:
+									queue_event(event)
+								e.events.clear()
+								if e.duration != 0:
+									break
+							if e.duration == 0:
+								to_erase.push_back(e)
+					for e in to_erase:
+						p.applied_effects.erase(e)
+					to_erase.clear()
 		1:
 			for card in player.field.get_all_cards():
 				if card.downed and card.downed_turn != card.turn_count:

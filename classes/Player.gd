@@ -12,6 +12,7 @@ var game_board: GameBoard
 var used_one_battle_card_per_turn: bool
 var used_one_situation_card_per_turn: bool
 var controller: Controller
+var applied_effects: Array[CardEffect]
 
 func _init(id: int, deck: Deck, field: GameField, hand: GameHand, game_board: GameBoard):
 	self.id = id
@@ -68,6 +69,10 @@ func recover(amt: int) -> int:
 	return recovered
 
 func take_damage(game_board: GameBoard, attacker: Card, damage: int, source: Damage):
+	for e in applied_effects:
+		damage = e.take_damage(game_board, attacker, damage, source)
+	if damage < 0:
+		damage = 0
 	for i in range(damage):
 		var card: Card = self.deck.draw(false)
 		if card:
