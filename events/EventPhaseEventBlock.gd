@@ -65,11 +65,7 @@ func on_hand_card_selected(hand: GameHand, card: Card):
 	if player.has_controller():
 		return
 	if card.selectable(game_board):
-		hide_selectable()
-		queue_event(EventAnimation.new(game_board, AnimationEffectStart.new(card)))
-		card.trigger_effects(Enum.Trigger.ACTIVATE, self, {"block": block})
-		queue_event(EventAnimation.new(game_board, AnimationEffectEnd.new(card)))
-		in_sub_event = true
+		play(card)
 
 func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, index: int):
 	if pass_to_child("on_zone_selected", [field, zone_owner, zone, index]):
@@ -78,11 +74,18 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, ind
 		return
 	var card: Card = field.get_card(zone, index)
 	if card and card.selectable(game_board):
-		hide_selectable()
-		queue_event(EventAnimation.new(game_board, AnimationEffectStart.new(card)))
-		card.trigger_effects(Enum.Trigger.ACTIVATE, self, {"block": block})
-		queue_event(EventAnimation.new(game_board, AnimationEffectEnd.new(card)))
-		in_sub_event = true
+		play(card)
+
+func play(card: Card):
+	hide_selectable()
+	var cost_to_pay = card.get_cost()
+	var cost_paid: int = player.pay_cost(cost_to_pay)
+	for i in range(cost_paid):
+		queue_event(EventPayCost.new(game_board, player))
+	queue_event(EventAnimation.new(game_board, AnimationEffectStart.new(card)))
+	card.trigger_effects(Enum.Trigger.ACTIVATE, self, {"block": block})
+	queue_event(EventAnimation.new(game_board, AnimationEffectEnd.new(card)))
+	in_sub_event = true
 
 func on_end_phase_pressed():
 	if not has_children():
