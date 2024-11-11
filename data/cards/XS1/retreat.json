@@ -13,8 +13,13 @@
 	"effects": [
 		{
 			"trigger": "activate",
+			"requirement": [
+				"Formula(count(owner=enemy;zone=standby)<4)",
+				"Formula(count(owner=enemy;zone=battlefield)>0)"
+			],
 			"effect": [
-				
+				"RetreatTarget(owner=enemy;zone=battlefield)",
+				"Discard(self)"
 			]
 		}
 	]

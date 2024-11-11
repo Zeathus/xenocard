@@ -13,8 +13,13 @@
 	"effects": [
 		{
 			"trigger": "activate",
+			"requirement": [
+				"Formula(countjunk(owner=self;attribute=human)>1)"
+			],
 			"effect": [
-				
+				"SearchJunk(owner=self;attribute=human)",
+				"SearchJunk(owner=self;attribute=human)",
+				"Discard(self)"
 			]
 		}
 	]
