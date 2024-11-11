@@ -13,9 +13,19 @@
 	"effects": [
 		{
 			"trigger": "activate",
+			"requirement": [
+				"Phase(event)"
+			],
 			"effect": [
-				
-			]
+				"ApplyEffectToTarget(owner=self;type=battle)"
+			],
+			"applied_effect": {
+				"trigger": "passive",
+				"duration": 1,
+				"effect": [
+					"DoubleNonHomingOrPenetratingATK"
+				]
+			}
 		}
 	]
 }

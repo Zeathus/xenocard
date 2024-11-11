@@ -81,6 +81,9 @@ func get_atk(atk: int) -> int:
 func get_atk_against(target, atk: int) -> int:
 	return atk
 
+func get_atk_multiplier(multiplier: float) -> float:
+	return multiplier
+
 func get_atk_time(time: int) -> int:
 	return time
 

@@ -35,6 +35,10 @@ func set_host(_host: Card) -> CardEffect:
 	host = _host
 	return self
 
+func set_target(_target: Card):
+	for e in effects:
+		e.target = _target
+
 func trigger_by(t: Enum.Trigger):
 	return trigger == t
 
@@ -161,6 +165,11 @@ func get_atk_against(target, atk: int) -> int:
 	for e in effects:
 		atk = e.get_atk_against(target, atk)
 	return atk
+
+func get_atk_multiplier(multiplier: float) -> float:
+	for e in effects:
+		multiplier = e.get_atk_multiplier(multiplier)
+	return multiplier
 
 func get_atk_time(time: int) -> int:
 	for e in effects:

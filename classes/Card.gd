@@ -480,10 +480,13 @@ func get_base_atk() -> int:
 
 func get_atk() -> int:
 	var ret = get_base_atk()
+	var multiplier: float = 1.0
 	for e in get_effects(Enum.Trigger.PASSIVE):
 		ret = e.get_atk(ret)
+		multiplier = e.get_atk_multiplier(multiplier)
 	if ret < 0:
 		ret = 0
+	ret *= int(floor(multiplier))
 	return ret
 
 # Opponent is either Card or Player
