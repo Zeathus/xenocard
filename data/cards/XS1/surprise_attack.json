@@ -14,7 +14,8 @@
 		{
 			"trigger": "activate",
 			"effect": [
-				
+				"DamageTarget(2,owner=enemy;zone=battlefield)",
+				"Discard(self)"
 			]
 		}
 	]

@@ -14,7 +14,8 @@
 		{
 			"trigger": "activate",
 			"effect": [
-				
+				"DrawFromLost(2)",
+				"Discard(self)"
 			]
 		}
 	]

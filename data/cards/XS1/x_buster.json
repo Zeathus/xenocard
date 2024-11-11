@@ -14,7 +14,8 @@
 		{
 			"trigger": "activate",
 			"effect": [
-				
+				"Damage(1,type=battle)",
+				"Discard(self)"
 			]
 		}
 	]
