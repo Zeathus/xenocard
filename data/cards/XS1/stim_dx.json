@@ -17,7 +17,8 @@
 				"Phase(event)"
 			],
 			"effect": [
-				"ApplyEffectToTarget(owner=self;type=battle)"
+				"ApplyEffectToTarget(owner=self;type=battle)",
+				"Discard(self)"
 			],
 			"applied_effect": {
 				"trigger": "passive",

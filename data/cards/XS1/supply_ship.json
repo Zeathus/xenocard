@@ -13,7 +13,8 @@
 		{
 			"trigger": "activate",
 			"effect": [
-				
+				"Recover(5)",
+				"Discard(self)"
 			]
 		}
 	]

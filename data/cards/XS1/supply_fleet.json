@@ -13,7 +13,8 @@
 		{
 			"trigger": "activate",
 			"effect": [
-				
+				"Recover(count(owner=self;type=battle))",
+				"Discard(self)"
 			]
 		}
 	]
