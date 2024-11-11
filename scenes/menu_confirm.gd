@@ -36,6 +36,11 @@ func finish():
 	if handler != null:
 		handler.call(answer)
 
+func set_yes_only():
+	$YesButton.visible = false
+	$NoButton.visible = false
+	$OKButton.visible = true
+
 func _on_yes_button_pressed():
 	answer = true
 	done = true

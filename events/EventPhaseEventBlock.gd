@@ -83,6 +83,7 @@ func play(card: Card):
 	for i in range(cost_paid):
 		queue_event(EventPayCost.new(game_board, player))
 	queue_event(EventAnimation.new(game_board, AnimationEffectStart.new(card)))
+	queue_event(EventCounter.new(game_board, player.get_enemy(), card))
 	card.trigger_effects(Enum.Trigger.ACTIVATE, self, {"block": block})
 	queue_event(EventAnimation.new(game_board, AnimationEffectEnd.new(card)))
 	in_sub_event = true

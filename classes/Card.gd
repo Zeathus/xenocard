@@ -180,10 +180,21 @@ func trigger_effects(trigger: Enum.Trigger, event: Event, variables: Dictionary 
 func has_event_effect() -> bool:
 	return len(get_effects(Enum.Trigger.ACTIVATE)) > 0
 
+func has_counter_effect() -> bool:
+	return len(get_effects(Enum.Trigger.COUNTER)) > 0
+
 func can_activate_event_effect() -> bool:
 	if downed or not has_event_effect():
 		return false
 	for e in get_effects(Enum.Trigger.ACTIVATE):
+		if not e.has_valid_targets({"self": self}):
+			return false
+	return true
+
+func can_activate_counter_effect() -> bool:
+	if downed or not has_counter_effect():
+		return false
+	for e in get_effects(Enum.Trigger.COUNTER):
 		if not e.has_valid_targets({"self": self}):
 			return false
 	return true
@@ -257,8 +268,12 @@ func can_move() -> bool:
 	return true
 
 func selectable(game_board: GameBoard) -> bool:
-	if game_board.get_turn_player() != owner:
-		return false
+	if game_board.countering_player != null:
+		if game_board.countering_player != owner:
+			return false
+	else:
+		if game_board.get_turn_player() != owner:
+			return false
 	match game_board.turn_phase:
 		Enum.Phase.MOVE:
 			if self.zone != Enum.Zone.STANDBY and self.zone != Enum.Zone.BATTLEFIELD:
@@ -281,10 +296,16 @@ func selectable(game_board: GameBoard) -> bool:
 					return false
 				if self.e_mark:
 					return false
-			if not has_event_effect():
-				return false
-			if not can_activate_event_effect():
-				return false
+			if game_board.countering_player != null:
+				if not has_counter_effect():
+					return false
+				if not can_activate_counter_effect():
+					return false
+			else:
+				if not has_event_effect():
+					return false
+				if not can_activate_event_effect():
+					return false
 			return true
 		Enum.Phase.SET:
 			if not requirements_met(game_board):

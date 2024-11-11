@@ -13,6 +13,7 @@ var help: String
 var menu = null
 var wait_for_finish: bool = false
 var card_preview: Card
+var yes_only: bool = false
 
 func _init(_game_board: GameBoard, _player: Player, _message: String, _on_yes, _on_no, _help: String="", _card: Card=null):
 	super(_game_board)
@@ -29,6 +30,9 @@ func _init(_game_board: GameBoard, _player: Player, _message: String, _on_yes, _
 	help = _help
 	card_preview = _card
 
+func set_yes_only():
+	yes_only = true
+
 func get_name() -> String:
 	return "Confirm"
 
@@ -40,6 +44,8 @@ func on_start():
 	menu.set_help(help)
 	menu.set_card(card_preview)
 	menu.set_handler(handle_answer)
+	if yes_only:
+		menu.set_yes_only()
 	game_board.add_menu(menu)
 
 func on_finish():

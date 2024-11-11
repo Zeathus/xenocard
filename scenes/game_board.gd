@@ -15,6 +15,7 @@ var free_menu = null
 var phase_effects: Dictionary
 var player_options: Array[Dictionary] = []
 var game_options: Dictionary = {}
+var countering_player: Player = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

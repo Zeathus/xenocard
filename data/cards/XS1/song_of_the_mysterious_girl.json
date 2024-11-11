@@ -8,7 +8,7 @@
 	"requirement": {
 		"field": ["gnosis", "any"]
 	},
-	"text": "Neutralizes the effect of the enemy's event card. The neutralized card is discarded.",
+	"text": "Neutralizes the effect of an enemy's event card. The neutralized card is discarded.",
 	"effects": [
 		{
 			"trigger": "counter",
