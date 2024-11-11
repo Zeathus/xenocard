@@ -29,7 +29,9 @@ func on_start():
 		queue_event(EventDestroy.new(game_board, attacker, target.equipped_weapon, source))
 		target.unequip()
 	if target.equipped_by:
-		target.equipped_by.unequip()
+		if target.equipped_by.equipped_weapon == target:
+			target.equipped_by.unequip()
+		target.equipped_by = null
 	var destination = target.owner.field.get_junk_node()
 	for e in target.get_effects(Enum.Trigger.PASSIVE):
 		match e.redirect_when_destroyed(attacker, source):
