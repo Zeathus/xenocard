@@ -83,6 +83,7 @@ func play(new_zone: Enum.Zone, index: int):
 	to_set.instance.global_position = real_pos
 	to_set.zone = new_zone
 	to_set.zone_index = index
+	game_board.refresh()
 
 func handle_occupied_zone(zone: Enum.Zone, index: int):
 	for e in to_set.get_effects(Enum.Trigger.PASSIVE):

@@ -14,7 +14,8 @@
 		{
 			"trigger": "activate",
 			"effect": [
-				
+				"PlayJunkTop(type=situation)",
+				"Discard(self)"
 			]
 		}
 	]

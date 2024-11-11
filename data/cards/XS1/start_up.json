@@ -13,7 +13,8 @@
 		{
 			"trigger": "activate",
 			"effect": [
-				
+				"UndownTarget(owner=self;type=battle;downed=true)",
+				"Discard(self)"
 			]
 		}
 	]
