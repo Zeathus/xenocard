@@ -14,7 +14,8 @@
 		{
 			"trigger": "counter",
 			"effect": [
-				
+				"Neutralize",
+				"Discard(self)"
 			]
 		}
 	]
