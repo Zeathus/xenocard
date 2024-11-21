@@ -44,6 +44,9 @@ func _handle_request(action: Action, args: Array) -> bool:
 		Action.DISCARD:
 			if do_discard(args[0]):
 				return true
+		Action.COUNTER:
+			if do_counter():
+				return true
 	return false
 
 func do_set_battle_card() -> bool:
@@ -169,6 +172,26 @@ func do_activate(blocking: bool):
 			continue
 		score += get_base_score(card)
 		score += get_effect_score(card, Enum.Trigger.ACTIVATE)
+		if score > best_score:
+			best_card = card
+			best_score = score
+	if best_score > 0:
+		response_args = [best_card]
+		return true
+	return false
+
+func do_counter():
+	var best_card: Card = null
+	var best_score: int = 0
+	for card in player.hand.cards:
+		if card.get_type() != Enum.Type.EVENT:
+			continue
+		if not card.has_counter_effect():
+			continue
+		var score: int = 0
+		if not card.selectable(game_board):
+			continue
+		score += 10
 		if score > best_score:
 			best_card = card
 			best_score = score

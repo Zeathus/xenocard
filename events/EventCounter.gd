@@ -23,8 +23,6 @@ func get_name() -> String:
 
 func on_start():
 	game_board.countering_player = player
-	if player.has_controller():
-		return
 	can_counter = false
 	for c in player.hand.cards:
 		if c not in chain and c.selectable(game_board):
@@ -35,6 +33,8 @@ func on_start():
 			if c not in chain and c.selectable(game_board):
 				can_counter = true
 				break
+	if player.has_controller():
+		return
 	var message = "The enemy played an Event card"
 	var help_text = \
 		"Do you want to use a card to counter the enemy Event card?" \
@@ -76,7 +76,15 @@ func process(delta):
 			show_selectable()
 			state = 2
 		2:
-			pass
+			if player.has_controller():
+				if not player.controller.is_waiting():
+					if player.controller.has_response():
+						player.controller.receive()
+					else:
+						player.controller.request(
+							[Controller.Action.COUNTER],
+							[func(x): play(x)]
+						)
 		3:
 			finish()
 
