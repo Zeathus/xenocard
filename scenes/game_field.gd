@@ -212,10 +212,13 @@ func _on_junk_input_event(viewport, event, shape_idx):
 		return
 	if event is InputEventMouseButton:
 		if event.pressed:
-			if event.button_index == 1 or event.button_index == 2:
+			if event.button_index == 1:
 				var tscn = load("res://scenes/menu_browse_cards.tscn")
 				var scene = tscn.instantiate()
 				scene.set_message("Viewing Junk Pile")
 				scene.set_cards(player.junk.cards)
 				game_board.add_menu(scene, 1)
 				game_board.free_menu = scene
+			elif event.button_index == 2:
+				if player.junk.top():
+					game_board.show_details(player.junk.top())

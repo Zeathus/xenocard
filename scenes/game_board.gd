@@ -224,10 +224,13 @@ func get_all_battlefield_cards() -> Array[Card]:
 func add_phase_effect(phase: Enum.Phase, effect: Effect):
 	phase_effects[phase].push_back(effect)
 
-func _on_card_show_details(card):
+func show_details(card):
 	$CardDetails.visible = true
 	$CardDetails/CardNode.turn_up()
 	$CardDetails/CardNode.show_card(card.data)
+
+func _on_card_show_details(card):
+	show_details(card)
 
 func _on_card_hovered(card):
 	$QuickDetails/Left.visible = false

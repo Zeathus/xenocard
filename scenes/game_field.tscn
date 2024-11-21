@@ -315,3 +315,4 @@ vertical_alignment = 1
 [connection signal="selected" from="Situation/Zone3" to="." method="_on_zone_selected"]
 [connection signal="selected" from="Situation/Zone4" to="." method="_on_zone_selected"]
 [connection signal="input_event" from="Junk" to="." method="_on_junk_input_event"]
+[connection signal="mouse_entered" from="Junk" to="." method="_on_junk_mouse_entered"]
