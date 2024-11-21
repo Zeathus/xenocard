@@ -78,6 +78,13 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, ind
 		play(card)
 
 func play(card: Card):
+	if card.instance.is_face_down() and card.zone == Enum.Zone.HAND:
+		for i in range(player.hand.size()):
+			if player.hand.cards[i].instance.is_face_down():
+				player.hand.cards[player.hand.cards.find(card)] = player.hand.cards[i]
+				player.hand.cards[i] = card
+				player.hand.refresh()
+				break
 	hide_selectable()
 	var cost_to_pay = card.get_cost()
 	var cost_paid: int = player.pay_cost(cost_to_pay)
