@@ -45,7 +45,7 @@ func _handle_request(action: Action, args: Array) -> bool:
 			if do_discard(args[0]):
 				return true
 		Action.COUNTER:
-			if do_counter():
+			if do_counter(args[0]):
 				return true
 	return false
 
@@ -180,11 +180,13 @@ func do_activate(blocking: bool):
 		return true
 	return false
 
-func do_counter():
+func do_counter(chain: Array[Card]):
 	var best_card: Card = null
 	var best_score: int = 0
 	for card in player.hand.cards:
 		if card.get_type() != Enum.Type.EVENT:
+			continue
+		if card in chain:
 			continue
 		if not card.has_counter_effect():
 			continue

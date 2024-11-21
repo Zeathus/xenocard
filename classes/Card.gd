@@ -44,6 +44,7 @@ var effects: Array[CardEffect]
 var applied_effects: Array[CardEffect]
 var turn_count: int
 var modify_for_set: Array[Callable] = []
+var revealed: bool = false
 
 func _init(_id: String):
 	self.data = CardData.get_data(_id)
@@ -63,6 +64,7 @@ func reset():
 	atk_timer = 0
 	e_mark = false
 	downed = false
+	revealed = false
 	turn_count = 0
 	init_effects(owner.game_board)
 	applied_effects.clear()

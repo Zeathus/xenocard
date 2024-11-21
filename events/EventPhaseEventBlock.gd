@@ -80,11 +80,14 @@ func play(card: Card):
 	hide_selectable()
 	var cost_to_pay = card.get_cost()
 	var cost_paid: int = player.pay_cost(cost_to_pay)
+	card.revealed = true
+	if card.instance.is_face_down():
+		queue_event(EventAnimation.new(game_board, AnimationFlip.new(card)))
 	for i in range(cost_paid):
 		queue_event(EventPayCost.new(game_board, player))
-	card.instance.turn_up()
 	queue_event(EventAnimation.new(game_board, AnimationEffectStart.new(card)))
-	queue_event(EventCounter.new(game_board, player.get_enemy(), card))
+	if card.get_type() == Enum.Type.EVENT:
+		queue_event(EventCounter.new(game_board, player.get_enemy(), card))
 	card.trigger_effects(Enum.Trigger.ACTIVATE, self, {"block": block})
 	queue_event(EventAnimation.new(game_board, AnimationEffectEnd.new(card)))
 	in_sub_event = true

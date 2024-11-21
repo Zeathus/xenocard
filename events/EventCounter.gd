@@ -83,7 +83,8 @@ func process(delta):
 					else:
 						player.controller.request(
 							[Controller.Action.COUNTER],
-							[func(x): play(x)]
+							[func(x): play(x)],
+							[[chain]]
 						)
 		3:
 			finish()
@@ -127,6 +128,8 @@ func play(card: Card):
 	hide_selectable()
 	var cost_to_pay = card.get_cost()
 	var cost_paid: int = player.pay_cost(cost_to_pay)
+	if card.instance.is_face_down():
+		queue_event(EventAnimation.new(game_board, AnimationFlip.new(card)))
 	for i in range(cost_paid):
 		queue_event(EventPayCost.new(game_board, player))
 	queue_event(EventAnimation.new(game_board, AnimationEffectStart.new(card)))

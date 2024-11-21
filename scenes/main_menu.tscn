@@ -33,6 +33,7 @@ text = "Exit"
 metadata/_edit_use_anchors_ = true
 
 [node name="ButtonTest" type="Button" parent="."]
+visible = false
 offset_left = -944.0
 offset_top = 494.0
 offset_right = -846.0

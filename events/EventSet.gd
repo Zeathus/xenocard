@@ -71,6 +71,7 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, ind
 				targets.push_back(occupant)
 				update_valid_zones()
 	elif to_set.can_play(game_board, zone, index):
+		var flip = to_set.instance.is_face_down()
 		play(zone, index)
 		for e in to_set.effects:
 			e.handle_set_targets(targets)
@@ -82,7 +83,9 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, ind
 				new_pos += Vector2(28, 42)
 			else:
 				new_pos -= Vector2(28, 42)
-		var anim: GameAnimation = AnimationMove.new(to_set.instance, new_pos, 30)
+		if flip:
+			to_set.instance.turn_down()
+		var anim: GameAnimation = AnimationMove.new(to_set.instance, new_pos, 30, flip)
 		if to_set.get_type() == Enum.Type.BATTLE and to_set.get_attribute() == Enum.Attribute.WEAPON:
 			anim.target_scale = Vector2(0.075, 0.075)
 		else:
