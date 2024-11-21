@@ -15,7 +15,7 @@
 		"cost": 1,
 		"field": ["human", "human", "machine"]
 	},
-	"text": "Exclusively or Lv 10 KOS-MOS.\nCan only be played when both KOS-MOS and Shion are on the battlefield.\nAttacks every other turn.",
+	"text": "Exclusively for Lv 10 KOS-MOS.\nCan only be played when both KOS-MOS and Shion are on the battlefield.\nAttacks every other turn.",
 	"effects": [
 		{
 			"trigger": "passive",
