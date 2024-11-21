@@ -73,7 +73,8 @@ func process(delta):
 				menu.finish()
 				state = 1 if can_counter else 3
 		1:
-			show_selectable()
+			if not player.has_controller():
+				show_selectable()
 			state = 2
 		2:
 			if player.has_controller():

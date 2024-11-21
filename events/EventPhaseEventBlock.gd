@@ -28,7 +28,8 @@ func process(delta):
 		return
 	if in_sub_event:
 		in_sub_event = false
-		show_selectable()
+		if not player.has_controller():
+			show_selectable()
 	if player.has_controller() and not player.controller.is_waiting():
 		if player.controller.has_response():
 			player.controller.receive()
