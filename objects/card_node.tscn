@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dpm1bqbevvyb7"]
+[gd_scene load_steps=24 format=3 uid="uid://dpm1bqbevvyb7"]
 
 [ext_resource type="Script" path="res://objects/card_node.gd" id="1_wdlaa"]
 [ext_resource type="PackedScene" uid="uid://dosulntiwpmvw" path="res://objects/card_display.tscn" id="2_2gm7b"]
@@ -45,14 +45,222 @@ font_size = 200
 outline_size = 64
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="Gradient" id="Gradient_4w84v"]
+offsets = PackedFloat32Array(0.170886, 1)
+colors = PackedColorArray(1, 0.596078, 0.580392, 1, 1, 1, 0.439216, 0)
+
+[sub_resource type="Curve" id="Curve_iqbsd"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0547091), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_qx77r"]
+offsets = PackedFloat32Array(0.185127, 1)
+colors = PackedColorArray(1, 0.596078, 0.580392, 1, 1, 1, 0.439216, 0)
+
+[sub_resource type="Gradient" id="Gradient_v0b87"]
+offsets = PackedFloat32Array(0, 0.212025, 0.90981, 1)
+colors = PackedColorArray(1, 1, 0.439216, 0, 1, 0.596078, 0.580392, 1, 1, 0, 0, 0.980392, 1, 0.596078, 0.580392, 0)
+
+[sub_resource type="Animation" id="Animation_kidbk"]
+resource_name = "AttackHand"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(3.605, 2.37841),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -900)]
+}
+
+[sub_resource type="Animation" id="Animation_yv15v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ParticlesHandHit:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot:skew")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ParticlesHit:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ParticlesCharge:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_kyvp4"]
+resource_name = "HitByHand"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(0.25, 0.277392, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 150), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ParticlesHandHit:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot:skew")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0436332, -0.0872665, 0.0872665, -0.0436332, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_x1ulj"]
+resource_name = "HitByAttack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:skew")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.49012e-08, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0436332, -0.0872665, 0.0872665, -0.0436332, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ParticlesHit:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_3du7q"]
+resource_name = "AttackHand2"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2.37841, 1),
+"update": 0,
+"values": [Vector2(0, -900), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_242mx"]
+resource_name = "ChargeAttack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ParticlesCharge:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7tg7d"]
+_data = {
+"AttackHand": SubResource("Animation_kidbk"),
+"AttackHand2": SubResource("Animation_3du7q"),
+"ChargeAttack": SubResource("Animation_242mx"),
+"HitByAttack": SubResource("Animation_x1ulj"),
+"HitByHand": SubResource("Animation_kyvp4"),
+"RESET": SubResource("Animation_yv15v")
+}
+
 [node name="CardNode" type="Node2D"]
 script = ExtResource("1_wdlaa")
 
-[node name="Card" parent="." instance=ExtResource("2_2gm7b")]
+[node name="Pivot" type="Node2D" parent="."]
 
-[node name="Overlay" type="Node2D" parent="."]
+[node name="Card" parent="Pivot" instance=ExtResource("2_2gm7b")]
 
-[node name="EMark" type="Panel" parent="Overlay"]
+[node name="Overlay" type="Node2D" parent="Pivot"]
+
+[node name="EMark" type="Panel" parent="Pivot/Overlay"]
 visible = false
 offset_left = -400.0
 offset_top = -600.0
@@ -61,7 +269,7 @@ offset_bottom = 600.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4nfh4")
 
-[node name="Label" type="Label" parent="Overlay/EMark"]
+[node name="Label" type="Label" parent="Pivot/Overlay/EMark"]
 layout_mode = 0
 offset_left = 585.0
 offset_top = 105.0
@@ -71,7 +279,7 @@ theme_override_fonts/font = SubResource("FontVariation_dhdjw")
 text = "E"
 label_settings = SubResource("LabelSettings_hxlnm")
 
-[node name="Downed" type="Panel" parent="Overlay"]
+[node name="Downed" type="Panel" parent="Pivot/Overlay"]
 visible = false
 offset_left = -400.0
 offset_top = -600.0
@@ -80,7 +288,7 @@ offset_bottom = 600.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8f86m")
 
-[node name="Label" type="Label" parent="Overlay/Downed"]
+[node name="Label" type="Label" parent="Pivot/Overlay/Downed"]
 layout_mode = 0
 offset_top = 85.0
 offset_right = 799.0
@@ -91,7 +299,7 @@ label_settings = SubResource("LabelSettings_0q25d")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Duration" type="Label" parent="Overlay"]
+[node name="Duration" type="Label" parent="Pivot/Overlay"]
 visible = false
 offset_left = -93.0
 offset_top = -225.0
@@ -102,7 +310,7 @@ text = "0 ◷"
 label_settings = SubResource("LabelSettings_0halo")
 horizontal_alignment = 2
 
-[node name="HelpText" type="Label" parent="."]
+[node name="HelpText" type="Label" parent="Pivot"]
 visible = false
 offset_left = -1500.0
 offset_top = -1030.0
@@ -113,7 +321,7 @@ text = "Help Text"
 label_settings = SubResource("LabelSettings_fyayn")
 horizontal_alignment = 1
 
-[node name="Arrow" type="Label" parent="HelpText"]
+[node name="Arrow" type="Label" parent="Pivot/HelpText"]
 layout_mode = 0
 offset_left = 1355.0
 offset_top = 180.0
@@ -124,7 +332,7 @@ text = "⮟"
 label_settings = SubResource("LabelSettings_fyayn")
 horizontal_alignment = 1
 
-[node name="SelectBorder" type="Line2D" parent="."]
+[node name="SelectBorder" type="Line2D" parent="Pivot"]
 visible = false
 scale = Vector2(1.05, 1.05)
 points = PackedVector2Array(-430, -630, -430, -420, -430, -210, -430, 0, -430, 210, -430, 420, -430, 630, -215, 630, 0, 630, 215, 630, 430, 630, 430, 420, 430, 210, 430, 0, 430, -210, 430, -420, 430, -630, 215, -630, 0, -630, -215, -630)
@@ -135,7 +343,7 @@ joint_mode = 2
 antialiased = true
 script = ExtResource("4_skjdn")
 
-[node name="ValidBorder" type="Line2D" parent="."]
+[node name="ValidBorder" type="Line2D" parent="Pivot"]
 visible = false
 scale = Vector2(1.05, 1.05)
 points = PackedVector2Array(-430, -630, -430, -420, -430, -210, -430, 0, -430, 210, -430, 420, -430, 630, -215, 630, 0, 630, 215, 630, 430, 630, 430, 420, 430, 210, 430, 0, 430, -210, 430, -420, 430, -630, 215, -630, 0, -630, -215, -630)
@@ -146,8 +354,65 @@ joint_mode = 2
 antialiased = true
 script = ExtResource("4_skjdn")
 
-[node name="EffectIndicator" parent="." instance=ExtResource("5_5egaa")]
+[node name="EffectIndicator" parent="Pivot" instance=ExtResource("5_5egaa")]
 visible = false
 
-[connection signal="on_hover" from="Card" to="." method="_on_card_on_hover"]
-[connection signal="selected" from="Card" to="." method="_on_card_selected"]
+[node name="ParticlesHandHit" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 128
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.85
+emission_shape = 3
+emission_rect_extents = Vector2(400, 1)
+direction = Vector2(0, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 800.0
+initial_velocity_max = 1000.0
+radial_accel_min = 1600.0
+radial_accel_max = 2000.0
+scale_amount_min = 2.0
+scale_amount_max = 6.0
+color_ramp = SubResource("Gradient_4w84v")
+
+[node name="ParticlesHit" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 128
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.85
+emission_shape = 1
+emission_sphere_radius = 64.0
+direction = Vector2(0, 1)
+spread = 180.0
+gravity = Vector2(0, 0)
+radial_accel_min = 2000.0
+radial_accel_max = 2400.0
+radial_accel_curve = SubResource("Curve_iqbsd")
+scale_amount_min = 2.0
+scale_amount_max = 6.0
+color_ramp = SubResource("Gradient_qx77r")
+
+[node name="ParticlesCharge" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 64
+lifetime = 0.5
+direction = Vector2(0, 1)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 3500.0
+initial_velocity_max = 3500.0
+radial_accel_min = -2250.0
+radial_accel_max = -2250.0
+scale_amount_min = 2.0
+scale_amount_max = 6.0
+color_ramp = SubResource("Gradient_v0b87")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7tg7d")
+}
+
+[connection signal="on_hover" from="Pivot/Card" to="." method="_on_card_on_hover"]
+[connection signal="selected" from="Pivot/Card" to="." method="_on_card_selected"]

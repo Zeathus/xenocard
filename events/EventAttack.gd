@@ -28,13 +28,15 @@ func on_start():
 	if len(targets) == 0:
 		attack_done = true
 		return
-	var anim: AnimationAttack = AnimationAttack.new(attacker.instance, anim_targets)
+	var anim: AnimationAttack = AnimationAttack.new(attacker.instance, anim_targets, attacker.get_atk(), attacker.get_attack_type())
 	queue_event(EventAnimation.new(game_board, anim))
 
 func on_finish():
 	game_board.refresh()
 
 func process(delta):
+	if attack_done and is_animating():
+		return
 	sort_children()
 	if pass_to_child("process", [delta]):
 		return
@@ -53,6 +55,20 @@ func process(delta):
 func attack():
 	if len(targets) == 0:
 		return
+	var atk = attacker.get_atk()
+	if attacker.get_attack_type() == Enum.AttackType.HAND:
+		if atk <= 3:
+			game_board.play_se("hit_small" + str(randi_range(1, 2)))
+		else:
+			game_board.play_se("hit_medium" + str(randi_range(1, 2)))
+	else:
+		game_board.play_se("explosion_small" + str(randi_range(1, 4)))
+		#if atk <= 2:
+			#game_board.play_se("explosion_small")
+		#elif atk <= 7:
+			#game_board.play_se("explosion_medium")
+		#else:
+			#game_board.play_se("explosion_massive")
 	for t in targets:
 		var behind_target = t.get_behind()
 		var damage_event: EventDamage = EventDamage.new(game_board, attacker, t, attacker.get_atk_against(t), Damage.new(Damage.BATTLE | Damage.NORMAL_ATTACK))
@@ -82,3 +98,11 @@ func penetrating_attack(game_board: GameBoard, target_to_hit, remaining_damage: 
 	if remaining_damage > 0 and behind_target and attacker.penetrates():
 		penetrating_attack(game_board, behind_target, remaining_damage)
 	return true
+
+func is_animating() -> bool:
+	if attacker.instance and attacker.instance.animating():
+		return true
+	for t in targets:
+		if t.is_card() and t.instance and t.instance.animating():
+			return true
+	return false

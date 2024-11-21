@@ -7,6 +7,7 @@ signal on_hover(card: Card)
 var original_z: int
 var in_motion: bool = false
 var card: Card
+var disable_in_motion_after_animation: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,14 +16,14 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	z_index = original_z
-	if $Card.is_hovering:
-		$Overlay.rotation = -global_rotation
+	if $Pivot/Card.is_hovering:
+		$Pivot/Overlay.rotation = -global_rotation
 		z_index += 1
 	else:
-		$Overlay.rotation = 0
-	$Overlay.scale = $Card/Content.scale
-	$SelectBorder.scale = $Card/Content.scale
-	$ValidBorder.scale = $Card/Content.scale
+		$Pivot/Overlay.rotation = 0
+	$Pivot/Overlay.scale = $Pivot/Card/Content.scale
+	$Pivot/SelectBorder.scale = $Pivot/Card/Content.scale
+	$Pivot/ValidBorder.scale = $Pivot/Card/Content.scale
 	if card:
 		if card.zone == Enum.Zone.HAND:
 			z_index += 20
@@ -30,51 +31,61 @@ func _process(delta):
 			z_index += 2
 	if in_motion:
 		z_index += 30
+	if disable_in_motion_after_animation and not animating():
+		in_motion = false
+		disable_in_motion_after_animation = false
 
 func load_card(card: Card):
 	self.card = card
-	$Card.show_card(card.data)
+	$Pivot/Card.show_card(card.data)
 
 func is_face_down() -> bool:
-	return $Card.is_face_down()
+	return $Pivot/Card.is_face_down()
 
 func is_face_up() -> bool:
-	return $Card.is_face_up()
+	return $Pivot/Card.is_face_up()
 
 func turn_down():
-	$Card.turn_down()
+	$Pivot/Card.turn_down()
 
 func turn_up():
-	$Card.turn_up()
+	$Pivot/Card.turn_up()
 
 func flip():
-	$Card.flip()
+	$Pivot/Card.flip()
 
 func set_e_mark(val: bool):
-	$Overlay/EMark.visible = val
+	$Pivot/Overlay/EMark.visible = val
 
 func set_downed(val: bool):
-	$Overlay/Downed.visible = val
+	$Pivot/Overlay/Downed.visible = val
 
 func set_duration(val: int):
 	if val <= 0:
-		$Overlay/Duration.visible = false
+		$Pivot/Overlay/Duration.visible = false
 	else:
-		$Overlay/Duration.visible = true
-		$Overlay/Duration.text = "%d ◷" % val
+		$Pivot/Overlay/Duration.visible = true
+		$Pivot/Overlay/Duration.text = "%d ◷" % val
 
 func set_help_text(text: String):
-	$HelpText.visible = true
-	$HelpText.text = text
+	$Pivot/HelpText.visible = true
+	$Pivot/HelpText.text = text
 
 func set_in_motion(val: bool):
 	in_motion = val
 
 func hide_help_text():
-	$HelpText.visible = false
+	$Pivot/HelpText.visible = false
 
 func is_hovering() -> bool:
-	return $Card.is_hovering
+	return $Pivot/Card.is_hovering
+
+func play_animation(anim: String, speed_scale: float = 1.0):
+	$AnimationPlayer.speed_scale = speed_scale
+	$AnimationPlayer.play(anim)
+
+func animating() -> bool:
+	return $AnimationPlayer.is_playing()
 
 func _on_card_selected(button_index: int) -> void:
 	if button_index == 2:

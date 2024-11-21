@@ -132,6 +132,12 @@ offset_bottom = -472.0
 text = "Exit"
 metadata/_edit_use_anchors_ = true
 
+[node name="AudioStream1" type="AudioStreamPlayer2D" parent="."]
+
+[node name="AudioStream2" type="AudioStreamPlayer2D" parent="."]
+
+[node name="AudioStream3" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="zone_selected" from="FieldPlayer" to="." method="_on_zone_selected"]
 [connection signal="zone_selected" from="FieldEnemy" to="." method="_on_zone_selected"]
 [connection signal="pressed" from="Phases/EndPhase" to="." method="_on_end_phase_pressed"]

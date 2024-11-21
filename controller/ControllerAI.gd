@@ -361,7 +361,6 @@ func get_effect_score(card: Card, trigger: Enum.Trigger):
 	return score
 
 func get_target_score(card: Card, effect: CardEffect):
-	var variables: Dictionary = {"self": card}
 	var score = 0
 	for e in effect.effects:
 		score += e.get_target_score(card)
