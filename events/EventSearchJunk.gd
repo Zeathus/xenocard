@@ -48,7 +48,7 @@ func process(delta):
 				player.controller.receive()
 			else:
 				player.controller.request(
-					[Controller.Action.SEARCH],
+					[Controller.Action.SEARCH_JUNK],
 					[func(x, y): handler.call(x, y); wait_for_finish = true],
 					[[filter]]
 				)

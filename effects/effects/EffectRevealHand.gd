@@ -19,3 +19,11 @@ func reveal_hand(player: Player):
 	if players[1] and player == parent.host.owner.get_enemy():
 		return true
 	return false
+
+func get_effect_score(variables: Dictionary = {}) -> int:
+	var score = 0
+	if players[0]:
+		score -= 2
+	if players[1]:
+		score += 4
+	return score

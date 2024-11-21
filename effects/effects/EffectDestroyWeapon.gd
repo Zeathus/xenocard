@@ -18,3 +18,13 @@ func has_valid_targets(variables: Dictionary = {}) -> bool:
 		if filter.is_valid(parent.host.owner, t, variables) and t.equipped_weapon:
 			return true
 	return false
+
+func get_effect_score(variables: Dictionary = {}) -> int:
+	var score = 0
+	for c in parent.get_game_board().get_all_field_cards():
+		if filter.is_valid(parent.host.owner, c, variables):
+			if parent.host.owner == c.owner:
+				score -= c.get_atk()
+			else:
+				score += c.get_atk()
+	return score

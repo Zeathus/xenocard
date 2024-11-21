@@ -24,7 +24,8 @@ func _handle_request(action: Action, args: Array) -> bool:
 			if do_set_situation_card():
 				return true
 		Action.EVENT, Action.BLOCK:
-			pass
+			if do_activate(action == Action.BLOCK):
+				return true
 		Action.MOVE:
 			if do_move_card():
 				return true
@@ -32,10 +33,13 @@ func _handle_request(action: Action, args: Array) -> bool:
 			response_args = [true]
 			return true
 		Action.TARGET:
-			if do_target(args[0], args[1]):
+			if do_target(args[0], args[1], args[2]):
 				return true
 		Action.SEARCH:
 			if do_search(args[0]):
+				return true
+		Action.SEARCH_JUNK:
+			if do_search(args[0], true):
 				return true
 		Action.DISCARD:
 			if do_discard(args[0]):
@@ -117,7 +121,7 @@ func do_set_weapon_card() -> bool:
 			score += holder.hp
 			if card.get_atk() != 0:
 				var atk_score_diff = get_atk_score(card) - get_atk_score(holder)
-				if atk_score_diff == 0:
+				if atk_score_diff <= 0:
 					score = 0
 				else:
 					score += atk_score_diff
@@ -136,6 +140,41 @@ func do_set_weapon_card() -> bool:
 func do_set_situation_card() -> bool:
 	if len(player.field.get_situation_cards()) >= 4:
 		return false
+	for card in player.hand.cards:
+		if card.get_type() != Enum.Type.SITUATION:
+			continue
+		if not card.selectable(game_board):
+			continue
+		var exists: bool = false
+		for other in player.field.get_situation_cards():
+			if other.get_name() == card.get_name():
+				exists = true
+				break
+		if not exists:
+			for i in range(4):
+				if player.field.get_card(Enum.Zone.SITUATION, i) == null:
+					var targets: Array[Card] = []
+					response_args = [card, Enum.Zone.SITUATION, i, targets]
+					return true
+	return false
+
+func do_activate(blocking: bool):
+	var best_card: Card = null
+	var best_score: int = 0
+	for card in player.hand.cards:
+		if card.get_type() != Enum.Type.EVENT:
+			continue
+		var score: int = 0
+		if not card.selectable(game_board):
+			continue
+		score += get_base_score(card)
+		score += get_effect_score(card, Enum.Trigger.ACTIVATE)
+		if score > best_score:
+			best_card = card
+			best_score = score
+	if best_score > 0:
+		response_args = [best_card]
+		return true
 	return false
 
 func do_move_card() -> bool:
@@ -290,14 +329,29 @@ func get_zone_score(card: Card, zone: Enum.Zone, index: int) -> int:
 				score -= 10
 	return score
 
-func do_target(filter: CardFilter, targeted: Array[Card]) -> bool:
+func get_effect_score(card: Card, trigger: Enum.Trigger):
+	var variables: Dictionary = {"self": card}
+	var score = 0
+	for effect in card.get_effects(trigger, variables):
+		for e in effect.effects:
+			score += e.get_effect_score(variables)
+	return score
+
+func get_target_score(card: Card, effect: CardEffect):
+	var variables: Dictionary = {"self": card}
+	var score = 0
+	for e in effect.effects:
+		score += e.get_target_score(card)
+	return score
+
+func do_target(filter: CardFilter, targeted: Array[Card], effect: CardEffect) -> bool:
 	var best_target: Card = null
 	var best_score: int = 0
 	for card in game_board.get_all_field_cards():
 		if card in targeted:
 			continue
 		if filter.is_valid(player, card):
-			var score: int = get_atk_score(card)
+			var score: int = get_target_score(card, effect)
 			if best_target == null or score > best_score:
 				best_target = card
 				best_score = score
@@ -305,12 +359,13 @@ func do_target(filter: CardFilter, targeted: Array[Card]) -> bool:
 		response_args = [best_target]
 	return true
 
-func do_search(filter: CardFilter):
+func do_search(filter: CardFilter, junk: bool = false):
 	var best_target: Card = null
 	var best_index: int = -1
 	var best_score: int = 0
-	for i in range(len(player.deck.cards)):
-		var card: Card = player.deck.cards[i]
+	var pile: Deck = player.junk if junk else player.deck
+	for i in range(len(pile.cards)):
+		var card: Card = pile.cards[i]
 		if filter.is_valid(player, card):
 			var score: int = 10
 			if player.hand.cards.all(func(x): return x.get_name() != card.get_name()):

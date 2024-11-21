@@ -115,7 +115,7 @@ func process(delta):
 				player.controller.request(
 					[Controller.Action.TARGET],
 					[try_target],
-					[[targets_required[len(targets)], targets]]
+					[[targets_required[len(targets)], targets, effect]]
 				)
 
 func try_cancel_effect() -> bool:

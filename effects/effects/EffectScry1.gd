@@ -18,3 +18,6 @@ func move_to_bottom_of_deck():
 
 func has_valid_targets(variables: Dictionary = {}) -> bool:
 	return parent.host.owner.deck.size() > 0
+
+func get_effect_score(variables: Dictionary = {}) -> int:
+	return 3

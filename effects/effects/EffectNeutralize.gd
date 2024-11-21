@@ -9,3 +9,6 @@ func post_init():
 
 func effect(variables: Dictionary = {}):
 	parent.events.push_back(EventDestroy.new(parent.get_game_board(), parent.host, variables["countered"], Damage.new(Damage.EFFECT | Damage.DESTROY)))
+
+func get_effect_score(variables: Dictionary = {}) -> int:
+	return 5

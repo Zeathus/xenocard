@@ -14,3 +14,17 @@ func effect(variables: Dictionary = {}):
 	for c in parent.get_game_board().get_all_field_cards():
 		if filter.is_valid(parent.host.owner, c, variables):
 			parent.events.push_back(EventDamage.new(parent.get_game_board(), parent.host, c, amount, Damage.new(Damage.EFFECT)))
+
+func get_effect_score(variables: Dictionary = {}) -> int:
+	var score = 0
+	for c in parent.get_game_board().get_all_field_cards():
+		if filter.is_valid(parent.host.owner, c, variables):
+			if parent.host.owner == c.owner:
+				score -= min(amount, c.hp)
+				if amount >= c.hp:
+					score -= 2
+			else:
+				score += min(amount, c.hp)
+				if amount >= c.hp:
+					score += 2
+	return score

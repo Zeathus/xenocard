@@ -66,7 +66,7 @@ func process(delta):
 					else:
 						player.controller.request(
 							[Controller.Action.CONFIRM],
-							[func(x): handle_answer(x); state = 1]
+							[func(x): handle_answer(x); state = 1 if can_counter else 3]
 						)
 			elif menu and menu.is_done():
 				game_board.remove_menu(menu)

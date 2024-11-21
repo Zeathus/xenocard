@@ -24,3 +24,18 @@ func has_valid_targets(variables: Dictionary = {}) -> bool:
 				if t.owner.field.get_card(Enum.Zone.STANDBY, i) == null:
 					return true
 	return false
+
+func get_effect_score(variables: Dictionary = {}) -> int:
+	var best_score = -999
+	for c in parent.get_game_board().get_all_field_cards():
+		if filter.is_valid(parent.host.owner, c, variables):
+			best_score = max(best_score, get_target_score(c))
+	return best_score
+
+func get_target_score(target: Card) -> int:
+	var score = 0
+	if target.owner == parent.host.owner:
+		score += 5 - target.hp
+	else:
+		score += target.hp + target.get_atk()
+	return score

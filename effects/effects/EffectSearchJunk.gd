@@ -17,3 +17,9 @@ func has_valid_targets(variables: Dictionary = {}):
 		if filter.is_valid(parent.host.owner, c, variables):
 			return true
 	return false
+
+func get_effect_score(variables: Dictionary = {}) -> int:
+	for c in parent.host.owner.junk.cards:
+		if filter.is_valid(parent.host.owner, c, variables):
+			return 4
+	return 0

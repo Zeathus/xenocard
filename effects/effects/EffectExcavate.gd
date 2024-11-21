@@ -15,3 +15,6 @@ func effect(variables: Dictionary = {}):
 
 func has_valid_targets(variables: Dictionary = {}):
 	return parent.host.owner.deck.size() > 0
+
+func get_effect_score(variables: Dictionary = {}) -> int:
+	return 5

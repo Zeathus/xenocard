@@ -13,3 +13,6 @@ func effect(variables: Dictionary = {}):
 
 func has_valid_targets(variables: Dictionary = {}) -> bool:
 	return parent.host.owner.lost.size() >= amount
+
+func get_effect_score(variables: Dictionary = {}) -> int:
+	return 4 if parent.host.owner.lost.size() >= amount else 0

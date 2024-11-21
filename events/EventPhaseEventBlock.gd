@@ -54,10 +54,10 @@ func hide_selectable():
 		card.set_selectable(false)
 
 func activate_card(card: Card):
-	if card.zone == Enum.Zone.HAND:
-		on_hand_card_selected(card.owner.hand, card)
-	else:
-		on_zone_selected(card.owner.field, card.owner, card.zone, card.zone_index)
+	if has_children():
+		return
+	if card and card.selectable(game_board):
+		play(card)
 
 func on_hand_card_selected(hand: GameHand, card: Card):
 	if pass_to_child("on_hand_card_selected", [hand, card]):
@@ -82,6 +82,7 @@ func play(card: Card):
 	var cost_paid: int = player.pay_cost(cost_to_pay)
 	for i in range(cost_paid):
 		queue_event(EventPayCost.new(game_board, player))
+	card.instance.turn_up()
 	queue_event(EventAnimation.new(game_board, AnimationEffectStart.new(card)))
 	queue_event(EventCounter.new(game_board, player.get_enemy(), card))
 	card.trigger_effects(Enum.Trigger.ACTIVATE, self, {"block": block})

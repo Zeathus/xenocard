@@ -13,3 +13,7 @@ func effect(variables: Dictionary = {}):
 
 func has_valid_targets(variables: Dictionary = {}) -> bool:
 	return parent.host.owner.lost.size() > 0
+
+func get_effect_score(variables: Dictionary = {}) -> int:
+	var recovered = Formula.calc(amount, target, parent.get_game_board())
+	return min(recovered, parent.host.owner.lost.size())

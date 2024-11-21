@@ -26,3 +26,6 @@ func has_valid_targets(variables: Dictionary = {}) -> bool:
 		if filter.is_valid(parent.host.owner.get_enemy(), c):
 			count += 1
 	return count >= amount
+
+func get_effect_score(variables: Dictionary = {}) -> int:
+	return 5

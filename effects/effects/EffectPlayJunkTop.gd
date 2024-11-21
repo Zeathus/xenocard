@@ -42,3 +42,6 @@ func has_valid_targets(variables: Dictionary = {}) -> bool:
 				if card_to_set.owner.field.get_card(Enum.Zone.SITUATION, i) == null:
 					return true
 	return false
+
+func get_effect_score(variables: Dictionary = {}) -> int:
+	return 5

@@ -150,6 +150,12 @@ func equips_to(holder: Card) -> bool:
 func redirect_when_destroyed(attacker: Card, source: Damage) -> Enum.Zone:
 	return Enum.Zone.NONE
 
+func get_effect_score(variables: Dictionary = {}) -> int:
+	return 0
+
+func get_target_score(target: Card) -> int:
+	return 0
+
 static func parse(effect: String) -> Object:
 	var effect_script: GDScript = load("res://effects/effects/Effect%s.gd" % effect)
 	if effect_script == null:
