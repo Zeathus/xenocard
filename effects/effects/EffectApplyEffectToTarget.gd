@@ -30,9 +30,4 @@ func get_effect_score(variables: Dictionary = {}) -> int:
 	return best_score
 
 func get_target_score(target: Card) -> int:
-	var score = 0
-	if target.owner == parent.host.owner:
-		score += 1
-	else:
-		score -= 1
-	return score
+	return 2 + target.get_atk()
