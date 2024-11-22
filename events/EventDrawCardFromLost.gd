@@ -18,9 +18,12 @@ func on_start():
 		return
 	game_board.prepare_card(card)
 	player.hand.add_card(card)
+	var flip = card.instance.is_face_up()
+	if flip:
+		card.instance.turn_down()
 	card.instance.global_position = player.field.get_lost_node().global_position
 	queue_event(EventAnimation.new(game_board,
-		AnimationAddToHand.new(card.instance, player.hand)
+		AnimationAddToHand.new(card.instance, player.hand, flip)
 	))
 
 func on_finish():

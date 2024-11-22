@@ -13,12 +13,15 @@ var max_time: float = 0.5
 var hand: GameHand
 var hand_move: float
 var hand_original_x_position: float
+var flip: bool
+var flipped: bool = false
 
-func _init(node: Node2D, hand: GameHand, speed_mod: float = 1.0):
+func _init(node: Node2D, hand: GameHand, speed_mod: float = 1.0, flip: bool = false):
 	self.node = node
 	self.hand = hand
 	self.max_time /= speed_mod
 	self.time = 0
+	self.flip = flip
 	var original_position: Vector2 = node.global_position
 	destination = hand.get_new_card_position()
 	hand_move = 64 if hand.global_rotation == 0 else -64
@@ -38,6 +41,12 @@ func update(delta):
 	if time == 0:
 		original_distance = destination.distance_to(node.global_position)
 		speed = (original_distance / max_time)
+		if flip:
+			node.play_animation("Flip1")
+	if flip and not flipped and not node.animating():
+		node.flip()
+		node.play_animation("Flip2")
+		flipped = true
 	time += delta
 	var distance: Vector2 = destination - node.global_position
 	var move: Vector2 = distance.normalized() * speed * delta
