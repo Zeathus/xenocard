@@ -123,7 +123,7 @@ horizontal_alignment = 1
 position = Vector2(152, 0)
 
 [node name="Standby" type="Area2D" parent="."]
-position = Vector2(-608, 147)
+position = Vector2(-608, 170)
 
 [node name="Label" type="Label" parent="Standby"]
 offset_left = -140.0
@@ -133,6 +133,7 @@ offset_bottom = 21.0
 text = "STANDBY"
 label_settings = SubResource("LabelSettings_6oole")
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Standby"]
 shape = SubResource("RectangleShape2D_lp7ng")
@@ -173,7 +174,7 @@ position = Vector2(0, 168)
 scale = Vector2(0.75, 0.75)
 
 [node name="Situation" type="Area2D" parent="."]
-position = Vector2(608, 147)
+position = Vector2(608, 170)
 
 [node name="Label" type="Label" parent="Situation"]
 offset_left = -140.0
@@ -207,7 +208,7 @@ type = 6
 index = 3
 
 [node name="Deck" type="Area2D" parent="."]
-position = Vector2(392, 432)
+position = Vector2(423, 432)
 
 [node name="Card" parent="Deck" instance=ExtResource("1_s5b86")]
 scale = Vector2(0.15, 0.15)
@@ -224,6 +225,7 @@ pivot_offset = Vector2(58, 22.5)
 text = "DECK"
 label_settings = SubResource("LabelSettings_lkt4t")
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Count" type="Label" parent="Deck"]
 offset_left = -58.0
@@ -235,9 +237,10 @@ text = "5"
 label_settings = SubResource("LabelSettings_0vxrs")
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Lost" type="Area2D" parent="."]
-position = Vector2(576, 432)
+position = Vector2(607, 432)
 
 [node name="Card" parent="Lost" instance=ExtResource("1_s5b86")]
 visible = false
@@ -255,6 +258,7 @@ pivot_offset = Vector2(58, 22.5)
 text = "LOST"
 label_settings = SubResource("LabelSettings_lkt4t")
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Count" type="Label" parent="Lost"]
 z_index = 10
@@ -267,9 +271,10 @@ text = "5"
 label_settings = SubResource("LabelSettings_0vxrs")
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Junk" type="Area2D" parent="."]
-position = Vector2(760, 432)
+position = Vector2(791, 432)
 
 [node name="Card" parent="Junk" instance=ExtResource("1_s5b86")]
 visible = false
@@ -287,6 +292,7 @@ pivot_offset = Vector2(58, 22.5)
 text = "JUNK"
 label_settings = SubResource("LabelSettings_lkt4t")
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Count" type="Label" parent="Junk"]
 z_index = 10
@@ -299,6 +305,7 @@ text = "5"
 label_settings = SubResource("LabelSettings_0vxrs")
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Cards" type="Node2D" parent="."]
 

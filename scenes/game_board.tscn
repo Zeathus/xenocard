@@ -127,7 +127,7 @@ text = "Events:"
 [node name="ButtonExit" type="Button" parent="."]
 offset_left = -942.0
 offset_top = -520.0
-offset_right = -842.0
+offset_right = -862.0
 offset_bottom = -472.0
 text = "Exit"
 metadata/_edit_use_anchors_ = true
