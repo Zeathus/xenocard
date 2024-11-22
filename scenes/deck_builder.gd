@@ -1,7 +1,7 @@
 extends Node2D
 
 var card_row_scene = load("res://scenes/card_list_row.tscn")
-var card_scene = load("res://objects/card_display.tscn")
+var card_scene = load("res://objects/card_display_baked.tscn")
 
 var all_cards: Array[CardData]
 var deck: DeckData = DeckData.new()

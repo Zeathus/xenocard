@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqbigxqwv1geb"]
+
+[ext_resource type="Script" path="res://objects/card_display_baked.gd" id="1_7o8gf"]
+[ext_resource type="Texture2D" uid="uid://cntoyw45nau0t" path="res://sprites/card_images_baked/XS1/allen.png" id="2_cn6mt"]
+[ext_resource type="Texture2D" uid="uid://cd8gb1b5tt6em" path="res://sprites/card_back.png" id="10_s8vwc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f3feu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qw08w"]
+size = Vector2(800, 1200)
+
+[node name="Card" type="Node2D"]
+script = ExtResource("1_7o8gf")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -401.0
+offset_top = -601.0
+offset_right = 399.0
+offset_bottom = 601.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_f3feu")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_qw08w")
+
+[node name="Content" type="Node2D" parent="."]
+
+[node name="Image" type="Sprite2D" parent="Content"]
+scale = Vector2(2, 2)
+texture = ExtResource("2_cn6mt")
+
+[node name="Back" type="Sprite2D" parent="."]
+texture = ExtResource("10_s8vwc")
+
+[connection signal="gui_input" from="Panel" to="." method="_on_panel_gui_input"]
+[connection signal="mouse_entered" from="Panel" to="." method="_on_panel_mouse_entered"]
+[connection signal="mouse_exited" from="Panel" to="." method="_on_panel_mouse_exited"]

@@ -1,6 +1,6 @@
 class_name Card
 
-static var scene = load("res://objects/card_node.tscn")
+static var scene = load("res://objects/card_node_baked.tscn")
 
 static var attribute_icons = {
 	Enum.Attribute.ANY: preload("res://sprites/attributes/background.png"),
