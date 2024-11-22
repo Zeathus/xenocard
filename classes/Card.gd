@@ -45,6 +45,7 @@ var applied_effects: Array[CardEffect]
 var turn_count: int
 var modify_for_set: Array[Callable] = []
 var revealed: bool = false
+var selected: bool = false
 
 func _init(_id: String):
 	self.data = CardData.get_data(_id)
@@ -632,23 +633,25 @@ func evades_attack(attacker: Card):
 	return false
 
 func select():
+	selected = true
 	if instance:
 		instance.find_child("SelectBorder").visible = true
 
 func deselect():
+	selected = false
 	if instance:
 		instance.find_child("SelectBorder").visible = false
 
 func is_selected():
 	if instance == null:
 		return false
-	var border = instance.find_child("SelectBorder")
-	return border and border.visible
+	return selected
 
 func is_hovered():
 	return instance and instance.is_hovering()
 
 func set_targeted(val: bool):
+	selected = val
 	if instance:
 		instance.find_child("SelectBorder").visible = val
 
