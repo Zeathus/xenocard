@@ -130,8 +130,10 @@ func play(card: Card):
 	if card.instance.is_face_down() and card.zone == Enum.Zone.HAND:
 		for i in range(player.hand.size()):
 			if player.hand.cards[i].instance.is_face_down():
-				player.hand.cards[player.hand.cards.find(card)] = player.hand.cards[i]
-				player.hand.cards[i] = card
+				if player.hand.cards.find(card) <= i:
+					break
+				player.hand.cards.erase(card)
+				player.hand.cards.insert(i, card)
 				player.hand.refresh()
 				break
 	hide_selectable()
