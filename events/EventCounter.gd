@@ -45,6 +45,7 @@ func on_start():
 	menu.set_help(help_text)
 	menu.set_card(countered_card)
 	menu.set_handler(handle_answer)
+	menu.set_timeout(10 if can_counter else 5, false)
 	if not can_counter:
 		menu.set_yes_only()
 	game_board.add_menu(menu)

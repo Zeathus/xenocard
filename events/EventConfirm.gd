@@ -44,6 +44,7 @@ func on_start():
 	menu.set_help(help)
 	menu.set_card(card_preview)
 	menu.set_handler(handle_answer)
+	menu.set_timeout(15, false)
 	if yes_only:
 		menu.set_yes_only()
 	game_board.add_menu(menu)

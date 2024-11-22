@@ -3,6 +3,18 @@ extends Node2D
 var done: bool = false
 var handler = null
 var answer: bool
+var timeout: float = -1
+var timeout_answer: bool
+
+func _process(delta: float) -> void:
+	if timeout > 0:
+		var old_timeout = timeout
+		timeout = max(timeout - delta, 0)
+		if ceil(old_timeout) != ceil(timeout):
+			$Timer.text = "%d ◷" % [ceil(timeout)]
+		if timeout <= 0:
+			answer = timeout_answer
+			done = true
 
 func set_handler(val: Callable):
 	handler = val
@@ -35,6 +47,12 @@ func is_done():
 func finish():
 	if handler != null:
 		handler.call(answer)
+
+func set_timeout(time: float, default_answer: bool):
+	timeout = time
+	timeout_answer = default_answer
+	$Timer.text = "%d ◷" % [ceil(timeout)]
+	$Timer.visible = true
 
 func set_yes_only():
 	$YesButton.visible = false
