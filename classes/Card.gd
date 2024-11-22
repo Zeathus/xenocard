@@ -697,5 +697,6 @@ func instantiate() -> Node2D:
 
 func free_instance():
 	if self.instance:
+		self.instance.visible = false
 		self.instance.queue_free()
 		self.instance = null

@@ -38,7 +38,11 @@ func on_start():
 			Enum.Zone.LOST:
 				destination = target.owner.field.get_lost_node()
 				break
+	var indicator = target.instance.find_child("EffectIndicator")
+	if indicator and indicator.visible:
+		queue_event(EventAnimation.new(game_board, AnimationEffectEnd.new(target)))
 	var anim: AnimationMove = AnimationMove.new(target.instance, destination.global_position, 30)
+	anim.keep_in_motion = true
 	anim.target_scale = Vector2(0.15, 0.15)
 	queue_event(EventAnimation.new(game_board, anim))
 

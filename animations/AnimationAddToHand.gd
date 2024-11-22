@@ -54,9 +54,10 @@ func update(delta):
 		node.global_position = destination
 		node.scale = target_scale
 		hand.position.x = hand_original_x_position
-		if node.has_method("set_in_motion"):
-			node.set_in_motion(false)
-		finish()
+		if not node.animating():
+			if node.has_method("set_in_motion"):
+				node.set_in_motion(false)
+			finish()
 	else:
 		node.global_position += move
 		node.scale = original_scale * (distance.length() / original_distance) + \

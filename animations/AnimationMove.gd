@@ -11,6 +11,7 @@ var speed: int
 var time: float
 var flip: bool
 var flip_state: int = 0
+var keep_in_motion: bool = false
 
 func _init(node: Node2D, destination: Vector2, speed: int, flip: bool = false):
 	self.node = node
@@ -47,8 +48,9 @@ func update(delta):
 	if move.length() >= distance.length():
 		node.global_position = destination
 		node.scale = target_scale
-		if node.has_method("set_in_motion"):
-			node.set_in_motion(false)
+		if not keep_in_motion:
+			if node.has_method("set_in_motion"):
+				node.set_in_motion(false)
 		finish()
 	else:
 		node.global_position += move
@@ -56,6 +58,7 @@ func update(delta):
 			target_scale * ((original_distance - distance.length()) / original_distance)
 	if time >= 2.0:
 		node.scale = target_scale
-		if node.has_method("set_in_motion"):
-			node.set_in_motion(false)
+		if not keep_in_motion:
+			if node.has_method("set_in_motion"):
+				node.set_in_motion(false)
 		finish()

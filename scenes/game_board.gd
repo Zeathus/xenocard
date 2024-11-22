@@ -224,8 +224,8 @@ func get_all_battlefield_cards() -> Array[Card]:
 func add_phase_effect(phase: Enum.Phase, effect: Effect):
 	phase_effects[phase].push_back(effect)
 
-func play_se(name: String):
-	var sound = load("res://audio/se/" + name + ".wav")
+func play_se(se: String):
+	var sound = load("res://audio/se/" + se + ".wav")
 	for player in [$AudioStream1, $AudioStream2, $AudioStream3]:
 		if not player.is_playing():
 			player.stream = sound
