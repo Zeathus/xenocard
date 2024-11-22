@@ -100,5 +100,9 @@ func process(delta):
 				if card.downed and card.downed_turn != card.turn_count:
 					card.undown()
 		2:
+			if player.hand.size() > 6:
+				queue_event(EventSelectDiscard.new(game_board, player, CardFilter.new("owner=self;zone=hand")))
+				return
+		3:
 			finish()
 	state += 1
