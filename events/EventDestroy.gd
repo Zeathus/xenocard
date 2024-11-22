@@ -73,7 +73,6 @@ func destroy():
 	else:
 		target.owner.field.remove_card(target)
 	target.free_instance()
-	game_board.refresh()
 	var zone = Enum.Zone.JUNK
 	var pile = target.owner.junk
 	for e in target.get_effects(Enum.Trigger.PASSIVE):
@@ -85,3 +84,4 @@ func destroy():
 	target.zone = zone
 	target.zone_index = 0
 	pile.add_top(target)
+	game_board.refresh()
