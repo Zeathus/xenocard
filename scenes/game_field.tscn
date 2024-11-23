@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bu0roj477cb2l"]
+[gd_scene load_steps=13 format=3 uid="uid://bu0roj477cb2l"]
 
 [ext_resource type="Script" path="res://scenes/game_field.gd" id="1_0jgdo"]
 [ext_resource type="PackedScene" uid="uid://dosulntiwpmvw" path="res://objects/card_display.tscn" id="1_s5b86"]
 [ext_resource type="PackedScene" uid="uid://bfsb45f6t2kmw" path="res://objects/card_zone.tscn" id="2_p58ou"]
 [ext_resource type="PackedScene" uid="uid://d2tcufci502xh" path="res://objects/card_status.tscn" id="4_dufjl"]
+[ext_resource type="FontFile" uid="uid://ng1y54e8x08v" path="res://fonts/Roboto/Roboto-Bold.ttf" id="5_ku0h5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6oole"]
 font_size = 32
@@ -218,10 +219,11 @@ shape = SubResource("RectangleShape2D_inymr")
 
 [node name="Label" type="Label" parent="Deck"]
 offset_left = -58.0
-offset_top = -144.0
+offset_top = -136.0
 offset_right = 58.0
-offset_bottom = -99.0
+offset_bottom = -91.0
 pivot_offset = Vector2(58, 22.5)
+theme_override_fonts/font = ExtResource("5_ku0h5")
 text = "DECK"
 label_settings = SubResource("LabelSettings_lkt4t")
 horizontal_alignment = 1
@@ -251,10 +253,11 @@ shape = SubResource("RectangleShape2D_inymr")
 
 [node name="Label" type="Label" parent="Lost"]
 offset_left = -58.0
-offset_top = -144.0
+offset_top = -136.0
 offset_right = 58.0
-offset_bottom = -99.0
+offset_bottom = -91.0
 pivot_offset = Vector2(58, 22.5)
+theme_override_fonts/font = ExtResource("5_ku0h5")
 text = "LOST"
 label_settings = SubResource("LabelSettings_lkt4t")
 horizontal_alignment = 1
@@ -285,10 +288,11 @@ shape = SubResource("RectangleShape2D_inymr")
 
 [node name="Label" type="Label" parent="Junk"]
 offset_left = -58.0
-offset_top = -144.0
+offset_top = -136.0
 offset_right = 58.0
-offset_bottom = -99.0
+offset_bottom = -91.0
 pivot_offset = Vector2(58, 22.5)
+theme_override_fonts/font = ExtResource("5_ku0h5")
 text = "JUNK"
 label_settings = SubResource("LabelSettings_lkt4t")
 horizontal_alignment = 1

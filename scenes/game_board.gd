@@ -125,25 +125,18 @@ func begin_phase(phase: Enum.Phase):
 	var player: Player = get_turn_player()
 	match turn_phase:
 		Enum.Phase.DRAW:
-			$Phases/Phase/Label.text = "%dP Draw Phase" % (turn_player_id + 1)
 			queue_event(EventPhaseDraw.new(self, player, phase_effects[Enum.Phase.DRAW]))
 		Enum.Phase.MOVE:
-			$Phases/Phase/Label.text = "%dP Move Phase" % (turn_player_id + 1)
 			queue_event(EventPhaseMove.new(self, player, phase_effects[Enum.Phase.MOVE]))
 		Enum.Phase.EVENT:
-			$Phases/Phase/Label.text = "%dP Event Phase" % (turn_player_id + 1)
 			queue_event(EventPhaseEventBlock.new(self, player, phase_effects[Enum.Phase.EVENT], false))
 		Enum.Phase.SET:
-			$Phases/Phase/Label.text = "%dP Set Phase" % (turn_player_id + 1)
 			queue_event(EventPhaseSet.new(self, player, phase_effects[Enum.Phase.SET]))
 		Enum.Phase.BLOCK:
-			$Phases/Phase/Label.text = "%dP Block Phase" % ((turn_player_id + 1) % 2 + 1)
 			queue_event(EventPhaseEventBlock.new(self, player, phase_effects[Enum.Phase.BLOCK], true))
 		Enum.Phase.BATTLE:
-			$Phases/Phase/Label.text = "%dP Battle Phase" % (turn_player_id + 1)
 			queue_event(EventPhaseBattle.new(self, player, phase_effects[Enum.Phase.BATTLE]))
 		Enum.Phase.ADJUST:
-			$Phases/Phase/Label.text = "%dP Adjust Phase" % (turn_player_id + 1)
 			queue_event(EventPhaseAdjust.new(self, player, phase_effects[Enum.Phase.ADJUST]))
 
 func end_phase():

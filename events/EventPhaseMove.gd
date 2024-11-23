@@ -15,6 +15,7 @@ func get_name() -> String:
 	return "PhaseMove"
 
 func on_start():
+	queue_event(EventStartPhase.new(game_board, player, Enum.Phase.MOVE))
 	if not player.has_controller():
 		show_selectable()
 

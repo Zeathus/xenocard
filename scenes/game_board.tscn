@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://crhl7nmua17qi"]
+[gd_scene load_steps=19 format=3 uid="uid://crhl7nmua17qi"]
 
 [ext_resource type="PackedScene" uid="uid://bu0roj477cb2l" path="res://scenes/game_field.tscn" id="1_bk45l"]
 [ext_resource type="Script" path="res://scenes/game_board.gd" id="1_k5aaq"]
@@ -6,13 +6,225 @@
 [ext_resource type="PackedScene" uid="uid://dj6tetacep1ij" path="res://scenes/game_hand.tscn" id="3_t4rtj"]
 [ext_resource type="Script" path="res://scenes/mouse.gd" id="4_u1qqp"]
 [ext_resource type="PackedScene" uid="uid://bqt532l8n2w8u" path="res://objects/card_details.tscn" id="5_1q0hl"]
+[ext_resource type="FontFile" uid="uid://ng1y54e8x08v" path="res://fonts/Roboto/Roboto-Bold.ttf" id="5_2t2yb"]
 [ext_resource type="PackedScene" uid="uid://dosulntiwpmvw" path="res://objects/card_display.tscn" id="6_akm2x"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_02nxv"]
-size = Vector2(240, 50)
+[ext_resource type="FontFile" uid="uid://do6lscs8csbaq" path="res://fonts/Roboto/Roboto-Regular.ttf" id="6_ldbpm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hwvem"]
-font_size = 32
+font_size = 40
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ykue7"]
+font_size = 24
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_da6p1"]
+base_font = ExtResource("5_2t2yb")
+
+[sub_resource type="LabelSettings" id="LabelSettings_jwadh"]
+font_size = 80
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_3p8x8"]
+resource_name = "NextPhase"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionPanel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.75),
+"transitions": PackedFloat32Array(0.353554, 1, 2),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TransitionPhase:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 0.329877, 1, 1),
+"update": 0,
+"values": [Vector2(2000, -54), Vector2(2000, -54), Vector2(156, -54), Vector2(156, -54)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TransitionPhase:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TransitionPanel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TransitionPhase:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="Animation" id="Animation_ynllq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionPanel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TransitionPhase:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-91.3334, -51)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TransitionPhase:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TransitionPanel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TransitionPhase:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ptuhn"]
+resource_name = "NextPhase2"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionPanel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TransitionPhase:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(156, -54), Vector2(156, -54)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TransitionPhase:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TransitionPanel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TransitionPhase:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1y5pv"]
+_data = {
+"NextPhase": SubResource("Animation_3p8x8"),
+"NextPhase2": SubResource("Animation_ptuhn"),
+"RESET": SubResource("Animation_ynllq")
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0wyg4"]
 radius = 5.0
@@ -44,29 +256,58 @@ rotation = 3.14159
 [node name="Phases" type="Node2D" parent="."]
 position = Vector2(-556, 8)
 
-[node name="Phase" type="Area2D" parent="Phases"]
-position = Vector2(-53.3334, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Phases/Phase"]
-position = Vector2(0, -11)
-shape = SubResource("RectangleShape2D_02nxv")
-
-[node name="Label" type="Label" parent="Phases/Phase"]
-offset_left = -140.0
-offset_top = -35.0
-offset_right = 140.0
-offset_bottom = 32.0
-text = "1P BATTLE PHASE"
+[node name="Phase" type="Label" parent="Phases"]
+offset_left = -91.0
+offset_top = -51.0
+offset_right = 229.0
+offset_bottom = 4.0
+theme_override_fonts/font = ExtResource("5_2t2yb")
 label_settings = SubResource("LabelSettings_hwvem")
 horizontal_alignment = 1
 
+[node name="NextPhase" type="Label" parent="Phases"]
+offset_left = -91.0
+offset_top = 4.0
+offset_right = 229.0
+offset_bottom = 38.0
+theme_override_fonts/font = ExtResource("6_ldbpm")
+label_settings = SubResource("LabelSettings_ykue7")
+horizontal_alignment = 1
+
 [node name="EndPhase" type="Button" parent="Phases"]
-offset_left = 108.667
-offset_top = -39.0
-offset_right = 291.667
-offset_bottom = 14.0
+offset_left = -243.0
+offset_top = -49.0
+offset_right = -106.0
+offset_bottom = 35.0
+theme_override_fonts/font = SubResource("FontVariation_da6p1")
 theme_override_font_sizes/font_size = 32
-text = "END PHASE"
+text = "END
+PHASE"
+
+[node name="TransitionPanel" type="Panel" parent="Phases"]
+visible = false
+offset_left = -440.0
+offset_top = -54.0
+offset_right = 1560.0
+offset_bottom = 38.0
+pivot_offset = Vector2(0, 46)
+
+[node name="TransitionPhase" type="Label" parent="Phases"]
+visible = false
+offset_left = -91.3334
+offset_top = -51.0
+offset_right = 708.667
+offset_bottom = 45.0
+pivot_offset = Vector2(400, 48)
+theme_override_fonts/font = ExtResource("5_2t2yb")
+text = "1P Test Phase"
+label_settings = SubResource("LabelSettings_jwadh")
+horizontal_alignment = 1
+
+[node name="TransitionPlayer" type="AnimationPlayer" parent="Phases"]
+libraries = {
+"": SubResource("AnimationLibrary_1y5pv")
+}
 
 [node name="Menus" type="Node2D" parent="."]
 z_index = 1000
@@ -119,9 +360,9 @@ text = "Test"
 
 [node name="TestLabel" type="Label" parent="."]
 offset_left = -935.0
-offset_top = -286.0
+offset_top = -296.0
 offset_right = -879.0
-offset_bottom = -263.0
+offset_bottom = -273.0
 text = "Events:"
 
 [node name="ButtonExit" type="Button" parent="."]

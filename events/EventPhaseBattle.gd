@@ -16,7 +16,7 @@ func get_name() -> String:
 	return "PhaseBattle"
 
 func on_start():
-	pass
+	queue_event(EventStartPhase.new(game_board, player, Enum.Phase.BATTLE))
 
 func on_finish():
 	game_board.end_phase()

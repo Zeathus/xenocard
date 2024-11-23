@@ -22,6 +22,8 @@ func on_start():
 		c.trigger_effects(Enum.Trigger.TURN_START, self)
 		c.trigger_effects(Enum.Trigger.TURN_START_ENEMY, self)
 
+	queue_event(EventStartPhase.new(game_board, player, Enum.Phase.DRAW))
+
 	var can_normal_draw = true
 	for c in player.field.get_all_cards():
 		for e in c.get_effects(Enum.Trigger.PASSIVE):
