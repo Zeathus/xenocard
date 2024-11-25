@@ -62,7 +62,7 @@ func attack():
 		else:
 			game_board.play_se("hit_medium" + str(randi_range(1, 2)))
 	else:
-		game_board.play_se("explosion_small" + str(randi_range(1, 4)))
+		pass #game_board.play_se("explosion_small" + str(randi_range(1, 4)))
 		#if atk <= 2:
 			#game_board.play_se("explosion_small")
 		#elif atk <= 7:
