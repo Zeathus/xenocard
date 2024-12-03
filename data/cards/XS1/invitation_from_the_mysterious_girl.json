@@ -9,7 +9,7 @@
 		"cost": 0,
 		"field": ["human", "any"]
 	},
-	"text": "<Slow>.\nYou <recover> as many cards as possible up to the total ATK of cards on your battlefield with hand attack type.",
+	"text": "<Slow>.\nYou <recover> as many cards as possible up to the total ATK of cards on your battlefield with hand attack type.\nSkip your battle phase this turn.",
 	"effects": [
 		{
 			"trigger": "activate",
@@ -18,8 +18,16 @@
 			],
 			"effect": [
 				"RecoverSumOfATK(owner=self;zone=battlefield;attacktype=hand)",
-				"Discard(self)"
-			]
+				"Discard(self)",
+				"ApplyEffectToPlayer"
+			],
+			"applied_effect": {
+				"trigger": "passive",
+				"duration": 1,
+				"effect": [
+					"SkipBattlePhase(self)"
+				]
+			}
 		}
 	]
 }

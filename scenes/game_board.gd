@@ -118,6 +118,9 @@ func skips_phase(phase: Enum.Phase, player: Player):
 		for e in card.get_effects(Enum.Trigger.PASSIVE):
 			if e.skips_phase(phase, player):
 				return true
+	for effect in player.applied_effects:
+		if effect.skips_phase(phase, player):
+			return true
 	return false
 
 func begin_phase(phase: Enum.Phase):
