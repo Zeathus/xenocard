@@ -77,6 +77,39 @@ static func expand_term(keyword: String) -> String:
 static func get_hint(keyword: String) -> String:
 	match keyword.to_lower():
 		#
+		### CARD PROPERTIES ###
+		#
+		"prop:cost":
+			return "To play a card, you must move cards from the top of the deck to the lost pile equal to its cost."
+		"prop:field":
+			return "To play a card, the attributes listed as field requirements must be present on your field. Cards with an E mark do not count towards field requirements."
+		"prop:hand":
+			return "This is the card's attack type.\nThe hand attack type can only attack the front row of the enemy's battlefield from the front row of your battlefield."
+		"prop:ballistic":
+			return "This is the card's attack type.\nThe ballistic attack type attacks the closest enemy in its own battlefield column. If there are no enemies, it attacks the enemy's deck."
+		"prop:spread":
+			return "This is the card's attack type.\nThe spread attack type deals damage to every enemy card on their battlefield at once, but cannot attack the enemy's deck."
+		"prop:homing":
+			return "This is the card's attack type.\nThe homing attack type ignores any enemy cards on the battlefield and attacks the enemy's deck directly."
+		"prop:human":
+			return "This is the card's attribute.\nHuman cards are in most decks, as they are used for field requirements. They have low stats and low cost."
+		"prop:realian":
+			return "This is the card's attribute.\nRealian cards have very low stats and cost, but many of them ignore the one card per turn rule."
+		"prop:machine":
+			return "This is the card's attribute.\nMachine cards have high stats, high cost, and various weapons."
+		"prop:gnosis":
+			return "This is the card's attribute.\nGnosis cards can only be played by discarding Human cards from your field, but can be played directly to the battlefield without an E mark."
+		"prop:unknown":
+			return "This is the card's attribute.\nUnknown cards have no specific characteristics, and can vary greatly."
+		"prop:weapon":
+			return "This is the card's attribute.\nWeapon cards can be equipped to other battle cards, changing their ATK and attack type to the weapon's."
+		"prop:nopon":
+			return "This is the card's attribute.\nNopon cards often have effects that can only be used in Standby. They have high HP, low ATK and low cost."
+		"prop:blade":
+			return "This is the card's attribute.\nBlade cards can give beneficial effects to Human battle cards by being behind them on the battlefield."
+		"prop:monster":
+			return "This is the card's attribute.\nMonster cards can often be played without Human field requirements. They have high ATK, low HP and varied cost."
+		#
 		### KEYWORDS ###
 		#
 		"down", "downed":
@@ -107,7 +140,7 @@ static func get_hint(keyword: String) -> String:
 		### TERMS ###
 		#
 		"field requirements":
-			return "To set a card, the attributes listed as field requirements must be present on your field. Cards with an E mark do not count towards field requirements."
+			return "To play a card, the attributes listed as field requirements must be present on your field. Cards with an E mark do not count towards field requirements."
 		"field":
 			return "The field includes all three areas where cards are in play. These are the standby, battlefield and situation areas."
 		"battlefield":
@@ -121,7 +154,7 @@ static func get_hint(keyword: String) -> String:
 		"hand":
 			return "The hand attack type can only attack the front row of the enemy's battlefield from the front row of your battlefield."
 		"ballistic":
-			return "The ballistic attack type attacks the closest enemy in any of the enemy battlefield zones in front of it. If there are no enemies, it attacks the enemy's deck."
+			return "The ballistic attack type attacks the closest enemy in its own battlefield column. If there are no enemies, it attacks the enemy's deck."
 		"spread":
 			return "The spread attack type deals damage to every enemy card on their battlefield at once, but cannot attack the enemy's deck."
 		"homing":

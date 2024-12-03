@@ -188,6 +188,14 @@ horizontal_alignment = 2
 position = Vector2(337, -541)
 scale = Vector2(0.35, 0.35)
 
+[node name="AttributePanel" type="Panel" parent="Content"]
+offset_left = 306.0
+offset_top = -578.0
+offset_right = 366.0
+offset_bottom = -498.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_f3feu")
+
 [node name="Stats" type="Node2D" parent="Content"]
 
 [node name="HP" type="Label" parent="Content/Stats"]
@@ -233,6 +241,7 @@ offset_left = 96.0
 offset_top = 49.0
 offset_right = 357.0
 offset_bottom = 116.0
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("7_85wss")
 text = "Target"
 label_settings = SubResource("LabelSettings_arssg")
@@ -241,8 +250,9 @@ horizontal_alignment = 2
 [node name="Field" type="Label" parent="Content"]
 offset_left = -360.0
 offset_top = 147.0
-offset_right = -213.0
+offset_right = 31.0
 offset_bottom = 214.0
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("7_85wss")
 text = "Field
 "
@@ -280,9 +290,10 @@ horizontal_alignment = 2
 
 [node name="Value" type="Label" parent="Content/Cost"]
 layout_mode = 0
-offset_left = 64.0
+offset_left = 36.0
 offset_right = 211.0
 offset_bottom = 67.0
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("7_85wss")
 text = "0"
 label_settings = SubResource("LabelSettings_hirw7")
@@ -332,10 +343,19 @@ fit_content = true
 scroll_active = false
 
 [node name="Back" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("6_8gxj3")
 
 [connection signal="gui_input" from="Panel" to="." method="_on_panel_gui_input"]
 [connection signal="mouse_entered" from="Panel" to="." method="_on_panel_mouse_entered"]
 [connection signal="mouse_exited" from="Panel" to="." method="_on_panel_mouse_exited"]
+[connection signal="mouse_entered" from="Content/AttributePanel" to="." method="_on_attribute_panel_mouse_entered"]
+[connection signal="mouse_exited" from="Content/AttributePanel" to="." method="_on_attribute_panel_mouse_exited"]
+[connection signal="mouse_entered" from="Content/Stats/AttackType" to="." method="_on_attack_type_mouse_entered"]
+[connection signal="mouse_exited" from="Content/Stats/AttackType" to="." method="_on_attack_type_mouse_exited"]
+[connection signal="mouse_entered" from="Content/Field" to="." method="_on_property_hover_started" binds= ["field"]]
+[connection signal="mouse_exited" from="Content/Field" to="." method="_on_property_hover_ended" binds= ["field"]]
+[connection signal="mouse_entered" from="Content/Cost/Value" to="." method="_on_property_hover_started" binds= ["cost"]]
+[connection signal="mouse_exited" from="Content/Cost/Value" to="." method="_on_property_hover_ended" binds= ["cost"]]
 [connection signal="meta_hover_ended" from="Content/Text" to="." method="_on_text_meta_hover_ended"]
 [connection signal="meta_hover_started" from="Content/Text" to="." method="_on_text_meta_hover_started"]

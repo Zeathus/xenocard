@@ -364,10 +364,10 @@ pivot_offset = Vector2(0, 46)
 
 [node name="TransitionTurn" type="Label" parent="Phases"]
 visible = false
-offset_left = -91.3334
-offset_top = -51.0
-offset_right = 708.667
-offset_bottom = 45.0
+offset_left = 2000.0
+offset_top = -54.0
+offset_right = 2800.0
+offset_bottom = 42.0
 pivot_offset = Vector2(400, 48)
 theme_override_fonts/font = ExtResource("5_2t2yb")
 text = "1P Test Phase"

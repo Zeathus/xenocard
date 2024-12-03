@@ -8,6 +8,7 @@ var original_scale: Vector2
 var original_z: int
 var is_hovering: bool = false
 var old_is_hovering: bool = false
+var attribute: Enum.Attribute
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -71,11 +72,13 @@ func show_card(card: CardData):
 		else:
 			field_icons[i].visible = false
 	if card.type == Enum.Type.BATTLE:
-		$Content/Attribute.set_attribute(card.attribute)
+		attribute = card.attribute
+		$Content/Attribute.set_attribute(attribute)
 		$Content/Stats/HP/Value.text = "%d" % card.max_hp
 		$Content/Stats/Attack/Value.text = "%d" % card.atk
 		$Content/Stats/AttackType.text = Enum.get_attack_type_name(card.attack_type)
 	else:
+		attribute = Enum.Attribute.ANY
 		$Content/TypeOther.text = Enum.get_type_name(card.type)
 	$Content/Picture.texture = card.get_image()
 
@@ -97,9 +100,45 @@ func flip():
 	$Back.visible = !$Back.visible
 	$Content.visible = !$Content.visible
 
+func _on_property_hover_started(prop):
+	$Tooltip.global_position.y = $Content/Cost.global_position.y - 5
+	$Tooltip/Text.clear()
+	$Tooltip/Text.append_text(Keyword.get_hint("prop:" + prop))
+	$Tooltip.size.y = $Tooltip/Text.get_content_height() + 30
+	$Tooltip.visible = true
+
+func _on_property_hover_ended(prop):
+	$Tooltip.visible = false
+
+func _on_attack_type_mouse_entered() -> void:
+	var attack_type: String = $Content/Stats/AttackType.text.to_lower()
+	if len(attack_type) == 0:
+		return
+	$Tooltip.global_position.y = $Content/Stats/AttackType.global_position.y - 5
+	$Tooltip/Text.clear()
+	$Tooltip/Text.append_text(Keyword.get_hint("prop:" + attack_type))
+	$Tooltip.size.y = $Tooltip/Text.get_content_height() + 30
+	$Tooltip.visible = true
+
+func _on_attack_type_mouse_exited() -> void:
+	$Tooltip.visible = false
+
+func _on_attribute_panel_mouse_entered() -> void:
+	if attribute == Enum.Attribute.ANY:
+		return
+	$Tooltip.global_position.y = $Content/Attribute.global_position.y - 18
+	$Tooltip/Text.clear()
+	$Tooltip/Text.append_text(Keyword.get_hint("prop:" + Enum.get_attribute_name(attribute).to_lower()))
+	$Tooltip.size.y = $Tooltip/Text.get_content_height() + 30
+	$Tooltip.visible = true
+
+func _on_attribute_panel_mouse_exited() -> void:
+	$Tooltip.visible = false
+
 func _on_text_meta_hover_started(meta):
 	$Tooltip/Text.clear()
 	$Tooltip/Text.append_text(Keyword.get_hint(meta))
+	$Tooltip.global_position.y = $Content/Text.global_position.y - 5
 	$Tooltip.size.y = $Tooltip/Text.get_content_height() + 30
 	$Tooltip.visible = true
 

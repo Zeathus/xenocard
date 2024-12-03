@@ -70,6 +70,30 @@ static func attribute_from_string(value: String) -> Enum.Attribute:
 		return Enum.Attribute[value]
 	return Enum.Attribute.ANY
 
+static func get_attribute_name(attribute: Attribute) -> String:
+	match attribute:
+		Enum.Attribute.ANY:
+			return "Any"
+		Enum.Attribute.HUMAN:
+			return "Human"
+		Enum.Attribute.REALIAN:
+			return "Realian"
+		Enum.Attribute.MACHINE:
+			return "Machine"
+		Enum.Attribute.GNOSIS:
+			return "Gnosis"
+		Enum.Attribute.MONSTER:
+			return "Monster"
+		Enum.Attribute.BLADE:
+			return "Blade"
+		Enum.Attribute.WEAPON:
+			return "Weapon"
+		Enum.Attribute.NOPON:
+			return "Nopon"
+		Enum.Attribute.UNKNOWN:
+			return "Unknown"
+	return "N/A"
+
 static func attack_type_from_string(value: String) -> Enum.AttackType:
 	value = value.to_upper()
 	if value in Enum.AttackType:
