@@ -322,7 +322,16 @@ func selectable(game_board: GameBoard) -> bool:
 					return false
 				if get_type() == Enum.Type.SITUATION and owner.used_one_situation_card_per_turn:
 					return false
-			return true
+			# Check for free spot
+			for i in range(4):
+				var occupant: Card = owner.field.get_card(Enum.Zone.STANDBY, i)
+				if occupant == null or can_replace_card(occupant) or can_replace_target():
+					return true
+				if can_set_to_battlefield():
+					occupant = owner.field.get_card(Enum.Zone.BATTLEFIELD, i)
+					if occupant == null or can_replace_card(occupant) or can_replace_target():
+						return true
+			return false
 	return false
 
 func targets_to_select() -> Array[Callable]:
