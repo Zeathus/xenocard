@@ -9,10 +9,13 @@
 		"cost": 0,
 		"field": ["any", "any"]
 	},
-	"text": "All battle cards gain ATK+1.",
+	"text": "During the battle phase, all battle cards gain ATK+1.",
 	"effects": [
 		{
 			"trigger": "passive",
+			"requirement": [
+				"Phase(battle)"
+			],
 			"global": "type=battle",
 			"effect": [
 				"ModifyATK(1)"

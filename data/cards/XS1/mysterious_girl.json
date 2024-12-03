@@ -9,12 +9,15 @@
 		"cost": 2,
 		"field": ["any", "any"]
 	},
-	"text": "All {Gnosis} battle cards gain ATK+1.\n<Duration> 2.",
+	"text": "During the battle phase, all {Gnosis} battle cards gain ATK+1.\n<Duration> 2.",
 	"effects": [
 		{
 			"trigger": "passive",
 			"global": "attribute=gnosis",
 			"duration": 2,
+			"requirement": [
+				"Phase(battle)"
+			],
 			"effect": [
 				"ModifyATK(1)"
 			],

@@ -15,11 +15,14 @@
 	"requirement": {
 		"cost": 1
 	},
-	"text": "Gains ATK+1 for every {Machine} on your battlefield when not equipped with a {weapon}.\nThis ability is unaffected by event cards.",
+	"text": "During the battle phase, gains ATK+1 for every {Machine} on your battlefield when not equipped with a {weapon}.\nThis ability is unaffected by event cards.",
 	"effects": [
 		{
 			"trigger": "passive",
 			"ignores_down": true,
+			"requirement": [
+				"Phase(battle)"
+			],
 			"effect": [
 				"ModifyATK(count(attribute=machine;zone=battlefield;owner=self))"
 			]

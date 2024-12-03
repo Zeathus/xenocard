@@ -8,12 +8,15 @@
 	"requirement": {
 		"field": ["human", "human"]
 	},
-	"text": "{Humans} on your battlefield gain ATK+1.\n<Duration> 5.",
+	"text": "During the battle phase, {Humans} on your battlefield gain ATK+1.\n<Duration> 5.",
 	"effects": [
 		{
 			"trigger": "passive",
 			"global": "owner=self;attribute=human;zone=battlefield",
 			"duration": 5,
+			"requirement": [
+				"Phase(battle)"
+			],
 			"effect": [
 				"ModifyATK(1)"
 			],
