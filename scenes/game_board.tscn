@@ -405,14 +405,14 @@ z_index = 30
 [node name="Left" parent="QuickDetails" instance=ExtResource("5_1q0hl")]
 visible = false
 z_index = 2
-position = Vector2(-736, 0)
-scale = Vector2(0.5, 0.5)
+position = Vector2(-768, 0)
+scale = Vector2(0.4, 0.4)
 
 [node name="Right" parent="QuickDetails" instance=ExtResource("5_1q0hl")]
 visible = false
 z_index = 2
-position = Vector2(736, 0)
-scale = Vector2(0.5, 0.5)
+position = Vector2(768, 0)
+scale = Vector2(0.4, 0.4)
 
 [node name="AnonCard" parent="." instance=ExtResource("6_akm2x")]
 visible = false

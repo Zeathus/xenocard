@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dj6tetacep1ij"]
+[gd_scene load_steps=3 format=3 uid="uid://dj6tetacep1ij"]
 
 [ext_resource type="Script" path="res://scenes/game_hand.gd" id="1_isndq"]
+[ext_resource type="PackedScene" uid="uid://cd6ye336j76r2" path="res://objects/field_requirement_preview.tscn" id="2_ty33c"]
 
 [node name="GameHand" type="Node2D"]
 script = ExtResource("1_isndq")
+
+[node name="FieldRequirementPreview" parent="." instance=ExtResource("2_ty33c")]
+visible = false
+scale = Vector2(0.35, 0.35)

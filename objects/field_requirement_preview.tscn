@@ -1,0 +1,152 @@
+[gd_scene load_steps=12 format=3 uid="uid://cd6ye336j76r2"]
+
+[ext_resource type="Script" path="res://objects/field_requirement_preview.gd" id="1_nq6tm"]
+[ext_resource type="FontFile" uid="uid://cwo0ya5s4od8f" path="res://fonts/Roboto/RobotoCondensed-VariableFont_wght.ttf" id="2_qugtd"]
+[ext_resource type="PackedScene" uid="uid://g7yv71p73utl" path="res://objects/attribute.tscn" id="3_4rjpj"]
+[ext_resource type="FontFile" uid="uid://did43np2h7qjj" path="res://fonts/Roboto/RobotoCondensed-Italic-VariableFont_wght.ttf" id="3_v7a7c"]
+[ext_resource type="FontFile" uid="uid://ng1y54e8x08v" path="res://fonts/Roboto/Roboto-Bold.ttf" id="4_xx87d"]
+
+[sub_resource type="FontVariation" id="FontVariation_xuug5"]
+base_font = ExtResource("2_qugtd")
+variation_embolden = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_h8ojc"]
+font_size = 64
+
+[sub_resource type="FontVariation" id="FontVariation_icaf4"]
+base_font = ExtResource("3_v7a7c")
+variation_embolden = 0.5
+
+[sub_resource type="LabelSettings" id="LabelSettings_defp2"]
+font_size = 48
+font_color = Color(1, 1, 1, 0.752941)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v5wed"]
+font_size = 160
+font_color = Color(0, 0.72549, 0, 0.752941)
+outline_size = 16
+outline_color = Color(1, 1, 1, 0.752941)
+
+[sub_resource type="LabelSettings" id="LabelSettings_l8jg7"]
+font_size = 160
+font_color = Color(0.878431, 0, 0, 0.752941)
+outline_size = 16
+outline_color = Color(1, 1, 1, 0.752941)
+
+[node name="FieldRequirementPreview" type="Node2D"]
+script = ExtResource("1_nq6tm")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -270.0
+offset_top = -60.0
+offset_right = 6.0
+offset_bottom = 60.0
+pivot_offset = Vector2(270, 60)
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 25.0
+offset_right = 174.0
+offset_bottom = 101.0
+theme_override_fonts/font = SubResource("FontVariation_xuug5")
+text = "FIELD"
+label_settings = SubResource("LabelSettings_h8ojc")
+
+[node name="LabelNone" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 202.0
+offset_top = 32.0
+offset_right = 362.0
+offset_bottom = 108.0
+theme_override_fonts/font = SubResource("FontVariation_icaf4")
+text = "None"
+label_settings = SubResource("LabelSettings_defp2")
+
+[node name="Attribute1" parent="Panel" instance=ExtResource("3_4rjpj")]
+position = Vector2(222, 58)
+scale = Vector2(0.5, 0.5)
+
+[node name="Yes" type="Label" parent="Panel/Attribute1"]
+offset_left = -66.0
+offset_top = -140.0
+offset_right = 72.0
+offset_bottom = 119.0
+theme_override_fonts/font = ExtResource("4_xx87d")
+text = "✓"
+label_settings = SubResource("LabelSettings_v5wed")
+
+[node name="No" type="Label" parent="Panel/Attribute1"]
+offset_left = -74.0
+offset_top = -108.0
+offset_right = 72.0
+offset_bottom = 101.0
+theme_override_fonts/font = ExtResource("4_xx87d")
+text = "❌"
+label_settings = SubResource("LabelSettings_l8jg7")
+
+[node name="Attribute2" parent="Panel" instance=ExtResource("3_4rjpj")]
+position = Vector2(310, 58)
+scale = Vector2(0.5, 0.5)
+
+[node name="Yes" type="Label" parent="Panel/Attribute2"]
+offset_left = -66.0
+offset_top = -140.0
+offset_right = 72.0
+offset_bottom = 119.0
+theme_override_fonts/font = ExtResource("4_xx87d")
+text = "✓"
+label_settings = SubResource("LabelSettings_v5wed")
+
+[node name="No" type="Label" parent="Panel/Attribute2"]
+offset_left = -74.0
+offset_top = -108.0
+offset_right = 72.0
+offset_bottom = 101.0
+theme_override_fonts/font = ExtResource("4_xx87d")
+text = "❌"
+label_settings = SubResource("LabelSettings_l8jg7")
+
+[node name="Attribute3" parent="Panel" instance=ExtResource("3_4rjpj")]
+position = Vector2(398, 58)
+scale = Vector2(0.5, 0.5)
+
+[node name="Yes" type="Label" parent="Panel/Attribute3"]
+offset_left = -66.0
+offset_top = -140.0
+offset_right = 72.0
+offset_bottom = 119.0
+theme_override_fonts/font = ExtResource("4_xx87d")
+text = "✓"
+label_settings = SubResource("LabelSettings_v5wed")
+
+[node name="No" type="Label" parent="Panel/Attribute3"]
+offset_left = -74.0
+offset_top = -108.0
+offset_right = 72.0
+offset_bottom = 101.0
+theme_override_fonts/font = ExtResource("4_xx87d")
+text = "❌"
+label_settings = SubResource("LabelSettings_l8jg7")
+
+[node name="Attribute4" parent="Panel" instance=ExtResource("3_4rjpj")]
+position = Vector2(486, 58)
+scale = Vector2(0.5, 0.5)
+
+[node name="Yes" type="Label" parent="Panel/Attribute4"]
+offset_left = -66.0
+offset_top = -140.0
+offset_right = 72.0
+offset_bottom = 119.0
+theme_override_fonts/font = ExtResource("4_xx87d")
+text = "✓"
+label_settings = SubResource("LabelSettings_v5wed")
+
+[node name="No" type="Label" parent="Panel/Attribute4"]
+offset_left = -74.0
+offset_top = -108.0
+offset_right = 72.0
+offset_bottom = 101.0
+theme_override_fonts/font = ExtResource("4_xx87d")
+text = "❌"
+label_settings = SubResource("LabelSettings_l8jg7")
