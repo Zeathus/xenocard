@@ -7,8 +7,6 @@ var phase: Enum.Phase
 var state: int = 0
 var label_phase: Label
 var label_next_phase: Label
-var transition_phase: Label
-var transition_player: AnimationPlayer
 
 func _init(_game_board: GameBoard, _player: Player, _phase: Enum.Phase):
 	player = _player
@@ -17,8 +15,6 @@ func _init(_game_board: GameBoard, _player: Player, _phase: Enum.Phase):
 	var phases_node: Node2D = game_board.find_child("Phases")
 	label_phase = phases_node.find_child("Phase")
 	label_next_phase = phases_node.find_child("NextPhase")
-	transition_phase = phases_node.find_child("TransitionPhase")
-	transition_player = phases_node.find_child("TransitionPlayer")
 
 func get_name() -> String:
 	return "StartPhase"
@@ -36,8 +32,6 @@ func process(delta):
 		return
 	match state:
 		0:
-			transition_phase.text = get_phase_text(phase)
-			transition_player.play("NextPhase")
 			for label in [label_phase, label_next_phase]:
 				label.label_settings.font_color.a = 1.0
 				label.label_settings.outline_color.a = 1.0
@@ -46,22 +40,20 @@ func process(delta):
 			for label in [label_phase, label_next_phase]:
 				label.label_settings.font_color.a -= delta * 4
 				label.label_settings.outline_color.a -= delta * 4
-			if label_phase.label_settings.font_color.a <= 0 and not transition_player.is_playing():
+			if label_phase.label_settings.font_color.a <= 0:
 				label_phase.text = get_phase_text(phase)
 				label_next_phase.text = "➔ " + get_phase_text(get_next_phase(phase))
 				state = 2
 		2:
-			if not transition_player.is_playing():
-				transition_player.play("NextPhase2")
-				for label in [label_phase, label_next_phase]:
-					label.label_settings.font_color.a = 0
-					label.label_settings.outline_color.a = 0
-				state = 3
+			for label in [label_phase, label_next_phase]:
+				label.label_settings.font_color.a = 0
+				label.label_settings.outline_color.a = 0
+			state = 3
 		3:
 			for label in [label_phase, label_next_phase]:
 				label.label_settings.font_color.a += delta * 4
 				label.label_settings.outline_color.a += delta * 4
-			if label_phase.label_settings.font_color.a >= 1 and not transition_player.is_playing():
+			if label_phase.label_settings.font_color.a >= 1:
 				state = 4
 		4:
 			finish()

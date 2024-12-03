@@ -165,6 +165,7 @@ func begin_turn():
 	var turn_player: Player = get_turn_player()
 	turn_player.used_one_battle_card_per_turn = false
 	turn_player.used_one_situation_card_per_turn = false
+	queue_event(EventStartTurn.new(self, turn_player))
 	begin_phase(Enum.Phase.DRAW)
 
 func refresh():

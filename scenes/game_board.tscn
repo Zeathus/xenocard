@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://crhl7nmua17qi"]
+[gd_scene load_steps=20 format=3 uid="uid://crhl7nmua17qi"]
 
 [ext_resource type="PackedScene" uid="uid://bu0roj477cb2l" path="res://scenes/game_field.tscn" id="1_bk45l"]
 [ext_resource type="Script" path="res://scenes/game_board.gd" id="1_k5aaq"]
@@ -46,7 +46,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("TransitionPhase:position")
+tracks/1/path = NodePath("TransitionTurn:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -58,7 +58,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("TransitionPhase:scale")
+tracks/2/path = NodePath("TransitionTurn:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -82,7 +82,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("TransitionPhase:visible")
+tracks/4/path = NodePath("TransitionTurn:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -110,7 +110,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("TransitionPhase:position")
+tracks/1/path = NodePath("TransitionTurn:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -122,7 +122,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("TransitionPhase:scale")
+tracks/2/path = NodePath("TransitionTurn:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -146,7 +146,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("TransitionPhase:visible")
+tracks/4/path = NodePath("TransitionTurn:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -173,7 +173,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("TransitionPhase:position")
+tracks/1/path = NodePath("TransitionTurn:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -185,7 +185,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("TransitionPhase:scale")
+tracks/2/path = NodePath("TransitionTurn:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -209,7 +209,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("TransitionPhase:visible")
+tracks/4/path = NodePath("TransitionTurn:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -219,10 +219,75 @@ tracks/4/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_8v1f7"]
+resource_name = "NextTurn"
+length = 1.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionPanel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 1.35, 1.6),
+"transitions": PackedFloat32Array(0.353554, 1, 2, 0.353554),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1, 1), Vector2(1, 1), Vector2(1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TransitionTurn:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.5, 1.25, 1.6),
+"transitions": PackedFloat32Array(1, 0.392292, 1, 1.68179, 1),
+"update": 0,
+"values": [Vector2(2000, -54), Vector2(2000, -54), Vector2(220, -54), Vector2(124, -54), Vector2(-2000, -54)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TransitionTurn:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TransitionPanel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TransitionTurn:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1y5pv"]
 _data = {
 "NextPhase": SubResource("Animation_3p8x8"),
 "NextPhase2": SubResource("Animation_ptuhn"),
+"NextTurn": SubResource("Animation_8v1f7"),
 "RESET": SubResource("Animation_ynllq")
 }
 
@@ -261,18 +326,23 @@ offset_left = -91.0
 offset_top = -51.0
 offset_right = 229.0
 offset_bottom = 4.0
+pivot_offset = Vector2(160, 32)
 theme_override_fonts/font = ExtResource("5_2t2yb")
+text = "Test"
 label_settings = SubResource("LabelSettings_hwvem")
 horizontal_alignment = 1
+clip_text = true
 
 [node name="NextPhase" type="Label" parent="Phases"]
 offset_left = -91.0
 offset_top = 4.0
 offset_right = 229.0
 offset_bottom = 38.0
+pivot_offset = Vector2(160, 16)
 theme_override_fonts/font = ExtResource("6_ldbpm")
 label_settings = SubResource("LabelSettings_ykue7")
 horizontal_alignment = 1
+clip_text = true
 
 [node name="EndPhase" type="Button" parent="Phases"]
 offset_left = -243.0
@@ -292,7 +362,7 @@ offset_right = 1560.0
 offset_bottom = 38.0
 pivot_offset = Vector2(0, 46)
 
-[node name="TransitionPhase" type="Label" parent="Phases"]
+[node name="TransitionTurn" type="Label" parent="Phases"]
 visible = false
 offset_left = -91.3334
 offset_top = -51.0
