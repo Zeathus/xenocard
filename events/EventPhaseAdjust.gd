@@ -98,7 +98,7 @@ func process(delta):
 					to_erase.clear()
 		1:
 			for card in player.field.get_all_cards():
-				if card.downed and card.downed_turn != card.turn_count:
+				if card.downed:
 					card.undown()
 		2:
 			if player.hand.size() > 6:
