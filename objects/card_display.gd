@@ -87,12 +87,15 @@ func is_face_up() -> bool:
 
 func turn_down():
 	$Back.visible = true
+	$Content.visible = false
 
 func turn_up():
 	$Back.visible = false
+	$Content.visible = true
 
 func flip():
 	$Back.visible = !$Back.visible
+	$Content.visible = !$Content.visible
 
 func _on_text_meta_hover_started(meta):
 	$Tooltip/Text.clear()

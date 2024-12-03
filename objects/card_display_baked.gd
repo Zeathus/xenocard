@@ -39,12 +39,15 @@ func is_face_up() -> bool:
 
 func turn_down():
 	$Back.visible = true
+	$Content.visible = false
 
 func turn_up():
 	$Back.visible = false
+	$Content.visible = true
 
 func flip():
 	$Back.visible = !$Back.visible
+	$Content.visible = !$Content.visible
 
 func _on_panel_mouse_entered():
 	on_hover.emit()

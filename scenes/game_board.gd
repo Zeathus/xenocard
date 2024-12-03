@@ -231,11 +231,15 @@ func show_details(card):
 	$CardDetails/CardNode.show_card(card.data)
 
 func _on_card_show_details(card):
+	if card.instance and card.instance.is_face_down():
+		return
 	show_details(card)
 
 func _on_card_hovered(card):
 	$QuickDetails/Left.visible = false
 	$QuickDetails/Right.visible = false
+	if card.instance and card.instance.is_face_down():
+		return
 	var display = $QuickDetails/Left
 	var display_card = $QuickDetails/Left/CardNode
 	if (card.owner == players[0] and card.zone == Enum.Zone.STANDBY) or \
