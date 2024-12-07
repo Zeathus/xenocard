@@ -1,6 +1,6 @@
 extends Node2D
 
-var card_scene = load("res://objects/card_node_baked.tscn")
+var card_scene = load("res://objects/card_display_baked.tscn")
 var cards: Array[Card]
 var filter: CardFilter = null
 var use_filter: bool = true
@@ -30,9 +30,9 @@ func set_cards(cards: Array[Card]):
 		var scene = card_scene.instantiate()
 		scene.position.y = 125
 		scene.scale = Vector2(0.15, 0.15)
-		scene.load_card(card)
+		scene.show_card(card.data)
 		scene.turn_up()
-		scene.selected.connect(select_card)
+		scene.selected.connect(func x(button_index: int): select_card(card, button_index))
 		$Panel/ScrollCards/HBox.add_child(scene)
 		card_nodes.push_back(scene)
 	refresh_cards()
@@ -65,17 +65,18 @@ func refresh_cards():
 	if pos_x > $Panel/ScrollCards/HBox.custom_minimum_size.x:
 		$Panel/ScrollCards/HBox.custom_minimum_size.x = pos_x - 40
 
-func select_card(card: Card):
-	if handler == null:
-		return
-	if filter and not filter.is_valid(card.owner, card):
-		return
-	for i in range(len(cards)):
-		if card == cards[i]:
-			selected_index = i
-			selected_card = card
-			break
-	done = true
+func select_card(card: Card, button_index: int):
+	if button_index == 1: # Left click
+		if handler == null:
+			return
+		if filter and not filter.is_valid(card.owner, card):
+			return
+		for i in range(len(cards)):
+			if card == cards[i]:
+				selected_index = i
+				selected_card = card
+				break
+		done = true
 
 func _on_use_filter_toggled(toggled_on):
 	use_filter = toggled_on
