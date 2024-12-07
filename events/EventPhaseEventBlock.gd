@@ -88,14 +88,14 @@ func play(card: Card):
 				player.hand.cards.insert(i, card)
 				player.hand.refresh()
 				break
+		var cost_to_pay = card.get_cost()
+		var cost_paid: int = player.pay_cost(cost_to_pay)
+		for i in range(cost_paid):
+			queue_event(EventPayCost.new(game_board, player))
 	hide_selectable()
-	var cost_to_pay = card.get_cost()
-	var cost_paid: int = player.pay_cost(cost_to_pay)
 	card.revealed = true
 	if card.instance.is_face_down():
 		queue_event(EventAnimation.new(game_board, AnimationFlip.new(card)))
-	for i in range(cost_paid):
-		queue_event(EventPayCost.new(game_board, player))
 	queue_event(EventAnimation.new(game_board, AnimationEffectStart.new(card)))
 	if card.get_type() == Enum.Type.EVENT:
 		queue_event(EventCounter.new(game_board, player.get_enemy(), card))
