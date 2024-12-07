@@ -16,6 +16,8 @@ func targets_to_select_for_effect() -> Array[CardFilter]:
 func effect(variables: Dictionary = {}):
 	for t in variables["effect_targets"]:
 		t.heal(Formula.calc(amount, parent.host, parent.get_game_board()))
+		if t.instance:
+			t.instance.play_animation("Heal")
 
 func has_valid_targets(variables: Dictionary = {}) -> bool:
 	for t in game_board.get_all_field_cards():

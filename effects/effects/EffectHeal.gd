@@ -14,6 +14,8 @@ func effect(variables: Dictionary = {}):
 	for c in parent.get_game_board().get_all_field_cards():
 		if filter.is_valid(parent.host.owner, c, variables):
 			c.heal(amount)
+			if c.instance:
+				c.instance.play_animation("Heal")
 
 func get_effect_score(variables: Dictionary = {}) -> int:
 	var score = -1
