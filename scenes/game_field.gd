@@ -12,6 +12,9 @@ var situation: Array[Card]
 var zones: Dictionary
 
 func _ready():
+	$Deck/Card.turn_down()
+	$Lost/Card.turn_down()
+	$Junk/Card.turn_up()
 	standby = [null, null, null, null]
 	battlefield = [null, null, null, null]
 	situation = [null, null, null, null]
