@@ -24,7 +24,7 @@ func on_start():
 	var anim_targets: Array[Node2D] = []
 	for t in attacker.get_attack_targets(game_board):
 		targets.push_back(t)
-		anim_targets.push_back(t.instance if t.is_card() else t.field.get_deck_node())
+		anim_targets.push_back(t.instance if t.is_card() else t.field.get_deck_node().find_child("Card"))
 	if len(targets) == 0:
 		attack_done = true
 		return
