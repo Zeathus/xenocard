@@ -1,0 +1,165 @@
+[gd_scene load_steps=10 format=3 uid="uid://dr4q0wbi3qwms"]
+
+[ext_resource type="Script" path="res://objects/deck_node.gd" id="1_ty7mm"]
+[ext_resource type="PackedScene" uid="uid://dosulntiwpmvw" path="res://objects/card_display.tscn" id="2_wtgrj"]
+
+[sub_resource type="Curve" id="Curve_iqbsd"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0547091), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_qx77r"]
+offsets = PackedFloat32Array(0.185127, 1)
+colors = PackedColorArray(1, 0.596078, 0.580392, 1, 1, 1, 0.439216, 0)
+
+[sub_resource type="Animation" id="Animation_uuiil"]
+resource_name = "Flip1"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4ysx2"]
+resource_name = "Flip2"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_x1ulj"]
+resource_name = "HitByAttack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:skew")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.49012e-08, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0436332, -0.0872665, 0.0872665, -0.0436332, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ParticlesHit:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_yv15v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ParticlesHit:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pivot:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7tg7d"]
+_data = {
+"Flip1": SubResource("Animation_uuiil"),
+"Flip2": SubResource("Animation_4ysx2"),
+"HitByAttack": SubResource("Animation_x1ulj"),
+"RESET": SubResource("Animation_yv15v")
+}
+
+[node name="CardNode" type="Node2D"]
+script = ExtResource("1_ty7mm")
+
+[node name="Pivot" type="Node2D" parent="."]
+
+[node name="Card" parent="Pivot" instance=ExtResource("2_wtgrj")]
+
+[node name="ParticlesHit" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 128
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.85
+emission_shape = 1
+emission_sphere_radius = 64.0
+direction = Vector2(0, 1)
+spread = 180.0
+gravity = Vector2(0, 0)
+radial_accel_min = 2000.0
+radial_accel_max = 2400.0
+radial_accel_curve = SubResource("Curve_iqbsd")
+scale_amount_min = 2.0
+scale_amount_max = 6.0
+color_ramp = SubResource("Gradient_qx77r")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7tg7d")
+}
+
+[connection signal="on_hover" from="Pivot/Card" to="." method="_on_card_on_hover"]
+[connection signal="selected" from="Pivot/Card" to="." method="_on_card_selected"]

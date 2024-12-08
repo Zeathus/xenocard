@@ -183,13 +183,13 @@ func hide_valid_zones():
 			border.visible = false
 
 func get_deck_node() -> Node2D:
-	return $Deck
+	return $Deck/Card
 
 func get_lost_node() -> Node2D:
-	return $Lost
+	return $Lost/Card
 
 func get_junk_node() -> Node2D:
-	return $Junk
+	return $Junk/Card
 
 func refresh():
 	$Deck/Count.text = "%d" % player.deck.size()

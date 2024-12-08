@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://bu0roj477cb2l"]
+[gd_scene load_steps=14 format=3 uid="uid://bu0roj477cb2l"]
 
 [ext_resource type="Script" path="res://scenes/game_field.gd" id="1_0jgdo"]
 [ext_resource type="PackedScene" uid="uid://dosulntiwpmvw" path="res://objects/card_display.tscn" id="1_s5b86"]
 [ext_resource type="PackedScene" uid="uid://bfsb45f6t2kmw" path="res://objects/card_zone.tscn" id="2_p58ou"]
 [ext_resource type="PackedScene" uid="uid://d2tcufci502xh" path="res://objects/card_status.tscn" id="4_dufjl"]
+[ext_resource type="PackedScene" uid="uid://dr4q0wbi3qwms" path="res://objects/deck_node.tscn" id="4_y82g8"]
 [ext_resource type="FontFile" uid="uid://ng1y54e8x08v" path="res://fonts/Roboto/Roboto-Bold.ttf" id="5_ku0h5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6oole"]
@@ -211,7 +212,7 @@ index = 3
 [node name="Deck" type="Area2D" parent="."]
 position = Vector2(423, 432)
 
-[node name="Card" parent="Deck" instance=ExtResource("1_s5b86")]
+[node name="Card" parent="Deck" instance=ExtResource("4_y82g8")]
 scale = Vector2(0.15, 0.15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Deck"]
