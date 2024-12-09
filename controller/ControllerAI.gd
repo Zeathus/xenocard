@@ -47,6 +47,9 @@ func _handle_request(action: Action, args: Array) -> bool:
 		Action.COUNTER:
 			if do_counter(args[0]):
 				return true
+		Action.MULLIGAN:
+			if do_mulligan(args[0]):
+				return true
 	return false
 
 func do_set_battle_card() -> bool:
@@ -418,3 +421,47 @@ func do_discard(filter: CardFilter):
 	else:
 		response_args = [null]
 	return true
+
+func do_mulligan(remaining: int) -> bool:
+	var score: int = get_starting_hand_score()
+	# Require minimum 3 score initially,
+	# then 2 with 2 remaning mulligans,
+	# and just 1 score if it's the last mulligan
+	if score < remaining:
+		return true
+	return false
+
+func get_starting_hand_score() -> int:
+	var score: int = 0
+	var turn_1_resources: Array[Enum.Attribute] = []
+	var cards: Array[Card] = player.hand.cards.duplicate()
+	var to_erase: Array[Card] = []
+	for card in cards:
+		if card.get_type() != Enum.Type.BATTLE:
+			continue
+		if card.get_attribute() in turn_1_resources:
+			continue
+		if len(card.get_field_requirements()) == 0:
+			turn_1_resources.append(card.get_attribute())
+			to_erase.push_back(card)
+	for card in to_erase:
+		cards.erase(card)
+	if len(turn_1_resources) > 0:
+		score += min(len(turn_1_resources), 2)
+		for card in cards:
+			if card.get_type() != Enum.Type.BATTLE:
+				continue
+			var req: Array[Enum.Attribute] = card.get_field_requirements()
+			if len(req) == 0:
+				score += 1
+			elif len(req) == 1:
+				if req[0] == Enum.Attribute.ANY or req[0] in turn_1_resources:
+					score += 1
+			elif len(req) == 2:
+				if len(turn_1_resources) >= 2:
+					if req[0] == Enum.Attribute.ANY and req[1] == Enum.Attribute.ANY:
+						score += 1
+					elif req[0] != Enum.Attribute.ANY and req[1] == Enum.Attribute.ANY:
+						if req[0] in turn_1_resources:
+							score += 1
+	return score

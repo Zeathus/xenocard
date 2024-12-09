@@ -16,6 +16,7 @@ var phase_effects: Dictionary
 var player_options: Array[Dictionary] = []
 var game_options: Dictionary = {}
 var countering_player: Player = null
+var turn_count: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -165,6 +166,7 @@ func begin_turn():
 	var turn_player: Player = get_turn_player()
 	turn_player.used_one_battle_card_per_turn = false
 	turn_player.used_one_situation_card_per_turn = false
+	turn_count += 1
 	queue_event(EventStartTurn.new(self, turn_player))
 	begin_phase(Enum.Phase.DRAW)
 

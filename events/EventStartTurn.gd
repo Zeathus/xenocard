@@ -18,7 +18,8 @@ func get_name() -> String:
 	return "StartTurn"
 
 func on_start():
-	pass
+	if game_board.turn_count <= 2:
+		queue_event(EventMulligan.new(game_board, player))
 
 func on_finish():
 	pass
