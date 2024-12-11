@@ -21,10 +21,10 @@ func on_start():
 	queue_event(EventConfirm.new(
 		game_board,
 		player,
-		"Redraw you hand?",
+		"Redraw your hand?",
 		func(): do_mulligan(),
 		func(): wait_for_finish = true,
-		"Do you want to keep this hand?\nYou have %d redraws remaining." % remaining
+		"Do you want to redraw your hand?\nYou have %d redraws remaining." % remaining
 	))
 
 func on_finish():
@@ -35,6 +35,16 @@ func process(delta):
 		return
 	if wait_for_finish:
 		finish()
+	elif player.has_controller():
+		if not player.controller.is_waiting():
+			if player.controller.has_response():
+				player.controller.receive()
+			else:
+				player.controller.request(
+					[Controller.Action.MULLIGAN, Controller.Action.END_PHASE],
+					[func(): do_mulligan(), func(): wait_for_finish = true],
+					[[remaining], []]
+				)
 
 func do_mulligan():
 	while player.hand.size() > 0:
@@ -43,17 +53,7 @@ func do_mulligan():
 		player.deck.add_top(card)
 	player.deck.shuffle()
 	for i in range(5):
-		var card = player.draw()
-		if card == null:
-			break
-		game_board.prepare_card(card)
-		player.hand.add_card(card)
-		var flip = card.instance.is_face_up()
-		if flip:
-			card.instance.turn_down()
-		card.instance.global_position = player.field.get_deck_node().global_position
-		queue_event(EventAnimation.new(game_board,
-			AnimationAddToHand.new(card.instance, player.hand, 2, flip)
-		))
+		queue_event(EventDrawCard.new(game_board, player, 2))
 	if remaining > 1:
 		queue_event(EventMulligan.new(game_board, player, remaining - 1))
+	wait_for_finish = true

@@ -424,9 +424,8 @@ func do_discard(filter: CardFilter):
 
 func do_mulligan(remaining: int) -> bool:
 	var score: int = get_starting_hand_score()
-	# Require minimum 3 score initially,
-	# then 2 with 2 remaning mulligans,
-	# and just 1 score if it's the last mulligan
+	# Require less score with fewer tries remaining
+	print("Score: ", score)
 	if score < remaining:
 		return true
 	return false
@@ -436,12 +435,15 @@ func get_starting_hand_score() -> int:
 	var turn_1_resources: Array[Enum.Attribute] = []
 	var cards: Array[Card] = player.hand.cards.duplicate()
 	var to_erase: Array[Card] = []
+	var playable_humans: int = 0
 	for card in cards:
 		if card.get_type() != Enum.Type.BATTLE:
 			continue
-		if card.get_attribute() in turn_1_resources:
-			continue
 		if len(card.get_field_requirements()) == 0:
+			if card.get_attribute() == Enum.Attribute.HUMAN:
+				playable_humans += 1
+			if card.get_attribute() in turn_1_resources:
+				continue
 			turn_1_resources.append(card.get_attribute())
 			to_erase.push_back(card)
 	for card in to_erase:
@@ -451,6 +453,9 @@ func get_starting_hand_score() -> int:
 		for card in cards:
 			if card.get_type() != Enum.Type.BATTLE:
 				continue
+			if card.get_attribute() == Enum.Attribute.GNOSIS and playable_humans < 2:
+				# Do not give 2 points for 1 human + 1 gnosis
+				continue
 			var req: Array[Enum.Attribute] = card.get_field_requirements()
 			if len(req) == 0:
 				score += 1
@@ -458,10 +463,13 @@ func get_starting_hand_score() -> int:
 				if req[0] == Enum.Attribute.ANY or req[0] in turn_1_resources:
 					score += 1
 			elif len(req) == 2:
-				if len(turn_1_resources) >= 2:
+				if len(turn_1_resources) >= 2 or playable_humans >= 2:
 					if req[0] == Enum.Attribute.ANY and req[1] == Enum.Attribute.ANY:
 						score += 1
 					elif req[0] != Enum.Attribute.ANY and req[1] == Enum.Attribute.ANY:
 						if req[0] in turn_1_resources:
+							score += 1
+					elif req[0] == Enum.Attribute.HUMAN and req[1] == Enum.Attribute.HUMAN:
+						if playable_humans >= 2:
 							score += 1
 	return score

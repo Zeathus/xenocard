@@ -18,8 +18,7 @@ func get_name() -> String:
 	return "StartTurn"
 
 func on_start():
-	if game_board.turn_count <= 2:
-		queue_event(EventMulligan.new(game_board, player))
+	pass
 
 func on_finish():
 	pass
@@ -36,4 +35,8 @@ func process(delta):
 			if not transition_player.is_playing():
 				state = 2
 		2:
+			if game_board.turn_count <= 2:
+				queue_event(EventMulligan.new(game_board, player))
+			state = 3
+		3:
 			finish()
