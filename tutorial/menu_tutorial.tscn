@@ -1,0 +1,72 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkxcymn5kc2os"]
+
+[ext_resource type="Script" path="res://tutorial/menu_tutorial.gd" id="1_mkrge"]
+
+[node name="SoloGame" type="Node2D"]
+position = Vector2(0, -24)
+script = ExtResource("1_mkrge")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="List" type="Panel" parent="."]
+offset_left = -436.0
+offset_top = -294.0
+offset_right = -136.0
+offset_bottom = 343.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="List"]
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 290.0
+offset_bottom = 628.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="List/ScrollContainer"]
+custom_minimum_size = Vector2(272, 400)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Options" type="Panel" parent="."]
+offset_left = -115.0
+offset_top = -248.0
+offset_right = 485.0
+offset_bottom = 343.0
+
+[node name="Title" type="Panel" parent="Options"]
+layout_mode = 0
+offset_top = -46.0
+offset_right = 600.0
+offset_bottom = -6.0
+
+[node name="Label" type="Label" parent="Options/Title"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0133333
+anchor_right = -0.0133333
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 599.0
+offset_bottom = 31.0
+text = "Game Options"
+horizontal_alignment = 1
+
+[node name="ButtonStart" type="Button" parent="Options"]
+offset_left = 150.0
+offset_top = 520.0
+offset_right = 450.0
+offset_bottom = 568.0
+pivot_offset = Vector2(150, 0)
+text = "Start Tutorial"
+metadata/_edit_use_anchors_ = true
+
+[node name="ButtonExit" type="Button" parent="."]
+offset_left = -942.0
+offset_top = -496.0
+offset_right = -842.0
+offset_bottom = -448.0
+text = "Exit"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="ButtonExit" to="." method="_on_button_exit_pressed"]

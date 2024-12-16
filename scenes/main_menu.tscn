@@ -10,27 +10,49 @@ script = ExtResource("1_ps2kx")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="ButtonSolo" type="Button" parent="."]
-offset_left = -150.0
+offset_left = -310.0
 offset_top = -56.0
-offset_right = 150.0
+offset_right = -10.0
 offset_bottom = -8.0
 text = "Solo Game"
 metadata/_edit_use_anchors_ = true
 
+[node name="ButtonOnline" type="Button" parent="."]
+offset_left = 10.0
+offset_top = -56.0
+offset_right = 310.0
+offset_bottom = -8.0
+disabled = true
+text = "Online Game"
+
 [node name="ButtonDecks" type="Button" parent="."]
 offset_left = -150.0
+offset_top = 8.0
 offset_right = 150.0
-offset_bottom = 48.0
+offset_bottom = 56.0
 text = "Decks"
-metadata/_edit_use_anchors_ = true
+
+[node name="ButtonTutorials" type="Button" parent="."]
+offset_left = -310.0
+offset_top = 72.0
+offset_right = -10.0
+offset_bottom = 120.0
+text = "Tutorials"
+
+[node name="ButtonRulebook" type="Button" parent="."]
+offset_left = 10.0
+offset_top = 72.0
+offset_right = 310.0
+offset_bottom = 120.0
+disabled = true
+text = "Rulebook"
 
 [node name="ButtonExit" type="Button" parent="."]
 offset_left = -150.0
-offset_top = 56.0
+offset_top = 136.0
 offset_right = 150.0
-offset_bottom = 104.0
+offset_bottom = 184.0
 text = "Exit"
-metadata/_edit_use_anchors_ = true
 
 [node name="ButtonTest" type="Button" parent="."]
 visible = false
@@ -47,5 +69,6 @@ texture = ExtResource("1_0mlpt")
 
 [connection signal="pressed" from="ButtonSolo" to="." method="_on_button_solo_pressed"]
 [connection signal="pressed" from="ButtonDecks" to="." method="_on_button_decks_pressed"]
+[connection signal="pressed" from="ButtonTutorials" to="." method="_on_button_tutorials_pressed"]
 [connection signal="pressed" from="ButtonExit" to="." method="_on_button_exit_pressed"]
 [connection signal="pressed" from="ButtonTest" to="." method="_on_button_test_pressed"]

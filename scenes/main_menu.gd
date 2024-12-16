@@ -1,7 +1,5 @@
 extends Node2D
 
-var decks_scene = load("res://scenes/deck_builder.tscn")
-var solo_game_scene = load("res://scenes/solo_game.tscn")
 var task = null
 
 # Called when the node enters the scene tree for the first time.
@@ -33,10 +31,16 @@ func _on_button_exit_pressed():
 	get_tree().quit()
 
 func _on_button_decks_pressed():
+	var decks_scene = load("res://scenes/deck_builder.tscn")
 	get_parent().start_scene(decks_scene.instantiate())
 
 func _on_button_solo_pressed():
+	var solo_game_scene = load("res://scenes/solo_game.tscn")
 	get_parent().start_scene(solo_game_scene.instantiate())
+
+func _on_button_tutorials_pressed() -> void:
+	var tutorial_scene = load("res://tutorial/menu_tutorial.tscn")
+	get_parent().start_scene(tutorial_scene.instantiate())
 
 func _on_button_test_pressed() -> void:
 	var sub_viewport = SubViewport.new()
