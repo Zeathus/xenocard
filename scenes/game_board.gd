@@ -25,6 +25,12 @@ func _ready():
 	card_zones = []
 	for node in find_children("Zone?", "Node2D"):
 		card_zones.push_back(node)
+	if "load_game" in game_options:
+		load_game(game_options["load_game"])
+	else:
+		new_game()
+
+func new_game():
 	for i in range(2):
 		var options: Dictionary = player_options[i]
 		var player: Player = Player.new(
@@ -44,6 +50,168 @@ func _ready():
 			queue_event(EventDrawCard.new(self, p, 2))
 	turn_player_id = 0
 	begin_turn()
+
+func load_game(path: String):
+	var data: Dictionary
+	if FileAccess.file_exists(path):
+		var file = FileAccess.open(path, FileAccess.READ)
+		var json = JSON.new()
+		var error = json.parse(file.get_as_text())
+		if error == OK:
+			data = json.data
+		else:
+			push_error("Failed to to parse game file '%s'" % path)
+			return null
+	else:
+		push_error("Failed to find game file '%s'" % path)
+		return null
+	turn_player_id = data["turn_player_id"]
+	turn_phase = data["turn_phase"]
+	turn_count = data["turn_count"]
+	for i in range(2):
+		var player: Player = Player.new(
+			i,
+			Deck.new(),
+			[$FieldPlayer, $FieldEnemy][i],
+			[$HandPlayer, $HandEnemy][i],
+			self
+		)
+		players.push_back(player)
+	for i in range(2):
+		var player: Player = players[i]
+		var player_data: Dictionary = data["players"][i]
+		for id in player_data["deck"]:
+			player.deck.cards.push_back(Card.new(id))
+		for id in player_data["lost"]:
+			player.lost.cards.push_back(Card.new(id))
+		for id in player_data["junk"]:
+			player.junk.cards.push_back(Card.new(id))
+		player.deck.set_owner(player)
+		player.lost.set_owner(player)
+		player.junk.set_owner(player)
+		for id in player_data["hand"]:
+			var card: Card = Card.new(id)
+			card.owner = player
+			card.instantiate()
+			prepare_card(card)
+			player.hand.add_card(card)
+		player.hand.refresh()
+		for pos in range(4):
+			var card = player_data["battlefield"][pos]
+			if card != null:
+				player.field.set_card(json_to_card(card, player), Enum.Zone.BATTLEFIELD, pos)
+			card = player_data["standby"][pos]
+			if card != null:
+				player.field.set_card(json_to_card(card, player), Enum.Zone.STANDBY, pos)
+			card = player_data["situation"][pos]
+			if card != null:
+				player.field.set_card(json_to_card(card, player), Enum.Zone.SITUATION, pos)
+		for card in player.field.get_all_cards():
+			card.instance.global_position = player.field.get_zone(card.zone, card.zone_index).global_position
+			if card.equipped_weapon:
+				player.field.add_card(card.equipped_weapon)
+				card.equipped_weapon.instance.scale = Vector2(0.075, 0.075)
+				card.equipped_weapon.instance.global_position = card.instance.global_position
+				if card.instance.global_rotation == 0:
+					card.equipped_weapon.instance.global_position += Vector2(28, 42)
+				else:
+					card.equipped_weapon.instance.global_position -= Vector2(28, 42)
+		player.show_hand = (not player_data["ai"]) or game_options["reveal_hands"]
+		if player_data["ai"]:
+			player.controller = ControllerAI.new(self, player)
+			player.controller.start()
+	refresh()
+	begin_phase(turn_phase)
+
+func save_game(path: String):
+	# This function does not save phase effects.
+	# Only for internal use.
+	DirAccess.make_dir_absolute(path.substr(0, path.rfind("/")))
+	var game_file = FileAccess.open(path, FileAccess.WRITE)
+	var json_data: Dictionary = {
+		"turn_player_id": turn_player_id,
+		"turn_phase": turn_phase,
+		"turn_count": turn_count,
+		"players": [
+			field_to_json(players[0]),
+			field_to_json(players[1])
+		]
+	}
+	var json_string = JSON.stringify(json_data)
+	game_file.store_line(json_string)
+
+func field_to_json(player: Player) -> Dictionary:
+	# This function does not save effects applied to players.
+	var data: Dictionary = {
+		"ai": player.has_controller(),
+		"deck": [],
+		"lost": [],
+		"junk": [],
+		"hand": [],
+		"battlefield": [null, null, null, null],
+		"standby": [null, null, null, null],
+		"situation": [null, null, null, null],
+	}
+	for card in player.deck.cards:
+		data["deck"].push_back("%s/%s" % [card.get_set_name(), card.get_id()])
+	for card in player.lost.cards:
+		data["lost"].push_back("%s/%s" % [card.get_set_name(), card.get_id()])
+	for card in player.junk.cards:
+		data["junk"].push_back("%s/%s" % [card.get_set_name(), card.get_id()])
+	for card in player.hand.cards:
+		data["hand"].push_back("%s/%s" % [card.get_set_name(), card.get_id()])
+	for i in range(4):
+		var card: Card = player.field.get_card(Enum.Zone.BATTLEFIELD, i)
+		if card:
+			data["battlefield"][i] = card_to_json(card)
+		card = player.field.get_card(Enum.Zone.STANDBY, i)
+		if card:
+			data["standby"][i] = card_to_json(card)
+		card = player.field.get_card(Enum.Zone.SITUATION, i)
+		if card:
+			data["situation"][i] = card_to_json(card)
+	return data
+
+func card_to_json(card: Card) -> Dictionary:
+	# This function is not complete. It does not contains
+	# effect information, such as duration or applied effects.
+	# Right now it is only for internal use.
+	var data: Dictionary = {
+		"id": "%s/%s" % [card.get_set_name(), card.get_id()],
+		"turn_count": card.turn_count
+	}
+	if card.hp != 0:
+		data["hp"] = card.hp
+	if card.downed:
+		data["downed"] = true
+		data["downed_turn"] = card.downed_turn
+	if card.e_mark:
+		data["e_mark"] = true
+	if card.atk_timer != 0:
+		data["atk_timer"] = card.atk_timer
+	if card.equipped_weapon:
+		data["weapon"] = card_to_json(card.equipped_weapon)
+	return data
+
+func json_to_card(data: Dictionary, owner: Player) -> Card:
+	var card: Card = Card.new(data["id"])
+	card.owner = owner
+	card.instantiate()
+	prepare_card(card)
+	if "turn_count" in data:
+		card.turn_count = data["turn_count"]
+	if "hp" in data:
+		card.hp = data["hp"]
+	if "downed" in data:
+		card.downed = data["downed"]
+		card.downed_turn = data["downed_turn"]
+	if "e_mark" in data:
+		card.e_mark = data["e_mark"]
+	if "atk_timer" in data:
+		card.atk_timer = data["atk_timer"]
+	if "weapon" in data:
+		card.equip(json_to_card(data["weapon"], owner))
+	return card
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -278,7 +446,7 @@ func _on_end_phase_pressed():
 		get_event().on_end_phase_pressed()
 
 func _on_test_button_pressed():
-	pass
+	save_game("res://tutorial/saved_games/test.json")
 
 func _on_button_exit_pressed():
 	for p in players:

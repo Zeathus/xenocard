@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cd6ye336j76r2"]
+[gd_scene load_steps=12 format=3 uid="uid://cbugc725ynfw5"]
 
 [ext_resource type="Script" path="res://objects/field_requirement_preview.gd" id="1_nq6tm"]
 [ext_resource type="FontFile" uid="uid://cwo0ya5s4od8f" path="res://fonts/Roboto/RobotoCondensed-VariableFont_wght.ttf" id="2_qugtd"]
