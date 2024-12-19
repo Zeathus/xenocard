@@ -11,7 +11,7 @@ func size() -> int:
 	return len(self.cards)
 
 func shuffle():
-	self.cards.shuffle()
+	Random.shuffle(self.cards)
 
 func can_draw() -> bool:
 	return len(cards) > 0

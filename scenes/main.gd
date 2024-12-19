@@ -4,8 +4,13 @@ var main_menu = load("res://scenes/main_menu.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	add_child(main_menu.instantiate())
-	load_card_data()
+	Random.set_seed(123)
+	if OS.has_feature("dedicated_server"):
+		var server: TCGServer = TCGServer.new()
+		add_child(server)
+	else:
+		add_child(main_menu.instantiate())
+		load_card_data()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

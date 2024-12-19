@@ -46,6 +46,7 @@ var turn_count: int
 var modify_for_set: Array[Callable] = []
 var revealed: bool = false
 var selected: bool = false
+var unique_id: int = 0
 
 func _init(_id: String):
 	self.data = CardData.get_data(_id)

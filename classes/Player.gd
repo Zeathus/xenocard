@@ -19,6 +19,10 @@ func _init(id: int, deck: Deck, field: GameField, hand: GameHand, game_board: Ga
 	self.deck = deck
 	self.deck.set_owner(self)
 	self.deck.shuffle()
+	var unique_id: int = 1
+	for card in self.deck.cards:
+		card.unique_id = unique_id if id == 0 else -unique_id
+		unique_id += 1
 	self.lost = Deck.new()
 	self.junk = Deck.new()
 	self.field = field

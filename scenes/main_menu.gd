@@ -43,6 +43,10 @@ func _on_button_tutorials_pressed() -> void:
 	get_parent().start_scene(tutorial_scene.instantiate())
 
 func _on_button_test_pressed() -> void:
+	var client: TCGClient = TCGClient.new()
+	add_child(client)
+
+func _on_button_create_card_images_pressed() -> void:
 	var sub_viewport = SubViewport.new()
 	sub_viewport.size = Vector2(400, 600)
 	sub_viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS

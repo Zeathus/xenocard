@@ -177,6 +177,7 @@ func card_to_json(card: Card) -> Dictionary:
 	# effect information, such as duration or applied effects.
 	# Right now it is only for internal use.
 	var data: Dictionary = {
+		"uid": card.unique_id,
 		"id": "%s/%s" % [card.get_set_name(), card.get_id()],
 		"turn_count": card.turn_count
 	}
@@ -198,6 +199,7 @@ func json_to_card(data: Dictionary, owner: Player) -> Card:
 	card.owner = owner
 	card.instantiate()
 	prepare_card(card)
+	card.unique_id = data["uid"]
 	if "turn_count" in data:
 		card.turn_count = data["turn_count"]
 	if "hp" in data:

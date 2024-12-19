@@ -55,12 +55,18 @@ offset_bottom = 184.0
 text = "Exit"
 
 [node name="ButtonTest" type="Button" parent="."]
-visible = false
+offset_left = -944.0
+offset_top = 454.0
+offset_right = -846.0
+offset_bottom = 485.0
+text = "Test Button"
+
+[node name="ButtonCreateCardImages" type="Button" parent="."]
 offset_left = -944.0
 offset_top = 494.0
-offset_right = -846.0
+offset_right = -784.0
 offset_bottom = 525.0
-text = "Test Button"
+text = "Create Card Images"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -304)
@@ -72,3 +78,4 @@ texture = ExtResource("1_0mlpt")
 [connection signal="pressed" from="ButtonTutorials" to="." method="_on_button_tutorials_pressed"]
 [connection signal="pressed" from="ButtonExit" to="." method="_on_button_exit_pressed"]
 [connection signal="pressed" from="ButtonTest" to="." method="_on_button_test_pressed"]
+[connection signal="pressed" from="ButtonCreateCardImages" to="." method="_on_button_create_card_images_pressed"]
