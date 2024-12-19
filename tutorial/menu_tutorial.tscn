@@ -16,6 +16,7 @@ offset_bottom = 343.0
 metadata/_edit_use_anchors_ = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="List"]
+layout_mode = 0
 offset_left = 10.0
 offset_top = 8.0
 offset_right = 290.0
@@ -53,6 +54,7 @@ text = "Game Options"
 horizontal_alignment = 1
 
 [node name="ButtonStart" type="Button" parent="Options"]
+layout_mode = 0
 offset_left = 150.0
 offset_top = 520.0
 offset_right = 450.0
