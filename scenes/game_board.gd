@@ -401,6 +401,26 @@ func play_se(se: String):
 			player.play()
 			break
 
+func get_card(unique_id: int) -> Card:
+	var owner: Player = players[0]
+	for card in owner.hand.cards:
+		if card.unique_id == unique_id:
+			return card
+	for card in owner.field.get_all_cards():
+		if card.unique_id == unique_id:
+			return card
+	for card in owner.deck.cards:
+		if card.unique_id == unique_id:
+			return card
+	for card in owner.junk.cards:
+		if card.unique_id == unique_id:
+			return card
+	for card in owner.lost.cards:
+		if card.unique_id == unique_id:
+			return card
+	print("Failed to find card by unique id, this should never happen.")
+	return null
+
 func show_details(card):
 	$CardDetails.visible = true
 	$CardDetails/CardNode.turn_up()
