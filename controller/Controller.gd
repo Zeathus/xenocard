@@ -25,13 +25,16 @@ func _init(_game_board: GameBoard, _player: Player):
 	waiting = false
 	response = -1
 
-func start():
+func start() -> void:
 	if thread:
 		return
 	thread = Thread.new()
 	thread.start(_main)
 
-func stop():
+func on_start() -> void:
+	pass
+
+func stop() -> void:
 	mutex.lock()
 	finished = true
 	mutex.unlock()
@@ -82,6 +85,7 @@ func _handle_request(action: Action, args: Array) -> bool:
 	return false
 
 func _main():
+	on_start()
 	while true:
 		semaphore.wait()
 		mutex.lock()

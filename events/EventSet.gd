@@ -94,6 +94,7 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, ind
 		queue_event(EventAnimation.new(game_board, anim))
 
 func play(new_zone: Enum.Zone, index: int):
+	print("Game ", game_board.game_id, " P", player.id + 1, " set ", to_set.get_name())
 	if to_set.instance.is_face_down() and to_set.zone == Enum.Zone.HAND:
 		for i in range(player.hand.size()):
 			if player.hand.cards[i].instance.is_face_down():

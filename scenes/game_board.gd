@@ -6,6 +6,7 @@ var quick_details_enabled: bool = true
 var quick_detail_card: Card = null
 var quick_detail_card_timer: float = 0
 
+var game_id: int = randi()
 var players: Array[Player]
 var turn_player_id: int = 0
 var turn_phase: Enum.Phase = Enum.Phase.DRAW

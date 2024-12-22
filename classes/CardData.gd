@@ -130,6 +130,8 @@ func load_json(json: Dictionary):
 			effects.push_back(effect_data)
 
 func get_image() -> Resource:
+	if OS.has_feature("dedicated_server"):
+		return null
 	var image_file: String = "res://sprites/card_images/%s/%s.png" % [set_name, id]
 	if ResourceLoader.exists(image_file):
 		return load(image_file)
@@ -138,6 +140,8 @@ func get_image() -> Resource:
 		return load("res://sprites/card_images/missing_artwork.png")
 
 func get_baked_image() -> Resource:
+	if OS.has_feature("dedicated_server"):
+		return null
 	var image_file: String = "res://sprites/card_images_baked/%s/%s.png" % [set_name, id]
 	if FileAccess.file_exists(image_file):
 		return load(image_file)

@@ -419,7 +419,6 @@ func do_discard(filter: CardFilter):
 func do_mulligan(remaining: int) -> bool:
 	var score: int = get_starting_hand_score()
 	# Require less score with fewer tries remaining
-	print("Score: ", score)
 	if score < remaining:
 		return true
 	return false
