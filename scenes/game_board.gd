@@ -18,6 +18,7 @@ var player_options: Array[Dictionary] = []
 var game_options: Dictionary = {}
 var countering_player: Player = null
 var turn_count: int = 0
+var online_mode: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,7 +27,12 @@ func _ready():
 	card_zones = []
 	for node in find_children("Zone?", "Node2D"):
 		card_zones.push_back(node)
-	if "load_game" in game_options:
+	if "online" in game_options:
+		if game_options["online"] == "client":
+			online_mode = 1
+		elif game_options["online"] == "server":
+			online_mode = 2
+	elif "load_game" in game_options:
 		load_game(game_options["load_game"])
 	else:
 		new_game()
@@ -34,9 +40,14 @@ func _ready():
 func new_game():
 	for i in range(2):
 		var options: Dictionary = player_options[i]
+		var deck: Deck
+		if "cards" in options["deck"]:
+			deck = Deck.from_cards(options["deck"]["cards"])
+		else:
+			deck = Deck.load(options["deck"]["name"], options["deck"]["preset"])
 		var player: Player = Player.new(
 			i,
-			Deck.load(options["deck"]["name"], options["deck"]["preset"]),
+			deck,
 			[$FieldPlayer, $FieldEnemy][i],
 			[$HandPlayer, $HandEnemy][i],
 			self
@@ -421,6 +432,12 @@ func get_card(unique_id: int) -> Card:
 			return card
 	print("Failed to find card by unique id, this should never happen.")
 	return null
+
+func is_client() -> bool:
+	return online_mode == 1
+
+func is_server() -> bool:
+	return online_mode == 2
 
 func show_details(card):
 	$CardDetails.visible = true

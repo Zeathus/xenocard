@@ -60,6 +60,9 @@ static func get_data(_id: String) -> CardData:
 	data[_id] = new_data
 	return new_data
 
+static func has_data(_id: String) -> bool:
+	return _id in data
+
 static func get_count() -> int:
 	return len(data)
 

@@ -1,0 +1,146 @@
+[gd_scene load_steps=3 format=3 uid="uid://bd6fotdy4grc8"]
+
+[ext_resource type="Script" path="res://scenes/online_game.gd" id="1_v84ir"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_0euxj"]
+resource_local_to_scene = false
+
+[node name="OnlineGame" type="Node2D"]
+position = Vector2(0, -24)
+script = ExtResource("1_v84ir")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="P1" type="Panel" parent="."]
+offset_left = -200.0
+offset_top = 16.0
+offset_right = 200.0
+offset_bottom = 146.0
+metadata/_edit_use_anchors_ = true
+
+[node name="DeckLabel" type="Label" parent="P1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.52
+anchor_right = -0.52
+offset_left = 240.0
+offset_top = 24.0
+offset_right = 330.0
+offset_bottom = 47.0
+text = "Deck"
+metadata/_edit_use_anchors_ = true
+
+[node name="DeckCustom" type="CheckBox" parent="P1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.52
+anchor_right = -0.52
+offset_left = 399.0
+offset_top = 20.0
+offset_right = 487.0
+offset_bottom = 51.0
+button_pressed = true
+button_group = SubResource("ButtonGroup_0euxj")
+text = "Custom"
+metadata/_edit_use_anchors_ = true
+
+[node name="DeckPreset" type="CheckBox" parent="P1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.52
+anchor_right = -0.52
+offset_left = 495.0
+offset_top = 20.0
+offset_right = 573.0
+offset_bottom = 51.0
+button_group = SubResource("ButtonGroup_0euxj")
+text = "Preset"
+metadata/_edit_use_anchors_ = true
+
+[node name="Deck" type="OptionButton" parent="P1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.52
+anchor_right = -0.52
+offset_left = 235.0
+offset_top = 56.0
+offset_right = 577.0
+offset_bottom = 103.0
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerPanel" type="Panel" parent="P1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -1.41538
+anchor_bottom = -1.41538
+offset_top = 137.0
+offset_right = 400.0
+offset_bottom = 177.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="P1/PlayerPanel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 385.0
+offset_bottom = 31.0
+text = "Choose a Deck"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Options" type="Panel" parent="."]
+visible = false
+offset_left = 185.0
+offset_top = -144.0
+offset_right = 485.0
+offset_bottom = 193.0
+
+[node name="Title" type="Panel" parent="Options"]
+layout_mode = 0
+offset_top = -46.0
+offset_right = 300.0
+offset_bottom = -6.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Options/Title"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0133333
+anchor_right = -0.0133333
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 291.0
+offset_bottom = 31.0
+text = "Game Options"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="RevealHands" type="CheckBox" parent="Options"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 20.0
+offset_right = 175.0
+offset_bottom = 51.0
+text = "Play with hands revealed"
+
+[node name="ButtonStart" type="Button" parent="."]
+offset_left = -150.0
+offset_top = 216.0
+offset_right = 150.0
+offset_bottom = 264.0
+disabled = true
+text = "Look for Game"
+metadata/_edit_use_anchors_ = true
+
+[node name="ButtonExit" type="Button" parent="."]
+offset_left = -942.0
+offset_top = -496.0
+offset_right = -842.0
+offset_bottom = -448.0
+text = "Exit"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="toggled" from="P1/DeckPreset" to="." method="_on_p1_deck_preset_toggled"]
+[connection signal="item_selected" from="P1/Deck" to="." method="_on_deck_item_selected"]
+[connection signal="pressed" from="ButtonStart" to="." method="_on_button_start_pressed"]
+[connection signal="pressed" from="ButtonExit" to="." method="_on_button_exit_pressed"]

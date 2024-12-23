@@ -10,7 +10,7 @@ func _ready():
 		add_child(server)
 	else:
 		add_child(main_menu.instantiate())
-		load_card_data()
+	load_card_data()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

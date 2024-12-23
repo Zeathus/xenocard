@@ -38,13 +38,13 @@ func _on_button_solo_pressed():
 	var solo_game_scene = load("res://scenes/solo_game.tscn")
 	get_parent().start_scene(solo_game_scene.instantiate())
 
+func _on_button_online_pressed() -> void:
+	var online_game_scene = load("res://scenes/online_game.tscn")
+	get_parent().start_scene(online_game_scene.instantiate())
+
 func _on_button_tutorials_pressed() -> void:
 	var tutorial_scene = load("res://tutorial/menu_tutorial.tscn")
 	get_parent().start_scene(tutorial_scene.instantiate())
-
-func _on_button_test_pressed() -> void:
-	var client: TCGClient = TCGClient.new()
-	add_child(client)
 
 func _on_button_create_card_images_pressed() -> void:
 	var sub_viewport = SubViewport.new()

@@ -22,7 +22,6 @@ offset_left = 10.0
 offset_top = -56.0
 offset_right = 310.0
 offset_bottom = -8.0
-disabled = true
 text = "Online Game"
 
 [node name="ButtonDecks" type="Button" parent="."]
@@ -74,6 +73,7 @@ scale = Vector2(3, 3)
 texture = ExtResource("1_0mlpt")
 
 [connection signal="pressed" from="ButtonSolo" to="." method="_on_button_solo_pressed"]
+[connection signal="pressed" from="ButtonOnline" to="." method="_on_button_online_pressed"]
 [connection signal="pressed" from="ButtonDecks" to="." method="_on_button_decks_pressed"]
 [connection signal="pressed" from="ButtonTutorials" to="." method="_on_button_tutorials_pressed"]
 [connection signal="pressed" from="ButtonExit" to="." method="_on_button_exit_pressed"]

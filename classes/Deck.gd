@@ -76,3 +76,10 @@ static func load(name: String, preset: bool = false) -> Deck:
 	for card_data in deck_data.cards:
 		deck.cards.push_back(Card.new(card_data.get_full_id()))
 	return deck
+
+static func from_cards(cards: PackedStringArray) -> Deck:
+	var deck = Deck.new()
+	deck.name = "Deck"
+	for card_id in cards:
+		deck.cards.push_back(Card.new(card_id))
+	return deck

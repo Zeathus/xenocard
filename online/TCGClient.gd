@@ -6,6 +6,7 @@ enum MessageType {
 	NONE = 0,
 	QUEUE = 1,
 	MATCHED = 2,
+	DECK = 3,
 	CHAT = 10,
 	OK = 200,
 	DENIED = 400,
@@ -14,7 +15,12 @@ enum MessageType {
 
 enum ClientState {
 	STARTING = 1,
-	QUEUING = 2
+	QUEUING = 2,
+	AWAIT_DECK = 3,
+	SENDING_DECK = 4,
+	AWAIT_BOARD = 5,
+	START_GAME = 6,
+	PLAYING = 7
 }
 
 var websocket_url := "ws://localhost:9080"
@@ -40,13 +46,17 @@ func _process(_delta: float) -> void:
 				MessageType.OK:
 					if state == ClientState.QUEUING:
 						print("We were queued!")
-						waiting_for = MessageType.NONE
+						waiting_for = MessageType.MATCHED
+					elif state == ClientState.SENDING_DECK:
+						print("Client: Deck OK!")
+						state = ClientState.AWAIT_BOARD
+					elif state == ClientState.AWAIT_BOARD:
+						print("Board ready!")
+						state = ClientState.START_GAME
 				MessageType.MATCHED:
 					if state == ClientState.QUEUING:
 						print("We were matched!")
-						var id: String = str(randi())
-						print("Sending 'Hello' with ID " + id)
-						send_chat("Hello! " + id)
+						state = ClientState.AWAIT_DECK
 				MessageType.CHAT:
 					var msg_text: String = msg.slice(1).to_byte_array().get_string_from_utf8()
 					print("Got a message: ", msg_text)
@@ -63,9 +73,25 @@ func request_queue() -> void:
 	var message: PackedInt32Array
 	message.push_back(MessageType.QUEUE)
 	socket.send(message.to_byte_array())
-	waiting_for = MessageType.QUEUE
+	waiting_for = MessageType.OK
 	state = ClientState.QUEUING
 	print("Sent queue request")
+
+func send_deck(deck: Deck) -> void:
+	var type: PackedInt32Array
+	type.push_back(MessageType.DECK)
+	var deck_msg: String = ""
+	for card in deck.cards:
+		if len(deck_msg) > 0:
+			deck_msg += ","
+		deck_msg += "%s/%s" % [card.get_set_name(), card.get_id()]
+	var msg_data: PackedByteArray = type.to_byte_array() + deck_msg.to_ascii_buffer()
+	while msg_data.size() % 4 != 0:
+		msg_data.push_back(0)
+	socket.send(msg_data)
+	state = ClientState.SENDING_DECK
+	waiting_for = MessageType.OK
+	print("Sent: ", deck_msg)
 
 func send_chat(message: String) -> void:
 	while message.length() % 4 != 0:
