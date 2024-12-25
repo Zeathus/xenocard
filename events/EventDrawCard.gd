@@ -20,9 +20,10 @@ func on_start():
 			if e.redirects_draw_to_lost(player):
 				queue_event(EventDrawCardFromLost.new(game_board, player))
 				return
-	var card = player.draw()
+	card = player.draw()
 	if card == null:
 		return
+	broadcast()
 	game_board.prepare_card(card)
 	player.hand.add_card(card)
 	var flip = card.instance.is_face_up()
@@ -40,3 +41,8 @@ func process(delta):
 	if pass_to_child("process", [delta]):
 		return
 	finish()
+
+func broadcast():
+	if game_board.is_server():
+		player.controller.broadcast_event("DrawCard", [player, card.data.get_full_id()])
+		player.get_enemy().controller.broadcast_event("DrawCard", [player])

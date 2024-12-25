@@ -49,8 +49,7 @@ var selected: bool = false
 var unique_id: int = 0
 
 func _init(_id: String):
-	self.data = CardData.get_data(_id)
-	self.hp = data.max_hp
+	set_id(_id)
 	self.instance = null
 	self.zone = Enum.Zone.DECK
 	self.zone_index = 0
@@ -58,7 +57,6 @@ func _init(_id: String):
 	self.downed = false
 	self.equipped_weapon = null
 	self.equipped_by = null
-	self.atk_timer = 0
 	self.turn_count = 0
 
 func reset():
@@ -70,6 +68,14 @@ func reset():
 	turn_count = 0
 	init_effects(owner.game_board)
 	applied_effects.clear()
+
+func set_id(_id: String) -> void:
+	self.data = CardData.get_data(_id)
+	self.hp = data.max_hp
+	self.atk_timer = 0
+
+func make_anonymous() -> void:
+	set_id("SYS/anon")
 
 func init_effects(game_board: GameBoard):
 	effects.clear()

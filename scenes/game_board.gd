@@ -19,6 +19,8 @@ var game_options: Dictionary = {}
 var countering_player: Player = null
 var turn_count: int = 0
 var online_mode: int = 0
+var client: TCGClient = null
+var server: TCGServer = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,8 +32,10 @@ func _ready():
 	if "online" in game_options:
 		if game_options["online"] == "client":
 			online_mode = 1
+			new_client_game()
 		elif game_options["online"] == "server":
 			online_mode = 2
+			new_game()
 	elif "load_game" in game_options:
 		load_game(game_options["load_game"])
 	else:
@@ -52,16 +56,43 @@ func new_game():
 			[$HandPlayer, $HandEnemy][i],
 			self
 		)
-		player.show_hand = (not options["ai"]) or game_options["reveal_hands"]
-		if options["ai"]:
-			player.controller = ControllerAI.new(self, player)
+		if online_mode == 2: # Server
+			print("online_mode == 2")
+			player.show_hand = true
+			player.controller = ControllerServer.new(self, player, server, options["peer"])
 			player.controller.start()
+		else:
+			player.show_hand = (not options["ai"]) or game_options["reveal_hands"]
+			if options["ai"]:
+				player.controller = ControllerAI.new(self, player)
+				player.controller.start()
 		players.push_back(player)
 	for p in players:
 		for i in range(5):
 			queue_event(EventDrawCard.new(self, p, 2))
 	turn_player_id = 0
 	begin_turn()
+
+func new_client_game():
+	for i in range(2):
+		var deck: Deck = Deck.new_anonymous(40)
+		var player: Player = Player.new(
+			i,
+			deck,
+			[$FieldPlayer, $FieldEnemy][i],
+			[$HandPlayer, $HandEnemy][i],
+			self
+		)
+		if i == 0:
+			player.show_hand = true
+		else:
+			player.show_hand = true
+			player.controller = ControllerClient.new(self, player, client)
+			player.controller.start()
+		players.push_back(player)
+	turn_player_id = 0
+	refresh()
+	queue_event(EventOnlineClient.new(self, client))
 
 func load_game(path: String):
 	var data: Dictionary

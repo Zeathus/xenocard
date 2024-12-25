@@ -83,3 +83,10 @@ static func from_cards(cards: PackedStringArray) -> Deck:
 	for card_id in cards:
 		deck.cards.push_back(Card.new(card_id))
 	return deck
+
+static func new_anonymous(size: int) -> Deck:
+	var deck = Deck.new()
+	deck.name = "Deck"
+	for i in range(size):
+		deck.cards.push_back(Card.new("SYS/anon"))
+	return deck

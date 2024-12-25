@@ -7,6 +7,7 @@ enum MessageType {
 	QUEUE = 1,
 	MATCHED = 2,
 	DECK = 3,
+	EVENT = 4,
 	CHAT = 10,
 	OK = 200,
 	DENIED = 400,
@@ -29,6 +30,7 @@ var socket := WebSocketPeer.new()
 var pinged = false
 var state: ClientState = ClientState.STARTING
 var waiting_for: MessageType = MessageType.NONE
+var events: Array[String] = []
 
 func _ready() -> void:
 	if socket.connect_to_url(websocket_url) != OK:
@@ -57,6 +59,10 @@ func _process(_delta: float) -> void:
 					if state == ClientState.QUEUING:
 						print("We were matched!")
 						state = ClientState.AWAIT_DECK
+				MessageType.EVENT:
+					var msg_text: String = msg.slice(1).to_byte_array().get_string_from_ascii()
+					print("Got event: ", msg_text)
+					events.push_back(msg_text)
 				MessageType.CHAT:
 					var msg_text: String = msg.slice(1).to_byte_array().get_string_from_utf8()
 					print("Got a message: ", msg_text)
