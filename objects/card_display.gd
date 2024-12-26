@@ -48,6 +48,9 @@ func show_card(card: CardData):
 	$Content/Attribute.visible = (card.type == Enum.Type.BATTLE)
 	$Content/Stats.visible = (card.type == Enum.Type.BATTLE)
 	var expanded_text: String = Keyword.expand_keywords(card.text)
+	if card.full_art == 2:
+		expanded_text = expanded_text.replace("#ffff86", "#909032")
+		expanded_text = expanded_text.replace("#c6c6ff", "#415fcf")
 	var text_size: int = 36
 	while true:
 		$Content/Text.clear()
@@ -80,7 +83,66 @@ func show_card(card: CardData):
 	else:
 		attribute = Enum.Attribute.ANY
 		$Content/TypeOther.text = Enum.get_type_name(card.type)
-	$Content/Picture.texture = card.get_image()
+	if card.full_art == 0:
+		$Content/PictureFull.texture = null
+		$Content/Picture.texture = card.get_image()
+	else:
+		$Content/Picture.texture = null
+		$Content/PictureFull.texture = card.get_image()
+	set_full_art(card.full_art)
+
+func set_full_art(val: int) -> void:
+	$Content/Border.visible = val > 0
+	$Content/PictureFull.visible = val > 0
+	$Content/Picture.visible = val == 0
+	var textBorder1 = 0 if val == 0 else 12
+	var textBorder2 = 0 if val == 0 else 8
+	var shadowSize = 1 if val == 0 else 0
+	var shadowOffset = 4 if val == 0 else 0
+	var textColor = Color.WHITE if val < 2 else Color.BLACK
+	var outlineColor = Color.BLACK if val < 2 else Color.WHITE
+	for label: Label in [
+		$Content/Name,
+		$Content/SmallName,
+		$Content/TwoLineName,
+		$Content/TypeBattle,
+		$Content/TypeOther,
+		$Content/Stats/HP,
+		$Content/Stats/HP/Value,
+		$Content/Stats/Attack,
+		$Content/Stats/Attack/Value,
+		$Content/Stats/AttackType,
+		$Content/Field,
+		$Content/Cost,
+		$Content/Cost/Value,
+	]:
+		label.label_settings.outline_color = Color.BLACK
+		label.label_settings.outline_size = textBorder1
+	for label: Label in [
+		$Content/Name,
+		$Content/SmallName,
+		$Content/TwoLineName,
+		$Content/Stats/HP,
+		$Content/Stats/HP/Value,
+		$Content/Stats/Attack,
+		$Content/Stats/Attack/Value,
+		$Content/Stats/AttackType,
+		$Content/Field,
+		$Content/Cost,
+		$Content/Cost/Value,
+	]:
+		pass
+		#label.label_settings.shadow_size = shadowSize
+		#label.label_settings.shadow_offset = Vector2(-shadowOffset, shadowOffset)
+	$Content/SerialNumber.label_settings.outline_size = textBorder2
+	$Content/Text.add_theme_constant_override("outline_size", textBorder1)
+	if val < 2:
+		$Content/Text.add_theme_color_override("default_color", Color.WHITE)
+		$Content/Text.add_theme_color_override("font_outline_color", Color.BLACK)
+	elif val == 2:
+		$Content/Text.add_theme_color_override("default_color", Color.BLACK)
+		$Content/Text.add_theme_color_override("font_outline_color", Color.WHITE)
+	$Content/Text.clip_contents = false
 
 func is_face_down() -> bool:
 	return $Back.visible

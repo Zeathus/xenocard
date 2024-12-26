@@ -22,6 +22,7 @@ var text: String
 var effect_names: Array[String]
 var event_effect_names: Array[String]
 var effects: Array[EffectData]
+var full_art: int = 0
 
 func _init(_id: String):
 	var json = get_json(_id)
@@ -117,6 +118,9 @@ func load_json(json: Dictionary):
 		text = json["text"]
 	else:
 		text = ""
+	
+	if "full_art" in json:
+		full_art = json["full_art"]
 
 	if type == Enum.Type.BATTLE:
 		max_hp = json["stats"]["hp"]

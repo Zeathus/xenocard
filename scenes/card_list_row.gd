@@ -17,14 +17,14 @@ func set_card(_card: CardData):
 func load_card():
 	if loaded:
 		return
-	$Panel/Picture.texture = card.get_image()
-	match card.type:
-		Enum.Type.BATTLE:
-			$Panel/PictureBorder.color = Color.DARK_RED
-		Enum.Type.EVENT:
-			$Panel/PictureBorder.color = Color.GOLDENROD
-		Enum.Type.SITUATION:
-			$Panel/PictureBorder.color = Color.ROYAL_BLUE
+	$Panel/Picture.texture = card.get_baked_image()
+	#match card.type:
+		#Enum.Type.BATTLE:
+			#$Panel/PictureBorder.color = Color.DARK_RED
+		#Enum.Type.EVENT:
+			#$Panel/PictureBorder.color = Color.GOLDENROD
+		#Enum.Type.SITUATION:
+			#$Panel/PictureBorder.color = Color.ROYAL_BLUE
 	$Panel/Name.text = card.name.replace("\n", " ")
 	if card.type == Enum.Type.BATTLE:
 		$Panel/Attribute.visible = true
@@ -34,17 +34,21 @@ func load_card():
 		$Panel/TypeBattle.text = "Battle"
 		if card.attack_type != Enum.AttackType.NONE:
 			$Panel/TypeBattle.text += " | %s" % Enum.get_attack_type_name(card.attack_type)
-		$Panel/Stat2.visible = true
+		$Panel/ATK.visible = true
+		$Panel/ATKValue.visible = true
 		if card.attribute == Enum.Attribute.WEAPON:
-			$Panel/Stat1.visible = false
+			$Panel/HP.visible = false
+			$Panel/HPValue.visible = false
 			if card.attack_type == Enum.AttackType.NONE:
-				$Panel/Stat2.visible = false
+				$Panel/ATK.visible = false
+				$Panel/ATKValue.visible = false
 			else:
-				$Panel/Stat2.text = "ATK %d " % card.atk
+				$Panel/ATKValue.text = "%d " % card.atk
 		else:
-			$Panel/Stat1.visible = true
-			$Panel/Stat1.text = " HP %d" % card.max_hp
-			$Panel/Stat2.text = "ATK %d " % card.atk
+			$Panel/HP.visible = true
+			$Panel/HPValue.visible = true
+			$Panel/HPValue.text = "%d " % card.max_hp
+			$Panel/ATKValue.text = "%d " % card.atk
 	else:
 		$Panel/Attribute.visible = false
 		$Panel/TypeBattle.visible = false
@@ -53,8 +57,10 @@ func load_card():
 			$Panel/Type.text = "Event"
 		elif card.type == Enum.Type.SITUATION:
 			$Panel/Type.text = "Situation"
-		$Panel/Stat1.visible = false
-		$Panel/Stat2.visible = false
+		$Panel/HP.visible = false
+		$Panel/HPValue.visible = false
+		$Panel/ATK.visible = false
+		$Panel/ATKValue.visible = false
 	$Panel/Cost.text = "Cost: %d" % card.cost
 	var field_icons: Array[Node2D] = [
 		$Panel/Field1, $Panel/Field2,

@@ -9,7 +9,9 @@ var deck: DeckData = DeckData.new()
 func load_cards():
 	all_cards = []
 	for key in CardData.data:
-		all_cards.push_back(CardData.data[key])
+		var data: CardData = CardData.data[key]
+		if data.set_name != "SYS":
+			all_cards.push_back(CardData.data[key])
 
 func sort_card_list():
 	all_cards.sort_custom(func sort_id(a: CardData, b: CardData):
@@ -194,6 +196,7 @@ func load_deck(deck_name: String, preset: bool = false):
 	refresh_deck()
 
 func preview_card(card: CardData):
+	$Preview/CardDetails.visible = true
 	$Preview/CardDetails/CardNode.show_card(card)
 	$Preview/CardDetails/CardNode.turn_up()
 	var preview_text: RichTextLabel = $Preview/Text
