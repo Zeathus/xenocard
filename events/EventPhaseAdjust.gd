@@ -15,6 +15,7 @@ func get_name() -> String:
 	return "PhaseAdjust"
 
 func on_start():
+	broadcast_player(player)
 	queue_event(EventStartPhase.new(game_board, player, Enum.Phase.ADJUST))
 	for e in phase_effects:
 		e.effect()

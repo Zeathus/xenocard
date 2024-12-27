@@ -16,6 +16,7 @@ var card_preview: Card
 var yes_only: bool = false
 
 func _init(_game_board: GameBoard, _player: Player, _message: String, _on_yes, _on_no, _help: String="", _card: Card=null):
+	broadcasted = false
 	super(_game_board)
 	player = _player
 	message = _message

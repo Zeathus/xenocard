@@ -5,6 +5,7 @@ class_name EventAnimations
 var animations: Array[GameAnimation]
 
 func _init(_game_board: GameBoard, _animations: Array[GameAnimation]):
+	broadcasted = false
 	super(_game_board)
 	animations = _animations
 

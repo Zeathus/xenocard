@@ -16,6 +16,7 @@ func get_name() -> String:
 	return "Mulligan"
 
 func on_start():
+	broadcast_player(player)
 	if player.has_controller():
 		return
 	queue_event(EventConfirm.new(
@@ -23,7 +24,7 @@ func on_start():
 		player,
 		"Redraw your hand?",
 		func(): do_mulligan(),
-		func(): wait_for_finish = true,
+		func(): do_not_mulligan(),
 		"Do you want to redraw your hand?\nYou have %d redraws remaining." % remaining
 	))
 
@@ -42,11 +43,13 @@ func process(delta):
 			else:
 				player.controller.request(
 					[Controller.Action.MULLIGAN, Controller.Action.END_PHASE],
-					[func(): do_mulligan(), func(): wait_for_finish = true],
+					[func(): do_mulligan(), func(): do_not_mulligan()],
 					[[remaining], []]
 				)
 
 func do_mulligan():
+	if player.get_enemy().is_online():
+		player.get_enemy().controller.send_action(Controller.Action.MULLIGAN)
 	while player.hand.size() > 0:
 		var card: Card = player.hand.cards.back()
 		player.hand.remove(card)
@@ -56,4 +59,9 @@ func do_mulligan():
 		queue_event(EventDrawCard.new(game_board, player, 2))
 	if remaining > 1:
 		queue_event(EventMulligan.new(game_board, player, remaining - 1))
+	wait_for_finish = true
+
+func do_not_mulligan():
+	if player.get_enemy().is_online():
+		player.get_enemy().controller.send_action(Controller.Action.END_PHASE)
 	wait_for_finish = true

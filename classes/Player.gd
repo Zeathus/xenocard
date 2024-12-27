@@ -39,6 +39,9 @@ func _init(id: int, deck: Deck, field: GameField, hand: GameHand, game_board: Ga
 func has_controller() -> bool:
 	return self.controller != null
 
+func is_online() -> bool:
+	return has_controller() and controller is ControllerClient
+
 func can_draw() -> bool:
 	return self.deck.can_draw()
 

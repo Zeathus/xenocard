@@ -3,21 +3,37 @@ extends Controller
 class_name ControllerServer
 
 var response_queue: Array
-var client: TCGServer
+var server: TCGServer
 var peer: WebSocketPeer
+var incoming_actions: Array
 
-func _init(_game_board: GameBoard, _player: Player, _client: TCGServer, _peer: WebSocketPeer):
-	client = _client
+func _init(_game_board: GameBoard, _player: Player, _server: TCGServer, _peer: WebSocketPeer):
+	server = _server
 	peer = _peer
+	incoming_actions = server.games[peer]["actions"][_player.id]
 	super(_game_board, _player)
 
 func _prepare_handling(actions: Array[Action]):
-	pass
+	while true:
+		if incoming_actions.size() > 0:
+			var incoming: PackedStringArray = incoming_actions.front().split(",")
+			var incoming_action: Action = int(incoming[0])
+			if incoming_action in actions:
+				break
+			else:
+				print("Invalid action: ", incoming_action)
+		else:
+			OS.delay_msec(100)
 
 func _handle_request(action: Action, args: Array) -> bool:
-	return false
+	var incoming: PackedStringArray = incoming_actions.front().split(",")
+	var incoming_action: Action = int(incoming[0])
+	if incoming_action != action:
+		return false
+	incoming_actions.pop_front()
 	match action:
 		Action.END_PHASE:
+			player.get_enemy().controller.broadcast_action(incoming)
 			return true
 		Action.SET:
 			return true
@@ -38,10 +54,11 @@ func _handle_request(action: Action, args: Array) -> bool:
 		Action.COUNTER:
 			return true
 		Action.MULLIGAN:
+			player.get_enemy().controller.broadcast_action(incoming)
 			return true
 	return false
 
-func broadcast_event(event, args):
+func broadcast_event(event, args: Array = []):
 	var parts: Array[String] = [event]
 	for arg in args:
 		if arg is Player:
@@ -53,6 +70,14 @@ func broadcast_event(event, args):
 			parts.push_back(str(arg))
 	var type: PackedInt32Array
 	type.push_back(TCGServer.MessageType.EVENT)
+	var msg: PackedByteArray = type.to_byte_array() + (','.join(parts)).to_ascii_buffer()
+	while len(msg) % 4 != 0:
+		msg.push_back(0)
+	peer.send(msg)
+
+func broadcast_action(parts: PackedStringArray):
+	var type: PackedInt32Array
+	type.push_back(TCGServer.MessageType.ACTION)
 	var msg: PackedByteArray = type.to_byte_array() + (','.join(parts)).to_ascii_buffer()
 	while len(msg) % 4 != 0:
 		msg.push_back(0)

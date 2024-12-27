@@ -319,7 +319,11 @@ func get_event() -> Event:
 	return event_queue.front()
 
 func queue_event(event: Event):
-	event_queue.push_back(event)
+	if event.broadcasted and is_client():
+		return
+		#event_queue.push_back(EventOnlineClient.new(self, client, event.get_name()))
+	else:
+		event_queue.push_back(event)
 
 func queue_next_event(event: Event):
 	event_queue.insert(1, event)
@@ -376,11 +380,7 @@ func end_phase():
 	refresh()
 
 func begin_turn():
-	var turn_player: Player = get_turn_player()
-	turn_player.used_one_battle_card_per_turn = false
-	turn_player.used_one_situation_card_per_turn = false
-	turn_count += 1
-	queue_event(EventStartTurn.new(self, turn_player))
+	queue_event(EventStartTurn.new(self, get_turn_player()))
 	begin_phase(Enum.Phase.DRAW)
 
 func refresh():

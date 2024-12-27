@@ -13,6 +13,7 @@ func get_name() -> String:
 	return "PhaseDraw"
 
 func on_start():
+	broadcast_player(player)
 	for c in player.field.get_all_cards():
 		c.on_turn_start(false)
 		c.trigger_effects(Enum.Trigger.TURN_START, self)

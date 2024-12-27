@@ -8,6 +8,7 @@ enum MessageType {
 	MATCHED = 2,
 	DECK = 3,
 	EVENT = 4,
+	ACTION = 5,
 	CHAT = 10,
 	OK = 200,
 	DENIED = 400,
@@ -96,13 +97,24 @@ func handle_packet(peer: WebSocketPeer):
 					start_match(game)
 			else:
 				print("Invalid deck") # Send a denied package
+		MessageType.ACTION:
+			var msg_text: String = msg.slice(1).to_byte_array().get_string_from_ascii()
+			if peer in games:
+				var game: Dictionary = games[peer]
+				if peer == game["players"][0]:
+					print("Server: Got action for P1: ", msg_text)
+					games[peer]["actions"][0].push_back(msg_text)
+				elif peer == game["players"][1]:
+					print("Server: Got action for P2: ", msg_text)
+					games[peer]["actions"][1].push_back(msg_text)
 
 func prepare_match(peerA, peerB) -> void:
 	var msg: PackedInt32Array
 	msg.append(MessageType.MATCHED)
 	var game: Dictionary = {
 		"players": [peerA, peerB],
-		"decks": [null, null]
+		"decks": [null, null],
+		"actions": [[], []]
 	}
 	games[peerA] = game
 	games[peerB] = game

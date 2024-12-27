@@ -8,6 +8,7 @@ enum MessageType {
 	MATCHED = 2,
 	DECK = 3,
 	EVENT = 4,
+	ACTION = 5,
 	CHAT = 10,
 	OK = 200,
 	DENIED = 400,
@@ -31,6 +32,7 @@ var pinged = false
 var state: ClientState = ClientState.STARTING
 var waiting_for: MessageType = MessageType.NONE
 var events: Array[String] = []
+var actions: Array[String] = []
 
 func _ready() -> void:
 	if socket.connect_to_url(websocket_url) != OK:
@@ -61,11 +63,15 @@ func _process(_delta: float) -> void:
 						state = ClientState.AWAIT_DECK
 				MessageType.EVENT:
 					var msg_text: String = msg.slice(1).to_byte_array().get_string_from_ascii()
-					print("Got event: ", msg_text)
+					print("Client: Got event: ", msg_text)
 					events.push_back(msg_text)
+				MessageType.ACTION:
+					var msg_text: String = msg.slice(1).to_byte_array().get_string_from_ascii()
+					print("Client: Got action: ", msg_text)
+					actions.push_back(msg_text)
 				MessageType.CHAT:
 					var msg_text: String = msg.slice(1).to_byte_array().get_string_from_utf8()
-					print("Got a message: ", msg_text)
+					print("Client: Got a message: ", msg_text)
 		if waiting_for == MessageType.NONE:
 			match state:
 				ClientState.STARTING:
@@ -82,6 +88,9 @@ func request_queue() -> void:
 	waiting_for = MessageType.OK
 	state = ClientState.QUEUING
 	print("Sent queue request")
+
+func send(msg: PackedByteArray):
+	socket.send(msg)
 
 func send_deck(deck: Deck) -> void:
 	var type: PackedInt32Array

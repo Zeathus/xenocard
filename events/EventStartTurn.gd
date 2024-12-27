@@ -18,7 +18,10 @@ func get_name() -> String:
 	return "StartTurn"
 
 func on_start():
-	pass
+	broadcast_player(player)
+	player.used_one_battle_card_per_turn = false
+	player.used_one_situation_card_per_turn = false
+	game_board.turn_count += 1
 
 func on_finish():
 	pass

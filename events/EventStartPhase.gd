@@ -9,6 +9,7 @@ var label_phase: Label
 var label_next_phase: Label
 
 func _init(_game_board: GameBoard, _player: Player, _phase: Enum.Phase):
+	broadcasted = false
 	player = _player
 	phase = _phase
 	super(_game_board)

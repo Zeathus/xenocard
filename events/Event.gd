@@ -8,6 +8,7 @@ var blocking: bool = true
 var finished: bool = false
 var success: bool = true
 var sort_index: int = 0
+var broadcasted: bool = true
 
 func _init(_game_board: GameBoard):
 	game_board = _game_board
@@ -102,8 +103,21 @@ func sort_children():
 	)
 
 func queue_event(event: Event):
+	if event.broadcasted and game_board.is_client():
+		event = EventOnlineClient.new(game_board, game_board.client, event.get_name())
 	event.parent = self
 	children.push_back(event)
+
+func broadcast_player(player: Player):
+	print("Broadcasting ", get_name())
+	if game_board.is_server():
+		player.controller.broadcast_event(get_name(), [player])
+		player.get_enemy().controller.broadcast_event(get_name(), [player])
+
+func broadcast():
+	if game_board.is_server():
+		game_board.get_turn_player().controller.broadcast_event(get_name())
+		game_board.get_turn_enemy().controller.broadcast_event(get_name())
 
 func on_hand_card_selected(hand: GameHand, card: Card):
 	if pass_to_child("on_hand_card_selected", [hand, card]):

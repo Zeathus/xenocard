@@ -1,6 +1,20 @@
 class_name Controller
 
-enum Action {END_PHASE, MOVE, EVENT, SET, BLOCK, CONFIRM, TARGET, SEARCH, SEARCH_JUNK, DISCARD, COUNTER, MULLIGAN}
+enum Action {
+	NONE = 0,
+	END_PHASE = 1,
+	MOVE = 2,
+	EVENT = 3,
+	SET = 4,
+	BLOCK = 5,
+	CONFIRM = 6,
+	TARGET = 7,
+	SEARCH = 8,
+	SEARCH_JUNK = 9,
+	DISCARD = 10,
+	COUNTER = 11,
+	MULLIGAN = 12
+}
 
 var game_board: GameBoard
 var player: Player
