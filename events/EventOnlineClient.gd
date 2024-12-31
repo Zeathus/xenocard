@@ -43,27 +43,38 @@ func fetch_event(event_data: String):
 			return EventDrawCard.new(game_board, player)
 		"StartTurn":
 			var player: Player = game_board.players[int(args[1])]
+			game_board.turn_player_id = player.id
 			return EventStartTurn.new(game_board, player)
 		"Mulligan":
 			var player: Player = game_board.players[int(args[1])]
 			return EventMulligan.new(game_board, player)
 		"PhaseDraw":
 			var player: Player = game_board.players[int(args[1])]
+			game_board.turn_phase = Enum.Phase.DRAW
 			return EventPhaseDraw.new(game_board, player, game_board.phase_effects[Enum.Phase.DRAW])
 		"PhaseMove":
 			var player: Player = game_board.players[int(args[1])]
+			game_board.turn_phase = Enum.Phase.MOVE
 			return EventPhaseMove.new(game_board, player, game_board.phase_effects[Enum.Phase.MOVE])
-		"PhaseEventBlock":
+		"PhaseEvent":
 			var player: Player = game_board.players[int(args[1])]
-			return EventPhaseEventBlock.new(game_board, player, game_board.phase_effects[Enum.Phase.BLOCK])
+			game_board.turn_phase = Enum.Phase.EVENT
+			return EventPhaseEventBlock.new(game_board, player, game_board.phase_effects[Enum.Phase.EVENT])
+		"PhaseBlock":
+			var player: Player = game_board.players[int(args[1])]
+			game_board.turn_phase = Enum.Phase.BLOCK
+			return EventPhaseEventBlock.new(game_board, player, game_board.phase_effects[Enum.Phase.BLOCK], true)
 		"PhaseSet":
 			var player: Player = game_board.players[int(args[1])]
+			game_board.turn_phase = Enum.Phase.SET
 			return EventPhaseSet.new(game_board, player, game_board.phase_effects[Enum.Phase.SET])
 		"PhaseBattle":
 			var player: Player = game_board.players[int(args[1])]
+			game_board.turn_phase = Enum.Phase.BATTLE
 			return EventPhaseBattle.new(game_board, player, game_board.phase_effects[Enum.Phase.BATTLE])
 		"PhaseAdjust":
 			var player: Player = game_board.players[int(args[1])]
+			game_board.turn_phase = Enum.Phase.ADJUST
 			return EventPhaseAdjust.new(game_board, player, game_board.phase_effects[Enum.Phase.ADJUST])
 		_:
 			print("Unknown event: ", args[0])

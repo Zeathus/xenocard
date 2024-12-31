@@ -63,6 +63,8 @@ func set_card(card: Card, zone: Enum.Zone, index: int, targets: Array[Card]):
 func on_end_phase_pressed():
 	if not has_children():
 		if player.can_end_phase(Enum.Phase.SET):
+			if player.get_enemy().is_online():
+				player.get_enemy().controller.send_action(Controller.Action.END_PHASE)
 			finish()
 
 func show_selectable():

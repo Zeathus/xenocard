@@ -31,6 +31,7 @@ func process(delta):
 		0:
 			if player.field.battler_count() == 0:
 				state = 1
+				return
 			if in_sub_event:
 				in_sub_event = false
 				show_selectable()
@@ -69,6 +70,8 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, ind
 func on_end_phase_pressed():
 	if not has_children() and state == 0:
 		if player.can_end_phase(Enum.Phase.MOVE):
+			if player.get_enemy().is_online():
+				player.get_enemy().controller.send_action(Controller.Action.END_PHASE)
 			state = 1
 
 func show_selectable():

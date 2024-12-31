@@ -14,6 +14,10 @@ func _init(_game_board: GameBoard, _player: Player, _server: TCGServer, _peer: W
 	super(_game_board, _player)
 
 func _prepare_handling(actions: Array[Action]):
+	var msg = "Waiting for"
+	for i in actions:
+		msg += " " + str(i)
+	print(msg)
 	while true:
 		if incoming_actions.size() > 0:
 			var incoming: PackedStringArray = incoming_actions.front().split(",")
@@ -24,6 +28,7 @@ func _prepare_handling(actions: Array[Action]):
 				print("Invalid action: ", incoming_action)
 		else:
 			OS.delay_msec(100)
+	print("Got action")
 
 func _handle_request(action: Action, args: Array) -> bool:
 	var incoming: PackedStringArray = incoming_actions.front().split(",")

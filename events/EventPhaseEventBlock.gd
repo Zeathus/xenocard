@@ -13,7 +13,7 @@ func _init(_game_board: GameBoard, _player: Player, _phase_effects: Array, _bloc
 	block = _block
 
 func get_name() -> String:
-	return "PhaseEventBlock"
+	return "PhaseBlock" if block else "PhaseEvent"
 
 func on_start():
 	broadcast_player(player)
@@ -106,7 +106,7 @@ func play(card: Card):
 
 func on_end_phase_pressed():
 	if not has_children():
-		if player.can_end_phase(Enum.Phase.BLOCK):
+		if player.can_end_phase(Enum.Phase.BLOCK if block else Enum.Phase.EVENT):
 			if player.get_enemy().is_online():
 				player.get_enemy().controller.send_action(Controller.Action.END_PHASE)
 			finish()
