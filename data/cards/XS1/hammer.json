@@ -15,7 +15,7 @@
 	"requirement": {
 		"cost": 1
 	},
-	"text": "During the battle phase, gains ATK+1 for every {Machine} on your battlefield when not equipped with a {weapon}.\nThis ability is unaffected by event cards.",
+	"text": "During the battle phase, gains ATK+1 for every {Machine} on your battlefield when not equipped with a {weapon}.",
 	"effects": [
 		{
 			"trigger": "passive",

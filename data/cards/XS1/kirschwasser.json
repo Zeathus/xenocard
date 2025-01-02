@@ -16,13 +16,14 @@
 		"cost": 1,
 		"field": ["any", "any"]
 	},
-	"text": "While this card is on your battlefield with Albedo or MOMO, those cards gain ATK+1.",
+	"text": "While this card is on your battlefield with Albedo or MOMO, those cards gain ATK+1 during the battle phase.",
 	"effects": [
 		{
 			"trigger": "passive",
 			"global": "owner=self;character=Albedo;character=MOMO;zone=battlefield",
 			"requirement": [
-				"FilterSelf(zone=battlefield)"
+				"FilterSelf(zone=battlefield)",
+				"Phase(battle)"
 			],
 			"effect": [
 				"ModifyATK(1)"

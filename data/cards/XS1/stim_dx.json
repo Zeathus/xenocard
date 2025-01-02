@@ -9,7 +9,7 @@
 		"cost": 3,
 		"field": ["human", "human", "any"]
 	},
-	"text": "<Slow>.\nDouble the ATK of one of your battle cards until your adjust phase. Homing and <penetrating> attacks are unaffected.",
+	"text": "<Slow>.\nDouble the original ATK of one of your battle cards until your adjust phase. Homing and <penetrating> attacks are unaffected.",
 	"effects": [
 		{
 			"trigger": "activate",

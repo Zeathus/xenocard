@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dosulntiwpmvw"]
+[gd_scene load_steps=34 format=3 uid="uid://dosulntiwpmvw"]
 
 [ext_resource type="Script" path="res://objects/card_display.gd" id="1_wdlaa"]
 [ext_resource type="Texture2D" uid="uid://dicq202oyt24d" path="res://sprites/card_bg_battle.png" id="2_fgroy"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://cd8gb1b5tt6em" path="res://sprites/card_back.png" id="6_8gxj3"]
 [ext_resource type="FontFile" uid="uid://ng1y54e8x08v" path="res://fonts/Roboto/Roboto-Bold.ttf" id="7_85wss"]
 [ext_resource type="FontFile" uid="uid://do6lscs8csbaq" path="res://fonts/Roboto/Roboto-Regular.ttf" id="8_4hlpo"]
+[ext_resource type="Texture2D" uid="uid://cqocycwm1qyxq" path="res://sprites/paintbrush_shadow.png" id="12_5iwwb"]
+[ext_resource type="Texture2D" uid="uid://dqeydgvwote6m" path="res://sprites/paintbrush_outline.png" id="13_mxnfu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f3feu"]
 
@@ -100,6 +102,10 @@ shadow_offset = Vector2(-4, 4)
 
 [sub_resource type="Theme" id="Theme_b0mdc"]
 default_font_size = 32
+
+[sub_resource type="FontVariation" id="FontVariation_ta62g"]
+base_font = ExtResource("8_4hlpo")
+variation_embolden = 0.25
 
 [sub_resource type="LabelSettings" id="LabelSettings_g0d37"]
 font_size = 32
@@ -335,17 +341,39 @@ text = "Test Text"
 scroll_active = false
 
 [node name="Rarity" type="Sprite2D" parent="Content"]
-position = Vector2(311, 549)
-scale = Vector2(0.8, 0.8)
+position = Vector2(-343, 544)
 texture = ExtResource("5_ty2re")
 
 [node name="SerialNumber" type="Label" parent="Content"]
-offset_left = -363.0
-offset_top = 524.0
-offset_right = -247.0
-offset_bottom = 569.0
+offset_left = -307.0
+offset_top = 525.0
+offset_right = -99.0
+offset_bottom = 570.0
+theme_override_fonts/font = SubResource("FontVariation_ta62g")
 text = "Serial #"
 label_settings = SubResource("LabelSettings_g0d37")
+
+[node name="ArtistIcon" type="Sprite2D" parent="Content"]
+position = Vector2(352, 546)
+rotation = -0.233874
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("12_5iwwb")
+
+[node name="ArtistIconOutlined" type="Sprite2D" parent="Content"]
+position = Vector2(352, 544)
+rotation = -0.233874
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("13_mxnfu")
+
+[node name="Artist" type="Label" parent="Content"]
+offset_left = -78.0
+offset_top = 525.0
+offset_right = 331.0
+offset_bottom = 570.0
+theme_override_fonts/font = SubResource("FontVariation_ta62g")
+text = "Artist"
+label_settings = SubResource("LabelSettings_g0d37")
+horizontal_alignment = 2
 
 [node name="Tooltip" type="Panel" parent="."]
 visible = false

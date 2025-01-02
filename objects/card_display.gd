@@ -89,12 +89,15 @@ func show_card(card: CardData):
 	else:
 		$Content/Picture.texture = null
 		$Content/PictureFull.texture = card.get_image()
+	$Content/Artist.text = card.artist
 	set_full_art(card.full_art)
 
 func set_full_art(val: int) -> void:
 	$Content/Border.visible = val > 0
 	$Content/PictureFull.visible = val > 0
 	$Content/Picture.visible = val == 0
+	$Content/ArtistIcon.visible = true
+	$Content/ArtistIconOutlined.visible = val > 0
 	var textBorder1 = 0 if val == 0 else 12
 	var textBorder2 = 0 if val == 0 else 8
 	var shadowSize = 1 if val == 0 else 0
