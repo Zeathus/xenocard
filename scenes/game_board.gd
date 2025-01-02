@@ -444,12 +444,14 @@ func play_se(se: String):
 			player.play()
 			break
 
-func get_card_from_online_id(online_id: String) -> Card:
+func get_card_from_online_id(online_id: String, inverse: bool = false) -> Card:
 	var args: PackedStringArray = online_id.split(",")
 	var player_id: int = int(args[0])
 	if player_id != 0 and player_id != 1:
 		print("Invalid player id: ", online_id)
 		return null
+	if inverse:
+		player_id = (player_id + 1) % 2
 	var zone: Enum.Zone = Enum.Zone.NONE
 	match args[1]:
 		"H":
@@ -469,7 +471,13 @@ func get_card_from_online_id(online_id: String) -> Card:
 		_:
 			print("Invalid zone: ", online_id)
 			return null
-	if zone in [Enum.Zone.HAND, Enum.Zone.DECK, Enum.Zone.LOST, Enum.Zone.JUNK]:
+	if zone == Enum.Zone.HAND:
+		var index: int = int(args[2])
+		if index < 0 or index > len(players[player_id].hand.cards):
+			print("Invalid hand index: ", online_id)
+			return null
+		return players[player_id].hand.cards[index]
+	if zone in [Enum.Zone.DECK, Enum.Zone.LOST, Enum.Zone.JUNK]:
 		var card_list: Array[Card] = []
 		match zone:
 			Enum.Zone.HAND:
@@ -485,10 +493,13 @@ func get_card_from_online_id(online_id: String) -> Card:
 				return card
 	else:
 		var zone_index: int = int(args[2])
-		if zone_index < 0 or zone_index > 3:
+		if zone_index < 0 or zone_index > 7:
 			print("Invalid zone index: ", online_id)
 			return null
-		return players[player_id].field.get_card(zone, zone_index)
+		var card: Card = players[player_id].field.get_card(zone, zone_index % 4)
+		if zone_index > 3:
+			card = card.equipped_weapon
+		return card
 	print("Failed to find card: ", online_id)
 	return null
 

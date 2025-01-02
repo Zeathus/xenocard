@@ -23,6 +23,7 @@ func get_name() -> String:
 	return "Destroy"
 
 func on_start():
+	broadcast()
 	if target.zone == Enum.Zone.LOST or target.zone == Enum.Zone.JUNK:
 		return
 	if target.equipped_weapon:
@@ -89,3 +90,9 @@ func destroy():
 	target.zone_index = 0
 	pile.add_top(target)
 	game_board.refresh()
+
+func broadcast():
+	if game_board.is_server():
+		for p: Player in [game_board.get_turn_player(), game_board.get_turn_enemy()]:
+			var args: Array = [attacker.get_online_id(p.id == 1), target.get_online_id(p.id == 1), source.get_online_id()]
+			p.controller.broadcast_event(get_name(), args)

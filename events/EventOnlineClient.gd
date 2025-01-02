@@ -76,6 +76,11 @@ func fetch_event(event_data: String):
 			var player: Player = game_board.players[int(args[1])]
 			game_board.turn_player_id = player.id
 			return EventStartTurn.new(game_board, player)
+		"Destroy":
+			var attacker: Card = game_board.get_card_from_online_id(args[1])
+			var target: Card = game_board.get_card_from_online_id(args[2])
+			var source: Damage = Damage.from_online_id(args[3])
+			return EventDestroy.new(game_board, attacker, target, source)
 		"Mulligan":
 			var player: Player = game_board.players[int(args[1])]
 			return EventMulligan.new(game_board, player)

@@ -36,6 +36,7 @@ func _handle_request(action: Action, args: Array) -> bool:
 	if incoming_action != action:
 		return false
 	incoming_actions.pop_front()
+	var inverse: bool = player.id == 1
 	match action:
 		Action.END_PHASE:
 			player.get_enemy().controller.broadcast_action(incoming)
@@ -55,7 +56,9 @@ func _handle_request(action: Action, args: Array) -> bool:
 		Action.SEARCH_JUNK:
 			return true
 		Action.DISCARD:
-			response_args = [game_board.get_card_from_online_id("")]
+			response_args = [game_board.get_card_from_online_id(incoming[1], inverse)]
+			incoming[1] = response_args[0].get_online_id(inverse)
+			player.get_enemy().controller.broadcast_action(incoming)
 			return true
 		Action.COUNTER:
 			return true
@@ -79,7 +82,10 @@ func broadcast_event(event, args: Array = []):
 	var msg: PackedByteArray = type.to_byte_array() + ('\t'.join(parts)).to_ascii_buffer()
 	while len(msg) % 4 != 0:
 		msg.push_back(0)
-	peer.send(msg)
+	if peer.get_ready_state() != WebSocketPeer.STATE_OPEN:
+		print("Player was disconnected from server!")
+	else:
+		peer.send(msg)
 
 func broadcast_action(parts: PackedStringArray):
 	var type: PackedInt32Array

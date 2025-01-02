@@ -47,6 +47,7 @@ func _handle_request(action: Action, args: Array) -> bool:
 		Action.SEARCH_JUNK:
 			return true
 		Action.DISCARD:
+			response_args = [game_board.get_card_from_online_id(incoming[1])]
 			return true
 		Action.COUNTER:
 			return true

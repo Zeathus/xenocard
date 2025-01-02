@@ -29,3 +29,9 @@ func destroy() -> bool:
 
 func penetrating() -> bool:
 	return (flags & PENETRATING) != 0
+
+func get_online_id() -> String:
+	return str(flags)
+
+static func from_online_id(online_id: String) -> Damage:
+	return Damage.new(int(online_id))

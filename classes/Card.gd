@@ -598,8 +598,8 @@ func get_text() -> String:
 func get_image() -> Resource:
 	return data.get_image()
 
-func get_online_id() -> String:
-	var online_id: String = str(owner.id)
+func get_online_id(inverse: bool = false) -> String:
+	var online_id: String = str(owner.get_enemy().id) if inverse else str(owner.id)
 	match zone:
 		Enum.Zone.HAND:
 			online_id += ",H"
@@ -615,10 +615,12 @@ func get_online_id() -> String:
 			online_id += ",B"
 		Enum.Zone.SITUATION:
 			online_id += ",S"
-	if zone in [Enum.Zone.HAND, Enum.Zone.DECK, Enum.Zone.LOST, Enum.Zone.JUNK]:
+	if zone == Enum.Zone.HAND:
+		return online_id + "," + str(owner.hand.cards.find(self))
+	elif zone in [Enum.Zone.DECK, Enum.Zone.LOST, Enum.Zone.JUNK]:
 		return online_id + "," + data.get_full_id()
 	else:
-		return online_id + "," + str(zone_index)
+		return online_id + "," + str(equipped_by.zone_index + 4 if equipped_by else zone_index)
 
 func penetrates():
 	if equipped_weapon and equipped_weapon.get_attack_type() != Enum.AttackType.NONE:
