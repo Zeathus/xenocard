@@ -34,20 +34,13 @@ func process(delta):
 			queue_event(event)
 
 func fetch_event(event_data: String):
-	var args: PackedStringArray = event_data.split(",")
+	var args: PackedStringArray = event_data.split("\t")
 	match args[0]: # Event type
 		"DrawCard":
 			var player: Player = game_board.players[int(args[1])]
 			if len(args) > 2:
 				player.deck.top().set_id(args[2])
 			return EventDrawCard.new(game_board, player)
-		"StartTurn":
-			var player: Player = game_board.players[int(args[1])]
-			game_board.turn_player_id = player.id
-			return EventStartTurn.new(game_board, player)
-		"Mulligan":
-			var player: Player = game_board.players[int(args[1])]
-			return EventMulligan.new(game_board, player)
 		"PhaseDraw":
 			var player: Player = game_board.players[int(args[1])]
 			game_board.turn_phase = Enum.Phase.DRAW
@@ -76,6 +69,16 @@ func fetch_event(event_data: String):
 			var player: Player = game_board.players[int(args[1])]
 			game_board.turn_phase = Enum.Phase.ADJUST
 			return EventPhaseAdjust.new(game_board, player, game_board.phase_effects[Enum.Phase.ADJUST])
+		"SelectDiscard":
+			var player: Player = game_board.players[int(args[1])]
+			return EventSelectDiscard.new(game_board, player, CardFilter.new(args[2]))
+		"StartTurn":
+			var player: Player = game_board.players[int(args[1])]
+			game_board.turn_player_id = player.id
+			return EventStartTurn.new(game_board, player)
+		"Mulligan":
+			var player: Player = game_board.players[int(args[1])]
+			return EventMulligan.new(game_board, player)
 		_:
 			print("Unknown event: ", args[0])
 

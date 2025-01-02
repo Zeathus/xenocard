@@ -1,5 +1,6 @@
 class_name CardFilter
 
+var string: String
 var names: Array[String] = []
 var characters: Array[String] = []
 var attributes: Array[Enum.Attribute] = []
@@ -16,6 +17,7 @@ var e_mark: String = ""
 var weapon: String = ""
 
 func _init(filter_str: String):
+	string = filter_str
 	for param in filter_str.split(";"):
 		var filter = param.split("=")
 		var field = filter[0]

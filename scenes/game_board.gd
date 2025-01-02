@@ -444,24 +444,52 @@ func play_se(se: String):
 			player.play()
 			break
 
-func get_card(unique_id: int) -> Card:
-	var owner: Player = players[0]
-	for card in owner.hand.cards:
-		if card.unique_id == unique_id:
-			return card
-	for card in owner.field.get_all_cards():
-		if card.unique_id == unique_id:
-			return card
-	for card in owner.deck.cards:
-		if card.unique_id == unique_id:
-			return card
-	for card in owner.junk.cards:
-		if card.unique_id == unique_id:
-			return card
-	for card in owner.lost.cards:
-		if card.unique_id == unique_id:
-			return card
-	print("Failed to find card by unique id, this should never happen.")
+func get_card_from_online_id(online_id: String) -> Card:
+	var args: PackedStringArray = online_id.split(",")
+	var player_id: int = int(args[0])
+	if player_id != 0 and player_id != 1:
+		print("Invalid player id: ", online_id)
+		return null
+	var zone: Enum.Zone = Enum.Zone.NONE
+	match args[1]:
+		"H":
+			zone = Enum.Zone.HAND
+		"D":
+			zone = Enum.Zone.DECK
+		"L":
+			zone = Enum.Zone.LOST
+		"J":
+			zone = Enum.Zone.JUNK
+		"W": # W for "Waiting" to avoid collision with Situation
+			zone = Enum.Zone.STANDBY
+		"B":
+			zone = Enum.Zone.BATTLEFIELD
+		"S":
+			zone = Enum.Zone.SITUATION
+		_:
+			print("Invalid zone: ", online_id)
+			return null
+	if zone in [Enum.Zone.HAND, Enum.Zone.DECK, Enum.Zone.LOST, Enum.Zone.JUNK]:
+		var card_list: Array[Card] = []
+		match zone:
+			Enum.Zone.HAND:
+				card_list = players[player_id].hand.cards
+			Enum.Zone.DECK:
+				card_list = players[player_id].deck.cards
+			Enum.Zone.LOST:
+				card_list = players[player_id].lost.cards
+			Enum.Zone.JUNK:
+				card_list = players[player_id].junk.cards
+		for card in card_list:
+			if card.data.get_full_id() == args[2]:
+				return card
+	else:
+		var zone_index: int = int(args[2])
+		if zone_index < 0 or zone_index > 3:
+			print("Invalid zone index: ", online_id)
+			return null
+		return players[player_id].field.get_card(zone, zone_index)
+	print("Failed to find card: ", online_id)
 	return null
 
 func is_client() -> bool:

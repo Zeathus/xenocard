@@ -598,6 +598,28 @@ func get_text() -> String:
 func get_image() -> Resource:
 	return data.get_image()
 
+func get_online_id() -> String:
+	var online_id: String = str(owner.id)
+	match zone:
+		Enum.Zone.HAND:
+			online_id += ",H"
+		Enum.Zone.DECK:
+			online_id += ",D"
+		Enum.Zone.LOST:
+			online_id += ",L"
+		Enum.Zone.JUNK:
+			online_id += ",J"
+		Enum.Zone.STANDBY:
+			online_id += ",W" # W for "Waiting" to avoid collision with Situation
+		Enum.Zone.BATTLEFIELD:
+			online_id += ",B"
+		Enum.Zone.SITUATION:
+			online_id += ",S"
+	if zone in [Enum.Zone.HAND, Enum.Zone.DECK, Enum.Zone.LOST, Enum.Zone.JUNK]:
+		return online_id + "," + data.get_full_id()
+	else:
+		return online_id + "," + str(zone_index)
+
 func penetrates():
 	if equipped_weapon and equipped_weapon.get_attack_type() != Enum.AttackType.NONE:
 		return equipped_weapon.penetrates()

@@ -20,7 +20,7 @@ func _prepare_handling(actions: Array[Action]):
 	print(msg)
 	while true:
 		if incoming_actions.size() > 0:
-			var incoming: PackedStringArray = incoming_actions.front().split(",")
+			var incoming: PackedStringArray = incoming_actions.front().split("\t")
 			var incoming_action: Action = int(incoming[0])
 			if incoming_action in actions:
 				break
@@ -31,7 +31,7 @@ func _prepare_handling(actions: Array[Action]):
 	print("Got action")
 
 func _handle_request(action: Action, args: Array) -> bool:
-	var incoming: PackedStringArray = incoming_actions.front().split(",")
+	var incoming: PackedStringArray = incoming_actions.front().split("\t")
 	var incoming_action: Action = int(incoming[0])
 	if incoming_action != action:
 		return false
@@ -55,6 +55,7 @@ func _handle_request(action: Action, args: Array) -> bool:
 		Action.SEARCH_JUNK:
 			return true
 		Action.DISCARD:
+			response_args = [game_board.get_card_from_online_id("")]
 			return true
 		Action.COUNTER:
 			return true
@@ -75,7 +76,7 @@ func broadcast_event(event, args: Array = []):
 			parts.push_back(str(arg))
 	var type: PackedInt32Array
 	type.push_back(TCGServer.MessageType.EVENT)
-	var msg: PackedByteArray = type.to_byte_array() + (','.join(parts)).to_ascii_buffer()
+	var msg: PackedByteArray = type.to_byte_array() + ('\t'.join(parts)).to_ascii_buffer()
 	while len(msg) % 4 != 0:
 		msg.push_back(0)
 	peer.send(msg)
@@ -83,7 +84,7 @@ func broadcast_event(event, args: Array = []):
 func broadcast_action(parts: PackedStringArray):
 	var type: PackedInt32Array
 	type.push_back(TCGServer.MessageType.ACTION)
-	var msg: PackedByteArray = type.to_byte_array() + (','.join(parts)).to_ascii_buffer()
+	var msg: PackedByteArray = type.to_byte_array() + ('\t'.join(parts)).to_ascii_buffer()
 	while len(msg) % 4 != 0:
 		msg.push_back(0)
 	peer.send(msg)

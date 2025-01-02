@@ -17,6 +17,7 @@ func get_name() -> String:
 	return "SelectDiscard"
 
 func on_start():
+	broadcast()
 	if not player.has_controller():
 		show_selectable()
 
@@ -49,7 +50,7 @@ func on_hand_card_selected(hand: GameHand, card: Card):
 		return
 	if not filter or filter.is_valid(player, card):
 		hide_selectable()
-		queue_event(EventDestroy.new(game_board, cause if cause else card, card, Damage.new(Damage.DISCARD)))
+		discard_card(card)
 		in_sub_event = true
 
 func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, index: int):
@@ -60,10 +61,13 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, ind
 	var card: Card = field.get_card(zone, index)
 	if card and (not filter or filter.is_valid(player, card)):
 		hide_selectable()
-		queue_event(EventDestroy.new(game_board, cause if cause else card, card, Damage.new(Damage.DISCARD)))
+		discard_card(card)
 		in_sub_event = true
 
 func discard_card(card: Card):
+	if player.get_enemy().is_online():
+		var args: Array[String] = [card.get_online_id()]
+		player.get_enemy().controller.send_action(Controller.Action.DISCARD, args)
 	queue_event(EventDestroy.new(game_board, cause if cause else card, card, Damage.new(Damage.DISCARD)))
 
 func show_selectable():
@@ -79,3 +83,8 @@ func hide_selectable():
 		card.set_selectable(false)
 	for card in player.field.get_all_cards():
 		card.set_selectable(false)
+
+func broadcast():
+	if game_board.is_server():
+		player.controller.broadcast_event(get_name(), [player, filter.string])
+		player.get_enemy().controller.broadcast_event(get_name(), [player, filter.string])

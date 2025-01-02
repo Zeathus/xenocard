@@ -14,7 +14,7 @@ func _init(_game_board: GameBoard, _player: Player, _client: TCGClient):
 func _prepare_handling(actions: Array[Action]):
 	while true:
 		if incoming_actions.size() > 0:
-			var incoming: PackedStringArray = incoming_actions.front().split(",")
+			var incoming: PackedStringArray = incoming_actions.front().split("\t")
 			var incoming_action: Action = int(incoming[0])
 			if incoming_action in actions:
 				break
@@ -24,7 +24,7 @@ func _prepare_handling(actions: Array[Action]):
 			OS.delay_msec(100)
 
 func _handle_request(action: Action, args: Array) -> bool:
-	var incoming: PackedStringArray = incoming_actions.front().split(",")
+	var incoming: PackedStringArray = incoming_actions.front().split("\t")
 	var incoming_action: Action = int(incoming[0])
 	if incoming_action != action:
 		return false
@@ -59,7 +59,7 @@ func send_action(action: Controller.Action, args: Array[String] = []):
 	parts += args
 	var type: PackedInt32Array
 	type.push_back(TCGServer.MessageType.ACTION)
-	var msg: PackedByteArray = type.to_byte_array() + (','.join(parts)).to_ascii_buffer()
+	var msg: PackedByteArray = type.to_byte_array() + ('\t'.join(parts)).to_ascii_buffer()
 	while len(msg) % 4 != 0:
 		msg.push_back(0)
 	client.send(msg)
