@@ -100,6 +100,8 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, ind
 	elif to_set.can_play(game_board, zone, index):
 		if player.get_enemy().is_online() and not broadcasted:
 			var args: Array[String] = [to_set.get_online_id(), str(zone), str(index)]
+			for t in targets:
+				args.push_back(t.get_online_id())
 			player.get_enemy().controller.send_action(Controller.Action.SET, args)
 		broadcast_set(zone, index)
 		set_zone = zone
@@ -197,4 +199,6 @@ func broadcast_set(zone: Enum.Zone, index: int):
 	if game_board.is_server():
 		player.get_enemy().controller.send_identity(to_set.get_online_id(player.id == 0), to_set.data.get_full_id())
 		var args: Array = [player, to_set.get_online_id(player.id == 0), str(zone), str(index)]
+		for t in targets:
+			args.push_back(t.get_online_id(player.id == 0))
 		player.get_enemy().controller.broadcast_event(get_name(), args)

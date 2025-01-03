@@ -28,7 +28,7 @@ func process(delta):
 		var event: Event = fetch_event(client.events.pop_front())
 		if awaited_event != "":
 			print("Client: Awaited ", event.get_name())
-			if awaited_event != event.get_name() and event.get_name() != "Identity":
+			if awaited_event != event.get_name() and event is not EventIdentity:
 				push_error("Client got unexpected event ", event.get_name(), ", expected ", awaited_event)
 		if parent and event is not EventIdentity:
 			event.parent = parent
@@ -94,6 +94,8 @@ func fetch_event(event_data: String):
 				for i in range(5, len(args)):
 					targets.push_back(game_board.get_card_from_online_id(args[i]))
 			var set_event: EventSet = EventSet.new(game_board, player, to_set)
+			for t in targets:
+				t.select()
 			set_event.targets = targets
 			set_event.on_zone_selected(player.field, player, zone, index)
 			return set_event

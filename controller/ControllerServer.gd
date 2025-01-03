@@ -49,6 +49,7 @@ func _handle_request(action: Action, args: Array) -> bool:
 					var target: Card = game_board.get_card_from_online_id(incoming[i], inverse_in)
 					targets.push_back(target)
 					incoming[i] = target.get_online_id(inverse_out)
+			print(len(incoming), " ", len(targets))
 			response_args = [game_board.get_card_from_online_id(incoming[1], inverse_in), int(incoming[2]), int(incoming[3]), targets]
 			incoming[1] = response_args[0].get_online_id(inverse_out)
 			player.get_enemy().controller.broadcast_action(incoming)
