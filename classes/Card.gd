@@ -70,9 +70,14 @@ func reset():
 	applied_effects.clear()
 
 func set_id(_id: String) -> void:
+	if self.data and self.data.get_full_id() == _id:
+		return
 	self.data = CardData.get_data(_id)
 	self.hp = data.max_hp
 	self.atk_timer = 0
+	if instance:
+		instance.load_card(self)
+		reset()
 
 func make_anonymous() -> void:
 	set_id("SYS/anon")

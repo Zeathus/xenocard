@@ -14,6 +14,7 @@ func get_name() -> String:
 	return "PayCost"
 
 func on_start():
+	broadcast_player(player)
 	anon_card.global_position = player.field.get_deck_node().global_position
 	anon_card.visible = true
 	queue_event(EventAnimation.new(game_board,

@@ -9,6 +9,7 @@ var targets_required: Array[Callable]
 var ready_to_finish: bool = false
 
 func _init(_game_board: GameBoard, _player: Player, _to_set: Card):
+	broadcasted = _player.is_online()
 	super(_game_board)
 	player = _player
 	to_set = _to_set
@@ -59,6 +60,7 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, ind
 		return
 	if zone_owner != player:
 		return
+	broadcast_set(zone, index)
 	var occupant = field.get_card(zone, index)
 	if len(targets) < len(targets_required):
 		if occupant:
@@ -94,7 +96,10 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, ind
 		queue_event(EventAnimation.new(game_board, anim))
 
 func play(new_zone: Enum.Zone, index: int):
-	print("Game ", game_board.game_id, " P", player.id + 1, " set ", to_set.get_name())
+	print("Server " if game_board.is_server() else "Client ", game_board.game_id, " P", player.id + 1, " set ", to_set.get_name())
+	if player.get_enemy().is_online() and not broadcasted:
+		var args: Array[String] = [to_set.get_online_id(), str(new_zone), str(index)]
+		player.get_enemy().controller.send_action(Controller.Action.SET, args)
 	if to_set.instance.is_face_down() and to_set.zone == Enum.Zone.HAND:
 		for i in range(player.hand.size()):
 			if player.hand.cards[i].instance.is_face_down():
@@ -156,3 +161,9 @@ func targets_to_set() -> Array[Callable]:
 	for e in to_set.get_effects(Enum.Trigger.PASSIVE):
 		e.targets_to_select_for_set(ret)
 	return ret
+
+func broadcast_set(zone: Enum.Zone, index: int):
+	if game_board.is_server():
+		player.get_enemy().controller.send_identity(to_set.get_online_id(player.id == 0), to_set.data.get_full_id())
+		var args: Array = [player, to_set.get_online_id(player.id == 0), str(zone), str(index)]
+		player.get_enemy().controller.broadcast_event(get_name(), args)

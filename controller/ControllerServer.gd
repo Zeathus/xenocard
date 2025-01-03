@@ -36,12 +36,22 @@ func _handle_request(action: Action, args: Array) -> bool:
 	if incoming_action != action:
 		return false
 	incoming_actions.pop_front()
-	var inverse: bool = player.id == 1
+	var inverse_in: bool = player.id == 1
+	var inverse_out: bool = player.get_enemy().id == 1
 	match action:
 		Action.END_PHASE:
 			player.get_enemy().controller.broadcast_action(incoming)
 			return true
 		Action.SET:
+			var targets: Array[Card] = []
+			if len(incoming) > 4:
+				for i in range(4, len(incoming)):
+					var target: Card = game_board.get_card_from_online_id(incoming[i], inverse_in)
+					targets.push_back(target)
+					incoming[i] = target.get_online_id(inverse_out)
+			response_args = [game_board.get_card_from_online_id(incoming[1], inverse_in), int(incoming[2]), int(incoming[3]), targets]
+			incoming[1] = response_args[0].get_online_id(inverse_out)
+			player.get_enemy().controller.broadcast_action(incoming)
 			return true
 		Action.EVENT, Action.BLOCK:
 			return true
@@ -56,8 +66,8 @@ func _handle_request(action: Action, args: Array) -> bool:
 		Action.SEARCH_JUNK:
 			return true
 		Action.DISCARD:
-			response_args = [game_board.get_card_from_online_id(incoming[1], inverse)]
-			incoming[1] = response_args[0].get_online_id(inverse)
+			response_args = [game_board.get_card_from_online_id(incoming[1], inverse_in)]
+			incoming[1] = response_args[0].get_online_id(inverse_out)
 			player.get_enemy().controller.broadcast_action(incoming)
 			return true
 		Action.COUNTER:
@@ -91,6 +101,14 @@ func broadcast_action(parts: PackedStringArray):
 	var type: PackedInt32Array
 	type.push_back(TCGServer.MessageType.ACTION)
 	var msg: PackedByteArray = type.to_byte_array() + ('\t'.join(parts)).to_ascii_buffer()
+	while len(msg) % 4 != 0:
+		msg.push_back(0)
+	peer.send(msg)
+
+func send_identity(online_id: String, card_id: String):
+	var type: PackedInt32Array
+	type.append(TCGServer.MessageType.IDENTITY)
+	var msg: PackedByteArray = type.to_byte_array() + (online_id + "\t" + card_id).to_ascii_buffer()
 	while len(msg) % 4 != 0:
 		msg.push_back(0)
 	peer.send(msg)

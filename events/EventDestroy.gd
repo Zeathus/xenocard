@@ -94,5 +94,6 @@ func destroy():
 func broadcast():
 	if game_board.is_server():
 		for p: Player in [game_board.get_turn_player(), game_board.get_turn_enemy()]:
+			p.controller.send_identity(target.get_online_id(p.id == 1), target.data.get_full_id())
 			var args: Array = [attacker.get_online_id(p.id == 1), target.get_online_id(p.id == 1), source.get_online_id()]
 			p.controller.broadcast_event(get_name(), args)

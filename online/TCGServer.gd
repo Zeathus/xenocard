@@ -9,6 +9,7 @@ enum MessageType {
 	DECK = 3,
 	EVENT = 4,
 	ACTION = 5,
+	IDENTITY = 6,
 	CHAT = 10,
 	OK = 200,
 	DENIED = 400,
