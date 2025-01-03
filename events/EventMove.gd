@@ -7,6 +7,7 @@ var to_move: Card
 var awaiting_anims: bool = false
 
 func _init(_game_board: GameBoard, _player: Player, _to_move: Card):
+	broadcasted = _player.is_online()
 	super(_game_board)
 	player = _player
 	to_move = _to_move
@@ -35,6 +36,10 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, ind
 	if zone_owner != player:
 		return
 	if to_move.can_move_to(game_board, zone, index):
+		if player.get_enemy().is_online() and not broadcasted:
+			var args: Array[String] = [to_move.get_online_id(), str(zone), str(index)]
+			player.get_enemy().controller.send_action(Controller.Action.MOVE, args)
+		broadcast_move(zone, index)
 		var anims: Array[GameAnimation] = []
 		var other_card = field.get_card(zone, index)
 		var new_pos: Vector2
@@ -61,3 +66,8 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, ind
 		queue_event(EventAnimations.new(game_board, anims))
 		game_board.hide_valid_zones()
 		awaiting_anims = true
+
+func broadcast_move(zone: Enum.Zone, index: int):
+	if game_board.is_server():
+		var args: Array = [player, to_move.get_online_id(player.id == 0), str(zone), str(index)]
+		player.get_enemy().controller.broadcast_event(get_name(), args)

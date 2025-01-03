@@ -7,6 +7,10 @@ var to_set: Card
 var targets: Array[Card]
 var targets_required: Array[Callable]
 var ready_to_finish: bool = false
+var state: int = 0
+var set_zone: Enum.Zone
+var set_index: int
+var flip: bool = false
 
 func _init(_game_board: GameBoard, _player: Player, _to_set: Card):
 	broadcasted = _player.is_online()
@@ -45,11 +49,31 @@ func handle_set_effects():
 func process(delta):
 	if pass_to_child("process", [delta]):
 		return
+	match state:
+		1:
+			handle_set_targets()
+			state = 2
+		2:
+			prepare_set()
+			state = 3
+		3:
+			if player.field.get_card(set_zone, set_index):
+				handle_occupied_zone(set_zone, set_index)
+			state = 4
+		4:
+			flip = to_set.instance.is_face_down()
+			play(set_zone, set_index)
+			state = 5
+		5:
+			move_card_to_set()
+			state = 6
 	if ready_to_finish:
 		finish()
 
 func on_hand_card_selected(hand: GameHand, card: Card):
 	if pass_to_child("on_hand_card_selected", [hand, card]):
+		return
+	if state > 0:
 		return
 	if to_set != card:
 		blocking = false
@@ -58,9 +82,10 @@ func on_hand_card_selected(hand: GameHand, card: Card):
 func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, index: int):
 	if has_children():
 		return
+	if state > 0:
+		return
 	if zone_owner != player:
 		return
-	broadcast_set(zone, index)
 	var occupant = field.get_card(zone, index)
 	if len(targets) < len(targets_required):
 		if occupant:
@@ -73,45 +98,16 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, ind
 				targets.push_back(occupant)
 				update_valid_zones()
 	elif to_set.can_play(game_board, zone, index):
-		var flip = to_set.instance.is_face_down()
-		play(zone, index)
-		for e in to_set.effects:
-			e.handle_set_targets(targets)
-			for event in e.get_events():
-				queue_event(event)
-		var new_pos: Vector2 = field.get_zone(zone, index).global_position
-		if to_set.get_type() == Enum.Type.BATTLE and to_set.get_attribute() == Enum.Attribute.WEAPON:
-			if to_set.instance.global_rotation == 0:
-				new_pos += Vector2(28, 42)
-			else:
-				new_pos -= Vector2(28, 42)
-		if flip:
-			to_set.instance.turn_down()
-		var anim: GameAnimation = AnimationMove.new(to_set.instance, new_pos, 30, flip)
-		if to_set.get_type() == Enum.Type.BATTLE and to_set.get_attribute() == Enum.Attribute.WEAPON:
-			anim.target_scale = Vector2(0.075, 0.075)
-		else:
-			anim.target_scale = Vector2(0.15, 0.15)
-		anim.set_on_finish(func(): handle_set_effects())
-		queue_event(EventAnimation.new(game_board, anim))
+		if player.get_enemy().is_online() and not broadcasted:
+			var args: Array[String] = [to_set.get_online_id(), str(zone), str(index)]
+			player.get_enemy().controller.send_action(Controller.Action.SET, args)
+		broadcast_set(zone, index)
+		set_zone = zone
+		set_index = index
+		state = 1
 
 func play(new_zone: Enum.Zone, index: int):
 	print("Server " if game_board.is_server() else "Client ", game_board.game_id, " P", player.id + 1, " set ", to_set.get_name())
-	if player.get_enemy().is_online() and not broadcasted:
-		var args: Array[String] = [to_set.get_online_id(), str(new_zone), str(index)]
-		player.get_enemy().controller.send_action(Controller.Action.SET, args)
-	if to_set.instance.is_face_down() and to_set.zone == Enum.Zone.HAND:
-		for i in range(player.hand.size()):
-			if player.hand.cards[i].instance.is_face_down():
-				if player.hand.cards.find(to_set) <= i:
-					break
-				player.hand.cards.erase(to_set)
-				player.hand.cards.insert(i, to_set)
-				player.hand.refresh()
-				break
-	for i in to_set.modify_for_set:
-		i.call(to_set)
-	to_set.modify_for_set.clear()
 	if to_set.zone == Enum.Zone.HAND:
 		var should_set_e_mark = false
 		if (to_set.get_type() == Enum.Type.BATTLE and to_set.get_attribute() != Enum.Attribute.WEAPON) or \
@@ -122,8 +118,6 @@ func play(new_zone: Enum.Zone, index: int):
 					should_set_e_mark = false
 		var cost_to_pay = to_set.get_cost()
 		var real_pos = to_set.instance.global_position
-		if player.field.get_card(new_zone, index):
-			handle_occupied_zone(new_zone, index)
 		player.hand.remove(to_set)
 		if to_set.get_type() != Enum.Type.BATTLE or to_set.get_attribute() != Enum.Attribute.WEAPON:
 			player.field.set_card(to_set, new_zone, index)
@@ -144,6 +138,26 @@ func play(new_zone: Enum.Zone, index: int):
 	to_set.zone_index = index
 	game_board.refresh()
 
+func handle_set_targets():
+	for e in to_set.effects:
+		e.handle_set_targets(targets)
+		for event in e.get_events():
+			queue_event(event)
+
+func prepare_set():
+	if to_set.instance.is_face_down() and to_set.zone == Enum.Zone.HAND:
+		for i in range(player.hand.size()):
+			if player.hand.cards[i].instance.is_face_down():
+				if player.hand.cards.find(to_set) <= i:
+					break
+				player.hand.cards.erase(to_set)
+				player.hand.cards.insert(i, to_set)
+				player.hand.refresh()
+				break
+	for i in to_set.modify_for_set:
+		i.call(to_set)
+	to_set.modify_for_set.clear()
+
 func handle_occupied_zone(zone: Enum.Zone, index: int):
 	for e in to_set.get_effects(Enum.Trigger.PASSIVE):
 		if e.handle_occupied_zone(game_board, zone, index):
@@ -155,6 +169,23 @@ func handle_occupied_zone(zone: Enum.Zone, index: int):
 		occupant.equip(to_set)
 	else:
 		queue_event(EventDestroy.new(game_board, to_set, occupant, Damage.new(Damage.DISCARD)))
+
+func move_card_to_set():
+	var new_pos: Vector2 = player.field.get_zone(set_zone, set_index).global_position
+	if to_set.get_type() == Enum.Type.BATTLE and to_set.get_attribute() == Enum.Attribute.WEAPON:
+		if to_set.instance.global_rotation == 0:
+			new_pos += Vector2(28, 42)
+		else:
+			new_pos -= Vector2(28, 42)
+	if flip:
+		to_set.instance.turn_down()
+	var anim: GameAnimation = AnimationMove.new(to_set.instance, new_pos, 30, flip)
+	if to_set.get_type() == Enum.Type.BATTLE and to_set.get_attribute() == Enum.Attribute.WEAPON:
+		anim.target_scale = Vector2(0.075, 0.075)
+	else:
+		anim.target_scale = Vector2(0.15, 0.15)
+	anim.set_on_finish(func(): handle_set_effects())
+	queue_event(EventAnimation.new(game_board, anim))
 
 func targets_to_set() -> Array[Callable]:
 	var ret: Array[Callable] = []

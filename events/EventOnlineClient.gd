@@ -22,21 +22,15 @@ func on_finish():
 	pass
 
 func process(delta):
-	if awaited_event == "" and client.identities.size() > 0:
-		for i in client.identities:
-			var online_id: String = i.split("\t")[0]
-			var card_id: String = i.split("\t")[1]
-			var card: Card = game_board.get_card_from_online_id(online_id)
-			card.set_id(card_id)
-			print("Set identity of ", online_id, " to ", card_id)
-		client.identities.clear()
 	if pass_to_child("process", [delta]):
 		return
 	if client.events.size() > 0:
 		var event: Event = fetch_event(client.events.pop_front())
 		if awaited_event != "":
 			print("Client: Awaited ", event.get_name())
-		if parent:
+			if awaited_event != event.get_name() and event.get_name() != "Identity":
+				push_error("Client got unexpected event ", event.get_name(), ", expected ", awaited_event)
+		if parent and event is not EventIdentity:
 			event.parent = parent
 			event.parent.children.insert(event.parent.children.find(self), event)
 			finish()
@@ -46,6 +40,10 @@ func process(delta):
 func fetch_event(event_data: String):
 	var args: PackedStringArray = event_data.split("\t")
 	match args[0]: # Event type
+		"Identity":
+			var online_id: String = args[1]
+			var card_id: String = args[2]
+			return EventIdentity.new(game_board, online_id, card_id)
 		"DrawCard":
 			var player: Player = game_board.players[int(args[1])]
 			if len(args) > 2:
@@ -99,6 +97,14 @@ func fetch_event(event_data: String):
 			set_event.targets = targets
 			set_event.on_zone_selected(player.field, player, zone, index)
 			return set_event
+		"Move":
+			var player: Player = game_board.players[int(args[1])]
+			var to_move: Card = game_board.get_card_from_online_id(args[2])
+			var zone: Enum.Zone = int(args[3])
+			var index: int = int(args[4])
+			var move_event: EventMove = EventMove.new(game_board, player, to_move)
+			move_event.on_zone_selected(player.field, player, zone, index)
+			return move_event
 		"Destroy":
 			var attacker: Card = game_board.get_card_from_online_id(args[1])
 			var target: Card = game_board.get_card_from_online_id(args[2])

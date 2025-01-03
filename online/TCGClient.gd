@@ -34,7 +34,6 @@ var state: ClientState = ClientState.STARTING
 var waiting_for: MessageType = MessageType.NONE
 var events: Array[String] = []
 var actions: Array[String] = []
-var identities: Array[String] = []
 
 func _ready() -> void:
 	if socket.connect_to_url(websocket_url) != OK:
@@ -74,7 +73,7 @@ func _process(_delta: float) -> void:
 				MessageType.IDENTITY:
 					var msg_text: String = msg.slice(1).to_byte_array().get_string_from_ascii()
 					print("Client: Got identity: ", msg_text)
-					identities.push_back(msg_text)
+					events.push_back("Identity\t" + msg_text)
 				MessageType.CHAT:
 					var msg_text: String = msg.slice(1).to_byte_array().get_string_from_utf8()
 					print("Client: Got a message: ", msg_text)

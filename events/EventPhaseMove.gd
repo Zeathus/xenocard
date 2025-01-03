@@ -53,7 +53,8 @@ func process(delta):
 
 func move_card(card: Card, zone: Enum.Zone, index: int):
 	var move_event: EventMove = EventMove.new(game_board, player, card)
-	move_event.on_zone_selected(player.field, player, zone, index)
+	if not player.is_online():
+		move_event.on_zone_selected(player.field, player, zone, index)
 	queue_event(move_event)
 
 func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, index: int):

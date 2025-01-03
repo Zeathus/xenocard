@@ -13,6 +13,7 @@ var animate: bool = true
 var activations: int = 0
 
 func _init(_game_board: GameBoard, _effect: CardEffect, _variables: Dictionary, _optional=false):
+	broadcasted = false
 	super(_game_board)
 	effect = _effect
 	variables = _variables
