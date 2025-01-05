@@ -58,14 +58,14 @@ func new_game():
 		)
 		if online_mode == 2: # Server
 			print("online_mode == 2")
-			player.show_hand = true
 			player.controller = ControllerServer.new(self, player, server, options["peer"])
 			player.controller.start()
+			player.show_hand = true
 		else:
-			player.show_hand = (not options["ai"]) or game_options["reveal_hands"]
 			if options["ai"]:
 				player.controller = ControllerAI.new(self, player)
 				player.controller.start()
+			player.show_hand = (not player.has_controller()) or game_options["reveal_hands"]
 		players.push_back(player)
 	for p in players:
 		for i in range(5):
@@ -86,7 +86,7 @@ func new_client_game():
 		if i == 0:
 			player.show_hand = true
 		else:
-			player.show_hand = true
+			player.show_hand = false
 			player.controller = ControllerClient.new(self, player, client)
 			player.controller.start()
 		players.push_back(player)
@@ -159,7 +159,7 @@ func load_game(path: String):
 					card.equipped_weapon.instance.global_position += Vector2(28, 42)
 				else:
 					card.equipped_weapon.instance.global_position -= Vector2(28, 42)
-		player.show_hand = (not player_data["ai"]) or game_options["reveal_hands"]
+		player.show_hand = (not player.has_controller()) or game_options["reveal_hands"]
 		if player_data["ai"]:
 			player.controller = ControllerAI.new(self, player)
 			player.controller.start()

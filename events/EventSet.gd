@@ -148,14 +148,15 @@ func handle_set_targets():
 
 func prepare_set():
 	if to_set.instance.is_face_down() and to_set.zone == Enum.Zone.HAND:
-		for i in range(player.hand.size()):
-			if player.hand.cards[i].instance.is_face_down():
-				if player.hand.cards.find(to_set) <= i:
+		if game_board.online_mode == 0:
+			for i in range(player.hand.size()):
+				if player.hand.cards[i].instance.is_face_down():
+					if player.hand.cards.find(to_set) <= i:
+						break
+					player.hand.cards.erase(to_set)
+					player.hand.cards.insert(i, to_set)
+					player.hand.refresh()
 					break
-				player.hand.cards.erase(to_set)
-				player.hand.cards.insert(i, to_set)
-				player.hand.refresh()
-				break
 	for i in to_set.modify_for_set:
 		i.call(to_set)
 	to_set.modify_for_set.clear()

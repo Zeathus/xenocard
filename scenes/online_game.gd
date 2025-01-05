@@ -17,7 +17,7 @@ func _process(delta):
 	elif client.state == TCGClient.ClientState.START_GAME:
 		client.state = TCGClient.ClientState.PLAYING
 		var game = game_scene.instantiate()
-		game.game_options["reveal_hands"] = $Options/RevealHands.button_pressed
+		game.game_options["reveal_hands"] = false
 		game.game_options["online"] = "client"
 		game.client = client
 		get_parent().start_scene(game)
