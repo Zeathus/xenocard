@@ -78,11 +78,13 @@ func has_children():
 
 func adopt_children(event: Event):
 	for c in event.children:
+		c.parent = self
 		children.push_back(c)
 	event.children.clear()
 
 func adopt_all_children(event: Event):
 	for c in event.children:
+		c.parent = self
 		adopt_all_children(c)
 		children.push_back(c)
 	event.children.clear()

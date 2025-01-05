@@ -107,6 +107,15 @@ func fetch_event(event_data: String):
 			var move_event: EventMove = EventMove.new(game_board, player, to_move)
 			move_event.on_zone_selected(player.field, player, zone, index)
 			return move_event
+		"Attack":
+			var attacker: Card = game_board.get_card_from_online_id(args[1])
+			return EventAttack.new(game_board, attacker)
+		"Damage":
+			var attacker: Card = game_board.get_card_from_online_id(args[1])
+			var target = attacker.owner.get_enemy() if args[2] == "player" else game_board.get_card_from_online_id(args[2])
+			var damage: int = int(args[3])
+			var source: Damage = Damage.from_online_id(args[4])
+			return EventDamage.new(game_board, attacker, target, damage, source)
 		"Destroy":
 			var attacker: Card = game_board.get_card_from_online_id(args[1])
 			var target: Card = game_board.get_card_from_online_id(args[2])

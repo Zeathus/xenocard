@@ -8,7 +8,7 @@ var targets: Array
 var attack_done: bool = false
 var handled_post_effects: bool = false
 
-func _init(_game_board: GameBoard, _attacker):
+func _init(_game_board: GameBoard, _attacker: Card):
 	super(_game_board)
 	attacker = _attacker
 	start()
@@ -17,6 +17,7 @@ func get_name() -> String:
 	return "Attack"
 
 func on_start():
+	broadcast()
 	for e in attacker.get_effects(Enum.Trigger.PASSIVE):
 		if e.attack_stopped():
 			attack_done = true
@@ -106,3 +107,9 @@ func is_animating() -> bool:
 		if t.is_card() and t.instance and t.instance.animating():
 			return true
 	return false
+
+func broadcast():
+	if game_board.is_server():
+		for p: Player in [game_board.get_turn_player(), game_board.get_turn_enemy()]:
+			var args: Array = [attacker.get_online_id(p.id == 1)]
+			p.controller.broadcast_event(get_name(), args)

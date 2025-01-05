@@ -9,6 +9,7 @@ var source: Damage
 var remaining_damage: int = 0
 
 func _init(_game_board: GameBoard, _attacker: Card, _target, _damage: int, _source: Damage):
+	broadcasted = false
 	super(_game_board)
 	attacker = _attacker
 	target = _target
@@ -45,3 +46,14 @@ func process(delta):
 	if pass_to_child("process", [delta]):
 		return
 	finish()
+
+func broadcast():
+	if game_board.is_server():
+		for p: Player in [game_board.get_turn_player(), game_board.get_turn_enemy()]:
+			var args: Array = [
+				attacker.get_online_id(p.id == 1),
+				"player" if target.is_player() else target.get_online_id(p.id == 1),
+				damage,
+				source.get_online_id()
+			]
+			p.controller.broadcast_event(get_name(), args)
