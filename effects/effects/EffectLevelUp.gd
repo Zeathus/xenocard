@@ -3,6 +3,7 @@ extends Effect
 class_name EffectLevelUp
 
 var filter: CardFilter
+var leveled_up: bool = false
 
 func post_init():
 	filter = CardFilter.new(param)
@@ -11,11 +12,13 @@ func has_levelable_card() -> bool:
 	if parent.host.zone == Enum.Zone.HAND:
 		for c in parent.host.owner.field.get_battlefield_cards():
 			if filter.is_valid(parent.host.owner, c):
+				leveled_up = true
 				return true
+	leveled_up = false
 	return false
 
 func skips_e_mark() -> bool:
-	if has_levelable_card():
+	if leveled_up:
 		return true
 	return super.skips_e_mark()
 
@@ -44,4 +47,5 @@ func can_replace_card(card: Card) -> bool:
 func handle_occupied_zone(game_board: GameBoard, zone: Enum.Zone, index: int) -> bool:
 	var occupying: Card = parent.host.owner.field.get_card(zone, index)
 	parent.host.hp = parent.host.get_max_hp() - (occupying.get_max_hp() - occupying.hp)
+	leveled_up = true
 	return false
