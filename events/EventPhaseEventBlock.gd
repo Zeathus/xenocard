@@ -79,34 +79,14 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, ind
 	if card and card.selectable(game_board):
 		play(card)
 
-func play(card: Card):
-	if card.instance.is_face_down() and card.zone == Enum.Zone.HAND:
-		for i in range(player.hand.size()):
-			if player.hand.cards[i].instance.is_face_down():
-				if player.hand.cards.find(card) <= i:
-					break
-				player.hand.cards.erase(card)
-				player.hand.cards.insert(i, card)
-				player.hand.refresh()
-				break
-		var cost_to_pay = card.get_cost()
-		var cost_paid: int = player.pay_cost(cost_to_pay)
-		for i in range(cost_paid):
-			queue_event(EventPayCost.new(game_board, player))
-	hide_selectable()
-	card.revealed = true
-	if card.instance.is_face_down():
-		queue_event(EventAnimation.new(game_board, AnimationFlip.new(card)))
-	queue_event(EventAnimation.new(game_board, AnimationEffectStart.new(card)))
-	if card.get_type() == Enum.Type.EVENT:
-		queue_event(EventCounter.new(game_board, player.get_enemy(), card))
-	card.trigger_effects(Enum.Trigger.ACTIVATE, self, {"block": block})
-	queue_event(EventAnimation.new(game_board, AnimationEffectEnd.new(card)))
-	in_sub_event = true
-
 func on_end_phase_pressed():
 	if not has_children():
 		if player.can_end_phase(Enum.Phase.BLOCK if block else Enum.Phase.EVENT):
 			if player.get_enemy().is_online():
 				player.get_enemy().controller.send_action(Controller.Action.END_PHASE)
 			finish()
+
+func play(card: Card):
+	queue_event(EventEvent.new(game_board, card, block))
+	in_sub_event = true
+	hide_selectable()
