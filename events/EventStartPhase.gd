@@ -66,6 +66,8 @@ func get_phase_text(_phase: Enum.Phase) -> String:
 			pid = pid % 2 + 1
 		elif phase == Enum.Phase.BLOCK:
 			pid = pid % 2 + 1
+		elif phase == Enum.Phase.ADJUST:
+			pid = pid % 2 + 1
 	match _phase:
 		Enum.Phase.DRAW:
 			return "%dP Draw Phase" % pid
