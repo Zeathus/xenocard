@@ -41,11 +41,13 @@ func _handle_request(action: Action, args: Array) -> bool:
 			response_args = [game_board.get_card_from_online_id(incoming[1]), int(incoming[2]), int(incoming[3]), targets]
 			return true
 		Action.EVENT, Action.BLOCK:
+			response_args = [game_board.get_card_from_online_id(incoming[1])]
 			return true
 		Action.MOVE:
 			response_args = [game_board.get_card_from_online_id(incoming[1]), int(incoming[2]), int(incoming[3])]
 			return true
 		Action.CONFIRM:
+			response_args = [incoming[1] == "1"]
 			return true
 		Action.TARGET:
 			return true
@@ -57,6 +59,7 @@ func _handle_request(action: Action, args: Array) -> bool:
 			response_args = [game_board.get_card_from_online_id(incoming[1])]
 			return true
 		Action.COUNTER:
+			response_args = [game_board.get_card_from_online_id(incoming[1])]
 			return true
 		Action.MULLIGAN:
 			return true

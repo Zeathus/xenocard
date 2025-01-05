@@ -111,13 +111,14 @@ func queue_event(event: Event):
 	children.push_back(event)
 
 func broadcast_player(player: Player):
-	print("Broadcasting ", get_name())
 	if game_board.is_server():
+		print("Broadcasting ", get_name())
 		player.controller.broadcast_event(get_name(), [player])
 		player.get_enemy().controller.broadcast_event(get_name(), [player])
 
 func broadcast():
 	if game_board.is_server():
+		print("Broadcasting ", get_name())
 		game_board.get_turn_player().controller.broadcast_event(get_name())
 		game_board.get_turn_enemy().controller.broadcast_event(get_name())
 

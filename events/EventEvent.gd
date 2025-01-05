@@ -16,7 +16,9 @@ func get_name() -> String:
 	return "Event"
 
 func on_start():
-	play(card)
+	if card.selectable(game_board):
+		broadcast()
+		play(card)
 
 func on_finish():
 	pass
@@ -45,6 +47,13 @@ func play(card: Card):
 		queue_event(EventAnimation.new(game_board, AnimationFlip.new(card)))
 	queue_event(EventAnimation.new(game_board, AnimationEffectStart.new(card)))
 	if card.get_type() == Enum.Type.EVENT:
-		queue_event(EventCounter.new(game_board, player.get_enemy(), card))
+		queue_event(EventCounterPrompt.new(game_board, player.get_enemy(), card))
 	card.trigger_effects(Enum.Trigger.ACTIVATE, self, {"block": block})
 	queue_event(EventAnimation.new(game_board, AnimationEffectEnd.new(card)))
+
+func broadcast():
+	if game_board.is_server():
+		player.get_enemy().controller.send_identity(card.get_online_id(player.id == 0), card.data.get_full_id())
+		for p: Player in [game_board.get_turn_player(), game_board.get_turn_enemy()]:
+			var args: Array = [card.get_online_id(p.id == 1), "1" if block else "0"]
+			p.controller.broadcast_event(get_name(), args)

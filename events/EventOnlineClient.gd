@@ -84,6 +84,14 @@ func fetch_event(event_data: String):
 			var player: Player = game_board.players[int(args[1])]
 			game_board.turn_player_id = player.id
 			return EventStartTurn.new(game_board, player)
+		"Move":
+			var player: Player = game_board.players[int(args[1])]
+			var to_move: Card = game_board.get_card_from_online_id(args[2])
+			var zone: Enum.Zone = int(args[3])
+			var index: int = int(args[4])
+			var move_event: EventMove = EventMove.new(game_board, player, to_move)
+			move_event.on_zone_selected(player.field, player, zone, index)
+			return move_event
 		"Set":
 			var player: Player = game_board.players[int(args[1])]
 			var to_set: Card = game_board.get_card_from_online_id(args[2])
@@ -99,14 +107,25 @@ func fetch_event(event_data: String):
 			set_event.targets = targets
 			set_event.on_zone_selected(player.field, player, zone, index)
 			return set_event
-		"Move":
-			var player: Player = game_board.players[int(args[1])]
-			var to_move: Card = game_board.get_card_from_online_id(args[2])
-			var zone: Enum.Zone = int(args[3])
-			var index: int = int(args[4])
-			var move_event: EventMove = EventMove.new(game_board, player, to_move)
-			move_event.on_zone_selected(player.field, player, zone, index)
-			return move_event
+		"Event":
+			var activated: Card = game_board.get_card_from_online_id(args[1])
+			var block: bool = args[2] == "1"
+			return EventEvent.new(game_board, activated, block)
+		"CounterPrompt":
+			var countered: Card = game_board.get_card_from_online_id(args[1])
+			var chain: Array[Card] = []
+			if len(args) > 2:
+				for i in range(2, len(args)):
+					chain.push_back(game_board.get_card_from_online_id(args[i]))
+			return EventCounterPrompt.new(game_board, countered.owner.get_enemy(), countered, chain)
+		"Counter":
+			var countered: Card = game_board.get_card_from_online_id(args[1])
+			var countering: Card = game_board.get_card_from_online_id(args[2])
+			var chain: Array[Card] = []
+			if len(args) > 3:
+				for i in range(3, len(args)):
+					chain.push_back(game_board.get_card_from_online_id(args[i]))
+			return EventCounter.new(game_board, countered.owner.get_enemy(), countered, countering, chain)
 		"Attack":
 			var attacker: Card = game_board.get_card_from_online_id(args[1])
 			return EventAttack.new(game_board, attacker)

@@ -59,7 +59,7 @@ func hide_selectable():
 func activate_card(card: Card):
 	if has_children():
 		return
-	if card and card.selectable(game_board):
+	if card:
 		play(card)
 
 func on_hand_card_selected(hand: GameHand, card: Card):
@@ -87,6 +87,10 @@ func on_end_phase_pressed():
 			finish()
 
 func play(card: Card):
+	if player.get_enemy().is_online():
+		var args: Array[String] = [card.get_online_id()]
+		var action: Controller.Action = Controller.Action.BLOCK if block else Controller.Action.EVENT
+		player.get_enemy().controller.send_action(action, args)
 	queue_event(EventEvent.new(game_board, card, block))
 	in_sub_event = true
 	hide_selectable()

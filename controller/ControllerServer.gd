@@ -55,6 +55,9 @@ func _handle_request(action: Action, args: Array) -> bool:
 			player.get_enemy().controller.broadcast_action(incoming)
 			return true
 		Action.EVENT, Action.BLOCK:
+			response_args = [game_board.get_card_from_online_id(incoming[1], inverse_in)]
+			incoming[1] = response_args[0].get_online_id(inverse_out)
+			player.get_enemy().controller.broadcast_action(incoming)
 			return true
 		Action.MOVE:
 			response_args = [game_board.get_card_from_online_id(incoming[1], inverse_in), int(incoming[2]), int(incoming[3])]
@@ -62,6 +65,8 @@ func _handle_request(action: Action, args: Array) -> bool:
 			player.get_enemy().controller.broadcast_action(incoming)
 			return true
 		Action.CONFIRM:
+			response_args = [incoming[1] == "1"]
+			player.get_enemy().controller.broadcast_action(incoming)
 			return true
 		Action.TARGET:
 			return true
@@ -75,6 +80,9 @@ func _handle_request(action: Action, args: Array) -> bool:
 			player.get_enemy().controller.broadcast_action(incoming)
 			return true
 		Action.COUNTER:
+			response_args = [game_board.get_card_from_online_id(incoming[1], inverse_in)]
+			incoming[1] = response_args[0].get_online_id(inverse_out)
+			player.get_enemy().controller.broadcast_action(incoming)
 			return true
 		Action.MULLIGAN:
 			player.get_enemy().controller.broadcast_action(incoming)
