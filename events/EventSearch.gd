@@ -22,6 +22,7 @@ func get_name() -> String:
 	return "Search"
 
 func on_start():
+	broadcast()
 	if player.has_controller():
 		return
 	menu = browse_scene.instantiate()
@@ -58,6 +59,9 @@ func process(delta):
 			wait_for_finish = true
 
 func handle_card(index: int, card: Card):
+	if player.get_enemy().is_online():
+		var args: Array[String] = [str(index)]
+		player.get_enemy().controller.send_action(Controller.Action.SEARCH, args)
 	if index != -1:
 		card = player.deck.draw_at(index)
 		game_board.refresh()
@@ -68,3 +72,12 @@ func handle_card(index: int, card: Card):
 			AnimationAddToHand.new(card.instance, player.hand)
 		))
 	player.deck.shuffle()
+
+func broadcast():
+	if game_board.is_server():
+		var args: Array = [player, filter.string]
+		args.push_back(str(player.deck.size()))
+		for card in player.deck.cards:
+			args.push_back(card.data.get_full_id())
+		player.controller.broadcast_event(get_name(), args)
+		player.get_enemy().controller.broadcast_event(get_name(), [player, filter.string, "0"])

@@ -35,8 +35,8 @@ func on_start():
 			game_board,
 			effect.host.owner,
 			effect.get_confirm_message(),
-			func(): update_targets(),
-			func(): cancelled = true,
+			func(): handle_confirm(true),
+			func(): handle_confirm(false),
 			effect.get_help_text()
 		))
 		return
@@ -54,6 +54,15 @@ func on_finish():
 	for t in targets:
 		t.deselect()
 	game_board.hide_valid_zones()
+
+func handle_confirm(answer: bool):
+	if effect.host.owner.get_enemy().is_online():
+		var args: Array[String] = ["1" if answer else "0"]
+		effect.host.owner.get_enemy().controller.send_action(Controller.Action.CONFIRM, args)
+	if answer:
+		update_targets()
+	else:
+		cancelled = true
 
 func update_targets():
 	game_board.hide_valid_zones()
@@ -92,6 +101,10 @@ func process(delta):
 	elif len(targets) == len(targets_required):
 		if not activated:
 			if len(targets) > 0:
+				if effect.host.owner.get_enemy().is_online():
+					for t in targets:
+						var args: Array[String] = [t.get_online_id()]
+						effect.host.owner.get_enemy().controller.send_action(Controller.Action.TARGET, args)
 				effect.effect_with_targets(targets, variables)
 			else:
 				effect.effect(variables)

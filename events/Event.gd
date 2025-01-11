@@ -106,7 +106,7 @@ func sort_children():
 
 func queue_event(event: Event):
 	if event.broadcasted and game_board.is_client():
-		event = EventOnlineClient.new(game_board, game_board.client, event.get_name())
+		event = EventOnlineClient.new(game_board, game_board.client, event)
 	event.parent = self
 	children.push_back(event)
 

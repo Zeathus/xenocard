@@ -3,9 +3,9 @@ extends Event
 class_name EventOnlineClient
 
 var client: TCGClient
-var awaited_event: String
+var awaited_event: Event
 
-func _init(_game_board: GameBoard, _client: TCGClient, _awaited_event: String = ""):
+func _init(_game_board: GameBoard, _client: TCGClient, _awaited_event: Event = null):
 	broadcasted = false
 	client = _client
 	awaited_event = _awaited_event
@@ -15,8 +15,8 @@ func get_name() -> String:
 	return "OnlineClient"
 
 func on_start():
-	if awaited_event != "":
-		print("Client: Awaiting ", awaited_event)
+	if awaited_event != null:
+		print("Client: Awaiting ", awaited_event.get_name())
 
 func on_finish():
 	pass
@@ -26,10 +26,11 @@ func process(delta):
 		return
 	if client.events.size() > 0:
 		var event: Event = fetch_event(client.events.pop_front())
-		if awaited_event != "":
+		if awaited_event != null:
 			print("Client: Awaited ", event.get_name())
-			if awaited_event != event.get_name() and event is not EventIdentity:
-				push_error("Client got unexpected event ", event.get_name(), ", expected ", awaited_event)
+			if awaited_event.get_name() != event.get_name() and event is not EventIdentity:
+				push_error("Client got unexpected event ", event.get_name(), ", expected ", awaited_event.get_name())
+				return
 		if parent and event is not EventIdentity:
 			event.parent = parent
 			event.parent.children.insert(event.parent.children.find(self), event)
@@ -145,7 +146,15 @@ func fetch_event(event_data: String):
 			return EventPayCost.new(game_board, player)
 		"Mulligan":
 			var player: Player = game_board.players[int(args[1])]
-			return EventMulligan.new(game_board, player)
+			return EventMulligan.new(game_board, player, int(args[2]))
+		"Search":
+			var player: Player = game_board.players[int(args[1])]
+			var filter: CardFilter = CardFilter.new(args[2])
+			var deck_size: int = int(args[3])
+			for i in range(deck_size):
+				player.deck.cards[i].set_id(args[4 + i])
+			awaited_event.filter = filter
+			return awaited_event
 		_:
 			print("Unknown event: ", args[0])
 

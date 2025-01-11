@@ -16,7 +16,7 @@ func get_name() -> String:
 	return "Mulligan"
 
 func on_start():
-	broadcast_player(player)
+	broadcast()
 	if player.has_controller():
 		return
 	queue_event(EventConfirm.new(
@@ -65,3 +65,9 @@ func do_not_mulligan():
 	if player.get_enemy().is_online():
 		player.get_enemy().controller.send_action(Controller.Action.END_PHASE)
 	wait_for_finish = true
+
+func broadcast():
+	if game_board.is_server():
+		print("Broadcasting ", get_name())
+		player.controller.broadcast_event(get_name(), [player, str(remaining)])
+		player.get_enemy().controller.broadcast_event(get_name(), [player, str(remaining)])

@@ -69,8 +69,15 @@ func _handle_request(action: Action, args: Array) -> bool:
 			player.get_enemy().controller.broadcast_action(incoming)
 			return true
 		Action.TARGET:
+			response_args = [game_board.get_card_from_online_id(incoming[1], inverse_in)]
+			incoming[1] = response_args[0].get_online_id(inverse_out)
+			player.get_enemy().controller.broadcast_action(incoming)
 			return true
 		Action.SEARCH:
+			var index: int = int(incoming[1])
+			response_args = [index, player.deck.cards[index] if index >= 0 else null]
+			incoming[1] = "0" if index >= 0 else "-1"
+			player.get_enemy().controller.broadcast_action(incoming)
 			return true
 		Action.SEARCH_JUNK:
 			return true
