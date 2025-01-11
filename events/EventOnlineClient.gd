@@ -139,6 +139,7 @@ func fetch_event(event_data: String):
 		"Destroy":
 			var attacker: Card = game_board.get_card_from_online_id(args[1])
 			var target: Card = game_board.get_card_from_online_id(args[2])
+			print("Client ", game_board.game_id, " Destroy ", args[2], " -> ", target.get_name())
 			var source: Damage = Damage.from_online_id(args[3])
 			return EventDestroy.new(game_board, attacker, target, source)
 		"PayCost":

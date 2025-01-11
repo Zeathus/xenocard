@@ -28,7 +28,6 @@ func on_start():
 		return
 	if target.equipped_weapon:
 		queue_event(EventDestroy.new(game_board, attacker, target.equipped_weapon, source))
-		target.unequip()
 	if target.equipped_by:
 		if target.equipped_by.equipped_weapon == target:
 			target.equipped_by.unequip()
