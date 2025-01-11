@@ -147,6 +147,10 @@ func fetch_event(event_data: String):
 		"Mulligan":
 			var player: Player = game_board.players[int(args[1])]
 			return EventMulligan.new(game_board, player, int(args[2]))
+		"Recover":
+			var player: Player = game_board.players[int(args[1])]
+			var amount: int = int(args[2])
+			return EventRecover.new(game_board, player, amount)
 		"Search":
 			var player: Player = game_board.players[int(args[1])]
 			var filter: CardFilter = CardFilter.new(args[2])

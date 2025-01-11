@@ -16,6 +16,7 @@ func get_name() -> String:
 	return "Recover"
 
 func on_start():
+	broadcast()
 	anon_card.global_position = player.field.get_lost_node().global_position
 	anon_card.visible = true
 	var recovered = player.recover(amount)
@@ -31,3 +32,9 @@ func process(delta):
 	if pass_to_child("process", [delta]):
 		return
 	finish()
+
+func broadcast():
+	if game_board.is_server():
+		var args: Array = [player, str(amount)]
+		player.controller.broadcast_event(get_name(), args)
+		player.get_enemy().controller.broadcast_event(get_name(), args)
