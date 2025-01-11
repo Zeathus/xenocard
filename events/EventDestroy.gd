@@ -27,7 +27,7 @@ func on_start():
 	if target.zone == Enum.Zone.LOST or target.zone == Enum.Zone.JUNK:
 		return
 	if target.equipped_weapon:
-		queue_event(EventDestroy.new(game_board, attacker, target.equipped_weapon, source))
+		queue_event(EventDestroy.new(game_board, target.equipped_weapon, target.equipped_weapon, source))
 	if target.equipped_by:
 		if target.equipped_by.equipped_weapon == target:
 			target.equipped_by.unequip()
