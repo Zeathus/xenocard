@@ -57,6 +57,8 @@ func _handle_request(action: Action, args: Array) -> bool:
 			response_args = [index, player.deck.cards[index] if index >= 0 else null]
 			return true
 		Action.SEARCH_JUNK:
+			var index: int = int(incoming[1])
+			response_args = [index, player.junk.cards[index] if index >= 0 else null]
 			return true
 		Action.DISCARD:
 			response_args = [game_board.get_card_from_online_id(incoming[1])]

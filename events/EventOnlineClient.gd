@@ -160,6 +160,11 @@ func fetch_event(event_data: String):
 				player.deck.cards[i].set_id(args[4 + i])
 			awaited_event.filter = filter
 			return awaited_event
+		"SearchJunk":
+			var player: Player = game_board.players[int(args[1])]
+			var filter: CardFilter = CardFilter.new(args[2])
+			awaited_event.filter = filter
+			return awaited_event
 		_:
 			print("Unknown event: ", args[0])
 

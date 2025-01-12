@@ -22,6 +22,7 @@ func get_name() -> String:
 	return "SearchJunk"
 
 func on_start():
+	broadcast()
 	if player.has_controller():
 		return
 	menu = browse_scene.instantiate()
@@ -58,6 +59,9 @@ func process(delta):
 			wait_for_finish = true
 
 func handle_card(index: int, card: Card):
+	if player.get_enemy().is_online():
+		var args: Array[String] = [str(index)]
+		player.get_enemy().controller.send_action(Controller.Action.SEARCH_JUNK, args)
 	if index != -1:
 		card = player.junk.draw_at(index)
 		game_board.refresh()
@@ -68,3 +72,9 @@ func handle_card(index: int, card: Card):
 			AnimationAddToHand.new(card.instance, player.hand)
 		))
 	player.junk.shuffle()
+
+func broadcast():
+	if game_board.is_server():
+		var args: Array = [player, filter.string]
+		player.controller.broadcast_event(get_name(), args)
+		player.get_enemy().controller.broadcast_event(get_name(), args)
