@@ -24,6 +24,7 @@ func get_name() -> String:
 	return "Excavate"
 
 func on_start():
+	broadcast()
 	if player.has_controller():
 		return
 	excavated = player.deck.cards.slice(0, min(amount, player.deck.size()))
@@ -60,6 +61,9 @@ func process(delta):
 			wait_for_finish = true
 
 func handle_card(index: int, card: Card):
+	if player.get_enemy().is_online():
+		var args: Array[String] = [str(index)]
+		player.get_enemy().controller.send_action(Controller.Action.SEARCH, args)
 	if index != -1:
 		card = player.deck.draw_at(index)
 		game_board.refresh()
@@ -70,3 +74,14 @@ func handle_card(index: int, card: Card):
 			AnimationAddToHand.new(card.instance, player.hand)
 		))
 	player.deck.shuffle()
+
+func broadcast():
+	if game_board.is_server():
+		var args: Array = [player, filter.string]
+		args.push_back(str(min(player.deck.size(), amount)))
+		for i in range(amount):
+			if i >= player.deck.size():
+				break
+			args.push_back(player.deck.cards[i].data.get_full_id())
+		player.controller.broadcast_event(get_name(), args)
+		player.get_enemy().controller.broadcast_event(get_name(), [player, filter.string, "0"])

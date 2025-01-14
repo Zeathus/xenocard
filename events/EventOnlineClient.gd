@@ -165,6 +165,17 @@ func fetch_event(event_data: String):
 			var filter: CardFilter = CardFilter.new(args[2])
 			awaited_event.filter = filter
 			return awaited_event
+		"Excavate":
+			var player: Player = game_board.players[int(args[1])]
+			var filter: CardFilter = CardFilter.new(args[2])
+			var deck_size: int = int(args[3])
+			for i in range(deck_size):
+				player.deck.cards[i].set_id(args[4 + i])
+			awaited_event.filter = filter
+			return awaited_event
+		"FieldToHand":
+			var card: Card = game_board.get_card_from_online_id(args[1])
+			return EventFieldToHand.new(game_board, card)
 		_:
 			print("Unknown event: ", args[0])
 
