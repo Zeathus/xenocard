@@ -14,10 +14,13 @@
 	"requirement": {
 		"cost": 1
 	},
-	"text": "If this card is destroyed, the owner of the card must pay 1 cost.",
+	"text": "If this card is destroyed by a normal attack, the owner of the card must pay 1 cost.",
 	"effects": [
 		{
 			"trigger": "destroyed",
+			"requirement": [
+				"DamageType(normal)"
+			],
 			"effect": [
 				"PayCost(1)"
 			]
