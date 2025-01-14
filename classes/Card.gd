@@ -521,17 +521,19 @@ func get_original_atk() -> int:
 func get_base_atk() -> int:
 	if equipped_weapon and equipped_weapon.get_original_atk() > 0:
 		return equipped_weapon.get_atk()
-	return get_original_atk()
+	var base_atk: int = get_original_atk()
+	var multiplier: float = 1.0
+	for e in get_effects(Enum.Trigger.PASSIVE):
+		multiplier = e.get_atk_multiplier(multiplier)
+	base_atk *= int(floor(multiplier))
+	return base_atk
 
 func get_atk() -> int:
 	var ret = get_base_atk()
-	var multiplier: float = 1.0
 	for e in get_effects(Enum.Trigger.PASSIVE):
 		ret = e.get_atk(ret)
-		multiplier = e.get_atk_multiplier(multiplier)
 	if ret < 0:
 		ret = 0
-	ret *= int(floor(multiplier))
 	return ret
 
 # Opponent is either Card or Player
