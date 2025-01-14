@@ -54,6 +54,7 @@ func do_mulligan():
 		var card: Card = player.hand.cards.back()
 		player.hand.remove(card)
 		player.deck.add_top(card)
+		card.free_instance()
 	player.deck.shuffle()
 	for i in range(5):
 		queue_event(EventDrawCard.new(game_board, player, 2))
