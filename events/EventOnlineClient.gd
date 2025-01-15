@@ -135,6 +135,11 @@ func fetch_event(event_data: String):
 		"Attack":
 			var attacker: Card = game_board.get_card_from_online_id(args[1])
 			return EventAttack.new(game_board, attacker)
+		"SpecialAttack":
+			var attacker: Card = game_board.get_card_from_online_id(args[1])
+			var damage: int = int(args[2])
+			var filter: CardFilter = CardFilter.new(args[3])
+			return EventSpecialAttack.new(game_board, attacker, damage, filter)
 		"Damage":
 			var attacker: Card = game_board.get_card_from_online_id(args[1])
 			var target = attacker.owner.get_enemy() if args[2] == "player" else game_board.get_card_from_online_id(args[2])

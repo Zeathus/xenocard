@@ -9,7 +9,7 @@ var filter: CardFilter
 var targets: Array
 var attack_done: bool = false
 
-func _init(_game_board: GameBoard, _attacker, _damage: int, _filter: CardFilter):
+func _init(_game_board: GameBoard, _attacker: Card, _damage: int, _filter: CardFilter):
 	super(_game_board)
 	attacker = _attacker
 	damage = _damage
@@ -19,6 +19,7 @@ func get_name() -> String:
 	return "SpecialAttack"
 
 func on_start():
+	broadcast()
 	var anim_targets: Array[Node2D] = []
 	for card in game_board.get_all_field_cards():
 		if filter.is_valid(attacker.owner, card):
@@ -51,3 +52,9 @@ func attack():
 		adopt_children(damage_event)
 		queue_event(damage_event)
 	sort_children()
+
+func broadcast():
+	if game_board.is_server():
+		for p: Player in [game_board.get_turn_player(), game_board.get_turn_enemy()]:
+			var args: Array = [attacker.get_online_id(p.id == 1), str(damage), filter.string]
+			p.controller.broadcast_event(get_name(), args)
