@@ -196,6 +196,11 @@ func fetch_event(event_data: String):
 			var zone: Enum.Zone = int(args[2])
 			var index: int = int(args[3])
 			return EventAutoSet.new(game_board, to_set.owner, to_set, zone, index)
+		"Confirm":
+			if args.size() > 1:
+				game_board.dummy_card.set_id(args[1])
+				awaited_event.card_preview = game_board.dummy_card
+			return awaited_event
 		_:
 			print("Unknown event: ", args[0])
 

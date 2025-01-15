@@ -16,7 +16,7 @@ var card_preview: Card
 var yes_only: bool = false
 
 func _init(_game_board: GameBoard, _player: Player, _message: String, _on_yes, _on_no, _help: String="", _card: Card=null):
-	broadcasted = false
+	broadcasted = (_card != null) # Need to broadcast card identity
 	super(_game_board)
 	player = _player
 	message = _message
@@ -38,6 +38,8 @@ func get_name() -> String:
 	return "Confirm"
 
 func on_start():
+	if broadcasted:
+		broadcast()
 	if player.has_controller():
 		return
 	menu = confirm_scene.instantiate()
@@ -74,6 +76,9 @@ func process(delta):
 			wait_for_finish = true
 
 func handle_answer(answer: bool):
+	if broadcasted and player.get_enemy().is_online():
+		var args: Array[String] = ["1" if answer else "0"]
+		player.get_enemy().controller.send_action(Controller.Action.CONFIRM, args)
 	if answer:
 		if event_yes:
 			queue_event(event_yes)
@@ -84,3 +89,8 @@ func handle_answer(answer: bool):
 			queue_event(event_no)
 		elif on_no:
 			on_no.call()
+
+func broadcast():
+	if game_board.is_server():
+		player.controller.broadcast_event(get_name(), [card_preview.data.get_full_id()])
+		player.get_enemy().controller.broadcast_event(get_name())

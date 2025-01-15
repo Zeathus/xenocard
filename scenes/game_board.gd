@@ -21,6 +21,7 @@ var turn_count: int = 0
 var online_mode: int = 0
 var client: TCGClient = null
 var server: TCGServer = null
+var dummy_card: Card = Card.new("SYS/anon")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
