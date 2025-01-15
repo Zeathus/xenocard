@@ -20,7 +20,7 @@ func get_name() -> String:
 	return "AutoMove"
 
 func on_start():
-	pass
+	broadcast()
 
 func on_finish():
 	pass
@@ -61,3 +61,9 @@ func do_move(field: GameField, zone_owner: Player, zone: Enum.Zone, index: int):
 	to_move.move(game_board, zone, index)
 	queue_event(EventAnimations.new(game_board, anims))
 	awaiting_anims = true
+
+func broadcast():
+	if game_board.is_server():
+		for p: Player in [game_board.get_turn_player(), game_board.get_turn_enemy()]:
+			var args: Array = [to_move.get_online_id(p.id == 1), str(zone), str(zone_index)]
+			p.controller.broadcast_event(get_name(), args)

@@ -19,6 +19,7 @@ func get_name() -> String:
 	return "AutoSet"
 
 func on_start():
+	broadcast()
 	if to_set.zone in [Enum.Zone.STANDBY, Enum.Zone.BATTLEFIELD, Enum.Zone.SITUATION]:
 		return
 	if to_set.has_card_conflict(game_board):
@@ -96,3 +97,9 @@ func handle_occupied_zone(zone: Enum.Zone, index: int):
 		occupant.equip(to_set)
 	else:
 		queue_event(EventDestroy.new(game_board, to_set, occupant, Damage.new(Damage.EFFECT | Damage.DISCARD)))
+
+func broadcast():
+	if game_board.is_server():
+		for p: Player in [game_board.get_turn_player(), game_board.get_turn_enemy()]:
+			var args: Array = [to_set.get_online_id(p.id == 1), str(zone), str(zone_index)]
+			p.controller.broadcast_event(get_name(), args)

@@ -186,6 +186,16 @@ func fetch_event(event_data: String):
 		"FieldToHand":
 			var card: Card = game_board.get_card_from_online_id(args[1])
 			return EventFieldToHand.new(game_board, card)
+		"AutoMove":
+			var to_move: Card = game_board.get_card_from_online_id(args[1])
+			var zone: Enum.Zone = int(args[2])
+			var index: int = int(args[3])
+			return EventAutoMove.new(game_board, to_move.owner, to_move, zone, index)
+		"AutoSet":
+			var to_set: Card = game_board.get_card_from_online_id(args[1])
+			var zone: Enum.Zone = int(args[2])
+			var index: int = int(args[3])
+			return EventAutoSet.new(game_board, to_set.owner, to_set, zone, index)
 		_:
 			print("Unknown event: ", args[0])
 
