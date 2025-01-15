@@ -45,11 +45,10 @@ func fetch_event(event_data: String):
 			var online_id: String = args[1]
 			var card_id: String = args[2]
 			return EventIdentity.new(game_board, online_id, card_id)
-		"DrawCard":
+		"StartTurn":
 			var player: Player = game_board.players[int(args[1])]
-			if len(args) > 2:
-				player.deck.top().set_id(args[2])
-			return EventDrawCard.new(game_board, player)
+			game_board.turn_player_id = player.id
+			return EventStartTurn.new(game_board, player)
 		"PhaseDraw":
 			var player: Player = game_board.players[int(args[1])]
 			game_board.turn_phase = Enum.Phase.DRAW
@@ -81,10 +80,16 @@ func fetch_event(event_data: String):
 		"SelectDiscard":
 			var player: Player = game_board.players[int(args[1])]
 			return EventSelectDiscard.new(game_board, player, CardFilter.new(args[2]))
-		"StartTurn":
+		"DrawCard":
 			var player: Player = game_board.players[int(args[1])]
-			game_board.turn_player_id = player.id
-			return EventStartTurn.new(game_board, player)
+			if len(args) > 2 and player.deck.size() > 0:
+				player.deck.top().set_id(args[2])
+			return EventDrawCard.new(game_board, player)
+		"DrawCardFromLost":
+			var player: Player = game_board.players[int(args[1])]
+			if len(args) > 2 and player.lost.size() > 0:
+				player.lost.top().set_id(args[2])
+			return EventDrawCardFromLost.new(game_board, player)
 		"Move":
 			var player: Player = game_board.players[int(args[1])]
 			var to_move: Card = game_board.get_card_from_online_id(args[2])

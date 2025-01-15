@@ -18,10 +18,12 @@ func on_start():
 	for c in game_board.get_all_field_cards():
 		for e in c.get_effects(Enum.Trigger.PASSIVE):
 			if e.redirects_draw_to_lost(player):
+				broadcast_empty()
 				queue_event(EventDrawCardFromLost.new(game_board, player))
 				return
 	card = player.draw()
 	if card == null:
+		broadcast_empty()
 		return
 	broadcast()
 	game_board.prepare_card(card)
@@ -45,4 +47,9 @@ func process(delta):
 func broadcast():
 	if game_board.is_server():
 		player.controller.broadcast_event(get_name(), [player, card.data.get_full_id()])
+		player.get_enemy().controller.broadcast_event(get_name(), [player])
+
+func broadcast_empty():
+	if game_board.is_server():
+		player.controller.broadcast_event(get_name(), [player])
 		player.get_enemy().controller.broadcast_event(get_name(), [player])

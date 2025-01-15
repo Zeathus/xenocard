@@ -93,7 +93,7 @@ func process(delta):
 			finish()
 
 func handle_answer(answer: bool):
-	if can_counter or player.has_controller(): # Just trust a controller always
+	if can_counter or player.is_online(): # Just trust a server always
 		can_counter = answer
 	if player.get_enemy().is_online():
 		var args: Array[String] = ["1" if can_counter else "0"]
