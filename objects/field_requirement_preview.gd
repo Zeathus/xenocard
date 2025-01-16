@@ -29,8 +29,8 @@ func set_requirement_and_resources(requirement: Array[Enum.Attribute], resources
 		else:
 			attributes[i].set_attribute(requirement[i])
 			attributes[i].visible = true
-			var yes_node: Label = attributes[i].find_child("Yes")
-			var no_node: Label = attributes[i].find_child("No")
+			var yes_node: Sprite2D = attributes[i].find_child("Yes")
+			var no_node: Sprite2D = attributes[i].find_child("No")
 			if requirement[i] in resources:
 				yes_node.visible = true
 				no_node.visible = false

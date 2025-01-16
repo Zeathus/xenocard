@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://cbugc725ynfw5"]
+[gd_scene load_steps=11 format=3 uid="uid://cbugc725ynfw5"]
 
 [ext_resource type="Script" path="res://objects/field_requirement_preview.gd" id="1_nq6tm"]
 [ext_resource type="FontFile" uid="uid://cwo0ya5s4od8f" path="res://fonts/Roboto/RobotoCondensed-VariableFont_wght.ttf" id="2_qugtd"]
 [ext_resource type="PackedScene" uid="uid://g7yv71p73utl" path="res://objects/attribute.tscn" id="3_4rjpj"]
 [ext_resource type="FontFile" uid="uid://did43np2h7qjj" path="res://fonts/Roboto/RobotoCondensed-Italic-VariableFont_wght.ttf" id="3_v7a7c"]
-[ext_resource type="FontFile" uid="uid://ng1y54e8x08v" path="res://fonts/Roboto/Roboto-Bold.ttf" id="4_xx87d"]
+[ext_resource type="Texture2D" uid="uid://cltk2du0f0egi" path="res://sprites/icon_check_70.png" id="5_kewgm"]
+[ext_resource type="Texture2D" uid="uid://dkk0hjbeo6xtl" path="res://sprites/icon_x_70.png" id="6_0xdof"]
 
 [sub_resource type="FontVariation" id="FontVariation_xuug5"]
 base_font = ExtResource("2_qugtd")
@@ -20,18 +21,6 @@ variation_embolden = 0.5
 [sub_resource type="LabelSettings" id="LabelSettings_defp2"]
 font_size = 48
 font_color = Color(1, 1, 1, 0.752941)
-
-[sub_resource type="LabelSettings" id="LabelSettings_v5wed"]
-font_size = 160
-font_color = Color(0, 0.72549, 0, 0.752941)
-outline_size = 16
-outline_color = Color(1, 1, 1, 0.752941)
-
-[sub_resource type="LabelSettings" id="LabelSettings_l8jg7"]
-font_size = 160
-font_color = Color(0.878431, 0, 0, 0.752941)
-outline_size = 16
-outline_color = Color(1, 1, 1, 0.752941)
 
 [node name="FieldRequirementPreview" type="Node2D"]
 script = ExtResource("1_nq6tm")
@@ -67,86 +56,54 @@ label_settings = SubResource("LabelSettings_defp2")
 position = Vector2(222, 58)
 scale = Vector2(0.5, 0.5)
 
-[node name="Yes" type="Label" parent="Panel/Attribute1"]
-offset_left = -66.0
-offset_top = -140.0
-offset_right = 72.0
-offset_bottom = 119.0
-theme_override_fonts/font = ExtResource("4_xx87d")
-text = "✓"
-label_settings = SubResource("LabelSettings_v5wed")
+[node name="Yes" type="Sprite2D" parent="Panel/Attribute1"]
+position = Vector2(0, 6)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("5_kewgm")
 
-[node name="No" type="Label" parent="Panel/Attribute1"]
-offset_left = -74.0
-offset_top = -108.0
-offset_right = 72.0
-offset_bottom = 101.0
-theme_override_fonts/font = ExtResource("4_xx87d")
-text = "❌"
-label_settings = SubResource("LabelSettings_l8jg7")
+[node name="No" type="Sprite2D" parent="Panel/Attribute1"]
+position = Vector2(0, 6)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("6_0xdof")
 
 [node name="Attribute2" parent="Panel" instance=ExtResource("3_4rjpj")]
 position = Vector2(310, 58)
 scale = Vector2(0.5, 0.5)
 
-[node name="Yes" type="Label" parent="Panel/Attribute2"]
-offset_left = -66.0
-offset_top = -140.0
-offset_right = 72.0
-offset_bottom = 119.0
-theme_override_fonts/font = ExtResource("4_xx87d")
-text = "✓"
-label_settings = SubResource("LabelSettings_v5wed")
+[node name="Yes" type="Sprite2D" parent="Panel/Attribute2"]
+position = Vector2(0, 6)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("5_kewgm")
 
-[node name="No" type="Label" parent="Panel/Attribute2"]
-offset_left = -74.0
-offset_top = -108.0
-offset_right = 72.0
-offset_bottom = 101.0
-theme_override_fonts/font = ExtResource("4_xx87d")
-text = "❌"
-label_settings = SubResource("LabelSettings_l8jg7")
+[node name="No" type="Sprite2D" parent="Panel/Attribute2"]
+position = Vector2(0, 6)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("6_0xdof")
 
 [node name="Attribute3" parent="Panel" instance=ExtResource("3_4rjpj")]
 position = Vector2(398, 58)
 scale = Vector2(0.5, 0.5)
 
-[node name="Yes" type="Label" parent="Panel/Attribute3"]
-offset_left = -66.0
-offset_top = -140.0
-offset_right = 72.0
-offset_bottom = 119.0
-theme_override_fonts/font = ExtResource("4_xx87d")
-text = "✓"
-label_settings = SubResource("LabelSettings_v5wed")
+[node name="Yes" type="Sprite2D" parent="Panel/Attribute3"]
+position = Vector2(0, 6)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("5_kewgm")
 
-[node name="No" type="Label" parent="Panel/Attribute3"]
-offset_left = -74.0
-offset_top = -108.0
-offset_right = 72.0
-offset_bottom = 101.0
-theme_override_fonts/font = ExtResource("4_xx87d")
-text = "❌"
-label_settings = SubResource("LabelSettings_l8jg7")
+[node name="No" type="Sprite2D" parent="Panel/Attribute3"]
+position = Vector2(0, 6)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("6_0xdof")
 
 [node name="Attribute4" parent="Panel" instance=ExtResource("3_4rjpj")]
 position = Vector2(486, 58)
 scale = Vector2(0.5, 0.5)
 
-[node name="Yes" type="Label" parent="Panel/Attribute4"]
-offset_left = -66.0
-offset_top = -140.0
-offset_right = 72.0
-offset_bottom = 119.0
-theme_override_fonts/font = ExtResource("4_xx87d")
-text = "✓"
-label_settings = SubResource("LabelSettings_v5wed")
+[node name="Yes" type="Sprite2D" parent="Panel/Attribute4"]
+position = Vector2(0, 6)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("5_kewgm")
 
-[node name="No" type="Label" parent="Panel/Attribute4"]
-offset_left = -74.0
-offset_top = -108.0
-offset_right = 72.0
-offset_bottom = 101.0
-theme_override_fonts/font = ExtResource("4_xx87d")
-text = "❌"
-label_settings = SubResource("LabelSettings_l8jg7")
+[node name="No" type="Sprite2D" parent="Panel/Attribute4"]
+position = Vector2(0, 6)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("6_0xdof")
