@@ -22,7 +22,7 @@ enum ClientState {
 	AWAIT_DECK = 3
 }
 
-const PORT = 9080
+const PORT = 5310
 
 var tcp_server = TCPServer.new()
 var game_tscn = preload("res://scenes/game_board.tscn")

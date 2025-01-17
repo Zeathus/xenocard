@@ -26,7 +26,7 @@ enum ClientState {
 	PLAYING = 7
 }
 
-var websocket_url := "ws://localhost:9080"
+var websocket_url := "ws://localhost:5310" # "ws://80.212.87.126:5310"
 
 var socket := WebSocketPeer.new()
 var pinged = false

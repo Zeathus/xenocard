@@ -156,7 +156,7 @@ func get_baked_image() -> Resource:
 	if OS.has_feature("dedicated_server"):
 		return null
 	var image_file: String = "res://sprites/card_images_baked/%s/%s.png" % [set_name, id]
-	if FileAccess.file_exists(image_file):
+	if ResourceLoader.exists(image_file):
 		return load(image_file)
 	else:
 		push_error("Failed to find card image '%s'" % image_file)
