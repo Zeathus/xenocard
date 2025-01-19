@@ -35,7 +35,7 @@ func process(delta):
 	finish()
 
 func play(card: Card):
-	if card.instance.is_face_down() and card.zone == Enum.Zone.HAND:
+	if card.instance.is_face_down() and card.zone == Enum.Zone.HAND and game_board.online_mode == 0:
 		for i in range(player.hand.size()):
 			if player.hand.cards[i].instance.is_face_down():
 				if player.hand.cards.find(card) <= i:
