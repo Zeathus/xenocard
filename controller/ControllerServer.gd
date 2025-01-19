@@ -82,7 +82,6 @@ func _handle_request(action: Action, args: Array) -> bool:
 		Action.SEARCH_JUNK:
 			var index: int = int(incoming[1])
 			response_args = [index, player.junk.cards[index] if index >= 0 else null]
-			incoming[1] = "0" if index >= 0 else "-1"
 			player.get_enemy().controller.broadcast_action(incoming)
 			return true
 		Action.DISCARD:
