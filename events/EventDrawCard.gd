@@ -47,7 +47,10 @@ func process(delta):
 func broadcast():
 	if game_board.is_server():
 		player.controller.broadcast_event(get_name(), [player, card.data.get_full_id()])
-		player.get_enemy().controller.broadcast_event(get_name(), [player])
+		if player.reveal_hand:
+			player.get_enemy().controller.broadcast_event(get_name(), [player, card.data.get_full_id()])
+		else:
+			player.get_enemy().controller.broadcast_event(get_name(), [player])
 
 func broadcast_empty():
 	if game_board.is_server():

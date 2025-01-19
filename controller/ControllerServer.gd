@@ -127,10 +127,10 @@ func broadcast_action(parts: PackedStringArray):
 		msg.push_back(0)
 	peer.send(msg)
 
-func send_identity(online_id: String, card_id: String):
+func send_identity(online_id: String, card_id: String, awaited: bool = false):
 	var type: PackedInt32Array
 	type.append(TCGServer.MessageType.IDENTITY)
-	var msg: PackedByteArray = type.to_byte_array() + (online_id + "\t" + card_id).to_ascii_buffer()
+	var msg: PackedByteArray = type.to_byte_array() + (online_id + "\t" + card_id + "\t" + ("1" if awaited else "0")).to_ascii_buffer()
 	while len(msg) % 4 != 0:
 		msg.push_back(0)
 	peer.send(msg)

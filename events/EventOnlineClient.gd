@@ -31,7 +31,7 @@ func process(delta):
 			if awaited_event.get_name() != event.get_name() and event is not EventIdentity:
 				push_error("Client got unexpected event ", event.get_name(), ", expected ", awaited_event.get_name())
 				return
-		if parent and event is not EventIdentity:
+		if parent and not (event is EventIdentity and not event.awaited):
 			event.parent = parent
 			event.parent.children.insert(event.parent.children.find(self), event)
 			finish()
@@ -44,7 +44,8 @@ func fetch_event(event_data: String):
 		"Identity":
 			var online_id: String = args[1]
 			var card_id: String = args[2]
-			return EventIdentity.new(game_board, online_id, card_id)
+			var awaited: bool = (args[3] == "1")
+			return EventIdentity.new(game_board, online_id, card_id, awaited)
 		"StartTurn":
 			var player: Player = game_board.players[int(args[1])]
 			game_board.turn_player_id = player.id

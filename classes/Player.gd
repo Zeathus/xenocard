@@ -103,7 +103,7 @@ func get_enemy() -> Player:
 func set_reveal_hand(val: bool):
 	reveal_hand = val
 	for card in hand.cards:
-		if reveal_hand or show_hand or card.revealed:
+		if (reveal_hand or show_hand or card.revealed) and card.data.get_full_id() != "SYS/anon":
 			card.instance.turn_up()
 		else:
 			card.instance.turn_down()

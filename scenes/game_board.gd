@@ -385,8 +385,9 @@ func begin_turn():
 	begin_phase(Enum.Phase.DRAW)
 
 func refresh():
-	for player in [get_turn_player(), get_turn_enemy()]:
+	for player: Player in [get_turn_player(), get_turn_enemy()]:
 		player.field.refresh()
+		var old_reveal_hand: bool = player.reveal_hand
 		player.set_reveal_hand(false)
 		for card in get_all_field_cards():
 			for e in card.get_effects(Enum.Trigger.PASSIVE):

@@ -27,3 +27,16 @@ func get_effect_score(variables: Dictionary = {}) -> int:
 	if players[1]:
 		score += 4
 	return score
+
+func effect(variables: Dictionary = {}):
+	if game_board.is_server():
+		if players[0]:
+			for card in game_board.players[0].hand.cards:
+				game_board.players[1].controller.send_identity(card.get_online_id(true), card.data.get_full_id(), true)
+		if players[1]:
+			for card in game_board.players[1].hand.cards:
+				game_board.players[0].controller.send_identity(card.get_online_id(false), card.data.get_full_id(), true)
+	elif game_board.is_client():
+		if players[1]:
+			for card in game_board.players[1].hand.cards:
+				parent.events.push_back(EventIdentity.new(game_board, "", "SYS/anon", true))

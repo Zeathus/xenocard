@@ -15,6 +15,12 @@
 			"effect": [
 				"RevealHand(both)"
 			]
+		},
+		{
+			"trigger": "set",
+			"effect": [
+				"RevealHand(both)"
+			]
 		}
 	]
 }
