@@ -4,8 +4,11 @@ var main_menu = load("res://scenes/main_menu.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	randomize()
-	Random.set_seed(randi())
+	if OS.has_feature("fixed_seed"):
+		Random.set_seed(1)
+	else:
+		randomize()
+		Random.set_seed(randi())
 	if OS.has_feature("dedicated_server") or OS.has_feature("display_server"):
 		var server: TCGServer = TCGServer.new()
 		add_child(server)

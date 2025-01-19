@@ -26,7 +26,7 @@ enum ClientState {
 	PLAYING = 7
 }
 
-var websocket_url := "ws://localhost:5310" # "ws://80.212.87.126:5310"
+var websocket_url := "ws://localhost:5310" if OS.has_feature("use_local_server") else "ws://80.212.87.126:5310"
 
 var socket := WebSocketPeer.new()
 var pinged = false
@@ -36,6 +36,7 @@ var events: Array[String] = []
 var actions: Array[String] = []
 
 func _ready() -> void:
+	print("Connecting to ", websocket_url)
 	if socket.connect_to_url(websocket_url) != OK:
 		print("Unable to connect.")
 		set_process(false)
