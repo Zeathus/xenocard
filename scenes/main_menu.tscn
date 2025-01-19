@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvgngfabvy3dr"]
+[gd_scene load_steps=4 format=3 uid="uid://cvgngfabvy3dr"]
 
 [ext_resource type="Texture2D" uid="uid://chrypmheibmgi" path="res://sprites/logo.png" id="1_0mlpt"]
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_ps2kx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_o5cpi"]
+font_size = 20
 
 [node name="MainMenu" type="Node2D"]
 position = Vector2(0, -24)
@@ -54,6 +57,7 @@ offset_bottom = 184.0
 text = "Exit"
 
 [node name="ButtonTest" type="Button" parent="."]
+visible = false
 offset_left = -944.0
 offset_top = 454.0
 offset_right = -846.0
@@ -61,6 +65,7 @@ offset_bottom = 485.0
 text = "Test Button"
 
 [node name="ButtonCreateCardImages" type="Button" parent="."]
+visible = false
 offset_left = -944.0
 offset_top = 494.0
 offset_right = -784.0
@@ -71,6 +76,15 @@ text = "Create Card Images"
 position = Vector2(0, -304)
 scale = Vector2(3, 3)
 texture = ExtResource("1_0mlpt")
+
+[node name="VersionNumber" type="Label" parent="."]
+offset_left = 737.0
+offset_top = 525.0
+offset_right = 944.0
+offset_bottom = 571.0
+text = "Ver. X.Y.Z"
+label_settings = SubResource("LabelSettings_o5cpi")
+horizontal_alignment = 2
 
 [connection signal="pressed" from="ButtonSolo" to="." method="_on_button_solo_pressed"]
 [connection signal="pressed" from="ButtonOnline" to="." method="_on_button_online_pressed"]
