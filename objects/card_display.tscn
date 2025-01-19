@@ -337,7 +337,7 @@ mouse_filter = 2
 theme = SubResource("Theme_b0mdc")
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("8_4hlpo")
-text = "Test Text"
+text = "<Failed to get text>"
 scroll_active = false
 
 [node name="Rarity" type="Sprite2D" parent="Content"]

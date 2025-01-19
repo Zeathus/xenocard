@@ -53,7 +53,7 @@ func show_card(card: CardData):
 		expanded_text = expanded_text.replace("#c6c6ff", "#415fcf")
 	var text_size: int = 36
 	while true:
-		$Content/Text.clear()
+		$Content/Text.text = ""
 		$Content/Text.push_font_size(text_size)
 		$Content/Text.append_text(expanded_text)
 		if $Content/Text.get_content_height() <= $Content/Text.size.y:
