@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cvgngfabvy3dr"]
+[gd_scene load_steps=14 format=3 uid="uid://cvgngfabvy3dr"]
 
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_ps2kx"]
 [ext_resource type="Texture2D" uid="uid://dbouwtiebd8q5" path="res://sprites/globe-407744.png" id="2_4oj30"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dlsm3krftu43b" path="res://sprites/logo_icon.png" id="2_o3hyy"]
 [ext_resource type="Script" path="res://scenes/background_grid.gd" id="3_0kht6"]
 [ext_resource type="FontFile" uid="uid://477m8mtpk38o" path="res://fonts/HelveticaNeue/HelveticaNeue-BlackCondObl.otf" id="3_vg0vx"]
+[ext_resource type="Texture2D" uid="uid://bfcdwfmhmx250" path="res://sprites/icons/flag_us.png" id="7_4oxla"]
+[ext_resource type="Texture2D" uid="uid://buoii1820488l" path="res://sprites/icons/flag_jp.png" id="8_i0rpp"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_vyp5j"]
 size = Vector2(2000, 1100)
@@ -29,6 +31,7 @@ outline_size = 12
 outline_color = Color(0.188235, 0.878431, 0.627451, 1)
 
 [node name="MainMenu" type="Node2D"]
+auto_translate_mode = 1
 position = Vector2(0, -24)
 script = ExtResource("1_ps2kx")
 
@@ -50,7 +53,7 @@ offset_top = 24.0
 offset_right = -18.0
 offset_bottom = 72.0
 theme = ExtResource("2_ic5sl")
-text = "Solo Game"
+text = "SOLO_GAME"
 
 [node name="ButtonOnline" type="Button" parent="."]
 offset_left = 18.0
@@ -58,7 +61,7 @@ offset_top = 24.0
 offset_right = 318.0
 offset_bottom = 72.0
 theme = ExtResource("2_ic5sl")
-text = "Online Game"
+text = "ONLINE_GAME"
 
 [node name="ButtonDecks" type="Button" parent="."]
 offset_left = -150.0
@@ -66,7 +69,7 @@ offset_top = 96.0
 offset_right = 150.0
 offset_bottom = 144.0
 theme = ExtResource("2_ic5sl")
-text = "Decks"
+text = "DECKS"
 
 [node name="ButtonTutorials" type="Button" parent="."]
 offset_left = -318.0
@@ -74,7 +77,7 @@ offset_top = 168.0
 offset_right = -18.0
 offset_bottom = 216.0
 theme = ExtResource("2_ic5sl")
-text = "Tutorials"
+text = "TUTORIALS"
 
 [node name="ButtonRulebook" type="Button" parent="."]
 offset_left = 18.0
@@ -83,7 +86,7 @@ offset_right = 318.0
 offset_bottom = 216.0
 theme = ExtResource("2_ic5sl")
 disabled = true
-text = "Rulebook"
+text = "RULEBOOK"
 
 [node name="ButtonExit" type="Button" parent="."]
 offset_left = -150.0
@@ -91,7 +94,7 @@ offset_top = 240.0
 offset_right = 150.0
 offset_bottom = 288.0
 theme = ExtResource("2_ic5sl")
-text = "Exit"
+text = "EXIT"
 
 [node name="ButtonTest" type="Button" parent="."]
 visible = false
@@ -133,6 +136,33 @@ text = "Xeno  Card"
 label_settings = SubResource("LabelSettings_a3vtb")
 horizontal_alignment = 1
 
+[node name="Languages" type="Node2D" parent="."]
+position = Vector2(832, -448)
+
+[node name="LangUS" type="Button" parent="Languages"]
+offset_left = -88.0
+offset_top = -32.0
+offset_right = -8.0
+offset_bottom = 28.0
+theme = ExtResource("2_ic5sl")
+
+[node name="FlagUS" type="Sprite2D" parent="Languages/LangUS"]
+position = Vector2(40, 29)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_4oxla")
+
+[node name="LangJP" type="Button" parent="Languages"]
+offset_left = 8.0
+offset_top = -32.0
+offset_right = 88.0
+offset_bottom = 28.0
+theme = ExtResource("2_ic5sl")
+
+[node name="FlagJP" type="Sprite2D" parent="Languages/LangJP"]
+position = Vector2(40, 29)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_i0rpp")
+
 [connection signal="pressed" from="ButtonSolo" to="." method="_on_button_solo_pressed"]
 [connection signal="pressed" from="ButtonOnline" to="." method="_on_button_online_pressed"]
 [connection signal="pressed" from="ButtonDecks" to="." method="_on_button_decks_pressed"]
@@ -140,3 +170,5 @@ horizontal_alignment = 1
 [connection signal="pressed" from="ButtonExit" to="." method="_on_button_exit_pressed"]
 [connection signal="pressed" from="ButtonTest" to="." method="_on_button_test_pressed"]
 [connection signal="pressed" from="ButtonCreateCardImages" to="." method="_on_button_create_card_images_pressed"]
+[connection signal="pressed" from="Languages/LangUS" to="." method="_on_lang_us_pressed"]
+[connection signal="pressed" from="Languages/LangJP" to="." method="_on_lang_jp_pressed"]

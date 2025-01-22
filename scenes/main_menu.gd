@@ -59,3 +59,9 @@ func _on_button_create_card_images_pressed() -> void:
 	card_display.scale = Vector2(0.5, 0.5)
 	var images_to_make = CardData.data
 	task = ["create_images", images_to_make.keys(), images_to_make.values(), 0, sub_viewport, card_display]
+
+func _on_lang_us_pressed() -> void:
+	TranslationServer.set_locale(("en"))
+
+func _on_lang_jp_pressed() -> void:
+	TranslationServer.set_locale(("jp"))

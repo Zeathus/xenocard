@@ -41,6 +41,10 @@ right_click={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://localization/strings.en.translation", "res://localization/strings.jp.translation")
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=2
