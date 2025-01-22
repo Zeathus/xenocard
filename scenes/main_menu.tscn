@@ -1,59 +1,96 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvgngfabvy3dr"]
+[gd_scene load_steps=12 format=3 uid="uid://cvgngfabvy3dr"]
 
-[ext_resource type="Texture2D" uid="uid://chrypmheibmgi" path="res://sprites/logo.png" id="1_0mlpt"]
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_ps2kx"]
+[ext_resource type="Texture2D" uid="uid://dbouwtiebd8q5" path="res://sprites/globe-407744.png" id="2_4oj30"]
+[ext_resource type="Theme" uid="uid://cts0fwcuwbvl0" path="res://theme_default.tres" id="2_ic5sl"]
+[ext_resource type="Texture2D" uid="uid://dlsm3krftu43b" path="res://sprites/logo_icon.png" id="2_o3hyy"]
+[ext_resource type="Script" path="res://scenes/background_grid.gd" id="3_0kht6"]
+[ext_resource type="FontFile" uid="uid://477m8mtpk38o" path="res://fonts/HelveticaNeue/HelveticaNeue-BlackCondObl.otf" id="3_vg0vx"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_vyp5j"]
+size = Vector2(2000, 1100)
+
+[sub_resource type="Gradient" id="Gradient_kqsxl"]
+offsets = PackedFloat32Array(0, 0.59478, 1)
+colors = PackedColorArray(0.501961, 0.54902, 0.54902, 1, 0.392157, 0.470588, 0.470588, 1, 0.0557514, 0.0780172, 0.0780396, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yueb0"]
+gradient = SubResource("Gradient_kqsxl")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="LabelSettings" id="LabelSettings_o5cpi"]
 font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_a3vtb"]
+font_size = 128
+font_color = Color(0, 0, 0, 1)
+outline_size = 12
+outline_color = Color(0.188235, 0.878431, 0.627451, 1)
 
 [node name="MainMenu" type="Node2D"]
 position = Vector2(0, -24)
 script = ExtResource("1_ps2kx")
 
+[node name="Background" type="MeshInstance2D" parent="."]
+position = Vector2(0, 24)
+mesh = SubResource("QuadMesh_vyp5j")
+texture = SubResource("GradientTexture2D_yueb0")
+
+[node name="BackgroundGrid" type="Sprite2D" parent="."]
+position = Vector2(-128, 828)
+texture = ExtResource("2_4oj30")
+script = ExtResource("3_0kht6")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="ButtonSolo" type="Button" parent="."]
-offset_left = -310.0
-offset_top = -56.0
-offset_right = -10.0
-offset_bottom = -8.0
+offset_left = -318.0
+offset_top = 24.0
+offset_right = -18.0
+offset_bottom = 72.0
+theme = ExtResource("2_ic5sl")
 text = "Solo Game"
-metadata/_edit_use_anchors_ = true
 
 [node name="ButtonOnline" type="Button" parent="."]
-offset_left = 10.0
-offset_top = -56.0
-offset_right = 310.0
-offset_bottom = -8.0
+offset_left = 18.0
+offset_top = 24.0
+offset_right = 318.0
+offset_bottom = 72.0
+theme = ExtResource("2_ic5sl")
 text = "Online Game"
 
 [node name="ButtonDecks" type="Button" parent="."]
 offset_left = -150.0
-offset_top = 8.0
+offset_top = 96.0
 offset_right = 150.0
-offset_bottom = 56.0
+offset_bottom = 144.0
+theme = ExtResource("2_ic5sl")
 text = "Decks"
 
 [node name="ButtonTutorials" type="Button" parent="."]
-offset_left = -310.0
-offset_top = 72.0
-offset_right = -10.0
-offset_bottom = 120.0
+offset_left = -318.0
+offset_top = 168.0
+offset_right = -18.0
+offset_bottom = 216.0
+theme = ExtResource("2_ic5sl")
 text = "Tutorials"
 
 [node name="ButtonRulebook" type="Button" parent="."]
-offset_left = 10.0
-offset_top = 72.0
-offset_right = 310.0
-offset_bottom = 120.0
+offset_left = 18.0
+offset_top = 168.0
+offset_right = 318.0
+offset_bottom = 216.0
+theme = ExtResource("2_ic5sl")
 disabled = true
 text = "Rulebook"
 
 [node name="ButtonExit" type="Button" parent="."]
 offset_left = -150.0
-offset_top = 136.0
+offset_top = 240.0
 offset_right = 150.0
-offset_bottom = 184.0
+offset_bottom = 288.0
+theme = ExtResource("2_ic5sl")
 text = "Exit"
 
 [node name="ButtonTest" type="Button" parent="."]
@@ -72,11 +109,6 @@ offset_right = -784.0
 offset_bottom = 525.0
 text = "Create Card Images"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -304)
-scale = Vector2(3, 3)
-texture = ExtResource("1_0mlpt")
-
 [node name="VersionNumber" type="Label" parent="."]
 offset_left = 737.0
 offset_top = 525.0
@@ -85,6 +117,21 @@ offset_bottom = 571.0
 text = "Ver. X.Y.Z"
 label_settings = SubResource("LabelSettings_o5cpi")
 horizontal_alignment = 2
+
+[node name="Logo" type="Sprite2D" parent="."]
+position = Vector2(0, -192)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_o3hyy")
+
+[node name="Title" type="Label" parent="."]
+offset_left = -318.0
+offset_top = -242.0
+offset_right = 282.0
+offset_bottom = -127.0
+theme_override_fonts/font = ExtResource("3_vg0vx")
+text = "Xeno  Card"
+label_settings = SubResource("LabelSettings_a3vtb")
+horizontal_alignment = 1
 
 [connection signal="pressed" from="ButtonSolo" to="." method="_on_button_solo_pressed"]
 [connection signal="pressed" from="ButtonOnline" to="." method="_on_button_online_pressed"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bdv1nehgqv2uf"]
+[gd_scene load_steps=7 format=3 uid="uid://bdv1nehgqv2uf"]
 
 [ext_resource type="Script" path="res://scenes/solo_game.gd" id="1_pecbt"]
+[ext_resource type="Theme" uid="uid://cts0fwcuwbvl0" path="res://theme_default.tres" id="2_lm78w"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_xyhnc"]
 resource_local_to_scene = false
@@ -25,10 +26,14 @@ offset_left = -436.0
 offset_top = -144.0
 offset_right = 164.0
 offset_bottom = -14.0
+theme = ExtResource("2_lm78w")
 metadata/_edit_use_anchors_ = true
 
 [node name="DeckLabel" type="Label" parent="P2"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.0692308
+anchor_bottom = -0.0615385
 offset_left = 240.0
 offset_top = 24.0
 offset_right = 330.0
@@ -37,7 +42,12 @@ text = "Deck"
 metadata/_edit_use_anchors_ = true
 
 [node name="DeckCustom" type="CheckBox" parent="P2"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0216667
+anchor_top = -0.0692308
+anchor_right = -0.0116667
+anchor_bottom = -0.0692308
 offset_left = 399.0
 offset_top = 20.0
 offset_right = 487.0
@@ -48,7 +58,11 @@ text = "Custom"
 metadata/_edit_use_anchors_ = true
 
 [node name="DeckPreset" type="CheckBox" parent="P2"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.0692308
+anchor_right = 0.00833333
+anchor_bottom = -0.0692308
 offset_left = 495.0
 offset_top = 20.0
 offset_right = 573.0
@@ -117,10 +131,14 @@ offset_left = -436.0
 offset_top = 16.0
 offset_right = 164.0
 offset_bottom = 146.0
+theme = ExtResource("2_lm78w")
 metadata/_edit_use_anchors_ = true
 
 [node name="DeckLabel" type="Label" parent="P1"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.0692308
+anchor_bottom = -0.0615385
 offset_left = 240.0
 offset_top = 24.0
 offset_right = 330.0
@@ -129,7 +147,12 @@ text = "Deck"
 metadata/_edit_use_anchors_ = true
 
 [node name="DeckCustom" type="CheckBox" parent="P1"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0216667
+anchor_top = -0.0692308
+anchor_right = -0.0116667
+anchor_bottom = -0.0692308
 offset_left = 399.0
 offset_top = 20.0
 offset_right = 487.0
@@ -140,7 +163,11 @@ text = "Custom"
 metadata/_edit_use_anchors_ = true
 
 [node name="DeckPreset" type="CheckBox" parent="P1"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.0692308
+anchor_right = 0.00833333
+anchor_bottom = -0.0692308
 offset_left = 495.0
 offset_top = 20.0
 offset_right = 573.0
@@ -209,6 +236,7 @@ offset_left = 185.0
 offset_top = -144.0
 offset_right = 485.0
 offset_bottom = 193.0
+theme = ExtResource("2_lm78w")
 
 [node name="Title" type="Panel" parent="Options"]
 layout_mode = 0
@@ -234,7 +262,7 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 0
 offset_left = 18.0
 offset_top = 20.0
-offset_right = 175.0
+offset_right = 282.0
 offset_bottom = 51.0
 text = "Play with hands revealed"
 
@@ -243,6 +271,7 @@ offset_left = -150.0
 offset_top = 216.0
 offset_right = 150.0
 offset_bottom = 264.0
+theme = ExtResource("2_lm78w")
 disabled = true
 text = "Start Game"
 metadata/_edit_use_anchors_ = true
@@ -252,6 +281,7 @@ offset_left = -942.0
 offset_top = -496.0
 offset_right = -842.0
 offset_bottom = -448.0
+theme = ExtResource("2_lm78w")
 text = "Exit"
 metadata/_edit_use_anchors_ = true
 

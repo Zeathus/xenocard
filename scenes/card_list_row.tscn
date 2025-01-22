@@ -1,9 +1,29 @@
-[gd_scene load_steps=9 format=3 uid="uid://crq1iw7ibn03k"]
+[gd_scene load_steps=11 format=3 uid="uid://crq1iw7ibn03k"]
 
 [ext_resource type="Script" path="res://scenes/card_list_row.gd" id="1_kkh0b"]
+[ext_resource type="Theme" uid="uid://cts0fwcuwbvl0" path="res://theme_default.tres" id="2_b4wrx"]
 [ext_resource type="Texture2D" uid="uid://idg0cq5nyt80" path="res://sprites/card_images_baked/SYS/unknown.png" id="2_wagrd"]
 [ext_resource type="FontFile" uid="uid://ng1y54e8x08v" path="res://fonts/Roboto/Roboto-Bold.ttf" id="3_e3c87"]
 [ext_resource type="PackedScene" uid="uid://g7yv71p73utl" path="res://objects/attribute.tscn" id="3_uw5cg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqmts"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.147484, 0.133584, 0.141927, 0.768627)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.235294, 0.215686, 0.227451, 0.501961)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+shadow_color = Color(0.235294, 0.215686, 0.227451, 0.501961)
 
 [sub_resource type="LabelSettings" id="LabelSettings_6mx1x"]
 font_size = 24
@@ -28,6 +48,8 @@ script = ExtResource("1_kkh0b")
 offset_right = 381.0
 offset_bottom = 129.0
 mouse_default_cursor_shape = 2
+theme = ExtResource("2_b4wrx")
+theme_override_styles/panel = SubResource("StyleBoxFlat_uqmts")
 
 [node name="Picture" type="Sprite2D" parent="Panel"]
 position = Vector2(44, 64)

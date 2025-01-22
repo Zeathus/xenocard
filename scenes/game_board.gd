@@ -25,6 +25,7 @@ var dummy_card: Card = Card.new("SYS/anon")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$AnonCard.turn_down()
 	for i in Enum.Phase:
 		phase_effects[Enum.Phase[i]] = []
 	card_zones = []

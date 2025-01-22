@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://beqafedaf6ood"]
+[gd_scene load_steps=12 format=3 uid="uid://beqafedaf6ood"]
 
 [ext_resource type="Script" path="res://scenes/deck_builder.gd" id="1_gbn5a"]
 [ext_resource type="Texture2D" uid="uid://c4e86agyg5na" path="res://sprites/text_icons/human.png" id="2_4w8la"]
+[ext_resource type="Theme" uid="uid://cts0fwcuwbvl0" path="res://theme_default.tres" id="2_hvo3i"]
 [ext_resource type="PackedScene" uid="uid://bqt532l8n2w8u" path="res://objects/card_details.tscn" id="2_rkvwk"]
 [ext_resource type="Texture2D" uid="uid://dvdphmaqueyhj" path="res://sprites/text_icons/any.png" id="2_xa34a"]
 [ext_resource type="Texture2D" uid="uid://dv03lkeqro1df" path="res://sprites/text_icons/realian.png" id="3_o6g6v"]
@@ -11,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://d2008vc1rsyy2" path="res://sprites/text_icons/weapon.png" id="7_22red"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pcyqr"]
-size = Vector2(99, 792)
+size = Vector2(99, 752)
 
 [node name="DeckBuilder" type="Node2D"]
 script = ExtResource("1_gbn5a")
@@ -23,114 +24,127 @@ offset_left = -952.0
 offset_top = -531.0
 offset_right = -537.0
 offset_bottom = -427.0
+theme = ExtResource("2_hvo3i")
+
+[node name="ButtonExit" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 27.0
+offset_right = 358.0
+offset_bottom = 75.0
+text = "Exit"
+metadata/_edit_use_anchors_ = true
 
 [node name="Deck" type="Panel" parent="."]
 offset_left = -526.0
-offset_top = -269.0
+offset_top = -249.0
 offset_right = 525.0
-offset_bottom = 347.0
+offset_bottom = 367.0
+theme = ExtResource("2_hvo3i")
 
 [node name="Meta" type="Panel" parent="."]
 offset_left = -526.0
 offset_top = -531.0
-offset_right = -36.0
-offset_bottom = -279.0
+offset_right = -6.0
+offset_bottom = -259.0
+theme = ExtResource("2_hvo3i")
 
 [node name="DeckName" type="LineEdit" parent="Meta"]
 layout_mode = 0
-offset_left = 17.0
-offset_top = 128.0
-offset_right = 359.0
-offset_bottom = 175.0
+offset_left = 15.0
+offset_top = 144.0
+offset_right = 379.0
+offset_bottom = 191.0
 placeholder_text = "Deck Name"
 
 [node name="ButtonSave" type="Button" parent="Meta"]
 layout_mode = 0
-offset_left = 17.0
-offset_top = 186.0
-offset_right = 127.0
-offset_bottom = 233.0
+offset_left = 15.0
+offset_top = 210.0
+offset_right = 125.0
+offset_bottom = 257.0
 text = "Save"
 
 [node name="ButtonSaveAs" type="Button" parent="Meta"]
 layout_mode = 0
-offset_left = 133.0
-offset_top = 186.0
-offset_right = 243.0
-offset_bottom = 233.0
+offset_left = 142.0
+offset_top = 210.0
+offset_right = 252.0
+offset_bottom = 257.0
 text = "Save As"
 
 [node name="ButtonSort" type="Button" parent="Meta"]
 layout_mode = 0
-offset_left = 249.0
-offset_top = 186.0
-offset_right = 359.0
-offset_bottom = 233.0
+offset_left = 269.0
+offset_top = 210.0
+offset_right = 379.0
+offset_bottom = 257.0
 text = "Sort"
 
 [node name="ButtonShuffle" type="Button" parent="Meta"]
 layout_mode = 0
-offset_left = 365.0
-offset_top = 186.0
-offset_right = 475.0
-offset_bottom = 233.0
+offset_left = 396.0
+offset_top = 210.0
+offset_right = 506.0
+offset_bottom = 257.0
 text = "Shuffle"
 
 [node name="ButtonDelete" type="Button" parent="Meta"]
 layout_mode = 0
-offset_left = 365.0
-offset_top = 72.0
-offset_right = 475.0
-offset_bottom = 119.0
+offset_left = 396.0
+offset_top = 80.0
+offset_right = 506.0
+offset_bottom = 127.0
 text = "Delete"
 
 [node name="ButtonNew" type="Button" parent="Meta"]
 layout_mode = 0
-offset_left = 365.0
-offset_top = 128.0
-offset_right = 475.0
-offset_bottom = 175.0
+offset_left = 396.0
+offset_top = 144.0
+offset_right = 506.0
+offset_bottom = 191.0
 text = "New"
 
 [node name="LoadDeck" type="OptionButton" parent="Meta"]
 layout_mode = 0
-offset_left = 17.0
-offset_top = 72.0
-offset_right = 359.0
-offset_bottom = 119.0
+offset_left = 15.0
+offset_top = 80.0
+offset_right = 379.0
+offset_bottom = 127.0
 
 [node name="LoadPreset" type="OptionButton" parent="Meta"]
 layout_mode = 0
-offset_left = 17.0
+offset_left = 15.0
 offset_top = 17.0
-offset_right = 241.0
+offset_right = 261.0
 offset_bottom = 64.0
 
 [node name="ButtonOpenDeckDir" type="Button" parent="Meta"]
 layout_mode = 0
-offset_left = 247.0
+offset_left = 278.0
 offset_top = 17.0
-offset_right = 475.0
+offset_right = 506.0
 offset_bottom = 64.0
 text = "Open Deck Directory"
 
 [node name="List" type="Panel" parent="."]
 offset_left = 537.0
-offset_top = -269.0
+offset_top = -249.0
 offset_right = 952.0
 offset_bottom = 532.0
+theme = ExtResource("2_hvo3i")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="List"]
 layout_mode = 0
 offset_left = 9.0
 offset_top = 10.0
-offset_right = 397.0
-offset_bottom = 792.0
+offset_right = 407.0
+offset_bottom = 772.0
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="List/ScrollContainer"]
-custom_minimum_size = Vector2(390, 600)
+custom_minimum_size = Vector2(390, 580)
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -160,47 +174,49 @@ horizontal_alignment = 1
 
 [node name="Stats" type="Panel" parent="."]
 offset_left = -526.0
-offset_top = 358.0
+offset_top = 378.0
 offset_right = 525.0
 offset_bottom = 532.0
+theme = ExtResource("2_hvo3i")
 
 [node name="Filters" type="Panel" parent="."]
-offset_left = -26.0
+offset_left = 6.0
 offset_top = -531.0
-offset_right = 952.0
-offset_bottom = -279.0
+offset_right = 954.0
+offset_bottom = -259.0
+theme = ExtResource("2_hvo3i")
 
 [node name="SearchLabel" type="Label" parent="Filters"]
 layout_mode = 0
-offset_left = 503.0
-offset_top = 200.0
-offset_right = 560.0
-offset_bottom = 223.0
+offset_left = 464.0
+offset_top = 224.0
+offset_right = 532.0
+offset_bottom = 248.0
 text = "Search:"
 horizontal_alignment = 2
 
 [node name="Search" type="LineEdit" parent="Filters"]
 layout_mode = 0
-offset_left = 563.0
-offset_top = 188.0
-offset_right = 964.0
-offset_bottom = 235.0
+offset_left = 537.0
+offset_top = 212.0
+offset_right = 938.0
+offset_bottom = 259.0
 placeholder_text = "Search by name or card text"
 
 [node name="TypeLabel" type="Label" parent="Filters"]
 layout_mode = 0
-offset_left = 607.0
+offset_left = 561.0
 offset_top = 32.0
-offset_right = 664.0
-offset_bottom = 55.0
+offset_right = 618.0
+offset_bottom = 56.0
 text = "Type:"
 horizontal_alignment = 2
 
 [node name="Type" type="OptionButton" parent="Filters"]
 layout_mode = 0
-offset_left = 667.0
+offset_left = 627.0
 offset_top = 20.0
-offset_right = 807.0
+offset_right = 767.0
 offset_bottom = 67.0
 selected = 0
 item_count = 4
@@ -214,55 +230,55 @@ popup/item_3/id = 3
 
 [node name="HPLabel" type="Label" parent="Filters"]
 layout_mode = 0
-offset_left = 801.0
-offset_top = 88.0
-offset_right = 858.0
-offset_bottom = 111.0
+offset_left = 780.0
+offset_top = 96.0
+offset_right = 837.0
+offset_bottom = 120.0
 text = "HP:"
 horizontal_alignment = 2
 
 [node name="HP" type="LineEdit" parent="Filters"]
 layout_mode = 0
-offset_left = 862.0
-offset_top = 76.0
-offset_right = 954.0
-offset_bottom = 123.0
+offset_left = 846.0
+offset_top = 84.0
+offset_right = 938.0
+offset_bottom = 131.0
 placeholder_text = "HP"
 editable = false
 
 [node name="ATKLabel" type="Label" parent="Filters"]
 layout_mode = 0
-offset_left = 801.0
-offset_top = 144.0
-offset_right = 858.0
-offset_bottom = 167.0
+offset_left = 780.0
+offset_top = 160.0
+offset_right = 837.0
+offset_bottom = 184.0
 text = "ATK:"
 horizontal_alignment = 2
 
 [node name="ATK" type="LineEdit" parent="Filters"]
 layout_mode = 0
-offset_left = 862.0
-offset_top = 132.0
-offset_right = 954.0
-offset_bottom = 179.0
+offset_left = 846.0
+offset_top = 148.0
+offset_right = 938.0
+offset_bottom = 195.0
 placeholder_text = "ATK"
 editable = false
 
 [node name="AttributeLabel" type="Label" parent="Filters"]
 layout_mode = 0
-offset_left = 582.0
-offset_top = 88.0
-offset_right = 664.0
-offset_bottom = 111.0
+offset_left = 536.0
+offset_top = 96.0
+offset_right = 620.0
+offset_bottom = 120.0
 text = "Attribute:"
 horizontal_alignment = 2
 
 [node name="Attribute" type="OptionButton" parent="Filters"]
 layout_mode = 0
-offset_left = 667.0
-offset_top = 76.0
-offset_right = 807.0
-offset_bottom = 123.0
+offset_left = 627.0
+offset_top = 84.0
+offset_right = 767.0
+offset_bottom = 131.0
 disabled = true
 expand_icon = true
 selected = 0
@@ -290,19 +306,19 @@ popup/item_6/id = 6
 
 [node name="AttackTypeLabel" type="Label" parent="Filters"]
 layout_mode = 0
-offset_left = 545.0
-offset_top = 144.0
-offset_right = 664.0
-offset_bottom = 167.0
+offset_left = 499.0
+offset_top = 160.0
+offset_right = 618.0
+offset_bottom = 184.0
 text = "Attack Type:"
 horizontal_alignment = 2
 
 [node name="AttackType" type="OptionButton" parent="Filters"]
 layout_mode = 0
-offset_left = 667.0
-offset_top = 132.0
-offset_right = 807.0
-offset_bottom = 179.0
+offset_left = 627.0
+offset_top = 148.0
+offset_right = 767.0
+offset_bottom = 195.0
 disabled = true
 expand_icon = true
 selected = 0
@@ -321,18 +337,18 @@ popup/item_5/id = 5
 
 [node name="CostLabel" type="Label" parent="Filters"]
 layout_mode = 0
-offset_left = 801.0
+offset_left = 780.0
 offset_top = 32.0
-offset_right = 858.0
-offset_bottom = 55.0
+offset_right = 837.0
+offset_bottom = 56.0
 text = "Cost:"
 horizontal_alignment = 2
 
 [node name="Cost" type="LineEdit" parent="Filters"]
 layout_mode = 0
-offset_left = 862.0
+offset_left = 846.0
 offset_top = 20.0
-offset_right = 954.0
+offset_right = 938.0
 offset_bottom = 67.0
 placeholder_text = "Cost"
 
@@ -341,6 +357,7 @@ offset_left = -952.0
 offset_top = -417.0
 offset_right = -537.0
 offset_bottom = 532.0
+theme = ExtResource("2_hvo3i")
 
 [node name="Text" type="RichTextLabel" parent="Preview"]
 layout_mode = 0
@@ -354,14 +371,7 @@ visible = false
 position = Vector2(208, 307)
 scale = Vector2(0.5, 0.5)
 
-[node name="ButtonExit" type="Button" parent="."]
-offset_left = -894.0
-offset_top = -504.0
-offset_right = -594.0
-offset_bottom = -456.0
-text = "Exit"
-metadata/_edit_use_anchors_ = true
-
+[connection signal="pressed" from="Buttons/ButtonExit" to="." method="_on_button_exit_pressed"]
 [connection signal="pressed" from="Meta/ButtonSave" to="." method="_on_button_save_pressed"]
 [connection signal="pressed" from="Meta/ButtonSaveAs" to="." method="_on_button_save_as_pressed"]
 [connection signal="pressed" from="Meta/ButtonSort" to="." method="_on_button_sort_pressed"]
@@ -379,4 +389,3 @@ metadata/_edit_use_anchors_ = true
 [connection signal="item_selected" from="Filters/Attribute" to="." method="_on_attribute_item_selected"]
 [connection signal="item_selected" from="Filters/AttackType" to="." method="_on_attack_type_item_selected"]
 [connection signal="text_changed" from="Filters/Cost" to="." method="_on_filters_changed"]
-[connection signal="pressed" from="ButtonExit" to="." method="_on_button_exit_pressed"]
