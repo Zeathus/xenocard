@@ -1,7 +1,28 @@
 key,en,jp
-SOLO_GAME,Solo Game,
-ONLINE_GAME,Online Game,
-DECKS,Decks,
-TUTORIALS,Tutorials,
-RULEBOOK,Rulebook,
-EXIT,Exit,
+SOLO_GAME,Solo Game,ソロゲーム
+ONLINE_GAME,Online Game,オンラインゲーム 
+DECKS,Decks,デッキ 
+TUTORIALS,Tutorials,チュートリアル 
+RULEBOOK,Rulebook,ルールブック 
+EXIT,Exit,出る
+SETTINGS,Settings,設定
+DECK_LOAD_PRESET,Load a Preset,
+DECK_OPEN_FOLDER,Open Deck Folder,
+DECK_DELETE,Delete,
+DECK_NEW,New,
+DECK_NAME_HINT,Deck Name,デッキ 名
+DECK_SAVE,Save,
+DECK_SAVE_AS,Save As,
+DECK_SORT,Sort,
+DECK_SHUFFLE,Shuffle,
+FILTER_TYPE,Type: ,種類：
+FILTER_ATTRIBUTE,Attribute: ,属性：
+FILTER_ATTACK_TYPE,Attack Type: ,攻撃内容：
+FILTER_COST,Cost: ,コスト：
+FILTER_HP,HP: ,ＨＰ：
+FILTER_ATK,ATK: ,ＡＴＫ：
+FILTER_SEARCH,Search: ,検索：
+FILTER_SEARCH_HINT,Search by name or card text,カード名・テキスト
+STAT_COST,Cost,コスト
+STAT_HP,HP,ＨＰ
+STAT_ATK,ATK,ＡＴＫ

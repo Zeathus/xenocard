@@ -93,7 +93,7 @@ func refresh_deck_list():
 
 func refresh_preset_list():
 	$Meta/LoadPreset.clear()
-	$Meta/LoadPreset.add_item("Load a Preset")
+	$Meta/LoadPreset.add_item("DECK_LOAD_PRESET")
 	for i in DeckData.list_presets():
 		$Meta/LoadPreset.add_item(i)
 
