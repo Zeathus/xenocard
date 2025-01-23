@@ -283,8 +283,7 @@ offset_right = 31.0
 offset_bottom = 214.0
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("7_85wss")
-text = "Field
-"
+text = "STAT_FIELD"
 label_settings = SubResource("LabelSettings_3ahw8")
 
 [node name="Value1" parent="Content/Field" instance=ExtResource("4_bj62e")]
@@ -308,19 +307,18 @@ rotation = 0.261799
 scale = Vector2(0.35, 0.35)
 
 [node name="Cost" type="Label" parent="Content"]
-offset_left = 144.0
+offset_left = 3.0
 offset_top = 147.0
 offset_right = 291.0
 offset_bottom = 214.0
 theme_override_fonts/font = ExtResource("7_85wss")
-text = "Cost"
+text = "STAT_COST"
 label_settings = SubResource("LabelSettings_3ahw8")
 horizontal_alignment = 2
 
 [node name="Value" type="Label" parent="Content/Cost"]
-layout_mode = 0
-offset_left = 36.0
-offset_right = 211.0
+offset_left = 179.0
+offset_right = 355.0
 offset_bottom = 67.0
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("7_85wss")

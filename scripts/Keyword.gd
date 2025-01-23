@@ -4,6 +4,8 @@ static var regex_hint
 static var regex_icon
 static var regex_terms
 
+static var obj: Object = Object.new()
+
 static func _static_init():
 	regex_hint = RegEx.new()
 	regex_hint.compile("\\<([^\\>]+)\\>")
@@ -83,13 +85,13 @@ static func get_hint(keyword: String) -> String:
 			return "To play a card, you must move cards from the top of the deck to the lost pile equal to its cost."
 		"prop:field":
 			return "To play a card, the attributes listed as field requirements must be present on your field. Cards with an E mark do not count towards field requirements."
-		"prop:hand":
+		"prop:hand", "prop:格闘":
 			return "This is the card's attack type.\nThe hand attack type can only attack the front row of the enemy's battlefield from the front row of your battlefield."
-		"prop:ballistic":
+		"prop:ballistic", "prop:射撃":
 			return "This is the card's attack type.\nThe ballistic attack type attacks the closest enemy in its own battlefield column. If there are no enemies, it attacks the enemy's deck."
-		"prop:spread":
+		"prop:spread", "prop:全体":
 			return "This is the card's attack type.\nThe spread attack type deals damage to every enemy card on their battlefield at once, but cannot attack the enemy's deck."
-		"prop:homing":
+		"prop:homing", "prop:弾道":
 			return "This is the card's attack type.\nThe homing attack type ignores any enemy cards on the battlefield and attacks the enemy's deck directly."
 		"prop:human":
 			return "This is the card's attribute.\nHuman cards are in most decks, as they are used for field requirements. They have low stats and low cost."

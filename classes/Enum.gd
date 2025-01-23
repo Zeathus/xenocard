@@ -33,6 +33,8 @@ enum Trigger {
 	COUNTER
 }
 
+static var obj: Object = Object.new()
+
 static var attribute_icons = {
 	Enum.Attribute.ANY: preload("res://sprites/attributes/background.png"),
 	Enum.Attribute.HUMAN: preload("res://sprites/attributes/human.png"),
@@ -113,13 +115,13 @@ static func get_type_name(type: Type) -> String:
 static func get_attack_type_name(target: AttackType) -> String:
 	match target:
 		Enum.AttackType.HAND:
-			return "Hand"
+			return obj.tr("ATTACK_TYPE_HAND")
 		Enum.AttackType.BALLISTIC:
-			return "Ballistic"
+			return obj.tr("ATTACK_TYPE_BALLISTIC")
 		Enum.AttackType.SPREAD:
-			return "Spread"
+			return obj.tr("ATTACK_TYPE_SPREAD")
 		Enum.AttackType.HOMING:
-			return "Homing"
+			return obj.tr("ATTACK_TYPE_HOMING")
 		Enum.AttackType.NONE:
 			return ""
 	return "N/A"

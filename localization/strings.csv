@@ -26,3 +26,8 @@ FILTER_SEARCH_HINT,Search by name or card text,カード名・テキスト
 STAT_COST,Cost,コスト
 STAT_HP,HP,ＨＰ
 STAT_ATK,ATK,ＡＴＫ
+STAT_FIELD,Field,条件
+ATTACK_TYPE_HAND,Hand,格闘
+ATTACK_TYPE_BALLISTIC,Ballistic,射撃
+ATTACK_TYPE_SPREAD,Spread,全体
+ATTACK_TYPE_HOMING,Homing,弾道
