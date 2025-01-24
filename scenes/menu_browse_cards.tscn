@@ -1,19 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dgfvvqlk76uhu"]
+[gd_scene load_steps=5 format=3 uid="uid://dgfvvqlk76uhu"]
 
 [ext_resource type="Script" path="res://scenes/menu_browse_cards.gd" id="1_t8833"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6lsho"]
-bg_color = Color(0, 0.278431, 0.580392, 0.784314)
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+[ext_resource type="Theme" uid="uid://cts0fwcuwbvl0" path="res://theme_default.tres" id="2_dsaet"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_spg3m"]
 font_size = 48
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ekya"]
-bg_color = Color(0, 0.12549, 0.482353, 0.784314)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
 
 [sub_resource type="LabelSettings" id="LabelSettings_txys0"]
 font_size = 32
@@ -26,7 +17,7 @@ offset_left = -600.0
 offset_top = -150.0
 offset_right = 600.0
 offset_bottom = 150.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_6lsho")
+theme = ExtResource("2_dsaet")
 
 [node name="ScrollCards" type="ScrollContainer" parent="Panel"]
 layout_mode = 0
@@ -55,7 +46,7 @@ offset_left = -600.0
 offset_top = -236.0
 offset_right = 600.0
 offset_bottom = -156.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_7ekya")
+theme = ExtResource("2_dsaet")
 
 [node name="Label" type="Label" parent="HeaderPanel"]
 layout_mode = 0
@@ -67,11 +58,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="UseFilter" type="CheckBox" parent="."]
-visible = false
-offset_left = -592.0
+offset_left = -586.0
 offset_top = -144.0
-offset_right = -385.0
+offset_right = -354.0
 offset_bottom = -113.0
+theme = ExtResource("2_dsaet")
 button_pressed = true
 text = "Show valid targets only"
 
@@ -80,6 +71,7 @@ offset_left = 489.0
 offset_top = -138.0
 offset_right = 589.0
 offset_bottom = -98.0
+theme = ExtResource("2_dsaet")
 text = "Close"
 
 [connection signal="toggled" from="UseFilter" to="." method="_on_use_filter_toggled"]
