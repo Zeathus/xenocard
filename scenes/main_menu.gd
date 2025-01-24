@@ -65,3 +65,10 @@ func _on_lang_us_pressed() -> void:
 
 func _on_lang_jp_pressed() -> void:
 	TranslationServer.set_locale(("jp"))
+
+func _on_link_discord_pressed() -> void:
+	if OS.get_name() == "HTML5":
+		if OS.has_feature('JavaScript'):
+			JavaScriptBridge.eval("window.open('https://discord.gg/HYkaUkQZuq', '_blank').focus()")
+	else:
+		OS.shell_open("https://discord.gg/HYkaUkQZuq")

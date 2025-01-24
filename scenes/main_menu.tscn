@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cvgngfabvy3dr"]
+[gd_scene load_steps=15 format=3 uid="uid://cvgngfabvy3dr"]
 
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_ps2kx"]
 [ext_resource type="Texture2D" uid="uid://dbouwtiebd8q5" path="res://sprites/globe-407744.png" id="2_4oj30"]
@@ -8,6 +8,7 @@
 [ext_resource type="FontFile" uid="uid://477m8mtpk38o" path="res://fonts/HelveticaNeue/HelveticaNeue-BlackCondObl.otf" id="3_vg0vx"]
 [ext_resource type="Texture2D" uid="uid://bfcdwfmhmx250" path="res://sprites/icons/flag_us.png" id="7_4oxla"]
 [ext_resource type="Texture2D" uid="uid://buoii1820488l" path="res://sprites/icons/flag_jp.png" id="8_i0rpp"]
+[ext_resource type="Texture2D" uid="uid://bq5uf8dxjiv3x" path="res://sprites/icons/discord.png" id="9_sjlx4"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_vyp5j"]
 size = Vector2(2000, 1100)
@@ -163,6 +164,22 @@ position = Vector2(40, 29)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("8_i0rpp")
 
+[node name="Links" type="Node2D" parent="."]
+visible = false
+position = Vector2(-928, -448)
+
+[node name="LinkDiscord" type="Button" parent="Links"]
+offset_left = 5.0
+offset_top = -32.0
+offset_right = 85.0
+offset_bottom = 28.0
+theme = ExtResource("2_ic5sl")
+
+[node name="IconDiscord" type="Sprite2D" parent="Links/LinkDiscord"]
+position = Vector2(40, 29)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_sjlx4")
+
 [connection signal="pressed" from="ButtonSolo" to="." method="_on_button_solo_pressed"]
 [connection signal="pressed" from="ButtonOnline" to="." method="_on_button_online_pressed"]
 [connection signal="pressed" from="ButtonDecks" to="." method="_on_button_decks_pressed"]
@@ -172,3 +189,4 @@ texture = ExtResource("8_i0rpp")
 [connection signal="pressed" from="ButtonCreateCardImages" to="." method="_on_button_create_card_images_pressed"]
 [connection signal="pressed" from="Languages/LangUS" to="." method="_on_lang_us_pressed"]
 [connection signal="pressed" from="Languages/LangJP" to="." method="_on_lang_jp_pressed"]
+[connection signal="pressed" from="Links/LinkDiscord" to="." method="_on_link_discord_pressed"]
