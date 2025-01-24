@@ -517,6 +517,9 @@ func show_details(card):
 	$CardDetails/CardNode.turn_up()
 	$CardDetails/CardNode.show_card(card.data)
 
+func get_hint_node() -> HintNode:
+	return $HintNode
+
 func _on_card_show_details(card):
 	if card.instance and card.instance.is_face_down():
 		return

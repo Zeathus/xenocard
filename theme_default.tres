@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=18 format=3 uid="uid://cts0fwcuwbvl0"]
+[gd_resource type="Theme" load_steps=19 format=3 uid="uid://cts0fwcuwbvl0"]
 
 [ext_resource type="FontFile" uid="uid://dnvfkx73suq8l" path="res://fonts/Roboto/Roboto-Medium.ttf" id="1_wikif"]
 [ext_resource type="FontFile" uid="uid://cisvfm0x7igqm" path="res://fonts/NotoSansJP/NotoSansJP-Bold.ttf" id="2_3lukr"]
@@ -184,6 +184,27 @@ corner_radius_bottom_left = 3
 corner_detail = 5
 shadow_color = Color(0.235294, 0.215686, 0.227451, 0.501961)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_63emr"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.235294, 0.215686, 0.227451, 0.768627)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.235294, 0.215686, 0.227451, 0.501961)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+shadow_color = Color(0.235294, 0.215686, 0.227451, 0.501961)
+
 [sub_resource type="FontVariation" id="FontVariation_kkqot"]
 base_font = ExtResource("2_3lukr")
 
@@ -210,3 +231,4 @@ LineEdit/styles/focus = SubResource("StyleBoxFlat_3sm0h")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_bhfrh")
 LineEdit/styles/read_only = SubResource("StyleBoxFlat_0lhrp")
 Panel/styles/panel = SubResource("StyleBoxFlat_uw6iq")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_63emr")

@@ -1,27 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://ye2j101d35q0"]
+[gd_scene load_steps=7 format=3 uid="uid://ye2j101d35q0"]
 
 [ext_resource type="Script" path="res://scenes/menu_confirm.gd" id="1_0edek"]
+[ext_resource type="Theme" uid="uid://cts0fwcuwbvl0" path="res://theme_default.tres" id="2_3o64u"]
 [ext_resource type="PackedScene" uid="uid://bqt532l8n2w8u" path="res://objects/card_details.tscn" id="2_n5wvw"]
 [ext_resource type="FontFile" uid="uid://do6lscs8csbaq" path="res://fonts/Roboto/Roboto-Regular.ttf" id="3_0wlpa"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g63i2"]
-bg_color = Color(0, 0.278431, 0.580392, 0.784314)
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wavpa"]
-bg_color = Color(0, 0.12549, 0.482353, 0.784314)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
 
 [sub_resource type="LabelSettings" id="LabelSettings_txys0"]
 font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_ect70"]
 font_size = 32
-
-[sub_resource type="Theme" id="Theme_gen4n"]
-default_font_size = 32
 
 [node name="MenuConfirm" type="Node2D"]
 z_index = 1000
@@ -32,14 +20,14 @@ offset_left = -300.0
 offset_top = -150.0
 offset_right = 300.0
 offset_bottom = 150.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_g63i2")
+theme = ExtResource("2_3o64u")
 
 [node name="HeaderPanel" type="Panel" parent="."]
 offset_left = -300.0
 offset_top = -236.0
 offset_right = 300.0
 offset_bottom = -156.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_wavpa")
+theme = ExtResource("2_3o64u")
 
 [node name="Label" type="Label" parent="HeaderPanel"]
 layout_mode = 0
@@ -55,6 +43,7 @@ offset_left = -200.0
 offset_top = -130.0
 offset_right = -40.0
 offset_bottom = -70.0
+theme = ExtResource("2_3o64u")
 theme_override_font_sizes/font_size = 28
 text = "Yes"
 
@@ -64,6 +53,7 @@ offset_left = -160.0
 offset_top = -130.0
 offset_right = 160.0
 offset_bottom = -70.0
+theme = ExtResource("2_3o64u")
 theme_override_font_sizes/font_size = 28
 text = "OK"
 
@@ -72,6 +62,7 @@ offset_left = 40.0
 offset_top = -130.0
 offset_right = 200.0
 offset_bottom = -70.0
+theme = ExtResource("2_3o64u")
 theme_override_font_sizes/font_size = 28
 text = "No"
 
@@ -91,7 +82,8 @@ offset_top = -56.0
 offset_right = 275.0
 offset_bottom = 134.0
 mouse_filter = 2
-theme = SubResource("Theme_gen4n")
+theme = ExtResource("2_3o64u")
+theme_override_font_sizes/normal_font_size = 32
 scroll_active = false
 
 [node name="CardDetails" parent="." instance=ExtResource("2_n5wvw")]

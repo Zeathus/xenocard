@@ -103,7 +103,14 @@ func process(delta):
 					card.undown()
 		2:
 			if player.hand.size() > 6:
-				queue_event(EventSelectDiscard.new(game_board, player, CardFilter.new("owner=self;zone=hand")))
+				queue_event(
+					EventHint.new(
+						game_board,
+						EventSelectDiscard.new(game_board, player, CardFilter.new("owner=self;zone=hand")),
+						"Your hand is full. Discard cards until you have 6 cards.",
+						HintNode.Position.ABOVE_HAND
+					)
+				)
 				return
 		3:
 			finish()
