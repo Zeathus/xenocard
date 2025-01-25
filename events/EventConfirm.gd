@@ -14,6 +14,7 @@ var menu = null
 var wait_for_finish: bool = false
 var card_preview: Card
 var yes_only: bool = false
+var timeout: int = 15
 
 func _init(_game_board: GameBoard, _player: Player, _message: String, _on_yes, _on_no, _help: String="", _card: Card=null):
 	broadcasted = (_card != null) # Need to broadcast card identity
@@ -34,6 +35,9 @@ func _init(_game_board: GameBoard, _player: Player, _message: String, _on_yes, _
 func set_yes_only():
 	yes_only = true
 
+func set_timeout(val: int):
+	timeout = val
+
 func get_name() -> String:
 	return "Confirm"
 
@@ -47,7 +51,8 @@ func on_start():
 	menu.set_help(help)
 	menu.set_card(card_preview)
 	menu.set_handler(handle_answer)
-	menu.set_timeout(15, false)
+	if timeout > 0:
+		menu.set_timeout(timeout, false)
 	if yes_only:
 		menu.set_yes_only()
 	game_board.add_menu(menu)

@@ -107,6 +107,17 @@ func sort_children():
 func queue_event(event: Event):
 	if event.broadcasted and game_board.is_client():
 		event = EventOnlineClient.new(game_board, game_board.client, event)
+	if game_board.is_tutorial() and self is not EventHint:
+		var hint: TutorialHint = game_board.tutorial.get_hint(game_board.turn_count, event)
+		if hint != null:
+			hint.exec.call(game_board)
+			if hint.type == 0:
+				event = EventHint.new(game_board, event, hint.text, hint.pos)
+			elif hint.type == 1:
+				var confirm_event = EventConfirm.new(game_board, game_board.players[0], "Tutorial", Callable(), Callable(), hint.text)
+				confirm_event.set_yes_only()
+				confirm_event.set_timeout(0)
+				children.push_back(confirm_event)
 	event.parent = self
 	children.push_back(event)
 

@@ -32,6 +32,7 @@ enum Trigger {
 	ACTIVATE,
 	COUNTER
 }
+enum GameResult {NONE, TIE, P1_WIN, P2_WIN, P1_FORFEIT, P2_FORFEIT, CANCELLED, TUTORIAL}
 
 static var obj: Object = Object.new()
 

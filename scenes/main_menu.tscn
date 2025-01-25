@@ -73,21 +73,12 @@ theme = ExtResource("2_ic5sl")
 text = "DECKS"
 
 [node name="ButtonTutorials" type="Button" parent="."]
-offset_left = -318.0
+offset_left = -150.0
 offset_top = 168.0
-offset_right = -18.0
+offset_right = 150.0
 offset_bottom = 216.0
 theme = ExtResource("2_ic5sl")
-text = "TUTORIALS"
-
-[node name="ButtonRulebook" type="Button" parent="."]
-offset_left = 18.0
-offset_top = 168.0
-offset_right = 318.0
-offset_bottom = 216.0
-theme = ExtResource("2_ic5sl")
-disabled = true
-text = "RULEBOOK"
+text = "HOW_TO_PLAY"
 
 [node name="ButtonExit" type="Button" parent="."]
 offset_left = -150.0

@@ -48,6 +48,9 @@ func process(delta):
 				)
 
 func do_mulligan():
+	#if game_board.is_tutorial():
+		#do_not_mulligan()
+		#return
 	if player.get_enemy().is_online():
 		player.get_enemy().controller.send_action(Controller.Action.MULLIGAN)
 	while player.hand.size() > 0:

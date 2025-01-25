@@ -2,8 +2,7 @@ key,en,jp
 SOLO_GAME,Solo Game,ソロゲーム
 ONLINE_GAME,Online Game,オンラインゲーム 
 DECKS,Decks,デッキ 
-TUTORIALS,Tutorials,チュートリアル 
-RULEBOOK,Rulebook,ルールブック 
+HOW_TO_PLAY,How to Play,チュートリアル 
 EXIT,Exit,出る
 SETTINGS,Settings,設定
 DECK_LOAD_PRESET,Load a Preset,
@@ -31,3 +30,71 @@ ATTACK_TYPE_HAND,Hand,格闘
 ATTACK_TYPE_BALLISTIC,Ballistic,射撃
 ATTACK_TYPE_SPREAD,Spread,全体
 ATTACK_TYPE_HOMING,Homing,弾道
+TUTORIAL_0_DESCRIPTION,"Here you can learn the basics of playing Xeno Card.
+
+Some sections also have playable tutorials to get a better grasp of what they explain.
+
+If you click the “Mark as done” button below this section will get a checkmark. This way you can keep track of what you have already read. Sections also get the checkmark after finishing a playable tutorial.",
+TUTORIAL_1_DESCRIPTION,"To win a game of Xenocard, you must have your opponent run out of cards in their deck before you do. Each player starts the game with 40 cards in their deck. The game ends immediately once a player's deck is empty.
+
+A player's deck loses cards when they draw cards, pay the cost of playing cards, or their deck is attacked directly.",
+TUTORIAL_2_DESCRIPTION,"Each deck must have exactly 40 cards, and no more than 3 cards of the same name.
+
+You can create decks in the Deck Builder, which you find on the main menu.
+
+There is also a list of preset decks you can use to play or as a base for decks you create.",
+TUTORIAL_3_DESCRIPTION,"At the start of the game, each player draws 5 cards from their deck.
+
+When a player has their first turn, they will have the option to do up to 3 mulligans to try to get a better starting hand. Doing a mulligan means to shuffle your hand into your deck and draw 5 new cards.
+
+After your chance to mulligan, your turn starts and you draw another card for your Draw Phase.",
+TUTORIAL_4_DESCRIPTION,"There are three main card types, each with their own color.
+
+- Battle Cards: Set to the field to attack the enemy.
+- Event Cards: Played from the hand for one-time effects.
+- Situation Cards: Set to the field for lasting effects.",
+TUTORIAL_5_DESCRIPTION,"The field consists of three areas for each player, each with space for four cards at a time.
+
+The Standby Area
+When a battle card is played, it is set to the Standby Area. Cards in the Standby Area do not attack.
+
+The Battlefield
+Battle cards are moved from the Standby Area to the Battlefield to attack. Cards that say so in their card text can be played directly to the battlefield.
+
+The Situation Area
+When a situation card is played, it it set to the Situation Area. While there, its effects are active.",
+TUTORIAL_6_DESCRIPTION,"During a game, each player has three piles of cards.
+
+The Deck
+All cards start in the deck. This is where you draw cards from. If your deck becomes empty, you lose the game.
+
+The Lost Pile
+Cards are moved from your deck to your lost pile when you pay the cost of a card or your deck is attacked directly.
+You cannot see what cards are in your lost pile.
+
+The Junk Pile
+Cards are moved to the junk pile when they are discarded or destroyed. Event cards also go to the junk pile after use.
+You can see what cards are in your junk pile.",
+TUTORIAL_7_DESCRIPTION,"Above the image on a card is the card’s name, type and attribute. For example, Lv 1 KOS-MOS’s attribute is machine.
+
+Below the image is the card’s HP,
+ATK, attack type, field requirement
+and cost. These will be explained
+more later. Only battle cards
+have HP, ATK and attack types.
+
+At the bottom is the card’s text.
+It explains the effects of the card.
+There is also its serial number,
+rarity and the name of the artist
+who made its picture.
+
+During a game, you can right click
+cards to inspect them. Then you
+can hover over parts of the card
+to get explanations.",
+TUTORIAL_8_DESCRIPTION,"During each of your Set Phases, you can play one battle card and one situation card. During your Event or Block phase, you can play any number of event cards.
+
+To play a card, you must first meet
+its field requirements. These are
+listed next to “Field” on the card.",

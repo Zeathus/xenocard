@@ -1,6 +1,7 @@
 extends Node2D
 
 var main_menu = load("res://scenes/main_menu.tscn")
+var last_game_result: Enum.GameResult = Enum.GameResult.NONE
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

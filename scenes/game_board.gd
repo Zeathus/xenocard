@@ -22,6 +22,7 @@ var online_mode: int = 0
 var client: TCGClient = null
 var server: TCGServer = null
 var dummy_card: Card = Card.new("SYS/anon")
+var tutorial: Tutorial = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,6 +32,8 @@ func _ready():
 	card_zones = []
 	for node in find_children("Zone?", "Node2D"):
 		card_zones.push_back(node)
+	if "tutorial" in game_options:
+		tutorial = game_options["tutorial"]
 	if "online" in game_options:
 		if game_options["online"] == "client":
 			online_mode = 1
@@ -69,10 +72,10 @@ func new_game():
 				player.controller.start()
 			player.show_hand = (not player.has_controller()) or game_options["reveal_hands"]
 		players.push_back(player)
+	turn_player_id = 0
 	for p in players:
 		for i in range(5):
 			queue_event(EventDrawCard.new(self, p, 2))
-	turn_player_id = 0
 	begin_turn()
 
 func new_client_game():
@@ -98,18 +101,32 @@ func new_client_game():
 
 func load_game(path: String):
 	var data: Dictionary
-	if FileAccess.file_exists(path):
-		var file = FileAccess.open(path, FileAccess.READ)
-		var json = JSON.new()
-		var error = json.parse(file.get_as_text())
-		if error == OK:
-			data = json.data
+	if "res://" in path:
+		if FileAccess.file_exists(path):
+			var file = FileAccess.open(path, FileAccess.READ)
+			var json = JSON.new()
+			var error = json.parse(file.get_as_text())
+			if error == OK:
+				data = json.data
+			else:
+				push_error("Failed to to parse game file '%s'" % path)
+				return null
 		else:
-			push_error("Failed to to parse game file '%s'" % path)
+			push_error("Failed to find game file '%s'" % path)
 			return null
 	else:
-		push_error("Failed to find game file '%s'" % path)
-		return null
+		if ResourceLoader.exists(path):
+			var file = load(path)
+			var json = JSON.new()
+			var error = json.parse(file.get_as_text())
+			if error == OK:
+				data = json.data
+			else:
+				push_error("Failed to to parse game file '%s'" % path)
+				return null
+		else:
+			push_error("Failed to find game file '%s'" % path)
+			return null
 	turn_player_id = data["turn_player_id"]
 	turn_phase = data["turn_phase"]
 	turn_count = data["turn_count"]
@@ -222,7 +239,6 @@ func card_to_json(card: Card) -> Dictionary:
 	# effect information, such as duration or applied effects.
 	# Right now it is only for internal use.
 	var data: Dictionary = {
-		"uid": card.unique_id,
 		"id": "%s/%s" % [card.get_set_name(), card.get_id()],
 		"turn_count": card.turn_count
 	}
@@ -244,7 +260,6 @@ func json_to_card(data: Dictionary, owner: Player) -> Card:
 	card.owner = owner
 	card.instantiate()
 	prepare_card(card)
-	card.unique_id = data["uid"]
 	if "turn_count" in data:
 		card.turn_count = data["turn_count"]
 	if "hp" in data:
@@ -259,6 +274,17 @@ func json_to_card(data: Dictionary, owner: Player) -> Card:
 	if "weapon" in data:
 		card.equip(json_to_card(data["weapon"], owner))
 	return card
+
+func end_game(result: Enum.GameResult):
+	for p in players:
+		if p.has_controller():
+			p.controller.stop()
+	get_parent().last_game_result = result
+	event_queue.clear()
+	event_queue.push_back(EventEndGame.new(self, result))
+
+func end_scene():
+	get_parent().end_scene()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -325,6 +351,19 @@ func queue_event(event: Event):
 		return
 		#event_queue.push_back(EventOnlineClient.new(self, client, event.get_name()))
 	else:
+		if is_tutorial():
+			var hint: TutorialHint = tutorial.get_hint(turn_count, event)
+			if hint != null:
+				if hint.type == 0:
+					event = EventHint.new(self, event, hint.text, hint.pos)
+					hint.exec.call(self)
+				elif hint.type == 1:
+					var on_confirm: Callable = func():
+						hint.exec.call(self)
+					var confirm_event = EventConfirm.new(self, players[0], "Tutorial", on_confirm, on_confirm, hint.text)
+					confirm_event.set_yes_only()
+					confirm_event.set_timeout(0)
+					event_queue.push_back(confirm_event)
 		event_queue.push_back(event)
 
 func queue_next_event(event: Event):
@@ -512,6 +551,9 @@ func is_client() -> bool:
 func is_server() -> bool:
 	return online_mode == 2
 
+func is_tutorial() -> bool:
+	return tutorial != null
+
 func show_details(card):
 	$CardDetails.visible = true
 	$CardDetails/CardNode.turn_up()
@@ -565,7 +607,4 @@ func _on_test_button_pressed():
 	save_game("res://tutorial/saved_games/test.json")
 
 func _on_button_exit_pressed():
-	for p in players:
-		if p.has_controller():
-			p.controller.stop()
-	get_parent().end_scene()
+	end_game(Enum.GameResult.CANCELLED)

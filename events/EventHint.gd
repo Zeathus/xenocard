@@ -32,3 +32,6 @@ func process(delta):
 	if pass_to_child("process", [delta]):
 		return
 	finish()
+
+func on_end_phase_pressed():
+	pass_to_child("on_end_phase_pressed")

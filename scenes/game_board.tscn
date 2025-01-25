@@ -324,6 +324,7 @@ position = Vector2(0, -504)
 rotation = 3.14159
 
 [node name="Phases" type="Node2D" parent="."]
+z_index = 2
 position = Vector2(-556, 8)
 
 [node name="Phase" type="Label" parent="Phases"]

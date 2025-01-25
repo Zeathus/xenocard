@@ -42,6 +42,7 @@ func save():
 		json_data["cards"].push_back("%s/%s" % [card.set_name, card.id])
 	var json_string = JSON.stringify(json_data)
 	deck_file.store_line(json_string)
+	deck_file.close()
 
 func sort():
 	cards.sort_custom(func compare(a, b):
@@ -60,6 +61,7 @@ static func load(name: String, preset: bool = false) -> DeckData:
 		var file = FileAccess.open(file_name, FileAccess.READ)
 		var json = JSON.new()
 		var error = json.parse(file.get_as_text())
+		file.close()
 		if error == OK:
 			var deck = DeckData.new()
 			deck.name = json.data["name"]
