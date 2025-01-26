@@ -14,18 +14,17 @@ script = ExtResource("1_mkrge")
 
 [node name="List" type="Panel" parent="."]
 offset_left = -428.0
-offset_top = -294.0
+offset_top = -374.0
 offset_right = -128.0
-offset_bottom = 343.0
+offset_bottom = 363.0
 theme = ExtResource("2_2m0kb")
-metadata/_edit_use_anchors_ = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="List"]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 58.0
 offset_right = 290.0
-offset_bottom = 628.0
+offset_bottom = 727.0
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
 
@@ -53,9 +52,9 @@ text = "ADVANCED"
 
 [node name="Info" type="Panel" parent="."]
 offset_left = -123.0
-offset_top = -197.0
+offset_top = -277.0
 offset_right = 477.0
-offset_bottom = 343.0
+offset_bottom = 363.0
 theme = ExtResource("2_2m0kb")
 
 [node name="Title" type="Panel" parent="Info"]
@@ -82,8 +81,8 @@ vertical_alignment = 1
 visible = false
 layout_mode = 1
 anchors_preset = -1
-anchor_top = -0.103704
-anchor_bottom = -0.103704
+anchor_top = 0.058796
+anchor_bottom = 0.058796
 offset_left = 150.0
 offset_top = 520.0
 offset_right = 450.0
@@ -97,9 +96,9 @@ visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.278333
-anchor_top = -0.103704
+anchor_top = 0.058796
 anchor_right = 0.278333
-anchor_bottom = -0.103704
+anchor_bottom = 0.058796
 offset_left = 150.0
 offset_top = 520.0
 offset_right = 390.0
@@ -109,13 +108,12 @@ text = "Mark as done"
 metadata/_edit_use_anchors_ = true
 
 [node name="ButtonStart" type="Button" parent="Info"]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.178333
-anchor_top = -0.103704
+anchor_top = 0.058796
 anchor_right = -0.178333
-anchor_bottom = -0.103704
+anchor_bottom = 0.058796
 offset_left = 150.0
 offset_top = 520.0
 offset_right = 390.0
@@ -129,10 +127,10 @@ layout_mode = 0
 offset_left = 22.0
 offset_top = 19.0
 offset_right = 575.0
-offset_bottom = 439.0
+offset_bottom = 544.0
 
 [node name="Image" type="Sprite2D" parent="Info"]
-position = Vector2(296, 272)
+position = Vector2(296, 360)
 scale = Vector2(0.45, 0.45)
 
 [node name="ButtonExit" type="Button" parent="."]

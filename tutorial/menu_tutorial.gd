@@ -25,6 +25,7 @@ func _ready() -> void:
 	$Info/ButtonStart.disabled = true
 	load_tutorial_status()
 	setup_tutorial_list()
+	_on_tutorial_selected(tutorials[0])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

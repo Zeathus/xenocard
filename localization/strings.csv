@@ -31,6 +31,7 @@ ATTACK_TYPE_BALLISTIC,Ballistic,射撃
 ATTACK_TYPE_SPREAD,Spread,全体
 ATTACK_TYPE_HOMING,Homing,弾道
 TUTORIAL_0_DESCRIPTION,"Here you can learn the basics of playing Xeno Card.
+Reading sections 1 through 10 is sufficient to play the game, but you can read more for a better understanding.
 
 Some sections also have playable tutorials to get a better grasp of what they explain.
 
@@ -77,11 +78,7 @@ Cards are moved to the junk pile when they are discarded or destroyed. Event car
 You can see what cards are in your junk pile.",
 TUTORIAL_7_DESCRIPTION,"Above the image on a card is the card’s name, type and attribute. For example, Lv 1 KOS-MOS’s attribute is machine.
 
-Below the image is the card’s HP,
-ATK, attack type, field requirement
-and cost. These will be explained
-more later. Only battle cards
-have HP, ATK and attack types.
+Below the image is the card’s HP, ATK, attack type, field requirement and cost. These will be explained more later. Only battle cards have HP, ATK and attack types.
 
 At the bottom is the card’s text.
 It explains the effects of the card.
@@ -95,6 +92,17 @@ can hover over parts of the card
 to get explanations.",
 TUTORIAL_8_DESCRIPTION,"During each of your Set Phases, you can play one battle card and one situation card. During your Event or Block phase, you can play any number of event cards.
 
-To play a card, you must first meet
-its field requirements. These are
-listed next to “Field” on the card.",
+To play a card, you must first meet its field requirements. These are listed next to “Field” on the card.
+Lv 1 KOS-MOS’s field requirement
+is one human and one card of any
+attribute. When you have those
+cards on your field, you can play it.
+
+When you play the card, you must
+also pay its cost. To pay the cost,
+move cards from your deck to
+your lost pile equal to the cost.
+
+The playable example is highly
+recommended as it guides you
+through playing each type of card.",
