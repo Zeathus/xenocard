@@ -90,18 +90,21 @@ During a game, you can right click
 cards to inspect them. Then you
 can hover over parts of the card
 to get explanations.",
-TUTORIAL_8_DESCRIPTION,"During each of your Set Phases, you can play one battle card and one situation card. During your Event or Block phase, you can play any number of event cards.
+TUTORIAL_8_DESCRIPTION,"During each of your Set Phases, you can play one battle card and one situation card. During your Event or Block Phase, you can play any number of event cards.
 
-To play a card, you must first meet its field requirements. These are listed next to “Field” on the card.
-Lv 1 KOS-MOS’s field requirement
-is one human and one card of any
-attribute. When you have those
-cards on your field, you can play it.
+To play a card, you must first meet its field requirement and pay its cost. Let us use Lv 1 KOS-MOS as an example.
 
-When you play the card, you must
-also pay its cost. To pay the cost,
-move cards from your deck to
-your lost pile equal to the cost.
+The card’s field requirement is one
+human and one battle card of any
+attribute. You must have these two
+cards on your field to play it.
+To pay the cost, move the top 5
+cards of your deck to your lost pile.
+
+When a battle or situation card is
+played, it gets an E-mark until your
+battle phase. Cards with an E-mark
+do not count for field requirements.
 
 The playable example is highly
 recommended as it guides you

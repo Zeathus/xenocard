@@ -9,12 +9,11 @@
 		null
 	  ],
 	  "deck": [
-		"XS1/realian_male",
-		"XS1/supply_ship",
-		"XS1/simeon",
-		"XS1/ag_01",
-		"XS1/lv_10_kos_mos",
-		"XS1/u_tic_soldier",
+		"XS1/civilian_female",
+		"XS1/combat_realian_male",
+		"XS1/drone",
+		"XS1/durandal",
+		"XS1/supply_fleet",
 		"XS1/supply_ship",
 		"XS1/hammer",
 		"XS1/drone",
@@ -47,10 +46,12 @@
 		"XS1/simeon",
 		"XS1/lv_1_kos_mos",
 		"XS1/compulsory_sortie",
-		"XS1/ag_01",
-		"XS1/lv_1_shion"
 	  ],
-	  "hand": [],
+	  "hand": [
+			"XS1/civilian_male",
+			"XS1/stim",
+			"XS1/mary_and_shelley"
+		],
 	  "junk": [],
 	  "lost": [],
 	  "situation": [
@@ -133,7 +134,7 @@
 	  ]
 	}
   ],
-  "turn_count": 1,
+  "turn_count": 3,
   "turn_phase": 0,
   "turn_player_id": 0
 }
