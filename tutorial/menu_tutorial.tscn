@@ -48,7 +48,7 @@ offset_top = 12.0
 offset_right = 288.0
 offset_bottom = 48.0
 toggle_mode = true
-text = "ADVANCED"
+text = "MORE INFO"
 
 [node name="Info" type="Panel" parent="."]
 offset_left = -123.0
