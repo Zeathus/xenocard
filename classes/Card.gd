@@ -339,9 +339,12 @@ func selectable(game_board: GameBoard) -> bool:
 			# Check for free spot
 			for i in range(4):
 				var occupant: Card = owner.field.get_card(Enum.Zone.STANDBY if battle else Enum.Zone.SITUATION, i)
-				if occupant == null or can_replace_card(occupant) or can_replace_target():
+				if get_attribute() == Enum.Attribute.WEAPON:
+					if occupant != null and occupant.can_equip(self):
+						return true
+				elif occupant == null or can_replace_card(occupant) or can_replace_target():
 					return true
-				if battle and can_set_to_battlefield():
+				elif battle and can_set_to_battlefield():
 					occupant = owner.field.get_card(Enum.Zone.BATTLEFIELD, i)
 					if occupant == null or can_replace_card(occupant) or can_replace_target():
 						return true

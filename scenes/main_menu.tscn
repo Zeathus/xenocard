@@ -86,7 +86,7 @@ offset_top = 240.0
 offset_right = 150.0
 offset_bottom = 288.0
 theme = ExtResource("2_ic5sl")
-text = "EXIT"
+text = "EXIT_GAME"
 
 [node name="ButtonTest" type="Button" parent="."]
 visible = false

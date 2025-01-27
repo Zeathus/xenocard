@@ -16,6 +16,13 @@ var tutorials: Array[Tutorial] = [
 	Tutorial6CardPiles.new(),
 	Tutorial7CardLayout.new(),
 	Tutorial8PlayingCards.new(),
+	Tutorial9CharacterCards.new(),
+	Tutorial10Weapons.new(),
+	Tutorial11Gnosis.new(),
+	Tutorial12Phases.new(),
+	Tutorial13AttackTypes.new(),
+	Tutorial14TheBattlePhase.new(),
+	Tutorial15Recap.new(),
 ]
 var advanced_tutorial_start: int = len(tutorials)
 var advanced_selected: bool = false

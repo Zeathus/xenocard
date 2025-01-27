@@ -178,10 +178,10 @@ func load_game(path: String):
 					card.equipped_weapon.instance.global_position += Vector2(28, 42)
 				else:
 					card.equipped_weapon.instance.global_position -= Vector2(28, 42)
-		player.show_hand = (not player.has_controller()) or game_options["reveal_hands"]
 		if player_data["ai"]:
 			player.controller = ControllerAI.new(self, player)
 			player.controller.start()
+		player.show_hand = (not player.has_controller()) or game_options["reveal_hands"]
 	refresh()
 	begin_phase(turn_phase)
 
@@ -265,10 +265,11 @@ func json_to_card(data: Dictionary, owner: Player) -> Card:
 	if "hp" in data:
 		card.hp = data["hp"]
 	if "downed" in data:
-		card.downed = data["downed"]
-		card.downed_turn = data["downed_turn"]
+		if data["downed"]:
+			card.down(null)
+			card.downed_turn = data["downed_turn"]
 	if "e_mark" in data:
-		card.e_mark = data["e_mark"]
+		card.set_e_mark(data["e_mark"])
 	if "atk_timer" in data:
 		card.atk_timer = data["atk_timer"]
 	if "weapon" in data:

@@ -3,7 +3,7 @@ SOLO_GAME,Solo Game,ソロゲーム
 ONLINE_GAME,Online Game,オンラインゲーム 
 DECKS,Decks,デッキ 
 HOW_TO_PLAY,How to Play,チュートリアル 
-EXIT,Exit,出る
+EXIT_GAME,Exit,ゲームを終了
 SETTINGS,Settings,設定
 DECK_LOAD_PRESET,Load a Preset,
 DECK_OPEN_FOLDER,Open Deck Folder,
@@ -31,7 +31,7 @@ ATTACK_TYPE_BALLISTIC,Ballistic,射撃
 ATTACK_TYPE_SPREAD,Spread,全体
 ATTACK_TYPE_HOMING,Homing,弾道
 TUTORIAL_0_DESCRIPTION,"Here you can learn the basics of playing Xeno Card.
-Reading sections 1 through 10 is sufficient to play the game, but you can read more for a better understanding.
+Sections 1 through 15 cover everything you need to play the game, but there is more if you want a deeper understanding.
 
 Some sections also have playable tutorials to get a better grasp of what they explain.
 
@@ -109,3 +109,71 @@ do not count for field requirements.
 The playable example is highly
 recommended as it guides you
 through playing each type of card.",
+TUTORIAL_9_DESCRIPTION,"Cards that represent a single character are called character cards. You can only have one card of any single character on your field at a time. For example, you cannot play a Lv 1 Shion if you have a Lv 10 Shion on your field. Some cards, such as AG-02-M have the Unique effect, which limits them to one on the field without being character cards.
+
+Some character cards have a “level up” effect. This allows them to be played even if another card of the same character is on your field. The card on your field is discarded and the new one takes its place. Any damage taken carries over.",
+TUTORIAL_10_DESCRIPTION,"Weapon cards are a special type of battle card that cannot be set to the field directly. Instead they are equipped to other battle cards on the field.
+
+When a battle card is equipped with a weapon, its ATK and attack type are replaced by those of the weapon. The battle card also gains whatever effects the weapon has.
+Weapons with 0 ATK do not change
+the holder’s ATK or attack type.
+
+If you try to equip a weapon to card
+that already has one, its current
+weapon will be discarded.",
+TUTORIAL_11_DESCRIPTION,"Battle cards with the gnosis attribute have a special characteristic. To play them, you must first discard one or more human cards on your field. You cannot discard cards with E-marks to play these cards.
+
+Unlike other battle cards, gnosis can be played directly to the battlefield and they do not get an E-mark. This makes them great for surprise attacks.",
+TUTORIAL_12_DESCRIPTION,"Each turn consist of eight phases. In order, they are…
+
+- Draw Phase: You draw a card from your deck.
+
+- Move Phase: Move cards to or from the battlefield.
+
+- Event Phase: Play any number of event cards.
+
+- Set Phase: Play battle and situation cards.
+
+- Block Phase: The enemy can play event cards.
+
+- Battle Phase: Cards on the battlefield attack.
+
+- Adjust Phase: Card effects can activate, and you discard cards if you have more than 6 in your hand.
+
+Then the next player has their turn.",
+TUTORIAL_13_DESCRIPTION,"Battle cards have one of four attack types. Its attack type determined what it will hit during the battle phase.
+
+Hand
+Can only attack the front row of the enemy's battlefield from the front row of your battlefield.
+
+Ballistic
+Attacks the closest enemy in its own battlefield column. If there are no enemies, it attacks the enemy's deck.
+
+Spread
+Deals damage to every enemy card on their battlefield at once, but cannot attack the enemy's deck.
+
+Homing
+Ignores any enemy cards on the battlefield and attacks the enemy's deck directly.
+
+When a Ballistic or Homing card attacks the enemy’s deck, they move cards from the top of their deck to their lost pile equal to the damage. Get their deck down to 0 cards and win!",
+TUTORIAL_14_DESCRIPTION,"During the battle phase, all the cards on the turn player’s battlefield attack in a fixed order based on attack type and position.
+
+The attack order for attack types is:
+1. Hand
+2. Spread
+3. Ballistic
+4. Homing
+
+When multiple cards with the same attack type are on the battlefield, their attack order is determined by the numbers on their battlefield zones. That is top left, top right, bottom left then bottom right.",
+TUTORIAL_15_DESCRIPTION,"Now you know all the fundamentals of playing Xeno Card.
+Here is a quick recap.
+
+You play battle cards to meet the field requirements for strong cards. With these cards, you destroy the enemy’s battle cards so that you can attack their deck directly.
+
+When their deck reaches 0 cards, you win. If your deck reaches 0 cards, you lose.
+
+Use event cards and situation cards to support your battle cards or disrupt the enemy so that you can gain the advantage.
+
+You can now go to Solo Game in the main menu to try your first game. I hope you enjoy!
+
+Feel free to keep reading now or come back later if you want a deeper understanding or need a reminder on anything.",
