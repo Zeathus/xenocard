@@ -160,8 +160,8 @@ TUTORIAL_14_DESCRIPTION,"During the battle phase, all the cards on the turn play
 
 The attack order for attack types is:
 1. Hand
-2. Spread
-3. Ballistic
+2. Ballistic
+3. Spread
 4. Homing
 
 When multiple cards with the same attack type are on the battlefield, their attack order is determined by the numbers on their battlefield zones. That is top left, top right, bottom left then bottom right.",
