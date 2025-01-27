@@ -21,7 +21,7 @@ func on_start():
 	broadcast()
 
 func on_finish():
-	if game_board.tutorial:
+	if game_board.tutorial and result == Enum.GameResult.TUTORIAL:
 		game_board.tutorial.set_completed(true)
 	game_board.end_scene()
 

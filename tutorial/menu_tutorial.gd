@@ -34,7 +34,6 @@ func _process(delta: float) -> void:
 		in_tutorial = false
 
 func load_tutorial_status() -> void:
-	var file_name = "user://tutorials.json"
 	var tutorial_data: Dictionary = Tutorial.get_tutorial_data()
 	for tutorial in tutorials:
 		if tutorial.get_id() in tutorial_data and tutorial_data[tutorial.get_id()]:
