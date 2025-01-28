@@ -4,10 +4,17 @@ class_name ControllerAI
 
 var last_can_end_move_phase: bool = true
 var delay: float = 0.5
+var current_delay: float = 0
 
-func _prepare_handling(actions: Array[Action]):
-	if delay > 0:
-		OS.delay_msec(floor(delay * 1000))
+func _prepare_handling(delta: float, actions: Array[Action]):
+	if current_delay == 0:
+		current_delay = delay
+	if current_delay > 0:
+		current_delay -= delta
+		if current_delay <= 0:
+			current_delay = 0
+			return true
+	return false
 
 func _handle_request(action: Action, args: Array) -> bool:
 	match action:

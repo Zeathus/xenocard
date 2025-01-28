@@ -64,11 +64,13 @@ func new_game():
 		if online_mode == 2: # Server
 			print("online_mode == 2")
 			player.controller = ControllerServer.new(self, player, server, options["peer"])
+			add_child(player.controller)
 			player.controller.start()
 			player.show_hand = true
 		else:
 			if options["ai"]:
 				player.controller = ControllerAI.new(self, player)
+				add_child(player.controller)
 				player.controller.start()
 			player.show_hand = (not player.has_controller()) or game_options["reveal_hands"]
 		players.push_back(player)
@@ -93,6 +95,7 @@ func new_client_game():
 		else:
 			player.show_hand = false
 			player.controller = ControllerClient.new(self, player, client)
+			add_child(player.controller)
 			player.controller.start()
 		players.push_back(player)
 	turn_player_id = 0
@@ -180,6 +183,7 @@ func load_game(path: String):
 					card.equipped_weapon.instance.global_position -= Vector2(28, 42)
 		if player_data["ai"]:
 			player.controller = ControllerAI.new(self, player)
+			add_child(player.controller)
 			player.controller.start()
 		player.show_hand = (not player.has_controller()) or game_options["reveal_hands"]
 	refresh()

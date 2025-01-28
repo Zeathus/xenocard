@@ -5,23 +5,26 @@ class_name ControllerClient
 var response_queue: Array
 var client: TCGClient
 var incoming_actions: Array
+var current_delay: float = 0
 
 func _init(_game_board: GameBoard, _player: Player, _client: TCGClient):
 	client = _client
 	incoming_actions = client.actions
 	super(_game_board, _player)
 
-func _prepare_handling(actions: Array[Action]):
-	while true:
-		if incoming_actions.size() > 0:
-			var incoming: PackedStringArray = incoming_actions.front().split("\t")
-			var incoming_action: Action = int(incoming[0])
-			if incoming_action in actions:
-				break
-			else:
-				print("Invalid action: ", incoming_action)
+func _prepare_handling(delta: float, actions: Array[Action]):
+	if current_delay > 0:
+		current_delay -= delta
+		return
+	if incoming_actions.size() > 0:
+		var incoming: PackedStringArray = incoming_actions.front().split("\t")
+		var incoming_action: Action = int(incoming[0])
+		if incoming_action in actions:
+			return true
 		else:
-			OS.delay_msec(100)
+			print("Invalid action: ", incoming_action)
+	current_delay = 0.1
+	return false
 
 func _handle_request(action: Action, args: Array) -> bool:
 	var incoming: PackedStringArray = incoming_actions.front().split("\t")

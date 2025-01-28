@@ -6,6 +6,7 @@ var response_queue: Array
 var server: TCGServer
 var peer: WebSocketPeer
 var incoming_actions: Array
+var current_delay: float = 0
 
 func _init(_game_board: GameBoard, _player: Player, _server: TCGServer, _peer: WebSocketPeer):
 	server = _server
@@ -13,22 +14,26 @@ func _init(_game_board: GameBoard, _player: Player, _server: TCGServer, _peer: W
 	incoming_actions = server.games[peer]["actions"][_player.id]
 	super(_game_board, _player)
 
-func _prepare_handling(actions: Array[Action]):
+func request(actions: Array[Action], handlers: Array[Callable], args: Array = []):
 	var msg = "Waiting for"
 	for i in actions:
 		msg += " " + str(i)
 	print(msg)
-	while true:
-		if incoming_actions.size() > 0:
-			var incoming: PackedStringArray = incoming_actions.front().split("\t")
-			var incoming_action: Action = int(incoming[0])
-			if incoming_action in actions:
-				break
-			else:
-				print("Invalid action: ", incoming_action)
+	super(actions, handlers, args)
+
+func _prepare_handling(delta: float, actions: Array[Action]):
+	if current_delay > 0:
+		current_delay -= delta
+		return
+	if incoming_actions.size() > 0:
+		var incoming: PackedStringArray = incoming_actions.front().split("\t")
+		var incoming_action: Action = int(incoming[0])
+		if incoming_action in actions:
+			print("Got action")
+			return true
 		else:
-			OS.delay_msec(100)
-	print("Got action")
+			print("Invalid action: ", incoming_action)
+	return false
 
 func _handle_request(action: Action, args: Array) -> bool:
 	var incoming: PackedStringArray = incoming_actions.front().split("\t")
