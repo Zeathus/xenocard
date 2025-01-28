@@ -10,11 +10,11 @@ config_version=5
 
 [application]
 
-config/name="Xeno TCG"
+config/name="Xeno Card"
 run/main_scene="res://scenes/main.tscn"
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://sprites/app_icon.png"
 
 [debug]
 
