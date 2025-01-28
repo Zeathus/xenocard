@@ -317,6 +317,7 @@ label_settings = SubResource("LabelSettings_3ahw8")
 horizontal_alignment = 2
 
 [node name="Value" type="Label" parent="Content/Cost"]
+layout_mode = 0
 offset_left = 179.0
 offset_right = 355.0
 offset_bottom = 67.0

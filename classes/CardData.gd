@@ -2,6 +2,8 @@ class_name CardData
 
 static var data: Dictionary
 static var path: String = "res://data/cards"
+static var image_root: String = "res://sprites/"
+static var image_type: String = "png"
 
 var game: String
 var set_name: String
@@ -24,6 +26,11 @@ var event_effect_names: Array[String]
 var effects: Array[EffectData]
 var full_art: int = 0
 var artist: String
+
+static func _static_init() -> void:
+	if OS.get_name() == "HTML5":
+		image_root = "res://sprites/web/"
+		image_type = "webp"
 
 func _init(_id: String):
 	var json = get_json(_id)
@@ -145,25 +152,25 @@ func load_json(json: Dictionary):
 func get_image() -> Resource:
 	if OS.has_feature("dedicated_server"):
 		return null
-	var image_file: String = "res://sprites/card_images/%s/%s.png" % [set_name, id]
+	var image_file: String = "%s/card_images/%s/%s.%s" % [image_root, set_name, id, image_type]
 	if ResourceLoader.exists(image_file):
 		return load(image_file)
 	else:
 		push_error("Failed to find card image '%s'" % image_file)
-		return load("res://sprites/card_images/missing_artwork.png")
+		return load("%s/card_images/missing_artwork.%s" % [image_root, image_type])
 
 func get_baked_image() -> Resource:
 	if OS.has_feature("dedicated_server"):
 		return null
-	var image_file: String = "res://sprites/card_images_baked/%s/%s.png" % [set_name, id]
+	var image_file: String = "%s/card_images_baked/%s/%s.%s" % [image_root, set_name, id, image_type]
 	if ResourceLoader.exists(image_file):
 		return load(image_file)
 	else:
 		push_error("Failed to find card image '%s'" % image_file)
-		return load("res://sprites/card_images/missing_artwork.png")
+		return load("%s/card_images/missing_artwork.%s" % [image_root, image_type])
 
 func has_baked_image() -> bool:
-	var image_file: String = "res://sprites/card_images_baked/%s/%s.png" % [set_name, id]
+	var image_file: String = "%s/card_images_baked/%s/%s.%s" % [image_root, set_name, id, image_type]
 	return FileAccess.file_exists(image_file)
 
 func get_full_id() -> String:

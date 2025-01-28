@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://crq1iw7ibn03k"]
+[gd_scene load_steps=10 format=3 uid="uid://crq1iw7ibn03k"]
 
 [ext_resource type="Script" path="res://scenes/card_list_row.gd" id="1_kkh0b"]
 [ext_resource type="Theme" uid="uid://cts0fwcuwbvl0" path="res://theme_default.tres" id="2_b4wrx"]
 [ext_resource type="Texture2D" uid="uid://idg0cq5nyt80" path="res://sprites/card_images_baked/SYS/unknown.png" id="2_wagrd"]
-[ext_resource type="FontFile" uid="uid://ng1y54e8x08v" path="res://fonts/Roboto/Roboto-Bold.ttf" id="3_e3c87"]
 [ext_resource type="PackedScene" uid="uid://g7yv71p73utl" path="res://objects/attribute.tscn" id="3_uw5cg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqmts"]
@@ -59,10 +58,9 @@ texture = ExtResource("2_wagrd")
 [node name="Name" type="Label" parent="Panel"]
 layout_mode = 0
 offset_left = 90.0
-offset_top = 6.0
+offset_top = 8.0
 offset_right = 373.0
-offset_bottom = 40.0
-theme_override_fonts/font = ExtResource("3_e3c87")
+offset_bottom = 43.0
 text = "Card Name"
 label_settings = SubResource("LabelSettings_6mx1x")
 clip_text = true
@@ -78,7 +76,6 @@ offset_left = 90.0
 offset_top = 49.0
 offset_right = 349.0
 offset_bottom = 83.0
-theme_override_fonts/font = ExtResource("3_e3c87")
 text = "Battle"
 label_settings = SubResource("LabelSettings_6mx1x")
 clip_text = true
@@ -90,7 +87,6 @@ offset_left = 127.0
 offset_top = 49.0
 offset_right = 386.0
 offset_bottom = 83.0
-theme_override_fonts/font = ExtResource("3_e3c87")
 text = "Battle"
 label_settings = SubResource("LabelSettings_6mx1x")
 clip_text = true
@@ -102,7 +98,6 @@ offset_left = 13.0
 offset_top = 80.0
 offset_right = 72.0
 offset_bottom = 104.0
-theme_override_fonts/font = ExtResource("3_e3c87")
 text = " HP"
 label_settings = SubResource("LabelSettings_caajq")
 clip_text = true
@@ -114,7 +109,6 @@ offset_left = 15.0
 offset_top = 80.0
 offset_right = 77.0
 offset_bottom = 104.0
-theme_override_fonts/font = ExtResource("3_e3c87")
 text = "10 "
 label_settings = SubResource("LabelSettings_caajq")
 horizontal_alignment = 2
@@ -127,7 +121,6 @@ offset_left = 11.0
 offset_top = 98.0
 offset_right = 70.0
 offset_bottom = 121.0
-theme_override_fonts/font = ExtResource("3_e3c87")
 text = " ATK"
 label_settings = SubResource("LabelSettings_6p714")
 clip_text = true
@@ -139,7 +132,6 @@ offset_left = 16.0
 offset_top = 98.0
 offset_right = 77.0
 offset_bottom = 121.0
-theme_override_fonts/font = ExtResource("3_e3c87")
 text = "10 "
 label_settings = SubResource("LabelSettings_6p714")
 horizontal_alignment = 2
@@ -149,10 +141,9 @@ text_overrun_behavior = 3
 [node name="Cost" type="Label" parent="Panel"]
 layout_mode = 0
 offset_left = 90.0
-offset_top = 93.0
+offset_top = 91.0
 offset_right = 174.0
-offset_bottom = 127.0
-theme_override_fonts/font = ExtResource("3_e3c87")
+offset_bottom = 126.0
 text = "Cost: 0"
 label_settings = SubResource("LabelSettings_6mx1x")
 clip_text = true
@@ -161,29 +152,28 @@ text_overrun_behavior = 3
 [node name="Field" type="Label" parent="Panel"]
 layout_mode = 0
 offset_left = 201.0
-offset_top = 93.0
+offset_top = 91.0
 offset_right = 460.0
-offset_bottom = 127.0
-theme_override_fonts/font = ExtResource("3_e3c87")
+offset_bottom = 126.0
 text = "Field:"
 label_settings = SubResource("LabelSettings_6mx1x")
 clip_text = true
 text_overrun_behavior = 3
 
 [node name="Field1" parent="Panel" instance=ExtResource("3_uw5cg")]
-position = Vector2(277, 107)
+position = Vector2(277, 105)
 scale = Vector2(0.15, 0.15)
 
 [node name="Field2" parent="Panel" instance=ExtResource("3_uw5cg")]
-position = Vector2(305, 107)
+position = Vector2(305, 105)
 scale = Vector2(0.15, 0.15)
 
 [node name="Field3" parent="Panel" instance=ExtResource("3_uw5cg")]
-position = Vector2(333, 107)
+position = Vector2(333, 105)
 scale = Vector2(0.15, 0.15)
 
 [node name="Field4" parent="Panel" instance=ExtResource("3_uw5cg")]
-position = Vector2(361, 107)
+position = Vector2(361, 105)
 scale = Vector2(0.15, 0.15)
 
 [node name="Area2D" type="Area2D" parent="."]
