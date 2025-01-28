@@ -28,7 +28,7 @@ var full_art: int = 0
 var artist: String
 
 static func _static_init() -> void:
-	if OS.get_name() == "HTML5":
+	if OS.get_name() == "HTML5" or OS.get_name() == "Web":
 		image_root = "res://sprites/web/"
 		image_type = "webp"
 

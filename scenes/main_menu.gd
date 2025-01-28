@@ -5,6 +5,8 @@ var task = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$VersionNumber.text = "Ver. " + AppMeta.get_version_string()
+	if OS.get_name() == "HTML5" or OS.get_name() == "Web":
+		$ButtonExit.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
