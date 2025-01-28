@@ -35,6 +35,7 @@ func on_start():
 	queue_event(EventAnimation.new(game_board,
 		AnimationAddToHand.new(card.instance, player.hand, speed, flip)
 	))
+	#game_board.play_se("571577__el_boss__playing-card-deal-variation-1")
 
 func on_finish():
 	player.hand.refresh()

@@ -342,6 +342,9 @@ func selectable(game_board: GameBoard) -> bool:
 				if get_attribute() == Enum.Attribute.WEAPON:
 					if occupant != null and occupant.can_equip(self):
 						return true
+					occupant = owner.field.get_card(Enum.Zone.BATTLEFIELD, i)
+					if occupant != null and occupant.can_equip(self):
+						return true
 				elif occupant == null or can_replace_card(occupant) or can_replace_target():
 					return true
 				elif battle and can_set_to_battlefield():
