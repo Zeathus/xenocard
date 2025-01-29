@@ -38,6 +38,7 @@ func on_start():
 		anim.target_scale = Vector2(0.15, 0.15)
 	anim.set_on_finish(func(): handle_set_effects())
 	queue_event(EventAnimation.new(game_board, anim))
+	game_board.play_se("set_card")
 
 func handle_set_effects():
 	to_set.trigger_effects(Enum.Trigger.SET, self)

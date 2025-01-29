@@ -66,7 +66,7 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, ind
 		queue_event(EventAnimations.new(game_board, anims))
 		game_board.hide_valid_zones()
 		awaiting_anims = true
-		#game_board.play_se("571581__el_boss__playing-card-slide-right" if zone == Enum.Zone.STANDBY else "571574__el_boss__playing-card-slide-left")
+		# game_board.play_se("571581__el_boss__playing-card-slide-right" if zone == Enum.Zone.STANDBY else "571574__el_boss__playing-card-slide-left")
 
 func broadcast_move(zone: Enum.Zone, index: int):
 	if game_board.is_server():
