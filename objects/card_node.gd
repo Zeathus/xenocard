@@ -27,6 +27,8 @@ func _process(delta):
 	if card:
 		if card.zone == Enum.Zone.HAND:
 			z_index += 20
+			if card.revealed:
+				z_index += 1
 		elif card.get_type() == Enum.Type.BATTLE and card.get_attribute() == Enum.Attribute.WEAPON and card.equipped_by:
 			z_index += 2
 	if in_motion:

@@ -40,7 +40,7 @@ func set_pos(pos: Position):
 		Position.CENTER:
 			position = Vector2(0, 0)
 		Position.ABOVE_HAND:
-			position = Vector2(-138, 360)
+			position = Vector2(0, 360)
 
 func set_hint(hint: String):
 	$HintContainer/HintText.text = hint
