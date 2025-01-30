@@ -5,7 +5,7 @@ class_name GameHand
 var cards: Array[Card]
 var game_board: GameBoard
 var hovered_card: Card
-var max_width: int = 700
+var max_width: int = 350
 
 func _ready():
 	cards = []
@@ -60,13 +60,14 @@ func size():
 	return len(cards)
 
 func get_target_pos(index: int, card: Card, mouse_pos: Vector2) -> Vector2:
-	var min_x: int = -max_width / 2
-	var step_x: float = max_width / (size() + 1)
+	var min_x: int = -1.0
+	var step_x: float = 2.0 / (size() + 1)
 	var target_x: float = min_x + (index + 1) * step_x
 	var target_y: float = 0
 	if card.is_selected():
 		target_y = -64
 	else:
+		var x_relative = (global_position.x - mouse_pos.x) / max_width
 		var pos: Vector2 = card.instance.global_position
 		var left = (pos.x - 64)
 		var right = (pos.x + 64)
@@ -84,7 +85,7 @@ func get_target_pos(index: int, card: Card, mouse_pos: Vector2) -> Vector2:
 			target_y = -64 * (128 - distance) / 128
 		else:
 			target_y = 0
-	return Vector2(target_x, target_y)
+	return Vector2(target_x * max_width, target_y)
 
 func refresh():
 	return
