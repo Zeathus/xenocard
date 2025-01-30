@@ -85,12 +85,7 @@ func fetch_event(event_data: String):
 			var player: Player = game_board.players[int(args[1])]
 			if len(args) > 2 and player.deck.size() > 0:
 				player.deck.top().set_id(args[2])
-			var event: Event = EventDrawCard.new(game_board, player)
-			if awaited_event:
-				event.speed = awaited_event.speed
-			elif game_board.turn_count <= 2:
-				event.speed = 2
-			return event
+			return EventDrawCard.new(game_board, player)
 		"DrawCardFromLost":
 			var player: Player = game_board.players[int(args[1])]
 			if len(args) > 2 and player.lost.size() > 0:

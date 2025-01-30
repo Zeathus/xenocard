@@ -60,7 +60,7 @@ func do_mulligan():
 		card.free_instance()
 	player.deck.shuffle()
 	for i in range(5):
-		queue_event(EventDrawCard.new(game_board, player, 2))
+		queue_event(EventDrawCard.new(game_board, player))
 	if remaining > 1:
 		queue_event(EventMulligan.new(game_board, player, remaining - 1))
 	wait_for_finish = true

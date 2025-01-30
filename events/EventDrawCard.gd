@@ -4,12 +4,10 @@ class_name EventDrawCard
 
 var player: Player
 var card: Card
-var speed: int
 
-func _init(_game_board: GameBoard, _player: Player, _speed: int = 1):
+func _init(_game_board: GameBoard, _player: Player):
 	super(_game_board)
 	player = _player
-	speed = _speed
 
 func get_name() -> String:
 	return "DrawCard"
@@ -33,9 +31,9 @@ func on_start():
 		card.instance.turn_down()
 	card.instance.global_position = player.field.get_deck_node().global_position
 	queue_event(EventAnimation.new(game_board,
-		AnimationAddToHand.new(card.instance, player.hand, speed, flip)
+		AnimationAddToHand.new(card.instance, player.hand, flip)
 	))
-	game_board.play_se("628638__el_boss__menu-select-tick")
+	game_board.play_se("click2")
 
 func on_finish():
 	player.hand.refresh()

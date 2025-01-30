@@ -187,9 +187,11 @@ func move_card_to_set():
 		anim.target_scale = Vector2(0.075, 0.075)
 	else:
 		anim.target_scale = Vector2(0.15, 0.15)
-	anim.set_on_finish(func(): handle_set_effects())
+	anim.set_on_finish(func():
+		handle_set_effects()
+		game_board.play_se("cardPlace1")
+	)
 	queue_event(EventAnimation.new(game_board, anim))
-	game_board.play_se("set_card")
 
 func targets_to_set() -> Array[Callable]:
 	var ret: Array[Callable] = []

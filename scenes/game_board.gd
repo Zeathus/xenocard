@@ -77,7 +77,7 @@ func new_game():
 	turn_player_id = 0
 	for p in players:
 		for i in range(5):
-			queue_event(EventDrawCard.new(self, p, 2))
+			queue_event(EventDrawCard.new(self, p))
 	begin_turn()
 
 func new_client_game():
@@ -485,6 +485,8 @@ func add_phase_effect(phase: Enum.Phase, effect: Effect):
 
 func play_se(se: String):
 	var sound = load("res://audio/se/" + se + ".wav")
+	if not sound:
+		sound = load("res://audio/se/" + se + ".ogg")
 	for player in [$AudioStream1, $AudioStream2, $AudioStream3]:
 		if not player.is_playing():
 			player.stream = sound

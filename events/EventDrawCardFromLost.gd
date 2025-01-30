@@ -25,7 +25,7 @@ func on_start():
 		card.instance.turn_down()
 	card.instance.global_position = player.field.get_lost_node().global_position
 	queue_event(EventAnimation.new(game_board,
-		AnimationAddToHand.new(card.instance, player.hand, 1, flip)
+		AnimationAddToHand.new(card.instance, player.hand, flip)
 	))
 
 func on_finish():
