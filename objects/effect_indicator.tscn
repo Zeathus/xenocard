@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://de2wv2ykfcwhh"]
+[gd_scene load_steps=6 format=3 uid="uid://de2wv2ykfcwhh"]
 
 [ext_resource type="Script" path="res://objects/effect_indicator.gd" id="1_8tjyy"]
+[ext_resource type="Theme" uid="uid://cts0fwcuwbvl0" path="res://theme_default.tres" id="2_nguo7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qog21"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -128,9 +129,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_opkl3")
 
 [node name="Label" type="Label" parent="."]
 offset_left = -457.0
-offset_top = -186.0
+offset_top = -193.0
 offset_right = 457.0
-offset_bottom = 246.0
+offset_bottom = 239.0
+theme = ExtResource("2_nguo7")
 text = "発動"
 label_settings = SubResource("LabelSettings_h61kh")
 horizontal_alignment = 1

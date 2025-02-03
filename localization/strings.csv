@@ -177,3 +177,23 @@ Use event cards and situation cards to support your battle cards or disrupt the 
 You can now go to Solo Game in the main menu to try your first game. I hope you enjoy!
 
 If you want a deeper understanding, you can click “More Info” to read about specific game mechanics.",
+TUTORIAL_ATTRIBUTES,"There are six different attributes in the original Xeno Card.
+
+Human: Low cost cards used for many field requirements.
+
+Realian: Very low cost cards that often have Unlimited.
+
+Machine: High cost cards with high HP and ATK.
+
+Gnosis: Low cost cards with high HP and ATK that discard humans to be played.
+
+Weapon: Equipped to other applicable battle cards on the field.
+
+Unknown: Cards that do not fit the other attributes.",
+TUTORIAL_ATTRIBUTES_2,"The custom Xenoblade Chronicles cards in this Xeno Card remake add two new attributes to the game.
+
+Monster
+These cards can generally be played without the need of humans. They favor ATK over HP.
+
+Nopon
+These cards are usually not good at attacking, but instead provide beneficial effects while in standby.",

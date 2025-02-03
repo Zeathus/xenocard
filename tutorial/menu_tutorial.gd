@@ -23,8 +23,10 @@ var tutorials: Array[Tutorial] = [
 	Tutorial13AttackTypes.new(),
 	Tutorial14TheBattlePhase.new(),
 	Tutorial15Recap.new(),
+	TutorialExtraAttributes.new(),
+	#TutorialExtraAttributes2.new(),
 ]
-var advanced_tutorial_start: int = len(tutorials)
+var advanced_tutorial_start: int = 16
 var advanced_selected: bool = false
 
 # Called when the node enters the scene tree for the first time.

@@ -26,7 +26,7 @@ enum ClientState {
 	PLAYING = 7
 }
 
-var websocket_url := "ws://127.0.0.1:5310" if OS.has_feature("use_local_server") else "ws://80.212.87.126:5310"
+var websocket_url := "wss://127.0.0.1:5310" if OS.has_feature("use_local_server") else "wss://80.212.87.126:5310"
 
 var socket := WebSocketPeer.new()
 var pinged = false
