@@ -18,7 +18,7 @@ func request(actions: Array[Action], handlers: Array[Callable], args: Array = []
 	var msg = "Waiting for"
 	for i in actions:
 		msg += " " + str(i)
-	print(msg)
+	Logger.i(msg)
 	super(actions, handlers, args)
 
 func _prepare_handling(delta: float, actions: Array[Action]):
@@ -29,10 +29,10 @@ func _prepare_handling(delta: float, actions: Array[Action]):
 		var incoming: PackedStringArray = incoming_actions.front().split("\t")
 		var incoming_action: Action = int(incoming[0])
 		if incoming_action in actions:
-			print("Got action")
+			Logger.i("Got action")
 			return true
 		else:
-			print("Invalid action: ", incoming_action)
+			Logger.e("Invalid action: %d" % incoming_action)
 	return false
 
 func _handle_request(action: Action, args: Array) -> bool:
@@ -54,7 +54,6 @@ func _handle_request(action: Action, args: Array) -> bool:
 					var target: Card = game_board.get_card_from_online_id(incoming[i], inverse_in)
 					targets.push_back(target)
 					incoming[i] = target.get_online_id(inverse_out)
-			print(len(incoming), " ", len(targets))
 			response_args = [game_board.get_card_from_online_id(incoming[1], inverse_in), int(incoming[2]), int(incoming[3]), targets]
 			incoming[1] = response_args[0].get_online_id(inverse_out)
 			player.get_enemy().controller.broadcast_action(incoming)
@@ -63,6 +62,7 @@ func _handle_request(action: Action, args: Array) -> bool:
 			response_args = [game_board.get_card_from_online_id(incoming[1], inverse_in)]
 			incoming[1] = response_args[0].get_online_id(inverse_out)
 			player.get_enemy().controller.broadcast_action(incoming)
+			Logger.i("Sent Event/Block")
 			return true
 		Action.MOVE:
 			response_args = [game_board.get_card_from_online_id(incoming[1], inverse_in), int(incoming[2]), int(incoming[3])]
@@ -120,7 +120,7 @@ func broadcast_event(event, args: Array = []):
 	while len(msg) % 4 != 0:
 		msg.push_back(0)
 	if peer.get_ready_state() != WebSocketPeer.STATE_OPEN:
-		print("Player was disconnected from server!")
+		Logger.w("Player was disconnected from server!")
 	else:
 		peer.send(msg)
 

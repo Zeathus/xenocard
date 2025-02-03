@@ -26,7 +26,7 @@ enum ClientState {
 	PLAYING = 7
 }
 
-var websocket_url := "wss://127.0.0.1:5310" if OS.has_feature("use_local_server") else "wss://80.212.87.126:5310"
+var websocket_url := "ws://127.0.0.1:5310" if OS.has_feature("use_local_server") else "wss://80.212.87.126:5310"
 
 var socket := WebSocketPeer.new()
 var pinged = false
@@ -36,9 +36,9 @@ var events: Array[String] = []
 var actions: Array[String] = []
 
 func _ready() -> void:
-	print("Connecting to ", websocket_url)
+	Logger.i("Connecting to " + websocket_url)
 	if socket.connect_to_url(websocket_url) != OK:
-		print("Unable to connect.")
+		Logger.w("Unable to connect.")
 		set_process(false)
 
 func _process(_delta: float) -> void:
@@ -51,33 +51,33 @@ func _process(_delta: float) -> void:
 			match type:
 				MessageType.OK:
 					if state == ClientState.QUEUING:
-						print("We were queued!")
+						Logger.i("We were queued!")
 						waiting_for = MessageType.MATCHED
 					elif state == ClientState.SENDING_DECK:
-						print("Client: Deck OK!")
+						Logger.i("Deck OK!")
 						state = ClientState.AWAIT_BOARD
 					elif state == ClientState.AWAIT_BOARD:
-						print("Board ready!")
+						Logger.i("Board ready!")
 						state = ClientState.START_GAME
 				MessageType.MATCHED:
 					if state == ClientState.QUEUING:
-						print("We were matched!")
+						Logger.i("We were matched!")
 						state = ClientState.AWAIT_DECK
 				MessageType.EVENT:
 					var msg_text: String = msg.slice(1).to_byte_array().get_string_from_ascii()
-					print("Client: Got event: ", msg_text)
+					Logger.i("Got event: " + msg_text)
 					events.push_back(msg_text)
 				MessageType.ACTION:
 					var msg_text: String = msg.slice(1).to_byte_array().get_string_from_ascii()
-					print("Client: Got action: ", msg_text)
+					Logger.i("Got action: " + msg_text)
 					actions.push_back(msg_text)
 				MessageType.IDENTITY:
 					var msg_text: String = msg.slice(1).to_byte_array().get_string_from_ascii()
-					print("Client: Got identity: ", msg_text)
+					Logger.i("Got identity: " + msg_text)
 					events.push_back("Identity\t" + msg_text)
 				MessageType.CHAT:
 					var msg_text: String = msg.slice(1).to_byte_array().get_string_from_utf8()
-					print("Client: Got a message: ", msg_text)
+					Logger.i("Got a message: " + msg_text)
 		if waiting_for == MessageType.NONE:
 			match state:
 				ClientState.STARTING:
@@ -93,7 +93,7 @@ func request_queue() -> void:
 	socket.send(message.to_byte_array())
 	waiting_for = MessageType.OK
 	state = ClientState.QUEUING
-	print("Sent queue request")
+	Logger.i("Sent queue request")
 
 func send(msg: PackedByteArray):
 	socket.send(msg)
@@ -112,7 +112,7 @@ func send_deck(deck: Deck) -> void:
 	socket.send(msg_data)
 	state = ClientState.SENDING_DECK
 	waiting_for = MessageType.OK
-	print("Sent: ", deck_msg)
+	Logger.i("Sent: " + deck_msg)
 
 func send_chat(message: String) -> void:
 	while message.length() % 4 != 0:

@@ -107,7 +107,7 @@ func effect_with_targets(targets: Array[Card], variables: Dictionary = {}):
 		var targets_for_effect = len(e.targets_to_select_for_effect())
 		if targets_for_effect > 0:
 			if target_idx + targets_for_effect > len(targets):
-				print("Not enough targets for effect")
+				Logger.w("Not enough targets for effect")
 				return
 			var eff_targets = targets.slice(target_idx, target_idx + targets_for_effect)
 			var eff_variables = {

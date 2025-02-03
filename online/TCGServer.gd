@@ -48,7 +48,7 @@ func _process(delta: float) -> void:
 		clients[peer] = {
 			"state": ClientState.IDLE
 		}
-		print("Got new connection from ", peer.get_connected_host())
+		Logger.i("Got new connection from %s" % peer.get_connected_host())
 	
 	for peer in clients:
 		peer.poll()
@@ -60,7 +60,7 @@ func _process(delta: float) -> void:
 		for i in range(queue.size() - 1):
 			for j in range(i + 1, queue.size()):
 				if clients[queue[i]]["password"] == clients[queue[j]]["password"]:
-					print("We found a match!")
+					Logger.i("We found a match!")
 					prepare_match(queue[i], queue[j])
 					queue.erase(queue[j])
 					queue.erase(queue[i])
@@ -73,10 +73,10 @@ func handle_packet(peer: WebSocketPeer):
 	match type:
 		MessageType.QUEUE:
 			if clients[peer]["state"] != ClientState.IDLE:
-				print("Deny queue request")
+				Logger.w("Deny queue request")
 				pass # Deny the connection
 			else:
-				print("Client ", peer.get_connected_host(), " queued")
+				Logger.i("Client " + peer.get_connected_host() + " queued")
 				clients[peer]["state"] = ClientState.QUEUING
 				clients[peer]["password"] = ""
 				queue.push_back(peer)
@@ -90,23 +90,23 @@ func handle_packet(peer: WebSocketPeer):
 				return
 			var card_ids: PackedStringArray = msg.slice(1).to_byte_array().get_string_from_ascii().split(",")
 			if verify_deck(card_ids) == 0:
-				print("Server: Deck OK")
+				Logger.i("Deck OK")
 				var game = games[peer]
 				game["decks"][game["players"].find(peer)] = card_ids
 				send_ok(peer)
 				if game["decks"][0] != null and game["decks"][1] != null:
 					start_match(game)
 			else:
-				print("Invalid deck") # Send a denied package
+				Logger.w("Invalid deck") # Send a denied package
 		MessageType.ACTION:
 			var msg_text: String = msg.slice(1).to_byte_array().get_string_from_ascii()
 			if peer in games:
 				var game: Dictionary = games[peer]
 				if peer == game["players"][0]:
-					print("Server: Got action for P1: ", msg_text)
+					Logger.i("Got action for P1: %s" % msg_text)
 					games[peer]["actions"][0].push_back(msg_text)
 				elif peer == game["players"][1]:
-					print("Server: Got action for P2: ", msg_text)
+					Logger.i("Got action for P2: %s" % msg_text)
 					games[peer]["actions"][1].push_back(msg_text)
 
 func prepare_match(peerA, peerB) -> void:
@@ -138,7 +138,7 @@ func start_match(game: Dictionary):
 	game_scene.game_options["online"] = "server"
 	game_scene.server = self
 	add_child(game_scene)
-	print("Started the match")
+	Logger.i("Started the match")
 	for peer in game["players"]:
 		send_ok(peer)
 

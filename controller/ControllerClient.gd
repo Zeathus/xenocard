@@ -22,7 +22,7 @@ func _prepare_handling(delta: float, actions: Array[Action]):
 		if incoming_action in actions:
 			return true
 		else:
-			print("Invalid action: ", incoming_action)
+			Logger.e("Invalid action: %d" % incoming_action)
 	current_delay = 0.1
 	return false
 
@@ -45,6 +45,7 @@ func _handle_request(action: Action, args: Array) -> bool:
 			return true
 		Action.EVENT, Action.BLOCK:
 			response_args = [game_board.get_card_from_online_id(incoming[1])]
+			Logger.i("Got Event/Block")
 			return true
 		Action.MOVE:
 			response_args = [game_board.get_card_from_online_id(incoming[1]), int(incoming[2]), int(incoming[3])]

@@ -62,7 +62,6 @@ func new_game():
 			self
 		)
 		if online_mode == 2: # Server
-			print("online_mode == 2")
 			player.controller = ControllerServer.new(self, player, server, options["peer"])
 			add_child(player.controller)
 			player.controller.start()
@@ -112,10 +111,10 @@ func load_game(path: String):
 			if error == OK:
 				data = json.data
 			else:
-				push_error("Failed to to parse game file '%s'" % path)
+				Logger.e("Failed to to parse game file '%s'" % path)
 				return null
 		else:
-			push_error("Failed to find game file '%s'" % path)
+			Logger.e("Failed to find game file '%s'" % path)
 			return null
 	else:
 		if ResourceLoader.exists(path):
@@ -125,10 +124,10 @@ func load_game(path: String):
 			if error == OK:
 				data = json.data
 			else:
-				push_error("Failed to to parse game file '%s'" % path)
+				Logger.e("Failed to to parse game file '%s'" % path)
 				return null
 		else:
-			push_error("Failed to find game file '%s'" % path)
+			Logger.e("Failed to find game file '%s'" % path)
 			return null
 	turn_player_id = data["turn_player_id"]
 	turn_phase = data["turn_phase"]
@@ -484,9 +483,14 @@ func add_phase_effect(phase: Enum.Phase, effect: Effect):
 	phase_effects[phase].push_back(effect)
 
 func play_se(se: String):
-	var sound = load("res://audio/se/" + se + ".wav")
-	if not sound:
+	var sound = null
+	if ResourceLoader.exists("res://audio/se/" + se + ".wav"):
+		sound = load("res://audio/se/" + se + ".wav")
+	elif ResourceLoader.exists("res://audio/se/" + se + ".ogg"):
 		sound = load("res://audio/se/" + se + ".ogg")
+	if sound == null:
+		Logger.w("Failed to find se '%s' % se")
+		return
 	for player in [$AudioStream1, $AudioStream2, $AudioStream3]:
 		if not player.is_playing():
 			player.stream = sound
@@ -497,7 +501,7 @@ func get_card_from_online_id(online_id: String, inverse: bool = false) -> Card:
 	var args: PackedStringArray = online_id.split(",")
 	var player_id: int = int(args[0])
 	if player_id != 0 and player_id != 1:
-		print("Invalid player id: ", online_id)
+		Logger.e("Invalid player id: " % online_id)
 		return null
 	if inverse:
 		player_id = (player_id + 1) % 2
@@ -518,12 +522,12 @@ func get_card_from_online_id(online_id: String, inverse: bool = false) -> Card:
 		"S":
 			zone = Enum.Zone.SITUATION
 		_:
-			print("Invalid zone: ", online_id)
+			Logger.e("Invalid zone: " + online_id)
 			return null
 	if zone == Enum.Zone.HAND:
 		var index: int = int(args[2])
 		if index < 0 or index > len(players[player_id].hand.cards):
-			print("Invalid hand index: ", online_id)
+			Logger.e("Invalid hand index: " + online_id)
 			return null
 		return players[player_id].hand.cards[index]
 	if zone in [Enum.Zone.DECK, Enum.Zone.LOST, Enum.Zone.JUNK]:
@@ -543,13 +547,13 @@ func get_card_from_online_id(online_id: String, inverse: bool = false) -> Card:
 	else:
 		var zone_index: int = int(args[2])
 		if zone_index < 0 or zone_index > 7:
-			print("Invalid zone index: ", online_id)
+			Logger.e("Invalid zone index: " + online_id)
 			return null
 		var card: Card = players[player_id].field.get_card(zone, zone_index % 4)
 		if zone_index > 3:
 			card = card.equipped_weapon
 		return card
-	print("Failed to find card: ", online_id)
+	Logger.e("Failed to find card: " + online_id)
 	return null
 
 func is_client() -> bool:

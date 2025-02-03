@@ -46,7 +46,7 @@ func _init(filter_str: String):
 					"hand":
 						zones.push_back(Enum.Zone.HAND)
 					_:
-						print("Invalid zone filter '%s'" % value)
+						Logger.e("Invalid zone filter '%s'" % value)
 			"zoneindex":
 				zone_indices.push_back(int(value)-1)
 			"type":
@@ -62,7 +62,7 @@ func _init(filter_str: String):
 					"any":
 						owner = -1
 					_:
-						print("Invalid owner filter '%s'" % value)
+						Logger.e("Invalid owner filter '%s'" % value)
 			"self":
 				relation = 0
 			"target":
@@ -89,19 +89,20 @@ func check_multiple(value, filter):
 	return false
 
 func is_valid(player: Player, card: Card, variables: Dictionary = {}):
-	if not check_multiple(card.get_name().replace("\n", " "), names):
-		return false
-	if not check_multiple(card.get_character(), characters):
-		return false
-	if not check_multiple(card.get_attribute(), attributes):
-		return false
+	if card.data.get_full_id() != "SYS/anon":
+		if not check_multiple(card.get_name().replace("\n", " "), names):
+			return false
+		if not check_multiple(card.get_character(), characters):
+			return false
+		if not check_multiple(card.get_attribute(), attributes):
+			return false
+		if not check_multiple(card.get_type(), types):
+			return false
+		if not check_multiple(card.get_attack_type(), attack_types):
+			return false
 	if not check_multiple(card.zone, zones):
 		return false
 	if not check_multiple(card.zone_index, zone_indices):
-		return false
-	if not check_multiple(card.get_type(), types):
-		return false
-	if not check_multiple(card.get_attack_type(), attack_types):
 		return false
 	if owner == 0 and card.owner != player:
 		return false

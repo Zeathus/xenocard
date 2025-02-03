@@ -54,7 +54,7 @@ static func get_tutorial_data() -> Dictionary:
 		if error == OK:
 			return json.data
 		else:
-			push_error("Failed to to parse tutorial tutorial save file '%s'" % file_name)
+			Logger.e("Failed to to parse tutorial tutorial save file '%s'" % file_name)
 			return {}
 	else:
 		# Create tutorial save file
