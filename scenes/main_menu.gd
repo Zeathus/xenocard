@@ -20,7 +20,7 @@ func _process(delta):
 				var path = "res://sprites/card_images_baked/%s.png" % task[1][0]
 				DirAccess.make_dir_absolute(path.substr(0, path.rfind("/")))
 				img.save_png(path)
-				print("Saved '", path, "'")
+				Logger.i("Saved '%s'" % path)
 				task[3] = 0
 				task[1].pop_at(0)
 				task[2].pop_at(0)

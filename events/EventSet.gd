@@ -109,7 +109,7 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, ind
 		state = 1
 
 func play(new_zone: Enum.Zone, index: int):
-	print("Server " if game_board.is_server() else "Client ", game_board.game_id, " P", player.id + 1, " set ", to_set.get_name())
+	Logger.i("P%d set %s" % [player.id + 1, to_set.get_name()])
 	if to_set.zone == Enum.Zone.HAND:
 		var should_set_e_mark = false
 		if (to_set.get_type() == Enum.Type.BATTLE and to_set.get_attribute() != Enum.Attribute.WEAPON) or \

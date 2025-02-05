@@ -41,7 +41,7 @@ static func load_cards():
 	data = {}
 	var dir = DirAccess.open(path)
 	if not dir:
-		print("Failed to find card directory.")
+		Logger.e("Failed to find card directory.")
 		return
 	dir.list_dir_begin()
 	var set_name = dir.get_next()
@@ -86,9 +86,9 @@ func get_json(_id: String) -> Dictionary:
 		if error == OK:
 			return json.data
 		else:
-			push_error("Failed to to parse card file '%s'" % file_name)
+			Logger.e("Failed to to parse card file '%s'" % file_name)
 	else:
-		push_error("Failed to find card file '%s'" % file_name)
+		Logger.e("Failed to find card file '%s'" % file_name)
 	return {}
 
 func load_json(json: Dictionary):
@@ -145,7 +145,7 @@ func load_json(json: Dictionary):
 		for effect_dict in json["effects"]:
 			var effect_data = EffectData.parse(effect_dict, name)
 			if effect_data == null:
-				print("Failed to get effect data for ", name)
+				Logger.e("Failed to get effect data for " + name)
 				continue
 			effects.push_back(effect_data)
 
@@ -156,7 +156,7 @@ func get_image() -> Resource:
 	if ResourceLoader.exists(image_file):
 		return load(image_file)
 	else:
-		push_error("Failed to find card image '%s'" % image_file)
+		Logger.e("Failed to find card image '%s'" % image_file)
 		return load("%s/card_images/missing_artwork.%s" % [image_root, image_type])
 
 func get_baked_image() -> Resource:
@@ -166,7 +166,7 @@ func get_baked_image() -> Resource:
 	if ResourceLoader.exists(image_file):
 		return load(image_file)
 	else:
-		push_error("Failed to find card image '%s'" % image_file)
+		Logger.e("Failed to find card image '%s'" % image_file)
 		return load("%s/card_images/missing_artwork.%s" % [image_root, image_type])
 
 func has_baked_image() -> bool:

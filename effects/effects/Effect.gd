@@ -159,6 +159,6 @@ func get_target_score(target: Card) -> int:
 static func parse(effect: String) -> Object:
 	var effect_script: GDScript = load("res://effects/effects/Effect%s.gd" % effect)
 	if effect_script == null:
-		print("Failed to find effect '%s'" % effect)
+		Logger.e("Failed to find effect '%s'" % effect)
 		return Effect
 	return effect_script

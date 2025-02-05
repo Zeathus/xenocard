@@ -69,9 +69,9 @@ static func load(name: String, preset: bool = false) -> DeckData:
 				deck.cards.push_back(CardData.get_data(i))
 			return deck
 		else:
-			push_error("Failed to to parse deck file '%s'" % file_name)
+			Logger.e("Failed to to parse deck file '%s'" % file_name)
 	else:
-		push_error("Failed to find deck file '%s'" % file_name)
+		Logger.e("Failed to find deck file '%s'" % file_name)
 	return null
 
 static func list_decks() -> Array[String]:

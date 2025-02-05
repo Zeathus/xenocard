@@ -43,7 +43,7 @@ static func calc(formula: String, card: Card, game_board: GameBoard) -> int:
 		formula = formula.replace("cost", str(card.get_cost()))
 	var validity = formula_regex.search(formula)
 	if not validity or len(validity.get_string(0)) != len(formula):
-		print("Invalid formula: ", formula)
+		Logger.e("Invalid formula: " + formula)
 		return 0
 	var expression = Expression.new()
 	expression.parse(formula)

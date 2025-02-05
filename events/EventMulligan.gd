@@ -72,6 +72,6 @@ func do_not_mulligan():
 
 func broadcast():
 	if game_board.is_server():
-		print("Broadcasting ", get_name())
+		Logger.i("Broadcasting %s" % get_name())
 		player.controller.broadcast_event(get_name(), [player, str(remaining)])
 		player.get_enemy().controller.broadcast_event(get_name(), [player, str(remaining)])

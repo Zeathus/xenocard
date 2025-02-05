@@ -16,7 +16,7 @@ func get_name() -> String:
 
 func on_start():
 	if awaited_event != null:
-		print("Client: Awaiting ", awaited_event.get_name())
+		Logger.i("Awaiting %s" % awaited_event.get_name())
 
 func on_finish():
 	pass
@@ -27,9 +27,9 @@ func process(delta):
 	if client.events.size() > 0:
 		var event: Event = fetch_event(client.events.pop_front())
 		if awaited_event != null:
-			print("Client: Awaited ", event.get_name())
+			Logger.i("Awaited %s" % event.get_name())
 			if awaited_event.get_name() != event.get_name() and event is not EventIdentity:
-				push_error("Client got unexpected event ", event.get_name(), ", expected ", awaited_event.get_name())
+				Logger.e("Got unexpected event %s, expected %s" % [event.get_name(), awaited_event.get_name()])
 				return
 		if parent and not (event is EventIdentity and not event.awaited):
 			event.parent = parent
@@ -150,7 +150,6 @@ func fetch_event(event_data: String):
 		"Destroy":
 			var attacker: Card = game_board.get_card_from_online_id(args[1])
 			var target: Card = game_board.get_card_from_online_id(args[2])
-			print("Client ", game_board.game_id, " Destroy ", args[2], " -> ", target.get_name())
 			var source: Damage = Damage.from_online_id(args[3])
 			return EventDestroy.new(game_board, attacker, target, source)
 		"PayCost":
@@ -203,7 +202,7 @@ func fetch_event(event_data: String):
 				awaited_event.card_preview = game_board.dummy_card
 			return awaited_event
 		_:
-			print("Unknown event: ", args[0])
+			Logger.w("Unknown event: %s" % args[0])
 
 func queue_event(event):
 	event.parent = self

@@ -73,38 +73,38 @@ static func parse(data, card_name) -> EffectData:
 	if data is String:
 		return null
 	if "trigger" not in data:
-		print("Trigger missing for effect for card '%s'" % card_name)
+		Logger.e("Trigger missing for effect for card '%s'" % card_name)
 		return null
 	if data["trigger"].to_upper() not in Enum.Trigger:
-		print("Invalid effect Trigger '%s' for card '%s'" % [data["trigger"].to_upper(), card_name])
+		Logger.e("Invalid effect Trigger '%s' for card '%s'" % [data["trigger"].to_upper(), card_name])
 		return null
 	if "effect" not in data:
-		print("Effect missing for effect for card '%s'" % card_name)
+		Logger.e("Effect missing for effect for card '%s'" % card_name)
 		return null
 	var effect_data = EffectData.new(Enum.Trigger[data["trigger"].to_upper()])
 	for e in data["effect"]:
 		if EffectData.exists("effects", "Effect", e): # validity check
 			effect_data.effects.push_back(e)
 		else:
-			print("Failed to find effect '", e, "' for card '", card_name, "'")
+			Logger.e("Failed to find effect '%s' for card '%s'" % [e, card_name])
 	if "requirement" in data:
 		for r in data["requirement"]:
 			if EffectData.exists("requirements", "Requirement", r): # validity check
 				effect_data.requirements.push_back(r)
 			else:
-				print("Failed to find requirement '", r, "' for card '", card_name, "'")
+				Logger.e("Failed to find requirement '%s' for card '%s'" % [r, card_name])
 	if "on_end" in data:
 		for e in data["on_end"]:
 			if EffectData.exists("effects", "Effect", e): # validity check
 				effect_data.effects_on_end.push_back(e)
 			else:
-				print("Failed to find effect '", e, "' for card '", card_name, "'")
+				Logger.e("Failed to find effect '%s' for card '%s'" % [e, card_name])
 	if "finally" in data:
 		for e in data["finally"]:
 			if EffectData.exists("effects", "Effect", e): # validity check
 				effect_data.finally.push_back(e)
 			else:
-				print("Failed to find effect '", e, "' for card '", card_name, "'")
+				Logger.e("Failed to find effect '%s' for card '%s'" % [e, card_name])
 	if "ignores_down" in data:
 		effect_data.ignores_down = data["ignores_down"]
 	if "global" in data:

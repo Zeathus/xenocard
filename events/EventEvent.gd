@@ -16,9 +16,8 @@ func get_name() -> String:
 	return "Event"
 
 func on_start():
-	if card.selectable(game_board):
-		broadcast()
-		play(card)
+	broadcast()
+	play(card)
 
 func on_finish():
 	pass

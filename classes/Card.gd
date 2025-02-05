@@ -95,7 +95,7 @@ func validate_effects():
 			i = i.substr(0, i.find("("))
 		var effect = Effect.parse(i)
 		if effect == Effect:
-			print("Previous error was for the card '%s'" % get_name())
+			Logger.e("Previous error was for the card '%s'" % get_name())
 		else:
 			effect.new(null, self, param)
 
