@@ -80,6 +80,88 @@ func refresh_deck():
 		node.position.x = 64 + card_spacing.x * (i % cards_per_row)
 		node.position.y = 88 + card_spacing.y * floor(i / cards_per_row)
 		node.show_card(deck.cards[i])
+	refresh_stats()
+
+func refresh_stats():
+	var attributes: Array[Enum.Attribute] = [
+		Enum.Attribute.ANY,
+		Enum.Attribute.HUMAN,
+		Enum.Attribute.REALIAN,
+		Enum.Attribute.MACHINE,
+		Enum.Attribute.GNOSIS,
+		Enum.Attribute.MONSTER,
+		Enum.Attribute.NOPON,
+		Enum.Attribute.BLADE,
+		Enum.Attribute.UNKNOWN,
+		Enum.Attribute.WEAPON
+	]
+	var attribute_nodes: Array[Node2D] = [
+		$Stats/Any,
+		$Stats/Human,
+		$Stats/Realian,
+		$Stats/Machine,
+		$Stats/Gnosis,
+		$Stats/Monster,
+		$Stats/Nopon,
+		$Stats/Blade,
+		$Stats/Unknown,
+		$Stats/Weapon
+	]
+	for i in range(0, attributes.size()):
+		var count: int = 0
+		var field: int = 0
+		for card in deck.cards:
+			if attributes[i] != Enum.Attribute.ANY and card.attribute == attributes[i]:
+				count += 1
+			if i in card.field:
+				field += 1
+		attribute_nodes[i].find_child("Count").text = str(count) if count > 0 else "-"
+		attribute_nodes[i].find_child("Field").text = str(field) if field > 0 else "-"
+	var battle_count: int = 0
+	var event_count: int = 0
+	var situation_count: int = 0
+	var hand_count: int = 0
+	var ballistic_count: int = 0
+	var spread_count: int = 0
+	var homing_count: int = 0
+	var total_cost: int = 0
+	var unlimited_count: int = 0
+	for card in deck.cards:
+		match card.type:
+			Enum.Type.BATTLE:
+				battle_count += 1
+			Enum.Type.EVENT:
+				event_count += 1
+			Enum.Type.SITUATION:
+				situation_count += 1
+		match card.attack_type:
+			Enum.AttackType.HAND:
+				hand_count += 1
+			Enum.AttackType.BALLISTIC:
+				ballistic_count += 1
+			Enum.AttackType.SPREAD:
+				spread_count += 1
+			Enum.AttackType.HOMING:
+				homing_count += 1
+		total_cost += card.cost
+		var unlimited: bool = false
+		for effect_data: EffectData in card.effects:
+			for effect: String in effect_data.effects:
+				if "Unlimited" in effect:
+					unlimited = true
+					break
+		if unlimited:
+			unlimited_count += 1
+	$Stats/BattleCount/Value.text = str(battle_count)
+	$Stats/EventCount/Value.text = str(event_count)
+	$Stats/SituationCount/Value.text = str(situation_count)
+	$Stats/HandCount/Value.text = str(hand_count)
+	$Stats/BallisticCount/Value.text = str(ballistic_count)
+	$Stats/SpreadCount/Value.text = str(spread_count)
+	$Stats/HomingCount/Value.text = str(homing_count)
+	$Stats/TotalCost/Value.text = str(total_cost)
+	$Stats/AverageCost/Value.text = str((total_cost * 10 / deck.size()) / 10.0) if total_cost > 0 else "0"
+	$Stats/UnlimitedCount/Value.text = str(unlimited_count)
 
 func refresh_deck_list():
 	$Meta/LoadDeck.clear()
@@ -124,6 +206,44 @@ func filter_card(card: CardData) -> bool:
 			return false
 	if not filter_integer(card.cost, filter_cost):
 		return false
+	if $Filters/FieldAny.is_on():
+		if card.field.size() == 0:
+			return false
+	elif $Filters/FieldAny.is_off():
+		if card.field.size() > 0:
+			return false
+	var included_attributes: Array[Enum.Attribute] = []
+	var excluded_attributes: Array[Enum.Attribute] = []
+	if $Filters/FieldHuman.is_on():
+		included_attributes.push_back(Enum.Attribute.HUMAN)
+	elif $Filters/FieldHuman.is_off():
+		excluded_attributes.push_back(Enum.Attribute.HUMAN)
+	if $Filters/FieldMachine.is_on():
+		included_attributes.push_back(Enum.Attribute.MACHINE)
+	elif $Filters/FieldMachine.is_off():
+		excluded_attributes.push_back(Enum.Attribute.MACHINE)
+	if $Filters/FieldGnosis.is_on():
+		included_attributes.push_back(Enum.Attribute.GNOSIS)
+	elif $Filters/FieldGnosis.is_off():
+		excluded_attributes.push_back(Enum.Attribute.GNOSIS)
+	if $Filters/FieldMonster.is_on():
+		included_attributes.push_back(Enum.Attribute.MONSTER)
+	elif $Filters/FieldMonster.is_off():
+		excluded_attributes.push_back(Enum.Attribute.MONSTER)
+	if $Filters/FieldNopon.is_on():
+		included_attributes.push_back(Enum.Attribute.NOPON)
+	elif $Filters/FieldNopon.is_off():
+		excluded_attributes.push_back(Enum.Attribute.NOPON)
+	if $Filters/FieldBlade.is_on():
+		included_attributes.push_back(Enum.Attribute.BLADE)
+	elif $Filters/FieldBlade.is_off():
+		excluded_attributes.push_back(Enum.Attribute.BLADE)
+	for i in included_attributes:
+		if i not in card.field:
+			return false
+	for i in excluded_attributes:
+		if i in card.field:
+			return false
 	return true
 
 func filter_integer(value: int, filter: String) -> bool:
@@ -179,6 +299,7 @@ func _ready():
 	refresh_card_list()
 	refresh_deck_list()
 	refresh_preset_list()
+	refresh_stats()
 	$Meta/LoadDeck.select(-1)
 
 func add_to_deck(card: CardData):
@@ -283,3 +404,24 @@ func _on_button_exit_pressed():
 
 func _on_button_open_deck_dir_pressed():
 	OS.shell_open("%s/decks" % OS.get_user_data_dir())
+
+func _on_field_any_toggled(new_state: int) -> void:
+	refresh_card_list()
+
+func _on_field_human_toggled(new_state: int) -> void:
+	refresh_card_list()
+
+func _on_field_machine_toggled(new_state: int) -> void:
+	refresh_card_list()
+
+func _on_field_gnosis_toggled(new_state: int) -> void:
+	refresh_card_list()
+
+func _on_field_monster_toggled(new_state: int) -> void:
+	refresh_card_list()
+
+func _on_field_nopon_toggled(new_state: int) -> void:
+	refresh_card_list()
+
+func _on_field_blade_toggled(new_state: int) -> void:
+	refresh_card_list()

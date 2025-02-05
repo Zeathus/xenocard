@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://beqafedaf6ood"]
+[gd_scene load_steps=17 format=3 uid="uid://beqafedaf6ood"]
 
 [ext_resource type="Script" path="res://scenes/deck_builder.gd" id="1_gbn5a"]
 [ext_resource type="Texture2D" uid="uid://c4e86agyg5na" path="res://sprites/text_icons/human.png" id="2_4w8la"]
@@ -10,9 +10,16 @@
 [ext_resource type="Texture2D" uid="uid://cyil0a2s7iecn" path="res://sprites/text_icons/gnosis.png" id="5_vx0wu"]
 [ext_resource type="Texture2D" uid="uid://bfgvnipod5tro" path="res://sprites/text_icons/unknown.png" id="6_70cvl"]
 [ext_resource type="Texture2D" uid="uid://d2008vc1rsyy2" path="res://sprites/text_icons/weapon.png" id="7_22red"]
+[ext_resource type="PackedScene" uid="uid://bb5g7fjxu6i08" path="res://objects/custom_checkbox.tscn" id="10_r56lw"]
+[ext_resource type="Texture2D" uid="uid://bton847702p35" path="res://sprites/text_icons/monster.png" id="11_8h8cp"]
+[ext_resource type="Texture2D" uid="uid://cpijd44u3cj3g" path="res://sprites/text_icons/nopon.png" id="12_4t3pf"]
+[ext_resource type="Texture2D" uid="uid://d0s2rjnug2xib" path="res://sprites/text_icons/blade.png" id="13_332lf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pcyqr"]
 size = Vector2(99, 752)
+
+[sub_resource type="LabelSettings" id="LabelSettings_x14xu"]
+font_size = 24
 
 [node name="DeckBuilder" type="Node2D"]
 script = ExtResource("1_gbn5a")
@@ -185,6 +192,808 @@ offset_right = 525.0
 offset_bottom = 532.0
 theme = ExtResource("2_hvo3i")
 
+[node name="HEADER" type="Label" parent="Stats"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.510371
+anchor_top = -0.410391
+anchor_right = -0.337203
+anchor_bottom = -0.377923
+offset_left = 554.4
+offset_top = 68.2002
+offset_right = 576.4
+offset_bottom = 98.2002
+text = "DECK STATS"
+label_settings = SubResource("LabelSettings_x14xu")
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="BattleCount" type="Label" parent="Stats"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.502759
+anchor_top = -0.150651
+anchor_right = -0.329591
+anchor_bottom = -0.150651
+offset_left = 554.4
+offset_top = 68.2002
+offset_right = 576.4
+offset_bottom = 98.2002
+text = "Battle:"
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Value" type="Label" parent="Stats/BattleCount"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0324472
+anchor_top = 2.38615
+anchor_right = 0.14029
+anchor_bottom = 2.38615
+offset_left = 69.3808
+offset_top = -71.5844
+offset_right = 91.3807
+offset_bottom = -41.5844
+text = "40"
+horizontal_alignment = 2
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="EventCount" type="Label" parent="Stats"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.502759
+anchor_top = 0.0571416
+anchor_right = -0.318173
+anchor_bottom = 0.0571416
+offset_left = 554.4
+offset_top = 68.2002
+offset_right = 564.4
+offset_bottom = 98.2002
+text = "Event:"
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Value" type="Label" parent="Stats/EventCount"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0324472
+anchor_top = 2.38615
+anchor_right = 0.14029
+anchor_bottom = 2.38615
+offset_left = 69.3808
+offset_top = -71.5844
+offset_right = 91.3807
+offset_bottom = -41.5844
+text = "40"
+horizontal_alignment = 2
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="SituationCount" type="Label" parent="Stats"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.502759
+anchor_top = 0.264934
+anchor_right = -0.385728
+anchor_bottom = 0.264934
+offset_left = 554.4
+offset_top = 68.2002
+offset_right = 635.4
+offset_bottom = 98.2002
+text = "Situation:"
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Value" type="Label" parent="Stats/SituationCount"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0324472
+anchor_top = 2.38615
+anchor_right = 0.14029
+anchor_bottom = 2.38615
+offset_left = 69.3808
+offset_top = -71.5844
+offset_right = 91.3807
+offset_bottom = -41.5844
+text = "40"
+horizontal_alignment = 2
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="HandCount" type="Label" parent="Stats"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.342911
+anchor_top = -0.358443
+anchor_right = -0.22588
+anchor_bottom = -0.358443
+offset_left = 554.4
+offset_top = 68.2002
+offset_right = 635.4
+offset_bottom = 98.2002
+text = "Hand: "
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Value" type="Label" parent="Stats/HandCount"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0165724
+anchor_top = 2.38615
+anchor_right = 0.0912709
+anchor_bottom = 2.38615
+offset_left = 69.3808
+offset_top = -71.5844
+offset_right = 91.3807
+offset_bottom = -41.5844
+text = "40"
+horizontal_alignment = 2
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="BallisticCount" type="Label" parent="Stats"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.342911
+anchor_top = -0.150651
+anchor_right = -0.22588
+anchor_bottom = -0.150651
+offset_left = 554.4
+offset_top = 68.2002
+offset_right = 635.4
+offset_bottom = 98.2002
+text = "Ballistic: "
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Value" type="Label" parent="Stats/BallisticCount"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0165724
+anchor_top = 2.38615
+anchor_right = 0.0912709
+anchor_bottom = 2.38615
+offset_left = 69.3808
+offset_top = -71.5844
+offset_right = 91.3807
+offset_bottom = -41.5844
+text = "40"
+horizontal_alignment = 2
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="SpreadCount" type="Label" parent="Stats"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.342911
+anchor_top = 0.0571416
+anchor_right = -0.22588
+anchor_bottom = 0.0571416
+offset_left = 554.4
+offset_top = 68.2002
+offset_right = 635.4
+offset_bottom = 98.2002
+text = "Spread: "
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Value" type="Label" parent="Stats/SpreadCount"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0165724
+anchor_top = 2.38615
+anchor_right = 0.0912709
+anchor_bottom = 2.38615
+offset_left = 69.3808
+offset_top = -71.5844
+offset_right = 91.3807
+offset_bottom = -41.5844
+text = "40"
+horizontal_alignment = 2
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="HomingCount" type="Label" parent="Stats"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.342911
+anchor_top = 0.264934
+anchor_right = -0.22588
+anchor_bottom = 0.264934
+offset_left = 554.4
+offset_top = 68.2002
+offset_right = 635.4
+offset_bottom = 98.2002
+text = "Homing: "
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Value" type="Label" parent="Stats/HomingCount"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0165724
+anchor_top = 2.38615
+anchor_right = 0.0912709
+anchor_bottom = 2.38615
+offset_left = 69.3808
+offset_top = -71.5844
+offset_right = 91.3807
+offset_bottom = -41.5844
+text = "40"
+horizontal_alignment = 2
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="TotalCost" type="Label" parent="Stats"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.198287
+anchor_top = -0.358443
+anchor_right = -0.0831589
+anchor_bottom = -0.358443
+offset_left = 554.4
+offset_top = 68.2002
+offset_right = 635.4
+offset_bottom = 98.2002
+text = "Total Cost:"
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Value" type="Label" parent="Stats/TotalCost"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.244833
+anchor_top = 2.38615
+anchor_right = 0.352676
+anchor_bottom = 2.38615
+offset_left = 69.3808
+offset_top = -71.5844
+offset_right = 91.3807
+offset_bottom = -41.5844
+text = "40"
+horizontal_alignment = 2
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="AverageCost" type="Label" parent="Stats"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.198287
+anchor_top = -0.150651
+anchor_right = -0.0831589
+anchor_bottom = -0.150651
+offset_left = 554.4
+offset_top = 68.2002
+offset_right = 635.4
+offset_bottom = 98.2002
+text = "Average Cost:"
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Value" type="Label" parent="Stats/AverageCost"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.244833
+anchor_top = 2.38615
+anchor_right = 0.352676
+anchor_bottom = 2.38615
+offset_left = 69.3808
+offset_top = -71.5844
+offset_right = 91.3807
+offset_bottom = -41.5844
+text = "40"
+horizontal_alignment = 2
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="UnlimitedCount" type="Label" parent="Stats"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.198287
+anchor_top = 0.0571416
+anchor_right = -0.0831589
+anchor_bottom = 0.0571416
+offset_left = 554.4
+offset_top = 68.2002
+offset_right = 635.4
+offset_bottom = 98.2002
+text = "Unlimited:"
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Value" type="Label" parent="Stats/UnlimitedCount"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.244833
+anchor_top = 2.38615
+anchor_right = 0.352676
+anchor_bottom = 2.38615
+offset_left = 69.3808
+offset_top = -71.5844
+offset_right = 91.3807
+offset_bottom = -41.5844
+text = "40"
+horizontal_alignment = 2
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="AttributeCount" type="Label" parent="Stats"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.101427
+anchor_top = 0.00519354
+anchor_right = 0.164225
+anchor_bottom = 0.00519354
+offset_left = 554.4
+offset_top = 68.2002
+offset_right = 576.4
+offset_bottom = 98.2002
+text = "In Deck:"
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="AttributeField" type="Label" parent="Stats"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.101427
+anchor_top = 0.264934
+anchor_right = 0.172788
+anchor_bottom = 0.264934
+offset_left = 554.4
+offset_top = 68.2002
+offset_right = 576.4
+offset_bottom = 98.2002
+text = "Field Req:"
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Any" type="Node2D" parent="Stats"]
+position = Vector2(772, 42)
+
+[node name="Icon" type="Sprite2D" parent="Stats/Any"]
+position = Vector2(0, 1.00018)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_xa34a")
+
+[node name="Count" type="Label" parent="Stats/Any"]
+anchors_preset = -1
+anchor_left = -0.0232159
+anchor_top = -0.0467545
+anchor_right = 0.0395814
+anchor_bottom = -0.0467545
+offset_left = -19.0
+offset_top = 27.0
+offset_right = 20.0
+offset_bottom = 57.0
+theme = ExtResource("2_hvo3i")
+text = "40"
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Field" type="Label" parent="Stats/Any"]
+anchors_preset = -1
+anchor_left = -0.0232159
+anchor_top = -0.0467545
+anchor_right = 0.0395814
+anchor_bottom = -0.0467545
+offset_left = -19.0
+offset_top = 67.0
+offset_right = 20.0
+offset_bottom = 97.0
+theme = ExtResource("2_hvo3i")
+text = "40"
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Human" type="Node2D" parent="Stats"]
+position = Vector2(812, 42)
+
+[node name="Icon" type="Sprite2D" parent="Stats/Human"]
+position = Vector2(0, 1.00018)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_4w8la")
+
+[node name="Count" type="Label" parent="Stats/Human"]
+anchors_preset = -1
+anchor_left = -0.0232159
+anchor_top = -0.0467545
+anchor_right = 0.0395814
+anchor_bottom = -0.0467545
+offset_left = -19.0
+offset_top = 27.0
+offset_right = 20.0
+offset_bottom = 57.0
+theme = ExtResource("2_hvo3i")
+text = "40"
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Field" type="Label" parent="Stats/Human"]
+anchors_preset = -1
+anchor_left = -0.0232159
+anchor_top = -0.0467545
+anchor_right = 0.0395814
+anchor_bottom = -0.0467545
+offset_left = -19.0
+offset_top = 67.0
+offset_right = 20.0
+offset_bottom = 97.0
+theme = ExtResource("2_hvo3i")
+text = "40"
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Realian" type="Node2D" parent="Stats"]
+position = Vector2(852, 42)
+
+[node name="Icon" type="Sprite2D" parent="Stats/Realian"]
+position = Vector2(0, 1.00018)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("3_o6g6v")
+
+[node name="Count" type="Label" parent="Stats/Realian"]
+anchors_preset = -1
+anchor_left = -0.0232159
+anchor_top = -0.0467545
+anchor_right = 0.0395814
+anchor_bottom = -0.0467545
+offset_left = -19.0
+offset_top = 27.0
+offset_right = 20.0
+offset_bottom = 57.0
+theme = ExtResource("2_hvo3i")
+text = "40"
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Field" type="Label" parent="Stats/Realian"]
+anchors_preset = -1
+anchor_left = -0.0232159
+anchor_top = -0.0467545
+anchor_right = 0.0395814
+anchor_bottom = -0.0467545
+offset_left = -19.0
+offset_top = 67.0
+offset_right = 20.0
+offset_bottom = 97.0
+theme = ExtResource("2_hvo3i")
+text = "40"
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Machine" type="Node2D" parent="Stats"]
+position = Vector2(892, 42)
+
+[node name="Icon" type="Sprite2D" parent="Stats/Machine"]
+position = Vector2(0, 1.00018)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("4_fjy1p")
+
+[node name="Count" type="Label" parent="Stats/Machine"]
+anchors_preset = -1
+anchor_left = -0.0232159
+anchor_top = -0.0467545
+anchor_right = 0.0395814
+anchor_bottom = -0.0467545
+offset_left = -19.0
+offset_top = 27.0
+offset_right = 20.0
+offset_bottom = 57.0
+theme = ExtResource("2_hvo3i")
+text = "40"
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Field" type="Label" parent="Stats/Machine"]
+anchors_preset = -1
+anchor_left = -0.0232159
+anchor_top = -0.0467545
+anchor_right = 0.0395814
+anchor_bottom = -0.0467545
+offset_left = -19.0
+offset_top = 67.0
+offset_right = 20.0
+offset_bottom = 97.0
+theme = ExtResource("2_hvo3i")
+text = "40"
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Gnosis" type="Node2D" parent="Stats"]
+position = Vector2(932, 42)
+
+[node name="Icon" type="Sprite2D" parent="Stats/Gnosis"]
+position = Vector2(0, 1.00018)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("5_vx0wu")
+
+[node name="Count" type="Label" parent="Stats/Gnosis"]
+anchors_preset = -1
+anchor_left = -0.0232159
+anchor_top = -0.0467545
+anchor_right = 0.0395814
+anchor_bottom = -0.0467545
+offset_left = -19.0
+offset_top = 27.0
+offset_right = 20.0
+offset_bottom = 57.0
+theme = ExtResource("2_hvo3i")
+text = "40"
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Field" type="Label" parent="Stats/Gnosis"]
+anchors_preset = -1
+anchor_left = -0.0232159
+anchor_top = -0.0467545
+anchor_right = 0.0395814
+anchor_bottom = -0.0467545
+offset_left = -19.0
+offset_top = 67.0
+offset_right = 20.0
+offset_bottom = 97.0
+theme = ExtResource("2_hvo3i")
+text = "40"
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Monster" type="Node2D" parent="Stats"]
+visible = false
+position = Vector2(852, 42)
+
+[node name="Icon" type="Sprite2D" parent="Stats/Monster"]
+position = Vector2(0, 1.00018)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("11_8h8cp")
+
+[node name="Count" type="Label" parent="Stats/Monster"]
+anchors_preset = -1
+anchor_left = -0.0232159
+anchor_top = -0.0467545
+anchor_right = 0.0395814
+anchor_bottom = -0.0467545
+offset_left = -19.0
+offset_top = 27.0
+offset_right = 20.0
+offset_bottom = 57.0
+theme = ExtResource("2_hvo3i")
+text = "40"
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Field" type="Label" parent="Stats/Monster"]
+anchors_preset = -1
+anchor_left = -0.0232159
+anchor_top = -0.0467545
+anchor_right = 0.0395814
+anchor_bottom = -0.0467545
+offset_left = -19.0
+offset_top = 67.0
+offset_right = 20.0
+offset_bottom = 97.0
+theme = ExtResource("2_hvo3i")
+text = "40"
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Nopon" type="Node2D" parent="Stats"]
+visible = false
+position = Vector2(892, 42)
+
+[node name="Icon" type="Sprite2D" parent="Stats/Nopon"]
+position = Vector2(0, 1.00018)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("12_4t3pf")
+
+[node name="Count" type="Label" parent="Stats/Nopon"]
+anchors_preset = -1
+anchor_left = -0.0232159
+anchor_top = -0.0467545
+anchor_right = 0.0395814
+anchor_bottom = -0.0467545
+offset_left = -19.0
+offset_top = 27.0
+offset_right = 20.0
+offset_bottom = 57.0
+theme = ExtResource("2_hvo3i")
+text = "40"
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Field" type="Label" parent="Stats/Nopon"]
+anchors_preset = -1
+anchor_left = -0.0232159
+anchor_top = -0.0467545
+anchor_right = 0.0395814
+anchor_bottom = -0.0467545
+offset_left = -19.0
+offset_top = 67.0
+offset_right = 20.0
+offset_bottom = 97.0
+theme = ExtResource("2_hvo3i")
+text = "40"
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Blade" type="Node2D" parent="Stats"]
+visible = false
+position = Vector2(932, 42)
+
+[node name="Icon" type="Sprite2D" parent="Stats/Blade"]
+position = Vector2(0, 1.00018)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("13_332lf")
+
+[node name="Count" type="Label" parent="Stats/Blade"]
+anchors_preset = -1
+anchor_left = -0.0232159
+anchor_top = -0.0467545
+anchor_right = 0.0395814
+anchor_bottom = -0.0467545
+offset_left = -19.0
+offset_top = 27.0
+offset_right = 20.0
+offset_bottom = 57.0
+theme = ExtResource("2_hvo3i")
+text = "40"
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Field" type="Label" parent="Stats/Blade"]
+anchors_preset = -1
+anchor_left = -0.0232159
+anchor_top = -0.0467545
+anchor_right = 0.0395814
+anchor_bottom = -0.0467545
+offset_left = -19.0
+offset_top = 67.0
+offset_right = 20.0
+offset_bottom = 97.0
+theme = ExtResource("2_hvo3i")
+text = "40"
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Unknown" type="Node2D" parent="Stats"]
+position = Vector2(972, 42)
+
+[node name="Icon" type="Sprite2D" parent="Stats/Unknown"]
+position = Vector2(0, 1.00018)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("6_70cvl")
+
+[node name="Count" type="Label" parent="Stats/Unknown"]
+anchors_preset = -1
+anchor_left = -0.0232159
+anchor_top = -0.0467545
+anchor_right = 0.0395814
+anchor_bottom = -0.0467545
+offset_left = -19.0
+offset_top = 27.0
+offset_right = 20.0
+offset_bottom = 57.0
+theme = ExtResource("2_hvo3i")
+text = "40"
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Field" type="Label" parent="Stats/Unknown"]
+anchors_preset = -1
+anchor_left = -0.0232159
+anchor_top = -0.0467545
+anchor_right = 0.0395814
+anchor_bottom = -0.0467545
+offset_left = -19.0
+offset_top = 67.0
+offset_right = 20.0
+offset_bottom = 97.0
+theme = ExtResource("2_hvo3i")
+text = "40"
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Weapon" type="Node2D" parent="Stats"]
+position = Vector2(1012, 42)
+
+[node name="Icon" type="Sprite2D" parent="Stats/Weapon"]
+position = Vector2(0, 1.00018)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("7_22red")
+
+[node name="Count" type="Label" parent="Stats/Weapon"]
+anchors_preset = -1
+anchor_left = -0.0232159
+anchor_top = -0.0467545
+anchor_right = 0.0395814
+anchor_bottom = -0.0467545
+offset_left = -19.0
+offset_top = 27.0
+offset_right = 20.0
+offset_bottom = 57.0
+theme = ExtResource("2_hvo3i")
+text = "40"
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Field" type="Label" parent="Stats/Weapon"]
+anchors_preset = -1
+anchor_left = -0.0232159
+anchor_top = -0.0467545
+anchor_right = 0.0395814
+anchor_bottom = -0.0467545
+offset_left = -19.0
+offset_top = 67.0
+offset_right = 20.0
+offset_bottom = 97.0
+theme = ExtResource("2_hvo3i")
+text = "40"
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
 [node name="Filters" type="Panel" parent="."]
 offset_left = 6.0
 offset_top = -531.0
@@ -192,40 +1001,53 @@ offset_right = 954.0
 offset_bottom = -259.0
 theme = ExtResource("2_hvo3i")
 
+[node name="Header" type="Label" parent="Filters"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 7.0
+offset_right = 935.0
+offset_bottom = 42.0
+text = "FILTER_HEADER"
+label_settings = SubResource("LabelSettings_x14xu")
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+
 [node name="SearchLabel" type="Label" parent="Filters"]
 layout_mode = 0
-offset_left = 431.0
-offset_top = 224.0
-offset_right = 531.0
-offset_bottom = 254.0
+offset_left = 528.0
+offset_top = 162.0
+offset_right = 628.0
+offset_bottom = 192.0
 text = "FILTER_SEARCH"
-horizontal_alignment = 2
+vertical_alignment = 2
 clip_text = true
 
 [node name="Search" type="LineEdit" parent="Filters"]
 layout_mode = 0
-offset_left = 537.0
-offset_top = 212.0
-offset_right = 938.0
-offset_bottom = 259.0
+offset_left = 528.0
+offset_top = 202.0
+offset_right = 925.0
+offset_bottom = 249.0
 placeholder_text = "FILTER_SEARCH_HINT"
+clear_button_enabled = true
 
 [node name="TypeLabel" type="Label" parent="Filters"]
 layout_mode = 0
-offset_left = 466.0
-offset_top = 32.0
-offset_right = 598.0
-offset_bottom = 62.0
+offset_left = 24.0
+offset_top = 56.0
+offset_right = 156.0
+offset_bottom = 86.0
 text = "FILTER_TYPE"
-horizontal_alignment = 2
+vertical_alignment = 2
 clip_text = true
 
 [node name="Type" type="OptionButton" parent="Filters"]
 layout_mode = 0
-offset_left = 603.0
-offset_top = 20.0
-offset_right = 743.0
-offset_bottom = 67.0
+offset_left = 24.0
+offset_top = 96.0
+offset_right = 164.0
+offset_bottom = 143.0
 selected = 0
 item_count = 4
 popup/item_0/text = "All"
@@ -236,60 +1058,22 @@ popup/item_2/id = 2
 popup/item_3/text = "Situation"
 popup/item_3/id = 3
 
-[node name="HPLabel" type="Label" parent="Filters"]
-layout_mode = 0
-offset_left = 747.0
-offset_top = 96.0
-offset_right = 841.0
-offset_bottom = 126.0
-text = "FILTER_HP"
-horizontal_alignment = 2
-clip_text = true
-
-[node name="HP" type="LineEdit" parent="Filters"]
-layout_mode = 0
-offset_left = 846.0
-offset_top = 84.0
-offset_right = 938.0
-offset_bottom = 131.0
-placeholder_text = "STAT_HP"
-editable = false
-
-[node name="ATKLabel" type="Label" parent="Filters"]
-layout_mode = 0
-offset_left = 750.0
-offset_top = 160.0
-offset_right = 841.0
-offset_bottom = 190.0
-text = "FILTER_ATK"
-horizontal_alignment = 2
-clip_text = true
-
-[node name="ATK" type="LineEdit" parent="Filters"]
-layout_mode = 0
-offset_left = 846.0
-offset_top = 148.0
-offset_right = 938.0
-offset_bottom = 195.0
-placeholder_text = "STAT_ATK"
-editable = false
-
 [node name="AttributeLabel" type="Label" parent="Filters"]
 layout_mode = 0
-offset_left = 465.0
-offset_top = 96.0
-offset_right = 599.0
-offset_bottom = 126.0
+offset_left = 192.0
+offset_top = 56.0
+offset_right = 326.0
+offset_bottom = 86.0
 text = "FILTER_ATTRIBUTE"
-horizontal_alignment = 2
+vertical_alignment = 2
 clip_text = true
 
 [node name="Attribute" type="OptionButton" parent="Filters"]
 layout_mode = 0
-offset_left = 603.0
-offset_top = 84.0
-offset_right = 743.0
-offset_bottom = 131.0
+offset_left = 192.0
+offset_top = 96.0
+offset_right = 332.0
+offset_bottom = 143.0
 disabled = true
 expand_icon = true
 selected = 0
@@ -317,20 +1101,20 @@ popup/item_6/id = 6
 
 [node name="AttackTypeLabel" type="Label" parent="Filters"]
 layout_mode = 0
-offset_left = 465.0
-offset_top = 160.0
-offset_right = 598.0
-offset_bottom = 190.0
+offset_left = 360.0
+offset_top = 56.0
+offset_right = 493.0
+offset_bottom = 86.0
 text = "FILTER_ATTACK_TYPE"
-horizontal_alignment = 2
+vertical_alignment = 2
 clip_text = true
 
 [node name="AttackType" type="OptionButton" parent="Filters"]
 layout_mode = 0
-offset_left = 603.0
-offset_top = 148.0
-offset_right = 743.0
-offset_bottom = 195.0
+offset_left = 360.0
+offset_top = 96.0
+offset_right = 500.0
+offset_bottom = 143.0
 disabled = true
 expand_icon = true
 selected = 0
@@ -349,21 +1133,145 @@ popup/item_5/id = 5
 
 [node name="CostLabel" type="Label" parent="Filters"]
 layout_mode = 0
-offset_left = 744.0
-offset_top = 32.0
-offset_right = 841.0
-offset_bottom = 62.0
+offset_left = 24.0
+offset_top = 162.0
+offset_right = 155.0
+offset_bottom = 192.0
 text = "FILTER_COST"
-horizontal_alignment = 2
+vertical_alignment = 2
 clip_text = true
 
 [node name="Cost" type="LineEdit" parent="Filters"]
 layout_mode = 0
-offset_left = 846.0
-offset_top = 20.0
-offset_right = 938.0
-offset_bottom = 67.0
+offset_left = 24.0
+offset_top = 202.0
+offset_right = 164.0
+offset_bottom = 249.0
 placeholder_text = "STAT_COST"
+clear_button_enabled = true
+
+[node name="HPLabel" type="Label" parent="Filters"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 162.0
+offset_right = 328.0
+offset_bottom = 192.0
+text = "FILTER_HP"
+vertical_alignment = 2
+clip_text = true
+
+[node name="HP" type="LineEdit" parent="Filters"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 202.0
+offset_right = 332.0
+offset_bottom = 249.0
+placeholder_text = "STAT_HP"
+editable = false
+clear_button_enabled = true
+
+[node name="ATKLabel" type="Label" parent="Filters"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 162.0
+offset_right = 485.0
+offset_bottom = 192.0
+text = "FILTER_ATK"
+vertical_alignment = 2
+clip_text = true
+
+[node name="ATK" type="LineEdit" parent="Filters"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 202.0
+offset_right = 500.0
+offset_bottom = 249.0
+placeholder_text = "STAT_ATK"
+editable = false
+clear_button_enabled = true
+
+[node name="FieldLabel" type="Label" parent="Filters"]
+layout_mode = 0
+offset_left = 528.0
+offset_top = 56.0
+offset_right = 709.0
+offset_bottom = 86.0
+text = "FILTER_FIELD"
+vertical_alignment = 2
+clip_text = true
+
+[node name="FieldAny" parent="Filters" instance=ExtResource("10_r56lw")]
+position = Vector2(536, 123)
+scale = Vector2(1.5, 1.5)
+three_state = true
+
+[node name="Icon" type="Sprite2D" parent="Filters/FieldAny"]
+position = Vector2(8, -10.6665)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_xa34a")
+
+[node name="FieldHuman" parent="Filters" instance=ExtResource("10_r56lw")]
+position = Vector2(584, 123)
+scale = Vector2(1.5, 1.5)
+three_state = true
+
+[node name="Icon" type="Sprite2D" parent="Filters/FieldHuman"]
+position = Vector2(8, -10.6665)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_4w8la")
+
+[node name="FieldMachine" parent="Filters" instance=ExtResource("10_r56lw")]
+position = Vector2(632, 123)
+scale = Vector2(1.5, 1.5)
+three_state = true
+
+[node name="Icon" type="Sprite2D" parent="Filters/FieldMachine"]
+position = Vector2(8.00006, -10.6666)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_fjy1p")
+
+[node name="FieldGnosis" parent="Filters" instance=ExtResource("10_r56lw")]
+position = Vector2(680, 123)
+scale = Vector2(1.5, 1.5)
+three_state = true
+
+[node name="Icon" type="Sprite2D" parent="Filters/FieldGnosis"]
+position = Vector2(8.00006, -10.6666)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_vx0wu")
+
+[node name="FieldMonster" parent="Filters" instance=ExtResource("10_r56lw")]
+visible = false
+position = Vector2(728, 123)
+scale = Vector2(1.5, 1.5)
+three_state = true
+
+[node name="Icon" type="Sprite2D" parent="Filters/FieldMonster"]
+position = Vector2(8, -10.6666)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("11_8h8cp")
+
+[node name="FieldNopon" parent="Filters" instance=ExtResource("10_r56lw")]
+visible = false
+position = Vector2(776, 123)
+scale = Vector2(1.5, 1.5)
+three_state = true
+
+[node name="Icon" type="Sprite2D" parent="Filters/FieldNopon"]
+position = Vector2(8.00006, -10.6666)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("12_4t3pf")
+
+[node name="FieldBlade" parent="Filters" instance=ExtResource("10_r56lw")]
+visible = false
+position = Vector2(824, 123)
+scale = Vector2(1.5, 1.5)
+three_state = true
+
+[node name="Icon" type="Sprite2D" parent="Filters/FieldBlade"]
+position = Vector2(8.00006, -10.6666)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("13_332lf")
 
 [node name="Preview" type="Panel" parent="."]
 offset_left = -952.0
@@ -397,8 +1305,15 @@ scale = Vector2(0.5, 0.5)
 [connection signal="area_exited" from="List/VisibleCards" to="." method="_on_visible_cards_area_exited"]
 [connection signal="text_changed" from="Filters/Search" to="." method="_on_filters_changed"]
 [connection signal="item_selected" from="Filters/Type" to="." method="_on_type_item_selected"]
-[connection signal="text_changed" from="Filters/HP" to="." method="_on_filters_changed"]
-[connection signal="text_changed" from="Filters/ATK" to="." method="_on_filters_changed"]
 [connection signal="item_selected" from="Filters/Attribute" to="." method="_on_attribute_item_selected"]
 [connection signal="item_selected" from="Filters/AttackType" to="." method="_on_attack_type_item_selected"]
 [connection signal="text_changed" from="Filters/Cost" to="." method="_on_filters_changed"]
+[connection signal="text_changed" from="Filters/HP" to="." method="_on_filters_changed"]
+[connection signal="text_changed" from="Filters/ATK" to="." method="_on_filters_changed"]
+[connection signal="toggled" from="Filters/FieldAny" to="." method="_on_field_any_toggled"]
+[connection signal="toggled" from="Filters/FieldHuman" to="." method="_on_field_human_toggled"]
+[connection signal="toggled" from="Filters/FieldMachine" to="." method="_on_field_machine_toggled"]
+[connection signal="toggled" from="Filters/FieldGnosis" to="." method="_on_field_gnosis_toggled"]
+[connection signal="toggled" from="Filters/FieldMonster" to="." method="_on_field_monster_toggled"]
+[connection signal="toggled" from="Filters/FieldNopon" to="." method="_on_field_nopon_toggled"]
+[connection signal="toggled" from="Filters/FieldBlade" to="." method="_on_field_blade_toggled"]
