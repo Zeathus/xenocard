@@ -1,8 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctmxbhsb0echr"]
+[gd_scene load_steps=3 format=3 uid="uid://ctmxbhsb0echr"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_moop5"]
+[ext_resource type="PackedScene" uid="uid://wso43idei4p8" path="res://scenes/menu_bg.tscn" id="2_dv4fx"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_moop5")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="MenuBg" parent="." instance=ExtResource("2_dv4fx")]
+visible = false
+z_index = -100
+z_as_relative = false
+position = Vector2(0, -16)

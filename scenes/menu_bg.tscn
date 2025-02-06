@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://wso43idei4p8"]
+
+[ext_resource type="Texture2D" uid="uid://dbouwtiebd8q5" path="res://sprites/globe-407744.png" id="1_4734o"]
+[ext_resource type="Script" path="res://scenes/background_grid.gd" id="2_bxqul"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_e7hda"]
+size = Vector2(2000, 1100)
+
+[sub_resource type="Gradient" id="Gradient_kqsxl"]
+offsets = PackedFloat32Array(0, 0.59478, 1)
+colors = PackedColorArray(0.501961, 0.54902, 0.54902, 1, 0.392157, 0.470588, 0.470588, 1, 0.0557514, 0.0780172, 0.0780396, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rmxrk"]
+gradient = SubResource("Gradient_kqsxl")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[node name="MenuBg" type="Node2D"]
+
+[node name="Background" type="MeshInstance2D" parent="."]
+position = Vector2(0, 24)
+mesh = SubResource("QuadMesh_e7hda")
+texture = SubResource("GradientTexture2D_rmxrk")
+
+[node name="BackgroundGrid" type="Sprite2D" parent="."]
+position = Vector2(-128, 828)
+texture = ExtResource("1_4734o")
+script = ExtResource("2_bxqul")

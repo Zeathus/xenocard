@@ -22,6 +22,7 @@ func _ready():
 		add_child(server)
 	else:
 		add_child(main_menu.instantiate())
+		$MenuBg.visible = true
 	load_card_data()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -30,7 +31,7 @@ func _process(delta):
 
 func start_scene(scene):
 	for c in get_children():
-		if not c is Camera2D:
+		if c is not Camera2D and c != $MenuBg:
 			c.visible = false
 	add_child(scene)
 
