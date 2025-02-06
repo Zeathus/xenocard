@@ -147,9 +147,15 @@ func refresh_card_list():
 	var y_pos = 0
 	var matches = 0
 	var index = 0
+	var regex: RegEx = null
+	if $Filters/SearchRegex.button_pressed:
+		regex = RegEx.new()
+		regex.compile($Filters/Search.text.to_lower())
+		if not regex.is_valid():
+			regex = null
 	for row in container.get_children():
 		var card: CardData = all_cards[index]
-		var show_card = filter_card(card)
+		var show_card = filter_card(card, regex)
 		if row.loaded:
 			row.set_card(card)
 			row.loaded = false
@@ -294,7 +300,7 @@ func refresh_preset_list():
 	for i in DeckData.list_presets():
 		$Meta/LoadPreset.add_item(i)
 
-func filter_card(card: CardData) -> bool:
+func filter_card(card: CardData, regex: RegEx = null) -> bool:
 	var filter_text: String = $Filters/Search.text.to_lower()
 	var filter_type: Enum.Type = Enum.type_from_string(
 		$Filters/Type.get_item_text($Filters/Type.get_selected_id()))
@@ -306,9 +312,7 @@ func filter_card(card: CardData) -> bool:
 	var filter_atk_type: Enum.AttackType = Enum.attack_type_from_string(
 		$Filters/AttackType.get_item_text($Filters/AttackType.get_selected_id()))
 	if filter_text != "":
-		if $Filters/SearchRegex.button_pressed:
-			var regex = RegEx.new()
-			regex.compile(filter_text)
+		if regex:
 			if not (regex.search(card.raw_name.to_lower()) or regex.search(card.raw_text.to_lower())):
 				return false
 		else:
