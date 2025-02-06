@@ -2,7 +2,7 @@ extends Node2D
 
 class_name CardListRow
 
-signal row_hovered(card: CardData)
+signal row_hovered(index: int, card: CardData)
 signal add_card(card: CardData)
 
 var index: int = 0
@@ -86,7 +86,7 @@ func _on_visibility_changed():
 	$Area2D.monitorable = visible
 
 func _on_panel_mouse_entered():
-	row_hovered.emit(card)
+	row_hovered.emit(index, card)
 
 func _on_panel_gui_input(event):
 	if event is InputEventMouseButton:

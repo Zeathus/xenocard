@@ -183,7 +183,7 @@ func refresh_deck():
 		else:
 			node = card_scene.instantiate()
 			node.scale = Vector2(0.12, 0.12)
-			node.on_hover.connect(func preview(): preview_card(deck.cards[i]))
+			node.on_hover.connect(func preview(): preview_card(-1, deck.cards[i]))
 			$Deck.add_child(node)
 		node.selected.connect(func remove(button_index: int):
 			if button_index == 2:
@@ -306,8 +306,14 @@ func filter_card(card: CardData) -> bool:
 	var filter_atk_type: Enum.AttackType = Enum.attack_type_from_string(
 		$Filters/AttackType.get_item_text($Filters/AttackType.get_selected_id()))
 	if filter_text != "":
-		if filter_text not in card.raw_name.to_lower() and filter_text not in card.raw_text.to_lower():
-			return false
+		if $Filters/SearchRegex.button_pressed:
+			var regex = RegEx.new()
+			regex.compile(filter_text)
+			if not (regex.search(card.raw_name.to_lower()) or regex.search(card.raw_text.to_lower())):
+				return false
+		else:
+			if not (filter_text in card.raw_name.to_lower() or filter_text in card.raw_text.to_lower()):
+				return false
 	if filter_type != Enum.Type.ANY and card.type != filter_type:
 		return false
 	if filter_type == Enum.Type.BATTLE:
@@ -437,8 +443,10 @@ func load_deck(deck_name: String, preset: bool = false):
 	$Meta/DeckName.text = deck.name
 	refresh_deck()
 
-func preview_card(card: CardData):
+func preview_card(index: int, card: CardData):
 	$Preview/CardDetails.visible = true
+	if index != -1:
+		card = all_cards[index]
 	$Preview/CardDetails/CardNode.show_card(card)
 	$Preview/CardDetails/CardNode.turn_up()
 	var preview_text: RichTextLabel = $Preview/Text
@@ -551,3 +559,7 @@ func _on_field_blade_toggled(new_state: int) -> void:
 func _on_sorting_item_selected(index: int) -> void:
 	sort_card_list()
 	refresh_card_list()
+
+func _on_search_regex_toggled(toggled_on: bool) -> void:
+	if $Filters/Search.text != "":
+		refresh_card_list()

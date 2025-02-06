@@ -1155,6 +1155,16 @@ offset_bottom = 249.0
 placeholder_text = "FILTER_SEARCH_HINT"
 clear_button_enabled = true
 
+[node name="SearchRegex" type="CheckBox" parent="Filters"]
+layout_mode = 0
+offset_left = 845.0
+offset_top = 165.0
+offset_right = 925.0
+offset_bottom = 195.0
+tooltip_text = "Use regular expressions for
+card searching (advanced)"
+text = "Regex"
+
 [node name="TypeLabel" type="Label" parent="Filters"]
 layout_mode = 0
 offset_left = 24.0
@@ -1429,6 +1439,7 @@ scale = Vector2(0.5, 0.5)
 [connection signal="item_selected" from="List/Sorting1" to="." method="_on_sorting_item_selected"]
 [connection signal="item_selected" from="List/Sorting2" to="." method="_on_sorting_item_selected"]
 [connection signal="text_changed" from="Filters/Search" to="." method="_on_filters_changed"]
+[connection signal="toggled" from="Filters/SearchRegex" to="." method="_on_search_regex_toggled"]
 [connection signal="item_selected" from="Filters/Type" to="." method="_on_type_item_selected"]
 [connection signal="item_selected" from="Filters/Attribute" to="." method="_on_attribute_item_selected"]
 [connection signal="item_selected" from="Filters/AttackType" to="." method="_on_attack_type_item_selected"]
