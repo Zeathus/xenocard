@@ -26,6 +26,9 @@ var event_effect_names: Array[String]
 var effects: Array[EffectData]
 var full_art: int = 0
 var artist: String
+# name and text, but with formatting removed (for searching)
+var raw_name: String
+var raw_text: String
 
 static func _static_init() -> void:
 	if OS.get_name() == "HTML5" or OS.get_name() == "Web":
@@ -148,6 +151,9 @@ func load_json(json: Dictionary):
 				Logger.e("Failed to get effect data for " + name)
 				continue
 			effects.push_back(effect_data)
+	
+	raw_name = remove_formatting(name)
+	raw_text = remove_formatting(text)
 
 func get_image() -> Resource:
 	if OS.has_feature("dedicated_server"):
@@ -175,3 +181,9 @@ func has_baked_image() -> bool:
 
 func get_full_id() -> String:
 	return "%s/%s" % [set_name, id]
+
+static func remove_formatting(text: String) -> String:
+	text = text.replace("\n", " ")
+	for i in "{}<>[]$":
+		text = text.replace(i, "")
+	return text

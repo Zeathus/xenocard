@@ -306,7 +306,7 @@ func filter_card(card: CardData) -> bool:
 	var filter_atk_type: Enum.AttackType = Enum.attack_type_from_string(
 		$Filters/AttackType.get_item_text($Filters/AttackType.get_selected_id()))
 	if filter_text != "":
-		if filter_text not in card.name.replace("\n", " ").to_lower() and filter_text not in card.text.to_lower():
+		if filter_text not in card.raw_name.to_lower() and filter_text not in card.raw_text.to_lower():
 			return false
 	if filter_type != Enum.Type.ANY and card.type != filter_type:
 		return false
@@ -445,7 +445,7 @@ func preview_card(card: CardData):
 	preview_text.clear()
 	preview_text.push_font_size(20)
 	preview_text.push_underline()
-	preview_text.append_text(card.name.replace("\n", " "))
+	preview_text.append_text(card.raw_name)
 	preview_text.pop()
 	if card.character != "":
 		preview_text.append_text("\nCharacter: %s" % card.character)
