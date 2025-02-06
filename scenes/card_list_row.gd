@@ -5,6 +5,7 @@ class_name CardListRow
 signal row_hovered(card: CardData)
 signal add_card(card: CardData)
 
+var index: int = 0
 var card: CardData = null
 var loaded: bool = false
 
@@ -13,6 +14,9 @@ func get_card() -> CardData:
 
 func set_card(_card: CardData):
 	card = _card
+
+func set_index(_index: int):
+	index = _index
 
 func load_card():
 	if loaded:
@@ -76,7 +80,7 @@ func load_card():
 	loaded = true
 
 func unload_card():
-	pass
+	loaded = false
 
 func _on_visibility_changed():
 	$Area2D.monitorable = visible

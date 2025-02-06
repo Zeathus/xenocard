@@ -1,10 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://beqafedaf6ood"]
+[gd_scene load_steps=20 format=3 uid="uid://beqafedaf6ood"]
 
 [ext_resource type="Script" path="res://scenes/deck_builder.gd" id="1_gbn5a"]
 [ext_resource type="Texture2D" uid="uid://c4e86agyg5na" path="res://sprites/text_icons/human.png" id="2_4w8la"]
 [ext_resource type="Theme" uid="uid://cts0fwcuwbvl0" path="res://theme_default.tres" id="2_hvo3i"]
 [ext_resource type="PackedScene" uid="uid://bqt532l8n2w8u" path="res://objects/card_details.tscn" id="2_rkvwk"]
 [ext_resource type="Texture2D" uid="uid://dvdphmaqueyhj" path="res://sprites/text_icons/any.png" id="2_xa34a"]
+[ext_resource type="Texture2D" uid="uid://cx07xwqnep2rk" path="res://sprites/icons/arrow_up.png" id="3_dewql"]
+[ext_resource type="Texture2D" uid="uid://boto543qrcnh1" path="res://sprites/icons/arrow_down.png" id="3_eoiaf"]
 [ext_resource type="Texture2D" uid="uid://dv03lkeqro1df" path="res://sprites/text_icons/realian.png" id="3_o6g6v"]
 [ext_resource type="Texture2D" uid="uid://c1j6jw5mvjf43" path="res://sprites/text_icons/machine.png" id="4_fjy1p"]
 [ext_resource type="Texture2D" uid="uid://cyil0a2s7iecn" path="res://sprites/text_icons/gnosis.png" id="5_vx0wu"]
@@ -16,7 +18,10 @@
 [ext_resource type="Texture2D" uid="uid://d0s2rjnug2xib" path="res://sprites/text_icons/blade.png" id="13_332lf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pcyqr"]
-size = Vector2(99, 752)
+size = Vector2(99, 718)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1fv3y"]
+font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_x14xu"]
 font_size = 24
@@ -150,7 +155,7 @@ theme = ExtResource("2_hvo3i")
 [node name="ScrollContainer" type="ScrollContainer" parent="List"]
 layout_mode = 0
 offset_left = 9.0
-offset_top = 10.0
+offset_top = 61.0
 offset_right = 407.0
 offset_bottom = 772.0
 horizontal_scroll_mode = 0
@@ -166,15 +171,133 @@ input_pickable = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="List/VisibleCards"]
-position = Vector2(207.5, 402)
+position = Vector2(207.5, 419)
 shape = SubResource("RectangleShape2D_pcyqr")
+
+[node name="SortingHeader" type="Label" parent="List"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 8.0
+offset_right = 65.0
+offset_bottom = 56.0
+text = "Sort:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sorting1" type="OptionButton" parent="List"]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 14.0
+offset_right = 222.0
+offset_bottom = 50.0
+expand_icon = true
+selected = 0
+fit_to_longest_item = false
+item_count = 13
+popup/item_0/text = "-"
+popup/item_1/text = "Name"
+popup/item_1/icon = ExtResource("3_eoiaf")
+popup/item_1/id = 1
+popup/item_2/text = "Name"
+popup/item_2/icon = ExtResource("3_dewql")
+popup/item_2/id = 2
+popup/item_3/text = "Attribute"
+popup/item_3/icon = ExtResource("3_eoiaf")
+popup/item_3/id = 3
+popup/item_4/text = "Attribute"
+popup/item_4/icon = ExtResource("3_dewql")
+popup/item_4/id = 4
+popup/item_5/text = "Attack Type"
+popup/item_5/icon = ExtResource("3_eoiaf")
+popup/item_5/id = 5
+popup/item_6/text = "Attack Type"
+popup/item_6/icon = ExtResource("3_dewql")
+popup/item_6/id = 6
+popup/item_7/text = "Cost"
+popup/item_7/icon = ExtResource("3_eoiaf")
+popup/item_7/id = 7
+popup/item_8/text = "Cost"
+popup/item_8/icon = ExtResource("3_dewql")
+popup/item_8/id = 8
+popup/item_9/text = "HP"
+popup/item_9/icon = ExtResource("3_eoiaf")
+popup/item_9/id = 9
+popup/item_10/text = "HP"
+popup/item_10/icon = ExtResource("3_dewql")
+popup/item_10/id = 10
+popup/item_11/text = "ATK"
+popup/item_11/icon = ExtResource("3_eoiaf")
+popup/item_11/id = 11
+popup/item_12/text = "ATK"
+popup/item_12/icon = ExtResource("3_dewql")
+popup/item_12/id = 12
+
+[node name="SortingSep" type="Label" parent="List"]
+layout_mode = 0
+offset_left = 226.0
+offset_top = 8.0
+offset_right = 256.0
+offset_bottom = 56.0
+scale = Vector2(0.75, 1)
+text = ">"
+label_settings = SubResource("LabelSettings_1fv3y")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sorting2" type="OptionButton" parent="List"]
+layout_mode = 0
+offset_left = 252.0
+offset_top = 14.0
+offset_right = 400.0
+offset_bottom = 50.0
+expand_icon = true
+selected = 0
+fit_to_longest_item = false
+item_count = 13
+popup/item_0/text = "-"
+popup/item_1/text = "Name"
+popup/item_1/icon = ExtResource("3_eoiaf")
+popup/item_1/id = 1
+popup/item_2/text = "Name"
+popup/item_2/icon = ExtResource("3_dewql")
+popup/item_2/id = 2
+popup/item_3/text = "Attribute"
+popup/item_3/icon = ExtResource("3_eoiaf")
+popup/item_3/id = 3
+popup/item_4/text = "Attribute"
+popup/item_4/icon = ExtResource("3_dewql")
+popup/item_4/id = 4
+popup/item_5/text = "Attack Type"
+popup/item_5/icon = ExtResource("3_eoiaf")
+popup/item_5/id = 5
+popup/item_6/text = "Attack Type"
+popup/item_6/icon = ExtResource("3_dewql")
+popup/item_6/id = 6
+popup/item_7/text = "Cost"
+popup/item_7/icon = ExtResource("3_eoiaf")
+popup/item_7/id = 7
+popup/item_8/text = "Cost"
+popup/item_8/icon = ExtResource("3_dewql")
+popup/item_8/id = 8
+popup/item_9/text = "HP"
+popup/item_9/icon = ExtResource("3_eoiaf")
+popup/item_9/id = 9
+popup/item_10/text = "HP"
+popup/item_10/icon = ExtResource("3_dewql")
+popup/item_10/id = 10
+popup/item_11/text = "ATK"
+popup/item_11/icon = ExtResource("3_eoiaf")
+popup/item_11/id = 11
+popup/item_12/text = "ATK"
+popup/item_12/icon = ExtResource("3_dewql")
+popup/item_12/id = 12
 
 [node name="Results" type="Panel" parent="List"]
 layout_mode = 0
-offset_left = 279.0
-offset_top = 4.0
-offset_right = 391.0
-offset_bottom = 33.0
+offset_left = 284.0
+offset_top = 57.0
+offset_right = 396.0
+offset_bottom = 86.0
 
 [node name="Label" type="Label" parent="List/Results"]
 layout_mode = 0
@@ -192,7 +315,7 @@ offset_right = 525.0
 offset_bottom = 532.0
 theme = ExtResource("2_hvo3i")
 
-[node name="HEADER" type="Label" parent="Stats"]
+[node name="Header" type="Label" parent="Stats"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.510371
@@ -1303,6 +1426,8 @@ scale = Vector2(0.5, 0.5)
 [connection signal="pressed" from="Meta/ButtonOpenDeckDir" to="." method="_on_button_open_deck_dir_pressed"]
 [connection signal="area_entered" from="List/VisibleCards" to="." method="_on_visible_cards_area_entered"]
 [connection signal="area_exited" from="List/VisibleCards" to="." method="_on_visible_cards_area_exited"]
+[connection signal="item_selected" from="List/Sorting1" to="." method="_on_sorting_item_selected"]
+[connection signal="item_selected" from="List/Sorting2" to="." method="_on_sorting_item_selected"]
 [connection signal="text_changed" from="Filters/Search" to="." method="_on_filters_changed"]
 [connection signal="item_selected" from="Filters/Type" to="." method="_on_type_item_selected"]
 [connection signal="item_selected" from="Filters/Attribute" to="." method="_on_attribute_item_selected"]

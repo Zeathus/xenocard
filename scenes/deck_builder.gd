@@ -14,7 +14,114 @@ func load_cards():
 			all_cards.push_back(CardData.data[key])
 
 func sort_card_list():
-	all_cards.sort_custom(func sort_id(a: CardData, b: CardData):
+	var filters: Array[Callable] = []
+	for filter_id in [$List/Sorting1.get_selected_id(), $List/Sorting2.get_selected_id()]:
+		match filter_id:
+			0: # Nothing
+				pass
+			1: # Name ASC
+				filters.push_back(func sort(a: CardData, b: CardData):
+					if a.name < b.name:
+						return 1
+					elif a.name > b.name:
+						return -1
+					return 0
+				)
+			2: # Name DSC
+				filters.push_back(func sort(a: CardData, b: CardData):
+					if a.name < b.name:
+						return -1
+					elif a.name > b.name:
+						return 1
+					return 0
+				)
+			3: # Attribute ASC
+				filters.push_back(func sort(a: CardData, b: CardData):
+					if a.attribute < b.attribute:
+						return 1
+					elif a.attribute > b.attribute:
+						return -1
+					return 0
+				)
+			4: # Attribute DSC
+				filters.push_back(func sort(a: CardData, b: CardData):
+					if a.attribute < b.attribute:
+						return -1
+					elif a.attribute > b.attribute:
+						return 1
+					return 0
+				)
+			5: # Attack Type ASC
+				filters.push_back(func sort(a: CardData, b: CardData):
+					if a.attack_type < b.attack_type:
+						return 1
+					elif a.attack_type > b.attack_type:
+						return -1
+					return 0
+				)
+			6: # Attack Type DSC
+				filters.push_back(func sort(a: CardData, b: CardData):
+					if a.attack_type < b.attack_type:
+						return -1
+					elif a.attack_type > b.attack_type:
+						return 1
+					return 0
+				)
+			7: # Cost ASC
+				filters.push_back(func sort(a: CardData, b: CardData):
+					if a.cost < b.cost:
+						return 1
+					elif a.cost > b.cost:
+						return -1
+					return 0
+				)
+			8: # Cost DSC
+				filters.push_back(func sort(a: CardData, b: CardData):
+					if a.cost < b.cost:
+						return -1
+					elif a.cost > b.cost:
+						return 1
+					return 0
+				)
+			9: # HP ASC
+				filters.push_back(func sort(a: CardData, b: CardData):
+					if a.max_hp < b.max_hp:
+						return 1
+					elif a.max_hp > b.max_hp:
+						return -1
+					return 0
+				)
+			10: # HP DSC
+				filters.push_back(func sort(a: CardData, b: CardData):
+					if a.max_hp < b.max_hp:
+						return -1
+					elif a.max_hp > b.max_hp:
+						return 1
+					return 0
+				)
+			11: # ATK ASC
+				filters.push_back(func sort(a: CardData, b: CardData):
+					if a.atk < b.atk:
+						return 1
+					elif a.atk > b.atk:
+						return -1
+					return 0
+				)
+			12: # ATK DSC
+				filters.push_back(func sort(a: CardData, b: CardData):
+					if a.atk < b.atk:
+						return -1
+					elif a.atk > b.atk:
+						return 1
+					return 0
+				)
+	all_cards.sort_custom(func sort(a: CardData, b: CardData):
+		for filter in filters:
+			var res: int = filter.call(a, b)
+			if res == 1:
+				return true
+			elif res == -1:
+				return false
 		if a.set_id < b.set_id:
 			return true
 		return false
@@ -23,28 +130,36 @@ func sort_card_list():
 func setup_card_list():
 	var container: VBoxContainer = $List/ScrollContainer/VBoxContainer
 	var y_pos = 0
+	var index = 0
 	for card in all_cards:
 		var row: CardListRow = card_row_scene.instantiate()
-		row.set_card(card)
+		row.set_index(index)
 		row.position.y = y_pos
 		row.row_hovered.connect(preview_card)
 		row.add_card.connect(add_to_deck)
 		y_pos += 134
 		container.add_child(row)
+		index += 1
 	container.custom_minimum_size.y = y_pos
 
 func refresh_card_list():
 	var container: VBoxContainer = $List/ScrollContainer/VBoxContainer
 	var y_pos = 0
 	var matches = 0
+	var index = 0
 	for row in container.get_children():
-		var card: CardData = row.get_card()
+		var card: CardData = all_cards[index]
 		var show_card = filter_card(card)
+		if row.loaded:
+			row.set_card(card)
+			row.loaded = false
+			row.load_card()
 		row.visible = show_card
 		row.position.y = y_pos
 		if show_card:
 			y_pos += 134
 			matches += 1
+		index += 1
 	container.custom_minimum_size.y = y_pos
 	$List/Results/Label.text = "%d Cards" % matches
 
@@ -293,6 +408,12 @@ func filter_integer(value: int, filter: String) -> bool:
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	for i in range($Filters/Attribute.get_popup().item_count):
+		$Filters/Attribute.get_popup().set_item_icon_max_width(i, 32)
+	for i in range($List/Sorting1.get_popup().item_count):
+		$List/Sorting1.get_popup().set_item_icon_max_width(i, 8)
+	for i in range($List/Sorting2.get_popup().item_count):
+		$List/Sorting2.get_popup().set_item_icon_max_width(i, 8)
 	load_cards()
 	sort_card_list()
 	setup_card_list()
@@ -336,6 +457,7 @@ func preview_card(card: CardData):
 func _on_visible_cards_area_entered(area):
 	var parent = area.get_parent()
 	if is_instance_of(parent, CardListRow):
+		parent.set_card(all_cards[parent.index])
 		parent.load_card()
 
 func _on_visible_cards_area_exited(area):
@@ -424,4 +546,8 @@ func _on_field_nopon_toggled(new_state: int) -> void:
 	refresh_card_list()
 
 func _on_field_blade_toggled(new_state: int) -> void:
+	refresh_card_list()
+
+func _on_sorting_item_selected(index: int) -> void:
+	sort_card_list()
 	refresh_card_list()
