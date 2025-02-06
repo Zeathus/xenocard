@@ -199,3 +199,11 @@ These cards can generally be played without the need of humans. They favor ATK o
 
 Nopon
 These cards are usually not good at attacking, but instead provide beneficial effects while in standby.",
+Hand,Hand,格闘
+Ballistic,Ballistic,射撃
+Spread,Spread,全体
+Homing,Homing,弾道
+Hand:,Hand:,格闘：
+Ballistic:,Ballistic:,射撃：
+Spread:,Spread:,全体：
+Homing:,Homing:,弾道：
