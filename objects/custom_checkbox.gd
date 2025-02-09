@@ -31,4 +31,4 @@ func _on_check_box_pressed() -> void:
 	if state > 2 if three_state else state > 1:
 		state = 0
 	refresh()
-	emit_signal("toggled", state)
+	toggled.emit(state)

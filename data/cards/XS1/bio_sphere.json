@@ -9,12 +9,12 @@
 		"cost": 1,
 		"field": ["any", "any"]
 	},
-	"text": "All your battle cards except {Gnosis} heal 3 HP.",
+	"text": "All cards on your battlefield except {Gnosis} heal 3 HP.",
 	"effects": [
 		{
 			"trigger": "activate",
 			"requirement": [
-				"Formula(count(owner=self;type=battle;attribute=!gnosis;formula=maxhp-hp>0)>0)"
+				"Formula(count(owner=self;type=battle;zone=battlefield;attribute=!gnosis;formula=maxhp-hp>0)>0)"
 			],
 			"effect": [
 				"Heal(3,owner=self;type=battle;attribute=!gnosis)",
