@@ -135,13 +135,21 @@ offset_right = 951.0
 offset_bottom = -308.0
 theme = ExtResource("2_oqua5")
 
-[node name="Button" type="Button" parent="HostPanel"]
+[node name="ButtonHost" type="Button" parent="HostPanel"]
 layout_mode = 0
 offset_left = 34.0
-offset_top = 72.0
+offset_top = 32.0
 offset_right = 267.0
-offset_bottom = 120.0
+offset_bottom = 80.0
 text = "Host a Room"
+
+[node name="ButtonRefresh" type="Button" parent="HostPanel"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 120.0
+offset_right = 267.0
+offset_bottom = 168.0
+text = "Refresh"
 
 [node name="Panel" type="Panel" parent="."]
 offset_left = -952.0
