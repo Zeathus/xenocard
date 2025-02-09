@@ -20,6 +20,7 @@ position = Vector2(0, -24)
 script = ExtResource("1_pecbt")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 23)
 
 [node name="P2" type="Panel" parent="."]
 offset_left = -436.0
@@ -277,12 +278,12 @@ text = "Start Game"
 metadata/_edit_use_anchors_ = true
 
 [node name="ButtonExit" type="Button" parent="."]
-offset_left = -942.0
-offset_top = -496.0
-offset_right = -842.0
-offset_bottom = -448.0
+offset_left = -920.0
+offset_top = -482.0
+offset_right = -620.0
+offset_bottom = -434.0
 theme = ExtResource("2_lm78w")
-text = "Exit"
+text = "EXIT"
 metadata/_edit_use_anchors_ = true
 
 [connection signal="toggled" from="P2/DeckPreset" to="." method="_on_p2_deck_preset_toggled"]

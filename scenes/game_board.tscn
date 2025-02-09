@@ -451,10 +451,13 @@ text = "Exit"
 metadata/_edit_use_anchors_ = true
 
 [node name="AudioStream1" type="AudioStreamPlayer2D" parent="."]
+bus = &"Sounds"
 
 [node name="AudioStream2" type="AudioStreamPlayer2D" parent="."]
+bus = &"Sounds"
 
 [node name="AudioStream3" type="AudioStreamPlayer2D" parent="."]
+bus = &"Sounds"
 
 [node name="HintNode" type="Node2D" parent="."]
 script = ExtResource("11_jdhxf")

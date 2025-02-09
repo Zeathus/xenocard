@@ -21,6 +21,7 @@ func _ready():
 		var server: TCGServer = TCGServer.new()
 		add_child(server)
 	else:
+		Options.load()
 		add_child(main_menu.instantiate())
 		$MenuBg.visible = true
 	load_card_data()

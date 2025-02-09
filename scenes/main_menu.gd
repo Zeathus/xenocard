@@ -48,6 +48,10 @@ func _on_button_tutorials_pressed() -> void:
 	var tutorial_scene = load("res://tutorial/menu_tutorial.tscn")
 	get_parent().start_scene(tutorial_scene.instantiate())
 
+func _on_button_options_pressed() -> void:
+	var options_scene = load("res://scenes/menu_options.tscn")
+	get_parent().start_scene(options_scene.instantiate())
+
 func _on_button_create_card_images_pressed() -> void:
 	var sub_viewport = SubViewport.new()
 	sub_viewport.size = Vector2(400, 600)
@@ -63,10 +67,12 @@ func _on_button_create_card_images_pressed() -> void:
 	task = ["create_images", images_to_make.keys(), images_to_make.values(), 0, sub_viewport, card_display]
 
 func _on_lang_us_pressed() -> void:
-	TranslationServer.set_locale(("en"))
+	Options.set_locale("en")
+	Options.save()
 
 func _on_lang_jp_pressed() -> void:
-	TranslationServer.set_locale(("jp"))
+	Options.set_locale("jp")
+	Options.save()
 
 func _on_link_discord_pressed() -> void:
 	if OS.get_name() == "HTML5":
