@@ -73,6 +73,7 @@ offset_top = -318.0
 offset_right = 300.0
 offset_bottom = -264.0
 theme = ExtResource("4_soiec")
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="Header"]
 layout_mode = 0
@@ -82,6 +83,7 @@ offset_bottom = 46.0
 text = "OPTIONS"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Options" type="Panel" parent="."]
 offset_left = -300.0
@@ -89,6 +91,7 @@ offset_top = -253.0
 offset_right = 300.0
 offset_bottom = 419.0
 theme = ExtResource("4_soiec")
+metadata/_edit_use_anchors_ = true
 
 [node name="VolumeMusic" type="HSlider" parent="Options"]
 layout_mode = 0
@@ -100,6 +103,7 @@ max_value = 200.0
 value = 100.0
 tick_count = 5
 ticks_on_borders = true
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="Options/VolumeMusic"]
 layout_mode = 0
@@ -108,6 +112,7 @@ offset_top = 4.0
 offset_right = -33.0
 offset_bottom = 34.0
 text = "Music"
+metadata/_edit_use_anchors_ = true
 
 [node name="Value" type="Label" parent="Options/VolumeMusic"]
 layout_mode = 0
@@ -117,6 +122,7 @@ offset_right = -6.0
 offset_bottom = 34.0
 text = "100%"
 horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Mute" type="CheckBox" parent="Options/VolumeMusic"]
 layout_mode = 0
@@ -125,6 +131,7 @@ offset_top = 1.0
 offset_right = 407.0
 offset_bottom = 31.0
 text = "Mute"
+metadata/_edit_use_anchors_ = true
 
 [node name="VolumeSounds" type="HSlider" parent="Options"]
 layout_mode = 0
@@ -136,6 +143,7 @@ max_value = 200.0
 value = 100.0
 tick_count = 5
 ticks_on_borders = true
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="Options/VolumeSounds"]
 layout_mode = 0
@@ -144,6 +152,7 @@ offset_top = 4.0
 offset_right = -33.0
 offset_bottom = 34.0
 text = "Sounds"
+metadata/_edit_use_anchors_ = true
 
 [node name="Value" type="Label" parent="Options/VolumeSounds"]
 layout_mode = 0
@@ -153,6 +162,7 @@ offset_right = -6.0
 offset_bottom = 34.0
 text = "100%"
 horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Mute" type="CheckBox" parent="Options/VolumeSounds"]
 layout_mode = 0
@@ -161,6 +171,7 @@ offset_top = 1.0
 offset_right = 407.0
 offset_bottom = 31.0
 text = "Mute"
+metadata/_edit_use_anchors_ = true
 
 [node name="AudioStream" type="AudioStreamPlayer2D" parent="Options/VolumeSounds"]
 position = Vector2(122, 181)
@@ -176,6 +187,7 @@ offset_bottom = 198.0
 tooltip_text = "Makes it so that enemy cards on the field
 and in the hand will be right-side up."
 text = "Make all cards be right-side up (not upside-down)"
+metadata/_edit_use_anchors_ = true
 
 [node name="AlwaysShowATKBoosts" type="CheckBox" parent="Options"]
 layout_mode = 0
@@ -186,6 +198,7 @@ offset_bottom = 254.0
 tooltip_text = "Makes ATK bonuses with the \"during the battle phase\"
 condition show on the field stat displays for all phases."
 text = "Show Battle Phase ATK boosts during all phases"
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Languages/LangUS" to="." method="_on_lang_us_pressed"]
 [connection signal="pressed" from="Languages/LangJP" to="." method="_on_lang_jp_pressed"]

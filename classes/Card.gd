@@ -527,9 +527,9 @@ func get_original_atk() -> int:
 	return data.atk
 
 func get_base_atk() -> int:
-	if equipped_weapon and equipped_weapon.get_original_atk() > 0:
-		return equipped_weapon.get_atk()
 	var base_atk: int = get_original_atk()
+	if equipped_weapon and equipped_weapon.get_original_atk() > 0:
+		base_atk = equipped_weapon.get_atk()
 	var multiplier: float = 1.0
 	for e in get_effects(Enum.Trigger.PASSIVE):
 		multiplier = e.get_atk_multiplier(multiplier)

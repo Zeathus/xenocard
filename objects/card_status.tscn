@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://d2tcufci502xh"]
+[gd_scene load_steps=15 format=3 uid="uid://d2tcufci502xh"]
 
 [ext_resource type="Script" path="res://objects/card_status.gd" id="1_ky7jd"]
 [ext_resource type="PackedScene" uid="uid://g7yv71p73utl" path="res://objects/attribute.tscn" id="2_c6fv0"]
+[ext_resource type="Texture2D" uid="uid://cgvcggvt58dyg" path="res://sprites/icons/point_up.png" id="3_pmapq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3dq0f"]
 font_size = 28
@@ -393,3 +394,8 @@ offset_top = 3.0
 offset_right = 56.0
 offset_bottom = 27.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_krnbx")
+
+[node name="ATKArrow" type="Sprite2D" parent="Panel"]
+position = Vector2(106, 92)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_pmapq")

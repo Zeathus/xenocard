@@ -10,12 +10,16 @@ func show_card(card: Card):
 	if card.equipped_weapon and card.equipped_weapon.get_original_atk() != 0:
 		original_atk = card.equipped_weapon.get_original_atk()
 	var atk = card.get_atk()
-	if atk > original_atk:
-		$Panel/ValueATK.text = "⮝%d" % atk
-	elif atk < original_atk:
-		$Panel/ValueATK.text = "⮟%d" % atk
+	$Panel/ValueATK.text = "%d" % atk
+	if atk != original_atk:
+		$Panel/ATKArrow.visible = true
+		$Panel/ATKArrow.position.x = $Panel/ValueATK.get_character_bounds(0).position.x + 8
+		if atk > original_atk:
+			$Panel/ATKArrow.rotation = 0
+		elif atk < original_atk:
+			$Panel/ATKArrow.rotation = PI
 	else:
-		$Panel/ValueATK.text = "%d" % atk
+		$Panel/ATKArrow.visible = false
 	$Panel/AttackType.text = Enum.get_attack_type_name(card.get_attack_type())
 	$Panel/Attribute.set_attribute(card.get_attribute())
 	refresh_bar($Panel/PanelHP, card.hp, card.get_max_hp())
