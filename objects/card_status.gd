@@ -9,7 +9,7 @@ func show_card(card: Card):
 	var original_atk = card.get_original_atk()
 	if card.equipped_weapon and card.equipped_weapon.get_original_atk() != 0:
 		original_atk = card.equipped_weapon.get_original_atk()
-	var atk = card.get_atk()
+	var atk = card.get_atk({"ignore_phase": Options.always_show_atk_boosts})
 	$Panel/ValueATK.text = "%d" % atk
 	if atk != original_atk:
 		$Panel/ATKArrow.visible = true

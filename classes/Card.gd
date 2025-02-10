@@ -526,19 +526,19 @@ func get_max_hp() -> int:
 func get_original_atk() -> int:
 	return data.atk
 
-func get_base_atk() -> int:
+func get_base_atk(variables: Dictionary = {}) -> int:
 	var base_atk: int = get_original_atk()
 	if equipped_weapon and equipped_weapon.get_original_atk() > 0:
 		base_atk = equipped_weapon.get_atk()
 	var multiplier: float = 1.0
-	for e in get_effects(Enum.Trigger.PASSIVE):
+	for e in get_effects(Enum.Trigger.PASSIVE, variables):
 		multiplier = e.get_atk_multiplier(multiplier)
 	base_atk *= int(floor(multiplier))
 	return base_atk
 
-func get_atk() -> int:
-	var ret = get_base_atk()
-	for e in get_effects(Enum.Trigger.PASSIVE):
+func get_atk(variables: Dictionary = {}) -> int:
+	var ret = get_base_atk(variables)
+	for e in get_effects(Enum.Trigger.PASSIVE, variables):
 		ret = e.get_atk(ret)
 	if ret < 0:
 		ret = 0
