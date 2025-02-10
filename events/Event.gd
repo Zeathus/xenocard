@@ -34,9 +34,18 @@ func finish():
 	if not finished:
 		on_finish()
 		finished = true
+		check_game_end()
 
 func on_finish():
 	pass
+
+func check_game_end():
+	if game_board.players[0].deck.size() == 0 and game_board.players[1].deck.size() == 0:
+		game_board.end_game(Enum.GameResult.TIE)
+	elif game_board.players[0].deck.size() == 0:
+		game_board.end_game(Enum.GameResult.P2_WIN)
+	elif game_board.players[1].deck.size() == 0:
+		game_board.end_game(Enum.GameResult.P1_WIN)
 
 func pass_to_child(method, arguments=[]):
 	if is_done():

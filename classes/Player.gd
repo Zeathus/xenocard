@@ -49,6 +49,8 @@ func can_draw() -> bool:
 func draw(do_init=true) -> Card:
 	var card: Card = self.deck.draw(do_init)
 	self.field.refresh()
+	if self.deck.size() <= 0:
+		game_board.end_game(Enum.GameResult.P2_WIN if id == 0 else Enum.GameResult.P1_WIN)
 	return card
 
 func draw_lost(do_init=true) -> Card:
@@ -64,6 +66,8 @@ func pay_cost(cost: int) -> int:
 			self.lost.add_top(card)
 			cost_paid += 1
 	self.field.refresh()
+	if self.deck.size() <= 0:
+		game_board.end_game(Enum.GameResult.P2_WIN if id == 0 else Enum.GameResult.P1_WIN)
 	return cost_paid
 
 func recover(amt: int) -> int:
@@ -86,6 +90,8 @@ func take_damage(game_board: GameBoard, attacker: Card, damage: int, source: Dam
 		if card:
 			self.lost.add_top(card)
 	self.field.refresh()
+	if self.deck.size() <= 0:
+		game_board.end_game(Enum.GameResult.P2_WIN if id == 0 else Enum.GameResult.P1_WIN)
 	return damage
 
 func get_resources() -> Array[Enum.Attribute]:

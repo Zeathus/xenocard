@@ -25,6 +25,9 @@ func on_finish():
 		game_board.tutorial.set_completed(true)
 	game_board.end_scene()
 
+func check_game_end():
+	pass
+
 func process(delta):
 	if pass_to_child("process", [delta]):
 		return
@@ -71,5 +74,7 @@ func get_enemy_result() -> Enum.GameResult:
 
 func broadcast():
 	if game_board.is_server():
-		game_board.players[0].controller.broadcast_event(get_name(), result)
-		game_board.players[1].controller.broadcast_event(get_name(), get_enemy_result())
+		var args: Array[String] = [str(result)]
+		game_board.players[0].controller.broadcast_event(get_name(), args)
+		args = [str(get_enemy_result())]
+		game_board.players[1].controller.broadcast_event(get_name(), args)

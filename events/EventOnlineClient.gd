@@ -201,6 +201,9 @@ func fetch_event(event_data: String):
 				game_board.dummy_card.set_id(args[1])
 				awaited_event.card_preview = game_board.dummy_card
 			return awaited_event
+		"EndGame":
+			var result: Enum.GameResult = int(args[1])
+			return EventEndGame.new(game_board, result)
 		_:
 			Logger.w("Unknown event: %s" % args[0])
 

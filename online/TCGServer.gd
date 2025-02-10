@@ -174,3 +174,7 @@ func _exit_tree() -> void:
 	for peer in clients:
 		peer.close()
 	tcp_server.stop()
+
+func end_board(board: GameBoard) -> void:
+	board.queue_free()
+	remove_child(board)

@@ -283,12 +283,19 @@ func end_game(result: Enum.GameResult):
 	for p in players:
 		if p.has_controller():
 			p.controller.stop()
-	get_parent().last_game_result = result
+	if not is_server():
+		get_parent().last_game_result = result
 	event_queue.clear()
-	event_queue.push_back(EventEndGame.new(self, result))
+	if is_client():
+		event_queue.push_back(EventOnlineClient.new(self, client, EventEndGame.new(self, result)))
+	else:
+		event_queue.push_back(EventEndGame.new(self, result))
 
 func end_scene():
-	get_parent().end_scene()
+	if is_server():
+		server.end_board(self)
+	else:
+		get_parent().end_scene()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
