@@ -8,6 +8,7 @@ static var sounds_mute: bool = false
 static var rotate_enemy_cards: bool = false
 static var always_show_atk_boosts: bool = false
 static var locale: String = "en"
+static var username: String = ""
 
 static func set_locale(_locale: String) -> void:
 	locale = _locale
@@ -46,6 +47,7 @@ static func to_dict() -> Dictionary:
 		"rotate_enemy_cards": rotate_enemy_cards,
 		"always_show_atk_boosts": always_show_atk_boosts,
 		"locale": locale,
+		"username": username,
 	}
 
 static func load() -> void:
@@ -63,6 +65,7 @@ static func load() -> void:
 			rotate_enemy_cards = data["rotate_enemy_cards"]
 			always_show_atk_boosts = data["always_show_atk_boosts"]
 			set_locale(data["locale"])
+			username = data["username"] if "username" in data else ""
 		else:
 			Logger.e("Error loading options.json")
 			save()

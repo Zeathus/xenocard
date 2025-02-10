@@ -9,6 +9,7 @@ func _ready() -> void:
 	$Options/VolumeSounds/Mute.button_pressed = Options.sounds_mute
 	$Options/RotateEnemyCards.button_pressed = Options.rotate_enemy_cards
 	$Options/AlwaysShowATKBoosts.button_pressed = Options.always_show_atk_boosts
+	$Options/Username.text = Options.username
 
 func _on_button_exit_pressed() -> void:
 	Options.save()
@@ -42,3 +43,15 @@ func _on_rotate_enemy_cards_toggled(toggled_on: bool) -> void:
 
 func _on_always_show_atk_boosts_toggled(toggled_on: bool) -> void:
 	Options.always_show_atk_boosts = toggled_on
+
+func _on_username_text_changed() -> void:
+	var base_username: String = $Options/Username.text
+	var regex: RegEx = RegEx.new()
+	regex.compile("[^A-Z^a-z^0-9^_]")
+	var username: String = regex.sub(base_username, "", true)
+	if len(username) > 15 or base_username != username:
+		username = username.substr(0, min(len(username), 15))
+		var old_column: int = $Options/Username.get_caret_column()
+		$Options/Username.text = username
+		$Options/Username.set_caret_column(min(len(username), 15, old_column))
+	Options.username = username

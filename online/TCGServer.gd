@@ -10,7 +10,9 @@ enum MessageType {
 	EVENT = 4,
 	ACTION = 5,
 	IDENTITY = 6,
-	CHAT = 10,
+	USERNAME = 7,
+	ROOM_LIST = 8,
+	CHAT = 20,
 	OK = 200,
 	DENIED = 400,
 	ERROR = 500
@@ -19,14 +21,16 @@ enum MessageType {
 enum ClientState {
 	IDLE = 1,
 	QUEUING = 2,
-	AWAIT_DECK = 3
+	AWAIT_DECK = 3,
+	AWAIT_NAME = 4
 }
 
 const PORT = 5310
 
 var tcp_server = TCPServer.new()
 var game_tscn = preload("res://scenes/game_board.tscn")
-var games: Dictionary = {}
+var rooms: Array[ServerRoom] = []
+var peer_to_room: Dictionary = {}
 var clients: Dictionary = {}
 var queue: Array
 
@@ -45,9 +49,7 @@ func _process(delta: float) -> void:
 		assert(conn != null)
 		var peer: WebSocketPeer = WebSocketPeer.new()
 		peer.accept_stream(conn)
-		clients[peer] = {
-			"state": ClientState.IDLE
-		}
+		clients[peer] = ServerPeer.new(peer)
 		Logger.i("Got new connection from %s" % peer.get_connected_host())
 	
 	for peer in clients:
@@ -56,15 +58,15 @@ func _process(delta: float) -> void:
 			while peer.get_available_packet_count():
 				handle_packet(peer)
 	
-	if len(queue) >= 2:
-		for i in range(queue.size() - 1):
-			for j in range(i + 1, queue.size()):
-				if clients[queue[i]]["password"] == clients[queue[j]]["password"]:
-					Logger.i("We found a match!")
-					prepare_match(queue[i], queue[j])
-					queue.erase(queue[j])
-					queue.erase(queue[i])
-					return
+	#if len(queue) >= 2:
+		#for i in range(queue.size() - 1):
+			#for j in range(i + 1, queue.size()):
+				#if clients[queue[i]]["password"] == clients[queue[j]]["password"]:
+					#Logger.i("We found a match!")
+					#prepare_match(queue[i], queue[j])
+					#queue.erase(queue[j])
+					#queue.erase(queue[i])
+					#return
 
 func handle_packet(peer: WebSocketPeer):
 	var msg_data: PackedByteArray = peer.get_packet()
@@ -72,13 +74,12 @@ func handle_packet(peer: WebSocketPeer):
 	var type: MessageType = msg[0]
 	match type:
 		MessageType.QUEUE:
-			if clients[peer]["state"] != ClientState.IDLE:
+			if clients[peer].state != ClientState.IDLE:
 				Logger.w("Deny queue request")
 				pass # Deny the connection
 			else:
 				Logger.i("Client " + peer.get_connected_host() + " queued")
-				clients[peer]["state"] = ClientState.QUEUING
-				clients[peer]["password"] = ""
+				clients[peer].state = ClientState.QUEUING
 				queue.push_back(peer)
 				send_ok(peer)
 		MessageType.CHAT:
@@ -86,12 +87,12 @@ func handle_packet(peer: WebSocketPeer):
 			print("Sending chat: ", msg_text)
 			send_chat(peer, msg_text)
 		MessageType.DECK:
-			if clients[peer]["state"] != ClientState.AWAIT_DECK or peer not in games:
+			if clients[peer].state != ClientState.AWAIT_DECK or peer not in peer_to_room:
 				return
 			var card_ids: PackedStringArray = msg.slice(1).to_byte_array().get_string_from_ascii().split(",")
 			if verify_deck(card_ids) == 0:
 				Logger.i("Deck OK")
-				var game = games[peer]
+				var game = peer_to_room[peer]
 				game["decks"][game["players"].find(peer)] = card_ids
 				send_ok(peer)
 				if game["decks"][0] != null and game["decks"][1] != null:
@@ -100,14 +101,26 @@ func handle_packet(peer: WebSocketPeer):
 				Logger.w("Invalid deck") # Send a denied package
 		MessageType.ACTION:
 			var msg_text: String = msg.slice(1).to_byte_array().get_string_from_ascii()
-			if peer in games:
-				var game: Dictionary = games[peer]
+			if peer in peer_to_room:
+				var game: Dictionary = peer_to_room[peer]
 				if peer == game["players"][0]:
 					Logger.i("Got action for P1: %s" % msg_text)
-					games[peer]["actions"][0].push_back(msg_text)
+					game["actions"][0].push_back(msg_text)
 				elif peer == game["players"][1]:
 					Logger.i("Got action for P2: %s" % msg_text)
-					games[peer]["actions"][1].push_back(msg_text)
+					game["actions"][1].push_back(msg_text)
+		MessageType.USERNAME:
+			if clients[peer].state != ClientState.AWAIT_NAME:
+				return
+			var username: String = msg.slice(1).to_byte_array().get_string_from_utf8()
+			if not ServerPeer.verify_name(username):
+				Logger.i("Denied username: " + username)
+				send_denied(peer)
+				return
+			Logger.i("Got username: " + username)
+			clients[peer].name = username
+			send_ok(peer)
+			send_rooms(peer)
 
 func prepare_match(peerA, peerB) -> void:
 	var msg: PackedInt32Array
@@ -117,10 +130,11 @@ func prepare_match(peerA, peerB) -> void:
 		"decks": [null, null],
 		"actions": [[], []]
 	}
-	games[peerA] = game
-	games[peerB] = game
-	clients[peerA]["state"] = ClientState.AWAIT_DECK
-	clients[peerB]["state"] = ClientState.AWAIT_DECK
+	rooms.push_back(ServerRoom.new())
+	peer_to_room[peerA] = game
+	peer_to_room[peerB] = game
+	clients[peerA].state = ClientState.AWAIT_DECK
+	clients[peerB].state = ClientState.AWAIT_DECK
 	peerA.send(msg.to_byte_array())
 	peerB.send(msg.to_byte_array())
 
@@ -143,10 +157,10 @@ func start_match(game: Dictionary):
 		send_ok(peer)
 
 func send_chat(peer: WebSocketPeer, message: String) -> void:
-	if peer in games:
+	if peer in peer_to_room:
 		var type: PackedInt32Array
 		type.append(MessageType.CHAT)
-		for player: WebSocketPeer in games[peer]["players"]:
+		for player: WebSocketPeer in peer_to_room[peer]["players"]:
 			if player != peer:
 				player.send(type.to_byte_array() + message.to_utf8_buffer())
 
@@ -154,6 +168,23 @@ func send_ok(peer: WebSocketPeer) -> void:
 	var msg: PackedInt32Array
 	msg.append(MessageType.OK)
 	peer.send(msg.to_byte_array())
+
+func send_denied(peer: WebSocketPeer) -> void:
+	var msg: PackedInt32Array
+	msg.append(MessageType.DENIED)
+	peer.send(msg.to_byte_array())
+
+func send_rooms(peer: WebSocketPeer) -> void:
+	var type: PackedInt32Array
+	type.append(MessageType.ROOM_LIST)
+	var room_str: String = str(len(rooms))
+	for room: ServerRoom in rooms:
+		room_str += "\n"
+		room_str += room.to_str()
+	var msg_data = type.to_byte_array() + room_str.to_utf8_buffer()
+	while msg_data.size() % 4 != 0:
+		msg_data.push_back(0)
+	peer.send(msg_data)
 
 func verify_deck(card_ids: PackedStringArray) -> int:
 	var counts: Dictionary = {}

@@ -10,30 +10,39 @@ enum MessageType {
 	EVENT = 4,
 	ACTION = 5,
 	IDENTITY = 6,
-	CHAT = 10,
+	USERNAME = 7,
+	ROOM_LIST = 8,
+	CHAT = 20,
 	OK = 200,
 	DENIED = 400,
 	ERROR = 500
 }
 
 enum ClientState {
-	STARTING = 1,
-	QUEUING = 2,
-	AWAIT_DECK = 3,
-	SENDING_DECK = 4,
-	AWAIT_BOARD = 5,
-	START_GAME = 6,
-	PLAYING = 7
+	NONE = 0,
+	CONNECTING = 1,
+	SEND_NAME = 2,
+	GET_ROOMS = 3,
+	IN_LOBBY = 4,
+	STARTING = 5,
+	QUEUING = 6,
+	AWAIT_DECK = 7,
+	SENDING_DECK = 8,
+	AWAIT_BOARD = 9,
+	START_GAME = 10,
+	PLAYING = 11,
+	STOPPED = 500
 }
 
 var websocket_url := "ws://127.0.0.1:5310" if OS.has_feature("use_local_server") else "wss://80.212.87.126:5310"
 
 var socket := WebSocketPeer.new()
 var pinged = false
-var state: ClientState = ClientState.STARTING
+var state: ClientState = ClientState.CONNECTING
 var waiting_for: MessageType = MessageType.NONE
 var events: Array[String] = []
 var actions: Array[String] = []
+var rooms: Array[ServerRoom] = []
 
 func _ready() -> void:
 	Logger.i("Connecting to " + websocket_url)
@@ -44,7 +53,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	socket.poll()
 	
-	if socket.get_ready_state() == WebSocketPeer.STATE_OPEN:
+	if connected():
 		while socket.get_available_packet_count():
 			var msg: PackedInt32Array = socket.get_packet().to_int32_array()
 			var type: MessageType = msg[0]
@@ -59,6 +68,13 @@ func _process(_delta: float) -> void:
 					elif state == ClientState.AWAIT_BOARD:
 						Logger.i("Board ready!")
 						state = ClientState.START_GAME
+					elif state == ClientState.SEND_NAME:
+						Logger.i("Name OK!")
+						waiting_for = MessageType.ROOM_LIST
+						state = ClientState.GET_ROOMS
+				MessageType.DENIED:
+					if state == ClientState.SEND_NAME:
+						state = ClientState.STOPPED
 				MessageType.MATCHED:
 					if state == ClientState.QUEUING:
 						Logger.i("We were matched!")
@@ -78,10 +94,27 @@ func _process(_delta: float) -> void:
 				MessageType.CHAT:
 					var msg_text: String = msg.slice(1).to_byte_array().get_string_from_utf8()
 					Logger.i("Got a message: " + msg_text)
+				MessageType.ROOM_LIST:
+					var msg_text: PackedStringArray = msg.slice(1).to_byte_array().get_string_from_utf8().split("\n")
+					rooms.clear()
+					for i in msg_text.slice(1):
+						var args = i.split("\t")
+						var room: ServerRoom = ServerRoom.new()
+						room.id = int(args[0])
+						room.name = args[1]
+						room.host_name = args[2]
+						room.allowed_cards = args[3]
+						room.password = args[4]
+						rooms.push_back(room)
+					state = ClientState.IN_LOBBY
 		if waiting_for == MessageType.NONE:
-			match state:
-				ClientState.STARTING:
-					request_queue()
+			pass
+			#match state:
+			#	ClientState.STARTING:
+			#		request_queue()
+
+func connected() -> bool:
+	return socket.get_ready_state() == WebSocketPeer.STATE_OPEN
 
 func _exit_tree() -> void:
 	socket.close()
@@ -97,6 +130,18 @@ func request_queue() -> void:
 
 func send(msg: PackedByteArray):
 	socket.send(msg)
+
+func send_username():
+	var type: PackedInt32Array
+	type.push_back(MessageType.USERNAME)
+	var username: String = Options.username
+	var msg_data: PackedByteArray = type.to_byte_array() + username.to_utf8_buffer()
+	while msg_data.size() % 4 != 0:
+		msg_data.push_back(0)
+	socket.send(msg_data)
+	state = ClientState.SEND_NAME
+	waiting_for = MessageType.OK
+	Logger.i("Sent username: " + Options.username)
 
 func send_deck(deck: Deck) -> void:
 	var type: PackedInt32Array

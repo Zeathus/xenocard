@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bd6fotdy4grc8"]
+[gd_scene load_steps=10 format=3 uid="uid://bd6fotdy4grc8"]
 
 [ext_resource type="Script" path="res://scenes/online_game.gd" id="1_v84ir"]
 [ext_resource type="Theme" uid="uid://cts0fwcuwbvl0" path="res://theme_default.tres" id="2_oqua5"]
@@ -18,21 +18,22 @@ font_size = 24
 [sub_resource type="LabelSettings" id="LabelSettings_d3yow"]
 font_size = 24
 
+[sub_resource type="LabelSettings" id="LabelSettings_33rx4"]
+font_size = 48
+
 [sub_resource type="ButtonGroup" id="ButtonGroup_0euxj"]
 resource_local_to_scene = false
 
 [node name="OnlineGame" type="Node2D"]
-position = Vector2(0, -24)
 script = ExtResource("1_v84ir")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, 24)
 
 [node name="ExitPanel" type="Panel" parent="."]
 offset_left = -952.0
-offset_top = -507.0
+offset_top = -531.0
 offset_right = -537.0
-offset_bottom = -403.0
+offset_bottom = -427.0
 theme = ExtResource("2_oqua5")
 
 [node name="ButtonExit" type="Button" parent="ExitPanel"]
@@ -46,9 +47,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Filters" type="Panel" parent="."]
 offset_left = -952.0
-offset_top = -91.0
+offset_top = -115.0
 offset_right = -537.0
-offset_bottom = 555.0
+offset_bottom = 531.0
 theme = ExtResource("2_oqua5")
 
 [node name="Header" type="Label" parent="Filters"]
@@ -108,9 +109,9 @@ placeholder_text = "Room or host name"
 
 [node name="ServerPanel" type="Panel" parent="."]
 offset_left = -952.0
-offset_top = -395.0
+offset_top = -419.0
 offset_right = -537.0
-offset_bottom = -308.0
+offset_bottom = -332.0
 theme = ExtResource("2_oqua5")
 
 [node name="Label" type="Label" parent="ServerPanel"]
@@ -143,9 +144,9 @@ popup/item_0/text = "xenocard.zeathus.net"
 
 [node name="HostPanel" type="Panel" parent="."]
 offset_left = -952.0
-offset_top = -299.0
+offset_top = -323.0
 offset_right = -537.0
-offset_bottom = -100.0
+offset_bottom = -124.0
 theme = ExtResource("2_oqua5")
 
 [node name="ButtonHost" type="Button" parent="HostPanel"]
@@ -166,9 +167,9 @@ text = "Refresh"
 
 [node name="ListPanel" type="Panel" parent="."]
 offset_left = -528.0
-offset_top = -424.0
+offset_top = -448.0
 offset_right = 952.0
-offset_bottom = 555.0
+offset_bottom = 531.0
 theme = ExtResource("2_oqua5")
 
 [node name="ColumnHeaderPanel" type="Panel" parent="ListPanel"]
@@ -262,6 +263,18 @@ custom_minimum_size = Vector2(1430, 400)
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="ConnectingLabel" type="Label" parent="ListPanel"]
+visible = false
+layout_mode = 0
+offset_left = 108.0
+offset_top = 295.0
+offset_right = 1355.0
+offset_bottom = 600.0
+text = "Connecting to server..."
+label_settings = SubResource("LabelSettings_33rx4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="P1" type="Panel" parent="."]
 visible = false
 offset_left = -200.0
@@ -350,7 +363,69 @@ disabled = true
 text = "Look for Game"
 metadata/_edit_use_anchors_ = true
 
+[node name="ClickBlock" type="Panel" parent="."]
+visible = false
+z_index = 10
+offset_left = -1000.0
+offset_top = -600.0
+offset_right = 1000.0
+offset_bottom = 600.0
+
+[node name="UsernamePrompt" type="Panel" parent="."]
+visible = false
+z_index = 20
+offset_left = -300.0
+offset_top = -150.0
+offset_right = 300.0
+offset_bottom = 150.0
+theme = ExtResource("2_oqua5")
+
+[node name="HelpText" type="Label" parent="UsernamePrompt"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 566.0
+offset_bottom = 137.0
+text = "Please choose a username to use online.
+It must be at least 3 and at most 15 characters.
+May only contain letters A-Z, numbers 0-9 and underscores.
+You can change this later in the options menu."
+
+[node name="UsernameLabel" type="Label" parent="UsernamePrompt"]
+offset_left = 34.0
+offset_top = 169.0
+offset_right = 155.0
+offset_bottom = 199.0
+text = "Online Name:"
+
+[node name="Username" type="TextEdit" parent="UsernamePrompt"]
+offset_left = 168.0
+offset_top = 160.0
+offset_right = 521.0
+offset_bottom = 203.0
+placeholder_text = "Username"
+
+[node name="ButtonExit" type="Button" parent="UsernamePrompt"]
+layout_mode = 0
+offset_left = 342.0
+offset_top = 230.0
+offset_right = 482.0
+offset_bottom = 269.0
+text = "Exit"
+
+[node name="ConfirmButton" type="Button" parent="UsernamePrompt"]
+layout_mode = 0
+offset_left = 118.0
+offset_top = 230.0
+offset_right = 258.0
+offset_bottom = 269.0
+disabled = true
+text = "Confirm"
+
 [connection signal="pressed" from="ExitPanel/ButtonExit" to="." method="_on_button_exit_pressed"]
 [connection signal="toggled" from="P1/DeckPreset" to="." method="_on_p1_deck_preset_toggled"]
 [connection signal="item_selected" from="P1/Deck" to="." method="_on_deck_item_selected"]
 [connection signal="pressed" from="ButtonStart" to="." method="_on_button_start_pressed"]
+[connection signal="text_changed" from="UsernamePrompt/Username" to="." method="_on_username_text_changed"]
+[connection signal="pressed" from="UsernamePrompt/ButtonExit" to="." method="_on_button_exit_pressed"]
+[connection signal="pressed" from="UsernamePrompt/ConfirmButton" to="." method="_on_confirm_button_pressed"]
