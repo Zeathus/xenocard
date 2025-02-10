@@ -40,7 +40,7 @@ func log_message(message: String) -> void:
 
 func _ready() -> void:
 	if tcp_server.listen(PORT) != OK:
-		log_message("Unabled to start server. Failed to listen to port.")
+		log_message("Unable to start server. Failed to listen to port.")
 		set_process(false)
 
 func _process(delta: float) -> void:

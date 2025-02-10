@@ -74,15 +74,13 @@ func refresh_room_list():
 	while container.get_child_count() > 0:
 		container.remove_child(container.get_child(0))
 	var y_pos: int = 0
-	for i in client.rooms:
+	for room in client.rooms:
 		var row: Node2D = row_scene.instantiate()
-		#row.set_tutorial(tutorial)
-		#if tutorial == selected_tutorial:
-		#	row.set_pressed(true)
+		row.set_room(room)
 		row.position.x = 10
 		row.position.y = y_pos
 		#row.connect("click_tutorial", _on_tutorial_selected)
-		y_pos += 76
+		y_pos += 70
 		container.add_child(row)
 
 func refresh():
