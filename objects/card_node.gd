@@ -16,6 +16,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	z_index = original_z
+	if Options.rotate_enemy_cards:
+		$Pivot.rotation = -global_rotation
 	if $Pivot/Card.is_hovering:
 		$Pivot/Overlay.rotation = -global_rotation
 		z_index += 1
