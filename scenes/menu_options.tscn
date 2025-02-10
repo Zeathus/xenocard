@@ -184,9 +184,9 @@ offset_left = 48.0
 offset_top = 168.0
 offset_right = 546.0
 offset_bottom = 198.0
-tooltip_text = "Makes it so that enemy cards on the field
-and in the hand will be right-side up."
-text = "Make all cards be right-side up (not upside-down)"
+tooltip_text = "Makes it so that enemy cards will be
+right-side up, not upside down"
+text = "Make enemy cards right-side up"
 metadata/_edit_use_anchors_ = true
 
 [node name="AlwaysShowATKBoosts" type="CheckBox" parent="Options"]
