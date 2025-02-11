@@ -107,24 +107,13 @@ func _process(_delta: float) -> void:
 					var msg_text: PackedStringArray = msg.slice(1).to_byte_array().get_string_from_utf8().split("\n")
 					rooms.clear()
 					for i in msg_text.slice(1):
-						var args = i.split("\t")
-						var room: ServerRoom = ServerRoom.new()
-						room.id = int(args[0])
-						room.name = args[1]
-						room.host_name = args[2]
-						room.allowed_cards = int(args[3])
-						room.password = args[4]
+						var room: ServerRoom = ServerRoom.from_str(i)
 						rooms.push_back(room)
 					state = ClientState.IN_LOBBY
 				MessageType.JOIN_ROOM:
-					var msg_text: PackedStringArray = msg.slice(1).to_byte_array().get_string_from_utf8().split("\t")
+					var msg_text: String = msg.slice(1).to_byte_array().get_string_from_utf8()
 					state = ClientState.IN_ROOM
-					current_room = ServerRoom.new()
-					current_room.id = int(msg_text[0])
-					current_room.name = msg_text[1]
-					current_room.host_name = msg_text[2]
-					current_room.allowed_cards = int(msg_text[3])
-					current_room.password = msg_text[4]
+					current_room = ServerRoom.from_str(msg_text)
 		if waiting_for == MessageType.NONE:
 			pass
 			#match state:

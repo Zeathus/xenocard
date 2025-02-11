@@ -14,7 +14,7 @@ func _ready():
 		$UsernamePrompt.visible = true
 	else:
 		connect_to_server()
-	#load_decks($P1/Deck, $P1/DeckPreset.button_pressed)
+	load_decks($RoomMenu/Deck, $RoomMenu/DeckPreset.button_pressed)
 	#refresh()
 	#refresh_room_list()
 
@@ -41,7 +41,11 @@ func _process(delta):
 					refresh_room_list()
 			TCGClient.ClientState.IN_ROOM:
 				$HostPrompt.visible = false
-				$ClickBlock.visible = false
+				$ClickBlock.visible = true
+				$RoomMenu.visible = true
+				$RoomMenu/Header.text = client.current_room.name
+				$RoomMenu/P1Name.text = client.current_room.p1_name if client.current_room.p1_name != "" else "<None>"
+				$RoomMenu/P2Name.text = client.current_room.p2_name if client.current_room.p2_name != "" else "<None>"
 			TCGClient.ClientState.STOPPED:
 				match last_state:
 					TCGClient.ClientState.SEND_NAME:
@@ -60,7 +64,7 @@ func _process(delta):
 	#	connection_status.text = "Fetching rooms..."
 	#	client.state = TCGClient.ClientState.GET_ROOMS
 	elif client.state == TCGClient.ClientState.AWAIT_DECK:
-		client.send_deck(Deck.load(get_deck(), $P1/DeckPreset.button_pressed))
+		client.send_deck(Deck.load(get_deck(), $RoomMenu/DeckPreset.button_pressed))
 	elif client.state == TCGClient.ClientState.START_GAME:
 		client.state = TCGClient.ClientState.PLAYING
 		var game = game_scene.instantiate()
@@ -103,7 +107,7 @@ func load_decks(node: OptionButton, presets: bool = false):
 		node.add_item(deck)
 
 func get_deck():
-	var node: OptionButton = $P1/Deck
+	var node: OptionButton = $RoomMenu/Deck
 	return node.get_item_text(node.get_selected_id())
 
 func set_host_menu_disabled(val: bool):
@@ -126,7 +130,7 @@ func _on_button_exit_pressed():
 	get_parent().end_scene()
 
 func _on_p1_deck_preset_toggled(toggled_on):
-	load_decks($P1/Deck, toggled_on)
+	load_decks($RoomMenu/Deck, toggled_on)
 	refresh()
 
 func _on_deck_item_selected(index):

@@ -141,7 +141,7 @@ func handle_packet(peer: WebSocketPeer):
 			var room: ServerRoom = ServerRoom.new()
 			room.id = ServerRoom.get_next_id()
 			room.name = room_info[0]
-			room.host_name = clients[peer].name
+			room.p1_name = clients[peer].name
 			room.p1 = clients[peer]
 			room.password = room_info[1]
 			room.allowed_cards = int(room_info[1])

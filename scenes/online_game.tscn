@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bd6fotdy4grc8"]
+[gd_scene load_steps=15 format=3 uid="uid://bd6fotdy4grc8"]
 
 [ext_resource type="Script" path="res://scenes/online_game.gd" id="1_v84ir"]
 [ext_resource type="Theme" uid="uid://cts0fwcuwbvl0" path="res://theme_default.tres" id="2_oqua5"]
@@ -21,9 +21,6 @@ font_size = 24
 [sub_resource type="LabelSettings" id="LabelSettings_33rx4"]
 font_size = 48
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_0euxj"]
-resource_local_to_scene = false
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3njg0"]
 bg_color = Color(0, 0, 0, 0.627451)
 
@@ -35,6 +32,12 @@ font_size = 32
 [sub_resource type="LabelSettings" id="LabelSettings_tx2ou"]
 font_size = 24
 font_color = Color(1, 0.184314, 0.196078, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_iu1xx"]
+font_size = 32
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_0euxj"]
+resource_local_to_scene = false
 
 [node name="OnlineGame" type="Node2D"]
 script = ExtResource("1_v84ir")
@@ -296,84 +299,6 @@ label_settings = SubResource("LabelSettings_33rx4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="P1" type="Panel" parent="."]
-visible = false
-offset_left = -200.0
-offset_top = 16.0
-offset_right = 200.0
-offset_bottom = 146.0
-metadata/_edit_use_anchors_ = true
-
-[node name="DeckLabel" type="Label" parent="P1"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.52
-anchor_right = -0.52
-offset_left = 240.0
-offset_top = 24.0
-offset_right = 330.0
-offset_bottom = 47.0
-text = "Deck"
-metadata/_edit_use_anchors_ = true
-
-[node name="DeckCustom" type="CheckBox" parent="P1"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.52
-anchor_right = -0.52
-offset_left = 399.0
-offset_top = 20.0
-offset_right = 487.0
-offset_bottom = 51.0
-button_pressed = true
-button_group = SubResource("ButtonGroup_0euxj")
-text = "Custom"
-metadata/_edit_use_anchors_ = true
-
-[node name="DeckPreset" type="CheckBox" parent="P1"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.52
-anchor_right = -0.52
-offset_left = 495.0
-offset_top = 20.0
-offset_right = 573.0
-offset_bottom = 51.0
-button_group = SubResource("ButtonGroup_0euxj")
-text = "Preset"
-metadata/_edit_use_anchors_ = true
-
-[node name="Deck" type="OptionButton" parent="P1"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.52
-anchor_right = -0.52
-offset_left = 235.0
-offset_top = 56.0
-offset_right = 577.0
-offset_bottom = 103.0
-metadata/_edit_use_anchors_ = true
-
-[node name="PlayerPanel" type="Panel" parent="P1"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = -1.41538
-anchor_bottom = -1.41538
-offset_top = 137.0
-offset_right = 400.0
-offset_bottom = 177.0
-metadata/_edit_use_anchors_ = true
-
-[node name="Label" type="Label" parent="P1/PlayerPanel"]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 8.0
-offset_right = 385.0
-offset_bottom = 31.0
-text = "Choose a Deck"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
-
 [node name="ButtonStart" type="Button" parent="."]
 visible = false
 offset_left = -150.0
@@ -528,6 +453,7 @@ offset_bottom = 294.0
 text = "Show"
 
 [node name="AllowedCardsLabel" type="Label" parent="HostPrompt"]
+layout_mode = 0
 offset_left = 35.0
 offset_top = 339.0
 offset_right = 292.0
@@ -593,12 +519,73 @@ text = "Room"
 label_settings = SubResource("LabelSettings_pd2qs")
 
 [node name="AllowedCardsLabel" type="Label" parent="RoomMenu"]
+layout_mode = 0
 offset_left = 35.0
 offset_top = 91.0
 offset_right = 292.0
 offset_bottom = 121.0
 text = "Allowed Cards:"
 vertical_alignment = 2
+
+[node name="P1Label" type="Label" parent="RoomMenu"]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 147.0
+offset_right = 115.0
+offset_bottom = 195.0
+text = "P1:"
+label_settings = SubResource("LabelSettings_iu1xx")
+vertical_alignment = 2
+
+[node name="P1Name" type="Label" parent="RoomMenu"]
+layout_mode = 0
+offset_left = 131.0
+offset_top = 147.0
+offset_right = 478.0
+offset_bottom = 195.0
+text = "<None>"
+label_settings = SubResource("LabelSettings_iu1xx")
+vertical_alignment = 2
+clip_text = true
+
+[node name="P1Ready" type="CheckBox" parent="RoomMenu"]
+layout_mode = 0
+offset_left = 479.0
+offset_top = 162.0
+offset_right = 585.0
+offset_bottom = 192.0
+disabled = true
+text = "Ready"
+
+[node name="P2Label" type="Label" parent="RoomMenu"]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 227.0
+offset_right = 115.0
+offset_bottom = 275.0
+text = "P2:"
+label_settings = SubResource("LabelSettings_iu1xx")
+vertical_alignment = 2
+
+[node name="P2Name" type="Label" parent="RoomMenu"]
+layout_mode = 0
+offset_left = 131.0
+offset_top = 227.0
+offset_right = 477.0
+offset_bottom = 275.0
+text = "<None>"
+label_settings = SubResource("LabelSettings_iu1xx")
+vertical_alignment = 2
+clip_text = true
+
+[node name="P2Ready" type="CheckBox" parent="RoomMenu"]
+layout_mode = 0
+offset_left = 479.0
+offset_top = 242.0
+offset_right = 581.0
+offset_bottom = 272.0
+disabled = true
+text = "Ready"
 
 [node name="LeaveButton" type="Button" parent="RoomMenu"]
 layout_mode = 0
@@ -628,11 +615,67 @@ label_settings = SubResource("LabelSettings_tx2ou")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="DeckLabel" type="Label" parent="RoomMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.173333
+anchor_top = 0.56
+anchor_right = -0.173333
+anchor_bottom = 0.574
+offset_left = 240.0
+offset_top = 24.0
+offset_right = 330.0
+offset_bottom = 47.0
+text = "Deck"
+metadata/_edit_use_anchors_ = true
+
+[node name="DeckCustom" type="CheckBox" parent="RoomMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.186667
+anchor_top = 0.56
+anchor_right = -0.176667
+anchor_bottom = 0.56
+offset_left = 399.0
+offset_top = 20.0
+offset_right = 487.0
+offset_bottom = 51.0
+button_pressed = true
+button_group = SubResource("ButtonGroup_0euxj")
+text = "Custom"
+metadata/_edit_use_anchors_ = true
+
+[node name="DeckPreset" type="CheckBox" parent="RoomMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.173333
+anchor_top = 0.56
+anchor_right = -0.165
+anchor_bottom = 0.56
+offset_left = 495.0
+offset_top = 20.0
+offset_right = 573.0
+offset_bottom = 51.0
+button_group = SubResource("ButtonGroup_0euxj")
+text = "Preset"
+metadata/_edit_use_anchors_ = true
+
+[node name="Deck" type="OptionButton" parent="RoomMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.173333
+anchor_top = 0.56
+anchor_right = -0.173333
+anchor_bottom = 0.56
+offset_left = 235.0
+offset_top = 56.0
+offset_right = 577.0
+offset_bottom = 103.0
+metadata/_edit_use_anchors_ = true
+
 [connection signal="pressed" from="ExitPanel/ButtonExit" to="." method="_on_button_exit_pressed"]
 [connection signal="pressed" from="HostPanel/ButtonHost" to="." method="_on_button_host_pressed"]
 [connection signal="pressed" from="HostPanel/ButtonRefresh" to="." method="_on_button_refresh_pressed"]
-[connection signal="toggled" from="P1/DeckPreset" to="." method="_on_p1_deck_preset_toggled"]
-[connection signal="item_selected" from="P1/Deck" to="." method="_on_deck_item_selected"]
 [connection signal="pressed" from="ButtonStart" to="." method="_on_button_start_pressed"]
 [connection signal="text_changed" from="UsernamePrompt/Username" to="." method="_on_username_text_changed"]
 [connection signal="pressed" from="UsernamePrompt/ButtonExit" to="." method="_on_button_exit_pressed"]
@@ -642,3 +685,5 @@ vertical_alignment = 1
 [connection signal="toggled" from="HostPrompt/ShowPassword" to="." method="_on_show_password_toggled"]
 [connection signal="pressed" from="HostPrompt/HostExit" to="." method="_on_host_exit_pressed"]
 [connection signal="pressed" from="HostPrompt/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="toggled" from="RoomMenu/DeckPreset" to="." method="_on_p1_deck_preset_toggled"]
+[connection signal="item_selected" from="RoomMenu/Deck" to="." method="_on_deck_item_selected"]

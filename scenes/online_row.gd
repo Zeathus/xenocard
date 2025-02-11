@@ -7,7 +7,7 @@ var room: ServerRoom
 func set_room(_room: ServerRoom) -> void:
 	room = _room
 	$Panel/RoomName.text = room.name
-	$Panel/HostName.text = room.host_name
+	$Panel/HostName.text = room.p1_name
 	$Panel/AllowedCards.text = str(room.allowed_cards)
 	$Panel/HasPassword.text = "Yes" if room.password == "1" else "No"
 

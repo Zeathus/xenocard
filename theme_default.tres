@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=20 format=3 uid="uid://cts0fwcuwbvl0"]
+[gd_resource type="Theme" load_steps=21 format=3 uid="uid://cts0fwcuwbvl0"]
 
 [ext_resource type="FontFile" uid="uid://dnvfkx73suq8l" path="res://fonts/Roboto/Roboto-Medium.ttf" id="1_wikif"]
 [ext_resource type="FontFile" uid="uid://cisvfm0x7igqm" path="res://fonts/NotoSansJP/NotoSansJP-Bold.ttf" id="2_3lukr"]
@@ -75,6 +75,10 @@ expand_margin_right = 4.0
 expand_margin_bottom = 4.0
 shadow_color = Color(0.12549, 0.572549, 0.407843, 0.784314)
 shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sv45d"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_color = Color(0.8, 0.8, 0.8, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aj4cn"]
 bg_color = Color(0.6, 0.6, 0.6, 0.392157)
@@ -242,6 +246,7 @@ Button/styles/normal = SubResource("StyleBoxFlat_mrd2k")
 Button/styles/pressed = SubResource("StyleBoxFlat_jp7gu")
 CheckBox/colors/font_pressed_color = Color(1, 1, 1, 1)
 CheckBox/constants/h_separation = 8
+CheckBox/styles/disabled = SubResource("StyleBoxFlat_sv45d")
 CheckBox/styles/hover = SubResource("StyleBoxFlat_aj4cn")
 CheckBox/styles/hover_pressed = SubResource("StyleBoxFlat_ubvpi")
 CheckBox/styles/normal = SubResource("StyleBoxFlat_tep7y")
