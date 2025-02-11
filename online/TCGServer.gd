@@ -12,6 +12,8 @@ enum MessageType {
 	IDENTITY = 6,
 	USERNAME = 7,
 	ROOM_LIST = 8,
+	HOST_ROOM = 9,
+	JOIN_ROOM = 10,
 	CHAT = 20,
 	OK = 200,
 	DENIED = 400,
@@ -119,8 +121,33 @@ func handle_packet(peer: WebSocketPeer):
 				return
 			Logger.i("Got username: " + username)
 			clients[peer].name = username
+			clients[peer].state = ClientState.IDLE
 			send_ok(peer)
 			send_rooms(peer)
+		MessageType.ROOM_LIST:
+			Logger.i("Sent rooms for refresh")
+			send_rooms(peer)
+		MessageType.HOST_ROOM:
+			var room_info: PackedStringArray = msg.slice(1).to_byte_array().get_string_from_utf8().split("\t")
+			Logger.i("Got room host info: " + str(room_info))
+			if not ServerRoom.verify_args(room_info):
+				Logger.w("Room info invalid")
+				send_denied(peer)
+				return
+			if peer in peer_to_room:
+				Logger.w("Client is already in a room")
+				send_denied(peer)
+				return
+			var room: ServerRoom = ServerRoom.new()
+			room.id = ServerRoom.get_next_id()
+			room.name = room_info[0]
+			room.host_name = clients[peer].name
+			room.p1 = clients[peer]
+			room.password = room_info[1]
+			room.allowed_cards = int(room_info[1])
+			rooms.push_back(room)
+			peer_to_room[peer] = room
+			send_room(room, peer)
 
 func prepare_match(peerA, peerB) -> void:
 	var msg: PackedInt32Array
@@ -181,6 +208,15 @@ func send_rooms(peer: WebSocketPeer) -> void:
 	for room: ServerRoom in rooms:
 		room_str += "\n"
 		room_str += room.to_str()
+	var msg_data = type.to_byte_array() + room_str.to_utf8_buffer()
+	while msg_data.size() % 4 != 0:
+		msg_data.push_back(0)
+	peer.send(msg_data)
+
+func send_room(room: ServerRoom, peer: WebSocketPeer) -> void:
+	var type: PackedInt32Array
+	type.append(MessageType.JOIN_ROOM)
+	var room_str: String = room.to_str()
 	var msg_data = type.to_byte_array() + room_str.to_utf8_buffer()
 	while msg_data.size() % 4 != 0:
 		msg_data.push_back(0)

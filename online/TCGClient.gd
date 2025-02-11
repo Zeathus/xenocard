@@ -12,6 +12,8 @@ enum MessageType {
 	IDENTITY = 6,
 	USERNAME = 7,
 	ROOM_LIST = 8,
+	HOST_ROOM = 9,
+	JOIN_ROOM = 10,
 	CHAT = 20,
 	OK = 200,
 	DENIED = 400,
@@ -24,13 +26,16 @@ enum ClientState {
 	SEND_NAME = 2,
 	GET_ROOMS = 3,
 	IN_LOBBY = 4,
-	STARTING = 5,
-	QUEUING = 6,
-	AWAIT_DECK = 7,
-	SENDING_DECK = 8,
-	AWAIT_BOARD = 9,
-	START_GAME = 10,
-	PLAYING = 11,
+	AWAIT_HOST = 5,
+	AWAIT_JOIN = 6,
+	IN_ROOM = 7,
+	STARTING = 8,
+	QUEUING = 9,
+	AWAIT_DECK = 10,
+	SENDING_DECK = 11,
+	AWAIT_BOARD = 12,
+	START_GAME = 13,
+	PLAYING = 14,
 	STOPPED = 500
 }
 
@@ -43,6 +48,7 @@ var waiting_for: MessageType = MessageType.NONE
 var events: Array[String] = []
 var actions: Array[String] = []
 var rooms: Array[ServerRoom] = []
+var current_room: ServerRoom = null
 
 func _ready() -> void:
 	Logger.i("Connecting to " + websocket_url)
@@ -75,6 +81,9 @@ func _process(_delta: float) -> void:
 				MessageType.DENIED:
 					if state == ClientState.SEND_NAME:
 						state = ClientState.STOPPED
+					elif state == ClientState.AWAIT_HOST:
+						Logger.w("Failed to create room")
+						state = ClientState.IN_LOBBY
 				MessageType.MATCHED:
 					if state == ClientState.QUEUING:
 						Logger.i("We were matched!")
@@ -103,10 +112,19 @@ func _process(_delta: float) -> void:
 						room.id = int(args[0])
 						room.name = args[1]
 						room.host_name = args[2]
-						room.allowed_cards = args[3]
+						room.allowed_cards = int(args[3])
 						room.password = args[4]
 						rooms.push_back(room)
 					state = ClientState.IN_LOBBY
+				MessageType.JOIN_ROOM:
+					var msg_text: PackedStringArray = msg.slice(1).to_byte_array().get_string_from_utf8().split("\t")
+					state = ClientState.IN_ROOM
+					current_room = ServerRoom.new()
+					current_room.id = int(msg_text[0])
+					current_room.name = msg_text[1]
+					current_room.host_name = msg_text[2]
+					current_room.allowed_cards = int(msg_text[3])
+					current_room.password = msg_text[4]
 		if waiting_for == MessageType.NONE:
 			pass
 			#match state:
@@ -165,3 +183,20 @@ func send_chat(message: String) -> void:
 	var type: PackedInt32Array
 	type.append(MessageType.CHAT)
 	socket.send(type.to_byte_array() + message.to_utf8_buffer())
+
+func get_rooms() -> void:
+	var type: PackedInt32Array
+	type.push_back(MessageType.ROOM_LIST)
+	socket.send(type.to_byte_array())
+
+func host_room(name: String, password: String, allowed_cards: int) -> void:
+	var type: PackedInt32Array
+	type.append(MessageType.HOST_ROOM)
+	var room_info: String = "\t".join([name, password, str(allowed_cards)])
+	var msg_data = type.to_byte_array() + room_info.to_utf8_buffer()
+	while msg_data.size() % 4 != 0:
+		msg_data.push_back(0)
+	socket.send(msg_data)
+	state = ClientState.AWAIT_HOST
+	waiting_for = MessageType.JOIN_ROOM
+	Logger.i("Sent room info")

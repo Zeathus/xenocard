@@ -30,12 +30,18 @@ func _process(delta):
 				connection_status.visible = true
 				connection_status.text = "Fetching rooms..."
 			TCGClient.ClientState.IN_LOBBY:
-				if client.rooms.size() == 0:
+				if last_state == TCGClient.ClientState.AWAIT_HOST:
+					set_host_menu_disabled(false)
+					$HostPrompt/FailedLabel.visible = true
+				elif client.rooms.size() == 0:
 					connection_status.visible = true
 					connection_status.text = "No rooms found. Try hosting one!"
 				else:
 					connection_status.visible = false
 					refresh_room_list()
+			TCGClient.ClientState.IN_ROOM:
+				$HostPrompt.visible = false
+				$ClickBlock.visible = false
 			TCGClient.ClientState.STOPPED:
 				match last_state:
 					TCGClient.ClientState.SEND_NAME:
@@ -100,6 +106,14 @@ func get_deck():
 	var node: OptionButton = $P1/Deck
 	return node.get_item_text(node.get_selected_id())
 
+func set_host_menu_disabled(val: bool):
+	$HostPrompt/RoomName.editable = not val
+	$HostPrompt/Password.editable = not val
+	$HostPrompt/AllowedCards.disabled = val
+	$HostPrompt/HostButton.disabled = val
+	$HostPrompt/HostExit.disabled = val
+	$HostPrompt/FailedLabel.visible = false
+
 func _on_button_start_pressed():
 	var game = game_scene.instantiate()
 	game.game_options["reveal_hands"] = false
@@ -139,3 +153,56 @@ func _on_confirm_button_pressed() -> void:
 	$ClickBlock.visible = false
 	$UsernamePrompt.visible = false
 	connect_to_server()
+
+func _on_room_name_text_changed(new_text: String) -> void:
+	var base_name: String = $HostPrompt/RoomName.text
+	var regex: RegEx = RegEx.new()
+	regex.compile("[^A-Z^a-z^0-9^ ]")
+	var room_name: String = regex.sub(base_name, "", true)
+	if len(room_name) > 15 or base_name != room_name:
+		room_name = room_name.substr(0, min(len(room_name), 15))
+		var old_column: int = $HostPrompt/RoomName.get_caret_column()
+		$HostPrompt/RoomName.text = room_name
+		$HostPrompt/RoomName.set_caret_column(min(len(room_name), 15, old_column))
+	$HostPrompt/HostButton.disabled = (len(room_name) > 0 and len(room_name) < 3) or len(room_name) > 15
+
+func _on_password_text_changed(new_text: String) -> void:
+	var base_password: String = $HostPrompt/Password.text
+	var regex: RegEx = RegEx.new()
+	regex.compile("[^A-Z^a-z^0-9]")
+	var password: String = regex.sub(base_password, "", true)
+	if len(password) > 15 or base_password != password:
+		password = password.substr(0, min(len(password), 15))
+		var old_column: int = $HostPrompt/Password.get_caret_column()
+		$HostPrompt/Password.text = password
+		$HostPrompt/Password.set_caret_column(min(len(password), 15, old_column))
+
+func _on_show_password_toggled(toggled_on: bool) -> void:
+	$HostPrompt/Password.secret = not toggled_on
+
+func _on_host_exit_pressed() -> void:
+	$ClickBlock.visible = false
+	$HostPrompt.visible = false
+
+func _on_host_button_pressed() -> void:
+	var room_name = $HostPrompt/RoomName.text
+	if len(room_name) < 3:
+		room_name = $HostPrompt/RoomName.placeholder_text
+	client.host_room(
+		room_name,
+		$HostPrompt/Password.text,
+		$HostPrompt/AllowedCards.get_selected_id()
+	)
+	set_host_menu_disabled(true)
+
+func _on_button_host_pressed() -> void:
+	$ClickBlock.visible = true
+	$HostPrompt.visible = true
+	$HostPrompt/RoomName.text = ""
+	$HostPrompt/Password.text = ""
+	set_host_menu_disabled(false)
+
+func _on_button_refresh_pressed() -> void:
+	if client:
+		client.state = TCGClient.ClientState.GET_ROOMS
+		client.get_rooms()

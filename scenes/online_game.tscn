@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bd6fotdy4grc8"]
+[gd_scene load_steps=14 format=3 uid="uid://bd6fotdy4grc8"]
 
 [ext_resource type="Script" path="res://scenes/online_game.gd" id="1_v84ir"]
 [ext_resource type="Theme" uid="uid://cts0fwcuwbvl0" path="res://theme_default.tres" id="2_oqua5"]
@@ -23,6 +23,18 @@ font_size = 48
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_0euxj"]
 resource_local_to_scene = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3njg0"]
+bg_color = Color(0, 0, 0, 0.627451)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pd2qs"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_0xd1d"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tx2ou"]
+font_size = 24
+font_color = Color(1, 0.184314, 0.196078, 1)
 
 [node name="OnlineGame" type="Node2D"]
 script = ExtResource("1_v84ir")
@@ -180,12 +192,14 @@ offset_bottom = -8.0
 theme = ExtResource("2_oqua5")
 
 [node name="VSeparator" type="VSeparator" parent="ListPanel/ColumnHeaderPanel"]
+layout_mode = 0
 offset_left = 204.0
 offset_top = 10.0
 offset_right = 208.0
 offset_bottom = 64.0
 
 [node name="RoomName" type="Label" parent="ListPanel/ColumnHeaderPanel"]
+layout_mode = 0
 offset_left = 215.0
 offset_top = 14.0
 offset_right = 502.0
@@ -196,12 +210,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="VSeparator2" type="VSeparator" parent="ListPanel/ColumnHeaderPanel"]
+layout_mode = 0
 offset_left = 508.0
 offset_top = 10.0
 offset_right = 512.0
 offset_bottom = 64.0
 
 [node name="HostName" type="Label" parent="ListPanel/ColumnHeaderPanel"]
+layout_mode = 0
 offset_left = 519.0
 offset_top = 14.0
 offset_right = 806.0
@@ -212,12 +228,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="VSeparator3" type="VSeparator" parent="ListPanel/ColumnHeaderPanel"]
+layout_mode = 0
 offset_left = 812.0
 offset_top = 10.0
 offset_right = 816.0
 offset_bottom = 64.0
 
 [node name="Label3" type="Label" parent="ListPanel/ColumnHeaderPanel"]
+layout_mode = 0
 offset_left = 823.0
 offset_top = 14.0
 offset_right = 1110.0
@@ -228,12 +246,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="VSeparator4" type="VSeparator" parent="ListPanel/ColumnHeaderPanel"]
+layout_mode = 0
 offset_left = 1116.0
 offset_top = 10.0
 offset_right = 1120.0
 offset_bottom = 64.0
 
 [node name="Label4" type="Label" parent="ListPanel/ColumnHeaderPanel"]
+layout_mode = 0
 offset_left = 1127.0
 offset_top = 14.0
 offset_right = 1414.0
@@ -244,6 +264,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="VSeparator5" type="VSeparator" parent="ListPanel/ColumnHeaderPanel"]
+layout_mode = 0
 offset_left = 1420.0
 offset_top = 10.0
 offset_right = 1424.0
@@ -370,6 +391,7 @@ offset_left = -1000.0
 offset_top = -600.0
 offset_right = 1000.0
 offset_bottom = 600.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3njg0")
 
 [node name="UsernamePrompt" type="Panel" parent="."]
 visible = false
@@ -392,6 +414,7 @@ May only contain letters A-Z, numbers 0-9 and underscores.
 You can change this later in the options menu."
 
 [node name="UsernameLabel" type="Label" parent="UsernamePrompt"]
+layout_mode = 0
 offset_left = 34.0
 offset_top = 169.0
 offset_right = 155.0
@@ -399,6 +422,7 @@ offset_bottom = 199.0
 text = "Online Name:"
 
 [node name="Username" type="TextEdit" parent="UsernamePrompt"]
+layout_mode = 0
 offset_left = 168.0
 offset_top = 160.0
 offset_right = 521.0
@@ -422,10 +446,199 @@ offset_bottom = 269.0
 disabled = true
 text = "Confirm"
 
+[node name="HostPrompt" type="Panel" parent="."]
+visible = false
+z_index = 20
+offset_left = -300.0
+offset_top = -250.0
+offset_right = 300.0
+offset_bottom = 250.0
+theme = ExtResource("2_oqua5")
+
+[node name="Header" type="Label" parent="HostPrompt"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 566.0
+offset_bottom = 80.0
+text = "Host a Room"
+label_settings = SubResource("LabelSettings_pd2qs")
+
+[node name="RoomNameLabel" type="Label" parent="HostPrompt"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 105.0
+offset_right = 155.0
+offset_bottom = 135.0
+text = "Room Name:"
+
+[node name="RoomName" type="LineEdit" parent="HostPrompt"]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 96.0
+offset_right = 533.0
+offset_bottom = 140.0
+placeholder_text = "My Room"
+max_length = 15
+
+[node name="RoomNameHelp" type="Label" parent="HostPrompt"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 148.0
+offset_right = 541.0
+offset_bottom = 226.0
+text = "Letters A-Z, numbers 0-9 and spaces.
+Min. 3 non-space characters, max 15 characters."
+label_settings = SubResource("LabelSettings_0xd1d")
+
+[node name="PasswordLabel" type="Label" parent="HostPrompt"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 225.0
+offset_right = 155.0
+offset_bottom = 255.0
+text = "Password:"
+
+[node name="Password" type="LineEdit" parent="HostPrompt"]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 216.0
+offset_right = 533.0
+offset_bottom = 260.0
+placeholder_text = "Leave empty for no password"
+max_length = 15
+secret = true
+
+[node name="PasswordHelp" type="Label" parent="HostPrompt"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 268.0
+offset_right = 537.0
+offset_bottom = 346.0
+text = "Letters A-Z and numbers 0-9.
+Max 15 characters."
+label_settings = SubResource("LabelSettings_0xd1d")
+
+[node name="ShowPassword" type="CheckBox" parent="HostPrompt"]
+layout_mode = 0
+offset_left = 456.0
+offset_top = 264.0
+offset_right = 530.0
+offset_bottom = 294.0
+text = "Show"
+
+[node name="AllowedCardsLabel" type="Label" parent="HostPrompt"]
+offset_left = 35.0
+offset_top = 339.0
+offset_right = 292.0
+offset_bottom = 369.0
+text = "Allowed Cards:"
+vertical_alignment = 2
+
+[node name="AllowedCards" type="OptionButton" parent="HostPrompt"]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 339.0
+offset_right = 446.0
+offset_bottom = 375.0
+selected = 0
+item_count = 2
+popup/item_0/text = "All"
+popup/item_1/text = "Xenosaga 1"
+popup/item_1/id = 1
+
+[node name="HostExit" type="Button" parent="HostPrompt"]
+layout_mode = 0
+offset_left = 342.0
+offset_top = 422.0
+offset_right = 482.0
+offset_bottom = 461.0
+text = "Cancel"
+
+[node name="HostButton" type="Button" parent="HostPrompt"]
+layout_mode = 0
+offset_left = 118.0
+offset_top = 422.0
+offset_right = 258.0
+offset_bottom = 461.0
+text = "Host"
+
+[node name="FailedLabel" type="Label" parent="HostPrompt"]
+layout_mode = 0
+offset_left = 274.0
+offset_top = 34.0
+offset_right = 568.0
+offset_bottom = 69.0
+text = "Failed to create room"
+label_settings = SubResource("LabelSettings_tx2ou")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RoomMenu" type="Panel" parent="."]
+visible = false
+z_index = 20
+offset_left = -300.0
+offset_top = -250.0
+offset_right = 300.0
+offset_bottom = 250.0
+theme = ExtResource("2_oqua5")
+
+[node name="Header" type="Label" parent="RoomMenu"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 566.0
+offset_bottom = 80.0
+text = "Room"
+label_settings = SubResource("LabelSettings_pd2qs")
+
+[node name="AllowedCardsLabel" type="Label" parent="RoomMenu"]
+offset_left = 35.0
+offset_top = 91.0
+offset_right = 292.0
+offset_bottom = 121.0
+text = "Allowed Cards:"
+vertical_alignment = 2
+
+[node name="LeaveButton" type="Button" parent="RoomMenu"]
+layout_mode = 0
+offset_left = 342.0
+offset_top = 422.0
+offset_right = 482.0
+offset_bottom = 461.0
+text = "Leave"
+
+[node name="ReadyButton" type="Button" parent="RoomMenu"]
+layout_mode = 0
+offset_left = 118.0
+offset_top = 422.0
+offset_right = 258.0
+offset_bottom = 461.0
+toggle_mode = true
+text = "Ready"
+
+[node name="ErrorLabel" type="Label" parent="RoomMenu"]
+layout_mode = 0
+offset_left = 274.0
+offset_top = 34.0
+offset_right = 568.0
+offset_bottom = 69.0
+text = "Failed to create room"
+label_settings = SubResource("LabelSettings_tx2ou")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="ExitPanel/ButtonExit" to="." method="_on_button_exit_pressed"]
+[connection signal="pressed" from="HostPanel/ButtonHost" to="." method="_on_button_host_pressed"]
+[connection signal="pressed" from="HostPanel/ButtonRefresh" to="." method="_on_button_refresh_pressed"]
 [connection signal="toggled" from="P1/DeckPreset" to="." method="_on_p1_deck_preset_toggled"]
 [connection signal="item_selected" from="P1/Deck" to="." method="_on_deck_item_selected"]
 [connection signal="pressed" from="ButtonStart" to="." method="_on_button_start_pressed"]
 [connection signal="text_changed" from="UsernamePrompt/Username" to="." method="_on_username_text_changed"]
 [connection signal="pressed" from="UsernamePrompt/ButtonExit" to="." method="_on_button_exit_pressed"]
 [connection signal="pressed" from="UsernamePrompt/ConfirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="text_changed" from="HostPrompt/RoomName" to="." method="_on_room_name_text_changed"]
+[connection signal="text_changed" from="HostPrompt/Password" to="." method="_on_password_text_changed"]
+[connection signal="toggled" from="HostPrompt/ShowPassword" to="." method="_on_show_password_toggled"]
+[connection signal="pressed" from="HostPrompt/HostExit" to="." method="_on_host_exit_pressed"]
+[connection signal="pressed" from="HostPrompt/HostButton" to="." method="_on_host_button_pressed"]
