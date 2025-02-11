@@ -148,6 +148,46 @@ func handle_packet(peer: WebSocketPeer):
 			rooms.push_back(room)
 			peer_to_room[peer] = room
 			send_room(room, peer)
+		MessageType.JOIN_ROOM:
+			var room_id = msg[1]
+			if room_id == -1:
+				# Leave room
+				if peer not in peer_to_room:
+					Logger.w("Client tried to leave room while not in a room")
+					return
+				var room: ServerRoom = peer_to_room[peer]
+				room.remove_player(clients[peer])
+				peer_to_room.erase(peer)
+				for p in room.get_players():
+					if p != null:
+						send_room(room, p.peer)
+				return
+			var room: ServerRoom = get_room(room_id)
+			if room == null:
+				Logger.w("Client tried to join a room that doesn't exist")
+				send_denied(peer)
+				return
+			if room.p1 != null and room.p2 != null:
+				Logger.w("Client tried to join a full room")
+				send_denied(peer)
+				return
+			if room.p1 == null:
+				room.p1 = clients[peer]
+				room.p1_name = clients[peer].name
+			elif room.p2 == null:
+				room.p2 = clients[peer]
+				room.p2_name = clients[peer].name
+			peer_to_room[peer] = room
+			for p in room.get_players():
+				if p != null:
+					send_room(room, p.peer)
+			Logger.i("Client joined room " + str(room_id))
+
+func get_room(id: int) -> ServerRoom:
+	for room in rooms:
+		if room.id == id:
+			return room
+	return null
 
 func prepare_match(peerA, peerB) -> void:
 	var msg: PackedInt32Array

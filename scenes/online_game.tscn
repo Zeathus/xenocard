@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bd6fotdy4grc8"]
+[gd_scene load_steps=17 format=3 uid="uid://bd6fotdy4grc8"]
 
 [ext_resource type="Script" path="res://scenes/online_game.gd" id="1_v84ir"]
 [ext_resource type="Theme" uid="uid://cts0fwcuwbvl0" path="res://theme_default.tres" id="2_oqua5"]
@@ -35,6 +35,12 @@ font_color = Color(1, 0.184314, 0.196078, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_iu1xx"]
 font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_ittvu"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_7yr2q"]
+font_size = 24
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_0euxj"]
 resource_local_to_scene = false
@@ -540,11 +546,11 @@ vertical_alignment = 2
 [node name="P1Name" type="Label" parent="RoomMenu"]
 layout_mode = 0
 offset_left = 131.0
-offset_top = 147.0
+offset_top = 143.0
 offset_right = 478.0
-offset_bottom = 195.0
+offset_bottom = 191.0
 text = "<None>"
-label_settings = SubResource("LabelSettings_iu1xx")
+label_settings = SubResource("LabelSettings_ittvu")
 vertical_alignment = 2
 clip_text = true
 
@@ -570,11 +576,11 @@ vertical_alignment = 2
 [node name="P2Name" type="Label" parent="RoomMenu"]
 layout_mode = 0
 offset_left = 131.0
-offset_top = 227.0
+offset_top = 223.0
 offset_right = 477.0
-offset_bottom = 275.0
+offset_bottom = 271.0
 text = "<None>"
-label_settings = SubResource("LabelSettings_iu1xx")
+label_settings = SubResource("LabelSettings_7yr2q")
 vertical_alignment = 2
 clip_text = true
 
@@ -685,5 +691,6 @@ metadata/_edit_use_anchors_ = true
 [connection signal="toggled" from="HostPrompt/ShowPassword" to="." method="_on_show_password_toggled"]
 [connection signal="pressed" from="HostPrompt/HostExit" to="." method="_on_host_exit_pressed"]
 [connection signal="pressed" from="HostPrompt/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="RoomMenu/LeaveButton" to="." method="_on_leave_button_pressed"]
 [connection signal="toggled" from="RoomMenu/DeckPreset" to="." method="_on_p1_deck_preset_toggled"]
 [connection signal="item_selected" from="RoomMenu/Deck" to="." method="_on_deck_item_selected"]

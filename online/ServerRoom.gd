@@ -5,8 +5,8 @@ var id: int
 var name: String
 var p1_name: String = ""
 var p2_name: String = ""
-var p1: ServerPeer
-var p2: ServerPeer
+var p1: ServerPeer = null
+var p2: ServerPeer = null
 var allowed_cards: int = 0
 var password: String = ""
 
@@ -15,6 +15,16 @@ func _init() -> void:
 
 func get_players() -> Array[ServerPeer]:
 	return [p1, p2]
+
+func remove_player(peer: ServerPeer):
+	if p1 == peer:
+		p1 = p2
+		p1_name = p2_name
+		p2 = null
+		p2_name = ""
+	elif p2 == peer:
+		p2 = null
+		p2_name = ""
 
 func to_str() -> String:
 	return "\t".join([str(id), name, p1_name, p2_name, str(allowed_cards), "1" if len(password) > 0 else "0"])

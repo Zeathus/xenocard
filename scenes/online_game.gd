@@ -43,9 +43,6 @@ func _process(delta):
 				$HostPrompt.visible = false
 				$ClickBlock.visible = true
 				$RoomMenu.visible = true
-				$RoomMenu/Header.text = client.current_room.name
-				$RoomMenu/P1Name.text = client.current_room.p1_name if client.current_room.p1_name != "" else "<None>"
-				$RoomMenu/P2Name.text = client.current_room.p2_name if client.current_room.p2_name != "" else "<None>"
 			TCGClient.ClientState.STOPPED:
 				match last_state:
 					TCGClient.ClientState.SEND_NAME:
@@ -78,18 +75,30 @@ func connect_to_server():
 	connection_status.text = "Connecting to server..."
 	client = TCGClient.new()
 	add_child(client)
+	client.room_updated.connect(on_room_update)
+
+func on_join_pressed(room: ServerRoom):
+	$ClickBlock.visible = true
+	client.join_room(room.id)
+
+func on_room_update():
+	$RoomMenu/Header.text = client.current_room.name
+	$RoomMenu/P1Name.text = client.current_room.p1_name if client.current_room.p1_name != "" else "<None>"
+	$RoomMenu/P2Name.text = client.current_room.p2_name if client.current_room.p2_name != "" else "<None>"
 
 func refresh_room_list():
 	var container: VBoxContainer = $ListPanel/ScrollContainer/VBoxContainer
 	while container.get_child_count() > 0:
-		container.remove_child(container.get_child(0))
+		var child = container.get_child(0)
+		child.join.disconnect(on_join_pressed)
+		container.remove_child(child)
 	var y_pos: int = 0
 	for room in client.rooms:
 		var row: Node2D = row_scene.instantiate()
 		row.set_room(room)
 		row.position.x = 10
 		row.position.y = y_pos
-		#row.connect("click_tutorial", _on_tutorial_selected)
+		row.join.connect(on_join_pressed)
 		y_pos += 70
 		container.add_child(row)
 
@@ -210,3 +219,8 @@ func _on_button_refresh_pressed() -> void:
 	if client:
 		client.state = TCGClient.ClientState.GET_ROOMS
 		client.get_rooms()
+
+func _on_leave_button_pressed() -> void:
+	client.leave_room()
+	$RoomMenu.visible = false
+	$ClickBlock.visible = false

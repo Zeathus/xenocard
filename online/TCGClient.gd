@@ -2,6 +2,8 @@ extends Node
 
 class_name TCGClient
 
+signal room_updated
+
 enum MessageType {
 	NONE = 0,
 	QUEUE = 1,
@@ -114,6 +116,7 @@ func _process(_delta: float) -> void:
 					var msg_text: String = msg.slice(1).to_byte_array().get_string_from_utf8()
 					state = ClientState.IN_ROOM
 					current_room = ServerRoom.from_str(msg_text)
+					room_updated.emit()
 		if waiting_for == MessageType.NONE:
 			pass
 			#match state:
@@ -189,3 +192,18 @@ func host_room(name: String, password: String, allowed_cards: int) -> void:
 	state = ClientState.AWAIT_HOST
 	waiting_for = MessageType.JOIN_ROOM
 	Logger.i("Sent room info")
+
+func join_room(id: int) -> void:
+	var type: PackedInt32Array
+	type.append(MessageType.JOIN_ROOM)
+	type.append(id)
+	socket.send(type.to_byte_array())
+	state = ClientState.AWAIT_JOIN
+	waiting_for = MessageType.JOIN_ROOM
+
+func leave_room() -> void:
+	var type: PackedInt32Array
+	type.append(MessageType.JOIN_ROOM)
+	type.append(-1)
+	socket.send(type.to_byte_array())
+	state = ClientState.IN_LOBBY
