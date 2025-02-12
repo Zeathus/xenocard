@@ -33,9 +33,9 @@ enum ClientState {
 	IN_ROOM = 7,
 	STARTING = 8,
 	QUEUING = 9,
-	AWAIT_DECK = 10,
-	SENDING_DECK = 11,
-	AWAIT_BOARD = 12,
+	SENDING_DECK = 10,
+	DECK_DENIED = 11,
+	READY = 12,
 	START_GAME = 13,
 	PLAYING = 14,
 	STOPPED = 500
@@ -72,8 +72,8 @@ func _process(_delta: float) -> void:
 						waiting_for = MessageType.MATCHED
 					elif state == ClientState.SENDING_DECK:
 						Logger.i("Deck OK!")
-						state = ClientState.AWAIT_BOARD
-					elif state == ClientState.AWAIT_BOARD:
+						state = ClientState.READY
+					elif state == ClientState.READY:
 						Logger.i("Board ready!")
 						state = ClientState.START_GAME
 					elif state == ClientState.SEND_NAME:
@@ -86,10 +86,9 @@ func _process(_delta: float) -> void:
 					elif state == ClientState.AWAIT_HOST:
 						Logger.w("Failed to create room")
 						state = ClientState.IN_LOBBY
-				MessageType.MATCHED:
-					if state == ClientState.QUEUING:
-						Logger.i("We were matched!")
-						state = ClientState.AWAIT_DECK
+					elif state == ClientState.SENDING_DECK:
+						Logger.i("Deck Denied.")
+						state = ClientState.IN_ROOM
 				MessageType.EVENT:
 					var msg_text: String = msg.slice(1).to_byte_array().get_string_from_ascii()
 					Logger.i("Got event: " + msg_text)

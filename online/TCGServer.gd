@@ -22,9 +22,9 @@ enum MessageType {
 
 enum ClientState {
 	IDLE = 1,
-	QUEUING = 2,
-	AWAIT_DECK = 3,
-	AWAIT_NAME = 4
+	IN_ROOM = 3,
+	READY = 4,
+	AWAIT_NAME = 5
 }
 
 const PORT = 5310
@@ -75,32 +75,10 @@ func handle_packet(peer: WebSocketPeer):
 	var msg: PackedInt32Array = msg_data.to_int32_array()
 	var type: MessageType = msg[0]
 	match type:
-		MessageType.QUEUE:
-			if clients[peer].state != ClientState.IDLE:
-				Logger.w("Deny queue request")
-				pass # Deny the connection
-			else:
-				Logger.i("Client " + peer.get_connected_host() + " queued")
-				clients[peer].state = ClientState.QUEUING
-				queue.push_back(peer)
-				send_ok(peer)
 		MessageType.CHAT:
 			var msg_text: String = msg.slice(1).to_byte_array().get_string_from_utf8()
 			print("Sending chat: ", msg_text)
 			send_chat(peer, msg_text)
-		MessageType.DECK:
-			if clients[peer].state != ClientState.AWAIT_DECK or peer not in peer_to_room:
-				return
-			var card_ids: PackedStringArray = msg.slice(1).to_byte_array().get_string_from_ascii().split(",")
-			if verify_deck(card_ids) == 0:
-				Logger.i("Deck OK")
-				var game = peer_to_room[peer]
-				game["decks"][game["players"].find(peer)] = card_ids
-				send_ok(peer)
-				if game["decks"][0] != null and game["decks"][1] != null:
-					start_match(game)
-			else:
-				Logger.w("Invalid deck") # Send a denied package
 		MessageType.ACTION:
 			var msg_text: String = msg.slice(1).to_byte_array().get_string_from_ascii()
 			if peer in peer_to_room:
@@ -182,6 +160,23 @@ func handle_packet(peer: WebSocketPeer):
 				if p != null:
 					send_room(room, p.peer)
 			Logger.i("Client joined room " + str(room_id))
+		MessageType.DECK:
+			if clients[peer].state != ClientState.IN_ROOM or peer not in peer_to_room:
+				Logger.w("Client sent deck when not in a room")
+				send_denied(peer)
+				return
+			var card_ids: PackedStringArray = msg.slice(1).to_byte_array().get_string_from_ascii().split(",")
+			if verify_deck(card_ids) == 0:
+				Logger.i("Deck OK")
+				var game = peer_to_room[peer]
+				game["decks"][game["players"].find(peer)] = card_ids
+				send_ok(peer)
+				clients[peer].state = ClientState.READY
+				#if game["decks"][0] != null and game["decks"][1] != null:
+				#	start_match(game)
+			else:
+				Logger.w("Invalid deck")
+				send_denied(peer)
 
 func get_room(id: int) -> ServerRoom:
 	for room in rooms:
@@ -200,8 +195,8 @@ func prepare_match(peerA, peerB) -> void:
 	rooms.push_back(ServerRoom.new())
 	peer_to_room[peerA] = game
 	peer_to_room[peerB] = game
-	clients[peerA].state = ClientState.AWAIT_DECK
-	clients[peerB].state = ClientState.AWAIT_DECK
+	clients[peerA].state = ClientState.IN_ROOM
+	clients[peerB].state = ClientState.IN_ROOM
 	peerA.send(msg.to_byte_array())
 	peerB.send(msg.to_byte_array())
 

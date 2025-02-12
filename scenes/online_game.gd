@@ -43,6 +43,9 @@ func _process(delta):
 				$HostPrompt.visible = false
 				$ClickBlock.visible = true
 				$RoomMenu.visible = true
+			TCGClient.ClientState.DECK_DENIED:
+				$RoomMenu/ErrorLabel.text = "Deck was not valid"
+				client.state = TCGClient.ClientState.IN_ROOM
 			TCGClient.ClientState.STOPPED:
 				match last_state:
 					TCGClient.ClientState.SEND_NAME:
@@ -60,15 +63,15 @@ func _process(delta):
 	#elif false:
 	#	connection_status.text = "Fetching rooms..."
 	#	client.state = TCGClient.ClientState.GET_ROOMS
-	elif client.state == TCGClient.ClientState.AWAIT_DECK:
-		client.send_deck(Deck.load(get_deck(), $RoomMenu/DeckPreset.button_pressed))
-	elif client.state == TCGClient.ClientState.START_GAME:
-		client.state = TCGClient.ClientState.PLAYING
-		var game = game_scene.instantiate()
-		game.game_options["reveal_hands"] = false
-		game.game_options["online"] = "client"
-		game.client = client
-		get_parent().start_scene(game)
+	#elif client.state == TCGClient.ClientState.AWAIT_DECK:
+		#client.send_deck(Deck.load(get_deck(), $RoomMenu/DeckPreset.button_pressed))
+	#elif client.state == TCGClient.ClientState.START_GAME:
+		#client.state = TCGClient.ClientState.PLAYING
+		#var game = game_scene.instantiate()
+		#game.game_options["reveal_hands"] = false
+		#game.game_options["online"] = "client"
+		#game.client = client
+		#get_parent().start_scene(game)
 
 func connect_to_server():
 	connection_status.visible = true
@@ -224,3 +227,8 @@ func _on_leave_button_pressed() -> void:
 	client.leave_room()
 	$RoomMenu.visible = false
 	$ClickBlock.visible = false
+
+func _on_ready_button_pressed() -> void:
+	client.send_deck(Deck.load(get_deck(), $RoomMenu/DeckPreset.button_pressed))
+	$RoomMenu/ReadyButton.disabled = true
+	$RoomMenu/LeaveButton.disabled = true
