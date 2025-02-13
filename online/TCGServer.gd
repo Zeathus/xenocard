@@ -15,6 +15,7 @@ enum MessageType {
 	HOST_ROOM = 9,
 	JOIN_ROOM = 10,
 	COUNTDOWN = 11,
+	UNREADY = 12,
 	CHAT = 20,
 	OK = 200,
 	DENIED = 400,
@@ -23,9 +24,10 @@ enum MessageType {
 
 enum ClientState {
 	IDLE = 1,
+	AWAIT_NAME = 2,
 	IN_ROOM = 3,
 	READY = 4,
-	AWAIT_NAME = 5
+	PLAYING = 5
 }
 
 const PORT = 5310
@@ -165,7 +167,7 @@ func handle_packet(peer: WebSocketPeer):
 			clients[peer].state = ClientState.IN_ROOM
 			Logger.i("Client joined room " + str(room_id))
 		MessageType.DECK:
-			if clients[peer].state != ClientState.IN_ROOM or peer not in peer_to_room:
+			if not clients[peer].is_in_room() or peer not in peer_to_room:
 				Logger.w("Client sent deck when not in a room")
 				send_denied(peer)
 				return
@@ -192,6 +194,25 @@ func handle_packet(peer: WebSocketPeer):
 			else:
 				Logger.w("Invalid deck")
 				send_denied(peer)
+		MessageType.UNREADY:
+			if not clients[peer].is_in_room() or peer not in peer_to_room:
+				Logger.w("Client unreadied when not in a room")
+				send_denied(peer)
+				return
+			var room = peer_to_room[peer]
+			if room.p1 == clients[peer]:
+				room.p1_deck = []
+			elif room.p2 == clients[peer]:
+				room.p2_deck = []
+			else:
+				Logger.w("Player was not in room they unreadied from")
+				send_denied(peer)
+				return
+			send_ok(peer)
+			clients[peer].state = ClientState.IN_ROOM
+			for p in room.get_players():
+				if p != null:
+					send_room(room, p.peer)
 
 func get_room(id: int) -> ServerRoom:
 	for room in rooms:

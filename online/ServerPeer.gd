@@ -11,6 +11,13 @@ func _init(_peer: WebSocketPeer) -> void:
 	state = TCGServer.ClientState.AWAIT_NAME
 	name = ""
 
+func is_in_room() -> bool:
+	return state in [
+		TCGServer.ClientState.IN_ROOM,
+		TCGServer.ClientState.READY,
+		TCGServer.ClientState.PLAYING
+	]
+
 static func _static_init() -> void:
 	name_regex = RegEx.new()
 	name_regex.compile("[^A-Z^a-z^0-9^_]")

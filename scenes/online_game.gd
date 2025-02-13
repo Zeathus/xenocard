@@ -40,6 +40,10 @@ func _process(delta):
 					connection_status.visible = false
 					refresh_room_list()
 			TCGClient.ClientState.IN_ROOM:
+				if last_state == TCGClient.ClientState.UNREADY:
+					$RoomMenu/ReadyButton.button_pressed = false
+					$RoomMenu/ReadyButton.disabled = false
+					$RoomMenu/LeaveButton.disabled = false
 				$HostPrompt.visible = false
 				$ClickBlock.visible = true
 				$RoomMenu.visible = true
@@ -55,7 +59,7 @@ func _process(delta):
 				$RoomMenu/ReadyButton.disabled = false
 				$RoomMenu/LeaveButton.disabled = false
 				$RoomMenu/ErrorLabel.visible = false
-				client.state = TCGClient.ClientState.IN_ROOM
+				client.state = TCGClient.ClientState.READY
 			TCGClient.ClientState.STOPPED:
 				match last_state:
 					TCGClient.ClientState.SEND_NAME:
@@ -241,6 +245,9 @@ func _on_leave_button_pressed() -> void:
 	$ClickBlock.visible = false
 
 func _on_ready_button_pressed() -> void:
-	client.send_deck(Deck.load(get_deck(), $RoomMenu/DeckPreset.button_pressed))
+	if client.state == TCGClient.ClientState.READY:
+		client.send_unready()
+	else:
+		client.send_deck(Deck.load(get_deck(), $RoomMenu/DeckPreset.button_pressed))
 	$RoomMenu/ReadyButton.disabled = true
 	$RoomMenu/LeaveButton.disabled = true

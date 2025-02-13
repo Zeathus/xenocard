@@ -17,6 +17,7 @@ enum MessageType {
 	HOST_ROOM = 9,
 	JOIN_ROOM = 10,
 	COUNTDOWN = 11,
+	UNREADY = 12,
 	CHAT = 20,
 	OK = 200,
 	DENIED = 400,
@@ -37,8 +38,9 @@ enum ClientState {
 	SENDING_DECK = 10,
 	DECK_DENIED = 11,
 	READY = 12,
-	START_GAME = 13,
-	PLAYING = 14,
+	UNREADY = 13,
+	START_GAME = 14,
+	PLAYING = 15,
 	STOPPED = 500
 }
 
@@ -81,6 +83,8 @@ func _process(_delta: float) -> void:
 						Logger.i("Name OK!")
 						waiting_for = MessageType.ROOM_LIST
 						state = ClientState.GET_ROOMS
+					elif state == ClientState.UNREADY:
+						state = ClientState.IN_ROOM
 				MessageType.DENIED:
 					if state == ClientState.SEND_NAME:
 						state = ClientState.STOPPED
@@ -90,6 +94,9 @@ func _process(_delta: float) -> void:
 					elif state == ClientState.SENDING_DECK:
 						Logger.i("Deck Denied.")
 						state = ClientState.DECK_DENIED
+					elif state == ClientState.UNREADY:
+						Logger.i("Unexpected error on unready")
+						state = ClientState.IN_ROOM
 				MessageType.EVENT:
 					var msg_text: String = msg.slice(1).to_byte_array().get_string_from_ascii()
 					Logger.i("Got event: " + msg_text)
@@ -114,14 +121,10 @@ func _process(_delta: float) -> void:
 					state = ClientState.IN_LOBBY
 				MessageType.JOIN_ROOM:
 					var msg_text: String = msg.slice(1).to_byte_array().get_string_from_utf8()
-					state = ClientState.IN_ROOM
+					if state not in [ClientState.IN_ROOM, ClientState.SENDING_DECK, ClientState.DECK_DENIED, ClientState.READY, ClientState.UNREADY]:
+						state = ClientState.IN_ROOM
 					current_room = ServerRoom.from_str(msg_text)
 					room_updated.emit()
-		if waiting_for == MessageType.NONE:
-			pass
-			#match state:
-			#	ClientState.STARTING:
-			#		request_queue()
 
 func connected() -> bool:
 	return socket.get_ready_state() == WebSocketPeer.STATE_OPEN
@@ -168,6 +171,13 @@ func send_deck(deck: Deck) -> void:
 	state = ClientState.SENDING_DECK
 	waiting_for = MessageType.OK
 	Logger.i("Sent deck: " + deck_msg)
+
+func send_unready() -> void:
+	var type: PackedInt32Array
+	type.push_back(MessageType.UNREADY)
+	socket.send(type.to_byte_array())
+	state = ClientState.UNREADY
+	waiting_for = MessageType.OK
 
 func send_chat(message: String) -> void:
 	while message.length() % 4 != 0:
