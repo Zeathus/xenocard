@@ -44,7 +44,17 @@ func _process(delta):
 				$ClickBlock.visible = true
 				$RoomMenu.visible = true
 			TCGClient.ClientState.DECK_DENIED:
+				$RoomMenu/ReadyButton.button_pressed = false
+				$RoomMenu/ReadyButton.disabled = false
+				$RoomMenu/LeaveButton.disabled = false
+				$RoomMenu/ErrorLabel.visible = true
 				$RoomMenu/ErrorLabel.text = "Deck was not valid"
+				client.state = TCGClient.ClientState.IN_ROOM
+			TCGClient.ClientState.READY:
+				$RoomMenu/ReadyButton.button_pressed = true
+				$RoomMenu/ReadyButton.disabled = false
+				$RoomMenu/LeaveButton.disabled = false
+				$RoomMenu/ErrorLabel.visible = false
 				client.state = TCGClient.ClientState.IN_ROOM
 			TCGClient.ClientState.STOPPED:
 				match last_state:
@@ -88,6 +98,8 @@ func on_room_update():
 	$RoomMenu/Header.text = client.current_room.name
 	$RoomMenu/P1Name.text = client.current_room.p1_name if client.current_room.p1_name != "" else "<None>"
 	$RoomMenu/P2Name.text = client.current_room.p2_name if client.current_room.p2_name != "" else "<None>"
+	$RoomMenu/P1Ready.button_pressed = len(client.current_room.p1_deck) > 0
+	$RoomMenu/P2Ready.button_pressed = len(client.current_room.p2_deck) > 0
 
 func refresh_room_list():
 	var container: VBoxContainer = $ListPanel/ScrollContainer/VBoxContainer

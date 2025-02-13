@@ -611,6 +611,7 @@ toggle_mode = true
 text = "Ready"
 
 [node name="ErrorLabel" type="Label" parent="RoomMenu"]
+visible = false
 layout_mode = 0
 offset_left = 274.0
 offset_top = 34.0

@@ -126,6 +126,7 @@ func handle_packet(peer: WebSocketPeer):
 			rooms.push_back(room)
 			peer_to_room[peer] = room
 			send_room(room, peer)
+			clients[peer].state = ClientState.IN_ROOM
 		MessageType.JOIN_ROOM:
 			var room_id = msg[1]
 			if room_id == -1:
@@ -139,6 +140,7 @@ func handle_packet(peer: WebSocketPeer):
 				for p in room.get_players():
 					if p != null:
 						send_room(room, p.peer)
+				clients[peer].state = ClientState.IDLE
 				return
 			var room: ServerRoom = get_room(room_id)
 			if room == null:
@@ -159,6 +161,7 @@ func handle_packet(peer: WebSocketPeer):
 			for p in room.get_players():
 				if p != null:
 					send_room(room, p.peer)
+			clients[peer].state = ClientState.IN_ROOM
 			Logger.i("Client joined room " + str(room_id))
 		MessageType.DECK:
 			if clients[peer].state != ClientState.IN_ROOM or peer not in peer_to_room:
@@ -166,12 +169,23 @@ func handle_packet(peer: WebSocketPeer):
 				send_denied(peer)
 				return
 			var card_ids: PackedStringArray = msg.slice(1).to_byte_array().get_string_from_ascii().split(",")
+			Logger.i("Got deck: " + ",".join(card_ids))
 			if verify_deck(card_ids) == 0:
-				Logger.i("Deck OK")
-				var game = peer_to_room[peer]
-				game["decks"][game["players"].find(peer)] = card_ids
+				Logger.i("Deck OK!")
+				var room = peer_to_room[peer]
+				if room.p1 == clients[peer]:
+					room.p1_deck = card_ids
+				elif room.p2 == clients[peer]:
+					room.p2_deck = card_ids
+				else:
+					Logger.w("Player was not in room they sent a deck to")
+					send_denied(peer)
+					return
 				send_ok(peer)
 				clients[peer].state = ClientState.READY
+				for p in room.get_players():
+					if p != null:
+						send_room(room, p.peer)
 				#if game["decks"][0] != null and game["decks"][1] != null:
 				#	start_match(game)
 			else:

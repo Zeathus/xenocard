@@ -7,6 +7,8 @@ var p1_name: String = ""
 var p2_name: String = ""
 var p1: ServerPeer = null
 var p2: ServerPeer = null
+var p1_deck: PackedStringArray
+var p2_deck: PackedStringArray
 var allowed_cards: int = 0
 var password: String = ""
 
@@ -20,14 +22,26 @@ func remove_player(peer: ServerPeer):
 	if p1 == peer:
 		p1 = p2
 		p1_name = p2_name
+		p1_deck = p2_deck
 		p2 = null
 		p2_name = ""
+		p2_deck = []
 	elif p2 == peer:
 		p2 = null
 		p2_name = ""
+		p2_deck = []
 
 func to_str() -> String:
-	return "\t".join([str(id), name, p1_name, p2_name, str(allowed_cards), "1" if len(password) > 0 else "0"])
+	return "\t".join([
+		str(id), 
+		name,
+		p1_name,
+		p2_name,
+		str(allowed_cards),
+		"1" if len(password) > 0 else "0",
+		"1" if len(p1_deck) > 0 else "0",
+		"1" if len(p2_deck) > 0 else "0"
+	])
 
 static func from_str(str: String) -> ServerRoom:
 	var room: ServerRoom = ServerRoom.new()
@@ -38,6 +52,8 @@ static func from_str(str: String) -> ServerRoom:
 	room.p2_name = args[3]
 	room.allowed_cards = int(args[4])
 	room.password = args[5]
+	room.p1_deck = ["Y"] if args[6] == "1" else []
+	room.p2_deck = ["Y"] if args[7] == "1" else []
 	return room
 
 static func get_next_id() -> int:

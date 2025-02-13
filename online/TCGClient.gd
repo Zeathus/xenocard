@@ -88,7 +88,7 @@ func _process(_delta: float) -> void:
 						state = ClientState.IN_LOBBY
 					elif state == ClientState.SENDING_DECK:
 						Logger.i("Deck Denied.")
-						state = ClientState.IN_ROOM
+						state = ClientState.DECK_DENIED
 				MessageType.EVENT:
 					var msg_text: String = msg.slice(1).to_byte_array().get_string_from_ascii()
 					Logger.i("Got event: " + msg_text)
@@ -166,7 +166,7 @@ func send_deck(deck: Deck) -> void:
 	socket.send(msg_data)
 	state = ClientState.SENDING_DECK
 	waiting_for = MessageType.OK
-	Logger.i("Sent: " + deck_msg)
+	Logger.i("Sent deck: " + deck_msg)
 
 func send_chat(message: String) -> void:
 	while message.length() % 4 != 0:
