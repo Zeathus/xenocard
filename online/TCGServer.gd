@@ -14,6 +14,7 @@ enum MessageType {
 	ROOM_LIST = 8,
 	HOST_ROOM = 9,
 	JOIN_ROOM = 10,
+	COUNTDOWN = 11,
 	CHAT = 20,
 	OK = 200,
 	DENIED = 400,
