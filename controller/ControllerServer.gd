@@ -11,7 +11,7 @@ var current_delay: float = 0
 func _init(_game_board: GameBoard, _player: Player, _server: TCGServer, _peer: WebSocketPeer):
 	server = _server
 	peer = _peer
-	incoming_actions = server.games[peer]["actions"][_player.id]
+	incoming_actions = server.peer_to_room[peer].actions[_player.id]
 	super(_game_board, _player)
 
 func request(actions: Array[Action], handlers: Array[Callable], args: Array = []):

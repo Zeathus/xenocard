@@ -3,11 +3,12 @@ extends Node
 class_name TCGClient
 
 signal room_updated
+signal countdown(value: int)
 
 enum MessageType {
 	NONE = 0,
 	QUEUE = 1,
-	MATCHED = 2,
+	START_GAME = 2,
 	DECK = 3,
 	EVENT = 4,
 	ACTION = 5,
@@ -70,10 +71,7 @@ func _process(_delta: float) -> void:
 			var type: MessageType = msg[0]
 			match type:
 				MessageType.OK:
-					if state == ClientState.QUEUING:
-						Logger.i("We were queued!")
-						waiting_for = MessageType.MATCHED
-					elif state == ClientState.SENDING_DECK:
+					if state == ClientState.SENDING_DECK:
 						Logger.i("Deck OK!")
 						state = ClientState.READY
 					elif state == ClientState.READY:
@@ -125,6 +123,10 @@ func _process(_delta: float) -> void:
 						state = ClientState.IN_ROOM
 					current_room = ServerRoom.from_str(msg_text)
 					room_updated.emit()
+				MessageType.COUNTDOWN:
+					countdown.emit(msg[1])
+				MessageType.START_GAME:
+					state = ClientState.PLAYING
 
 func connected() -> bool:
 	return socket.get_ready_state() == WebSocketPeer.STATE_OPEN

@@ -11,6 +11,8 @@ var p1_deck: PackedStringArray
 var p2_deck: PackedStringArray
 var allowed_cards: int = 0
 var password: String = ""
+var countdown: float = 5.0
+var actions: Array[Array] = [[], []]
 
 func _init() -> void:
 	pass
@@ -30,6 +32,13 @@ func remove_player(peer: ServerPeer):
 		p2 = null
 		p2_name = ""
 		p2_deck = []
+
+func update(delta: float):
+	if p1 and p2 and len(p1_deck) > 0 and len(p2_deck) > 0:
+		if countdown >= 0:
+			countdown -= delta
+	else:
+		countdown = 5.0
 
 func to_str() -> String:
 	return "\t".join([

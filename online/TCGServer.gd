@@ -5,7 +5,7 @@ class_name TCGServer
 enum MessageType {
 	NONE = 0,
 	QUEUE = 1,
-	MATCHED = 2,
+	START_GAME = 2,
 	DECK = 3,
 	EVENT = 4,
 	ACTION = 5,
@@ -62,16 +62,18 @@ func _process(delta: float) -> void:
 		if peer.get_ready_state() == WebSocketPeer.STATE_OPEN:
 			while peer.get_available_packet_count():
 				handle_packet(peer)
-	
-	#if len(queue) >= 2:
-		#for i in range(queue.size() - 1):
-			#for j in range(i + 1, queue.size()):
-				#if clients[queue[i]]["password"] == clients[queue[j]]["password"]:
-					#Logger.i("We found a match!")
-					#prepare_match(queue[i], queue[j])
-					#queue.erase(queue[j])
-					#queue.erase(queue[i])
-					#return
+
+	for room in rooms:
+		var old_countdown: float = room.countdown
+		room.update(delta)
+		if old_countdown != 5 and room.countdown == 5:
+			for p in room.get_players():
+				send_countdown(-1, p.peer)
+		elif room.countdown < 0 and old_countdown >= 0:
+			start_game(room)
+		elif floor(old_countdown) != floor(room.countdown):
+			for p in room.get_players():
+				send_countdown(ceil(room.countdown), p.peer)
 
 func handle_packet(peer: WebSocketPeer):
 	var msg_data: PackedByteArray = peer.get_packet()
@@ -85,13 +87,13 @@ func handle_packet(peer: WebSocketPeer):
 		MessageType.ACTION:
 			var msg_text: String = msg.slice(1).to_byte_array().get_string_from_ascii()
 			if peer in peer_to_room:
-				var game: Dictionary = peer_to_room[peer]
-				if peer == game["players"][0]:
+				var game: ServerRoom = peer_to_room[peer]
+				if peer == game.p1.peer:
 					Logger.i("Got action for P1: %s" % msg_text)
-					game["actions"][0].push_back(msg_text)
-				elif peer == game["players"][1]:
+					game.actions[0].push_back(msg_text)
+				elif peer == game.p2.peer:
 					Logger.i("Got action for P2: %s" % msg_text)
-					game["actions"][1].push_back(msg_text)
+					game.actions[1].push_back(msg_text)
 		MessageType.USERNAME:
 			if clients[peer].state != ClientState.AWAIT_NAME:
 				return
@@ -136,6 +138,9 @@ func handle_packet(peer: WebSocketPeer):
 				# Leave room
 				if peer not in peer_to_room:
 					Logger.w("Client tried to leave room while not in a room")
+					return
+				if clients[peer].state == ClientState.PLAYING:
+					Logger.w("Cannot leave room while playing")
 					return
 				var room: ServerRoom = peer_to_room[peer]
 				room.remove_player(clients[peer])
@@ -220,39 +225,36 @@ func get_room(id: int) -> ServerRoom:
 			return room
 	return null
 
-func prepare_match(peerA, peerB) -> void:
-	var msg: PackedInt32Array
-	msg.append(MessageType.MATCHED)
+func start_game(room: ServerRoom):
 	var game: Dictionary = {
-		"players": [peerA, peerB],
+		"players": [room.p1.peer, room.p2.peer],
 		"decks": [null, null],
 		"actions": [[], []]
 	}
-	rooms.push_back(ServerRoom.new())
-	peer_to_room[peerA] = game
-	peer_to_room[peerB] = game
-	clients[peerA].state = ClientState.IN_ROOM
-	clients[peerB].state = ClientState.IN_ROOM
-	peerA.send(msg.to_byte_array())
-	peerB.send(msg.to_byte_array())
-
-func start_match(game: Dictionary):
 	var game_scene = game_tscn.instantiate()
-	for i in range(2):
-		game_scene.player_options.push_back({
-			"deck": {
-				"cards": game["decks"][i]
-			},
-			"ai": false,
-			"peer": game["players"][i]
-		})
+	game_scene.player_options.push_back({
+		"deck": {
+			"cards": room.p1_deck
+		},
+		"ai": false,
+		"peer": room.p1.peer
+	})
+	game_scene.player_options.push_back({
+		"deck": {
+			"cards": room.p2_deck
+		},
+		"ai": false,
+		"peer": room.p2.peer
+	})
 	game_scene.game_options["reveal_hands"] = false
 	game_scene.game_options["online"] = "server"
 	game_scene.server = self
 	add_child(game_scene)
-	Logger.i("Started the match")
-	for peer in game["players"]:
-		send_ok(peer)
+	var msg: PackedInt32Array
+	msg.append(MessageType.START_GAME)
+	room.p1.peer.send(msg.to_byte_array())
+	room.p2.peer.send(msg.to_byte_array())
+	Logger.i("Started match")
 
 func send_chat(peer: WebSocketPeer, message: String) -> void:
 	if peer in peer_to_room:
@@ -292,6 +294,12 @@ func send_room(room: ServerRoom, peer: WebSocketPeer) -> void:
 	while msg_data.size() % 4 != 0:
 		msg_data.push_back(0)
 	peer.send(msg_data)
+
+func send_countdown(value: int, peer: WebSocketPeer) -> void:
+	var type: PackedInt32Array
+	type.append(MessageType.COUNTDOWN)
+	type.append(value)
+	peer.send(type.to_byte_array())
 
 func verify_deck(card_ids: PackedStringArray) -> int:
 	var counts: Dictionary = {}

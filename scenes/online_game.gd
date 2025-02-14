@@ -60,6 +60,15 @@ func _process(delta):
 				$RoomMenu/LeaveButton.disabled = false
 				$RoomMenu/ErrorLabel.visible = false
 				client.state = TCGClient.ClientState.READY
+			TCGClient.ClientState.PLAYING:
+				$RoomMenu/ReadyButton.button_pressed = false
+				on_countdown_update(-1)
+				client.state = TCGClient.ClientState.PLAYING
+				var game = game_scene.instantiate()
+				game.game_options["reveal_hands"] = false
+				game.game_options["online"] = "client"
+				game.client = client
+				get_parent().start_scene(game)
 			TCGClient.ClientState.STOPPED:
 				match last_state:
 					TCGClient.ClientState.SEND_NAME:
@@ -72,20 +81,6 @@ func _process(delta):
 				last_state = TCGClient.ClientState.NONE
 				return
 		last_state = client.state
-	#if client.state == TCGClient.ClientState.CONNECTING:
-	#	client.send_username()
-	#elif false:
-	#	connection_status.text = "Fetching rooms..."
-	#	client.state = TCGClient.ClientState.GET_ROOMS
-	#elif client.state == TCGClient.ClientState.AWAIT_DECK:
-		#client.send_deck(Deck.load(get_deck(), $RoomMenu/DeckPreset.button_pressed))
-	#elif client.state == TCGClient.ClientState.START_GAME:
-		#client.state = TCGClient.ClientState.PLAYING
-		#var game = game_scene.instantiate()
-		#game.game_options["reveal_hands"] = false
-		#game.game_options["online"] = "client"
-		#game.client = client
-		#get_parent().start_scene(game)
 
 func connect_to_server():
 	connection_status.visible = true
@@ -93,6 +88,7 @@ func connect_to_server():
 	client = TCGClient.new()
 	add_child(client)
 	client.room_updated.connect(on_room_update)
+	client.countdown.connect(on_countdown_update)
 
 func on_join_pressed(room: ServerRoom):
 	$ClickBlock.visible = true
@@ -104,6 +100,13 @@ func on_room_update():
 	$RoomMenu/P2Name.text = client.current_room.p2_name if client.current_room.p2_name != "" else "<None>"
 	$RoomMenu/P1Ready.button_pressed = len(client.current_room.p1_deck) > 0
 	$RoomMenu/P2Ready.button_pressed = len(client.current_room.p2_deck) > 0
+
+func on_countdown_update(value: int):
+	if value == -1:
+		$RoomMenu/CountdownPanel.visible = false
+	else:
+		$RoomMenu/CountdownPanel.visible = true
+		$RoomMenu/CountdownPanel/Countdown.text = str(value)
 
 func refresh_room_list():
 	var container: VBoxContainer = $ListPanel/ScrollContainer/VBoxContainer

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bd6fotdy4grc8"]
+[gd_scene load_steps=20 format=3 uid="uid://bd6fotdy4grc8"]
 
 [ext_resource type="Script" path="res://scenes/online_game.gd" id="1_v84ir"]
 [ext_resource type="Theme" uid="uid://cts0fwcuwbvl0" path="res://theme_default.tres" id="2_oqua5"]
@@ -44,6 +44,31 @@ font_size = 24
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_0euxj"]
 resource_local_to_scene = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ny5lt"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.14902, 0.133333, 0.141176, 0.901961)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.235294, 0.215686, 0.227451, 0.501961)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+shadow_color = Color(0.235294, 0.215686, 0.227451, 0.501961)
+
+[sub_resource type="LabelSettings" id="LabelSettings_12ofj"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_qnqvf"]
+font_size = 48
 
 [node name="OnlineGame" type="Node2D"]
 script = ExtResource("1_v84ir")
@@ -679,6 +704,37 @@ offset_top = 56.0
 offset_right = 577.0
 offset_bottom = 103.0
 metadata/_edit_use_anchors_ = true
+
+[node name="CountdownPanel" type="Panel" parent="RoomMenu"]
+visible = false
+layout_mode = 0
+offset_left = 151.0
+offset_top = 144.0
+offset_right = 451.0
+offset_bottom = 282.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ny5lt")
+
+[node name="Label" type="Label" parent="RoomMenu/CountdownPanel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 16.0
+offset_right = 298.0
+offset_bottom = 64.0
+text = "Starting in..."
+label_settings = SubResource("LabelSettings_12ofj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Countdown" type="Label" parent="RoomMenu/CountdownPanel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 61.0
+offset_right = 298.0
+offset_bottom = 131.0
+text = "5"
+label_settings = SubResource("LabelSettings_qnqvf")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="ExitPanel/ButtonExit" to="." method="_on_button_exit_pressed"]
 [connection signal="pressed" from="HostPanel/ButtonHost" to="." method="_on_button_host_pressed"]
