@@ -90,6 +90,9 @@ func _process(_delta: float) -> void:
 					elif state == ClientState.AWAIT_HOST:
 						Logger.w("Failed to create room")
 						state = ClientState.IN_LOBBY
+					elif state == ClientState.AWAIT_JOIN:
+						Logger.w("Failed to join room")
+						state = ClientState.IN_LOBBY
 					elif state == ClientState.SENDING_DECK:
 						Logger.i("Deck Denied.")
 						state = ClientState.DECK_DENIED

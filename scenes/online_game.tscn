@@ -585,7 +585,7 @@ offset_left = 479.0
 offset_top = 162.0
 offset_right = 585.0
 offset_bottom = 192.0
-disabled = true
+mouse_filter = 2
 text = "Ready"
 
 [node name="P2Label" type="Label" parent="RoomMenu"]
@@ -615,7 +615,7 @@ offset_left = 479.0
 offset_top = 242.0
 offset_right = 581.0
 offset_bottom = 272.0
-disabled = true
+mouse_filter = 2
 text = "Ready"
 
 [node name="LeaveButton" type="Button" parent="RoomMenu"]
@@ -736,6 +736,34 @@ label_settings = SubResource("LabelSettings_qnqvf")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="MessagePanel" type="Panel" parent="."]
+visible = false
+z_index = 50
+offset_left = -149.0
+offset_top = -106.0
+offset_right = 151.0
+offset_bottom = 32.0
+theme = ExtResource("2_oqua5")
+
+[node name="MessageText" type="Label" parent="MessagePanel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 7.0
+offset_right = 298.0
+offset_bottom = 80.0
+text = "Message Here"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="DismissButton" type="Button" parent="MessagePanel"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 88.0
+offset_right = 178.0
+offset_bottom = 124.0
+text = "Close"
+
 [connection signal="pressed" from="ExitPanel/ButtonExit" to="." method="_on_button_exit_pressed"]
 [connection signal="pressed" from="HostPanel/ButtonHost" to="." method="_on_button_host_pressed"]
 [connection signal="pressed" from="HostPanel/ButtonRefresh" to="." method="_on_button_refresh_pressed"]
@@ -752,3 +780,4 @@ vertical_alignment = 1
 [connection signal="pressed" from="RoomMenu/ReadyButton" to="." method="_on_ready_button_pressed"]
 [connection signal="toggled" from="RoomMenu/DeckPreset" to="." method="_on_p1_deck_preset_toggled"]
 [connection signal="item_selected" from="RoomMenu/Deck" to="." method="_on_deck_item_selected"]
+[connection signal="pressed" from="MessagePanel/DismissButton" to="." method="_on_dismiss_button_pressed"]

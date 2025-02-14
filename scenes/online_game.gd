@@ -33,9 +33,14 @@ func _process(delta):
 				if last_state == TCGClient.ClientState.AWAIT_HOST:
 					set_host_menu_disabled(false)
 					$HostPrompt/FailedLabel.visible = true
+				elif last_state == TCGClient.ClientState.AWAIT_JOIN:
+					$MessagePanel.visible = true
+					$MessagePanel/MessageText.text = "The room you joined is no longer available."
+					_on_button_refresh_pressed()
 				elif client.rooms.size() == 0:
 					connection_status.visible = true
 					connection_status.text = "No rooms found. Try hosting one!"
+					refresh_room_list()
 				else:
 					connection_status.visible = false
 					refresh_room_list()
@@ -254,3 +259,7 @@ func _on_ready_button_pressed() -> void:
 		client.send_deck(Deck.load(get_deck(), $RoomMenu/DeckPreset.button_pressed))
 	$RoomMenu/ReadyButton.disabled = true
 	$RoomMenu/LeaveButton.disabled = true
+
+func _on_dismiss_button_pressed() -> void:
+	$MessagePanel.visible = false
+	$ClickBlock.visible = false

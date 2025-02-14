@@ -166,6 +166,9 @@ func handle_packet(peer: WebSocketPeer):
 					if p != null:
 						send_room(room, p.peer)
 				clients[peer].state = ClientState.IDLE
+				if room.p1 == null and room.p2 == null:
+					Logger.i("Room closed")
+					rooms.erase(room)
 				return
 			var room: ServerRoom = get_room(room_id)
 			if room == null:
@@ -301,6 +304,9 @@ func send_rooms(peer: WebSocketPeer) -> void:
 	type.append(MessageType.ROOM_LIST)
 	var room_str: String = str(len(rooms))
 	for room: ServerRoom in rooms:
+		# Do not show rooms that are empty or full
+		if (room.p1 == null) == (room.p2 == null):
+			continue
 		room_str += "\n"
 		room_str += room.to_str()
 	var msg_data = type.to_byte_array() + room_str.to_utf8_buffer()
