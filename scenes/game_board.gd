@@ -624,5 +624,14 @@ func _on_end_phase_pressed():
 func _on_test_button_pressed():
 	save_game("res://tutorial/saved_games/test.json")
 
-func _on_button_exit_pressed():
+func _on_button_menu_pressed() -> void:
+	$ButtonMenu.disabled = true
+	$MenuNode.visible = true
+
+func _on_forfeit_button_pressed() -> void:
+	$MenuNode.visible = false
 	end_game(Enum.GameResult.CANCELLED)
+
+func _on_close_menu_button_pressed() -> void:
+	$ButtonMenu.disabled = false
+	$MenuNode.visible = false
