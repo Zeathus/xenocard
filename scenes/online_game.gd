@@ -10,14 +10,15 @@ var selected_room: ServerRoom = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	connection_status = $ListPanel/ConnectingLabel
+	for i in range(Rulesets.count()):
+		$Filters/RulesetFilterLabel/RulesetFilter.add_item(Rulesets.get_title(i), i)
+	$Filters/RulesetFilterLabel/RulesetDescription.text = Rulesets.get_description(0)
 	if len(Options.username) < 3:
 		$ClickBlock.visible = true
 		$UsernamePrompt.visible = true
 	else:
 		connect_to_server()
 	load_decks($RoomMenu/Deck, $RoomMenu/DeckPreset.button_pressed)
-	#refresh()
-	#refresh_room_list()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -297,3 +298,6 @@ func _on_password_entry_text_submitted(new_text: String) -> void:
 		$PasswordPanel/ClosePasswordButton.disabled = true
 		$PasswordPanel/PasswordEntry.editable = false
 		on_join_pressed(selected_room, $PasswordPanel/PasswordEntry.text)
+
+func _on_ruleset_filter_item_selected(index: int) -> void:
+	$Filters/RulesetFilterLabel/RulesetDescription.text = Rulesets.get_description($Filters/RulesetFilterLabel/RulesetFilter.get_item_id(index))
