@@ -290,3 +290,10 @@ func _on_submit_password_button_pressed() -> void:
 	$PasswordPanel/ClosePasswordButton.disabled = true
 	$PasswordPanel/PasswordEntry.editable = false
 	on_join_pressed(selected_room, $PasswordPanel/PasswordEntry.text)
+
+func _on_password_entry_text_submitted(new_text: String) -> void:
+	if len(new_text) > 0:
+		$PasswordPanel/SubmitPasswordButton.disabled = true
+		$PasswordPanel/ClosePasswordButton.disabled = true
+		$PasswordPanel/PasswordEntry.editable = false
+		on_join_pressed(selected_room, $PasswordPanel/PasswordEntry.text)

@@ -767,7 +767,6 @@ offset_bottom = 124.0
 text = "Close"
 
 [node name="PasswordPanel" type="Panel" parent="."]
-visible = false
 z_index = 50
 offset_left = -150.0
 offset_top = -100.0
@@ -827,5 +826,6 @@ text = "Close"
 [connection signal="item_selected" from="RoomMenu/Deck" to="." method="_on_deck_item_selected"]
 [connection signal="pressed" from="MessagePanel/DismissButton" to="." method="_on_dismiss_button_pressed"]
 [connection signal="text_changed" from="PasswordPanel/PasswordEntry" to="." method="_on_password_entry_text_changed"]
+[connection signal="text_submitted" from="PasswordPanel/PasswordEntry" to="." method="_on_password_entry_text_submitted"]
 [connection signal="pressed" from="PasswordPanel/SubmitPasswordButton" to="." method="_on_submit_password_button_pressed"]
 [connection signal="pressed" from="PasswordPanel/ClosePasswordButton" to="." method="_on_close_password_button_pressed"]
