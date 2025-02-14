@@ -51,9 +51,9 @@ func get_text() -> String:
 		Enum.GameResult.P2_WIN:
 			return "DEFEAT" if (game_board.players[1].has_controller() and not game_board.players[0].has_controller()) else "P2 VICTORY"
 		Enum.GameResult.P1_FORFEIT:
-			return "VICTORY" if (game_board.players[1].has_controller() and not game_board.players[0].has_controller()) else "P1 VICTORY"
-		Enum.GameResult.P2_FORFEIT:
 			return "DEFEAT" if (game_board.players[1].has_controller() and not game_board.players[0].has_controller()) else "P2 VICTORY"
+		Enum.GameResult.P2_FORFEIT:
+			return "VICTORY" if (game_board.players[1].has_controller() and not game_board.players[0].has_controller()) else "P1 VICTORY"
 		Enum.GameResult.CANCELLED:
 			return "CANCELLED"
 		Enum.GameResult.TUTORIAL:

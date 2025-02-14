@@ -88,11 +88,28 @@ func handle_packet(peer: WebSocketPeer):
 			var msg_text: String = msg.slice(1).to_byte_array().get_string_from_ascii()
 			if peer in peer_to_room:
 				var game: ServerRoom = peer_to_room[peer]
+				if game.game_board == null:
+					Logger.w("Got action for room without a game_board")
+					return
 				if peer == game.p1.peer:
 					Logger.i("Got action for P1: %s" % msg_text)
+					var valid: int = verify_action(msg_text)
+					if valid == 1:
+						Logger.w("Invalid actions")
+						return
+					elif valid == 2:
+						game.game_board.end_game(Enum.GameResult.P1_FORFEIT)
+						return
 					game.actions[0].push_back(msg_text)
 				elif peer == game.p2.peer:
 					Logger.i("Got action for P2: %s" % msg_text)
+					var valid: int = verify_action(msg_text)
+					if valid == 1:
+						Logger.w("Invalid actions")
+						return
+					elif valid == 2:
+						game.game_board.end_game(Enum.GameResult.P2_FORFEIT)
+						return
 					game.actions[1].push_back(msg_text)
 		MessageType.USERNAME:
 			if clients[peer].state != ClientState.AWAIT_NAME:
@@ -250,6 +267,7 @@ func start_game(room: ServerRoom):
 	game_scene.game_options["online"] = "server"
 	game_scene.server = self
 	add_child(game_scene)
+	room.game_board = game_scene
 	var msg: PackedInt32Array
 	msg.append(MessageType.START_GAME)
 	room.p1.peer.send(msg.to_byte_array())
@@ -314,6 +332,15 @@ func verify_deck(card_ids: PackedStringArray) -> int:
 			counts[card_id] += 1
 			if counts[card_id] > 3:
 				return 3 # Has more than 3 copies of a card
+	return 0
+
+func verify_action(msg_text: String) -> int:
+	var params: PackedStringArray = msg_text.split("\t")
+	var action: int = int(params[0])
+	if action < 1 and action > 13:
+		return 1
+	if action == Controller.Action.FORFEIT:
+		return 2
 	return 0
 
 func _exit_tree() -> void:

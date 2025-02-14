@@ -13,6 +13,7 @@ var allowed_cards: int = 0
 var password: String = ""
 var countdown: float = 5.0
 var actions: Array[Array] = [[], []]
+var game_board: GameBoard = null
 
 func _init() -> void:
 	pass

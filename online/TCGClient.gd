@@ -55,6 +55,7 @@ var events: Array[String] = []
 var actions: Array[String] = []
 var rooms: Array[ServerRoom] = []
 var current_room: ServerRoom = null
+var game_result: Enum.GameResult = Enum.GameResult.NONE
 
 func _ready() -> void:
 	Logger.i("Connecting to " + websocket_url)
@@ -98,6 +99,9 @@ func _process(_delta: float) -> void:
 				MessageType.EVENT:
 					var msg_text: String = msg.slice(1).to_byte_array().get_string_from_ascii()
 					Logger.i("Got event: " + msg_text)
+					if msg_text.split("\t")[0] == "EndGame":
+						game_result = int(msg_text.split("\t")[1])
+						events.clear()
 					events.push_back(msg_text)
 				MessageType.ACTION:
 					var msg_text: String = msg.slice(1).to_byte_array().get_string_from_ascii()
@@ -126,6 +130,7 @@ func _process(_delta: float) -> void:
 				MessageType.COUNTDOWN:
 					countdown.emit(msg[1])
 				MessageType.START_GAME:
+					game_result = Enum.GameResult.NONE
 					state = ClientState.PLAYING
 
 func connected() -> bool:

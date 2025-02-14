@@ -15,7 +15,8 @@ enum Action {
 	SEARCH_JUNK = 9,
 	DISCARD = 10,
 	COUNTER = 11,
-	MULLIGAN = 12
+	MULLIGAN = 12,
+	FORFEIT = 13,
 }
 
 var game_board: GameBoard

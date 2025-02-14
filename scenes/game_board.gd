@@ -307,6 +307,10 @@ func _process(delta):
 	event_str += "]"
 	$TestLabel.text = event_str
 	
+	if is_client() and client.game_result != Enum.GameResult.NONE:
+		end_game(client.game_result)
+		client.game_result = Enum.GameResult.NONE
+	
 	if quick_detail_card:
 		if quick_detail_card.is_hovered():
 			quick_detail_card_timer = 0.25
@@ -630,7 +634,10 @@ func _on_button_menu_pressed() -> void:
 
 func _on_forfeit_button_pressed() -> void:
 	$MenuNode.visible = false
-	end_game(Enum.GameResult.CANCELLED)
+	if is_client():
+		players[1].controller.send_action(Controller.Action.FORFEIT)
+	else:
+		end_game(Enum.GameResult.CANCELLED)
 
 func _on_close_menu_button_pressed() -> void:
 	$ButtonMenu.disabled = false

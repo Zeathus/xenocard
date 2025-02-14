@@ -28,7 +28,7 @@ func process(delta):
 		var event: Event = fetch_event(client.events.pop_front())
 		if awaited_event != null:
 			Logger.i("Awaited %s" % event.get_name())
-			if awaited_event.get_name() != event.get_name() and event is not EventIdentity:
+			if awaited_event.get_name() != event.get_name() and event is not EventIdentity and event is not EventEndGame:
 				Logger.e("Got unexpected event %s, expected %s" % [event.get_name(), awaited_event.get_name()])
 				return
 		if parent and not (event is EventIdentity and not event.awaited):
