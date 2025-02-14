@@ -123,7 +123,7 @@ func _process(_delta: float) -> void:
 					state = ClientState.IN_LOBBY
 				MessageType.JOIN_ROOM:
 					var msg_text: String = msg.slice(1).to_byte_array().get_string_from_utf8()
-					if state not in [ClientState.IN_ROOM, ClientState.SENDING_DECK, ClientState.DECK_DENIED, ClientState.READY, ClientState.UNREADY]:
+					if state not in [ClientState.IN_ROOM, ClientState.SENDING_DECK, ClientState.DECK_DENIED, ClientState.READY, ClientState.UNREADY, ClientState.PLAYING]:
 						state = ClientState.IN_ROOM
 					current_room = ServerRoom.from_str(msg_text)
 					room_updated.emit()

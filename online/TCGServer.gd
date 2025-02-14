@@ -273,6 +273,10 @@ func start_game(room: ServerRoom):
 	room.p1.peer.send(msg.to_byte_array())
 	room.p2.peer.send(msg.to_byte_array())
 	Logger.i("Started match")
+	room.p1_deck = []
+	room.p2_deck = []
+	send_room(room, room.p1.peer)
+	send_room(room, room.p2.peer)
 
 func send_chat(peer: WebSocketPeer, message: String) -> void:
 	if peer in peer_to_room:

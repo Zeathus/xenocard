@@ -494,7 +494,7 @@ vertical_alignment = 1
 
 [node name="MenuNode" type="Node2D" parent="."]
 visible = false
-z_index = 50
+z_index = 500
 
 [node name="MenuPanel" type="Panel" parent="MenuNode"]
 offset_left = -150.0
