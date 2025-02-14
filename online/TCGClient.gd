@@ -213,11 +213,14 @@ func host_room(name: String, password: String, allowed_cards: int) -> void:
 	waiting_for = MessageType.JOIN_ROOM
 	Logger.i("Sent room info")
 
-func join_room(id: int) -> void:
+func join_room(id: int, password: String) -> void:
 	var type: PackedInt32Array
 	type.append(MessageType.JOIN_ROOM)
 	type.append(id)
-	socket.send(type.to_byte_array())
+	var msg_data = type.to_byte_array() + password.to_utf8_buffer()
+	while msg_data.size() % 4 != 0:
+		msg_data.push_back(0)
+	socket.send(msg_data)
 	state = ClientState.AWAIT_JOIN
 	waiting_for = MessageType.JOIN_ROOM
 

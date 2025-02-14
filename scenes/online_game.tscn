@@ -131,10 +131,12 @@ offset_top = 37.0
 offset_right = 258.0
 offset_bottom = 73.0
 selected = 0
-item_count = 2
-popup/item_0/text = "All"
-popup/item_1/text = "Xenosaga 1"
-popup/item_1/id = 1
+item_count = 3
+popup/item_0/text = "No Filter"
+popup/item_0/id = 100
+popup/item_1/text = "All"
+popup/item_2/text = "Xenosaga 1"
+popup/item_2/id = 1
 
 [node name="Search" type="Label" parent="Filters"]
 layout_mode = 0
@@ -747,9 +749,9 @@ theme = ExtResource("2_oqua5")
 
 [node name="MessageText" type="Label" parent="MessagePanel"]
 layout_mode = 0
-offset_left = 2.0
+offset_left = 13.0
 offset_top = 7.0
-offset_right = 298.0
+offset_right = 285.0
 offset_bottom = 80.0
 text = "Message Here"
 horizontal_alignment = 1
@@ -758,10 +760,53 @@ autowrap_mode = 2
 
 [node name="DismissButton" type="Button" parent="MessagePanel"]
 layout_mode = 0
-offset_left = 120.0
+offset_left = 109.0
 offset_top = 88.0
-offset_right = 178.0
+offset_right = 189.0
 offset_bottom = 124.0
+text = "Close"
+
+[node name="PasswordPanel" type="Panel" parent="."]
+visible = false
+z_index = 50
+offset_left = -150.0
+offset_top = -100.0
+offset_right = 150.0
+offset_bottom = 100.0
+theme = ExtResource("2_oqua5")
+
+[node name="MessageText" type="Label" parent="PasswordPanel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 19.0
+offset_right = 298.0
+offset_bottom = 52.0
+text = "Enter the password"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="PasswordEntry" type="LineEdit" parent="PasswordPanel"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 68.0
+offset_right = 272.0
+offset_bottom = 112.0
+max_length = 15
+secret = true
+
+[node name="SubmitPasswordButton" type="Button" parent="PasswordPanel"]
+offset_left = 45.0
+offset_top = 140.0
+offset_right = 125.0
+offset_bottom = 176.0
+text = "Submit"
+
+[node name="ClosePasswordButton" type="Button" parent="PasswordPanel"]
+offset_left = 173.0
+offset_top = 140.0
+offset_right = 253.0
+offset_bottom = 176.0
 text = "Close"
 
 [connection signal="pressed" from="ExitPanel/ButtonExit" to="." method="_on_button_exit_pressed"]
@@ -781,3 +826,6 @@ text = "Close"
 [connection signal="toggled" from="RoomMenu/DeckPreset" to="." method="_on_p1_deck_preset_toggled"]
 [connection signal="item_selected" from="RoomMenu/Deck" to="." method="_on_deck_item_selected"]
 [connection signal="pressed" from="MessagePanel/DismissButton" to="." method="_on_dismiss_button_pressed"]
+[connection signal="text_changed" from="PasswordPanel/PasswordEntry" to="." method="_on_password_entry_text_changed"]
+[connection signal="pressed" from="PasswordPanel/SubmitPasswordButton" to="." method="_on_submit_password_button_pressed"]
+[connection signal="pressed" from="PasswordPanel/ClosePasswordButton" to="." method="_on_close_password_button_pressed"]

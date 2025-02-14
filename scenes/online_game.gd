@@ -5,6 +5,7 @@ var game_scene = load("res://scenes/game_board.tscn")
 var client: TCGClient = null
 var connection_status: Label
 var last_state: TCGClient.ClientState
+var selected_room: ServerRoom = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -35,7 +36,11 @@ func _process(delta):
 					$HostPrompt/FailedLabel.visible = true
 				elif last_state == TCGClient.ClientState.AWAIT_JOIN:
 					$MessagePanel.visible = true
-					$MessagePanel/MessageText.text = "The room you joined is no longer available."
+					if $PasswordPanel.visible:
+						$PasswordPanel.visible = false
+						$MessagePanel/MessageText.text = "The password was wrong or the room closed."
+					else:
+						$MessagePanel/MessageText.text = "The room you joined is no longer available."
 					_on_button_refresh_pressed()
 				elif client.rooms.size() == 0:
 					connection_status.visible = true
@@ -52,6 +57,7 @@ func _process(delta):
 				$HostPrompt.visible = false
 				$ClickBlock.visible = true
 				$RoomMenu.visible = true
+				$PasswordPanel.visible = false
 			TCGClient.ClientState.DECK_DENIED:
 				$RoomMenu/ReadyButton.button_pressed = false
 				$RoomMenu/ReadyButton.disabled = false
@@ -95,9 +101,17 @@ func connect_to_server():
 	client.room_updated.connect(on_room_update)
 	client.countdown.connect(on_countdown_update)
 
-func on_join_pressed(room: ServerRoom):
+func on_join_pressed(room: ServerRoom, password: String = ""):
+	selected_room = room
 	$ClickBlock.visible = true
-	client.join_room(room.id)
+	if room.password == "1" and len(password) == 0:
+		$PasswordPanel.visible = true
+		$PasswordPanel/SubmitPasswordButton.disabled = true
+		$PasswordPanel/ClosePasswordButton.disabled = false
+		$PasswordPanel/PasswordEntry.editable = true
+		$PasswordPanel/PasswordEntry.text = ""
+	else:
+		client.join_room(room.id, password)
 
 func on_room_update():
 	$RoomMenu/Header.text = client.current_room.name
@@ -263,3 +277,16 @@ func _on_ready_button_pressed() -> void:
 func _on_dismiss_button_pressed() -> void:
 	$MessagePanel.visible = false
 	$ClickBlock.visible = false
+
+func _on_close_password_button_pressed() -> void:
+	$PasswordPanel.visible = false
+	$ClickBlock.visible = false
+
+func _on_password_entry_text_changed(new_text: String) -> void:
+	$PasswordPanel/SubmitPasswordButton.disabled = len(new_text) == 0
+
+func _on_submit_password_button_pressed() -> void:
+	$PasswordPanel/SubmitPasswordButton.disabled = true
+	$PasswordPanel/ClosePasswordButton.disabled = true
+	$PasswordPanel/PasswordEntry.editable = false
+	on_join_pressed(selected_room, $PasswordPanel/PasswordEntry.text)

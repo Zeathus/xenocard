@@ -150,7 +150,7 @@ func handle_packet(peer: WebSocketPeer):
 			send_room(room, peer)
 			clients[peer].state = ClientState.IN_ROOM
 		MessageType.JOIN_ROOM:
-			var room_id = msg[1]
+			var room_id: int = msg[1]
 			if room_id == -1:
 				# Leave room
 				if peer not in peer_to_room:
@@ -171,12 +171,17 @@ func handle_packet(peer: WebSocketPeer):
 					rooms.erase(room)
 				return
 			var room: ServerRoom = get_room(room_id)
+			var password: String = msg.slice(2).to_byte_array().get_string_from_utf8()
 			if room == null:
 				Logger.w("Client tried to join a room that doesn't exist")
 				send_denied(peer)
 				return
 			if room.p1 != null and room.p2 != null:
 				Logger.w("Client tried to join a full room")
+				send_denied(peer)
+				return
+			if room.password != password:
+				Logger.w("Client input the incorrect password")
 				send_denied(peer)
 				return
 			if room.p1 == null:
