@@ -144,7 +144,7 @@ func handle_packet(peer: WebSocketPeer):
 			room.p1_name = clients[peer].name
 			room.p1 = clients[peer]
 			room.password = room_info[1]
-			room.allowed_cards = int(room_info[1])
+			room.ruleset = int(room_info[2])
 			rooms.push_back(room)
 			peer_to_room[peer] = room
 			send_room(room, peer)

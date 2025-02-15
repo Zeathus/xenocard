@@ -9,7 +9,7 @@ var p1: ServerPeer = null
 var p2: ServerPeer = null
 var p1_deck: PackedStringArray
 var p2_deck: PackedStringArray
-var allowed_cards: int = 0
+var ruleset: Rulesets.Ruleset = 0
 var password: String = ""
 var countdown: float = 5.0
 var actions: Array[Array] = [[], []]
@@ -47,7 +47,7 @@ func to_str() -> String:
 		name,
 		p1_name,
 		p2_name,
-		str(allowed_cards),
+		str(ruleset),
 		"1" if len(password) > 0 else "0",
 		"1" if len(p1_deck) > 0 else "0",
 		"1" if len(p2_deck) > 0 else "0"
@@ -60,7 +60,7 @@ static func from_str(str: String) -> ServerRoom:
 	room.name = args[1]
 	room.p1_name = args[2]
 	room.p2_name = args[3]
-	room.allowed_cards = int(args[4])
+	room.ruleset = int(args[4])
 	room.password = args[5]
 	room.p1_deck = ["Y"] if args[6] == "1" else []
 	room.p2_deck = ["Y"] if args[7] == "1" else []

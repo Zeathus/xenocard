@@ -116,6 +116,23 @@ vertical_alignment = 2
 clip_text = true
 metadata/_edit_use_anchors_ = true
 
+[node name="Search" type="Label" parent="Filters"]
+layout_mode = 0
+offset_left = 79.0
+offset_top = 78.0
+offset_right = 336.0
+offset_bottom = 108.0
+text = "Search:"
+vertical_alignment = 2
+
+[node name="SearchText" type="TextEdit" parent="Filters/Search"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 33.0
+offset_right = 261.0
+offset_bottom = 77.0
+placeholder_text = "Room or host name"
+
 [node name="RulesetFilterLabel" type="Label" parent="Filters"]
 layout_mode = 0
 offset_left = 79.0
@@ -130,7 +147,6 @@ layout_mode = 0
 offset_top = 37.0
 offset_right = 258.0
 offset_bottom = 73.0
-selected = 0
 
 [node name="RulesetDescription" type="Label" parent="Filters/RulesetFilterLabel"]
 layout_mode = 0
@@ -138,23 +154,6 @@ offset_top = 86.0
 offset_right = 257.0
 offset_bottom = 189.0
 autowrap_mode = 2
-
-[node name="Search" type="Label" parent="Filters"]
-layout_mode = 0
-offset_left = 79.0
-offset_top = 78.0
-offset_right = 336.0
-offset_bottom = 108.0
-text = "Search:"
-vertical_alignment = 2
-
-[node name="TextEdit" type="TextEdit" parent="Filters/Search"]
-layout_mode = 0
-offset_left = -4.0
-offset_top = 33.0
-offset_right = 261.0
-offset_bottom = 77.0
-placeholder_text = "Room or host name"
 
 [node name="ServerPanel" type="Panel" parent="."]
 offset_left = -952.0
@@ -425,9 +424,9 @@ label_settings = SubResource("LabelSettings_pd2qs")
 
 [node name="RoomNameLabel" type="Label" parent="HostPrompt"]
 layout_mode = 0
-offset_left = 34.0
+offset_left = 50.0
 offset_top = 105.0
-offset_right = 155.0
+offset_right = 171.0
 offset_bottom = 135.0
 text = "Room Name:"
 
@@ -452,9 +451,9 @@ label_settings = SubResource("LabelSettings_0xd1d")
 
 [node name="PasswordLabel" type="Label" parent="HostPrompt"]
 layout_mode = 0
-offset_left = 34.0
+offset_left = 50.0
 offset_top = 225.0
-offset_right = 155.0
+offset_right = 171.0
 offset_bottom = 255.0
 text = "Password:"
 
@@ -486,26 +485,22 @@ offset_right = 530.0
 offset_bottom = 294.0
 text = "Show"
 
-[node name="AllowedCardsLabel" type="Label" parent="HostPrompt"]
+[node name="RulesetLabel" type="Label" parent="HostPrompt"]
 layout_mode = 0
-offset_left = 35.0
+offset_left = 51.0
 offset_top = 339.0
-offset_right = 292.0
+offset_right = 308.0
 offset_bottom = 369.0
-text = "Allowed Cards:"
+text = "Ruleset:"
 vertical_alignment = 2
 
-[node name="AllowedCards" type="OptionButton" parent="HostPrompt"]
+[node name="Ruleset" type="OptionButton" parent="HostPrompt"]
 layout_mode = 0
 offset_left = 188.0
 offset_top = 339.0
 offset_right = 446.0
 offset_bottom = 375.0
 selected = 0
-item_count = 2
-popup/item_0/text = "All"
-popup/item_1/text = "Xenosaga 1"
-popup/item_1/id = 1
 
 [node name="HostExit" type="Button" parent="HostPrompt"]
 layout_mode = 0
@@ -524,6 +519,7 @@ offset_bottom = 461.0
 text = "Host"
 
 [node name="FailedLabel" type="Label" parent="HostPrompt"]
+visible = false
 layout_mode = 0
 offset_left = 274.0
 offset_top = 34.0
@@ -797,6 +793,7 @@ max_length = 15
 secret = true
 
 [node name="SubmitPasswordButton" type="Button" parent="PasswordPanel"]
+layout_mode = 0
 offset_left = 45.0
 offset_top = 140.0
 offset_right = 125.0
@@ -804,6 +801,7 @@ offset_bottom = 176.0
 text = "Submit"
 
 [node name="ClosePasswordButton" type="Button" parent="PasswordPanel"]
+layout_mode = 0
 offset_left = 173.0
 offset_top = 140.0
 offset_right = 253.0
@@ -811,6 +809,7 @@ offset_bottom = 176.0
 text = "Close"
 
 [connection signal="pressed" from="ExitPanel/ButtonExit" to="." method="_on_button_exit_pressed"]
+[connection signal="text_changed" from="Filters/Search/SearchText" to="." method="_on_search_text_text_changed"]
 [connection signal="item_selected" from="Filters/RulesetFilterLabel/RulesetFilter" to="." method="_on_ruleset_filter_item_selected"]
 [connection signal="pressed" from="HostPanel/ButtonHost" to="." method="_on_button_host_pressed"]
 [connection signal="pressed" from="HostPanel/ButtonRefresh" to="." method="_on_button_refresh_pressed"]
