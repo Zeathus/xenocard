@@ -500,7 +500,6 @@ offset_left = 188.0
 offset_top = 339.0
 offset_right = 446.0
 offset_bottom = 375.0
-selected = 0
 
 [node name="HostExit" type="Button" parent="HostPrompt"]
 layout_mode = 0
