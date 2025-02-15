@@ -142,23 +142,37 @@ func show_valid_targets(card: Card):
 	var filter = card.targets_to_select()[len(game_board.targeted_cards)]
 	for zone in [Enum.Zone.STANDBY, Enum.Zone.BATTLEFIELD, Enum.Zone.SITUATION]:
 		for index in range(4):
-			var border = get_zone(zone, index).find_child("SelectBorder")
 			var candidate = get_card(zone, index)
-			border.visible = candidate and filter.call(candidate)
+			var selectable: bool = candidate and filter.call(candidate)
+			if candidate:
+				candidate.set_selectable(selectable)
+			else:
+				var border = get_zone(zone, index).find_child("SelectBorder")
+				border.visible = selectable
 
 func show_valid_effect_targets(effect: CardEffect, filter: CardFilter):
 	for zone in [Enum.Zone.STANDBY, Enum.Zone.BATTLEFIELD, Enum.Zone.SITUATION]:
 		for index in range(4):
-			var border = get_zone(zone, index).find_child("SelectBorder")
 			var candidate = get_card(zone, index)
-			border.visible = candidate and filter.is_valid(effect.host.owner, candidate)
+			var selectable: bool = candidate and filter.is_valid(effect.host.owner, candidate)
+			if candidate:
+				candidate.set_selectable(selectable)
+			else:
+				var border = get_zone(zone, index).find_child("SelectBorder")
+				border.visible = selectable
+			var border = get_zone(zone, index).find_child("SelectBorder")
 
 func show_valid_set_targets(filter: Callable):
 	for zone in [Enum.Zone.STANDBY, Enum.Zone.BATTLEFIELD, Enum.Zone.SITUATION]:
 		for index in range(4):
-			var border = get_zone(zone, index).find_child("SelectBorder")
 			var candidate = get_card(zone, index)
-			border.visible = candidate and filter.call(candidate)
+			var selectable: bool = candidate and filter.call(candidate)
+			if candidate:
+				candidate.set_selectable(selectable)
+			else:
+				var border = get_zone(zone, index).find_child("SelectBorder")
+				border.visible = selectable
+			var border = get_zone(zone, index).find_child("SelectBorder")
 
 func show_valid_zones(card: Card):
 	for zone in [Enum.Zone.STANDBY, Enum.Zone.BATTLEFIELD, Enum.Zone.SITUATION]:
@@ -181,6 +195,9 @@ func hide_valid_zones():
 		for index in range(4):
 			var border = get_zone(zone, index).find_child("SelectBorder")
 			border.visible = false
+			var occupant = get_card(zone, index)
+			if occupant:
+				occupant.set_selectable(false)
 
 func get_deck_node() -> Node2D:
 	return $Deck
