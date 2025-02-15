@@ -199,6 +199,11 @@ func hide_valid_zones():
 			if occupant:
 				occupant.set_selectable(false)
 
+func reset_attackable():
+	for i in range(4):
+		get_zone(Enum.Zone.BATTLEFIELD, i).find_child("Attackable").visible = false
+	get_deck_node().find_child("Attackable").visible = false
+
 func get_deck_node() -> Node2D:
 	return $Deck
 

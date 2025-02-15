@@ -320,6 +320,8 @@ func _process(delta):
 				$QuickDetails/Left.visible = false
 				$QuickDetails/Right.visible = false
 				quick_detail_card = null
+				for p in players:
+					p.field.reset_attackable()
 	
 	if $CardDetails.visible:
 		if Input.is_action_just_pressed("left_click"):
@@ -604,6 +606,16 @@ func _on_card_hovered(card):
 	display_card.turn_up()
 	display_card.show_card(card.data)
 	quick_detail_card = card
+	for p in players:
+		p.field.reset_attackable()
+	if card.zone == Enum.Zone.BATTLEFIELD:
+		var targets = card.get_attack_targets(self)
+		for t in targets:
+			if t.is_player():
+				t.field.get_deck_node().find_child("Attackable").visible = true
+			else:
+				var zone: Node2D = t.owner.field.get_zone(t.zone, t.zone_index)
+				zone.find_child("Attackable").visible = true
 
 func on_hand_card_selected(hand: GameHand, card: Card):
 	if not is_free():
