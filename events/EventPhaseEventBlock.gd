@@ -6,6 +6,7 @@ var player: Player
 var phase_effects: Array
 var block: bool
 var in_sub_event: bool = false
+var time: float = 0
 
 func _init(_game_board: GameBoard, _player: Player, _phase_effects: Array, _block: bool = false):
 	super(_game_board)
@@ -23,11 +24,20 @@ func on_start():
 
 func on_finish():
 	hide_selectable()
+	game_board.get_hint_node().fade_out()
 	game_board.end_phase()
 
 func process(delta):
 	if pass_to_child("process", [delta]):
+		time = 0
+		game_board.get_hint_node().fade_out()
 		return
+	if time < 5 and time + delta >= 5 and not Options.disable_block_reminder:
+		if not player.has_controller():
+			game_board.get_hint_node().set_hint("It is your Block Phase")
+			game_board.get_hint_node().set_pos(HintNode.Position.CENTER)
+			game_board.get_hint_node().fade_in()
+	time += delta
 	if in_sub_event:
 		in_sub_event = false
 		if not player.has_controller():

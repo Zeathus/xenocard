@@ -130,7 +130,6 @@ layout_mode = 0
 offset_top = 37.0
 offset_right = 258.0
 offset_bottom = 73.0
-selected = 0
 
 [node name="RulesetDescription" type="Label" parent="Filters/RulesetFilterLabel"]
 layout_mode = 0
@@ -797,6 +796,7 @@ max_length = 15
 secret = true
 
 [node name="SubmitPasswordButton" type="Button" parent="PasswordPanel"]
+layout_mode = 0
 offset_left = 45.0
 offset_top = 140.0
 offset_right = 125.0
@@ -804,6 +804,7 @@ offset_bottom = 176.0
 text = "Submit"
 
 [node name="ClosePasswordButton" type="Button" parent="PasswordPanel"]
+layout_mode = 0
 offset_left = 173.0
 offset_top = 140.0
 offset_right = 253.0

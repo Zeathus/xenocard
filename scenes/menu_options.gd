@@ -9,6 +9,7 @@ func _ready() -> void:
 	$Options/VolumeSounds/Mute.button_pressed = Options.sounds_mute
 	$Options/RotateEnemyCards.button_pressed = Options.rotate_enemy_cards
 	$Options/AlwaysShowATKBoosts.button_pressed = Options.always_show_atk_boosts
+	$Options/DisableBlockReminder.button_pressed = Options.disable_block_reminder
 	$Options/Username.text = Options.username
 
 func _on_button_exit_pressed() -> void:
@@ -43,6 +44,9 @@ func _on_rotate_enemy_cards_toggled(toggled_on: bool) -> void:
 
 func _on_always_show_atk_boosts_toggled(toggled_on: bool) -> void:
 	Options.always_show_atk_boosts = toggled_on
+
+func _on_disable_block_reminder_toggled(toggled_on: bool) -> void:
+	Options.disable_block_reminder = toggled_on
 
 func _on_username_text_changed() -> void:
 	var base_username: String = $Options/Username.text

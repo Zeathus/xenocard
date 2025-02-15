@@ -7,6 +7,7 @@ static var sounds_volume: int = 100
 static var sounds_mute: bool = false
 static var rotate_enemy_cards: bool = false
 static var always_show_atk_boosts: bool = false
+static var disable_block_reminder: bool = false
 static var locale: String = "en"
 static var username: String = ""
 
@@ -46,6 +47,7 @@ static func to_dict() -> Dictionary:
 		"sounds_mute": sounds_mute,
 		"rotate_enemy_cards": rotate_enemy_cards,
 		"always_show_atk_boosts": always_show_atk_boosts,
+		"disable_block_reminder": disable_block_reminder,
 		"locale": locale,
 		"username": username,
 	}
@@ -64,6 +66,7 @@ static func load() -> void:
 			set_sounds_mute(data["sounds_mute"])
 			rotate_enemy_cards = data["rotate_enemy_cards"]
 			always_show_atk_boosts = data["always_show_atk_boosts"]
+			disable_block_reminder = data["disable_block_reminder"] if "disable_block_reminder" in data else false
 			set_locale(data["locale"])
 			username = data["username"] if "username" in data else ""
 		else:
