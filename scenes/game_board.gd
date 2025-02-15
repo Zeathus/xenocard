@@ -642,3 +642,41 @@ func _on_forfeit_button_pressed() -> void:
 func _on_close_menu_button_pressed() -> void:
 	$ButtonMenu.disabled = false
 	$MenuNode.visible = false
+
+func _on_phase_hitbox_mouse_entered() -> void:
+	$Phases/AllPhases.visible = true
+	$Phases/AllPhases/Header.text = "P%d TURN" % (turn_player_id + 1)
+	var all_phases: Array[Label] = [
+		$Phases/AllPhases/Draw,
+		$Phases/AllPhases/Move,
+		$Phases/AllPhases/Event,
+		$Phases/AllPhases/Set,
+		$Phases/AllPhases/Block,
+		$Phases/AllPhases/Battle,
+		$Phases/AllPhases/Adjust,
+	]
+	var phase_names: Array[String] = [
+		"Draw",
+		"Move",
+		"Event",
+		"Set",
+		"Block",
+		"Battle",
+		"Adjust",
+	]
+	for i in range(all_phases.size()):
+		if i == 4:
+			if ((turn_player_id + 1) % 2) == 0:
+				all_phases[i].text = "P1 %s Phase" % phase_names[i]
+			else:
+				all_phases[i].text = "%s Phase P2" % phase_names[i]
+			all_phases[i].horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT if turn_player_id == 0 else HORIZONTAL_ALIGNMENT_LEFT
+		else:
+			if turn_player_id == 0:
+				all_phases[i].text = "P1 %s Phase" % phase_names[i]
+			else:
+				all_phases[i].text = "%s Phase P2" % phase_names[i]
+			all_phases[i].horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT if turn_player_id == 0 else HORIZONTAL_ALIGNMENT_RIGHT
+
+func _on_phase_hitbox_mouse_exited() -> void:
+	$Phases/AllPhases.visible = false
