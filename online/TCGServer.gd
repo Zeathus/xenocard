@@ -203,9 +203,9 @@ func handle_packet(peer: WebSocketPeer):
 				return
 			var card_ids: PackedStringArray = msg.slice(1).to_byte_array().get_string_from_ascii().split(",")
 			Logger.i("Got deck: " + ",".join(card_ids))
-			if verify_deck(card_ids) == 0:
+			var room = peer_to_room[peer]
+			if Rulesets.verify_deck(room.ruleset, card_ids) == 0:
 				Logger.i("Deck OK!")
-				var room = peer_to_room[peer]
 				if room.p1 == clients[peer]:
 					room.p1_deck = card_ids
 				elif room.p2 == clients[peer]:
@@ -333,21 +333,6 @@ func send_countdown(value: int, peer: WebSocketPeer) -> void:
 	type.append(MessageType.COUNTDOWN)
 	type.append(value)
 	peer.send(type.to_byte_array())
-
-func verify_deck(card_ids: PackedStringArray) -> int:
-	var counts: Dictionary = {}
-	if len(card_ids) != 40:
-		return 1 # Not 40 cards
-	for card_id in card_ids:
-		if not CardData.has_data(card_id):
-			return 2 # Has a non-existent card
-		if card_id not in counts:
-			counts[card_id] = 1
-		else:
-			counts[card_id] += 1
-			if counts[card_id] > 3:
-				return 3 # Has more than 3 copies of a card
-	return 0
 
 func verify_action(msg_text: String) -> int:
 	var params: PackedStringArray = msg_text.split("\t")
