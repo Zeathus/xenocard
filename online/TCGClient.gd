@@ -201,10 +201,10 @@ func get_rooms() -> void:
 	type.push_back(MessageType.ROOM_LIST)
 	socket.send(type.to_byte_array())
 
-func host_room(name: String, password: String, allowed_cards: int) -> void:
+func host_room(name: String, password: String, ruleset: int) -> void:
 	var type: PackedInt32Array
 	type.append(MessageType.HOST_ROOM)
-	var room_info: String = "\t".join([name, password, str(allowed_cards)])
+	var room_info: String = "\t".join([name, password, str(ruleset)])
 	var msg_data = type.to_byte_array() + room_info.to_utf8_buffer()
 	while msg_data.size() % 4 != 0:
 		msg_data.push_back(0)

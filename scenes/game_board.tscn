@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://crhl7nmua17qi"]
+[gd_scene load_steps=25 format=3 uid="uid://crhl7nmua17qi"]
 
 [ext_resource type="PackedScene" uid="uid://bu0roj477cb2l" path="res://scenes/game_field.tscn" id="1_bk45l"]
 [ext_resource type="Script" path="res://scenes/game_board.gd" id="1_k5aaq"]
@@ -24,6 +24,9 @@ outline_color = Color(0, 0, 0, 1)
 font_size = 24
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_18vag"]
+size = Vector2(322, 95)
 
 [sub_resource type="LabelSettings" id="LabelSettings_jwadh"]
 font_size = 80
@@ -293,6 +296,9 @@ _data = {
 "RESET": SubResource("Animation_ynllq")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_1858y"]
+font_size = 32
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_0wyg4"]
 radius = 5.0
 
@@ -362,6 +368,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
 
+[node name="PhaseHitbox" type="Area2D" parent="Phases"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Phases/PhaseHitbox"]
+position = Vector2(-67, -5.5)
+shape = SubResource("RectangleShape2D_18vag")
+
 [node name="TransitionPanel" type="Panel" parent="Phases"]
 visible = false
 offset_left = -440.0
@@ -369,6 +381,7 @@ offset_top = -54.0
 offset_right = 1560.0
 offset_bottom = 38.0
 pivot_offset = Vector2(0, 46)
+mouse_filter = 2
 
 [node name="TransitionTurn" type="Label" parent="Phases"]
 visible = false
@@ -386,6 +399,105 @@ horizontal_alignment = 1
 libraries = {
 "": SubResource("AnimationLibrary_1y5pv")
 }
+
+[node name="AllPhases" type="Panel" parent="Phases"]
+visible = false
+offset_left = -228.0
+offset_top = 44.0
+offset_right = 94.0
+offset_bottom = 452.0
+mouse_filter = 1
+theme = ExtResource("7_c566m")
+
+[node name="Header" type="Label" parent="Phases/AllPhases"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 9.0
+offset_right = 299.0
+offset_bottom = 57.0
+text = "Turn"
+label_settings = SubResource("LabelSettings_1858y")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="Phases/AllPhases"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 56.0
+offset_right = 308.0
+offset_bottom = 60.0
+
+[node name="Draw" type="Label" parent="Phases/AllPhases"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 64.0
+offset_right = 299.0
+offset_bottom = 112.0
+text = "Draw Phase"
+label_settings = SubResource("LabelSettings_1858y")
+vertical_alignment = 1
+
+[node name="Move" type="Label" parent="Phases/AllPhases"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 112.0
+offset_right = 299.0
+offset_bottom = 160.0
+text = "Move Phase"
+label_settings = SubResource("LabelSettings_1858y")
+vertical_alignment = 1
+
+[node name="Event" type="Label" parent="Phases/AllPhases"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 160.0
+offset_right = 299.0
+offset_bottom = 208.0
+text = "Event Phase"
+label_settings = SubResource("LabelSettings_1858y")
+vertical_alignment = 1
+
+[node name="Set" type="Label" parent="Phases/AllPhases"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 208.0
+offset_right = 299.0
+offset_bottom = 256.0
+text = "Set Phase"
+label_settings = SubResource("LabelSettings_1858y")
+vertical_alignment = 1
+
+[node name="Block" type="Label" parent="Phases/AllPhases"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 256.0
+offset_right = 299.0
+offset_bottom = 304.0
+text = "Block Phase"
+label_settings = SubResource("LabelSettings_1858y")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Battle" type="Label" parent="Phases/AllPhases"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 304.0
+offset_right = 299.0
+offset_bottom = 352.0
+text = "Battle Phase"
+label_settings = SubResource("LabelSettings_1858y")
+vertical_alignment = 1
+
+[node name="Adjust" type="Label" parent="Phases/AllPhases"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 352.0
+offset_right = 299.0
+offset_bottom = 400.0
+text = "Adjust Phase"
+label_settings = SubResource("LabelSettings_1858y")
+vertical_alignment = 1
 
 [node name="Menus" type="Node2D" parent="."]
 z_index = 1000
@@ -533,6 +645,8 @@ text = "Close Menu"
 [connection signal="zone_selected" from="FieldPlayer" to="." method="_on_zone_selected"]
 [connection signal="zone_selected" from="FieldEnemy" to="." method="_on_zone_selected"]
 [connection signal="pressed" from="Phases/EndPhase" to="." method="_on_end_phase_pressed"]
+[connection signal="mouse_entered" from="Phases/PhaseHitbox" to="." method="_on_phase_hitbox_mouse_entered"]
+[connection signal="mouse_exited" from="Phases/PhaseHitbox" to="." method="_on_phase_hitbox_mouse_exited"]
 [connection signal="pressed" from="TestButton" to="." method="_on_test_button_pressed"]
 [connection signal="pressed" from="ButtonMenu" to="." method="_on_button_menu_pressed"]
 [connection signal="pressed" from="MenuNode/MenuPanel/ForfeitButton" to="." method="_on_forfeit_button_pressed"]

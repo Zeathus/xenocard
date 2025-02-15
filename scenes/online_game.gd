@@ -12,6 +12,8 @@ func _ready():
 	connection_status = $ListPanel/ConnectingLabel
 	for i in range(Rulesets.count()):
 		$Filters/RulesetFilterLabel/RulesetFilter.add_item(Rulesets.get_title(i), i)
+		if i > 0:
+			$HostPrompt/Ruleset.add_item(Rulesets.get_title(i), i)
 	$Filters/RulesetFilterLabel/RulesetDescription.text = Rulesets.get_description(0)
 	if len(Options.username) < 3:
 		$ClickBlock.visible = true
@@ -135,7 +137,13 @@ func refresh_room_list():
 		child.join.disconnect(on_join_pressed)
 		container.remove_child(child)
 	var y_pos: int = 0
+	var ruleset_filter: Rulesets.Ruleset = $Filters/RulesetFilterLabel/RulesetFilter.get_selected_id()
+	var search_text: String = $Filters/Search/SearchText.text.to_lower()
 	for room in client.rooms:
+		if ruleset_filter != Rulesets.Ruleset.NONE and ruleset_filter != room.ruleset:
+			continue
+		if search_text != "" and search_text not in room.name.to_lower() and search_text not in room.p1_name.to_lower():
+			continue
 		var row: Node2D = row_scene.instantiate()
 		row.set_room(room)
 		row.position.x = 10
@@ -164,7 +172,7 @@ func get_deck():
 func set_host_menu_disabled(val: bool):
 	$HostPrompt/RoomName.editable = not val
 	$HostPrompt/Password.editable = not val
-	$HostPrompt/AllowedCards.disabled = val
+	$HostPrompt/Ruleset.disabled = val
 	$HostPrompt/HostButton.disabled = val
 	$HostPrompt/HostExit.disabled = val
 	$HostPrompt/FailedLabel.visible = false
@@ -246,7 +254,7 @@ func _on_host_button_pressed() -> void:
 	client.host_room(
 		room_name,
 		$HostPrompt/Password.text,
-		$HostPrompt/AllowedCards.get_selected_id()
+		$HostPrompt/Ruleset.get_selected_id()
 	)
 	set_host_menu_disabled(true)
 
@@ -301,3 +309,7 @@ func _on_password_entry_text_submitted(new_text: String) -> void:
 
 func _on_ruleset_filter_item_selected(index: int) -> void:
 	$Filters/RulesetFilterLabel/RulesetDescription.text = Rulesets.get_description($Filters/RulesetFilterLabel/RulesetFilter.get_item_id(index))
+	refresh_room_list()
+
+func _on_search_text_text_changed() -> void:
+	refresh_room_list()

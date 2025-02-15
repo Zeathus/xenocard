@@ -81,13 +81,13 @@ offset_top = 6.0
 offset_right = 788.0
 offset_bottom = 60.0
 
-[node name="AllowedCards" type="Label" parent="Panel"]
+[node name="Ruleset" type="Label" parent="Panel"]
 layout_mode = 0
 offset_left = 795.0
 offset_top = 10.0
 offset_right = 1082.0
 offset_bottom = 56.0
-text = "Allowed Cards"
+text = "Ruleset"
 horizontal_alignment = 1
 vertical_alignment = 1
 

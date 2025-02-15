@@ -29,7 +29,9 @@ func make_projectile(target: Node2D):
 	projectiles.push_back(p)
 
 func finish():
-	if attack_type == Enum.AttackType.HAND:
+	if targets.size() == 0:
+		pass
+	elif attack_type == Enum.AttackType.HAND:
 		for t in targets:
 			if t.has_method("play_animation"):
 				t.play_animation("HitByHand")
@@ -43,6 +45,15 @@ func finish():
 
 func update(delta):
 	if is_done():
+		return
+	if targets.size() == 0:
+		if time == 0:
+			attacker.in_motion = true
+			attacker.play_animation("CannotAttack")
+			attacker.disable_in_motion_after_animation = true
+		time += delta
+		if not attacker.animating():
+			finish()
 		return
 	match attack_type:
 		Enum.AttackType.HAND:

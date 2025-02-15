@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dpm1bqbevvyb7"]
+[gd_scene load_steps=29 format=3 uid="uid://dpm1bqbevvyb7"]
 
 [ext_resource type="Script" path="res://objects/card_node.gd" id="1_wdlaa"]
 [ext_resource type="PackedScene" uid="uid://dosulntiwpmvw" path="res://objects/card_display.tscn" id="2_2gm7b"]
@@ -305,10 +305,27 @@ tracks/5/keys = {
 "values": [Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_77uk4"]
+resource_name = "CannotAttack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.174533, -0.261799, 0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7tg7d"]
 _data = {
 "AttackHand": SubResource("Animation_kidbk"),
 "AttackHand2": SubResource("Animation_3du7q"),
+"CannotAttack": SubResource("Animation_77uk4"),
 "ChargeAttack": SubResource("Animation_242mx"),
 "Flip1": SubResource("Animation_uuiil"),
 "Flip2": SubResource("Animation_4ysx2"),

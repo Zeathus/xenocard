@@ -320,6 +320,8 @@ func _process(delta):
 				$QuickDetails/Left.visible = false
 				$QuickDetails/Right.visible = false
 				quick_detail_card = null
+				for p in players:
+					p.field.reset_attackable()
 	
 	if $CardDetails.visible:
 		if Input.is_action_just_pressed("left_click"):
@@ -604,6 +606,16 @@ func _on_card_hovered(card):
 	display_card.turn_up()
 	display_card.show_card(card.data)
 	quick_detail_card = card
+	for p in players:
+		p.field.reset_attackable()
+	if card.zone == Enum.Zone.BATTLEFIELD:
+		var targets = card.get_attack_targets(self)
+		for t in targets:
+			if t.is_player():
+				t.field.get_deck_node().find_child("Attackable").visible = true
+			else:
+				var zone: Node2D = t.owner.field.get_zone(t.zone, t.zone_index)
+				zone.find_child("Attackable").visible = true
 
 func on_hand_card_selected(hand: GameHand, card: Card):
 	if not is_free():
@@ -642,3 +654,41 @@ func _on_forfeit_button_pressed() -> void:
 func _on_close_menu_button_pressed() -> void:
 	$ButtonMenu.disabled = false
 	$MenuNode.visible = false
+
+func _on_phase_hitbox_mouse_entered() -> void:
+	$Phases/AllPhases.visible = true
+	$Phases/AllPhases/Header.text = "P%d TURN" % (turn_player_id + 1)
+	var all_phases: Array[Label] = [
+		$Phases/AllPhases/Draw,
+		$Phases/AllPhases/Move,
+		$Phases/AllPhases/Event,
+		$Phases/AllPhases/Set,
+		$Phases/AllPhases/Block,
+		$Phases/AllPhases/Battle,
+		$Phases/AllPhases/Adjust,
+	]
+	var phase_names: Array[String] = [
+		"Draw",
+		"Move",
+		"Event",
+		"Set",
+		"Block",
+		"Battle",
+		"Adjust",
+	]
+	for i in range(all_phases.size()):
+		if i == 4:
+			if ((turn_player_id + 1) % 2) == 0:
+				all_phases[i].text = "P1 %s Phase" % phase_names[i]
+			else:
+				all_phases[i].text = "%s Phase P2" % phase_names[i]
+			all_phases[i].horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT if turn_player_id == 0 else HORIZONTAL_ALIGNMENT_LEFT
+		else:
+			if turn_player_id == 0:
+				all_phases[i].text = "P1 %s Phase" % phase_names[i]
+			else:
+				all_phases[i].text = "%s Phase P2" % phase_names[i]
+			all_phases[i].horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT if turn_player_id == 0 else HORIZONTAL_ALIGNMENT_RIGHT
+
+func _on_phase_hitbox_mouse_exited() -> void:
+	$Phases/AllPhases.visible = false
