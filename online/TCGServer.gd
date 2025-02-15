@@ -219,8 +219,6 @@ func handle_packet(peer: WebSocketPeer):
 				for p in room.get_players():
 					if p != null:
 						send_room(room, p.peer)
-				#if game["decks"][0] != null and game["decks"][1] != null:
-				#	start_match(game)
 			else:
 				Logger.w("Invalid deck")
 				send_denied(peer)
