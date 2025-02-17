@@ -6,9 +6,11 @@ static func i(msg: String):
 	print(format_msg(msg))
 
 static func w(msg: String):
+	print("W: ", format_msg(msg))
 	push_warning(format_msg(msg))
 
 static func e(msg: String):
+	print("E: ", format_msg(msg))
 	push_error(format_msg(msg))
 
 static func format_msg(msg: String):

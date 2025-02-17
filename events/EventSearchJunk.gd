@@ -71,7 +71,6 @@ func handle_card(index: int, card: Card):
 		queue_event(EventAnimation.new(game_board,
 			AnimationAddToHand.new(card.instance, player.hand)
 		))
-	player.junk.shuffle()
 
 func broadcast():
 	if game_board.is_server():

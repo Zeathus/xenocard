@@ -33,6 +33,7 @@ func _prepare_handling(delta: float, actions: Array[Action]):
 			return true
 		else:
 			Logger.e("Invalid action: %d" % incoming_action)
+			get_tree().quit(1)
 	return false
 
 func _handle_request(action: Action, args: Array) -> bool:
