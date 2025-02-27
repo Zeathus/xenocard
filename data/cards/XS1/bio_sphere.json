@@ -17,7 +17,7 @@
 				"Formula(count(owner=self;type=battle;zone=battlefield;attribute=!gnosis;formula=maxhp-hp>0)>0)"
 			],
 			"effect": [
-				"Heal(3,owner=self;type=battle;attribute=!gnosis)",
+				"Heal(3,owner=self;type=battle;zone=battlefield;attribute=!gnosis)",
 				"Discard(self)"
 			]
 		}
