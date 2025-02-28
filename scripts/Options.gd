@@ -17,14 +17,14 @@ static func set_locale(_locale: String) -> void:
 
 static func set_music_volume(volume: int):
 	music_volume = volume
-	var db: float = (volume - 100) / 10.0
+	var db: float = (volume - 100) / 5.0
 	var bus_index = AudioServer.get_bus_index("Music")
 	AudioServer.set_bus_volume_db(bus_index, db)
 	AudioServer.set_bus_mute(bus_index, music_mute or volume == 0)
 
 static func set_sounds_volume(volume: int):
 	sounds_volume = volume
-	var db: float = (volume - 100) / 10.0
+	var db: float = (volume - 100) / 5.0
 	var bus_index = AudioServer.get_bus_index("Sounds")
 	AudioServer.set_bus_volume_db(bus_index, db)
 	AudioServer.set_bus_mute(bus_index, sounds_mute or volume == 0)

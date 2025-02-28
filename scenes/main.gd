@@ -2,6 +2,7 @@ extends Node2D
 
 var main_menu = load("res://scenes/main_menu.tscn")
 var last_game_result: Enum.GameResult = Enum.GameResult.NONE
+var queued_bgm: String = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,7 +29,13 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if queued_bgm != "":
+		$BGM.volume_db -= delta * 30
+		if $BGM.volume_db < -40:
+			$BGM.stop()
+			$BGM.volume_db = -5
+			play_bgm(queued_bgm)
+			queued_bgm = ""
 
 func start_scene(scene):
 	for c in get_children():
@@ -45,3 +52,20 @@ func end_scene():
 func load_card_data():
 	CardData.load_cards()
 	Logger.i("Loaded %d cards." % CardData.get_count())
+
+func queue_bgm(bgm: String):
+	queued_bgm = bgm
+
+func play_bgm(bgm: String):
+	var player: AudioStreamPlayer2D = $BGM
+	if player.playing:
+		queue_bgm(bgm)
+		return
+	var music = null
+	if ResourceLoader.exists("res://audio/bgm/" + bgm + ".ogg"):
+		music = load("res://audio/bgm/" + bgm + ".ogg")
+	if music == null:
+		Logger.w("Failed to find bgm '%s'" % bgm)
+		return
+	player.stream = music
+	player.play()

@@ -26,6 +26,8 @@ var tutorial: Tutorial = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if server == null:
+		get_parent().play_bgm("battle_xenosaga_1")
 	$AnonCard.turn_down()
 	for i in Enum.Phase:
 		phase_effects[Enum.Phase[i]] = []
@@ -295,6 +297,7 @@ func end_scene():
 	if is_server():
 		server.end_board(self)
 	else:
+		get_parent().play_bgm("umn_mode")
 		get_parent().end_scene()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -502,7 +505,7 @@ func play_se(se: String, db: float = 0, pitch: float = 1):
 	elif ResourceLoader.exists("res://audio/se/" + se + ".ogg"):
 		sound = load("res://audio/se/" + se + ".ogg")
 	if sound == null:
-		Logger.w("Failed to find se '%s' % se")
+		Logger.w("Failed to find se '%s'" % se)
 		return
 	for player: AudioStreamPlayer2D in [$AudioStream1, $AudioStream2, $AudioStream3]:
 		if not player.is_playing():

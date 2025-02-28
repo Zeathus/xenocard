@@ -117,12 +117,24 @@ text = "Create Card Images"
 
 [node name="VersionNumber" type="Label" parent="."]
 offset_left = 737.0
-offset_top = 525.0
+offset_top = 509.0
 offset_right = 944.0
-offset_bottom = 571.0
+offset_bottom = 555.0
 text = "Ver. X.Y.Z"
 label_settings = SubResource("LabelSettings_o5cpi")
 horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="VersionNumber2" type="Label" parent="."]
+offset_left = -943.0
+offset_top = 427.0
+offset_right = -561.0
+offset_bottom = 555.0
+text = "Playing \"U.M.N. Mode\"
+Arrangement by: Jamphibious
+Original Composer: Yasunori Mitsuda"
+label_settings = SubResource("LabelSettings_o5cpi")
+vertical_alignment = 2
 
 [node name="Logo" type="Sprite2D" parent="."]
 position = Vector2(0, -192)

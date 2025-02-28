@@ -4,6 +4,7 @@ var task = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	get_parent().play_bgm("umn_mode")
 	$VersionNumber.text = "Ver. " + AppMeta.get_version_string()
 	if OS.get_name() == "HTML5" or OS.get_name() == "Web":
 		$ButtonExit.visible = false
