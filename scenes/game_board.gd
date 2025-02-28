@@ -27,7 +27,7 @@ var tutorial: Tutorial = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if server == null:
-		get_parent().play_bgm("battle_xenosaga_1")
+		get_parent().play_bgm("battle_xenosaga_1", -10)
 	$AnonCard.turn_down()
 	for i in Enum.Phase:
 		phase_effects[Enum.Phase[i]] = []
@@ -659,6 +659,7 @@ func _on_forfeit_button_pressed() -> void:
 func _on_close_menu_button_pressed() -> void:
 	$ButtonMenu.disabled = false
 	$MenuNode.visible = false
+	Options.save()
 
 func _on_phase_hitbox_mouse_entered() -> void:
 	$Phases/AllPhases.visible = true
@@ -697,3 +698,17 @@ func _on_phase_hitbox_mouse_entered() -> void:
 
 func _on_phase_hitbox_mouse_exited() -> void:
 	$Phases/AllPhases.visible = false
+
+func _on_volume_music_value_changed(value: float) -> void:
+	$MenuNode/MenuPanel/VolumeMusic/Value.text = "%d%%" % value
+	Options.set_music_volume(value)
+
+func _on_volume_sounds_value_changed(value: float) -> void:
+	$MenuNode/MenuPanel/VolumeSounds/Value.text = "%d%%" % value
+	Options.set_sounds_volume(value)
+
+func _on_music_mute_toggled(toggled_on: bool) -> void:
+	Options.set_music_mute(toggled_on)
+
+func _on_sounds_mute_toggled(toggled_on: bool) -> void:
+	Options.set_sounds_mute(toggled_on)

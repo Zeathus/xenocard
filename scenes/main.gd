@@ -56,7 +56,7 @@ func load_card_data():
 func queue_bgm(bgm: String):
 	queued_bgm = bgm
 
-func play_bgm(bgm: String):
+func play_bgm(bgm: String, db: float = 0):
 	var player: AudioStreamPlayer2D = $BGM
 	if player.playing:
 		queue_bgm(bgm)
@@ -67,5 +67,6 @@ func play_bgm(bgm: String):
 	if music == null:
 		Logger.w("Failed to find bgm '%s'" % bgm)
 		return
+	player.volume_db = db - 10
 	player.stream = music
 	player.play()
