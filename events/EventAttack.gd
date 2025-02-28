@@ -26,7 +26,7 @@ func on_start():
 	for t in attacker.get_attack_targets(game_board):
 		targets.push_back(t)
 		anim_targets.push_back(t.instance if t.is_card() else t.field.get_deck_node().find_child("Card"))
-	var anim: AnimationAttack = AnimationAttack.new(attacker.instance, anim_targets, attacker.get_atk(), attacker.get_attack_type())
+	var anim: AnimationAttack = AnimationAttack.new(game_board, attacker.instance, anim_targets, attacker.get_atk(), attacker.get_attack_type())
 	queue_event(EventAnimation.new(game_board, anim))
 	if len(targets) == 0:
 		attack_done = true
@@ -58,9 +58,9 @@ func attack():
 	var atk = attacker.get_atk()
 	if attacker.get_attack_type() == Enum.AttackType.HAND:
 		if atk <= 3:
-			game_board.play_se("hit_small" + str(randi_range(1, 2)))
+			game_board.play_se("hit_small" + str(randi_range(1, 2)), 8)
 		else:
-			game_board.play_se("hit_medium" + str(randi_range(1, 2)))
+			game_board.play_se("hit_medium" + str(randi_range(1, 2)), 8)
 	else:
 		pass #game_board.play_se("explosion_small" + str(randi_range(1, 4)))
 		#if atk <= 2:

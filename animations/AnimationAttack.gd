@@ -3,8 +3,10 @@ extends GameAnimation
 class_name AnimationAttack
 
 static var projectile_scene = load("res://animations/projectile.tscn")
+var game_board: GameBoard
 var attacker: Node2D
 var targets: Array[Node2D]
+var atk: int
 var attack_type: Enum.AttackType
 var projectiles: Array[Node2D]
 var time: float
@@ -12,9 +14,11 @@ var move_end_time: float = 0.5
 var scale_time: float = 1.0
 var target_scale: float = 0.5
 
-func _init(_attacker: Node2D, _targets: Array[Node2D], _atk: int, _attack_type: Enum.AttackType):
+func _init(_game_board: GameBoard, _attacker: Node2D, _targets: Array[Node2D], _atk: int, _attack_type: Enum.AttackType):
+	self.game_board = _game_board
 	self.attacker = _attacker
 	self.targets = _targets
+	self.atk = _atk
 	self.attack_type = _attack_type
 	self.projectiles = []
 	self.time = 0
@@ -71,6 +75,9 @@ func update(delta):
 				for t in targets:
 					make_projectile(t)
 				attacker.play_animation("ChargeAttack", 1.0 / scale_time)
+				game_board.play_se("charge_%d" % min(atk, 10), -4)
+			if time < scale_time and time + delta >= scale_time:
+				game_board.play_se("shoot_" + str(randi_range(1, 5)), -8, 1.0 / (scale_time ** 0.5))
 			time += delta
 			var move_progress: float = min(time - scale_time, move_end_time)
 			for i in range(len(targets)):

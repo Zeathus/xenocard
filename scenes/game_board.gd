@@ -495,7 +495,7 @@ func get_all_battlefield_cards() -> Array[Card]:
 func add_phase_effect(phase: Enum.Phase, effect: Effect):
 	phase_effects[phase].push_back(effect)
 
-func play_se(se: String):
+func play_se(se: String, db: float = 0, pitch: float = 1):
 	var sound = null
 	if ResourceLoader.exists("res://audio/se/" + se + ".wav"):
 		sound = load("res://audio/se/" + se + ".wav")
@@ -504,8 +504,10 @@ func play_se(se: String):
 	if sound == null:
 		Logger.w("Failed to find se '%s' % se")
 		return
-	for player in [$AudioStream1, $AudioStream2, $AudioStream3]:
+	for player: AudioStreamPlayer2D in [$AudioStream1, $AudioStream2, $AudioStream3]:
 		if not player.is_playing():
+			player.volume_db = db
+			player.pitch_scale = pitch
 			player.stream = sound
 			player.play()
 			break

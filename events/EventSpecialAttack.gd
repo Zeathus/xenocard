@@ -28,7 +28,7 @@ func on_start():
 	if len(targets) == 0:
 		finish()
 		return
-	var anim: AnimationAttack = AnimationAttack.new(attacker.instance, anim_targets, damage, Enum.AttackType.NONE)
+	var anim: AnimationAttack = AnimationAttack.new(game_board, attacker.instance, anim_targets, damage, Enum.AttackType.NONE)
 	queue_event(EventAnimation.new(game_board, anim))
 
 func on_finish():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://crhl7nmua17qi"]
+[gd_scene load_steps=26 format=3 uid="uid://crhl7nmua17qi"]
 
 [ext_resource type="PackedScene" uid="uid://bu0roj477cb2l" path="res://scenes/game_field.tscn" id="1_bk45l"]
 [ext_resource type="Script" path="res://scenes/game_board.gd" id="1_k5aaq"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dosulntiwpmvw" path="res://objects/card_display.tscn" id="6_akm2x"]
 [ext_resource type="FontFile" uid="uid://do6lscs8csbaq" path="res://fonts/Roboto/Roboto-Regular.ttf" id="6_ldbpm"]
 [ext_resource type="Theme" uid="uid://cts0fwcuwbvl0" path="res://theme_default.tres" id="7_c566m"]
+[ext_resource type="AudioStream" uid="uid://kvjis54f22rs" path="res://audio/se/charge.ogg" id="11_gvb58"]
 [ext_resource type="Script" path="res://scenes/hint_node.gd" id="11_jdhxf"]
 
 [sub_resource type="FontVariation" id="FontVariation_da6p1"]
@@ -567,6 +568,7 @@ text = "MENU"
 metadata/_edit_use_anchors_ = true
 
 [node name="AudioStream1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_gvb58")
 bus = &"Sounds"
 
 [node name="AudioStream2" type="AudioStreamPlayer2D" parent="."]
