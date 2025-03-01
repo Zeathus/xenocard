@@ -26,6 +26,10 @@ var tutorial: Tutorial = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$MenuNode/MenuPanel/VolumeMusic.value = Options.music_volume
+	$MenuNode/MenuPanel/VolumeSounds.value = Options.sounds_volume
+	$MenuNode/MenuPanel/VolumeMusic/Mute.button_pressed = Options.music_mute
+	$MenuNode/MenuPanel/VolumeSounds/Mute.button_pressed = Options.sounds_mute
 	if server == null:
 		get_parent().play_bgm("battle_xenosaga_1", -10)
 	$AnonCard.turn_down()
