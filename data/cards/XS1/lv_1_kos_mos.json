@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 5,
-	"name": "Lv 1 KOS-MOS",
+	"name": {
+		"en": "Lv 1 KOS-MOS",
+		"jp": "Ｌｖ１ＫＯＳ-ＭＯＳ"
+	},
 	"character": "KOS-MOS",
 	"type": "battle",
 	"rarity": "rare",
@@ -14,9 +17,15 @@
 	},
 	"requirement": {
 		"cost": 5,
-		"field": ["human", "any"]
+		"field": [
+			"human",
+			"any"
+		]
 	},
-	"text": "When Shion is on your battlefield, this card is played without cost.\nThis card cannot equip {weapons}.",
+	"text": {
+		"en": "If Shion is on your battlefield, this card is played without cost.\nThis card cannot equip {weapons}.",
+		"jp": "シオンが自分戦闘フィールドに出ている場合、コスト無しで場に出す。\nこのカードは{武器}を装備できない。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

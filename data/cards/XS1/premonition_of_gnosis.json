@@ -2,14 +2,23 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 98,
-	"name": "Premonition of Gnosis",
+	"name": {
+		"en": "Premonition of Gnosis",
+		"jp": "グノーシスの予感"
+	},
 	"type": "event",
 	"rarity": "uncommon",
 	"requirement": {
 		"cost": 3,
-		"field": ["gnosis", "gnosis"]
+		"field": [
+			"gnosis",
+			"gnosis"
+		]
 	},
-	"text": "Destroy one enemy card with an E mark.",
+	"text": {
+		"en": "Destroy one enemy card with an E mark.",
+		"jp": "Ｅマークの付いた敵カードを1枚破壊する。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

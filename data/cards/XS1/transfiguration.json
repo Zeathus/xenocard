@@ -2,14 +2,23 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 134,
-	"name": "Transfiguration",
+	"name": {
+		"en": "Transfiguration",
+		"jp": "グノーシス変容体"
+	},
 	"type": "situation",
 	"rarity": "common",
 	"requirement": {
 		"cost": 1,
-		"field": ["gnosis", "gnosis"]
+		"field": [
+			"gnosis",
+			"gnosis"
+		]
 	},
-	"text": "During your event or block phase, you can discard one {Gnosis} from your $hand to <search> one {Gnosis}.",
+	"text": {
+		"en": "During your event or block phase, you can discard one {Gnosis} from your $hand to <search> one {Gnosis}.",
+		"jp": "イベントフェイズかブロックフェイズに、手札から{グノーシス}1枚を破棄することで{グノーシス}１枚を<サーチ>が出来る。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

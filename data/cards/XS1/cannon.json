@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 44,
-	"name": "Cannon",
+	"name": {
+		"en": "Cannon",
+		"jp": "キャノン"
+	},
 	"type": "battle",
 	"rarity": "common",
 	"stats": {
@@ -13,9 +16,15 @@
 	},
 	"requirement": {
 		"cost": 1,
-		"field": ["machine", "machine"]
+		"field": [
+			"machine",
+			"machine"
+		]
 	},
-	"text": "<Unlimited>.\nOnly {Machines} can equip this card.\nThis card's attacks <penetrate>.\nAttacks every other turn.",
+	"text": {
+		"en": "<Unlimited>.\nOnly {Machines} can equip this card.\nThis card's attacks <penetrate>.\nAttacks every other turn.",
+		"jp": "<無制限>\n{機械}しか装備できない。\nこのカードの攻撃は<貫通>する。\n自分ターン2回に1度攻撃する。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

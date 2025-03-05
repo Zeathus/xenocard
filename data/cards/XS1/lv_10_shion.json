@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 8,
-	"name": "Lv 10 Shion",
+	"name": {
+		"en": "Lv 10 Shion",
+		"jp": "Ｌｖ１０シオン"
+	},
 	"character": "Shion",
 	"type": "battle",
 	"rarity": "rare",
@@ -14,9 +17,16 @@
 	},
 	"requirement": {
 		"cost": 1,
-		"field": ["human", "human", "human"]
+		"field": [
+			"human",
+			"human",
+			"human"
+		]
 	},
-	"text": "You can <level up> a Lv 1 Shion on your battlefield, ignoring field requirements.\nTakes 1 less battle damage from {Realians}.",
+	"text": {
+		"en": "You can <level up> a Lv 1 Shion on your battlefield, ignoring field requirements.\nTakes 1 less battle damage from {Realians}.",
+		"jp": "Ｌｖ１シオンが自分戦闘フィールドにいる場合、条件を満たしていなくても<レベルアップ>してよい。\nこのカードは{レアリエン}から受けた攻撃は-1される。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

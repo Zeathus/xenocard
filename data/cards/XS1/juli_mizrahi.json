@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 64,
-	"name": "Juli Mizrahi",
+	"name": {
+		"en": "Juli Mizrahi",
+		"jp": "ユリ・ミズラヒ"
+	},
 	"character": "Juli Mizrahi",
 	"type": "battle",
 	"rarity": "common",
@@ -14,9 +17,14 @@
 	},
 	"requirement": {
 		"cost": 0,
-		"field": ["human"]
+		"field": [
+			"human"
+		]
 	},
-	"text": "When this card is on the battlefield, you can discard it during your event or block phase to gain ATK+1 on all of your {Humans} until the adjust phase.",
+	"text": {
+		"en": "If this card is on the battlefield, you can discard it during your event or block phase to give all your {Humans} ATK+1 until the adjust phase.",
+		"jp": "このカードは戦闘フィールドにいる場合、イベントフェイズかブロックフェイズにカードを破棄することで、\n自分アジャストフェイズまで自分の{人間}はＡＴＫ+1を得る。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

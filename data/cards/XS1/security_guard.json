@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 22,
-	"name": "Security Guard",
+	"name": {
+		"en": "Security Guard",
+		"jp": "警官"
+	},
 	"type": "battle",
 	"rarity": "common",
 	"stats": {

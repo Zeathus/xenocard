@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 25,
-	"name": "All-Purpose Realian Female",
+	"name": {
+		"en": "All-Purpose Realian Female",
+		"jp": "汎用レアリエン女"
+	},
 	"type": "battle",
 	"rarity": "common",
 	"stats": {
@@ -11,7 +14,10 @@
 		"atk": 1,
 		"target": "hand"
 	},
-	"text": "<Unlimited>.\nDraw one card from your deck during the adjust phase of the turn this card was played.",
+	"text": {
+		"en": "<Unlimited>.\nDraw one card from your deck during the adjust phase of the turn this card was played.",
+		"jp": "<無制限>\nこのカードを出した場合、自分アジャストフェイズに山札から1枚引く。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 1,
-	"name": "Lv 1 Shion",
+	"name": {
+		"en": "Lv 1 Shion",
+		"jp": "Ｌｖ１シオン"
+	},
 	"character": "Shion",
 	"type": "battle",
 	"rarity": "rare",
@@ -15,7 +18,10 @@
 	"requirement": {
 		"cost": 1
 	},
-	"text": "Whenever this card destroys an enemy card, you can <search> one Lv 10 Shion.",
+	"text": {
+		"en": "If this card destroys an enemy card, you can <search> one Lv 10 Shion.",
+		"jp": "このカードが敵カード１枚を破壊したとき、Ｌｖ１０シオンを<サーチ>してよい。"
+	},
 	"effects": [
 		{
 			"trigger": "destroy",

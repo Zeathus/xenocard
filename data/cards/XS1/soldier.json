@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 21,
-	"name": "Soldier",
+	"name": {
+		"en": "Soldier",
+		"jp": "兵士"
+	},
 	"type": "battle",
 	"rarity": "common",
 	"stats": {

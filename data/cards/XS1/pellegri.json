@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 65,
-	"name": "Pellegri",
+	"name": {
+		"en": "Pellegri",
+		"jp": "ペレグリー"
+	},
 	"character": "Pellegri",
 	"type": "battle",
 	"rarity": "rare",
@@ -14,9 +17,15 @@
 	},
 	"requirement": {
 		"cost": 0,
-		"field": ["machine", "human"]
+		"field": [
+			"machine",
+			"human"
+		]
 	},
-	"text": "When this card is on the battlefield, you can discard it during your event or block phase to gain ATK+1 on all of your {Machines} until the adjust phase.",
+	"text": {
+		"en": "If this card is on the battlefield, you can discard it during your event or block phase to give all your {Machines} ATK+1 until the adjust phase.",
+		"jp": "このカードは戦闘フィールドにいる場合、イベントフェイズかブロックフェイズにカードを破棄することで、\n自分アジャストフェイズまで自分の{機械}はＡＴＫ+1を得る。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

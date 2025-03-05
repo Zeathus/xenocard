@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 68,
-	"name": "Goblin",
+	"name": {
+		"en": "Goblin",
+		"jp": "ゴブリン"
+	},
 	"type": "battle",
 	"rarity": "common",
 	"stats": {
@@ -13,9 +16,14 @@
 	},
 	"requirement": {
 		"cost": 0,
-		"field": ["human"]
+		"field": [
+			"human"
+		]
 	},
-	"text": "Discard one {Human} from your field to play this card anywhere on your field.\n<Unlimited>.\nCards attacked by this card are <downed>.",
+	"text": {
+		"en": "Discard one {Human} from your field to play this card anywhere on your field.\n<Unlimited>.\nCards attacked by this card are <downed>.",
+		"jp": "{人間}1枚を破棄して場に出す。\n<無制限>\nこのカードに攻撃されたバトルカードは<ダウン>する。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

@@ -2,13 +2,22 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 125,
-	"name": "Good Luck",
+	"name": {
+		"en": "Good Luck",
+		"jp": "強運"
+	},
 	"type": "situation",
 	"rarity": "common",
 	"requirement": {
-		"field": ["human", "human"]
+		"field": [
+			"human",
+			"human"
+		]
 	},
-	"text": "{Humans} on your battlefield <evade> normal attacks.\n<Duration> 5.",
+	"text": {
+		"en": "{Humans} on your battlefield <evade> normal attacks.\n<Duration> 5.",
+		"jp": "自分戦闘フィールド上の{人間}は全ての通常攻撃を<回避>する。\n<持続> 5。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

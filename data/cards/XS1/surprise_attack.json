@@ -2,14 +2,22 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 91,
-	"name": "Surprise Attack",
+	"name": {
+		"en": "Surprise Attack",
+		"jp": "不意打ち"
+	},
 	"type": "event",
 	"rarity": "common",
 	"requirement": {
 		"cost": 0,
-		"field": ["gnosis"]
+		"field": [
+			"gnosis"
+		]
 	},
-	"text": "Inflict 2 effect damage to one enemy battle card on the battlefield.",
+	"text": {
+		"en": "Deal 2 effect damage to one enemy card on the battlefield.",
+		"jp": "戦闘フィールドにいる敵バトルカード1つに2特殊ダメージを与える。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

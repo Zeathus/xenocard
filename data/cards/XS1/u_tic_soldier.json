@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 23,
-	"name": "U-TIC Soldier",
+	"name": {
+		"en": "U-TIC Soldier",
+		"jp": "Ｕ-ＴＩＣ兵"
+	},
 	"type": "battle",
 	"rarity": "uncommon",
 	"stats": {
@@ -14,7 +17,10 @@
 	"requirement": {
 		"cost": 1
 	},
-	"text": "If this card is destroyed by a normal attack, the owner of the card must pay 1 cost.",
+	"text": {
+		"en": "If this card is destroyed by a normal attack, the owner of the card must pay 1 cost.",
+		"jp": "このカードが通常攻撃で破壊された場合、このカードのオーナーはコスト1支払う。"
+	},
 	"effects": [
 		{
 			"trigger": "destroyed",

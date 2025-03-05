@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 79,
-	"name": "Sanctuary Ship",
+	"name": {
+		"en": "Sanctuary Ship",
+		"jp": "聖堂船"
+	},
 	"type": "battle",
 	"rarity": "rare",
 	"stats": {
@@ -13,9 +16,15 @@
 	},
 	"requirement": {
 		"cost": 0,
-		"field": ["gnosis", "any"]
+		"field": [
+			"gnosis",
+			"any"
+		]
 	},
-	"text": "Discard all battle cards from your field to play this card anywhere on your field.\nIf this card is on the battlefield during your draw phase, draw from the lost pile rather than the deck and draw one additional card.",
+	"text": {
+		"en": "Discard all battle cards from your field to play this card anywhere on your field.\nIf this card is on the battlefield during your draw phase, draw from the lost pile rather than the deck and draw one additional card.",
+		"jp": "場に出ている自分のバトルカードを全て破棄して場に出す。\nドローフェイズにこのカードが戦闘フィールドにいる場合、山札の代わりに捨て札からドローする。\nさらに自分のドローフェイズに1枚余分にドローする。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

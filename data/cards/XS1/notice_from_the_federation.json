@@ -2,14 +2,23 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 104,
-	"name": "Notice from the Federation",
+	"name": {
+		"en": "Notice from the Federation",
+		"jp": "連邦の通告"
+	},
 	"type": "event",
 	"rarity": "common",
 	"requirement": {
 		"cost": 0,
-		"field": ["any", "any"]
+		"field": [
+			"any",
+			"any"
+		]
 	},
-	"text": "Destroy the {weapon} equipped to an enemy battle card.",
+	"text": {
+		"en": "Destroy the {weapon} equipped to an enemy battle card.",
+		"jp": "指定の敵バトルカードの{武器}を破壊する。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

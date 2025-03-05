@@ -2,13 +2,22 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 120,
-	"name": "Break Through Enemy Lines",
+	"name": {
+		"en": "Break Through Enemy Lines",
+		"jp": "強行突破"
+	},
 	"type": "event",
 	"rarity": "uncommon",
 	"requirement": {
-		"field": ["machine", "machine"]
+		"field": [
+			"machine",
+			"machine"
+		]
 	},
-	"text": "Inflict 2 effect damage to one enemy battle card in standby.",
+	"text": {
+		"en": "Deal 2 effect damage to one enemy card in standby.",
+		"jp": "待機エリアにいるバトルカード1枚に2特殊ダメージを与える。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

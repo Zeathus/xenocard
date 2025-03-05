@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 69,
-	"name": "Ogre",
+	"name": {
+		"en": "Ogre",
+		"jp": "オーガー"
+	},
 	"type": "battle",
 	"rarity": "common",
 	"stats": {
@@ -13,9 +16,16 @@
 	},
 	"requirement": {
 		"cost": 0,
-		"field": ["human", "any", "any"]
+		"field": [
+			"human",
+			"any",
+			"any"
+		]
 	},
-	"text": "Discard one {Human} from your field to play this card anywhere on your field.",
+	"text": {
+		"en": "Discard one {Human} from your field to play this card anywhere on your field.",
+		"jp": "{人間}1枚を破棄して場に出す。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

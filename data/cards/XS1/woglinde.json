@@ -2,14 +2,22 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 90,
-	"name": "Woglinde",
+	"name": {
+		"en": "Woglinde",
+		"jp": "ヴォークリンデ"
+	},
 	"type": "event",
 	"rarity": "uncommon",
 	"requirement": {
 		"cost": 1,
-		"field": ["machine"]
+		"field": [
+			"machine"
+		]
 	},
-	"text": "Move one enemy battle card to the standby area. You cannot use this card if the standby area is full.",
+	"text": {
+		"en": "Move one enemy battle card to standby. You cannot use this card if the standby area is full.",
+		"jp": "指定の戦闘フィールド上の敵バトルカード1つを待機エリアに移す。待機エリアに空きが無い場合は使えない。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

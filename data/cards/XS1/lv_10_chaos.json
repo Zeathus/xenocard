@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 14,
-	"name": "Lv 10 chaos",
+	"name": {
+		"en": "Lv 10 chaos",
+		"jp": "Ｌｖ１０ケイオス"
+	},
 	"character": "chaos",
 	"type": "battle",
 	"rarity": "promo",
@@ -14,9 +17,15 @@
 	},
 	"requirement": {
 		"cost": 1,
-		"field": ["human", "human"]
+		"field": [
+			"human",
+			"human"
+		]
 	},
-	"text": "You can <level up> a Lv 1 Chaos on your battlefield.\nHeals 3 HP during your adjust phase.",
+	"text": {
+		"en": "You can <level up> a Lv 1 Chaos on your battlefield.\nHeals 3 HP during your adjust phase.",
+		"jp": "Ｌｖ１ケイオスが自分戦闘フィールドにいる場合、<レベルアップ>してよい。\n毎ターン自分アジャストフェイズにこのカードのＨＰは3回復する。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

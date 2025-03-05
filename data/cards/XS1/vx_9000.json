@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 39,
-	"name": "VX-9000",
+	"name": {
+		"en": "VX-9000",
+		"jp": "ＶＸ-９０００"
+	},
 	"type": "battle",
 	"rarity": "uncommon",
 	"stats": {
@@ -13,9 +16,15 @@
 	},
 	"requirement": {
 		"cost": 3,
-		"field": ["human", "human"]
+		"field": [
+			"human",
+			"human"
+		]
 	},
-	"text": "<Unique>.\nWhen this card is destroyed by battle damage, you can destroy one card in the enemy's standby area.",
+	"text": {
+		"en": "<Unique>.\nIf this card is destroyed by battle damage, you can destroy one enemy card in standby.",
+		"jp": "<一枚限定>\nこのカードが戦闘ダメージで破壊された時、敵待機エリアのバトルカード1枚を選択し破壊する。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

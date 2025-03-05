@@ -2,14 +2,22 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 111,
-	"name": "X•Buster",
+	"name": {
+		"en": "X・Buster",
+		"jp": "Ｘ・ＢＵＳＴＥＲ"
+	},
 	"type": "event",
 	"rarity": "rare",
 	"requirement": {
 		"cost": 0,
-		"field": ["machine"]
+		"field": [
+			"machine"
+		]
 	},
-	"text": "Inflict 1 effect damage to all battle cards on the field.",
+	"text": {
+		"en": "Deal 1 effect damage to all battle cards on the field.",
+		"jp": "場の全てのバトルカードに1特殊ダメージを与える。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

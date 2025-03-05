@@ -2,14 +2,22 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 115,
-	"name": "Confusion",
+	"name": {
+		"en": "Confusion",
+		"jp": "混乱"
+	},
 	"type": "event",
 	"rarity": "common",
 	"requirement": {
 		"cost": 0,
-		"field": ["gnosis"]
+		"field": [
+			"gnosis"
+		]
 	},
-	"text": "Change the enemy's battle formation, switching the front row with the back row.",
+	"text": {
+		"en": "Change the enemy's battle formation, switching the front row with the back row.",
+		"jp": "敵戦闘フィールドの前列と後列を入れ替える。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

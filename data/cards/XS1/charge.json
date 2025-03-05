@@ -2,14 +2,22 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 112,
-	"name": "Charge",
+	"name": {
+		"en": "Charge",
+		"jp": "突撃"
+	},
 	"type": "event",
 	"rarity": "common",
 	"requirement": {
 		"cost": 0,
-		"field": ["machine"]
+		"field": [
+			"machine"
+		]
 	},
-	"text": "<Down> one enemy battle card.",
+	"text": {
+		"en": "<Down> one enemy battle card.",
+		"jp": "指定の敵バトルカード1つを<ダウン>させる。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

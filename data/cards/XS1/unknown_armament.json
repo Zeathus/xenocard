@@ -2,14 +2,25 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 144,
-	"name": "Unknown Armament",
+	"name": {
+		"en": "Unknown Armament",
+		"jp": "知らない武装"
+	},
 	"type": "situation",
 	"rarity": "promo",
 	"requirement": {
 		"cost": 3,
-		"field": ["machine", "human", "human", "any"]
+		"field": [
+			"machine",
+			"human",
+			"human",
+			"any"
+		]
 	},
-	"text": "You can discard this card from your field during your event or block phase to inflict 2 effect damage to all battle cards on the field.",
+	"text": {
+		"en": "You can discard this card from your field during your event or block phase to deal 2 effect damage to all battle cards on the field.",
+		"jp": "イベントフェイズかブロックフェイズにこのカードを破棄することで場に出ているバトルカード全てに2特殊ダメージを与えられる。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

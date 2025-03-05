@@ -2,14 +2,22 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 113,
-	"name": "Precise Shooting",
+	"name": {
+		"en": "Precise Shooting",
+		"jp": "精密射撃"
+	},
 	"type": "event",
 	"rarity": "common",
 	"requirement": {
 		"cost": 0,
-		"field": ["machine"]
+		"field": [
+			"machine"
+		]
 	},
-	"text": "Inflict 1 effect damage to an enemy battle card.",
+	"text": {
+		"en": "Deal 1 effect damage to an enemy battle card.",
+		"jp": "指定の敵バトルカード1つに1特殊ダメージを与える。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

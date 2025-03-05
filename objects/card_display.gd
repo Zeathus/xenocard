@@ -36,10 +36,10 @@ func show_card(card: CardData):
 	$Content/Name.text = ""
 	$Content/SmallName.text = ""
 	$Content/TwoLineName.text = ""
-	var card_name = card.name
+	var card_name = card.get_name()
 	if "\n" in card_name:
 		$Content/TwoLineName.text = card_name
-	elif len(card_name) <= 20:
+	elif len(card_name) <= 9 if Options.locale == "jp" else len(card_name) <= 20:
 		$Content/Name.text = card_name
 	else:
 		$Content/SmallName.text = card_name
@@ -47,11 +47,11 @@ func show_card(card: CardData):
 	$Content/TypeOther.visible = (card.type != Enum.Type.BATTLE)
 	$Content/Attribute.visible = (card.type == Enum.Type.BATTLE)
 	$Content/Stats.visible = (card.type == Enum.Type.BATTLE)
-	var expanded_text: String = Keyword.expand_keywords(card.text)
+	var expanded_text: String = Keyword.expand_keywords(card.get_text())
 	if card.full_art == 2:
 		expanded_text = expanded_text.replace("#ffff86", "#909032")
 		expanded_text = expanded_text.replace("#c6c6ff", "#415fcf")
-	var text_size: int = 36
+	var text_size: int = 34 if Options.locale == "jp" else 36
 	while true:
 		$Content/Text.text = ""
 		$Content/Text.push_font_size(text_size)

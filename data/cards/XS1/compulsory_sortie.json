@@ -2,14 +2,23 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 147,
-	"name": "Compulsory Sortie",
+	"name": {
+		"en": "Compulsory Sortie",
+		"jp": "強制出撃"
+	},
 	"type": "situation",
 	"rarity": "common",
 	"requirement": {
 		"cost": 0,
-		"field": ["machine", "machine"]
+		"field": [
+			"machine",
+			"machine"
+		]
 	},
-	"text": "Neither player can end their move phase unless their battlefield is full or there are no cards in standby that can be <deployed>.\n<Duration> 2.",
+	"text": {
+		"en": "Neither player can end their move phase unless their battlefield is full or there are no cards in standby that can be <deployed>.\n<Duration> 2.",
+		"jp": "各プレイヤーは自分の戦闘フィールドがいっぱいか又は待機エリアに<出撃>可能なカードが無いまで、ムーブフェイズを終えることが出来ない。\n<持続> 2。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

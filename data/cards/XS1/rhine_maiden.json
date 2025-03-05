@@ -2,14 +2,23 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 143,
-	"name": "Rhine Maiden",
+	"name": {
+		"en": "Rhine Maiden",
+		"jp": "ラインの乙女"
+	},
 	"type": "situation",
 	"rarity": "promo",
 	"requirement": {
 		"cost": 2,
-		"field": ["machine", "machine"]
+		"field": [
+			"machine",
+			"machine"
+		]
 	},
-	"text": "You can discard this card from your field during your event or block phase to inflict 4 effect damage to the enemy's deck.",
+	"text": {
+		"en": "You can discard this card from your field during your event or block phase to deal 4 effect damage to the enemy's deck.",
+		"jp": "イベントフェイズかブロックフェイズにこのカードを破棄することで敵山札に4特殊ダメージを与えられる。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

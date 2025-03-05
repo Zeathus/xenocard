@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 18,
-	"name": "Civilian Female",
+	"name": {
+		"en": "Civilian Female",
+		"jp": "女性市民"
+	},
 	"type": "battle",
 	"rarity": "common",
 	"stats": {

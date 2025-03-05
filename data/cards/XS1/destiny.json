@@ -2,14 +2,24 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 119,
-	"name": "Destiny",
+	"name": {
+		"en": "Destiny",
+		"jp": "宿命"
+	},
 	"type": "event",
 	"rarity": "promo",
 	"requirement": {
 		"cost": 1,
-		"field": ["human", "human", "human"]
+		"field": [
+			"human",
+			"human",
+			"human"
+		]
 	},
-	"text": "Discard one {Human} battle card on your battlefield to play one {Human} battle card from your junk pile in its place. Character cards and <unique> cards cannot be retrieved from the junk pile. Damage taken carries over, and any equipped {weapon} is discarded.",
+	"text": {
+		"en": "Discard one {Human} on your battlefield to play one {Human} from your junk pile in its place. Character cards and <unique> cards cannot be retrieved from the junk pile. Damage taken carries over, and any equipped {weapon} is discarded.",
+		"jp": "自分戦闘フィールドの{人間}1枚と破棄エリアの{人間}1枚を入れ替える。\nキャラカードや<一枚限定>のカードは入れ替え出来ない。\n受けたダメージは継承され、装備{武器}は破棄される。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

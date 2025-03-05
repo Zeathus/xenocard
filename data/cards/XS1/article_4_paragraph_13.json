@@ -2,14 +2,25 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 102,
-	"name": "Article 4 Paragraph 13",
+	"name": {
+		"en": "Article 4 Paragraph 13",
+		"jp": "第四条十三項"
+	},
 	"type": "event",
 	"rarity": "rare",
 	"requirement": {
 		"cost": 2,
-		"field": ["human", "machine", "any", "any"]
+		"field": [
+			"human",
+			"machine",
+			"any",
+			"any"
+		]
 	},
-	"text": "<Slow>.\nAll {Realians} currently on your battlefield have their ATK set to 0 and their max HP to 1. Any affected {Realians} remaining after the enemy's adjust phase are destroyed, inflicting 6 effect damage to the enemy's deck each.",
+	"text": {
+		"en": "<Slow>.\nAll {Realians} currently on your battlefield have their ATK set to 0 and their max HP to 1. Any affected {Realians} remaining after the enemy's adjust phase are destroyed, dealing 6 effect damage to the enemy's deck each.",
+		"jp": "<遅い>\n自分戦闘フィールドの{レアリエン}は全てＡＴＫ＝0、ＨＰ＝1となる。\n敵アジャストフェイズまで戦闘フィールドに残った場合{レアリエン}1枚につき敵山札に6特殊ダメージを与え全て破棄される。\nこの効果は重複しない。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

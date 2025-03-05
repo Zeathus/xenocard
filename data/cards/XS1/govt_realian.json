@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 26,
-	"name": "Gov't Realian",
+	"name": {
+		"en": "Gov't Realian",
+		"jp": "政府レアリエン"
+	},
 	"type": "battle",
 	"rarity": "common",
 	"stats": {
@@ -11,7 +14,10 @@
 		"atk": 2,
 		"target": "hand"
 	},
-	"text": "<Unlimited>.",
+	"text": {
+		"en": "<Unlimited>.",
+		"jp": "<無制限>"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

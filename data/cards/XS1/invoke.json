@@ -2,14 +2,24 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 114,
-	"name": "Invoke",
+	"name": {
+		"en": "Invoke",
+		"jp": "発動"
+	},
 	"type": "event",
 	"rarity": "promo",
 	"requirement": {
 		"cost": 3,
-		"field": ["machine", "machine", "human"]
+		"field": [
+			"machine",
+			"machine",
+			"human"
+		]
 	},
-	"text": "<Slow>.\nDestroy all battle and situation cards on the field.",
+	"text": {
+		"en": "<Slow>.\nDestroy all battle and situation cards on the field.",
+		"jp": "<遅い>\n場にある全てのバトルカード、シチュエーションカードを破壊する。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

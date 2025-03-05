@@ -2,13 +2,21 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 85,
-	"name": "Curry",
+	"name": {
+		"en": "Curry",
+		"jp": "カレー"
+	},
 	"type": "event",
 	"rarity": "common",
 	"requirement": {
-		"field": ["any"]
+		"field": [
+			"any"
+		]
 	},
-	"text": "Heal one of your non-{Gnosis} battle cards to full HP.",
+	"text": {
+		"en": "Heal one of your non-{Gnosis} battle cards to full HP.",
+		"jp": "自分の{グノーシス}以外のバトルカード1枚のＨＰを全回復する。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

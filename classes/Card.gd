@@ -487,7 +487,7 @@ func get_identifier() -> String:
 	return data.identifier
 
 func get_name() -> String:
-	return data.name
+	return data.get_name()
 
 func get_character() -> String:
 	return data.character
@@ -608,7 +608,7 @@ func get_attack_targets(game_board: GameBoard) -> Array:
 	return []
 
 func get_text() -> String:
-	return data.text
+	return data.get_text()
 
 func get_image() -> Resource:
 	return data.get_image()

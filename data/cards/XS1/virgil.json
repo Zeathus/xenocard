@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 55,
-	"name": "Virgil",
+	"name": {
+		"en": "Virgil",
+		"jp": "バージル"
+	},
 	"character": "Virgil",
 	"type": "battle",
 	"rarity": "uncommon",
@@ -14,9 +17,15 @@
 	},
 	"requirement": {
 		"cost": 1,
-		"field": ["human", "any"]
+		"field": [
+			"human",
+			"any"
+		]
 	},
-	"text": "On your enemy's adjust phase when this card is on the battlefield, all {Realians} on your battlefield are destroyed, and 4 effect damage is dealt to the enemy's deck for each.",
+	"text": {
+		"en": "On your enemy's adjust phase if this card is on the battlefield, all {Realians} on your battlefield are destroyed, and 4 effect damage is dealt to the enemy's deck for each.",
+		"jp": "このカードが自分戦闘フィールドに居る場合、敵アジャストフェイズに自分戦闘フィールドに居る{レアリエン}は全て破棄され、{レアリエン}1枚につき敵山札に4特殊ダメージを与える。"
+	},
 	"effects": [
 		{
 			"trigger": "adjust_phase_enemy",

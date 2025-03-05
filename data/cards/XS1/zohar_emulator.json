@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 66,
-	"name": "Zohar Emulator",
+	"name": {
+		"en": "Zohar Emulator",
+		"jp": "ゾハルエミュレータ"
+	},
 	"type": "battle",
 	"rarity": "rare",
 	"stats": {
@@ -13,9 +16,14 @@
 	},
 	"requirement": {
 		"cost": 1,
-		"field": ["human"]
+		"field": [
+			"human"
+		]
 	},
-	"text": "<Unique>. This card cannot equip {weapons}.\nWhen this card is on the battlefield, you can discard it during your event or block phase to gain ATK+2 on all of your {Gnosis} until the adjust phase.",
+	"text": {
+		"en": "<Unique>. This card cannot equip {weapons}.\nIf this card is on the battlefield, you can discard it during your event or block phase to give all your {Gnosis} ATK+2 until the adjust phase.",
+		"jp": "<一枚限定>\nこのカードは{武器}を装備できない。\nこのカードは戦闘フィールドにいる場合、イベントフェイズかブロックフェイズにカードを破棄することで、\n自分アジャストフェイズまで自分の{グノーシス}はＡＴＫ+2を得る。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

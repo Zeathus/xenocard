@@ -2,14 +2,24 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 140,
-	"name": "So Weak!",
+	"name": {
+		"en": "So Weak!",
+		"jp": "脆いよなぁ！"
+	},
 	"type": "situation",
 	"rarity": "promo",
 	"requirement": {
 		"cost": 2,
-		"field": ["human", "human", "any"]
+		"field": [
+			"human",
+			"human",
+			"any"
+		]
 	},
-	"text": "You can discard this card from your field during your event or block phase to inflict 3 effect damage to one battle card on the battlefield.",
+	"text": {
+		"en": "You can discard this card from your field during your event or block phase to deal 3 effect damage to one card on the battlefield.",
+		"jp": "イベントフェイズかブロックフェイズにこのカードを破棄することで指定した戦闘フィールドのバトルカードに3特殊ダメージを与えられる。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

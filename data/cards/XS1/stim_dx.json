@@ -2,14 +2,24 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 108,
-	"name": "Stim DX",
+	"name": {
+		"en": "Stim DX",
+		"jp": "武神の札"
+	},
 	"type": "event",
 	"rarity": "rare",
 	"requirement": {
 		"cost": 3,
-		"field": ["human", "human", "any"]
+		"field": [
+			"human",
+			"human",
+			"any"
+		]
 	},
-	"text": "<Slow>.\nDouble the original ATK of one of your battle cards until your adjust phase. Homing and <penetrating> attacks are unaffected.",
+	"text": {
+		"en": "<Slow>.\nDouble the original ATK of one of your battle cards until your adjust phase. <Homing> and <penetrating> attacks are unaffected.",
+		"jp": "<遅い>\n指定のバトルカード1つは、この自分アジャストフェイズまでカードの元々のＡＴＫを2倍にする。\n但し<弾道>と<貫通>にはこの効果を与えない。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

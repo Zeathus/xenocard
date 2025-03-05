@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 40,
-	"name": "VX-10000",
+	"name": {
+		"en": "VX-10000",
+		"jp": "ＶＸ-１００００"
+	},
 	"type": "battle",
 	"rarity": "uncommon",
 	"stats": {
@@ -13,9 +16,15 @@
 	},
 	"requirement": {
 		"cost": 3,
-		"field": ["human", "any"]
+		"field": [
+			"human",
+			"any"
+		]
 	},
-	"text": "<Unique>.\nWhen this card is on the battlefield, all homing attacks miss.\nWhen Shion is on your battlefield, this card is played without cost.",
+	"text": {
+		"en": "<Unique>.\nWhile this card is on the battlefield, all homing attacks miss.\nIf Shion is on your battlefield, this card is played without cost.",
+		"jp": "<一枚限定>\nこのカードが戦闘フィールドに居る限り、両プレイヤーの弾道攻撃は成功しない。\nこのカードはシオンが戦闘フィールドに出ている場合コスト無しで場に出す。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

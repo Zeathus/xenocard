@@ -2,14 +2,23 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 101,
-	"name": "Impregnable Guard",
+	"name": {
+		"en": "Impregnable Guard",
+		"jp": "鉄壁の守り"
+	},
 	"type": "event",
 	"rarity": "uncommon",
 	"requirement": {
 		"cost": 0,
-		"field": ["machine", "any"]
+		"field": [
+			"machine",
+			"any"
+		]
 	},
-	"text": "Your deck will be immune to battle damage until the enemy's next adjust phase.",
+	"text": {
+		"en": "Your deck will be immune to battle damage until the enemy's next adjust phase.",
+		"jp": "バトルフェイズで自分の山札は一切の戦闘ダメージを受けない。この効果は敵のアジャストフェイズまで持続する。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

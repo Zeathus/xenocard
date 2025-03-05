@@ -2,13 +2,22 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 124,
-	"name": "Stim",
+	"name": {
+		"en": "Stim",
+		"jp": "武人の札"
+	},
 	"type": "situation",
 	"rarity": "common",
 	"requirement": {
-		"field": ["human", "human"]
+		"field": [
+			"human",
+			"human"
+		]
 	},
-	"text": "During the battle phase, {Humans} on your battlefield gain ATK+1.\n<Duration> 5.",
+	"text": {
+		"en": "During the battle phase, {Humans} on your battlefield gain ATK+1.\n<Duration> 5.",
+		"jp": "バトルフェイズ中、自分戦闘フィールド上の{人間}はＡＴＫ+1を得る。\n<持続> 5。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

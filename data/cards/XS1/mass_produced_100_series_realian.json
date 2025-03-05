@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 27,
-	"name": "Mass Produced\n100 Series Realian",
+	"name": {
+		"en": "Mass Produced\n100 Series Realian",
+		"jp": "量産型百式レアリエン"
+	},
 	"type": "battle",
 	"rarity": "uncommon",
 	"stats": {
@@ -11,7 +14,10 @@
 		"atk": 2,
 		"target": "hand"
 	},
-	"text": "<Unlimited>.\nGains ATK+1 against {Gnosis}.",
+	"text": {
+		"en": "<Unlimited>.\nGains ATK+1 against {Gnosis}.",
+		"jp": "<無制限>\n{グノーシス}に対してＡＴＫ+1を得る。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

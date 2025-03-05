@@ -2,13 +2,22 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 130,
-	"name": "Supply Order",
+	"name": {
+		"en": "Supply Order",
+		"jp": "補給要請"
+	},
 	"type": "situation",
 	"rarity": "uncommon",
 	"requirement": {
-		"field": ["human", "any"]
+		"field": [
+			"human",
+			"any"
+		]
 	},
-	"text": "Whenever a {Realian} is destroyed, the owner of this card draws one card from the deck.",
+	"text": {
+		"en": "If a {Realian} is destroyed, the owner of this card draws one card from the deck.",
+		"jp": "{レアリエン}が破壊されるたびに、このカードのプレイヤーは山札から1枚引く。"
+	},
 	"effects": [
 		{
 			"trigger": "destroyed",

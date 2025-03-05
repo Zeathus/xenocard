@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 54,
-	"name": "Eyeglasses",
+	"name": {
+		"en": "Eyeglasses",
+		"jp": "眼鏡"
+	},
 	"type": "battle",
 	"rarity": "common",
 	"stats": {
@@ -13,9 +16,15 @@
 	},
 	"requirement": {
 		"cost": 2,
-		"field": ["human", "human"]
+		"field": [
+			"human",
+			"human"
+		]
 	},
-	"text": "Only {Humans} and {Realians} can equip this card.\nConverts attack type to spread.\n<One-time use>.",
+	"text": {
+		"en": "Only {Humans} and {Realians} can equip this card.\nConverts attack type to spread.\n<One-time use>.",
+		"jp": "{人間}と{レアリエン}しか装備できない。\n現在の攻撃を全体攻撃に変化させる。\n<一回限定>"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

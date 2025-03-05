@@ -2,14 +2,23 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 86,
-	"name": "Bio Sphere",
+	"name": {
+		"en": "Bio Sphere",
+		"jp": "スペーステント"
+	},
 	"type": "event",
 	"rarity": "common",
 	"requirement": {
 		"cost": 1,
-		"field": ["any", "any"]
+		"field": [
+			"any",
+			"any"
+		]
 	},
-	"text": "All cards on your battlefield except {Gnosis} heal 3 HP.",
+	"text": {
+		"en": "All cards on your battlefield except {Gnosis} heal 3 HP.",
+		"jp": "自分戦闘フィールドにいる{グノーシス}以外のバトルカードのＨＰを3回復する。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 3,
-	"name": "Lv 1 Ziggy",
+	"name": {
+		"en": "Lv 1 Ziggy",
+		"jp": "Ｌｖ１ジギー"
+	},
 	"character": "Ziggy",
 	"type": "battle",
 	"rarity": "rare",
@@ -14,9 +17,14 @@
 	},
 	"requirement": {
 		"cost": 1,
-		"field": ["human"]
+		"field": [
+			"human"
+		]
 	},
-	"text": "Cards attacked by this card are <downed>.\nThis card cannot equip {weapons}.",
+	"text": {
+		"en": "Cards attacked by this card are <downed>.\nThis card cannot equip {weapons}.",
+		"jp": "このカードに攻撃されたバトルカードは<ダウン>する。\nこのカードは{武器}を装備できない。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

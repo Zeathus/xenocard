@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 56,
-	"name": "Margulis",
+	"name": {
+		"en": "Margulis",
+		"jp": "マーグリス"
+	},
 	"character": "Margulis",
 	"type": "battle",
 	"rarity": "uncommon",
@@ -14,9 +17,15 @@
 	},
 	"requirement": {
 		"cost": 1,
-		"field": ["human", "any"]
+		"field": [
+			"human",
+			"any"
+		]
 	},
-	"text": "When the E mark is removed from this card, you can destroy one enemy situation card.",
+	"text": {
+		"en": "When the E mark is removed from this card, you can destroy one enemy situation card.",
+		"jp": "このカードからＥマークが外れる時、指定した敵のシチュエーションカード1枚を破棄できる。"
+	},
 	"effects": [
 		{
 			"trigger": "e_mark_removed",

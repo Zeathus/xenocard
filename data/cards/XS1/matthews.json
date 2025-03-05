@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 57,
-	"name": "Matthews",
+	"name": {
+		"en": "Matthews",
+		"jp": "マシューズ"
+	},
 	"character": "Matthews",
 	"type": "battle",
 	"rarity": "uncommon",
@@ -14,9 +17,14 @@
 	},
 	"requirement": {
 		"cost": 1,
-		"field": ["human"]
+		"field": [
+			"human"
+		]
 	},
-	"text": "When this card is on the field, both players pay one cost before their draw phase.\nWhen this card is on the battlefield, pay two cost instead.",
+	"text": {
+		"en": "While this card is on the field, both players pay one cost before their draw phase.\nWhile this card is on the battlefield, pay two cost instead.",
+		"jp": "このカードが場に出ている間、ドローフェイズのドロー前に各プレイヤーがコスト1支払う。\n戦闘フィールドにいる場合は、コストを２支払う。"
+	},
 	"effects": [
 		{
 			"trigger": "turn_start_player",

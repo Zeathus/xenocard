@@ -2,14 +2,23 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 100,
-	"name": "Expulsion Order",
+	"name": {
+		"en": "Expulsion Order",
+		"jp": "退却命令"
+	},
 	"type": "event",
 	"rarity": "rare",
 	"requirement": {
 		"cost": 3,
-		"field": ["human", "human"]
+		"field": [
+			"human",
+			"human"
+		]
 	},
-	"text": "Destroy one enemy {Human} battle card with an E mark.",
+	"text": {
+		"en": "Destroy one enemy {Human} with an E mark.",
+		"jp": "Ｅマークの付いた敵{人間}を1枚破壊する。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

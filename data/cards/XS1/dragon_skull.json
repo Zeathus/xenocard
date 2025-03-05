@@ -2,14 +2,23 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 99,
-	"name": "Dragon Skull",
+	"name": {
+		"en": "Dragon Skull",
+		"jp": "ドラゴンスカル"
+	},
 	"type": "event",
 	"rarity": "uncommon",
 	"requirement": {
 		"cost": 1,
-		"field": ["machine", "machine"]
+		"field": [
+			"machine",
+			"machine"
+		]
 	},
-	"text": "Destroy one <downed> enemy {Gnosis} battle card.",
+	"text": {
+		"en": "Destroy one <downed> enemy {Gnosis}.",
+		"jp": "<ダウン>している敵{グノーシス}を1枚破壊する。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

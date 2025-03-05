@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 17,
-	"name": "Civilian Child",
+	"name": {
+		"en": "Civilian Child",
+		"jp": "子供市民"
+	},
 	"type": "battle",
 	"rarity": "common",
 	"stats": {

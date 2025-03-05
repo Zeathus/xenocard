@@ -2,14 +2,23 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 137,
-	"name": "Pilgrimage Fleet",
+	"name": {
+		"en": "Pilgrimage Fleet",
+		"jp": "巡礼船団"
+	},
 	"type": "situation",
 	"rarity": "common",
 	"requirement": {
 		"cost": 0,
-		"field": ["gnosis", "any"]
+		"field": [
+			"gnosis",
+			"any"
+		]
 	},
-	"text": "{Gnosis} cards in standby heal 1 HP during their owner's adjust phase.\nThis effect cannot be stacked.",
+	"text": {
+		"en": "{Gnosis} in standby heal 1 HP during their owner's adjust phase.\nThis effect cannot be stacked.",
+		"jp": "待機エリアにいる{グノーシス}は、オーナーのアジャストフェイズに1回復する。\nこの効果は重複しない。"
+	},
 	"effects": [
 		{
 			"trigger": "adjust_phase_player",

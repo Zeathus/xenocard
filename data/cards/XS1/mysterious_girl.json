@@ -2,14 +2,23 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 135,
-	"name": "Mysterious Girl",
+	"name": {
+		"en": "Mysterious Girl",
+		"jp": "謎の少女"
+	},
 	"type": "situation",
 	"rarity": "uncommon",
 	"requirement": {
 		"cost": 2,
-		"field": ["any", "any"]
+		"field": [
+			"any",
+			"any"
+		]
 	},
-	"text": "During the battle phase, all {Gnosis} battle cards gain ATK+1.\n<Duration> 2.",
+	"text": {
+		"en": "During the battle phase, all {Gnosis} gain ATK+1.\n<Duration> 2.",
+		"jp": "バトルフェイズ時、全ての{グノーシス}はＡＴＫ+1を得る。\n<持続> 2。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

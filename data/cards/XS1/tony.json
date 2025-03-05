@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 62,
-	"name": "Tony",
+	"name": {
+		"en": "Tony",
+		"jp": "トニー"
+	},
 	"character": "Tony",
 	"type": "battle",
 	"rarity": "common",
@@ -14,9 +17,14 @@
 	},
 	"requirement": {
 		"cost": 2,
-		"field": ["human"]
+		"field": [
+			"human"
+		]
 	},
-	"text": "When the E mark is removed from this card, you can <down> one enemy card in the standby area.",
+	"text": {
+		"en": "When the E mark is removed from this card, you can <down> one enemy card in standby.",
+		"jp": "このカードからＥマークが外れる時、敵待機エリアのバトルカード1枚を<ダウン>させる。"
+	},
 	"effects": [
 		{
 			"trigger": "e_mark_removed",

@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 19,
-	"name": "Civilian Male",
+	"name": {
+		"en": "Civilian Male",
+		"jp": "男性市民"
+	},
 	"type": "battle",
 	"rarity": "common",
 	"stats": {

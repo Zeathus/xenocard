@@ -2,14 +2,23 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 148,
-	"name": "Override Code",
+	"name": {
+		"en": "Override Code",
+		"jp": "制御コード"
+	},
 	"type": "situation",
 	"rarity": "common",
 	"requirement": {
 		"cost": 0,
-		"field": ["human", "human"]
+		"field": [
+			"human",
+			"human"
+		]
 	},
-	"text": "Neither player can end their move phase unless their battlefield is full or there are no {Realians} in standby that can be <deployed>.\n<Duration> 2.",
+	"text": {
+		"en": "Neither player can end their move phase unless their battlefield is full or there are no {Realians} in standby that can be <deployed>.\n<Duration> 2.",
+		"jp": "各プレイヤーは自分の戦闘フィールドがいっぱいか又は待機エリアに<出撃>可能な{人間}が無いまで、ムーブフェイズを終えることが出来ない。\n<持続> 2。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

@@ -2,14 +2,24 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 138,
-	"name": "Imaginary Space",
+	"name": {
+		"en": "Imaginary Space",
+		"jp": "虚数領域"
+	},
 	"type": "situation",
 	"rarity": "common",
 	"requirement": {
 		"cost": 1,
-		"field": ["gnosis", "gnosis", "any"]
+		"field": [
+			"gnosis",
+			"gnosis",
+			"any"
+		]
 	},
-	"text": "During your draw phase, draw from the lost pile rather than the deck.",
+	"text": {
+		"en": "During your draw phase, draw from the lost pile rather than the deck.",
+		"jp": "自分のドローフェイズ時、山札の代わりに捨て札からドローする。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

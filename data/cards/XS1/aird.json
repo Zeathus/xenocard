@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 46,
-	"name": "Aird",
+	"name": {
+		"en": "Aird",
+		"jp": "エアッド"
+	},
 	"type": "battle",
 	"rarity": "rare",
 	"stats": {
@@ -13,9 +16,14 @@
 	},
 	"requirement": {
 		"cost": 1,
-		"field": ["machine"]
+		"field": [
+			"machine"
+		]
 	},
-	"text": "<Unlimited>.\nOnly {Machines} can equip this card.\nAttacks every other turn.",
+	"text": {
+		"en": "<Unlimited>.\nOnly {Machines} can equip this card.\nAttacks every other turn.",
+		"jp": "<無制限>\n{機械}しか装備できない。\n自分ターン2回に1度攻撃する。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

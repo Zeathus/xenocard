@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 78,
-	"name": "Unicorn",
+	"name": {
+		"en": "Unicorn",
+		"jp": "ユニコーン"
+	},
 	"type": "battle",
 	"rarity": "rare",
 	"stats": {
@@ -13,9 +16,16 @@
 	},
 	"requirement": {
 		"cost": 0,
-		"field": ["gnosis", "gnosis", "human"]
+		"field": [
+			"gnosis",
+			"gnosis",
+			"human"
+		]
 	},
-	"text": "Discard one {Human} from your field to play this card anywhere on your field.\nWhen this card is on the battlefield, it heals 3 HP during your adjust phase.",
+	"text": {
+		"en": "Discard one {Human} from your field to play this card anywhere on your field.\nWhile this card is on the battlefield, it heals 3 HP during your adjust phase.",
+		"jp": "{人間}1枚を破棄して場に出す。\nこのカードは戦闘フィールドにいる場合、自分アジャストフェイズにＨＰ3回復する。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

@@ -2,13 +2,21 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 132,
-	"name": "Gnosify",
+	"name": {
+		"en": "Gnosify",
+		"jp": "グノーシス化"
+	},
 	"type": "situation",
 	"rarity": "uncommon",
 	"requirement": {
-		"field": ["gnosis"]
+		"field": [
+			"gnosis"
+		]
 	},
-	"text": "During your event or block phase, you can discard two cards from your $hand to draw one card from your lost pile.",
+	"text": {
+		"en": "During your event or block phase, you can discard two cards from your $hand to draw one card from your lost pile.",
+		"jp": "イベントフェイズかブロックフェイズに、手札から2枚破棄することで、捨て札から1枚引く。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

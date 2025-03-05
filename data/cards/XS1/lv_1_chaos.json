@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 7,
-	"name": "Lv 1 chaos",
+	"name": {
+		"en": "Lv 1 chaos",
+		"jp": "Ｌｖ１ケイオス"
+	},
 	"character": "chaos",
 	"type": "battle",
 	"rarity": "rare",
@@ -14,9 +17,14 @@
 	},
 	"requirement": {
 		"cost": 1,
-		"field": ["human"]
+		"field": [
+			"human"
+		]
 	},
-	"text": "Heals 2 HP during your adjust phase.",
+	"text": {
+		"en": "Heals 2 HP during your adjust phase.",
+		"jp": "毎ターン、自分アジャストフェイズにこのカードのＨＰは2回復する。"
+	},
 	"effects": [
 		{
 			"trigger": "adjust_phase_player",

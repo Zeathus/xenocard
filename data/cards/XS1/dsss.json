@@ -2,14 +2,22 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 146,
-	"name": "D.S.S.S.",
+	"name": {
+		"en": "D.S.S.S.",
+		"jp": "Ｄ．Ｓ．Ｓ．Ｓ．"
+	},
 	"type": "situation",
 	"rarity": "common",
 	"requirement": {
 		"cost": 0,
-		"field": ["machine"]
+		"field": [
+			"machine"
+		]
 	},
-	"text": "Neither player can end their move phase unless their battlefield is full or there are no {Gnosis} in standby that can be <deployed>.\n<Duration> 6.",
+	"text": {
+		"en": "Neither player can end their move phase unless their battlefield is full or there are no {Gnosis} in standby that can be <deployed>.\n<Duration> 6.",
+		"jp": "各プレイヤーは自分の戦闘フィールドがいっぱいか又は待機エリアに<出撃>可能な{グノーシス}が無いまで、ムーブフェイズを終えることが出来ない。\n<持続> 6。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

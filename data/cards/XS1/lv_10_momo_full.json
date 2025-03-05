@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 11,
-	"name": "Lv 10 MOMO",
+	"name": {
+		"en": "Lv 10 MOMO",
+		"jp": "Ｌｖ１０モモ"
+	},
 	"character": "MOMO",
 	"type": "battle",
 	"rarity": "rare",
@@ -15,9 +18,15 @@
 	},
 	"requirement": {
 		"cost": 1,
-		"field": ["human", "human"]
+		"field": [
+			"human",
+			"human"
+		]
 	},
-	"text": "You can <level up> a Lv 1 MOMO on your battlefield.\nWhen this card is on the battlefield, {Gnosis} on the battlefield cannot move.\nGains ATK+1 against {Gnosis}.",
+	"text": {
+		"en": "You can <level up> a Lv 1 MOMO on your battlefield.\nWhile this card is on the battlefield, {Gnosis} on the battlefield cannot move.\nGains ATK+1 against {Gnosis}.",
+		"jp": "Ｌｖ１モモが自分戦闘フィールドにいる場合、<レベルアップ>してよい。\n戦闘フィールドにいる限り、両プレイヤーの{グノーシス}は戦闘フィールド内では移動できない。\n{グノーシス}に対してＡＴＫ+1を得る。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

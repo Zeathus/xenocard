@@ -2,14 +2,22 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 92,
-	"name": "Federation Cruiser",
+	"name": {
+		"en": "Federation Cruiser",
+		"jp": "連邦巡洋艦"
+	},
 	"type": "event",
 	"rarity": "common",
 	"requirement": {
 		"cost": 0,
-		"field": ["machine"]
+		"field": [
+			"machine"
+		]
 	},
-	"text": "Inflict 2 effect damage to one enemy battle card on the battlefield.",
+	"text": {
+		"en": "Deal 2 effect damage to one enemy card on the battlefield.",
+		"jp": "戦闘フィールドにいる敵バトルカード1つに2特殊ダメージを与える。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

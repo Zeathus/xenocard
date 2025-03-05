@@ -2,10 +2,16 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 133,
-	"name": "Collective\nUnconsciousness",
+	"name": {
+		"en": "Collective\nUnconsciousness",
+		"jp": "集合的無意識"
+	},
 	"type": "situation",
 	"rarity": "rare",
-	"text": "During your draw phase, look at the top card of your deck and select whether to keep it or place it at the bottom of the deck.\nThis effect cannot be stacked.\n<Duration> 6, but is not discarded while a {Gnosis} is on your field.",
+	"text": {
+		"en": "At the start of your draw phase, look at the top card of your deck and select whether to keep it or place it at the bottom of the deck.\nThis effect cannot be stacked.\n<Duration> 6, but is not discarded while a {Gnosis} is on your field.",
+		"jp": "自分のドローフェイズに、山札を上から1枚見て、そのまま戻すか、1番下に戻す。\nこの効果は重複しない。\n<持続> 6。自分の場に{グノーシス}がある限り、このカードが破棄されない。"
+	},
 	"effects": [
 		{
 			"trigger": "turn_start_player",

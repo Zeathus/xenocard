@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 37,
-	"name": "Drone",
+	"name": {
+		"en": "Drone",
+		"jp": "トレーム"
+	},
 	"type": "battle",
 	"rarity": "common",
 	"stats": {
@@ -13,6 +16,8 @@
 	},
 	"requirement": {
 		"cost": 2,
-		"field": ["human"]
+		"field": [
+			"human"
+		]
 	}
 }

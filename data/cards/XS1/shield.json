@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 45,
-	"name": "Shield",
+	"name": {
+		"en": "Shield",
+		"jp": "シールド"
+	},
 	"type": "battle",
 	"rarity": "rare",
 	"stats": {
@@ -13,9 +16,14 @@
 	},
 	"requirement": {
 		"cost": 2,
-		"field": ["machine"]
+		"field": [
+			"machine"
+		]
 	},
-	"text": "<Unlimited>.\nOnly {Machines} can equip this card.\nEquipped cards take 1 less battle damage.",
+	"text": {
+		"en": "<Unlimited>.\nOnly {Machines} can equip this card.\nThe user takes 1 less battle damage.",
+		"jp": "<無制限>\n{機械}しか装備できない。\nこれを装備したカードが受けた戦闘ダメージは-1される。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

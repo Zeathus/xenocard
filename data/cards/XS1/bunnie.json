@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 30,
-	"name": "Bunnie",
+	"name": {
+		"en": "Bunnie",
+		"jp": "うーくん"
+	},
 	"character": "Bunnie",
 	"type": "battle",
 	"rarity": "promo",
@@ -14,9 +17,15 @@
 	},
 	"requirement": {
 		"cost": 1,
-		"field": ["any", "any"]
+		"field": [
+			"any",
+			"any"
+		]
 	},
-	"text": "When the E mark is removed from this card, all battle cards on the field are <downed>.",
+	"text": {
+		"en": "When the E mark is removed from this card, all battle cards on the field are <downed>.",
+		"jp": "このカードからＥマークが外れる時、場のすべてのバトルカードを<ダウン>させる。"
+	},
 	"effects": [
 		{
 			"trigger": "e_mark_removed",

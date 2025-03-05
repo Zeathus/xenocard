@@ -2,14 +2,23 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 94,
-	"name": "Mary & Shelley",
+	"name": {
+		"en": "Mary & Shelley",
+		"jp": "メリィ＆シェリィ"
+	},
 	"type": "event",
 	"rarity": "rare",
 	"requirement": {
 		"cost": 0,
-		"field": ["any", "any"]
+		"field": [
+			"any",
+			"any"
+		]
 	},
-	"text": "Draw two cards from your deck.",
+	"text": {
+		"en": "Draw two cards from your deck.",
+		"jp": "山札から2枚手札に加える。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",
