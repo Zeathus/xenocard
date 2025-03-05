@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bjrdpd8vb73rk"
-path="res://.godot/imported/sanctuary_ship.webp-6f208f2bc7eba69d19bdaa558c7b381b.ctex"
+path="res://.godot/imported/sanctuary_ship.webp-1231a3d67be408f358f36837f250d1b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/sanctuary_ship.webp"
-dest_files=["res://.godot/imported/sanctuary_ship.webp-6f208f2bc7eba69d19bdaa558c7b381b.ctex"]
+source_file="res://sprites/web/card_images_baked/jp/XS1/sanctuary_ship.webp"
+dest_files=["res://.godot/imported/sanctuary_ship.webp-1231a3d67be408f358f36837f250d1b3.ctex"]
 
 [params]
 

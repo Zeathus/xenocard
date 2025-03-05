@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://4q0o3q741qn7"
-path="res://.godot/imported/transfiguration.webp-7e6c68ca5c808a464c59d1eba481c811.ctex"
+path="res://.godot/imported/transfiguration.webp-c81cdb05eb4018549a0debe395b1ae78.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/transfiguration.webp"
-dest_files=["res://.godot/imported/transfiguration.webp-7e6c68ca5c808a464c59d1eba481c811.ctex"]
+source_file="res://sprites/web/card_images_baked/jp/XS1/transfiguration.webp"
+dest_files=["res://.godot/imported/transfiguration.webp-c81cdb05eb4018549a0debe395b1ae78.ctex"]
 
 [params]
 

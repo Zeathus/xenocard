@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c68sq4syvy2dp"
-path="res://.godot/imported/goblin.webp-417e19e5a76be5a98a6c720788db67e1.ctex"
+path="res://.godot/imported/goblin.webp-4d39ccbebd5d8ead90205e6fc962513d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/goblin.webp"
-dest_files=["res://.godot/imported/goblin.webp-417e19e5a76be5a98a6c720788db67e1.ctex"]
+source_file="res://sprites/web/card_images_baked/jp/XS1/goblin.webp"
+dest_files=["res://.godot/imported/goblin.webp-4d39ccbebd5d8ead90205e6fc962513d.ctex"]
 
 [params]
 

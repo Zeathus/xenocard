@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cxipokiyawv7j"
-path="res://.godot/imported/soldier.webp-18cc877b36734ee6731f0f1028644b2a.ctex"
+path="res://.godot/imported/soldier.webp-1afc0fb05db263d14d36ee10e3a2f636.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/soldier.webp"
-dest_files=["res://.godot/imported/soldier.webp-18cc877b36734ee6731f0f1028644b2a.ctex"]
+source_file="res://sprites/web/card_images_baked/jp/XS1/soldier.webp"
+dest_files=["res://.godot/imported/soldier.webp-1afc0fb05db263d14d36ee10e3a2f636.ctex"]
 
 [params]
 

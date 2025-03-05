@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c38jr03iu1auc"
-path="res://.godot/imported/landing_operations.webp-5d7a5bdbfd90c524fbab126368353fa6.ctex"
+path="res://.godot/imported/landing_operations.webp-88a8ec1d57af70a8f6773f373d48cf99.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/landing_operations.webp"
-dest_files=["res://.godot/imported/landing_operations.webp-5d7a5bdbfd90c524fbab126368353fa6.ctex"]
+source_file="res://sprites/web/card_images_baked/jp/XS1/landing_operations.webp"
+dest_files=["res://.godot/imported/landing_operations.webp-88a8ec1d57af70a8f6773f373d48cf99.ctex"]
 
 [params]
 

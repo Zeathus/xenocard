@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cd0jqbinj0k1p"
-path="res://.godot/imported/hydra.webp-7c1307ad38787616fd7bc4203ca6130e.ctex"
+path="res://.godot/imported/hydra.webp-3bc50521b0ea1542b266249408dadc92.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/hydra.webp"
-dest_files=["res://.godot/imported/hydra.webp-7c1307ad38787616fd7bc4203ca6130e.ctex"]
+source_file="res://sprites/web/card_images_baked/jp/XS1/hydra.webp"
+dest_files=["res://.godot/imported/hydra.webp-3bc50521b0ea1542b266249408dadc92.ctex"]
 
 [params]
 

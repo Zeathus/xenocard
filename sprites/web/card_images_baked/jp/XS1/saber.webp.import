@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cwaaep300wiwi"
-path="res://.godot/imported/saber.webp-9c119355eb72f3b97cdf83d0f47dd34e.ctex"
+path="res://.godot/imported/saber.webp-11e1283ab04dc475592413827282844e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/saber.webp"
-dest_files=["res://.godot/imported/saber.webp-9c119355eb72f3b97cdf83d0f47dd34e.ctex"]
+source_file="res://sprites/web/card_images_baked/jp/XS1/saber.webp"
+dest_files=["res://.godot/imported/saber.webp-11e1283ab04dc475592413827282844e.ctex"]
 
 [params]
 

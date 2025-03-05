@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c1nptu453e2pl"
-path="res://.godot/imported/imaginary_space.webp-f16104498339cba5ebc84be294e732fa.ctex"
+path="res://.godot/imported/imaginary_space.webp-f7b2554b65cf0dc85b121b4e86605d82.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/imaginary_space.webp"
-dest_files=["res://.godot/imported/imaginary_space.webp-f16104498339cba5ebc84be294e732fa.ctex"]
+source_file="res://sprites/web/card_images_baked/en/XS1/imaginary_space.webp"
+dest_files=["res://.godot/imported/imaginary_space.webp-f7b2554b65cf0dc85b121b4e86605d82.ctex"]
 
 [params]
 

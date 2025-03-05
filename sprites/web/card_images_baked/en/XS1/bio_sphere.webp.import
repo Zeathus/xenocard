@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d1v2bgsm8u3u5"
-path="res://.godot/imported/bio_sphere.webp-1cdcabb2976b0fd23c2058d54fed0c5e.ctex"
+path="res://.godot/imported/bio_sphere.webp-0ea78a9ac9dda9a59e0cdc6bbb39da26.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/bio_sphere.webp"
-dest_files=["res://.godot/imported/bio_sphere.webp-1cdcabb2976b0fd23c2058d54fed0c5e.ctex"]
+source_file="res://sprites/web/card_images_baked/en/XS1/bio_sphere.webp"
+dest_files=["res://.godot/imported/bio_sphere.webp-0ea78a9ac9dda9a59e0cdc6bbb39da26.ctex"]
 
 [params]
 

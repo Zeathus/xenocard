@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bh7erx1my322j"
-path="res://.godot/imported/collective_unconsciousness.webp-b3a47f996113eb059bca17eb347d22da.ctex"
+path="res://.godot/imported/collective_unconsciousness.webp-510abec0a95175b56113fefde7d8b519.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/collective_unconsciousness.webp"
-dest_files=["res://.godot/imported/collective_unconsciousness.webp-b3a47f996113eb059bca17eb347d22da.ctex"]
+source_file="res://sprites/web/card_images_baked/en/XS1/collective_unconsciousness.webp"
+dest_files=["res://.godot/imported/collective_unconsciousness.webp-510abec0a95175b56113fefde7d8b519.ctex"]
 
 [params]
 

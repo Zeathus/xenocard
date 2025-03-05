@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bk055boig6scn"
-path="res://.godot/imported/woglinde.webp-79ab080f8ea935e323b3c99319fe7a98.ctex"
+path="res://.godot/imported/woglinde.webp-fae688eb60b62196702b5163c46d7812.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/woglinde.webp"
-dest_files=["res://.godot/imported/woglinde.webp-79ab080f8ea935e323b3c99319fe7a98.ctex"]
+source_file="res://sprites/web/card_images_baked/en/XS1/woglinde.webp"
+dest_files=["res://.godot/imported/woglinde.webp-fae688eb60b62196702b5163c46d7812.ctex"]
 
 [params]
 

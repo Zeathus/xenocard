@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cuxurf8wo5khg"
-path="res://.godot/imported/mary_and_shelley.webp-97e08e85c456360f871de480c8c47b29.ctex"
+path="res://.godot/imported/mary_and_shelley.webp-5022abfd54e14bfacbf43f14da344e48.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/mary_and_shelley.webp"
-dest_files=["res://.godot/imported/mary_and_shelley.webp-97e08e85c456360f871de480c8c47b29.ctex"]
+source_file="res://sprites/web/card_images_baked/jp/XS1/mary_and_shelley.webp"
+dest_files=["res://.godot/imported/mary_and_shelley.webp-5022abfd54e14bfacbf43f14da344e48.ctex"]
 
 [params]
 

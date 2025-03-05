@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dkm166uuhv7w4"
-path="res://.godot/imported/mass_produced_100_series_realian.webp-88662e304638b6735dde3b783768a41e.ctex"
+path="res://.godot/imported/mass_produced_100_series_realian.webp-ccbc28d4bae94dfe7e2ee19a6b4f3495.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/mass_produced_100_series_realian.webp"
-dest_files=["res://.godot/imported/mass_produced_100_series_realian.webp-88662e304638b6735dde3b783768a41e.ctex"]
+source_file="res://sprites/web/card_images_baked/jp/XS1/mass_produced_100_series_realian.webp"
+dest_files=["res://.godot/imported/mass_produced_100_series_realian.webp-ccbc28d4bae94dfe7e2ee19a6b4f3495.ctex"]
 
 [params]
 

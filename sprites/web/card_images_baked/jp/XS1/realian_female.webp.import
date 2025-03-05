@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dtokrke3trtyi"
-path="res://.godot/imported/realian_female.webp-7846a805a413b2c535516fa270130ea4.ctex"
+path="res://.godot/imported/realian_female.webp-713a7b759114379b880c61aa3384ee01.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/realian_female.webp"
-dest_files=["res://.godot/imported/realian_female.webp-7846a805a413b2c535516fa270130ea4.ctex"]
+source_file="res://sprites/web/card_images_baked/jp/XS1/realian_female.webp"
+dest_files=["res://.godot/imported/realian_female.webp-713a7b759114379b880c61aa3384ee01.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cqwithlkim2by"
-path="res://.godot/imported/hilbert_effect.webp-cd556f35c626845434b700fda8ffc261.ctex"
+path="res://.godot/imported/hilbert_effect.webp-6c2c3ae2828b099a3a0ebb26820ba0ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/hilbert_effect.webp"
-dest_files=["res://.godot/imported/hilbert_effect.webp-cd556f35c626845434b700fda8ffc261.ctex"]
+source_file="res://sprites/web/card_images_baked/en/XS1/hilbert_effect.webp"
+dest_files=["res://.godot/imported/hilbert_effect.webp-6c2c3ae2828b099a3a0ebb26820ba0ea.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b7xsov6j03yir"
-path="res://.godot/imported/kirschwasser.webp-753473a47c687f9ce94e037dcfb263eb.ctex"
+path="res://.godot/imported/kirschwasser.webp-082bee268a93398d7574bccf2ac5ca13.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/kirschwasser.webp"
-dest_files=["res://.godot/imported/kirschwasser.webp-753473a47c687f9ce94e037dcfb263eb.ctex"]
+source_file="res://sprites/web/card_images_baked/en/XS1/kirschwasser.webp"
+dest_files=["res://.godot/imported/kirschwasser.webp-082bee268a93398d7574bccf2ac5ca13.ctex"]
 
 [params]
 

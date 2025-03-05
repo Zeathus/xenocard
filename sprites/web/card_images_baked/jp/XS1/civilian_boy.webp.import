@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b5xdb4v2ra30b"
-path="res://.godot/imported/civilian_boy.webp-7744823f714fa06d8668ceda73d01148.ctex"
+path="res://.godot/imported/civilian_boy.webp-137d98dfb6bc323d7dd5829ebc6ae848.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/civilian_boy.webp"
-dest_files=["res://.godot/imported/civilian_boy.webp-7744823f714fa06d8668ceda73d01148.ctex"]
+source_file="res://sprites/web/card_images_baked/jp/XS1/civilian_boy.webp"
+dest_files=["res://.godot/imported/civilian_boy.webp-137d98dfb6bc323d7dd5829ebc6ae848.ctex"]
 
 [params]
 

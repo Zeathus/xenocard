@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://r5tvbqjsb45k"
-path="res://.godot/imported/eyeglasses.webp-52c63a9b1ad8da8fd1a9967f76605c3b.ctex"
+path="res://.godot/imported/eyeglasses.webp-d865d257f72654736bd983c15695a2e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/eyeglasses.webp"
-dest_files=["res://.godot/imported/eyeglasses.webp-52c63a9b1ad8da8fd1a9967f76605c3b.ctex"]
+source_file="res://sprites/web/card_images_baked/jp/XS1/eyeglasses.webp"
+dest_files=["res://.godot/imported/eyeglasses.webp-d865d257f72654736bd983c15695a2e1.ctex"]
 
 [params]
 

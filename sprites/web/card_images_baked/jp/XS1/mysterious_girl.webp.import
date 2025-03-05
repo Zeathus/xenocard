@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dhfdb2l4i8p0m"
-path="res://.godot/imported/mysterious_girl.webp-ab2dc6a976fbbea55cd4bdc16b8f8b10.ctex"
+path="res://.godot/imported/mysterious_girl.webp-4e67c62df2eebc84d232e9268ad64943.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/mysterious_girl.webp"
-dest_files=["res://.godot/imported/mysterious_girl.webp-ab2dc6a976fbbea55cd4bdc16b8f8b10.ctex"]
+source_file="res://sprites/web/card_images_baked/jp/XS1/mysterious_girl.webp"
+dest_files=["res://.godot/imported/mysterious_girl.webp-4e67c62df2eebc84d232e9268ad64943.ctex"]
 
 [params]
 

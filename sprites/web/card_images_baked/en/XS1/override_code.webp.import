@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cick7y1ut7oqm"
-path="res://.godot/imported/override_code.webp-e7b44f0f6dd6eff4c01f8d02c004eeda.ctex"
+path="res://.godot/imported/override_code.webp-3e6abd90073a6914a842ee516ca91081.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/override_code.webp"
-dest_files=["res://.godot/imported/override_code.webp-e7b44f0f6dd6eff4c01f8d02c004eeda.ctex"]
+source_file="res://sprites/web/card_images_baked/en/XS1/override_code.webp"
+dest_files=["res://.godot/imported/override_code.webp-3e6abd90073a6914a842ee516ca91081.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bux11bpkyoviy"
-path="res://.godot/imported/lv_10_momo_full.webp-4117394f79fae58b72f0a6b09f673feb.ctex"
+path="res://.godot/imported/lv_10_momo_full.webp-62d61b1e04d7c696c0c4a43fd1f3d622.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/lv_10_momo_full.webp"
-dest_files=["res://.godot/imported/lv_10_momo_full.webp-4117394f79fae58b72f0a6b09f673feb.ctex"]
+source_file="res://sprites/web/card_images_baked/en/XS1/lv_10_momo_full.webp"
+dest_files=["res://.godot/imported/lv_10_momo_full.webp-62d61b1e04d7c696c0c4a43fd1f3d622.ctex"]
 
 [params]
 

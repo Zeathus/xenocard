@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ihkfco5squhl"
-path="res://.godot/imported/minotaur.webp-6519424e0616eb7a86dcdd32cd3346c5.ctex"
+path="res://.godot/imported/minotaur.webp-2fe3aade0d8b41d9bd7031b88f663fc5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/minotaur.webp"
-dest_files=["res://.godot/imported/minotaur.webp-6519424e0616eb7a86dcdd32cd3346c5.ctex"]
+source_file="res://sprites/web/card_images_baked/jp/XS1/minotaur.webp"
+dest_files=["res://.godot/imported/minotaur.webp-2fe3aade0d8b41d9bd7031b88f663fc5.ctex"]
 
 [params]
 

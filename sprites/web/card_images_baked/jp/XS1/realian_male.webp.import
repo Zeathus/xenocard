@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dlq6i044emopp"
-path="res://.godot/imported/realian_male.webp-2c9374d1fbe10e529c847c4cd1888524.ctex"
+path="res://.godot/imported/realian_male.webp-e5d775ca7f6721e7339a5f2b37078a42.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/realian_male.webp"
-dest_files=["res://.godot/imported/realian_male.webp-2c9374d1fbe10e529c847c4cd1888524.ctex"]
+source_file="res://sprites/web/card_images_baked/jp/XS1/realian_male.webp"
+dest_files=["res://.godot/imported/realian_male.webp-e5d775ca7f6721e7339a5f2b37078a42.ctex"]
 
 [params]
 

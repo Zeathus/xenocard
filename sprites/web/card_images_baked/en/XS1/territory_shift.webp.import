@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d1skgqar0ujay"
-path="res://.godot/imported/territory_shift.webp-ec703eeee5ed26d3b4d1a6c94c754bfd.ctex"
+path="res://.godot/imported/territory_shift.webp-4a80f03283001d44e1ac4d383e74ee2c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/territory_shift.webp"
-dest_files=["res://.godot/imported/territory_shift.webp-ec703eeee5ed26d3b4d1a6c94c754bfd.ctex"]
+source_file="res://sprites/web/card_images_baked/en/XS1/territory_shift.webp"
+dest_files=["res://.godot/imported/territory_shift.webp-4a80f03283001d44e1ac4d383e74ee2c.ctex"]
 
 [params]
 

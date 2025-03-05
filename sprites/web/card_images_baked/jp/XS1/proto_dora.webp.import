@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ba0fb4i5xwa4r"
-path="res://.godot/imported/proto_dora.webp-baad2067cab43c75d817a38f22e82f1b.ctex"
+path="res://.godot/imported/proto_dora.webp-2fbb8b8fba4d88e09d37a7c69ca66194.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/proto_dora.webp"
-dest_files=["res://.godot/imported/proto_dora.webp-baad2067cab43c75d817a38f22e82f1b.ctex"]
+source_file="res://sprites/web/card_images_baked/jp/XS1/proto_dora.webp"
+dest_files=["res://.godot/imported/proto_dora.webp-2fbb8b8fba4d88e09d37a7c69ca66194.ctex"]
 
 [params]
 

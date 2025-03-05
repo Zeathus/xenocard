@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b1s1td8gkyqcj"
-path="res://.godot/imported/dammerung.webp-73443bd8c86ab08dacf9f22e47612ec2.ctex"
+path="res://.godot/imported/dammerung.webp-370b0d44cf47a3ab56a6cf44d0585b5d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/dammerung.webp"
-dest_files=["res://.godot/imported/dammerung.webp-73443bd8c86ab08dacf9f22e47612ec2.ctex"]
+source_file="res://sprites/web/card_images_baked/jp/XS1/dammerung.webp"
+dest_files=["res://.godot/imported/dammerung.webp-370b0d44cf47a3ab56a6cf44d0585b5d.ctex"]
 
 [params]
 

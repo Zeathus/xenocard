@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bwqr1ikf0qyym"
-path="res://.godot/imported/gargoyle.webp-f713488fb98d439b17cb03baa9d1927d.ctex"
+path="res://.godot/imported/gargoyle.webp-2625df647b71ae561ac0b989b2d0baef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/gargoyle.webp"
-dest_files=["res://.godot/imported/gargoyle.webp-f713488fb98d439b17cb03baa9d1927d.ctex"]
+source_file="res://sprites/web/card_images_baked/jp/XS1/gargoyle.webp"
+dest_files=["res://.godot/imported/gargoyle.webp-2625df647b71ae561ac0b989b2d0baef.ctex"]
 
 [params]
 

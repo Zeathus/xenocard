@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bqufprq2kcgan"
-path="res://.godot/imported/armistice.webp-ed030b627f27c770511ced1024972e5a.ctex"
+path="res://.godot/imported/armistice.webp-2aba47749203ae93466cb0fd5d0ef610.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/armistice.webp"
-dest_files=["res://.godot/imported/armistice.webp-ed030b627f27c770511ced1024972e5a.ctex"]
+source_file="res://sprites/web/card_images_baked/jp/XS1/armistice.webp"
+dest_files=["res://.godot/imported/armistice.webp-2aba47749203ae93466cb0fd5d0ef610.ctex"]
 
 [params]
 

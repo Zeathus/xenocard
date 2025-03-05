@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bi3byfffgjx5w"
-path="res://.godot/imported/battle_suit.webp-4cc664ed6b7a9f8cc6e1cc94b23af7ee.ctex"
+path="res://.godot/imported/battle_suit.webp-ac99d41253de65a3138807199f62c7c5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/battle_suit.webp"
-dest_files=["res://.godot/imported/battle_suit.webp-4cc664ed6b7a9f8cc6e1cc94b23af7ee.ctex"]
+source_file="res://sprites/web/card_images_baked/jp/XS1/battle_suit.webp"
+dest_files=["res://.godot/imported/battle_suit.webp-ac99d41253de65a3138807199f62c7c5.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ba4qfrx3rbqkg"
-path="res://.godot/imported/phenomenon_change.webp-23301ddf567a035c35aefee38e788648.ctex"
+path="res://.godot/imported/phenomenon_change.webp-e1d6b278fd7471ce29ac333923ca37e7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/phenomenon_change.webp"
-dest_files=["res://.godot/imported/phenomenon_change.webp-23301ddf567a035c35aefee38e788648.ctex"]
+source_file="res://sprites/web/card_images_baked/en/XS1/phenomenon_change.webp"
+dest_files=["res://.godot/imported/phenomenon_change.webp-e1d6b278fd7471ce29ac333923ca37e7.ctex"]
 
 [params]
 

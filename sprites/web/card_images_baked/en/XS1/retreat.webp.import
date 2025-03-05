@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://blii5wqsy5fxs"
-path="res://.godot/imported/retreat.webp-954f175305aaab903f94ac13308814ce.ctex"
+path="res://.godot/imported/retreat.webp-80c365f8f111e0baf67b4472b34cc26c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/retreat.webp"
-dest_files=["res://.godot/imported/retreat.webp-954f175305aaab903f94ac13308814ce.ctex"]
+source_file="res://sprites/web/card_images_baked/en/XS1/retreat.webp"
+dest_files=["res://.godot/imported/retreat.webp-80c365f8f111e0baf67b4472b34cc26c.ctex"]
 
 [params]
 

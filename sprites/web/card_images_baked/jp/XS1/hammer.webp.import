@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cvbt0o4x0nyta"
-path="res://.godot/imported/hammer.webp-3a434f97870164762aeae6912f6db169.ctex"
+path="res://.godot/imported/hammer.webp-e6125592472e6324972eed63bf573b5b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/hammer.webp"
-dest_files=["res://.godot/imported/hammer.webp-3a434f97870164762aeae6912f6db169.ctex"]
+source_file="res://sprites/web/card_images_baked/jp/XS1/hammer.webp"
+dest_files=["res://.godot/imported/hammer.webp-e6125592472e6324972eed63bf573b5b.ctex"]
 
 [params]
 

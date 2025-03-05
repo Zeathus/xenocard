@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cmp6x0lrfei18"
-path="res://.godot/imported/expulsion_order.webp-c9d7e92ac3bda9146830e74870f2e2ca.ctex"
+path="res://.godot/imported/expulsion_order.webp-12371c950687432dfea072f6a8ab9bde.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/expulsion_order.webp"
-dest_files=["res://.godot/imported/expulsion_order.webp-c9d7e92ac3bda9146830e74870f2e2ca.ctex"]
+source_file="res://sprites/web/card_images_baked/en/XS1/expulsion_order.webp"
+dest_files=["res://.godot/imported/expulsion_order.webp-12371c950687432dfea072f6a8ab9bde.ctex"]
 
 [params]
 

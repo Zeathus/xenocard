@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c47bhw1tiaot0"
-path="res://.godot/imported/lv_10_ziggy.webp-8b0a48da9efb6a60497e25523c357598.ctex"
+path="res://.godot/imported/lv_10_ziggy.webp-412148692795bf47dccbcf149bac7f50.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/lv_10_ziggy.webp"
-dest_files=["res://.godot/imported/lv_10_ziggy.webp-8b0a48da9efb6a60497e25523c357598.ctex"]
+source_file="res://sprites/web/card_images_baked/en/XS1/lv_10_ziggy.webp"
+dest_files=["res://.godot/imported/lv_10_ziggy.webp-412148692795bf47dccbcf149bac7f50.ctex"]
 
 [params]
 

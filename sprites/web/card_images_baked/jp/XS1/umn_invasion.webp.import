@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://rc1lbs414m58"
-path="res://.godot/imported/umn_invasion.webp-1bcfcde3c0000a1ae70043a5655e31e2.ctex"
+path="res://.godot/imported/umn_invasion.webp-3f04262eba7704f494d65936a24eeeb9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/umn_invasion.webp"
-dest_files=["res://.godot/imported/umn_invasion.webp-1bcfcde3c0000a1ae70043a5655e31e2.ctex"]
+source_file="res://sprites/web/card_images_baked/jp/XS1/umn_invasion.webp"
+dest_files=["res://.godot/imported/umn_invasion.webp-3f04262eba7704f494d65936a24eeeb9.ctex"]
 
 [params]
 

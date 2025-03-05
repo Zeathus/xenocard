@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d4abhpyrodhny"
-path="res://.godot/imported/ag_04.webp-a5ac14187aad6e62bbe37c91896cb9f8.ctex"
+path="res://.godot/imported/ag_04.webp-623a2f9023430541ffc37ada071295e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/ag_04.webp"
-dest_files=["res://.godot/imported/ag_04.webp-a5ac14187aad6e62bbe37c91896cb9f8.ctex"]
+source_file="res://sprites/web/card_images_baked/jp/XS1/ag_04.webp"
+dest_files=["res://.godot/imported/ag_04.webp-623a2f9023430541ffc37ada071295e1.ctex"]
 
 [params]
 

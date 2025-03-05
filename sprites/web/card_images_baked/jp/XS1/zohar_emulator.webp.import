@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://v73wvjmcoa6w"
-path="res://.godot/imported/zohar_emulator.webp-14ac9f6784503a1cc0395c210d1d4d35.ctex"
+path="res://.godot/imported/zohar_emulator.webp-8ed1a60abe7f7bdd66a5cfba4b09dae7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/zohar_emulator.webp"
-dest_files=["res://.godot/imported/zohar_emulator.webp-14ac9f6784503a1cc0395c210d1d4d35.ctex"]
+source_file="res://sprites/web/card_images_baked/jp/XS1/zohar_emulator.webp"
+dest_files=["res://.godot/imported/zohar_emulator.webp-8ed1a60abe7f7bdd66a5cfba4b09dae7.ctex"]
 
 [params]
 

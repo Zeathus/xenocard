@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c1prkf0r7hwtl"
-path="res://.godot/imported/impregnable_guard.webp-1da38e81609138edc3859d26a24089e1.ctex"
+path="res://.godot/imported/impregnable_guard.webp-c0be1e1156021b731ebb6df15bf167c4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/impregnable_guard.webp"
-dest_files=["res://.godot/imported/impregnable_guard.webp-1da38e81609138edc3859d26a24089e1.ctex"]
+source_file="res://sprites/web/card_images_baked/en/XS1/impregnable_guard.webp"
+dest_files=["res://.godot/imported/impregnable_guard.webp-c0be1e1156021b731ebb6df15bf167c4.ctex"]
 
 [params]
 

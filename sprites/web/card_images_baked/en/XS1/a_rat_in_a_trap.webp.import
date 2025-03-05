@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://de1r0ad6ukhsi"
-path="res://.godot/imported/a_rat_in_a_trap.webp-b0b433daf06b51e4ccb64d7121dc252e.ctex"
+path="res://.godot/imported/a_rat_in_a_trap.webp-391d926f88ee793b62ddbb95e89a1577.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/a_rat_in_a_trap.webp"
-dest_files=["res://.godot/imported/a_rat_in_a_trap.webp-b0b433daf06b51e4ccb64d7121dc252e.ctex"]
+source_file="res://sprites/web/card_images_baked/en/XS1/a_rat_in_a_trap.webp"
+dest_files=["res://.godot/imported/a_rat_in_a_trap.webp-391d926f88ee793b62ddbb95e89a1577.ctex"]
 
 [params]
 

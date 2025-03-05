@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://1skul4c2bcb7"
-path="res://.godot/imported/invitation_from_the_mysterious_girl.webp-fd78c05a7b3d2c560e3b1725efd26ab6.ctex"
+path="res://.godot/imported/invitation_from_the_mysterious_girl.webp-8fd5381cfc0fafa1b40f0452fb7bd8dd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/web/card_images_baked/XS1/invitation_from_the_mysterious_girl.webp"
-dest_files=["res://.godot/imported/invitation_from_the_mysterious_girl.webp-fd78c05a7b3d2c560e3b1725efd26ab6.ctex"]
+source_file="res://sprites/web/card_images_baked/jp/XS1/invitation_from_the_mysterious_girl.webp"
+dest_files=["res://.godot/imported/invitation_from_the_mysterious_girl.webp-8fd5381cfc0fafa1b40f0452fb7bd8dd.ctex"]
 
 [params]
 
