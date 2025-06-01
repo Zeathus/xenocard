@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 71,
-	"name": "Lizardman",
+	"name": {
+		"en": "Lizardman",
+		"jp": "リザードマン"
+	},
 	"type": "battle",
 	"rarity": "common",
 	"stats": {
@@ -13,9 +16,15 @@
 	},
 	"requirement": {
 		"cost": 0,
-		"field": ["human", "machine"]
+		"field": [
+			"human",
+			"machine"
+		]
 	},
-	"text": "Discard one {Human} from your field to play this card anywhere on your field.",
+	"text": {
+		"en": "Discard one {Human} from your field to play this card anywhere on your field.",
+		"jp": "{人間}1枚を破棄して場に出す。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

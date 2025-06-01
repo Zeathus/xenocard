@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 75,
-	"name": "Minotaur",
+	"name": {
+		"en": "Minotaur",
+		"jp": "ミノタウロス"
+	},
 	"type": "battle",
 	"rarity": "rare",
 	"stats": {
@@ -13,9 +16,16 @@
 	},
 	"requirement": {
 		"cost": 0,
-		"field": ["human", "human", "any"]
+		"field": [
+			"human",
+			"human",
+			"any"
+		]
 	},
-	"text": "Discard one {Human} from your field to play this card anywhere on your field.",
+	"text": {
+		"en": "Discard one {Human} from your field to play this card anywhere on your field.",
+		"jp": "{人間}1枚を破棄して場に出す。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

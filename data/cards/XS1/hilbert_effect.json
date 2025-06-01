@@ -2,13 +2,22 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 121,
-	"name": "Hilbert Effect",
+	"name": {
+		"en": "Hilbert Effect",
+		"jp": "ヒルベルトエフェクト"
+	},
 	"type": "situation",
 	"rarity": "common",
 	"requirement": {
-		"field": ["machine", "any"]
+		"field": [
+			"machine",
+			"any"
+		]
 	},
-	"text": "All {Gnosis} on the battlefield cannot move and get ATK-1.\nThis effect cannot be stacked.\n<Duration> 4.",
+	"text": {
+		"en": "All {Gnosis} on the battlefield cannot move and get ATK-1.\nThis effect cannot be stacked.\n<Duration> 4.",
+		"jp": "戦闘フィールドの全ての{グノーシス}は移動が出来ない。\nさらにＡＴＫ-1される。\n<持続> 4。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

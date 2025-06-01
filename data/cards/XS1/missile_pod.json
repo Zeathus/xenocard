@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 49,
-	"name": "Missile Pod",
+	"name": {
+		"en": "Missile Pod",
+		"jp": "ミサイルポッド"
+	},
 	"type": "battle",
 	"rarity": "common",
 	"stats": {
@@ -13,9 +16,15 @@
 	},
 	"requirement": {
 		"cost": 1,
-		"field": ["human", "human"]
+		"field": [
+			"human",
+			"human"
+		]
 	},
-	"text": "Only {Humans} and {Realians} can equip this card.\n<One-time use>.",
+	"text": {
+		"en": "Only {Humans} and {Realians} can equip this card.\n<One-time use>.",
+		"jp": "{人間}と{レアリエン}しか装備できない。\n<一回限定>"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

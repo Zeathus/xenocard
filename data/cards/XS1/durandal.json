@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 81,
-	"name": "Durandal",
+	"name": {
+		"en": "Durandal",
+		"jp": "デュランダル"
+	},
 	"type": "battle",
 	"rarity": "rare",
 	"stats": {
@@ -13,9 +16,16 @@
 	},
 	"requirement": {
 		"cost": 3,
-		"field": ["human", "machine", "any"]
+		"field": [
+			"human",
+			"machine",
+			"any"
+		]
 	},
-	"text": "<Unique>.\nThis card cannot equip {weapons}.",
+	"text": {
+		"en": "<Unique>.\nThis card cannot equip {weapons}.",
+		"jp": "<一枚限定>\nこのカードは{武器}を装備できない。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

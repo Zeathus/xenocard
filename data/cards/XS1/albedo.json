@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 15,
-	"name": "Albedo",
+	"name": {
+		"en": "Albedo",
+		"jp": "アルベド"
+	},
 	"character": "Albedo",
 	"type": "battle",
 	"rarity": "rare",
@@ -14,9 +17,15 @@
 	},
 	"requirement": {
 		"cost": 1,
-		"field": ["human", "any"]
+		"field": [
+			"human",
+			"any"
+		]
 	},
-	"text": "When this card is alone on your battlefield at the end of your move phase, add the number of cards in your junk pile to its ATK until your adjust phase. Afterwards, the cards in the junk pile are removed from the game.\nThis card cannot equip {weapons}.",
+	"text": {
+		"en": "If this card is alone on your battlefield at the end of your move phase, add the number of cards in your junk pile to its ATK until your adjust phase. Afterwards, the cards in the junk pile are removed from the game.\nThis card cannot equip {weapons}.",
+		"jp": "自分のムーブフェイズが終わる時に自分戦闘フィールドにこのカードしかいない場合、廃棄エリアのカード枚数分のＡＴＫを得る。\nその時廃棄エリアのカードはゲームから除外される。\nこの効果が自分アジャストフェイズまで維持する。\nこのカードは{武器}を装備できない。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

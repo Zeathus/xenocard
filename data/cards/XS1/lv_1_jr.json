@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 6,
-	"name": "Lv 1 Jr.",
+	"name": {
+		"en": "Lv 1 Jr.",
+		"jp": "Ｌｖ１Ｊｒ．"
+	},
 	"character": "Jr.",
 	"type": "battle",
 	"rarity": "rare",
@@ -14,9 +17,14 @@
 	},
 	"requirement": {
 		"cost": 1,
-		"field": ["human"]
+		"field": [
+			"human"
+		]
 	},
-	"text": "This card also attacks during the enemy battle phase when not equipped with a {weapon}.",
+	"text": {
+		"en": "This card also attacks during the enemy battle phase while not equipped with a {weapon}.",
+		"jp": "{武器}を装備していない限り、敵バトルフェイズにも攻撃する。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

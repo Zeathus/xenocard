@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 33,
-	"name": "Simeon",
+	"name": {
+		"en": "Simeon",
+		"jp": "シメオン"
+	},
 	"type": "battle",
 	"rarity": "rare",
 	"stats": {
@@ -13,9 +16,17 @@
 	},
 	"requirement": {
 		"cost": 4,
-		"field": ["human", "human", "machine", "any"]
+		"field": [
+			"human",
+			"human",
+			"machine",
+			"any"
+		]
 	},
-	"text": "<Unique>.\nAttacks every other turn.\nEach turn, after its normal attack timing, this card inflicts 1 battle damage to all enemy battle cards.",
+	"text": {
+		"en": "<Unique>.\nAttacks every other turn.\nEach turn, after its normal attack timing, this card deals 1 battle damage to all enemy battle cards.",
+		"jp": "<一枚限定>\n自分ターン2回に1度攻撃する。\n毎ターン、このカードの攻撃の後、敵の場のバトルカードに1の戦闘ダメージを与える。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

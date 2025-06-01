@@ -2,13 +2,22 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 123,
-	"name": "Tune-Up",
+	"name": {
+		"en": "Tune-Up",
+		"jp": "チューンナップ"
+	},
 	"type": "situation",
 	"rarity": "common",
 	"requirement": {
-		"field": ["machine", "machine"]
+		"field": [
+			"machine",
+			"machine"
+		]
 	},
-	"text": "Your {Machines} take 1 less battle damage.\n<Duration> 6.",
+	"text": {
+		"en": "Your {Machines} take 1 less battle damage.\n<Duration> 6.",
+		"jp": "自分戦闘フィールドの{機械}の受ける戦闘ダメージは-1される。\n<持続> 6。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

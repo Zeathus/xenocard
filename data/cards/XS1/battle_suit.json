@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 48,
-	"name": "Battle Suit",
+	"name": {
+		"en": "Battle Suit",
+		"jp": "バトルスーツ"
+	},
 	"type": "battle",
 	"rarity": "common",
 	"stats": {
@@ -13,9 +16,15 @@
 	},
 	"requirement": {
 		"cost": 1,
-		"field": ["human", "human"]
+		"field": [
+			"human",
+			"human"
+		]
 	},
-	"text": "<Unlimited>.\nOnly {Humans} and {Realians} can equip this card.\nEquipped cards take 1 less battle damage.",
+	"text": {
+		"en": "<Unlimited>.\nOnly {Humans} and {Realians} can equip this card.\nThe user takes 1 less battle damage.",
+		"jp": "<無制限>\n{人間}と{レアリエン}しか装備できない。\nこれを装備したカードが受けた戦闘ダメージは-1される。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

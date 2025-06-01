@@ -2,14 +2,23 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 89,
-	"name": "Retreat",
+	"name": {
+		"en": "Retreat",
+		"jp": "退却"
+	},
 	"type": "event",
 	"rarity": "common",
 	"requirement": {
 		"cost": 1,
-		"field": ["human", "human"]
+		"field": [
+			"human",
+			"human"
+		]
 	},
-	"text": "Move one enemy battle card to the standby area. You cannot use this card if the standby area is full.",
+	"text": {
+		"en": "Move one enemy battle card to standby. You cannot use this card if the standby area is full.",
+		"jp": "指定の戦闘フィールド上の敵バトルカード1つを待機エリアに移す。待機エリアに空きが無い場合は使えない。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

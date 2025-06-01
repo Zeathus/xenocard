@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 28,
-	"name": "Combat Realian Male",
+	"name": {
+		"en": "Combat Realian Male",
+		"jp": "戦闘レアリエン男"
+	},
 	"type": "battle",
 	"rarity": "uncommon",
 	"stats": {
@@ -11,7 +14,10 @@
 		"atk": 1,
 		"target": "ballistic"
 	},
-	"text": "<Unlimited>.",
+	"text": {
+		"en": "<Unlimited>.",
+		"jp": "<無制限>"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

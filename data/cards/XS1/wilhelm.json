@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 60,
-	"name": "Wilhelm",
+	"name": {
+		"en": "Wilhelm",
+		"jp": "ヴィルヘルム"
+	},
 	"character": "Wilhelm",
 	"type": "battle",
 	"rarity": "rare",
@@ -14,9 +17,16 @@
 	},
 	"requirement": {
 		"cost": 1,
-		"field": ["human", "human", "human"]
+		"field": [
+			"human",
+			"human",
+			"human"
+		]
 	},
-	"text": "If this card is destroyed by a normal attack, it destroys the attacking card, then deals 4 effect damage to the enemy's deck.",
+	"text": {
+		"en": "If this card is destroyed by a normal attack, it destroys the attacking card, then deals 4 effect damage to the enemy's deck.",
+		"jp": "通常戦闘ダメージで破壊された時、破壊したカードを道連れにする。またその時、敵山札に4の特殊ダメージを与える。"
+	},
 	"effects": [
 		{
 			"trigger": "destroyed",

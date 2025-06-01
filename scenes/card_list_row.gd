@@ -29,7 +29,7 @@ func load_card():
 			#$Panel/PictureBorder.color = Color.GOLDENROD
 		#Enum.Type.SITUATION:
 			#$Panel/PictureBorder.color = Color.ROYAL_BLUE
-	$Panel/Name.text = card.name.replace("\n", " ")
+	$Panel/Name.text = card.get_name().replace("\n", " ")
 	if card.type == Enum.Type.BATTLE:
 		$Panel/Attribute.visible = true
 		$Panel/Attribute.set_attribute(card.attribute)

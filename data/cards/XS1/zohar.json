@@ -2,14 +2,23 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 145,
-	"name": "Zohar",
+	"name": {
+		"en": "Zohar",
+		"jp": "ゾハル"
+	},
 	"type": "situation",
 	"rarity": "promo",
 	"requirement": {
 		"cost": 0,
-		"field": ["any", "any"]
+		"field": [
+			"any",
+			"any"
+		]
 	},
-	"text": "During the battle phase, all battle cards gain ATK+1.",
+	"text": {
+		"en": "During the battle phase, all battle cards gain ATK+1.",
+		"jp": "バトルフェイズ時、場に出ている全てのバトルカードはATK+1を得る。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

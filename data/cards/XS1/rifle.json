@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 51,
-	"name": "Rifle",
+	"name": {
+		"en": "Rifle",
+		"jp": "ライフル"
+	},
 	"type": "battle",
 	"rarity": "common",
 	"stats": {
@@ -13,9 +16,14 @@
 	},
 	"requirement": {
 		"cost": 1,
-		"field": ["human"]
+		"field": [
+			"human"
+		]
 	},
-	"text": "<Unlimited>.\nOnly {Humans} and {Realians} can equip this card.",
+	"text": {
+		"en": "<Unlimited>.\nOnly {Humans} and {Realians} can equip this card.",
+		"jp": "<無制限>\n{人間}と{レアリエン}しか装備できない。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 35,
-	"name": "Proto Dora",
+	"name": {
+		"en": "Proto Dora",
+		"jp": "プロトドーラ"
+	},
 	"type": "battle",
 	"rarity": "promo",
 	"stats": {
@@ -13,9 +16,17 @@
 	},
 	"requirement": {
 		"cost": 3,
-		"field": ["human", "machine", "any", "any"]
+		"field": [
+			"human",
+			"machine",
+			"any",
+			"any"
+		]
 	},
-	"text": "<Unique>.\nAttacks every other turn.\nThis card's attacks <penetrate>.",
+	"text": {
+		"en": "<Unique>.\nAttacks every other turn.\nThis card's attacks <penetrate>.",
+		"jp": "<一枚限定>\n自分ターン2回に1度攻撃する。\nこのカードの攻撃は<貫通>する。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

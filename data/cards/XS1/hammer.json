@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 16,
-	"name": "Hammer",
+	"name": {
+		"en": "Hammer",
+		"jp": "ハマー"
+	},
 	"character": "Hammer",
 	"type": "battle",
 	"rarity": "uncommon",
@@ -15,7 +18,10 @@
 	"requirement": {
 		"cost": 1
 	},
-	"text": "During the battle phase, gains ATK+1 for every {Machine} on your battlefield when not equipped with a {weapon}.",
+	"text": {
+		"en": "During the battle phase, gains ATK+1 for each {Machine} on your battlefield while not equipped with a {weapon}.",
+		"jp": "{武器}を装備していない限り、バトルフェイズに自分戦闘フィールドにある{機械}属性のカード分、ＡＴＫ+1を得る。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

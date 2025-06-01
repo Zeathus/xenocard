@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 82,
-	"name": "Joachim Mizrahi",
+	"name": {
+		"en": "Joachim Mizrahi",
+		"jp": "ヨアキム・ミズラヒ"
+	},
 	"character": "Joachim Mizrahi",
 	"type": "battle",
 	"rarity": "rare",
@@ -14,9 +17,14 @@
 	},
 	"requirement": {
 		"cost": 1,
-		"field": ["human"]
+		"field": [
+			"human"
+		]
 	},
-	"text": "While this card is on your battlefield with MOMO, MOMO's HP cannot fall under 1 from battle damage.",
+	"text": {
+		"en": "While this card is on your battlefield with MOMO, MOMO's HP cannot fall under 1 from battle damage.",
+		"jp": "このカードが自分戦闘フィールドにモモと共にいる場合、モモのＨＰは戦闘ダメージで1未満にはならない。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

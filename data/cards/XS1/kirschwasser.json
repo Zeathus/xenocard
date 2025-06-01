@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 80,
-	"name": "Kirschwasser",
+	"name": {
+		"en": "Kirschwasser",
+		"jp": "キルシュヴァッサー"
+	},
 	"character": "Kirschwasser",
 	"type": "battle",
 	"rarity": "rare",
@@ -14,9 +17,15 @@
 	},
 	"requirement": {
 		"cost": 1,
-		"field": ["any", "any"]
+		"field": [
+			"any",
+			"any"
+		]
 	},
-	"text": "While this card is on your battlefield with Albedo or MOMO, those cards gain ATK+1 during the battle phase.",
+	"text": {
+		"en": "While this card is on your battlefield with Albedo or MOMO, those cards gain ATK+1 during the battle phase.",
+		"jp": "自分戦闘フィールドに、アルベド、モモいずれかと共に置かれている時、バトルフェイズにそれらのカードにＡＴＫ+1を与える。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 12,
-	"name": "Lv 10 KOS-MOS",
+	"name": {
+		"en": "Lv 10 KOS-MOS",
+		"jp": "Ｌｖ１０ＫＯＳ-ＭＯＳ"
+	},
 	"character": "KOS-MOS",
 	"type": "battle",
 	"rarity": "promo",
@@ -14,9 +17,17 @@
 	},
 	"requirement": {
 		"cost": 1,
-		"field": ["human", "human", "any", "any"]
+		"field": [
+			"human",
+			"human",
+			"any",
+			"any"
+		]
 	},
-	"text": "You can <level up> a Lv 1 KOS-MOS on your battlefield.\nThis card can only equip {weapons} exclusive to KOS-MOS.\nAttacks every other turn.",
+	"text": {
+		"en": "You can <level up> a Lv 1 KOS-MOS on your battlefield.\nThis card can only equip {weapons} exclusive to KOS-MOS.\nAttacks every other turn.",
+		"jp": "Ｌｖ１ＫＯＳ-ＭＯＳが自分戦闘フィールドにいる場合、<レベルアップ>してよい。\nＫＯＳ-ＭＯＳ用{武器}しか装備できない。\n自分ターン2回に1度攻撃する。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

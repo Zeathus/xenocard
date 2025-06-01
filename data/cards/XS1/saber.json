@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 43,
-	"name": "Saber",
+	"name": {
+		"en": "Saber",
+		"jp": "セイバー"
+	},
 	"type": "battle",
 	"rarity": "common",
 	"stats": {
@@ -13,9 +16,14 @@
 	},
 	"requirement": {
 		"cost": 0,
-		"field": ["machine"]
+		"field": [
+			"machine"
+		]
 	},
-	"text": "<Unlimited>.\nOnly {Machines} can equip this card.\nGains ATK+3 against {Gnosis}.",
+	"text": {
+		"en": "<Unlimited>.\nOnly {Machines} can equip this card.\nGains ATK+3 against {Gnosis}.",
+		"jp": "<無制限>\n{機械}しか装備できない。\n{グノーシス}に対してＡＴＫ+3を得る。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

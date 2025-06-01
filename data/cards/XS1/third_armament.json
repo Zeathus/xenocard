@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 53,
-	"name": "Third Armament",
+	"name": {
+		"en": "Third Armament",
+		"jp": "第三種兵装"
+	},
 	"type": "battle",
 	"rarity": "promo",
 	"stats": {
@@ -13,9 +16,16 @@
 	},
 	"requirement": {
 		"cost": 1,
-		"field": ["human", "human", "machine"]
+		"field": [
+			"human",
+			"human",
+			"machine"
+		]
 	},
-	"text": "Exclusively for Lv 10 KOS-MOS.\nCan only be played when both KOS-MOS and Shion are on the battlefield.\nAttacks every other turn.",
+	"text": {
+		"en": "Exclusively for Lv 10 KOS-MOS.\nCan only be played if both KOS-MOS and Shion are on your battlefield.\nAttacks every other turn.",
+		"jp": "ＫＯＳ-ＭＯＳ専用。\nこのカードはコスモス、シオンが戦闘フィールド上に居ないと出すことが出来ない。\n自分ターン2回に1度攻撃する。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

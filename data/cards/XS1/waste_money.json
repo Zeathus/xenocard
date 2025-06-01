@@ -2,14 +2,23 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 141,
-	"name": "Waste Money",
+	"name": {
+		"en": "Waste Money",
+		"jp": "無駄遣い"
+	},
 	"type": "situation",
 	"rarity": "common",
 	"requirement": {
 		"cost": 0,
-		"field": ["human", "any"]
+		"field": [
+			"human",
+			"any"
+		]
 	},
-	"text": "Both players draw one additional card during their draw phase.",
+	"text": {
+		"en": "Both players draw one additional card during their draw phase.",
+		"jp": "両プレイヤーはドローフェイズに1枚余分にドローする。"
+	},
 	"effects": [
 		{
 			"trigger": "after_normal_draw_player",

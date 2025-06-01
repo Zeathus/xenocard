@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dosulntiwpmvw"]
+[gd_scene load_steps=38 format=3 uid="uid://dosulntiwpmvw"]
 
 [ext_resource type="Script" uid="uid://rh72fi8v6xuy" path="res://objects/card_display.gd" id="1_wdlaa"]
 [ext_resource type="Texture2D" uid="uid://dicq202oyt24d" path="res://sprites/card_bg_battle.png" id="2_fgroy"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bmnyp650trfv7" path="res://sprites/rarity/rarity_common.png" id="5_ty2re"]
 [ext_resource type="Texture2D" uid="uid://cd8gb1b5tt6em" path="res://sprites/card_back.png" id="6_8gxj3"]
 [ext_resource type="FontFile" uid="uid://ng1y54e8x08v" path="res://fonts/Roboto/Roboto-Bold.ttf" id="7_85wss"]
+[ext_resource type="FontFile" uid="uid://wcj25unqnrqf" path="res://fonts/NotoSansJP/NotoSansJP-Regular.ttf" id="7_udeip"]
 [ext_resource type="FontFile" uid="uid://do6lscs8csbaq" path="res://fonts/Roboto/Roboto-Regular.ttf" id="8_4hlpo"]
 [ext_resource type="Texture2D" uid="uid://cqocycwm1qyxq" path="res://sprites/paintbrush_shadow.png" id="12_5iwwb"]
 [ext_resource type="Texture2D" uid="uid://dqeydgvwote6m" path="res://sprites/paintbrush_outline.png" id="13_mxnfu"]
@@ -20,7 +21,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qw08w"]
 size = Vector2(800, 1200)
 
+[sub_resource type="FontVariation" id="FontVariation_x2f4s"]
+base_font = ExtResource("7_udeip")
+variation_embolden = 0.25
+
 [sub_resource type="FontVariation" id="FontVariation_d3wog"]
+fallbacks = Array[Font]([SubResource("FontVariation_x2f4s")])
 base_font = ExtResource("4_ktoeu")
 variation_embolden = 0.25
 spacing_glyph = 2
@@ -32,6 +38,7 @@ shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(-4, 4)
 
 [sub_resource type="FontVariation" id="FontVariation_juc35"]
+fallbacks = Array[Font]([SubResource("FontVariation_x2f4s")])
 base_font = ExtResource("4_ktoeu")
 variation_embolden = 0.25
 
@@ -102,6 +109,13 @@ shadow_offset = Vector2(-4, 4)
 
 [sub_resource type="Theme" id="Theme_b0mdc"]
 default_font_size = 32
+
+[sub_resource type="FontVariation" id="FontVariation_ao65t"]
+base_font = ExtResource("7_udeip")
+
+[sub_resource type="FontVariation" id="FontVariation_m0yk2"]
+fallbacks = Array[Font]([SubResource("FontVariation_ao65t")])
+base_font = ExtResource("8_4hlpo")
 
 [sub_resource type="FontVariation" id="FontVariation_ta62g"]
 base_font = ExtResource("8_4hlpo")
@@ -328,19 +342,19 @@ label_settings = SubResource("LabelSettings_hirw7")
 horizontal_alignment = 2
 
 [node name="Text" type="RichTextLabel" parent="Content"]
-offset_left = -353.0
-offset_top = 264.0
-offset_right = 354.0
-offset_bottom = 525.0
+offset_left = -364.0
+offset_top = 268.0
+offset_right = 364.0
+offset_bottom = 524.0
 mouse_filter = 2
 theme = SubResource("Theme_b0mdc")
 theme_override_constants/outline_size = 16
-theme_override_fonts/normal_font = ExtResource("8_4hlpo")
+theme_override_fonts/normal_font = SubResource("FontVariation_m0yk2")
 text = "<Failed to get text>"
 scroll_active = false
 
 [node name="Rarity" type="Sprite2D" parent="Content"]
-position = Vector2(-343, 544)
+position = Vector2(-341, 544)
 texture = ExtResource("5_ty2re")
 
 [node name="SerialNumber" type="Label" parent="Content"]

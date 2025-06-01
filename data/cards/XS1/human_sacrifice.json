@@ -2,13 +2,22 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 127,
-	"name": "Human Sacrifice",
+	"name": {
+		"en": "Human Sacrifice",
+		"jp": "人身御供"
+	},
 	"type": "situation",
 	"rarity": "common",
 	"requirement": {
-		"field": ["human", "machine"]
+		"field": [
+			"human",
+			"machine"
+		]
 	},
-	"text": "Every time your battle card is destroyed by battle damage, <recover> cards equal to the original cost of the battle card.\nThis effect cannot be stacked.",
+	"text": {
+		"en": "If one of your battle cards is destroyed by battle damage, <recover> cards equal to its original cost.\nThis effect cannot be stacked.",
+		"jp": "自分バトルカードを戦闘ダメージで破壊されるたびにそのバトルカードの元々のコスト分、山札を<回復>する。\nこの効果は重複しない。"
+	},
 	"effects": [
 		{
 			"trigger": "destroyed",

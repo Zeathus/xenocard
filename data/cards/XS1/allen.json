@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 63,
-	"name": "Allen",
+	"name": {
+		"en": "Allen",
+		"jp": "アレン"
+	},
 	"character": "Allen",
 	"type": "battle",
 	"rarity": "common",
@@ -14,9 +17,16 @@
 	},
 	"requirement": {
 		"cost": 2,
-		"field": ["human", "any", "any"]
+		"field": [
+			"human",
+			"any",
+			"any"
+		]
 	},
-	"text": "When the E mark is removed from this card, you can move one enemy card from the battlefield to the standby area. This ability cannot be used if the standby area is full.",
+	"text": {
+		"en": "When the E mark is removed from this card, you can move one enemy card from the battlefield to standby. This ability cannot be used if the standby area is full.",
+		"jp": "このカードからＥマークが外れる時、戦闘フィールドのバトルカード1枚を待機エリアに戻す。\n待機エリアに空きが無い場合、この効果は使用できない。"
+	},
 	"effects": [
 		{
 			"trigger": "e_mark_removed",

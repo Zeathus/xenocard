@@ -2,13 +2,22 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 117,
-	"name": "Song of the Mysterious Girl",
+	"name": {
+		"en": "Song of the Mysterious Girl",
+		"jp": "謎の少女の歌声"
+	},
 	"type": "event",
 	"rarity": "common",
 	"requirement": {
-		"field": ["gnosis", "any"]
+		"field": [
+			"gnosis",
+			"any"
+		]
 	},
-	"text": "Neutralizes the effect of an enemy's event card. The neutralized card is discarded.",
+	"text": {
+		"en": "Neutralizes the effect of an enemy's event card. The neutralized card is discarded.",
+		"jp": "相手のイベントカードの効果を無効にする。\n無効にされたイベントカードは破棄される。"
+	},
 	"effects": [
 		{
 			"trigger": "counter",

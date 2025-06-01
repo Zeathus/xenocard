@@ -2,14 +2,23 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 93,
-	"name": "Invitation from\nthe Mysterious Girl",
+	"name": {
+		"en": "Invitation from\nthe Mysterious Girl",
+		"jp": "謎の少女の誘い"
+	},
 	"type": "event",
 	"rarity": "uncommon",
 	"requirement": {
 		"cost": 0,
-		"field": ["human", "any"]
+		"field": [
+			"human",
+			"any"
+		]
 	},
-	"text": "<Slow>.\nYou <recover> as many cards as possible up to the total ATK of cards on your battlefield with hand attack type.\nSkip your battle phase this turn.",
+	"text": {
+		"en": "<Slow>.\nYou <recover> as many cards as possible up to the total ATK of cards on your battlefield with hand attack type.\nSkip your battle phase this turn.",
+		"jp": "<遅い>\n戦闘フィールドにいる自分の格闘カードのＡＴＫの合計値分山札を<回復>する。\nその後自分バトルフェイズは飛ばされる。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

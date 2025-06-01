@@ -2,14 +2,23 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 109,
-	"name": "Simulation",
+	"name": {
+		"en": "Simulation",
+		"jp": "シミュレーション"
+	},
 	"type": "event",
 	"rarity": "common",
 	"requirement": {
 		"cost": 3,
-		"field": ["human", "any"]
+		"field": [
+			"human",
+			"any"
+		]
 	},
-	"text": "If a situation card is at the top of your junk pile, play it to the first free space of the situation area.",
+	"text": {
+		"en": "If a situation card is at the top of your junk pile, play it to the first free space of the situation area.",
+		"jp": "自分廃棄エリアの一番上にシチュエーションカードがある場合、それをシチュエーションエリアの始めの空いている場所に移す。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

@@ -10,7 +10,7 @@ var set_name: String
 var set_id: int = -1
 var id: String
 var identifier: String
-var name: String
+var name: Dictionary
 var character: String
 var type: Enum.Type
 var rarity: Enum.Rarity
@@ -20,15 +20,15 @@ var atk: int
 var attack_type: Enum.AttackType
 var cost: int
 var field: Array[Enum.Attribute]
-var text: String
+var text: Dictionary
 var effect_names: Array[String]
 var event_effect_names: Array[String]
 var effects: Array[EffectData]
 var full_art: int = 0
 var artist: String
 # name and text, but with formatting removed (for searching)
-var raw_name: String
-var raw_text: String
+var raw_name: Dictionary
+var raw_text: Dictionary
 
 static func _static_init() -> void:
 	if OS.get_name() == "HTML5" or OS.get_name() == "Web":
@@ -39,6 +39,34 @@ func _init(_id: String):
 	var json = get_json(_id)
 	if not json.is_empty():
 		load_json(json)
+
+func get_name() -> String:
+	if Options.locale not in name:
+		if "en" in name:
+			return name["en"]
+		return "N/A"
+	return name[Options.locale]
+
+func get_text() -> String:
+	if Options.locale not in text:
+		if "en" in text:
+			return text["en"]
+		return "N/A"
+	return text[Options.locale]
+
+func get_raw_name() -> String:
+	if Options.locale not in raw_name:
+		if "en" in raw_name:
+			return raw_name["en"]
+		return "N/A"
+	return raw_name[Options.locale]
+
+func get_raw_text() -> String:
+	if Options.locale not in raw_text:
+		if "en" in raw_text:
+			return raw_text["en"]
+		return "N/A"
+	return raw_text[Options.locale]
 
 static func load_cards():
 	data = {}
@@ -56,6 +84,9 @@ static func load_cards():
 		sub_dir.list_dir_begin()
 		var card_file = sub_dir.get_next()
 		while card_file != "":
+			if ".json" not in card_file:
+				card_file = sub_dir.get_next()
+				continue
 			card_file = card_file.substr(0, card_file.find(".json"))
 			var card_id = "%s/%s" % [set_name, card_file]
 			var card = CardData.new(card_id)
@@ -128,7 +159,7 @@ func load_json(json: Dictionary):
 	if "text" in json:
 		text = json["text"]
 	else:
-		text = ""
+		text = {"en": ""}
 	
 	if "full_art" in json:
 		full_art = json["full_art"]
@@ -148,12 +179,16 @@ func load_json(json: Dictionary):
 		for effect_dict in json["effects"]:
 			var effect_data = EffectData.parse(effect_dict, name)
 			if effect_data == null:
-				Logger.e("Failed to get effect data for " + name)
+				Logger.e("Failed to get effect data for " + get_name())
 				continue
 			effects.push_back(effect_data)
 	
-	raw_name = remove_formatting(name)
-	raw_text = remove_formatting(text)
+	raw_name = {}
+	raw_text = {}
+	for i in name:
+		raw_name[i] = remove_formatting(name[i])
+	for i in text:
+		raw_text[i] = remove_formatting(text[i])
 
 func get_image() -> Resource:
 	if OS.has_feature("dedicated_server"):
@@ -168,7 +203,7 @@ func get_image() -> Resource:
 func get_baked_image() -> Resource:
 	if OS.has_feature("dedicated_server"):
 		return null
-	var image_file: String = "%s/card_images_baked/%s/%s.%s" % [image_root, set_name, id, image_type]
+	var image_file: String = "%s/card_images_baked/%s/%s/%s.%s" % [image_root, Options.locale, set_name, id, image_type]
 	if ResourceLoader.exists(image_file):
 		return load(image_file)
 	else:
@@ -176,7 +211,7 @@ func get_baked_image() -> Resource:
 		return load("%s/card_images/missing_artwork.%s" % [image_root, image_type])
 
 func has_baked_image() -> bool:
-	var image_file: String = "%s/card_images_baked/%s/%s.%s" % [image_root, set_name, id, image_type]
+	var image_file: String = "%s/card_images_baked/%s/%s/%s.%s" % [image_root, Options.locale, set_name, id, image_type]
 	return FileAccess.file_exists(image_file)
 
 func get_full_id() -> String:

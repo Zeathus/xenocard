@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 38,
-	"name": "VX-7000",
+	"name": {
+		"en": "VX-7000",
+		"jp": "ＶＸ-７０００"
+	},
 	"type": "battle",
 	"rarity": "uncommon",
 	"stats": {
@@ -13,9 +16,15 @@
 	},
 	"requirement": {
 		"cost": 4,
-		"field": ["human", "any"]
+		"field": [
+			"human",
+			"any"
+		]
 	},
-	"text": "<Unique>.\nThis card's attacks <penetrate>.\nWhen Jr. is on your battlefield, this card is played without cost.",
+	"text": {
+		"en": "<Unique>.\nThis card's attacks <penetrate>.\nIf Jr. is on your battlefield, this card is played without cost.",
+		"jp": "<一枚限定>\nこのカードの攻撃は<貫通>する。\nＪｒ．が戦闘フィールドに出ている場合コスト無しで場に出す。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

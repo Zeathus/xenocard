@@ -2,7 +2,9 @@
 	"game": "n/a",
 	"set": "SYS",
 	"id": 1,
-	"name": "Unknown",
+	"name": {
+		"en": "Unknown"
+	},
 	"type": "event",
 	"rarity": "common"
 }

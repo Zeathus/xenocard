@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 10,
-	"name": "Lv 10 Ziggy",
+	"name": {
+		"en": "Lv 10 Ziggy",
+		"jp": "Ｌｖ１０ジギー"
+	},
 	"character": "Ziggy",
 	"type": "battle",
 	"rarity": "rare",
@@ -14,9 +17,15 @@
 	},
 	"requirement": {
 		"cost": 1,
-		"field": ["human", "human"]
+		"field": [
+			"human",
+			"human"
+		]
 	},
-	"text": "You can <level up> a Lv 1 Ziggy on your battlefield, ignoring field requirements.\nCards attacked by this card are <downed>.\nThis card cannot equip {weapons}.",
+	"text": {
+		"en": "You can <level up> a Lv 1 Ziggy on your battlefield, ignoring field requirements.\nCards attacked by this card are <downed>.\nThis card cannot equip {weapons}.",
+		"jp": "Ｌｖ１ジギーが自分戦闘フィールドにいる場合、条件を満たしていなくても<レベルアップ>してよい。\nこのカードに攻撃されたバトルカードは<ダウン>する。\nこのカードは{武器}を装備できない。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

@@ -2,13 +2,23 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 128,
-	"name": "Kukai Foundation",
+	"name": {
+		"en": "Kukai Foundation",
+		"jp": "クーカイ・ファウンデーション"
+	},
 	"type": "situation",
 	"rarity": "rare",
 	"requirement": {
-		"field": ["human", "machine", "any"]
+		"field": [
+			"human",
+			"machine",
+			"any"
+		]
 	},
-	"text": "During your adjust phase, all your battle cards in standby except {Gnosis} heal 1 HP.\nThis effect cannot be stacked.",
+	"text": {
+		"en": "During your adjust phase, all your cards in standby except {Gnosis} heal 1 HP.\nThis effect cannot be stacked.",
+		"jp": "自分アジャストフェイズに、自分待機エリアの{グノーシス}以外のバトルカードはＨＰが1回復する。\nこの効果は重複しない。"
+	},
 	"effects": [
 		{
 			"trigger": "adjust_phase_player",

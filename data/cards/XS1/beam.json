@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 47,
-	"name": "Beam",
+	"name": {
+		"en": "Beam",
+		"jp": "ビーム"
+	},
 	"type": "battle",
 	"rarity": "uncommon",
 	"stats": {
@@ -13,9 +16,15 @@
 	},
 	"requirement": {
 		"cost": 1,
-		"field": ["machine", "any"]
+		"field": [
+			"machine",
+			"any"
+		]
 	},
-	"text": "<Unlimited>.\nOnly {Machines} can equip this card.\nAttacks every other turn.\n<One-time use>.",
+	"text": {
+		"en": "<Unlimited>.\nOnly {Machines} can equip this card.\nAttacks every other turn.\n<One-time use>.",
+		"jp": "<無制限>\n{機械}しか装備できない。\n自分ターン2回に1度攻撃する。\n<一回限定>"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

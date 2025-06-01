@@ -2,13 +2,21 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 131,
-	"name": "Gnosis Phenomenon",
+	"name": {
+		"en": "Gnosis Phenomenon",
+		"jp": "グノーシス現象"
+	},
 	"type": "situation",
 	"rarity": "common",
 	"requirement": {
-		"field": ["gnosis"]
+		"field": [
+			"gnosis"
+		]
 	},
-	"text": "When your {Gnosis} cards are destroyed, they go into the lost pile rather than the junk pile.",
+	"text": {
+		"en": "If one of your {Gnosis} is destroyed, it goes into the lost pile rather than the junk pile.",
+		"jp": "自分{グノーシス}が破壊された場合、廃棄エリアでなく、捨て札に移動する。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

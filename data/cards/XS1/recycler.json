@@ -2,14 +2,23 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 106,
-	"name": "Recycler",
+	"name": {
+		"en": "Recycler",
+		"jp": "再生屋"
+	},
 	"type": "event",
 	"rarity": "common",
 	"requirement": {
 		"cost": 0,
-		"field": ["human", "any"]
+		"field": [
+			"human",
+			"any"
+		]
 	},
-	"text": "Choose one {Weapon} or {Machine} battle card from the junk pile and add it to your $hand.",
+	"text": {
+		"en": "Choose one {Weapon} or {Machine} from the junk pile and add it to your $hand.",
+		"jp": "自分廃棄エリアから{武器}か{機械}１枚を手札に移す。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

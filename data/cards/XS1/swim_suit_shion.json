@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 2,
-	"name": "Swim Suit Shion",
+	"name": {
+		"en": "Swim Suit Shion",
+		"jp": "水着シオン"
+	},
 	"character": "Shion",
 	"type": "battle",
 	"rarity": "promo",
@@ -14,6 +17,8 @@
 	},
 	"requirement": {
 		"cost": 0,
-		"field": ["human"]
+		"field": [
+			"human"
+		]
 	}
 }

@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 4,
-	"name": "Lv 1 MOMO",
+	"name": {
+		"en": "Lv 1 MOMO",
+		"jp": "Ｌｖ１モモ"
+	},
 	"character": "MOMO",
 	"type": "battle",
 	"rarity": "rare",
@@ -14,9 +17,14 @@
 	},
 	"requirement": {
 		"cost": 1,
-		"field": ["human"]
+		"field": [
+			"human"
+		]
 	},
-	"text": "Gains ATK+1 against {Gnosis}.",
+	"text": {
+		"en": "Gains ATK+1 against {Gnosis}.",
+		"jp": "{グノーシス}に対してＡＴＫ+1を得る。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

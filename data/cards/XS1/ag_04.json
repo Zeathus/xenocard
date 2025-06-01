@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 31,
-	"name": "AG-04",
+	"name": {
+		"en": "AG-04",
+		"jp": "ＡＧ０４"
+	},
 	"type": "battle",
 	"rarity": "promo",
 	"stats": {
@@ -13,9 +16,14 @@
 	},
 	"requirement": {
 		"cost": 2,
-		"field": ["human"]
+		"field": [
+			"human"
+		]
 	},
-	"text": "Cards attacked by this card are <downed>.",
+	"text": {
+		"en": "Cards attacked by this card are <downed>.",
+		"jp": "このカードに攻撃されたバトルカードは<ダウン>する。"
+	},
 	"effects": [
 		{
 			"trigger": "attack_hit",

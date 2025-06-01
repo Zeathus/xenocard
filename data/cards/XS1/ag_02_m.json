@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 32,
-	"name": "AG-02-M",
+	"name": {
+		"en": "AG-02-M",
+		"jp": "ＡＧ０２-Ｍ"
+	},
 	"type": "battle",
 	"rarity": "uncommon",
 	"stats": {
@@ -13,9 +16,15 @@
 	},
 	"requirement": {
 		"cost": 2,
-		"field": ["human", "any"]
+		"field": [
+			"human",
+			"any"
+		]
 	},
-	"text": "<Unique>.\nCards attacked by this card are <downed>.",
+	"text": {
+		"en": "<Unique>.\nCards attacked by this card are <downed>.",
+		"jp": "<一枚限定>\nこのカードに攻撃されたバトルカードは<ダウン>する。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

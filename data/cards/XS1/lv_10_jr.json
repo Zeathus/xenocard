@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 13,
-	"name": "Lv 10 Jr.",
+	"name": {
+		"en": "Lv 10 Jr.",
+		"jp": "Ｌｖ１０Ｊｒ．"
+	},
 	"character": "Jr.",
 	"type": "battle",
 	"rarity": "rare",
@@ -14,9 +17,15 @@
 	},
 	"requirement": {
 		"cost": 1,
-		"field": ["human", "human"]
+		"field": [
+			"human",
+			"human"
+		]
 	},
-	"text": "You can <level up> a Lv 1 Jr. on your battlefield.\nThis card also attacks during the enemy battle phase when not equipped with a {weapon}.",
+	"text": {
+		"en": "You can <level up> a Lv 1 Jr. on your battlefield.\nThis card also attacks during the enemy battle phase while not equipped with a {weapon}.",
+		"jp": "Ｌｖ１ジュニアが自分戦闘フィールドにいる場合、<レベルアップ>してよい。\n{武器}を装備していない限り、敵バトルフェイズにも攻撃する。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

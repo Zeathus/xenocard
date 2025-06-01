@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 34,
-	"name": "AG-01",
+	"name": {
+		"en": "AG-01",
+		"jp": "ＡＧ０１"
+	},
 	"type": "battle",
 	"rarity": "uncommon",
 	"stats": {
@@ -13,6 +16,8 @@
 	},
 	"requirement": {
 		"cost": 2,
-		"field": ["human"]
+		"field": [
+			"human"
+		]
 	}
 }

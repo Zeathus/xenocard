@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 59,
-	"name": "Testament",
+	"name": {
+		"en": "Testament",
+		"jp": "テスタメント"
+	},
 	"character": "Testament",
 	"type": "battle",
 	"rarity": "promo",
@@ -14,9 +17,15 @@
 	},
 	"requirement": {
 		"cost": 2,
-		"field": ["human", "gnosis"]
+		"field": [
+			"human",
+			"gnosis"
+		]
 	},
-	"text": "When the E mark is removed from this card, you can <down> one enemy card on the battlefield.",
+	"text": {
+		"en": "When the E mark is removed from this card, you can <down> one enemy card on the battlefield.",
+		"jp": "このカードからＥマークが外れる時、敵戦闘フィールドのバトルカード1枚を<ダウン>させる。"
+	},
 	"effects": [
 		{
 			"trigger": "e_mark_removed",

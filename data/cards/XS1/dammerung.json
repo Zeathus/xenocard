@@ -2,13 +2,24 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 129,
-	"name": "Dämmerung",
+	"name": {
+		"en": "Dämmerung",
+		"jp": "曙光"
+	},
 	"type": "situation",
 	"rarity": "promo",
 	"requirement": {
-		"field": ["human", "human", "human", "any"]
+		"field": [
+			"human",
+			"human",
+			"human",
+			"any"
+		]
 	},
-	"text": "You <recover> one card on each of your adjust phases, if there are cards in your lost pile.",
+	"text": {
+		"en": "You <recover> one card on each of your adjust phases, if there are cards in your lost pile.",
+		"jp": "毎ターン、自分の山札を1<回復>する。\n捨て札が無い場合は回復しない。"
+	},
 	"effects": [
 		{
 			"trigger": "adjust_phase_player",

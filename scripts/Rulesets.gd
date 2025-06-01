@@ -53,7 +53,7 @@ static func verify_deck(ruleset: Ruleset, card_ids: PackedStringArray) -> Legali
 		var set_and_name: PackedStringArray = card_id.split("/")
 		if set_and_name[0] not in legal_sets:
 			return Legality.ILLEGAL_CARD # Has illegal card for ruleset
-		var real_name: String = CardData.get_data(card_id).raw_name
+		var real_name: String = CardData.get_data(card_id).name["en"]
 		if real_name not in counts:
 			counts[real_name] = 1
 		else:

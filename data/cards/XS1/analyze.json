@@ -2,13 +2,21 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 122,
-	"name": "Analyze",
+	"name": {
+		"en": "Analyze",
+		"jp": "アナライズ"
+	},
 	"type": "situation",
 	"rarity": "common",
 	"requirement": {
-		"field": ["machine"]
+		"field": [
+			"machine"
+		]
 	},
-	"text": "Both players play with their hands revealed.",
+	"text": {
+		"en": "Both players play with their hands revealed.",
+		"jp": "両プレイヤーは、手札を見せたままゲームを進行する。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

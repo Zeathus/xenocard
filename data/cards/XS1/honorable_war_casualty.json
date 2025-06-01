@@ -2,14 +2,23 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 110,
-	"name": "Honorable War Casualty",
+	"name": {
+		"en": "Honorable War Casualty",
+		"jp": "名誉ある戦死"
+	},
 	"type": "event",
 	"rarity": "uncommon",
 	"requirement": {
 		"cost": 0,
-		"field": ["human", "human"]
+		"field": [
+			"human",
+			"human"
+		]
 	},
-	"text": "Discard as many battle cards as you like from your field. For each discarded card, <recover> four cards, up to the number in your lost pile.",
+	"text": {
+		"en": "Discard as many battle cards as you like from your field. For each discarded card, <recover> four cards, up to the number in your lost pile.",
+		"jp": "自分の場にあるバトルカードを好きなだけ破棄して良い。\n破棄したカードの１枚につき山札を4<回復>する。捨て札分以上は回復しない。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

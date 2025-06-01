@@ -2,14 +2,23 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 142,
-	"name": "Phenomenon Change",
+	"name": {
+		"en": "Phenomenon Change",
+		"jp": "事象変異"
+	},
 	"type": "situation",
 	"rarity": "promo",
 	"requirement": {
 		"cost": 1,
-		"field": ["any", "any"]
+		"field": [
+			"any",
+			"any"
+		]
 	},
-	"text": "You can discard this card from your field during your event or block phase to destroy one enemy situation card.",
+	"text": {
+		"en": "You can discard this card from your field during your event or block phase to destroy one enemy situation card.",
+		"jp": "イベントフェイズかブロックフェイズにこのカードを破棄することで場に出ている敵シチュエーションカード1枚を破壊出来る。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

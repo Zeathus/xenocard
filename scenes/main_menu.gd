@@ -18,7 +18,7 @@ func _process(delta):
 				task[3] = 1
 			else:
 				var img = task[4].get_texture().get_image()
-				var path = "res://sprites/card_images_baked/%s.png" % task[1][0]
+				var path = "res://sprites/card_images_baked/%s/%s.png" % [Options.locale, task[1][0]]
 				DirAccess.make_dir_absolute(path.substr(0, path.rfind("/")))
 				img.save_png(path)
 				Logger.i("Saved '%s'" % path)

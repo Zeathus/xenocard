@@ -2,14 +2,22 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 95,
-	"name": "U.M.N. Invasion",
+	"name": {
+		"en": "U.M.N. Invasion",
+		"jp": "Ｕ．Ｍ．Ｎ．侵入"
+	},
 	"type": "event",
 	"rarity": "rare",
 	"requirement": {
 		"cost": 0,
-		"field": ["gnosis"]
+		"field": [
+			"gnosis"
+		]
 	},
-	"text": "Draw two cards from your lost pile.",
+	"text": {
+		"en": "Draw two cards from your lost pile.",
+		"jp": "捨て札から2枚手札に加える。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

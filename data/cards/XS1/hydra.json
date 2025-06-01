@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 72,
-	"name": "Hydra",
+	"name": {
+		"en": "Hydra",
+		"jp": "ヒュードラ"
+	},
 	"type": "battle",
 	"rarity": "common",
 	"stats": {
@@ -13,9 +16,16 @@
 	},
 	"requirement": {
 		"cost": 0,
-		"field": ["human", "human", "machine"]
+		"field": [
+			"human",
+			"human",
+			"machine"
+		]
 	},
-	"text": "Discard two {Humans} from your field to play this card anywhere on your field.\n<Unlimited>.",
+	"text": {
+		"en": "Discard two {Humans} from your field to play this card anywhere on your field.\n<Unlimited>.",
+		"jp": "{人間}2枚を破棄して場に出す。\n<無制限>"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

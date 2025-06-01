@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 58,
-	"name": "Gaignun",
+	"name": {
+		"en": "Gaignun",
+		"jp": "ガイナン"
+	},
 	"character": "Gaignun",
 	"type": "battle",
 	"rarity": "uncommon",
@@ -14,9 +17,15 @@
 	},
 	"requirement": {
 		"cost": 1,
-		"field": ["human", "any"]
+		"field": [
+			"human",
+			"any"
+		]
 	},
-	"text": "When the E mark is removed from this card, all {Realians} on the battlefield go back to their owners' hands.",
+	"text": {
+		"en": "When the E mark is removed from this card, all {Realians} on the battlefield go back to their owners' hands.",
+		"jp": "このカードからＥマークが外れる時、戦闘フィールドにいる{レアリエン}はすべてオーナーの手札に戻る。"
+	},
 	"effects": [
 		{
 			"trigger": "e_mark_removed",

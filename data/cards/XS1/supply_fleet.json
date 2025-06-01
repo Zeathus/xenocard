@@ -2,13 +2,22 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 88,
-	"name": "Supply Fleet",
+	"name": {
+		"en": "Supply Fleet",
+		"jp": "補給艦隊"
+	},
 	"type": "event",
 	"rarity": "rare",
 	"requirement": {
-		"field": ["human", "human"]
+		"field": [
+			"human",
+			"human"
+		]
 	},
-	"text": "You <recover> as many cards as possible up to the number of battle cards on your field.",
+	"text": {
+		"en": "You <recover> as many cards as possible up to the number of battle cards on your field.",
+		"jp": "山札を自分の場に出ているバトルカード分<回復>する。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

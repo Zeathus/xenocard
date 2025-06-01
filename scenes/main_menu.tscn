@@ -110,9 +110,9 @@ text = "Test Button"
 [node name="ButtonCreateCardImages" type="Button" parent="."]
 visible = false
 offset_left = -944.0
-offset_top = 494.0
+offset_top = 382.0
 offset_right = -784.0
-offset_bottom = 525.0
+offset_bottom = 413.0
 text = "Create Card Images"
 
 [node name="VersionNumber" type="Label" parent="."]

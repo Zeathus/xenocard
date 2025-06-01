@@ -2,14 +2,25 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 103,
-	"name": "Phase Transition Cannon",
+	"name": {
+		"en": "Phase Transition Cannon",
+		"jp": "相転移砲"
+	},
 	"type": "event",
 	"rarity": "promo",
 	"requirement": {
 		"cost": 4,
-		"field": ["machine", "machine", "human", "gnosis"]
+		"field": [
+			"machine",
+			"machine",
+			"human",
+			"gnosis"
+		]
 	},
-	"text": "Destroy all {Gnosis} and {Machines} on the battlefield.",
+	"text": {
+		"en": "Destroy all {Gnosis} and {Machines} on the battlefield.",
+		"jp": "戦闘フィールドにある全ての{グノーシス}と{機械}を破壊する。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

@@ -2,13 +2,22 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 87,
-	"name": "Supply Ship",
+	"name": {
+		"en": "Supply Ship",
+		"jp": "補給艦"
+	},
 	"type": "event",
 	"rarity": "uncommon",
 	"requirement": {
-		"field": ["machine", "machine"]
+		"field": [
+			"machine",
+			"machine"
+		]
 	},
-	"text": "You <recover> as many cards as possible up to five cards.",
+	"text": {
+		"en": "You <recover> as many cards as possible up to five cards.",
+		"jp": "山札を最大で5枚<回復>する。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

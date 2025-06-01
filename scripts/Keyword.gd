@@ -54,18 +54,22 @@ static func expand_keyword(keyword: String) -> String:
 static func expand_icon(keyword: String) -> String:
 	var image_name: String = keyword.to_lower()
 	match keyword.to_lower():
-		"weapons":
+		"weapons", "武器":
 			image_name = "weapon"
-		"realians":
+		"realians", "レアリエン":
 			image_name = "realian"
-		"humans":
+		"humans", "人間":
 			image_name = "human"
-		"blades":
+		"blades", "ブレイド":
 			image_name = "blade"
 		"monsters":
 			image_name = "monster"
-		"machines":
+		"machines", "機械":
 			image_name = "machine"
+		"gnosis", "グノーシス":
+			image_name = "gnosis"
+		"unknown", "謎":
+			image_name = "unknown"
 	return "[img height=\"40\"]res://sprites/text_icons/%s.png[/img]%s" % [image_name, keyword]
 
 static func expand_term(keyword: String) -> String:

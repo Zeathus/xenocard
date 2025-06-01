@@ -2,14 +2,23 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 126,
-	"name": "Armistice",
+	"name": {
+		"en": "Armistice",
+		"jp": "休戦協定"
+	},
 	"type": "situation",
 	"rarity": "uncommon",
 	"requirement": {
 		"cost": 2,
-		"field": ["human", "human"]
+		"field": [
+			"human",
+			"human"
+		]
 	},
-	"text": "Both players skip their battle phases.\n<Duration> 2.",
+	"text": {
+		"en": "Both players skip their battle phases.\n<Duration> 2.",
+		"jp": "両プレイヤーはバトルフェイズを飛ばす。\n<持続> 2。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

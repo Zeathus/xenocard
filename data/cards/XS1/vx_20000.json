@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 42,
-	"name": "VX-20000",
+	"name": {
+		"en": "VX-20000",
+		"jp": "ＶＸ-２００００"
+	},
 	"type": "battle",
 	"rarity": "uncommon",
 	"stats": {
@@ -13,9 +16,16 @@
 	},
 	"requirement": {
 		"cost": 3,
-		"field": ["human", "human", "any"]
+		"field": [
+			"human",
+			"human",
+			"any"
+		]
 	},
-	"text": "<Unique>.\nAttacks every other turn.",
+	"text": {
+		"en": "<Unique>.\nAttacks every other turn.",
+		"jp": "<一枚限定>\n自分ターン2回に1度攻撃する。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

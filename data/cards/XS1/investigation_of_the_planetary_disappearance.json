@@ -2,14 +2,23 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 96,
-	"name": "Investigation of the\nPlanetary Disappearance",
+	"name": {
+		"en": "Investigation of the\nPlanetary Disappearance",
+		"jp": "惑星消失事件調査"
+	},
 	"type": "event",
 	"rarity": "common",
 	"requirement": {
 		"cost": 0,
-		"field": ["any", "any"]
+		"field": [
+			"any",
+			"any"
+		]
 	},
-	"text": "Look at the top five cards of your deck and add one of them to your $hand. Return the rest and shuffle your deck.",
+	"text": {
+		"en": "Look at the top five cards of your deck and add one of them to your $hand. Return the rest and shuffle your deck.",
+		"jp": "山札を上から5枚みて、カードを1枚$手札に入れ、残りは元に戻す。山札はシャッフルする。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

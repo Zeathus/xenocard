@@ -2,13 +2,21 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 118,
-	"name": "Start Up",
+	"name": {
+		"en": "Start Up",
+		"jp": "起動"
+	},
 	"type": "event",
 	"rarity": "uncommon",
 	"requirement": {
-		"field": ["machine"]
+		"field": [
+			"machine"
+		]
 	},
-	"text": "Remove <downed> status from one of your battle cards.",
+	"text": {
+		"en": "Remove <downed> status from one of your battle cards.",
+		"jp": "自分の<ダウン>しているカード1枚を通常状態に戻す。"
+	},
 	"effects": [
 		{
 			"trigger": "activate",

@@ -2,14 +2,23 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 83,
-	"name": "Miyuki's E-Mail",
+	"name": {
+		"en": "Miyuki's E-Mail",
+		"jp": "ミユキ通信"
+	},
 	"type": "event",
 	"rarity": "rare",
 	"requirement": {
 		"cost": 1,
-		"field": ["human", "any"]
+		"field": [
+			"human",
+			"any"
+		]
 	},
-	"text": "Neutralizes the effect of an enemy's event card. The neutralized card is discarded.",
+	"text": {
+		"en": "Neutralizes the effect of an enemy's event card. The neutralized card is discarded.",
+		"jp": "相手のイベントカードの効果を無効にする。無効にされたイベントカードは破棄される。"
+	},
 	"effects": [
 		{
 			"trigger": "counter",

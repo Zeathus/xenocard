@@ -2,14 +2,24 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 139,
-	"name": "A Rat in a Trap",
+	"name": {
+		"en": "A Rat in a Trap",
+		"jp": "袋の鼠"
+	},
 	"type": "situation",
 	"rarity": "common",
 	"requirement": {
 		"cost": 1,
-		"field": ["any", "any", "any"]
+		"field": [
+			"any",
+			"any",
+			"any"
+		]
 	},
-	"text": "When this card is on the field, battle cards cannot withdraw from the battlefield.\n<Duration> 4.",
+	"text": {
+		"en": "While this card is on the field, battle cards cannot withdraw from the battlefield.\n<Duration> 4.",
+		"jp": "このカードが場に出ている間、フィールド上の全てのバトルカードは撤退できない。\n<持続> 4。"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

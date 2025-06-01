@@ -2,7 +2,10 @@
 	"game": "Xenosaga 1",
 	"set": "XS1",
 	"id": 41,
-	"name": "VX-4000",
+	"name": {
+		"en": "VX-4000",
+		"jp": "ＶＸ-４０００"
+	},
 	"type": "battle",
 	"rarity": "rare",
 	"stats": {
@@ -13,9 +16,15 @@
 	},
 	"requirement": {
 		"cost": 3,
-		"field": ["human", "human"]
+		"field": [
+			"human",
+			"human"
+		]
 	},
-	"text": "<Unique>.",
+	"text": {
+		"en": "<Unique>.",
+		"jp": "<一枚限定>"
+	},
 	"effects": [
 		{
 			"trigger": "passive",

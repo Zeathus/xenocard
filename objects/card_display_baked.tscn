@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bqbigxqwv1geb"]
 
-[ext_resource type="Script" uid="uid://5mho0tdiuq33" path="res://objects/card_display_baked.gd" id="1_7o8gf"]
-[ext_resource type="Texture2D" uid="uid://cntoyw45nau0t" path="res://sprites/card_images_baked/XS1/allen.png" id="2_cn6mt"]
+[ext_resource type="Script" path="res://objects/card_display_baked.gd" id="1_7o8gf"]
+[ext_resource type="Texture2D" uid="uid://idg0cq5nyt80" path="res://sprites/card_images_baked/en/SYS/unknown.png" id="2_dqpwd"]
 [ext_resource type="Texture2D" uid="uid://cd8gb1b5tt6em" path="res://sprites/card_back.png" id="10_s8vwc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f3feu"]
@@ -29,7 +29,7 @@ shape = SubResource("RectangleShape2D_qw08w")
 
 [node name="Image" type="Sprite2D" parent="Content"]
 scale = Vector2(2, 2)
-texture = ExtResource("2_cn6mt")
+texture = ExtResource("2_dqpwd")
 
 [node name="Back" type="Sprite2D" parent="."]
 texture = ExtResource("10_s8vwc")

@@ -21,17 +21,17 @@ func sort_card_list():
 				pass
 			1: # Name ASC
 				filters.push_back(func sort(a: CardData, b: CardData):
-					if a.name < b.name:
+					if a.get_name() < b.get_name():
 						return 1
-					elif a.name > b.name:
+					elif a.get_name() > b.get_name():
 						return -1
 					return 0
 				)
 			2: # Name DSC
 				filters.push_back(func sort(a: CardData, b: CardData):
-					if a.name < b.name:
+					if a.get_name() < b.get_name():
 						return -1
-					elif a.name > b.name:
+					elif a.get_name() > b.get_name():
 						return 1
 					return 0
 				)
@@ -313,10 +313,10 @@ func filter_card(card: CardData, regex: RegEx = null) -> bool:
 		$Filters/AttackType.get_item_text($Filters/AttackType.get_selected_id()))
 	if filter_text != "":
 		if regex:
-			if not (regex.search(card.raw_name.to_lower()) or regex.search(card.raw_text.to_lower())):
+			if not (regex.search(card.get_raw_name().to_lower()) or regex.search(card.get_raw_text().to_lower())):
 				return false
 		else:
-			if not (filter_text in card.raw_name.to_lower() or filter_text in card.raw_text.to_lower()):
+			if not (filter_text in card.get_raw_name().to_lower() or filter_text in card.get_raw_text().to_lower()):
 				return false
 	if filter_type != Enum.Type.ANY and card.type != filter_type:
 		return false
@@ -457,7 +457,7 @@ func preview_card(index: int, card: CardData):
 	preview_text.clear()
 	preview_text.push_font_size(20)
 	preview_text.push_underline()
-	preview_text.append_text(card.raw_name)
+	preview_text.append_text(card.get_raw_name())
 	preview_text.pop()
 	if card.character != "":
 		preview_text.append_text("\nCharacter: %s" % card.character)
