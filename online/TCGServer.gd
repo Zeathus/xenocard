@@ -3,6 +3,7 @@ extends Node
 class_name TCGServer
 
 enum MessageType {
+	PING = -1,
 	NONE = 0,
 	QUEUE = 1,
 	START_GAME = 2,
@@ -58,8 +59,13 @@ func _process(delta: float) -> void:
 		Logger.i("Got new connection from %s" % peer.get_connected_host())
 	
 	for peer in clients:
+		var client = clients[peer]
 		peer.poll()
 		if peer.get_ready_state() == WebSocketPeer.STATE_OPEN:
+			client.ping_timer += delta
+			if client.ping_timer >= 5:
+				ping(peer)
+				client.ping_timer = 0
 			while peer.get_available_packet_count():
 				handle_packet(peer)
 
@@ -80,9 +86,11 @@ func handle_packet(peer: WebSocketPeer):
 	var msg: PackedInt32Array = msg_data.to_int32_array()
 	var type: MessageType = msg[0]
 	match type:
+		MessageType.PING:
+			clients[peer].last_ping = Time.get_unix_time_from_system()
 		MessageType.CHAT:
 			var msg_text: String = msg.slice(1).to_byte_array().get_string_from_utf8()
-			print("Sending chat: ", msg_text)
+			Logger.i("Sending chat: " + msg_text)
 			send_chat(peer, msg_text)
 		MessageType.ACTION:
 			var msg_text: String = msg.slice(1).to_byte_array().get_string_from_ascii()
@@ -340,6 +348,11 @@ func verify_action(msg_text: String) -> int:
 	if action == Controller.Action.FORFEIT:
 		return 2
 	return 0
+
+func ping(peer: WebSocketPeer) -> void:
+	var type: PackedInt32Array
+	type.push_back(MessageType.PING)
+	peer.send(type.to_byte_array())
 
 func _exit_tree() -> void:
 	for peer in clients:

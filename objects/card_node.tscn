@@ -1,9 +1,9 @@
 [gd_scene load_steps=29 format=3 uid="uid://dpm1bqbevvyb7"]
 
-[ext_resource type="Script" path="res://objects/card_node.gd" id="1_wdlaa"]
+[ext_resource type="Script" uid="uid://lc47fvw1tc21" path="res://objects/card_node.gd" id="1_wdlaa"]
 [ext_resource type="PackedScene" uid="uid://dosulntiwpmvw" path="res://objects/card_display.tscn" id="2_2gm7b"]
 [ext_resource type="FontFile" uid="uid://cwo0ya5s4od8f" path="res://fonts/Roboto/RobotoCondensed-VariableFont_wght.ttf" id="3_dqdvf"]
-[ext_resource type="Script" path="res://objects/select_border.gd" id="4_skjdn"]
+[ext_resource type="Script" uid="uid://dacncq668kr4r" path="res://objects/select_border.gd" id="4_skjdn"]
 [ext_resource type="PackedScene" uid="uid://de2wv2ykfcwhh" path="res://objects/effect_indicator.tscn" id="5_5egaa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4nfh4"]
@@ -50,7 +50,7 @@ offsets = PackedFloat32Array(0.170886, 1)
 colors = PackedColorArray(1, 0.596078, 0.580392, 1, 1, 1, 0.439216, 0)
 
 [sub_resource type="Curve" id="Curve_iqbsd"]
-min_value = -1.0
+_limits = [-1.0, 1.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0547091), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -323,16 +323,16 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7tg7d"]
 _data = {
-"AttackHand": SubResource("Animation_kidbk"),
-"AttackHand2": SubResource("Animation_3du7q"),
-"CannotAttack": SubResource("Animation_77uk4"),
-"ChargeAttack": SubResource("Animation_242mx"),
-"Flip1": SubResource("Animation_uuiil"),
-"Flip2": SubResource("Animation_4ysx2"),
-"Heal": SubResource("Animation_jgedf"),
-"HitByAttack": SubResource("Animation_x1ulj"),
-"HitByHand": SubResource("Animation_kyvp4"),
-"RESET": SubResource("Animation_yv15v")
+&"AttackHand": SubResource("Animation_kidbk"),
+&"AttackHand2": SubResource("Animation_3du7q"),
+&"CannotAttack": SubResource("Animation_77uk4"),
+&"ChargeAttack": SubResource("Animation_242mx"),
+&"Flip1": SubResource("Animation_uuiil"),
+&"Flip2": SubResource("Animation_4ysx2"),
+&"Heal": SubResource("Animation_jgedf"),
+&"HitByAttack": SubResource("Animation_x1ulj"),
+&"HitByHand": SubResource("Animation_kyvp4"),
+&"RESET": SubResource("Animation_yv15v")
 }
 
 [node name="CardNode" type="Node2D"]
@@ -510,7 +510,7 @@ color_ramp = SubResource("Gradient_xwi6q")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_7tg7d")
+&"": SubResource("AnimationLibrary_7tg7d")
 }
 
 [connection signal="on_hover" from="Pivot/Card" to="." method="_on_card_on_hover"]

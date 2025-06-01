@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://crq1iw7ibn03k"]
 
-[ext_resource type="Script" path="res://scenes/card_list_row.gd" id="1_kkh0b"]
+[ext_resource type="Script" uid="uid://c50i4epfke6yh" path="res://scenes/card_list_row.gd" id="1_kkh0b"]
 [ext_resource type="Theme" uid="uid://cts0fwcuwbvl0" path="res://theme_default.tres" id="2_b4wrx"]
 [ext_resource type="Texture2D" uid="uid://idg0cq5nyt80" path="res://sprites/card_images_baked/SYS/unknown.png" id="2_wagrd"]
 [ext_resource type="PackedScene" uid="uid://g7yv71p73utl" path="res://objects/attribute.tscn" id="3_uw5cg"]

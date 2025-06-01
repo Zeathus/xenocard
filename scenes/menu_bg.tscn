@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://wso43idei4p8"]
 
 [ext_resource type="Texture2D" uid="uid://dbouwtiebd8q5" path="res://sprites/globe-407744.png" id="1_4734o"]
-[ext_resource type="Script" path="res://scenes/background_grid.gd" id="2_bxqul"]
+[ext_resource type="Script" uid="uid://fhu0nvmo05rr" path="res://scenes/background_grid.gd" id="2_bxqul"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_e7hda"]
 size = Vector2(2000, 1100)

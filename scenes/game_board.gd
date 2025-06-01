@@ -31,7 +31,7 @@ func _ready():
 	$MenuNode/MenuPanel/VolumeMusic/Mute.button_pressed = Options.music_mute
 	$MenuNode/MenuPanel/VolumeSounds/Mute.button_pressed = Options.sounds_mute
 	if server == null:
-		get_parent().play_bgm("battle_xenosaga_1", -10)
+		get_parent().play_bgm("battle_xenosaga_1")
 	$AnonCard.turn_down()
 	for i in Enum.Phase:
 		phase_effects[Enum.Phase[i]] = []

@@ -5,11 +5,15 @@ static var name_regex: RegEx
 var peer: WebSocketPeer
 var state: TCGServer.ClientState
 var name: String
+var ping_timer: float
+var last_ping: float
 
 func _init(_peer: WebSocketPeer) -> void:
 	peer = _peer
 	state = TCGServer.ClientState.AWAIT_NAME
 	name = ""
+	ping_timer = 0
+	last_ping = Time.get_unix_time_from_system()
 
 func is_in_room() -> bool:
 	return state in [

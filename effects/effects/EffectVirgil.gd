@@ -9,7 +9,7 @@ class_name EffectVirgil
 func effect(variables: Dictionary = {}):
 	for c in parent.host.owner.field.get_battlefield_cards():
 		if c.get_attribute() == Enum.Attribute.REALIAN:
-			parent.events.push_back(EventDestroy.new(parent.get_game_board(), parent.host, c, Damage.new(Damage.EFFECT | Damage.DESTROY)))
+			parent.events.push_back(EventDestroy.new(parent.get_game_board(), parent.host, c, Damage.new(Damage.EFFECT | Damage.DISCARD)))
 			parent.events.push_back(EventDamage.new(parent.get_game_board(), parent.host, parent.host.owner.get_enemy(), 4, Damage.new(Damage.EFFECT)))
 
 func has_valid_targets(variables: Dictionary = {}) -> bool:

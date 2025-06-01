@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://d2tcufci502xh"]
 
-[ext_resource type="Script" path="res://objects/card_status.gd" id="1_ky7jd"]
+[ext_resource type="Script" uid="uid://cv5p44153gcr4" path="res://objects/card_status.gd" id="1_ky7jd"]
 [ext_resource type="PackedScene" uid="uid://g7yv71p73utl" path="res://objects/attribute.tscn" id="2_c6fv0"]
 [ext_resource type="Texture2D" uid="uid://cgvcggvt58dyg" path="res://sprites/icons/point_up.png" id="3_pmapq"]
 

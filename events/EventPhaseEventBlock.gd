@@ -33,7 +33,7 @@ func process(delta):
 		game_board.get_hint_node().fade_out()
 		return
 	if time < 5 and time + delta >= 5 and not Options.disable_block_reminder:
-		if not player.has_controller():
+		if not player.has_controller() and block:
 			game_board.get_hint_node().set_hint("It is your Block Phase")
 			game_board.get_hint_node().set_pos(HintNode.Position.CENTER)
 			game_board.get_hint_node().fade_in()

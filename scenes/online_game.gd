@@ -6,6 +6,7 @@ var client: TCGClient = null
 var connection_status: Label
 var last_state: TCGClient.ClientState
 var selected_room: ServerRoom = null
+var no_decks: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -57,9 +58,12 @@ func _process(delta):
 					$RoomMenu/ReadyButton.button_pressed = false
 					$RoomMenu/ReadyButton.disabled = false
 					$RoomMenu/LeaveButton.disabled = false
+					$RoomMenu/DeckCustom.disabled = false
+					$RoomMenu/DeckPreset.disabled = false
 				$HostPrompt.visible = false
 				$ClickBlock.visible = true
 				$RoomMenu.visible = true
+				$RoomMenu/ReadyButton.disabled = no_decks
 				$PasswordPanel.visible = false
 			TCGClient.ClientState.DECK_DENIED:
 				$RoomMenu/ReadyButton.button_pressed = false
@@ -164,6 +168,7 @@ func load_decks(node: OptionButton, presets: bool = false):
 		decks = DeckData.list_decks()
 	for deck in decks:
 		node.add_item(deck)
+	no_decks = (decks.size() == 0)
 
 func get_deck():
 	var node: OptionButton = $RoomMenu/Deck
@@ -190,6 +195,7 @@ func _on_button_exit_pressed():
 
 func _on_p1_deck_preset_toggled(toggled_on):
 	load_decks($RoomMenu/Deck, toggled_on)
+	$RoomMenu/ReadyButton.disabled = not toggled_on and no_decks
 	refresh()
 
 func _on_deck_item_selected(index):
@@ -282,6 +288,8 @@ func _on_ready_button_pressed() -> void:
 		client.send_deck(Deck.load(get_deck(), $RoomMenu/DeckPreset.button_pressed))
 	$RoomMenu/ReadyButton.disabled = true
 	$RoomMenu/LeaveButton.disabled = true
+	$RoomMenu/DeckCustom.disabled = true
+	$RoomMenu/DeckPreset.disabled = true
 
 func _on_dismiss_button_pressed() -> void:
 	$MessagePanel.visible = false

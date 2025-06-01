@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bb5g7fjxu6i08"]
 
-[ext_resource type="Script" path="res://objects/custom_checkbox.gd" id="1_16mod"]
+[ext_resource type="Script" uid="uid://d3kv7phim2mlh" path="res://objects/custom_checkbox.gd" id="1_16mod"]
 [ext_resource type="Theme" uid="uid://cts0fwcuwbvl0" path="res://theme_default.tres" id="2_omsk5"]
 [ext_resource type="Texture2D" uid="uid://cltk2du0f0egi" path="res://sprites/icon_check_70.png" id="3_4ajwv"]
 [ext_resource type="Texture2D" uid="uid://dkk0hjbeo6xtl" path="res://sprites/icon_x_70.png" id="4_dgjy4"]

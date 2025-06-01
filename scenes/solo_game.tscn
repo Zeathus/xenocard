@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bdv1nehgqv2uf"]
 
-[ext_resource type="Script" path="res://scenes/solo_game.gd" id="1_pecbt"]
+[ext_resource type="Script" uid="uid://d1w1ab1vjtkql" path="res://scenes/solo_game.gd" id="1_pecbt"]
 [ext_resource type="Theme" uid="uid://cts0fwcuwbvl0" path="res://theme_default.tres" id="2_lm78w"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_xyhnc"]

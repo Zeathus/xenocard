@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://bd6fotdy4grc8"]
 
-[ext_resource type="Script" path="res://scenes/online_game.gd" id="1_v84ir"]
+[ext_resource type="Script" uid="uid://dca4dm4x6yf2t" path="res://scenes/online_game.gd" id="1_v84ir"]
 [ext_resource type="Theme" uid="uid://cts0fwcuwbvl0" path="res://theme_default.tres" id="2_oqua5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_eea2r"]
@@ -189,6 +189,7 @@ selected = 0
 fit_to_longest_item = false
 item_count = 1
 popup/item_0/text = "xenocard.zeathus.net"
+popup/item_0/id = 0
 
 [node name="HostPanel" type="Panel" parent="."]
 offset_left = -952.0

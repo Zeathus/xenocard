@@ -12,7 +12,13 @@ func _init(_game_board: GameBoard, _client: TCGClient, _awaited_event: Event = n
 	super(_game_board)
 
 func get_name() -> String:
-	return "OnlineClient"
+	return ("Await" + awaited_event.get_name()) if awaited_event else "OnlineClient"
+
+func get_priority() -> int:
+	return awaited_event.get_priority()
+
+func get_sub_priority() -> int:
+	return awaited_event.get_sub_priority()
 
 func on_start():
 	if awaited_event != null:

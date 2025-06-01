@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d148kbp4pyn05"]
 
-[ext_resource type="Script" path="res://animations/projectile.gd" id="1_n0uys"]
+[ext_resource type="Script" uid="uid://j8qyvr51phkc" path="res://animations/projectile.gd" id="1_n0uys"]
 
 [node name="Projectile" type="Node2D"]
 z_index = 5

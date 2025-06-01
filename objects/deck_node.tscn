@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://dr4q0wbi3qwms"]
 
-[ext_resource type="Script" path="res://objects/deck_node.gd" id="1_ty7mm"]
+[ext_resource type="Script" uid="uid://c30jg68ifgxkg" path="res://objects/deck_node.gd" id="1_ty7mm"]
 [ext_resource type="PackedScene" uid="uid://dosulntiwpmvw" path="res://objects/card_display.tscn" id="2_wtgrj"]
 
 [sub_resource type="Curve" id="Curve_iqbsd"]
-min_value = -1.0
+_limits = [-1.0, 1.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0547091), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -125,10 +125,10 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7tg7d"]
 _data = {
-"Flip1": SubResource("Animation_uuiil"),
-"Flip2": SubResource("Animation_4ysx2"),
-"HitByAttack": SubResource("Animation_x1ulj"),
-"RESET": SubResource("Animation_yv15v")
+&"Flip1": SubResource("Animation_uuiil"),
+&"Flip2": SubResource("Animation_4ysx2"),
+&"HitByAttack": SubResource("Animation_x1ulj"),
+&"RESET": SubResource("Animation_yv15v")
 }
 
 [node name="CardNode" type="Node2D"]

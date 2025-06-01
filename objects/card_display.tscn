@@ -1,6 +1,6 @@
 [gd_scene load_steps=34 format=3 uid="uid://dosulntiwpmvw"]
 
-[ext_resource type="Script" path="res://objects/card_display.gd" id="1_wdlaa"]
+[ext_resource type="Script" uid="uid://rh72fi8v6xuy" path="res://objects/card_display.gd" id="1_wdlaa"]
 [ext_resource type="Texture2D" uid="uid://dicq202oyt24d" path="res://sprites/card_bg_battle.png" id="2_fgroy"]
 [ext_resource type="Texture2D" uid="uid://dd0mmnwesdund" path="res://sprites/card_images/missing_artwork.png" id="3_7uojd"]
 [ext_resource type="Texture2D" uid="uid://c56nn7e22mwlx" path="res://sprites/card_images/XS1/lv_10_momo_full.png" id="4_3im64"]

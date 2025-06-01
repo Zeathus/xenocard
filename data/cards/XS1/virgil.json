@@ -16,7 +16,7 @@
 		"cost": 1,
 		"field": ["human", "any"]
 	},
-	"text": "On your enemy's adjust phase when this card is on the battlefield, all {Realians} on your battlefield are destroyed, and 4 effect damage is dealt to the enemy's deck for each.",
+	"text": "On your enemy's adjust phase when this card is on the battlefield, all {Realians} on your battlefield are discarded, and 4 effect damage is dealt to the enemy's deck for each.",
 	"effects": [
 		{
 			"trigger": "adjust_phase_enemy",

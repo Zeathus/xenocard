@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://beqafedaf6ood"]
 
-[ext_resource type="Script" path="res://scenes/deck_builder.gd" id="1_gbn5a"]
+[ext_resource type="Script" uid="uid://deayfp2gllphr" path="res://scenes/deck_builder.gd" id="1_gbn5a"]
 [ext_resource type="Texture2D" uid="uid://c4e86agyg5na" path="res://sprites/text_icons/human.png" id="2_4w8la"]
 [ext_resource type="Theme" uid="uid://cts0fwcuwbvl0" path="res://theme_default.tres" id="2_hvo3i"]
 [ext_resource type="PackedScene" uid="uid://bqt532l8n2w8u" path="res://objects/card_details.tscn" id="2_rkvwk"]
@@ -195,6 +195,7 @@ selected = 0
 fit_to_longest_item = false
 item_count = 13
 popup/item_0/text = "-"
+popup/item_0/id = 0
 popup/item_1/text = "Name"
 popup/item_1/icon = ExtResource("3_eoiaf")
 popup/item_1/id = 1
@@ -255,6 +256,7 @@ selected = 0
 fit_to_longest_item = false
 item_count = 13
 popup/item_0/text = "-"
+popup/item_0/id = 0
 popup/item_1/text = "Name"
 popup/item_1/icon = ExtResource("3_eoiaf")
 popup/item_1/id = 1
@@ -1184,6 +1186,7 @@ offset_bottom = 143.0
 selected = 0
 item_count = 4
 popup/item_0/text = "All"
+popup/item_0/id = 0
 popup/item_1/text = "Battle"
 popup/item_1/id = 1
 popup/item_2/text = "Event"
@@ -1213,6 +1216,7 @@ selected = 0
 item_count = 7
 popup/item_0/text = "All"
 popup/item_0/icon = ExtResource("2_xa34a")
+popup/item_0/id = 0
 popup/item_1/text = "Human"
 popup/item_1/icon = ExtResource("2_4w8la")
 popup/item_1/id = 1
@@ -1253,6 +1257,7 @@ expand_icon = true
 selected = 0
 item_count = 6
 popup/item_0/text = "All"
+popup/item_0/id = 0
 popup/item_1/text = "Hand"
 popup/item_1/id = 1
 popup/item_2/text = "Ballistic"

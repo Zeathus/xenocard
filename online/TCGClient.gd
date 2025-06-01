@@ -6,6 +6,7 @@ signal room_updated
 signal countdown(value: int)
 
 enum MessageType {
+	PING = -1,
 	NONE = 0,
 	QUEUE = 1,
 	START_GAME = 2,
@@ -57,21 +58,31 @@ var actions: Array[String] = []
 var rooms: Array[ServerRoom] = []
 var current_room: ServerRoom = null
 var game_result: Enum.GameResult = Enum.GameResult.NONE
+var ping_timer: float = 0
+var last_ping: float = 0
 
 func _ready() -> void:
 	Logger.i("Connecting to " + websocket_url)
 	if socket.connect_to_url(websocket_url) != OK:
 		Logger.w("Unable to connect.")
 		set_process(false)
+	else:
+		last_ping = Time.get_unix_time_from_system()
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	socket.poll()
 	
 	if connected():
+		ping_timer += delta
+		if ping_timer >= 5:
+			ping()
+			ping_timer = 0
 		while socket.get_available_packet_count():
 			var msg: PackedInt32Array = socket.get_packet().to_int32_array()
 			var type: MessageType = msg[0]
 			match type:
+				MessageType.PING:
+					last_ping = Time.get_unix_time_from_system()
 				MessageType.OK:
 					if state == ClientState.SENDING_DECK:
 						Logger.i("Deck OK!")
@@ -231,3 +242,8 @@ func leave_room() -> void:
 	type.append(-1)
 	socket.send(type.to_byte_array())
 	state = ClientState.IN_LOBBY
+
+func ping() -> void:
+	var type: PackedInt32Array
+	type.push_back(MessageType.PING)
+	socket.send(type.to_byte_array())

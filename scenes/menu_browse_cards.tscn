@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dgfvvqlk76uhu"]
 
-[ext_resource type="Script" path="res://scenes/menu_browse_cards.gd" id="1_t8833"]
+[ext_resource type="Script" uid="uid://dewxj4prpkdn7" path="res://scenes/menu_browse_cards.gd" id="1_t8833"]
 [ext_resource type="Theme" uid="uid://cts0fwcuwbvl0" path="res://theme_default.tres" id="2_dsaet"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_spg3m"]
