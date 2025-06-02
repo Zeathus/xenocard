@@ -1,0 +1,31 @@
+{
+	"game": "Xenoblade Chronicles",
+	"set": "XB1",
+	"set_number": 2,
+	"id": 6,
+	"name": {
+		"en": "Lv 1 Dunban",
+		"jp": "Ｌｖ１"
+	},
+	"character": "Dunban",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "human",
+		"hp": 2,
+		"atk": 2,
+		"target": "hand"
+	},
+	"requirement": {
+		"cost": 1,
+		"field": [
+			"human"
+		]
+	},
+	"text": {
+		"en": "<Evades> normal attacks when not equipped with a {weapon}.",
+		"jp": ""
+	},
+	"effects": [
+	]
+}

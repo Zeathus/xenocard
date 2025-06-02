@@ -1,0 +1,33 @@
+{
+	"game": "Xenoblade Chronicles",
+	"set": "XB1",
+	"set_number": 2,
+	"id": 13,
+	"name": {
+		"en": "Lv 10 Dunban",
+		"jp": "Ｌｖ１"
+	},
+	"character": "Dunban",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "human",
+		"hp": 4,
+		"atk": 4,
+		"target": "hand"
+	},
+	"requirement": {
+		"cost": 2,
+		"field": [
+			"human",
+			"any",
+			"any"
+		]
+	},
+	"text": {
+		"en": "You can <level up> a Lv 1 Dunban on your battlefield.\n<Evades> normal attacks when not equipped with a {weapon}.",
+		"jp": ""
+	},
+	"effects": [
+	]
+}

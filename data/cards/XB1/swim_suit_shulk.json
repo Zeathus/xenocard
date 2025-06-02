@@ -1,0 +1,31 @@
+{
+	"game": "Xenoblade Chronicles",
+	"set": "XB1",
+	"set_number": 2,
+	"id": 2,
+	"name": {
+		"en": "Swim Suit Shulk",
+		"jp": ""
+	},
+	"character": "Shulk",
+	"type": "battle",
+	"rarity": "promo",
+	"stats": {
+		"attribute": "human",
+		"hp": 4,
+		"atk": 3,
+		"target": "hand"
+	},
+	"requirement": {
+		"cost": 0,
+		"field": [
+			"human"
+		]
+	},
+	"text": {
+		"en": "Gains ATK+1 against {Machines}.",
+		"jp": ""
+	},
+	"effects": [
+	]
+}

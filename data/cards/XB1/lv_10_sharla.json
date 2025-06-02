@@ -1,0 +1,33 @@
+{
+	"game": "Xenoblade Chronicles",
+	"set": "XB1",
+	"set_number": 2,
+	"id": 12,
+	"name": {
+		"en": "Lv 10 Sharla",
+		"jp": "Ｌｖ１"
+	},
+	"character": "Sharla",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "human",
+		"hp": 6,
+		"atk": 2,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 2,
+		"field": [
+			"human",
+			"human",
+			"any"
+		]
+	},
+	"text": {
+		"en": "You can <level up> a Lv 1 Sharla on your battlefield.\nDuring your adjust phase, if this card is on the battlefield, all other cards on your battlefield heal 1 HP.",
+		"jp": ""
+	},
+	"effects": [
+	]
+}

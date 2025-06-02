@@ -1,0 +1,32 @@
+{
+	"game": "Xenoblade Chronicles",
+	"set": "XB1",
+	"set_number": 2,
+	"id": 11,
+	"name": {
+		"en": "Lv 10 Reyn",
+		"jp": "Ｌｖ１"
+	},
+	"character": "Reyn",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "human",
+		"hp": 7,
+		"atk": 3,
+		"target": "hand"
+	},
+	"requirement": {
+		"cost": 2,
+		"field": [
+			"human",
+			"any"
+		]
+	},
+	"text": {
+		"en": "You can <level up> a Lv 1 Reyn on your battlefield.\nAttacks from enemy battle cards cannot <penetrate> this card.\nCards attacked by this card are <downed>.",
+		"jp": ""
+	},
+	"effects": [
+	]
+}

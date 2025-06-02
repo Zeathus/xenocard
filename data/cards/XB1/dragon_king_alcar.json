@@ -1,0 +1,32 @@
+{
+	"game": "Xenoblade Chronicles",
+	"set": "XB1",
+	"set_number": 2,
+	"id": 70,
+	"name": {
+		"en": "Dragon King Alcar",
+		"jp": ""
+	},
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "monster",
+		"hp": 7,
+		"atk": 5,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 3,
+		"field": [
+			"monster",
+			"monster",
+			"any"
+		]
+	},
+	"text": {
+		"en": "<Unique>.\nThis card's attacks <penetrate>.\nEach turn, after its normal attack timing, this card deals 1 battle damage to all enemy battle cards.\nCannot equip {weapons}.",
+		"jp": ""
+	},
+	"effects": [
+	]
+}

@@ -1,0 +1,32 @@
+{
+	"game": "Xenoblade Chronicles",
+	"set": "XB1",
+	"set_number": 2,
+	"id": 10,
+	"name": {
+		"en": "Lv 10 Fiora",
+		"jp": "Ｌｖ１"
+	},
+	"character": "Fiora",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "machine",
+		"hp": 7,
+		"atk": 2,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 2,
+		"field": [
+			"human",
+			"machine"
+		]
+	},
+	"text": {
+		"en": "You can <level up> a Lv 1 Fiora on your battlefield.\nThis card attacks twice during your battle phase when not equipped with a {weapon}.",
+		"jp": ""
+	},
+	"effects": [
+	]
+}

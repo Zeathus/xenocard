@@ -1,0 +1,31 @@
+{
+	"game": "Xenoblade Chronicles",
+	"set": "XB1",
+	"set_number": 2,
+	"id": 5,
+	"name": {
+		"en": "Lv 1 Sharla",
+		"jp": "Ｌｖ１"
+	},
+	"character": "Sharla",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "human",
+		"hp": 3,
+		"atk": 1,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 1,
+		"field": [
+			"human"
+		]
+	},
+	"text": {
+		"en": "During your adjust phase, if this card is behind another card on the battlefield, that card heals 1 HP.",
+		"jp": ""
+	},
+	"effects": [
+	]
+}

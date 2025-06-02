@@ -1,0 +1,32 @@
+{
+	"game": "Xenoblade Chronicles",
+	"set": "XB1",
+	"set_number": 2,
+	"id": 15,
+	"name": {
+		"en": "Lv 10 Riki",
+		"jp": "Ｌｖ１"
+	},
+	"character": "Riki",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "nopon",
+		"hp": 7,
+		"atk": 2,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 2,
+		"field": [
+			"nopon",
+			"any"
+		]
+	},
+	"text": {
+		"en": "You can <level up> a Lv 1 Riki on your battlefield.\nDuring your adjust phase, if this card is in standby, other cards in standby heal 1 HP.\nDuring your block phase, you can activate this card to deploy it from standby.",
+		"jp": ""
+	},
+	"effects": [
+	]
+}

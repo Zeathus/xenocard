@@ -1,0 +1,28 @@
+{
+	"game": "Xenoblade Chronicles",
+	"set": "XB1",
+	"set_number": 2,
+	"id": 4,
+	"name": {
+		"en": "Lv 1 Reyn",
+		"jp": "Ｌｖ１"
+	},
+	"character": "Reyn",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "human",
+		"hp": 5,
+		"atk": 2,
+		"target": "hand"
+	},
+	"requirement": {
+		"cost": 1
+	},
+	"text": {
+		"en": "Attacks from enemy battle cards cannot <penetrate> this card.",
+		"jp": ""
+	},
+	"effects": [
+	]
+}

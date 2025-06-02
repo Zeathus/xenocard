@@ -1,0 +1,28 @@
+{
+	"game": "Xenoblade Chronicles",
+	"set": "XB1",
+	"set_number": 2,
+	"id": 1,
+	"name": {
+		"en": "Lv 1 Shulk",
+		"jp": "Ｌｖ１"
+	},
+	"character": "Shulk",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "human",
+		"hp": 4,
+		"atk": 3,
+		"target": "hand"
+	},
+	"requirement": {
+		"cost": 1
+	},
+	"text": {
+		"en": "Gains ATK+1 against {Machines}.\nThis card's attacks cannot be <evaded>.",
+		"jp": ""
+	},
+	"effects": [
+	]
+}

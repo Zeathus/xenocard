@@ -1,0 +1,25 @@
+{
+	"game": "Xenoblade Chronicles",
+	"set": "XB1",
+	"set_number": 2,
+	"id": 119,
+	"name": {
+		"en": "Prison Island",
+		"jp": ""
+	},
+	"type": "situation",
+	"rarity": "rare",
+	"requirement": {
+		"field": [
+			"any",
+			"any",
+			"any"
+		]
+	},
+	"text": {
+		"en": "While this card is on the field, you cannot move cards on your field.\n<Duration> 3.\nWhen this card is discarded, you can <search> one Zanza or Arglas from your deck.",
+		"jp": ""
+	},
+	"effects": [
+	]
+}

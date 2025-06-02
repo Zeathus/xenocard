@@ -1,0 +1,31 @@
+{
+	"game": "Xenoblade Chronicles",
+	"set": "XB1",
+	"set_number": 2,
+	"id": 7,
+	"name": {
+		"en": "Lv 1 Melia",
+		"jp": "Ｌｖ１"
+	},
+	"character": "Melia",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "human",
+		"hp": 2,
+		"atk": 1,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 1,
+		"field": [
+			"any"
+		]
+	},
+	"text": {
+		"en": "Gains ATK+1 for each different attribute on your field, excluding itself.",
+		"jp": ""
+	},
+	"effects": [
+	]
+}

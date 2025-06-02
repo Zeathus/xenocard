@@ -1,0 +1,34 @@
+{
+	"game": "Xenoblade Chronicles",
+	"set": "XB1",
+	"set_number": 2,
+	"id": 114,
+	"name": {
+		"en": "Gaur Plain",
+		"jp": ""
+	},
+	"type": "situation",
+	"rarity": "common",
+	"requirement": {
+		"field": [
+			"monster",
+			"monster"
+		]
+	},
+	"text": {
+		"en": "During the battle phase, {Monsters} on your battlefield gain ATK+1, but they take 1 more battle damage.",
+		"jp": ""
+	},
+	"effects": [
+		{
+			"trigger": "passive",
+			"global": "owner=self;attribute=monster;zone=battlefield",
+			"requirement": [
+				"Phase(battle)"
+			],
+			"effect": [
+				"ModifyATK(1)"
+			]
+		}
+	]
+}

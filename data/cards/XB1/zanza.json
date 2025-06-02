@@ -1,0 +1,42 @@
+{
+	"game": "Xenoblade Chronicles",
+	"set": "XB1",
+	"set_number": 2,
+	"id": 77,
+	"name": {
+		"en": "Zanza",
+		"jp": ""
+	},
+	"character": "Zanza",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "unknown",
+		"hp": 10,
+		"atk": 5,
+		"target": "spread"
+	},
+	"requirement": {
+		"cost": 0,
+		"field": [
+			"human",
+			"human",
+			"human",
+			"any"
+		]
+	},
+	"text": {
+		"en": "Discard three {Humans} from your field to play this card anywhere on your field.\nDuring your event or block phase, you can discard a {Human} or {Monster} on your field to have this card heal HP equal to that card's current HP.\nAttacks every other turn.",
+		"jp": ""
+	},
+	"effects": [
+		{
+			"trigger": "passive",
+			"ignores_down": true,
+			"effect": [
+				"DiscardAttributeToPlay(human,human,human)",
+				"CanSetToBattlefield"
+			]
+		}
+	]
+}

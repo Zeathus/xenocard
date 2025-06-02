@@ -1,0 +1,31 @@
+{
+	"game": "Xenoblade Chronicles",
+	"set": "XB1",
+	"set_number": 2,
+	"id": 3,
+	"name": {
+		"en": "Lv 1 Fiora",
+		"jp": "Ｌｖ１"
+	},
+	"character": "Fiora",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "human",
+		"hp": 4,
+		"atk": 2,
+		"target": "hand"
+	},
+	"requirement": {
+		"cost": 1,
+		"field": [
+			"human"
+		]
+	},
+	"text": {
+		"en": "This card attacks twice during your battle phase when not equipped with a {weapon}.",
+		"jp": ""
+	},
+	"effects": [
+	]
+}

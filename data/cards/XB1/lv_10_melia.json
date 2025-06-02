@@ -1,0 +1,33 @@
+{
+	"game": "Xenoblade Chronicles",
+	"set": "XB1",
+	"set_number": 2,
+	"id": 14,
+	"name": {
+		"en": "Lv 10 Melia",
+		"jp": "Ｌｖ１"
+	},
+	"character": "Melia",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "human",
+		"hp": 6,
+		"atk": 2,
+		"target": "ballistic"
+	},
+	"requirement": {
+		"cost": 2,
+		"field": [
+			"nopon",
+			"any",
+			"any"
+		]
+	},
+	"text": {
+		"en": "You can <level up> a Lv 1 Melia on your battlefield, ignoring field requirements.\nGains ATK+1 for each different attribute on your field, excluding itself.\nThis card's attacks <penetrate>.",
+		"jp": ""
+	},
+	"effects": [
+	]
+}

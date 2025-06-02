@@ -1,0 +1,31 @@
+{
+	"game": "Xenoblade Chronicles",
+	"set": "XB1",
+	"set_number": 2,
+	"id": 8,
+	"name": {
+		"en": "Lv 1 Riki",
+		"jp": "Ｌｖ１"
+	},
+	"character": "Riki",
+	"type": "battle",
+	"rarity": "rare",
+	"stats": {
+		"attribute": "nopon",
+		"hp": 4,
+		"atk": 1,
+		"target": "hand"
+	},
+	"requirement": {
+		"cost": 1,
+		"field": [
+			"any"
+		]
+	},
+	"text": {
+		"en": "During your adjust phase, if this card is in standby, other cards in standby heal 1 HP.",
+		"jp": ""
+	},
+	"effects": [
+	]
+}
