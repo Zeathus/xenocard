@@ -79,10 +79,12 @@ func new_game():
 				player.controller.start()
 			player.show_hand = (not player.has_controller()) or game_options["reveal_hands"]
 		players.push_back(player)
-	turn_player_id = 0
-	for p in players:
-		for i in range(5):
-			queue_event(EventDrawCard.new(self, p))
+	turn_player_id = randi_range(0, 1)
+	queue_event(EventFlipCoin.new(self, turn_player_id == 0))
+	for i in range(5):
+		queue_event(EventDrawCard.new(self, players[turn_player_id]))
+	for i in range(5):
+		queue_event(EventDrawCard.new(self, players[(turn_player_id + 1) % 2]))
 	begin_turn()
 
 func new_client_game():

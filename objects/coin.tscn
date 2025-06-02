@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://b702s6iqxoxyw"]
+[gd_scene load_steps=8 format=3 uid="uid://b702s6iqxoxyw"]
 
+[ext_resource type="Script" uid="uid://d2iww27k26mld" path="res://objects/coin.gd" id="1_1o7s2"]
 [ext_resource type="Texture2D" uid="uid://001nd1o8w3kv" path="res://sprites/coin_heads.png" id="1_5fohy"]
 [ext_resource type="Texture2D" uid="uid://brljmcw6rj127" path="res://sprites/coin_tails.png" id="2_12krs"]
 
@@ -152,6 +153,7 @@ _data = {
 }
 
 [node name="Coin" type="Node2D"]
+script = ExtResource("1_1o7s2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
