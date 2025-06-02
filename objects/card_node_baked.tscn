@@ -534,7 +534,7 @@ color_ramp = SubResource("Gradient_l2u80")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_7tg7d")
+&"": SubResource("AnimationLibrary_7tg7d")
 }
 
 [connection signal="on_hover" from="Pivot/Card" to="." method="_on_card_on_hover"]

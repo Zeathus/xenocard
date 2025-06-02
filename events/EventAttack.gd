@@ -62,13 +62,7 @@ func attack():
 		else:
 			game_board.play_se("hit_medium" + str(randi_range(1, 2)), 8)
 	else:
-		pass #game_board.play_se("explosion_small" + str(randi_range(1, 4)))
-		#if atk <= 2:
-			#game_board.play_se("explosion_small")
-		#elif atk <= 7:
-			#game_board.play_se("explosion_medium")
-		#else:
-			#game_board.play_se("explosion_massive")
+		game_board.play_se("explosion")
 	for t in targets:
 		var behind_target = t.get_behind()
 		var damage_event: EventDamage = EventDamage.new(game_board, attacker, t, attacker.get_atk_against(t), Damage.new(Damage.BATTLE | Damage.NORMAL_ATTACK))

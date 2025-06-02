@@ -61,6 +61,7 @@ func do_move(field: GameField, zone_owner: Player, zone: Enum.Zone, index: int):
 	to_move.move(game_board, zone, index)
 	queue_event(EventAnimations.new(game_board, anims))
 	awaiting_anims = true
+	game_board.play_se("card_retreat" if zone == Enum.Zone.STANDBY else "card_deploy")
 
 func broadcast():
 	if game_board.is_server():

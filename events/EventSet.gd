@@ -189,7 +189,7 @@ func move_card_to_set():
 		anim.target_scale = Vector2(0.15, 0.15)
 	anim.set_on_finish(func():
 		handle_set_effects()
-		game_board.play_se("cardPlace1")
+		game_board.play_se("card_set")
 	)
 	queue_event(EventAnimation.new(game_board, anim))
 

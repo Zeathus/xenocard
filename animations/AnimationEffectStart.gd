@@ -17,6 +17,8 @@ func update(delta):
 		return
 	var indicator: Node = card.instance.find_child("EffectIndicator")
 	if time == 0:
+		var se = "effect_activate"
+		card.owner.game_board.play_se(se, 5)
 		indicator.visible = true
 	var scale: float = 1.0
 	scale += (1.0 - min(time * 3, 1.0)) * 3

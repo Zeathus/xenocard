@@ -28,6 +28,7 @@ func process(delta):
 	match state:
 		0:
 			if time > 1:
+				game_board.play_se("coin_flip")
 				if heads:
 					coin_node.flip_heads()
 				else:

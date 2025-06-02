@@ -45,6 +45,7 @@ func on_start():
 	anim.keep_in_motion = true
 	anim.target_scale = Vector2(0.15, 0.15)
 	queue_event(EventAnimation.new(game_board, anim))
+	game_board.play_se("discard_card", 2)
 
 func on_finish():
 	game_board.refresh()

@@ -33,7 +33,7 @@ func on_start():
 	queue_event(EventAnimation.new(game_board,
 		AnimationAddToHand.new(card.instance, player.hand, flip)
 	))
-	game_board.play_se("click2")
+	game_board.play_se("click2", 5)
 
 func on_finish():
 	player.hand.refresh()
