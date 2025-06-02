@@ -8,6 +8,7 @@ static var image_type: String = "png"
 var game: String
 var set_name: String
 var set_id: int = -1
+var set_number: int = 0
 var id: String
 var identifier: String
 var name: Dictionary
@@ -129,6 +130,7 @@ func load_json(json: Dictionary):
 	game = json["game"]
 	set_name = json["set"]
 	set_id = json["id"]
+	set_number = json["set_number"]
 	name = json["name"]
 	if "character" in json:
 		character = json["character"]
@@ -208,7 +210,7 @@ func get_baked_image() -> Resource:
 		return load(image_file)
 	else:
 		Logger.e("Failed to find card image '%s'" % image_file)
-		return load("%s/card_images/missing_artwork.%s" % [image_root, image_type])
+		return load("%s/card_images_baked/en/SYS/unknown.%s" % [image_root, image_type])
 
 func has_baked_image() -> bool:
 	var image_file: String = "%s/card_images_baked/%s/%s/%s.%s" % [image_root, Options.locale, set_name, id, image_type]

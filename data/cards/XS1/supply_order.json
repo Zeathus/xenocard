@@ -1,6 +1,7 @@
 {
 	"game": "Xenosaga 1",
 	"set": "XS1",
+	"set_number": 1,
 	"id": 130,
 	"name": {
 		"en": "Supply Order",

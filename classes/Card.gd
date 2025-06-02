@@ -9,6 +9,7 @@ static var attribute_icons = {
 	Enum.Attribute.MACHINE: preload("res://sprites/attributes/machine.png"),
 	Enum.Attribute.GNOSIS: preload("res://sprites/attributes/gnosis.png"),
 	Enum.Attribute.MONSTER: preload("res://sprites/attributes/monster.png"),
+	Enum.Attribute.NOPON: preload("res://sprites/attributes/nopon.png"),
 	Enum.Attribute.BLADE: preload("res://sprites/attributes/blade.png"),
 	Enum.Attribute.WEAPON: preload("res://sprites/attributes/weapon.png"),
 	Enum.Attribute.UNKNOWN: preload("res://sprites/attributes/unknown.png")

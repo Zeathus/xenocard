@@ -122,6 +122,10 @@ func sort_card_list():
 				return true
 			elif res == -1:
 				return false
+		if a.set_number < b.set_number:
+			return true
+		elif a.set_number > b.set_number:
+			return false
 		if a.set_id < b.set_id:
 			return true
 		return false

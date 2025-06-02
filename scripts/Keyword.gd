@@ -132,7 +132,7 @@ static func get_hint(keyword: String) -> String:
 			return "[u]Recover[/u]\nMove cards from the top of the lost pile into the deck.\nShuffle your deck afterwards."
 		"slow":
 			return "[u]Slow[/u]\nThe card can only be played during your event phase, not your block phase."
-		"evade":
+		"evade", "evades", "evaded":
 			return "[u]Evade[/u]\nAttacks ignore the card.\nBallistic attacks hit the card or deck behind it instead."
 		"penetrate", "penetrates", "penetrating":
 			return "[u]Penetrate[/u]\nIf the attack destroys its target, any damage exceeding the target's HP is dealt to the next card or deck behind it. Does not apply to equipped weapons."
