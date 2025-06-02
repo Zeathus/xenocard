@@ -163,3 +163,6 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, ind
 		return
 	if card:
 		try_target(card)
+
+func stop_on_game_end() -> bool:
+	return false

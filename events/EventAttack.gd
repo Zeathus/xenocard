@@ -112,3 +112,6 @@ func broadcast():
 		for p: Player in [game_board.get_turn_player(), game_board.get_turn_enemy()]:
 			var args: Array = [attacker.get_online_id(p.id == 1)]
 			p.controller.broadcast_event(get_name(), args)
+
+func stop_on_game_end() -> bool:
+	return false

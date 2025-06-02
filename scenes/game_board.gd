@@ -315,8 +315,9 @@ func _process(delta):
 	$TestLabel.text = event_str
 	
 	if is_client() and client.game_result != Enum.GameResult.NONE:
-		end_game(client.game_result)
-		client.game_result = Enum.GameResult.NONE
+		if can_end_game_on_current_event():
+			end_game(client.game_result)
+			client.game_result = Enum.GameResult.NONE
 	
 	if quick_detail_card:
 		if quick_detail_card.is_hovered():
@@ -591,6 +592,14 @@ func show_details(card):
 	$CardDetails.visible = true
 	$CardDetails/CardNode.turn_up()
 	$CardDetails/CardNode.show_card(card.data)
+
+func can_end_game_on_current_event():
+	if event_queue.is_empty():
+		return true
+	var event: Event = event_queue.front()
+	while event.children.size() > 0:
+		event = event.children.front()
+	return event.stop_on_game_end()
 
 func get_hint_node() -> HintNode:
 	return $HintNode

@@ -152,3 +152,6 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, ind
 
 func on_end_phase_pressed():
 	pass
+
+func stop_on_game_end() -> bool:
+	return true

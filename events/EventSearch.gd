@@ -81,3 +81,6 @@ func broadcast():
 			args.push_back(card.data.get_full_id())
 		player.controller.broadcast_event(get_name(), args)
 		player.get_enemy().controller.broadcast_event(get_name(), [player, filter.string, "0"])
+
+func stop_on_game_end() -> bool:
+	return false

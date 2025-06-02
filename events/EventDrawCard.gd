@@ -55,3 +55,6 @@ func broadcast_empty():
 	if game_board.is_server():
 		player.controller.broadcast_event(get_name(), [player])
 		player.get_enemy().controller.broadcast_event(get_name(), [player])
+
+func stop_on_game_end() -> bool:
+	return false

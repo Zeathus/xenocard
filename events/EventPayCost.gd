@@ -28,3 +28,6 @@ func process(delta):
 	if pass_to_child("process", [delta]):
 		return
 	finish()
+
+func stop_on_game_end() -> bool:
+	return false

@@ -21,3 +21,6 @@ func is_done():
 		if not a.is_done():
 			return false
 	return true
+
+func stop_on_game_end() -> bool:
+	return false

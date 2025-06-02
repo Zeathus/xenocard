@@ -57,3 +57,6 @@ func broadcast():
 				source.get_online_id()
 			]
 			p.controller.broadcast_event(get_name(), args)
+
+func stop_on_game_end() -> bool:
+	return false

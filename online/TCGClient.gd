@@ -115,7 +115,6 @@ func _process(delta: float) -> void:
 					Logger.i("Got event: " + msg_text)
 					if msg_text.split("\t")[0] == "EndGame":
 						game_result = int(msg_text.split("\t")[1])
-						events.clear()
 					events.push_back(msg_text)
 				MessageType.ACTION:
 					var msg_text: String = msg.slice(1).to_byte_array().get_string_from_ascii()

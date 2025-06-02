@@ -17,3 +17,6 @@ func process(delta):
 
 func is_done():
 	return animation.is_done()
+
+func stop_on_game_end() -> bool:
+	return false

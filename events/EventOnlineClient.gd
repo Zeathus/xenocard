@@ -220,3 +220,6 @@ func queue_event(event):
 func on_end_phase_pressed():
 	if pass_to_child("on_end_phase_pressed"):
 		return
+
+func stop_on_game_end() -> bool:
+	return awaited_event.stop_on_game_end()
