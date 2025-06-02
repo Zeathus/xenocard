@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b702s6iqxoxyw"]
+[gd_scene load_steps=11 format=3 uid="uid://b702s6iqxoxyw"]
 
 [ext_resource type="Script" uid="uid://d2iww27k26mld" path="res://objects/coin.gd" id="1_1o7s2"]
 [ext_resource type="Texture2D" uid="uid://001nd1o8w3kv" path="res://sprites/coin_heads.png" id="1_5fohy"]
 [ext_resource type="Texture2D" uid="uid://brljmcw6rj127" path="res://sprites/coin_tails.png" id="2_12krs"]
+[ext_resource type="Theme" uid="uid://cts0fwcuwbvl0" path="res://theme_default.tres" id="4_iwokp"]
 
 [sub_resource type="Animation" id="Animation_ytoe1"]
 length = 0.001
@@ -41,6 +42,42 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Panel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Panel:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Pivot:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_dtm24"]
@@ -91,7 +128,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.48, 0.56, 0.64, 0.72, 0.8, 0.9, 0.975),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 0.75), Vector2(1, 0), Vector2(1, 1), Vector2(1, 0), Vector2(1, 1), Vector2(1, 0), Vector2(1, 1), Vector2(1, 0), Vector2(1, 1), Vector2(1, 0), Vector2(1, 1), Vector2(1, 0), Vector2(1, 0.75)]
+"values": [Vector2(1, 0.75), Vector2(1.05, 0), Vector2(1.1, 1.1), Vector2(1.15, 0), Vector2(1.2, 1.2), Vector2(1.25, 0), Vector2(1.25, 1.25), Vector2(1.25, 0), Vector2(1.2, 1.2), Vector2(1.15, 0), Vector2(1.1, 1.1), Vector2(1.05, 0), Vector2(1, 0.75)]
 }
 
 [sub_resource type="Animation" id="Animation_8ogr1"]
@@ -142,15 +179,83 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.975),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 0.75), Vector2(1, 0), Vector2(1, 1), Vector2(1, 0), Vector2(1, 1), Vector2(1, 0), Vector2(1, 1), Vector2(1, 0), Vector2(1, 1), Vector2(1, 0), Vector2(1, 0.75)]
+"values": [Vector2(1, 0.75), Vector2(1.05, 0), Vector2(1.1, 1.1), Vector2(1.15, 0), Vector2(1.2, 1.2), Vector2(1.25, 0), Vector2(1.2, 1.2), Vector2(1.15, 0), Vector2(1.1, 1.1), Vector2(1.05, 0), Vector2(1, 0.75)]
+}
+
+[sub_resource type="Animation" id="Animation_iwokp"]
+resource_name = "show_result"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.766667, 1.26667),
+"transitions": PackedFloat32Array(0.499999, 1),
+"update": 0,
+"values": [Vector2(1, 0.75), Vector2(1.25, 1.25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.766667, 1.26667),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -100)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.766667, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Panel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.766667, 1.26667, 2.2, 2.5),
+"transitions": PackedFloat32Array(0.366021, 1, 2.46229, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Pivot:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2.2, 2.5),
+"transitions": PackedFloat32Array(2.46229, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l1uhp"]
 _data = {
 &"RESET": SubResource("Animation_ytoe1"),
 &"flip_heads": SubResource("Animation_dtm24"),
-&"flip_tails": SubResource("Animation_8ogr1")
+&"flip_tails": SubResource("Animation_8ogr1"),
+&"show_result": SubResource("Animation_iwokp")
 }
+
+[sub_resource type="LabelSettings" id="LabelSettings_hyi47"]
+font_size = 64
 
 [node name="Coin" type="Node2D"]
 script = ExtResource("1_1o7s2")
@@ -169,3 +274,21 @@ texture = ExtResource("1_5fohy")
 [node name="Tails" type="Sprite2D" parent="Pivot"]
 visible = false
 texture = ExtResource("2_12krs")
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+offset_left = -250.0
+offset_top = 80.0
+offset_right = 250.0
+offset_bottom = 180.0
+mouse_filter = 2
+theme = ExtResource("4_iwokp")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 100.0
+text = "You go first!"
+label_settings = SubResource("LabelSettings_hyi47")
+horizontal_alignment = 1
+vertical_alignment = 1

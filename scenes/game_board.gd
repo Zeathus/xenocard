@@ -522,6 +522,9 @@ func play_se(se: String, db: float = 0, pitch: float = 1):
 			player.play()
 			break
 
+func play_animation(animation: String) -> void:
+	$AnimationPlayer.play(animation)
+
 func get_card_from_online_id(online_id: String, inverse: bool = false) -> Card:
 	var args: PackedStringArray = online_id.split(",")
 	var player_id: int = int(args[0])

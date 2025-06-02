@@ -16,7 +16,7 @@ func get_name() -> String:
 	return "FlipCoin"
 
 func on_start():
-	coin_node.visible = true
+	coin_node.position.y = 700
 
 func on_finish():
 	coin_node.visible = false
@@ -28,7 +28,9 @@ func process(delta):
 	match state:
 		0:
 			if time > 1:
+				coin_node.visible = true
 				game_board.play_se("coin_flip")
+				game_board.play_animation("coin_flip")
 				if heads:
 					coin_node.flip_heads()
 				else:
@@ -36,8 +38,8 @@ func process(delta):
 				state = 1
 		1:
 			if not coin_node.animating():
+				coin_node.show_result()
 				state = 2
-				time = 0.0
 		2:
-			if time > 2:
+			if not coin_node.animating():
 				finish()
