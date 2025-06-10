@@ -1,10 +1,10 @@
 [gd_scene load_steps=15 format=3 uid="uid://cvgngfabvy3dr"]
 
-[ext_resource type="Script" uid="uid://dwu5mb2xlaq6r" path="res://scenes/main_menu.gd" id="1_ps2kx"]
+[ext_resource type="Script" uid="uid://c0xplfufbeqvf" path="res://scenes/main_menu.gd" id="1_ps2kx"]
 [ext_resource type="Texture2D" uid="uid://dbouwtiebd8q5" path="res://sprites/globe-407744.png" id="2_4oj30"]
 [ext_resource type="Theme" uid="uid://cts0fwcuwbvl0" path="res://theme_default.tres" id="2_ic5sl"]
 [ext_resource type="Texture2D" uid="uid://dlsm3krftu43b" path="res://sprites/logo_icon.png" id="2_o3hyy"]
-[ext_resource type="Script" uid="uid://c875gktcao4no" path="res://scenes/background_grid.gd" id="3_0kht6"]
+[ext_resource type="Script" uid="uid://fhu0nvmo05rr" path="res://scenes/background_grid.gd" id="3_0kht6"]
 [ext_resource type="FontFile" uid="uid://477m8mtpk38o" path="res://fonts/HelveticaNeue/HelveticaNeue-BlackCondObl.otf" id="3_vg0vx"]
 [ext_resource type="Texture2D" uid="uid://bfcdwfmhmx250" path="res://sprites/icons/flag_us.png" id="7_4oxla"]
 [ext_resource type="Texture2D" uid="uid://buoii1820488l" path="res://sprites/icons/flag_jp.png" id="8_i0rpp"]

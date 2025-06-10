@@ -155,3 +155,6 @@ func on_end_phase_pressed():
 
 func stop_on_game_end() -> bool:
 	return true
+
+func can_end_phase() -> bool:
+	return false

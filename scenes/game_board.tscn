@@ -4,13 +4,13 @@
 [ext_resource type="Script" uid="uid://dbnxhff5xotqw" path="res://scenes/game_board.gd" id="1_k5aaq"]
 [ext_resource type="Texture2D" uid="uid://bkqpqsxqvgam8" path="res://sprites/bg/stars_blue.jpg" id="2_u5cu7"]
 [ext_resource type="PackedScene" uid="uid://dj6tetacep1ij" path="res://scenes/game_hand.tscn" id="3_t4rtj"]
-[ext_resource type="Script" uid="uid://dn6vabkjqebhu" path="res://scenes/mouse.gd" id="4_u1qqp"]
+[ext_resource type="Script" uid="uid://i6kdkq3jjigc" path="res://scenes/mouse.gd" id="4_u1qqp"]
 [ext_resource type="PackedScene" uid="uid://bqt532l8n2w8u" path="res://objects/card_details.tscn" id="5_1q0hl"]
 [ext_resource type="FontFile" uid="uid://ng1y54e8x08v" path="res://fonts/Roboto/Roboto-Bold.ttf" id="5_2t2yb"]
 [ext_resource type="PackedScene" uid="uid://dosulntiwpmvw" path="res://objects/card_display.tscn" id="6_akm2x"]
 [ext_resource type="FontFile" uid="uid://do6lscs8csbaq" path="res://fonts/Roboto/Roboto-Regular.ttf" id="6_ldbpm"]
 [ext_resource type="Theme" uid="uid://cts0fwcuwbvl0" path="res://theme_default.tres" id="7_c566m"]
-[ext_resource type="Script" uid="uid://d0e8yx2rusq5g" path="res://scenes/hint_node.gd" id="11_jdhxf"]
+[ext_resource type="Script" uid="uid://1ktwnvqer6jf" path="res://scenes/hint_node.gd" id="11_jdhxf"]
 [ext_resource type="PackedScene" uid="uid://b702s6iqxoxyw" path="res://objects/coin.tscn" id="12_w5uqb"]
 
 [sub_resource type="FontVariation" id="FontVariation_da6p1"]
@@ -306,21 +306,6 @@ radius = 5.0
 [sub_resource type="LabelSettings" id="LabelSettings_2w4dr"]
 font_size = 32
 
-[sub_resource type="Animation" id="Animation_w5uqb"]
-resource_name = "coin_flip"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Coin:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 700), Vector2(0, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_sax53"]
 length = 0.001
 tracks/0/type = "value"
@@ -334,6 +319,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_w5uqb"]
+resource_name = "coin_flip"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Coin:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 700), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_axant"]

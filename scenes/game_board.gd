@@ -321,6 +321,11 @@ func _process(delta):
 			end_game(client.game_result)
 			client.game_result = Enum.GameResult.NONE
 	
+	var can_end_phase: bool = false
+	if is_free() and not get_turn_player().has_controller() and event_processing():
+		can_end_phase = event_queue.size() > 0 and event_queue.front().can_end_phase()
+	$Phases/EndPhase.disabled = not can_end_phase
+	
 	if quick_detail_card:
 		if quick_detail_card.is_hovered():
 			quick_detail_card_timer = 0.25

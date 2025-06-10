@@ -16,6 +16,7 @@ func get_name() -> String:
 	return "FlipCoin"
 
 func on_start():
+	broadcast()
 	coin_node.position.y = 700
 
 func on_finish():
@@ -43,3 +44,9 @@ func process(delta):
 		2:
 			if not coin_node.animating():
 				finish()
+
+func broadcast():
+	if game_board.is_server():
+		for p: Player in [game_board.get_turn_player(), game_board.get_turn_enemy()]:
+			var args: Array = [1 if p == game_board.get_turn_player() else 0]
+			p.controller.broadcast_event(get_name(), args)

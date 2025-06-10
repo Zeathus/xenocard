@@ -64,11 +64,13 @@ func set_card(card: Card, zone: Enum.Zone, index: int, targets: Array[Card]):
 	queue_event(set_event)
 
 func on_end_phase_pressed():
-	if not has_children():
-		if player.can_end_phase(Enum.Phase.SET):
-			if player.get_enemy().is_online():
-				player.get_enemy().controller.send_action(Controller.Action.END_PHASE)
-			finish()
+	if can_end_phase():
+		if player.get_enemy().is_online():
+			player.get_enemy().controller.send_action(Controller.Action.END_PHASE)
+		finish()
+
+func can_end_phase():
+	return started and (not has_children()) and player.can_end_phase(Enum.Phase.SET)
 
 func show_selectable():
 	for card in player.hand.cards:

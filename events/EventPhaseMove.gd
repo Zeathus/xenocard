@@ -69,11 +69,15 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, ind
 		in_sub_event = true
 
 func on_end_phase_pressed():
-	if not has_children() and state == 0:
-		if player.can_end_phase(Enum.Phase.MOVE):
-			if player.get_enemy().is_online():
-				player.get_enemy().controller.send_action(Controller.Action.END_PHASE)
-			state = 1
+	if can_end_phase():
+		if player.get_enemy().is_online():
+			player.get_enemy().controller.send_action(Controller.Action.END_PHASE)
+		state = 1
+
+func can_end_phase():
+	if player.field.battler_count() == 0:
+		return false
+	return started and (not has_children()) and player.can_end_phase(Enum.Phase.MOVE)
 
 func show_selectable():
 	for card in player.field.get_battler_cards():

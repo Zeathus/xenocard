@@ -90,11 +90,13 @@ func on_zone_selected(field: GameField, zone_owner: Player, zone: Enum.Zone, ind
 		play(card)
 
 func on_end_phase_pressed():
-	if not has_children():
-		if player.can_end_phase(Enum.Phase.BLOCK if block else Enum.Phase.EVENT):
-			if player.get_enemy().is_online():
-				player.get_enemy().controller.send_action(Controller.Action.END_PHASE)
-			finish()
+	if can_end_phase():
+		if player.get_enemy().is_online():
+			player.get_enemy().controller.send_action(Controller.Action.END_PHASE)
+		finish()
+
+func can_end_phase():
+	return started and (not has_children()) and player.can_end_phase(Enum.Phase.BLOCK if block else Enum.Phase.EVENT)
 
 func play(card: Card):
 	if player.get_enemy().is_online():

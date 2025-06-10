@@ -207,6 +207,9 @@ func fetch_event(event_data: String):
 				game_board.dummy_card.set_id(args[1])
 				awaited_event.card_preview = game_board.dummy_card
 			return awaited_event
+		"FlipCoin":
+			var heads: bool = (args[1] == "1")
+			return EventFlipCoin.new(game_board, heads)
 		"EndGame":
 			var result: Enum.GameResult = int(args[1])
 			return EventEndGame.new(game_board, result)
@@ -221,5 +224,16 @@ func on_end_phase_pressed():
 	if pass_to_child("on_end_phase_pressed"):
 		return
 
+func can_end_phase():
+	if awaited_event:
+		return awaited_event.can_end_phase()
+	elif has_children():
+		return children.front().can_end_phase()
+	return false
+
 func stop_on_game_end() -> bool:
-	return awaited_event.stop_on_game_end()
+	if awaited_event:
+		return awaited_event.stop_on_game_end()
+	elif has_children():
+		return children.front().stop_on_game_end()
+	return true
