@@ -60,6 +60,7 @@ func _process(delta):
 					$RoomMenu/LeaveButton.disabled = false
 					$RoomMenu/DeckCustom.disabled = false
 					$RoomMenu/DeckPreset.disabled = false
+					$RoomMenu/Deck.disabled = false
 				$HostPrompt.visible = false
 				$ClickBlock.visible = true
 				$RoomMenu.visible = true
@@ -75,7 +76,7 @@ func _process(delta):
 			TCGClient.ClientState.READY:
 				$RoomMenu/ReadyButton.button_pressed = true
 				$RoomMenu/ReadyButton.disabled = false
-				$RoomMenu/LeaveButton.disabled = false
+				$RoomMenu/LeaveButton.disabled = true
 				$RoomMenu/ErrorLabel.visible = false
 				client.state = TCGClient.ClientState.READY
 			TCGClient.ClientState.PLAYING:
@@ -87,6 +88,12 @@ func _process(delta):
 				game.game_options["online"] = "client"
 				game.client = client
 				get_parent().start_scene(game)
+				$RoomMenu/ReadyButton.button_pressed = false
+				$RoomMenu/ReadyButton.disabled = false
+				$RoomMenu/LeaveButton.disabled = false
+				$RoomMenu/DeckCustom.disabled = false
+				$RoomMenu/DeckPreset.disabled = false
+				$RoomMenu/Deck.disabled = false
 			TCGClient.ClientState.STOPPED:
 				match last_state:
 					TCGClient.ClientState.SEND_NAME:
@@ -133,6 +140,7 @@ func on_countdown_update(value: int):
 	else:
 		$RoomMenu/CountdownPanel.visible = true
 		$RoomMenu/CountdownPanel/Countdown.text = str(value)
+		$RoomMenu/ReadyButton.disabled = value <= 1
 
 func refresh_room_list():
 	var container: VBoxContainer = $ListPanel/ScrollContainer/VBoxContainer
@@ -290,6 +298,7 @@ func _on_ready_button_pressed() -> void:
 	$RoomMenu/LeaveButton.disabled = true
 	$RoomMenu/DeckCustom.disabled = true
 	$RoomMenu/DeckPreset.disabled = true
+	$RoomMenu/Deck.disabled = true
 
 func _on_dismiss_button_pressed() -> void:
 	$MessagePanel.visible = false

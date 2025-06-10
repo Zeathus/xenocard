@@ -58,6 +58,8 @@ func get_text() -> String:
 			return "CANCELLED"
 		Enum.GameResult.TUTORIAL:
 			return "TUTORIAL COMPLETE"
+		Enum.GameResult.DISCONNECT:
+			return "ENEMY DISCONNECTED"
 	return "N/A"
 
 func get_enemy_result() -> Enum.GameResult:

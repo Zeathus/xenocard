@@ -41,6 +41,7 @@ enum GameResult {
 	P2_FORFEIT = 5,
 	CANCELLED = 6,
 	TUTORIAL = 7,
+	DISCONNECT = 8,
 }
 
 static var obj: Object = Object.new()

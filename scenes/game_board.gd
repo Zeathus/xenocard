@@ -2,6 +2,8 @@ extends Node2D
 
 class_name GameBoard
 
+signal game_ended
+
 var quick_details_enabled: bool = true
 var quick_detail_card: Card = null
 var quick_detail_card_timer: float = 0
@@ -300,6 +302,7 @@ func end_game(result: Enum.GameResult):
 		event_queue.push_back(EventEndGame.new(self, result))
 
 func end_scene():
+	game_ended.emit()
 	if is_server():
 		server.end_board(self)
 	else:

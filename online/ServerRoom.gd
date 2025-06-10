@@ -41,6 +41,15 @@ func update(delta: float):
 	else:
 		countdown = 5.0
 
+func close():
+	game_board.queue_free()
+
+func on_game_end():
+	if p1 != null:
+		p1.state = TCGServer.ClientState.IN_ROOM
+	if p2 != null:
+		p2.state = TCGServer.ClientState.IN_ROOM
+
 func to_str() -> String:
 	return "\t".join([
 		str(id), 

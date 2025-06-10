@@ -57,7 +57,7 @@ func _process(delta: float) -> void:
 		peer.accept_stream(conn)
 		clients[peer] = ServerPeer.new(peer)
 		Logger.i("Got new connection from %s" % peer.get_connected_host())
-	
+
 	for peer in clients:
 		var client = clients[peer]
 		peer.poll()
@@ -66,8 +66,14 @@ func _process(delta: float) -> void:
 			if client.ping_timer >= 5:
 				ping(peer)
 				client.ping_timer = 0
+			if Time.get_unix_time_from_system() - client.last_ping > 30:
+				print("Client disconnected by timeout")
+				disconnect_peer(peer)
 			while peer.get_available_packet_count():
 				handle_packet(peer)
+		else:
+			print("Client disconnected by socket state")
+			disconnect_peer(peer)
 
 	for room in rooms:
 		var old_countdown: float = room.countdown
@@ -176,6 +182,7 @@ func handle_packet(peer: WebSocketPeer):
 				clients[peer].state = ClientState.IDLE
 				if room.p1 == null and room.p2 == null:
 					Logger.i("Room closed")
+					room.close()
 					rooms.erase(room)
 				return
 			var room: ServerRoom = get_room(room_id)
@@ -262,7 +269,7 @@ func start_game(room: ServerRoom):
 		"decks": [null, null],
 		"actions": [[], []]
 	}
-	var game_scene = game_tscn.instantiate()
+	var game_scene: GameBoard = game_tscn.instantiate()
 	game_scene.player_options.push_back({
 		"deck": {
 			"cards": room.p1_deck
@@ -280,6 +287,9 @@ func start_game(room: ServerRoom):
 	game_scene.game_options["reveal_hands"] = false
 	game_scene.game_options["online"] = "server"
 	game_scene.server = self
+	game_scene.game_ended.connect(func on_game_end():
+		room.on_game_end()
+	)
 	add_child(game_scene)
 	room.game_board = game_scene
 	var msg: PackedInt32Array
@@ -291,6 +301,8 @@ func start_game(room: ServerRoom):
 	room.p2_deck = []
 	send_room(room, room.p1.peer)
 	send_room(room, room.p2.peer)
+	room.p1.state = ClientState.PLAYING
+	room.p2.state = ClientState.PLAYING
 
 func send_chat(peer: WebSocketPeer, message: String) -> void:
 	if peer in peer_to_room:
@@ -353,6 +365,29 @@ func ping(peer: WebSocketPeer) -> void:
 	var type: PackedInt32Array
 	type.push_back(MessageType.PING)
 	peer.send(type.to_byte_array())
+
+func disconnect_peer(peer: WebSocketPeer) -> void:
+	var client: ServerPeer = clients[peer]
+	# Leave room
+	if peer in peer_to_room:
+		var room: ServerRoom = peer_to_room[peer]
+		room.remove_player(client)
+		peer_to_room.erase(peer)
+		for p in room.get_players():
+			if p != null:
+				Logger.i("Client State: %d" % p.state)
+				if p.state == ClientState.PLAYING:
+					Logger.i("Disconnect result")
+					room.game_board.end_game(Enum.GameResult.DISCONNECT)
+				send_room(room, p.peer)
+		clients[peer].state = ClientState.IDLE
+		if room.p1 == null and room.p2 == null:
+			Logger.i("Room closed")
+			room.close()
+			rooms.erase(room)
+	# Remove player
+	peer.close()
+	clients.erase(peer)
 
 func _exit_tree() -> void:
 	for peer in clients:
