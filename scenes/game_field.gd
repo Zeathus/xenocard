@@ -12,9 +12,9 @@ var situation: Array[Card]
 var zones: Dictionary
 
 func _ready():
-	$Deck/Card.turn_down()
-	$Lost/Card.turn_down()
-	$Junk/Card.turn_up()
+	$Piles/Deck/Card.turn_down()
+	$Piles/Lost/Card.turn_down()
+	$Piles/Junk/Card.turn_up()
 	standby = [null, null, null, null]
 	battlefield = [null, null, null, null]
 	situation = [null, null, null, null]
@@ -33,8 +33,10 @@ func _ready():
 		]
 	}
 	if global_rotation != 0:
-		for i in [$Deck/Count, $Lost/Count, $Junk/Count, $Deck/Label, $Lost/Label, $Junk/Label]:
-			i.rotation = -global_rotation
+		$Piles.rotation = -global_rotation
+		var deck_position = $Piles/Deck.position
+		$Piles/Deck.position = $Piles/Junk.position
+		$Piles/Junk.position = deck_position
 
 func standby_count():
 	var count: int = 0
@@ -205,24 +207,34 @@ func reset_attackable():
 	get_deck_node().find_child("Attackable").visible = false
 
 func get_deck_node() -> Node2D:
-	return $Deck
+	return $Piles/Deck/Card
 
 func get_lost_node() -> Node2D:
-	return $Lost
+	return $Piles/Lost/Card
 
 func get_junk_node() -> Node2D:
-	return $Junk
+	return $Piles/Junk/Card
 
 func refresh():
-	$Deck/Count.text = "%d" % player.deck.size()
-	$Lost/Count.text = "%d" % player.lost.size()
-	$Junk/Count.text = "%d" % player.junk.size()
-	$Lost/Card.visible = player.lost.size() > 0
-	$Junk/Card.visible = player.junk.size() > 0
+	$Piles/Deck/Count.text = "%d" % player.deck.size()
+	$Piles/Lost/Count.text = "%d" % player.lost.size()
+	$Piles/Junk/Count.text = "%d" % player.junk.size()
+	$Piles/Deck/CardStack.visible = player.deck.size() > 0
+	$Piles/Lost/CardStack.visible = player.lost.size() > 0
+	$Piles/Junk/CardStack.visible = player.junk.size() > 0
+	$Piles/Deck/Card.visible = player.deck.size() > 0
+	$Piles/Lost/Card.visible = player.lost.size() > 0
+	$Piles/Junk/Card.visible = player.junk.size() > 0
+	$Piles/Deck/Card.position.y = -player.deck.size() / 2
+	$Piles/Lost/Card.position.y = -player.lost.size() / 2
+	$Piles/Junk/Card.position.y = -player.junk.size() / 2
+	$Piles/Deck/Count.position.y = -89 - player.deck.size() / 2
+	$Piles/Lost/Count.position.y = -89 - player.lost.size() / 2
+	$Piles/Junk/Count.position.y = -89 - player.junk.size() / 2
 	if player.junk.size() > 0:
 		var top_junk: Card = player.junk.top()
-		$Junk/Card.show_card(top_junk.data)
-		$Junk/Card.turn_up()
+		$Piles/Junk/Card.show_card(top_junk.data)
+		$Piles/Junk/Card.turn_up()
 	for zone_type in [Enum.Zone.STANDBY, Enum.Zone.BATTLEFIELD]:
 		for i in range(4):
 			var card: Card = get_card(zone_type, i)

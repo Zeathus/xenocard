@@ -1,77 +1,15 @@
-[gd_scene load_steps=15 format=3 uid="uid://d2tcufci502xh"]
+[gd_scene load_steps=7 format=3 uid="uid://d2tcufci502xh"]
 
 [ext_resource type="Script" uid="uid://cv5p44153gcr4" path="res://objects/card_status.gd" id="1_ky7jd"]
 [ext_resource type="PackedScene" uid="uid://g7yv71p73utl" path="res://objects/attribute.tscn" id="2_c6fv0"]
+[ext_resource type="Script" uid="uid://b33v4x0u4vebx" path="res://objects/notched_bar.gd" id="3_jhyor"]
 [ext_resource type="Texture2D" uid="uid://cgvcggvt58dyg" path="res://sprites/icons/point_up.png" id="3_pmapq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3dq0f"]
 font_size = 28
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h8spx"]
-bg_color = Color(0.23, 0.23, 0.23, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ibhn2"]
-bg_color = Color(0, 0.501961, 0, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
 [sub_resource type="LabelSettings" id="LabelSettings_pasle"]
 font_size = 28
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qm351"]
-bg_color = Color(0.23, 0.23, 0.23, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nffmt"]
-bg_color = Color(0.23, 0.23, 0.23, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0745w"]
-bg_color = Color(0.23, 0.23, 0.23, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6cm2t"]
-bg_color = Color(0.212839, 0.439923, 1, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c6k3m"]
-bg_color = Color(0.212839, 0.439923, 1, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_36mnk"]
-bg_color = Color(0.212839, 0.439923, 1, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_krnbx"]
-bg_color = Color(0.212839, 0.439923, 1, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
 
 [node name="CardStatus" type="Node2D"]
 script = ExtResource("1_ky7jd")
@@ -121,165 +59,11 @@ offset_top = 42.0
 offset_right = 146.0
 offset_bottom = 72.0
 
-[node name="Off1" type="Panel" parent="Panel/PanelHP"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 3.0
-offset_right = 14.0
-offset_bottom = 27.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_h8spx")
-
-[node name="Off2" type="Panel" parent="Panel/PanelHP"]
-layout_mode = 0
-offset_left = 18.0
-offset_top = 3.0
-offset_right = 28.0
-offset_bottom = 27.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_h8spx")
-
-[node name="Off3" type="Panel" parent="Panel/PanelHP"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 3.0
-offset_right = 42.0
-offset_bottom = 27.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_h8spx")
-
-[node name="Off4" type="Panel" parent="Panel/PanelHP"]
-layout_mode = 0
-offset_left = 46.0
-offset_top = 3.0
-offset_right = 56.0
-offset_bottom = 27.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_h8spx")
-
-[node name="Off5" type="Panel" parent="Panel/PanelHP"]
-layout_mode = 0
-offset_left = 60.0
-offset_top = 3.0
-offset_right = 70.0
-offset_bottom = 27.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_h8spx")
-
-[node name="Off6" type="Panel" parent="Panel/PanelHP"]
-layout_mode = 0
-offset_left = 74.0
-offset_top = 3.0
-offset_right = 84.0
-offset_bottom = 27.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_h8spx")
-
-[node name="Off7" type="Panel" parent="Panel/PanelHP"]
-layout_mode = 0
-offset_left = 88.0
-offset_top = 3.0
-offset_right = 98.0
-offset_bottom = 27.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_h8spx")
-
-[node name="Off8" type="Panel" parent="Panel/PanelHP"]
-layout_mode = 0
-offset_left = 102.0
-offset_top = 3.0
-offset_right = 112.0
-offset_bottom = 27.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_h8spx")
-
-[node name="Off9" type="Panel" parent="Panel/PanelHP"]
-layout_mode = 0
-offset_left = 116.0
-offset_top = 3.0
-offset_right = 126.0
-offset_bottom = 27.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_h8spx")
-
-[node name="Off10" type="Panel" parent="Panel/PanelHP"]
-layout_mode = 0
-offset_left = 130.0
-offset_top = 3.0
-offset_right = 140.0
-offset_bottom = 27.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_h8spx")
-
-[node name="On1" type="Panel" parent="Panel/PanelHP"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 3.0
-offset_right = 14.0
-offset_bottom = 27.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ibhn2")
-
-[node name="On2" type="Panel" parent="Panel/PanelHP"]
-layout_mode = 0
-offset_left = 18.0
-offset_top = 3.0
-offset_right = 28.0
-offset_bottom = 27.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ibhn2")
-
-[node name="On3" type="Panel" parent="Panel/PanelHP"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 3.0
-offset_right = 42.0
-offset_bottom = 27.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ibhn2")
-
-[node name="On4" type="Panel" parent="Panel/PanelHP"]
-layout_mode = 0
-offset_left = 46.0
-offset_top = 3.0
-offset_right = 56.0
-offset_bottom = 27.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ibhn2")
-
-[node name="On5" type="Panel" parent="Panel/PanelHP"]
-layout_mode = 0
-offset_left = 60.0
-offset_top = 3.0
-offset_right = 70.0
-offset_bottom = 27.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ibhn2")
-
-[node name="On6" type="Panel" parent="Panel/PanelHP"]
-layout_mode = 0
-offset_left = 74.0
-offset_top = 3.0
-offset_right = 84.0
-offset_bottom = 27.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ibhn2")
-
-[node name="On7" type="Panel" parent="Panel/PanelHP"]
-layout_mode = 0
-offset_left = 88.0
-offset_top = 3.0
-offset_right = 98.0
-offset_bottom = 27.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ibhn2")
-
-[node name="On8" type="Panel" parent="Panel/PanelHP"]
-layout_mode = 0
-offset_left = 102.0
-offset_top = 3.0
-offset_right = 112.0
-offset_bottom = 27.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ibhn2")
-
-[node name="On9" type="Panel" parent="Panel/PanelHP"]
-layout_mode = 0
-offset_left = 116.0
-offset_top = 3.0
-offset_right = 126.0
-offset_bottom = 27.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ibhn2")
-
-[node name="On10" type="Panel" parent="Panel/PanelHP"]
-layout_mode = 0
-offset_left = 130.0
-offset_top = 3.0
-offset_right = 140.0
-offset_bottom = 27.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ibhn2")
+[node name="Gauge" type="Control" parent="Panel/PanelHP"]
+anchors_preset = 0
+offset_right = 132.0
+offset_bottom = 30.0
+script = ExtResource("3_jhyor")
 
 [node name="LabelATK" type="Label" parent="Panel"]
 layout_mode = 1
@@ -331,69 +115,13 @@ offset_top = 142.0
 offset_right = 146.0
 offset_bottom = 172.0
 
-[node name="Off1" type="Panel" parent="Panel/PanelCharge"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 3.0
-offset_right = 14.0
-offset_bottom = 27.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_h8spx")
-
-[node name="Off2" type="Panel" parent="Panel/PanelCharge"]
-layout_mode = 0
-offset_left = 18.0
-offset_top = 3.0
-offset_right = 28.0
-offset_bottom = 27.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_qm351")
-
-[node name="Off3" type="Panel" parent="Panel/PanelCharge"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 3.0
-offset_right = 42.0
-offset_bottom = 27.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_nffmt")
-
-[node name="Off4" type="Panel" parent="Panel/PanelCharge"]
-layout_mode = 0
-offset_left = 46.0
-offset_top = 3.0
-offset_right = 56.0
-offset_bottom = 27.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_0745w")
-
-[node name="On1" type="Panel" parent="Panel/PanelCharge"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 3.0
-offset_right = 14.0
-offset_bottom = 27.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_6cm2t")
-
-[node name="On2" type="Panel" parent="Panel/PanelCharge"]
-layout_mode = 0
-offset_left = 18.0
-offset_top = 3.0
-offset_right = 28.0
-offset_bottom = 27.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_c6k3m")
-
-[node name="On3" type="Panel" parent="Panel/PanelCharge"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 3.0
-offset_right = 42.0
-offset_bottom = 27.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_36mnk")
-
-[node name="On4" type="Panel" parent="Panel/PanelCharge"]
-layout_mode = 0
-offset_left = 46.0
-offset_top = 3.0
-offset_right = 56.0
-offset_bottom = 27.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_krnbx")
+[node name="Gauge" type="Control" parent="Panel/PanelCharge"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 132.0
+offset_bottom = 30.0
+script = ExtResource("3_jhyor")
+color_on = Color(0.211765, 0.439216, 1, 1)
 
 [node name="ATKArrow" type="Sprite2D" parent="Panel"]
 position = Vector2(106, 92)

@@ -311,13 +311,14 @@ func end_scene():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var event_str: String = "Events: ["
-	for e in event_queue:
-		if e != event_queue.front():
-			event_str += " "
-		event_str += event_to_str(e)
-	event_str += "]"
-	$TestLabel.text = event_str
+	if $TestLabel.visible:
+		var event_str: String = "Events: ["
+		for e in event_queue:
+			if e != event_queue.front():
+				event_str += " "
+			event_str += event_to_str(e)
+		event_str += "]"
+		$TestLabel.text = event_str
 	
 	if is_client() and client.game_result != Enum.GameResult.NONE:
 		if can_end_game_on_current_event():

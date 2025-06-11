@@ -667,10 +667,10 @@ metadata/_edit_use_anchors_ = true
 [node name="AttributeCount" type="Label" parent="Stats"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.101427
-anchor_top = 0.00519354
-anchor_right = 0.164225
-anchor_bottom = 0.00519354
+anchor_left = 0.025309
+anchor_top = 0.00519349
+anchor_right = 0.088107
+anchor_bottom = 0.00519349
 offset_left = 554.4
 offset_top = 68.2002
 offset_right = 576.4
@@ -683,9 +683,9 @@ metadata/_edit_use_anchors_ = true
 [node name="AttributeField" type="Label" parent="Stats"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.101427
+anchor_left = 0.025309
 anchor_top = 0.264934
-anchor_right = 0.172788
+anchor_right = 0.09667
 anchor_bottom = 0.264934
 offset_left = 554.4
 offset_top = 68.2002
@@ -697,7 +697,7 @@ clip_text = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Any" type="Node2D" parent="Stats"]
-position = Vector2(772, 42)
+position = Vector2(692, 42)
 
 [node name="Icon" type="Sprite2D" parent="Stats/Any"]
 position = Vector2(0, 1.00018)
@@ -739,7 +739,7 @@ clip_text = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Human" type="Node2D" parent="Stats"]
-position = Vector2(812, 42)
+position = Vector2(732, 42)
 
 [node name="Icon" type="Sprite2D" parent="Stats/Human"]
 position = Vector2(0, 1.00018)
@@ -781,7 +781,7 @@ clip_text = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Realian" type="Node2D" parent="Stats"]
-position = Vector2(852, 42)
+position = Vector2(772, 42)
 
 [node name="Icon" type="Sprite2D" parent="Stats/Realian"]
 position = Vector2(0, 1.00018)
@@ -823,7 +823,7 @@ clip_text = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Machine" type="Node2D" parent="Stats"]
-position = Vector2(892, 42)
+position = Vector2(812, 42)
 
 [node name="Icon" type="Sprite2D" parent="Stats/Machine"]
 position = Vector2(0, 1.00018)
@@ -865,7 +865,7 @@ clip_text = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Gnosis" type="Node2D" parent="Stats"]
-position = Vector2(932, 42)
+position = Vector2(852, 42)
 
 [node name="Icon" type="Sprite2D" parent="Stats/Gnosis"]
 position = Vector2(0, 1.00018)
@@ -907,8 +907,7 @@ clip_text = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Monster" type="Node2D" parent="Stats"]
-visible = false
-position = Vector2(852, 42)
+position = Vector2(892, 42)
 
 [node name="Icon" type="Sprite2D" parent="Stats/Monster"]
 position = Vector2(0, 1.00018)
@@ -950,8 +949,7 @@ clip_text = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Nopon" type="Node2D" parent="Stats"]
-visible = false
-position = Vector2(892, 42)
+position = Vector2(932, 42)
 
 [node name="Icon" type="Sprite2D" parent="Stats/Nopon"]
 position = Vector2(0, 1.00018)
@@ -1379,7 +1377,6 @@ scale = Vector2(0.4, 0.4)
 texture = ExtResource("5_vx0wu")
 
 [node name="FieldMonster" parent="Filters" instance=ExtResource("10_r56lw")]
-visible = false
 position = Vector2(728, 123)
 scale = Vector2(1.5, 1.5)
 three_state = true
@@ -1390,7 +1387,6 @@ scale = Vector2(0.4, 0.4)
 texture = ExtResource("11_8h8cp")
 
 [node name="FieldNopon" parent="Filters" instance=ExtResource("10_r56lw")]
-visible = false
 position = Vector2(776, 123)
 scale = Vector2(1.5, 1.5)
 three_state = true

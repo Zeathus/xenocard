@@ -25,7 +25,7 @@ func on_start():
 	var anim_targets: Array[Node2D] = []
 	for t in attacker.get_attack_targets(game_board):
 		targets.push_back(t)
-		anim_targets.push_back(t.instance if t.is_card() else t.field.get_deck_node().find_child("Card"))
+		anim_targets.push_back(t.instance if t.is_card() else t.field.get_deck_node())
 	var anim: AnimationAttack = AnimationAttack.new(game_board, attacker.instance, anim_targets, attacker.get_atk(), attacker.get_attack_type())
 	queue_event(EventAnimation.new(game_board, anim))
 	if len(targets) == 0:

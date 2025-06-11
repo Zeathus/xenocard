@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bu0roj477cb2l"]
+[gd_scene load_steps=16 format=3 uid="uid://bu0roj477cb2l"]
 
 [ext_resource type="Script" uid="uid://dtrpquqgfskaj" path="res://scenes/game_field.gd" id="1_0jgdo"]
 [ext_resource type="PackedScene" uid="uid://dosulntiwpmvw" path="res://objects/card_display.tscn" id="1_s5b86"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://c2w8chrn1bmt6" path="res://scenes/attackable.gd" id="4_pyc3x"]
 [ext_resource type="PackedScene" uid="uid://dr4q0wbi3qwms" path="res://objects/deck_node.tscn" id="4_y82g8"]
 [ext_resource type="FontFile" uid="uid://ng1y54e8x08v" path="res://fonts/Roboto/Roboto-Bold.ttf" id="5_ku0h5"]
+[ext_resource type="Texture2D" uid="uid://bskl8tdqw4k0j" path="res://sprites/card_stack.png" id="7_5gsme"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6oole"]
 font_size = 32
@@ -238,20 +239,31 @@ position = Vector2(216, -4)
 type = 6
 index = 3
 
-[node name="Deck" type="Area2D" parent="."]
-position = Vector2(423, 432)
+[node name="Piles" type="Node2D" parent="."]
+position = Vector2(607, 400)
 
-[node name="Card" parent="Deck" instance=ExtResource("4_y82g8")]
+[node name="Deck" type="Area2D" parent="Piles"]
+position = Vector2(-184, -8)
+
+[node name="Card" parent="Piles/Deck" instance=ExtResource("4_y82g8")]
 scale = Vector2(0.15, 0.15)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Deck"]
+[node name="Attackable" type="Polygon2D" parent="Piles/Deck/Card"]
+visible = false
+z_index = 10
+scale = Vector2(6.66667, 6.66667)
+color = Color(1, 0, 0, 0.501961)
+polygon = PackedVector2Array(-66, -96, 66, -96, 66, 96, -66, 96)
+script = ExtResource("4_pyc3x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Piles/Deck"]
 shape = SubResource("RectangleShape2D_inymr")
 
-[node name="Label" type="Label" parent="Deck"]
+[node name="Label" type="Label" parent="Piles/Deck"]
 offset_left = -58.0
-offset_top = -136.0
+offset_top = 99.0
 offset_right = 58.0
-offset_bottom = -91.0
+offset_bottom = 144.0
 pivot_offset = Vector2(58, 22.5)
 theme_override_fonts/font = ExtResource("5_ku0h5")
 text = "DECK"
@@ -259,7 +271,7 @@ label_settings = SubResource("LabelSettings_lkt4t")
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Count" type="Label" parent="Deck"]
+[node name="Count" type="Label" parent="Piles/Deck"]
 offset_left = -58.0
 offset_top = -89.0
 offset_right = 58.0
@@ -271,28 +283,26 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Attackable" type="Polygon2D" parent="Deck"]
-visible = false
-z_index = 10
-color = Color(1, 0, 0, 0.501961)
-polygon = PackedVector2Array(-66, -96, 66, -96, 66, 96, -66, 96)
-script = ExtResource("4_pyc3x")
+[node name="CardStack" type="Sprite2D" parent="Piles/Deck"]
+z_index = -1
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("7_5gsme")
 
-[node name="Lost" type="Area2D" parent="."]
-position = Vector2(607, 432)
+[node name="Lost" type="Area2D" parent="Piles"]
+position = Vector2(0, -8)
 
-[node name="Card" parent="Lost" instance=ExtResource("1_s5b86")]
+[node name="Card" parent="Piles/Lost" instance=ExtResource("1_s5b86")]
 visible = false
 scale = Vector2(0.15, 0.15)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Lost"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Piles/Lost"]
 shape = SubResource("RectangleShape2D_inymr")
 
-[node name="Label" type="Label" parent="Lost"]
+[node name="Label" type="Label" parent="Piles/Lost"]
 offset_left = -58.0
-offset_top = -136.0
+offset_top = 99.0
 offset_right = 58.0
-offset_bottom = -91.0
+offset_bottom = 144.0
 pivot_offset = Vector2(58, 22.5)
 theme_override_fonts/font = ExtResource("5_ku0h5")
 text = "LOST"
@@ -300,7 +310,7 @@ label_settings = SubResource("LabelSettings_lkt4t")
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Count" type="Label" parent="Lost"]
+[node name="Count" type="Label" parent="Piles/Lost"]
 z_index = 10
 offset_left = -58.0
 offset_top = -89.0
@@ -313,21 +323,27 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Junk" type="Area2D" parent="."]
-position = Vector2(791, 432)
+[node name="CardStack" type="Sprite2D" parent="Piles/Lost"]
+visible = false
+z_index = -1
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("7_5gsme")
 
-[node name="Card" parent="Junk" instance=ExtResource("1_s5b86")]
+[node name="Junk" type="Area2D" parent="Piles"]
+position = Vector2(184, -8)
+
+[node name="Card" parent="Piles/Junk" instance=ExtResource("1_s5b86")]
 visible = false
 scale = Vector2(0.15, 0.15)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Junk"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Piles/Junk"]
 shape = SubResource("RectangleShape2D_inymr")
 
-[node name="Label" type="Label" parent="Junk"]
+[node name="Label" type="Label" parent="Piles/Junk"]
 offset_left = -58.0
-offset_top = -136.0
+offset_top = 99.0
 offset_right = 58.0
-offset_bottom = -91.0
+offset_bottom = 144.0
 pivot_offset = Vector2(58, 22.5)
 theme_override_fonts/font = ExtResource("5_ku0h5")
 text = "JUNK"
@@ -335,7 +351,7 @@ label_settings = SubResource("LabelSettings_lkt4t")
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Count" type="Label" parent="Junk"]
+[node name="Count" type="Label" parent="Piles/Junk"]
 z_index = 10
 offset_left = -58.0
 offset_top = -89.0
@@ -347,6 +363,12 @@ label_settings = SubResource("LabelSettings_0vxrs")
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="CardStack" type="Sprite2D" parent="Piles/Junk"]
+visible = false
+z_index = -1
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("7_5gsme")
 
 [node name="Cards" type="Node2D" parent="."]
 
@@ -362,5 +384,5 @@ metadata/_edit_use_anchors_ = true
 [connection signal="selected" from="Situation/Zone2" to="." method="_on_zone_selected"]
 [connection signal="selected" from="Situation/Zone3" to="." method="_on_zone_selected"]
 [connection signal="selected" from="Situation/Zone4" to="." method="_on_zone_selected"]
-[connection signal="input_event" from="Junk" to="." method="_on_junk_input_event"]
-[connection signal="mouse_entered" from="Junk" to="." method="_on_junk_mouse_entered"]
+[connection signal="input_event" from="Piles/Junk" to="." method="_on_junk_input_event"]
+[connection signal="mouse_entered" from="Piles/Junk" to="." method="_on_junk_mouse_entered"]
