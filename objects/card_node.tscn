@@ -1,8 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://dpm1bqbevvyb7"]
+[gd_scene load_steps=30 format=3 uid="uid://dpm1bqbevvyb7"]
 
 [ext_resource type="Script" uid="uid://lc47fvw1tc21" path="res://objects/card_node.gd" id="1_wdlaa"]
 [ext_resource type="PackedScene" uid="uid://dosulntiwpmvw" path="res://objects/card_display.tscn" id="2_2gm7b"]
 [ext_resource type="FontFile" uid="uid://cwo0ya5s4od8f" path="res://fonts/Roboto/RobotoCondensed-VariableFont_wght.ttf" id="3_dqdvf"]
+[ext_resource type="Texture2D" uid="uid://c1jedbjtnjug1" path="res://sprites/icons/clock.png" id="4_iuqj6"]
 [ext_resource type="Script" uid="uid://dacncq668kr4r" path="res://objects/select_border.gd" id="4_skjdn"]
 [ext_resource type="PackedScene" uid="uid://de2wv2ykfcwhh" path="res://objects/effect_indicator.tscn" id="5_5egaa"]
 
@@ -385,14 +386,19 @@ vertical_alignment = 1
 
 [node name="Duration" type="Label" parent="Pivot/Overlay"]
 visible = false
-offset_left = -93.0
-offset_top = -225.0
-offset_right = 341.0
-offset_bottom = 67.0
+offset_left = -125.0
+offset_top = -201.0
+offset_right = 187.0
+offset_bottom = 91.0
 theme_override_fonts/font = SubResource("FontVariation_dhdjw")
-text = "0 ◷"
+text = "0 "
 label_settings = SubResource("LabelSettings_0halo")
 horizontal_alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot/Overlay/Duration"]
+position = Vector2(384, 112)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_iuqj6")
 
 [node name="HelpText" type="Label" parent="Pivot"]
 visible = false

@@ -1,8 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://0updritxm8ty"]
+[gd_scene load_steps=31 format=3 uid="uid://0updritxm8ty"]
 
 [ext_resource type="Script" uid="uid://lc47fvw1tc21" path="res://objects/card_node.gd" id="1_bm84w"]
 [ext_resource type="PackedScene" uid="uid://bqbigxqwv1geb" path="res://objects/card_display_baked.tscn" id="2_ccsm2"]
 [ext_resource type="FontFile" uid="uid://cwo0ya5s4od8f" path="res://fonts/Roboto/RobotoCondensed-VariableFont_wght.ttf" id="3_3tfw3"]
+[ext_resource type="Texture2D" uid="uid://c1jedbjtnjug1" path="res://sprites/icons/clock.png" id="4_pqeab"]
 [ext_resource type="Script" uid="uid://dacncq668kr4r" path="res://objects/select_border.gd" id="4_q3olo"]
 [ext_resource type="PackedScene" uid="uid://de2wv2ykfcwhh" path="res://objects/effect_indicator.tscn" id="5_e16ss"]
 
@@ -35,8 +36,13 @@ font_size = 220
 outline_size = 96
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_0halo"]
-font_size = 192
+[sub_resource type="FontVariation" id="FontVariation_pcu0c"]
+base_font = ExtResource("3_3tfw3")
+variation_embolden = 0.25
+spacing_glyph = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_1jccx"]
+font_size = 160
 outline_size = 80
 outline_color = Color(0, 0, 0, 1)
 
@@ -378,11 +384,17 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4nfh4")
 
 [node name="Label" type="Label" parent="Pivot/Overlay/EMark"]
-layout_mode = 0
-offset_left = 585.0
-offset_top = 105.0
-offset_right = 871.0
-offset_bottom = 458.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.235
+anchor_right = 0.5
+anchor_bottom = 0.235
+offset_left = 185.0
+offset_top = -177.0
+offset_right = 471.0
+offset_bottom = 124.0
+pivot_offset = Vector2(-185, 262)
 theme_override_fonts/font = SubResource("FontVariation_dhdjw")
 text = "E"
 label_settings = SubResource("LabelSettings_hxlnm")
@@ -397,10 +409,17 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8f86m")
 
 [node name="Label" type="Label" parent="Pivot/Overlay/Downed"]
-layout_mode = 0
-offset_top = 85.0
-offset_right = 799.0
-offset_bottom = 631.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.499
+anchor_top = 0.298
+anchor_right = 0.499
+anchor_bottom = 0.298
+offset_left = -399.2
+offset_top = -272.6
+offset_right = 400.8
+offset_bottom = 273.4
+pivot_offset = Vector2(400, 282)
 theme_override_fonts/font = SubResource("FontVariation_dhdjw")
 text = "DOWN"
 label_settings = SubResource("LabelSettings_0q25d")
@@ -409,14 +428,20 @@ vertical_alignment = 1
 
 [node name="Duration" type="Label" parent="Pivot/Overlay"]
 visible = false
-offset_left = -93.0
-offset_top = -225.0
-offset_right = 341.0
-offset_bottom = 67.0
-theme_override_fonts/font = SubResource("FontVariation_dhdjw")
-text = "0 ◷"
-label_settings = SubResource("LabelSettings_0halo")
+offset_left = -109.0
+offset_top = -161.0
+offset_right = 203.0
+offset_bottom = 131.0
+pivot_offset = Vector2(109, -72)
+theme_override_fonts/font = SubResource("FontVariation_pcu0c")
+text = "0 "
+label_settings = SubResource("LabelSettings_1jccx")
 horizontal_alignment = 2
+
+[node name="Icon" type="Sprite2D" parent="Pivot/Overlay/Duration"]
+position = Vector2(384, 92)
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("4_pqeab")
 
 [node name="HelpText" type="Label" parent="Pivot"]
 visible = false

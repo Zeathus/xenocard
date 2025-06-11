@@ -18,6 +18,10 @@ func _process(delta):
 	z_index = original_z
 	if Options.rotate_enemy_cards:
 		$Pivot.rotation = -global_rotation
+	else:
+		$Pivot/Overlay/Downed/Label.rotation = -global_rotation
+		$Pivot/Overlay/EMark/Label.rotation = -global_rotation
+		$Pivot/Overlay/Duration.rotation = -global_rotation
 	if $Pivot/Card.is_hovering:
 		$Pivot/Overlay.rotation = -global_rotation
 		z_index += 1
@@ -69,7 +73,7 @@ func set_duration(val: int):
 		$Pivot/Overlay/Duration.visible = false
 	else:
 		$Pivot/Overlay/Duration.visible = true
-		$Pivot/Overlay/Duration.text = "%d ◷" % val
+		$Pivot/Overlay/Duration.text = "%d " % val
 
 func set_help_text(text: String):
 	$Pivot/HelpText.visible = true
