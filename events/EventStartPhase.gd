@@ -7,6 +7,7 @@ var phase: Enum.Phase
 var state: int = 0
 var label_phase: Label
 var label_next_phase: Label
+var label_next_phase_arrow: Sprite2D
 
 func _init(_game_board: GameBoard, _player: Player, _phase: Enum.Phase):
 	broadcasted = false
@@ -16,6 +17,7 @@ func _init(_game_board: GameBoard, _player: Player, _phase: Enum.Phase):
 	var phases_node: Node2D = game_board.find_child("Phases")
 	label_phase = phases_node.find_child("Phase")
 	label_next_phase = phases_node.find_child("NextPhase")
+	label_next_phase_arrow = label_next_phase.find_child("Arrow")
 
 func get_name() -> String:
 	return "StartPhase"
@@ -36,24 +38,30 @@ func process(delta):
 			for label in [label_phase, label_next_phase]:
 				label.label_settings.font_color.a = 1.0
 				label.label_settings.outline_color.a = 1.0
+			label_next_phase_arrow.modulate.a = 1.0
+			label_next_phase_arrow.visible = true
 			state = 1
 		1:
 			for label in [label_phase, label_next_phase]:
 				label.label_settings.font_color.a -= delta * 4
 				label.label_settings.outline_color.a -= delta * 4
+			label_next_phase_arrow.modulate.a -= delta * 4
 			if label_phase.label_settings.font_color.a <= 0:
 				label_phase.text = get_phase_text(phase)
-				label_next_phase.text = "➔ " + get_phase_text(get_next_phase(phase))
+				label_next_phase.text = "   " + get_phase_text(get_next_phase(phase))
+				label_next_phase_arrow.position.x = label_next_phase.get_character_bounds(0).position.x + 2
 				state = 2
 		2:
 			for label in [label_phase, label_next_phase]:
 				label.label_settings.font_color.a = 0
 				label.label_settings.outline_color.a = 0
+			label_next_phase_arrow.modulate.a = 0
 			state = 3
 		3:
 			for label in [label_phase, label_next_phase]:
 				label.label_settings.font_color.a += delta * 4
 				label.label_settings.outline_color.a += delta * 4
+			label_next_phase_arrow.modulate.a += delta * 4
 			if label_phase.label_settings.font_color.a >= 1:
 				state = 4
 		4:
