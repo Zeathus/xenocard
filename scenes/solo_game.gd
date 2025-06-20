@@ -30,6 +30,7 @@ func get_deck(player_id: int):
 	return node.get_item_text(node.get_selected_id())
 
 func _on_button_start_pressed():
+	get_parent().play_se("click1")
 	var game = game_scene.instantiate()
 	add_player_options(game, $P1)
 	add_player_options(game, $P2)
@@ -47,15 +48,19 @@ func add_player_options(game: GameBoard, node: Node):
 	game.player_options.push_back(options)
 
 func _on_button_exit_pressed():
+	get_parent().play_se("click3")
 	get_parent().end_scene()
 
 func _on_p1_deck_preset_toggled(toggled_on):
+	get_parent().play_se("switch6" if toggled_on else "switch8")
 	load_decks($P1/Deck, toggled_on)
 	refresh()
 
 func _on_p2_deck_preset_toggled(toggled_on):
+	get_parent().play_se("switch6" if toggled_on else "switch8")
 	load_decks($P2/Deck, toggled_on)
 	refresh()
 
 func _on_deck_item_selected(index):
+	get_parent().play_se("click1")
 	refresh()

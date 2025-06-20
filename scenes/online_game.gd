@@ -116,6 +116,7 @@ func connect_to_server():
 	client.countdown.connect(on_countdown_update)
 
 func on_join_pressed(room: ServerRoom, password: String = ""):
+	get_parent().play_se("confirmation_001", -5)
 	selected_room = room
 	$ClickBlock.visible = true
 	if room.password == "1" and len(password) == 0:
@@ -128,6 +129,12 @@ func on_join_pressed(room: ServerRoom, password: String = ""):
 		client.join_room(room.id, password)
 
 func on_room_update():
+	if client.current_room.p1_name != $RoomMenu/P1Name.text or client.current_room.p2_name != $RoomMenu/P2Name.text:
+		if $RoomMenu/P1Name.text != "":
+			if client.current_room.p2_name != "":
+				get_parent().play_se("confirmation_001", -5)
+			else:
+				get_parent().play_se("pepSound1")
 	$RoomMenu/Header.text = client.current_room.name
 	$RoomMenu/P1Name.text = client.current_room.p1_name if client.current_room.p1_name != "" else "<None>"
 	$RoomMenu/P2Name.text = client.current_room.p2_name if client.current_room.p2_name != "" else "<None>"
@@ -199,14 +206,17 @@ func _on_button_start_pressed():
 	$ButtonStart.disabled = true
 
 func _on_button_exit_pressed():
+	get_parent().play_se("click3")
 	get_parent().end_scene()
 
 func _on_p1_deck_preset_toggled(toggled_on):
+	get_parent().play_se("switch6" if toggled_on else "switch8")
 	load_decks($RoomMenu/Deck, toggled_on)
 	$RoomMenu/ReadyButton.disabled = not toggled_on and no_decks
 	refresh()
 
 func _on_deck_item_selected(index):
+	get_parent().play_se("click1")
 	refresh()
 
 func _on_username_text_changed() -> void:
@@ -222,6 +232,7 @@ func _on_username_text_changed() -> void:
 	$UsernamePrompt/ConfirmButton.disabled = len(username) < 3 or len(username) > 15
 
 func _on_confirm_button_pressed() -> void:
+	get_parent().play_se("click1")
 	var username: String = $UsernamePrompt/Username.text
 	if len(username) < 3 or len(username) > 15:
 		return
@@ -255,13 +266,16 @@ func _on_password_text_changed(new_text: String) -> void:
 		$HostPrompt/Password.set_caret_column(min(len(password), 15, old_column))
 
 func _on_show_password_toggled(toggled_on: bool) -> void:
+	get_parent().play_se("switch6" if toggled_on else "switch8")
 	$HostPrompt/Password.secret = not toggled_on
 
 func _on_host_exit_pressed() -> void:
+	get_parent().play_se("click3")
 	$ClickBlock.visible = false
 	$HostPrompt.visible = false
 
 func _on_host_button_pressed() -> void:
+	get_parent().play_se("confirmation_001", -5)
 	var room_name = $HostPrompt/RoomName.text
 	if len(room_name) < 3:
 		room_name = $HostPrompt/RoomName.placeholder_text
@@ -273,6 +287,7 @@ func _on_host_button_pressed() -> void:
 	set_host_menu_disabled(true)
 
 func _on_button_host_pressed() -> void:
+	get_parent().play_se("click1")
 	$ClickBlock.visible = true
 	$HostPrompt.visible = true
 	$HostPrompt/RoomName.text = ""
@@ -280,19 +295,25 @@ func _on_button_host_pressed() -> void:
 	set_host_menu_disabled(false)
 
 func _on_button_refresh_pressed() -> void:
+	get_parent().play_se("click1")
 	if client:
 		client.state = TCGClient.ClientState.GET_ROOMS
 		client.get_rooms()
 
 func _on_leave_button_pressed() -> void:
+	get_parent().play_se("pepSound1")
 	client.leave_room()
 	$RoomMenu.visible = false
 	$ClickBlock.visible = false
+	$RoomMenu/P1Name.text = ""
+	$RoomMenu/P2Name.text = ""
 
 func _on_ready_button_pressed() -> void:
 	if client.state == TCGClient.ClientState.READY:
+		get_parent().play_se("switch8")
 		client.send_unready()
 	else:
+		get_parent().play_se("switch6")
 		client.send_deck(Deck.load(get_deck(), $RoomMenu/DeckPreset.button_pressed))
 	$RoomMenu/ReadyButton.disabled = true
 	$RoomMenu/LeaveButton.disabled = true
@@ -301,10 +322,12 @@ func _on_ready_button_pressed() -> void:
 	$RoomMenu/Deck.disabled = true
 
 func _on_dismiss_button_pressed() -> void:
+	get_parent().play_se("click3")
 	$MessagePanel.visible = false
 	$ClickBlock.visible = false
 
 func _on_close_password_button_pressed() -> void:
+	get_parent().play_se("click3")
 	$PasswordPanel.visible = false
 	$ClickBlock.visible = false
 
@@ -312,6 +335,7 @@ func _on_password_entry_text_changed(new_text: String) -> void:
 	$PasswordPanel/SubmitPasswordButton.disabled = len(new_text) == 0
 
 func _on_submit_password_button_pressed() -> void:
+	get_parent().play_se("click1")
 	$PasswordPanel/SubmitPasswordButton.disabled = true
 	$PasswordPanel/ClosePasswordButton.disabled = true
 	$PasswordPanel/PasswordEntry.editable = false
@@ -319,12 +343,14 @@ func _on_submit_password_button_pressed() -> void:
 
 func _on_password_entry_text_submitted(new_text: String) -> void:
 	if len(new_text) > 0:
+		get_parent().play_se("click1")
 		$PasswordPanel/SubmitPasswordButton.disabled = true
 		$PasswordPanel/ClosePasswordButton.disabled = true
 		$PasswordPanel/PasswordEntry.editable = false
 		on_join_pressed(selected_room, $PasswordPanel/PasswordEntry.text)
 
 func _on_ruleset_filter_item_selected(index: int) -> void:
+	get_parent().play_se("click1")
 	$Filters/RulesetFilterLabel/RulesetDescription.text = Rulesets.get_description($Filters/RulesetFilterLabel/RulesetFilter.get_item_id(index))
 	refresh_room_list()
 

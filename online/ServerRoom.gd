@@ -42,7 +42,8 @@ func update(delta: float):
 		countdown = 5.0
 
 func close():
-	game_board.queue_free()
+	if game_board:
+		game_board.queue_free()
 
 func on_game_end():
 	if p1 != null:

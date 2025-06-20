@@ -17,3 +17,12 @@ position = Vector2(0, -16)
 [node name="BGM" type="AudioStreamPlayer2D" parent="."]
 volume_db = -10.0
 bus = &"Music"
+
+[node name="AudioStream1" type="AudioStreamPlayer2D" parent="."]
+bus = &"UI"
+
+[node name="AudioStream2" type="AudioStreamPlayer2D" parent="."]
+bus = &"UI"
+
+[node name="AudioStream3" type="AudioStreamPlayer2D" parent="."]
+bus = &"UI"

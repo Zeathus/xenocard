@@ -34,22 +34,27 @@ func _on_button_exit_pressed():
 	get_tree().quit()
 
 func _on_button_decks_pressed():
+	get_parent().play_se("click1")
 	var decks_scene = load("res://scenes/deck_builder.tscn")
 	get_parent().start_scene(decks_scene.instantiate())
 
 func _on_button_solo_pressed():
+	get_parent().play_se("click1")
 	var solo_game_scene = load("res://scenes/solo_game.tscn")
 	get_parent().start_scene(solo_game_scene.instantiate())
 
 func _on_button_online_pressed() -> void:
+	get_parent().play_se("click1")
 	var online_game_scene = load("res://scenes/online_game.tscn")
 	get_parent().start_scene(online_game_scene.instantiate())
 
 func _on_button_tutorials_pressed() -> void:
+	get_parent().play_se("click1")
 	var tutorial_scene = load("res://tutorial/menu_tutorial.tscn")
 	get_parent().start_scene(tutorial_scene.instantiate())
 
 func _on_button_options_pressed() -> void:
+	get_parent().play_se("click1")
 	var options_scene = load("res://scenes/menu_options.tscn")
 	get_parent().start_scene(options_scene.instantiate())
 
@@ -68,10 +73,12 @@ func _on_button_create_card_images_pressed() -> void:
 	task = ["create_images", images_to_make.keys(), images_to_make.values(), 0, sub_viewport, card_display]
 
 func _on_lang_us_pressed() -> void:
+	get_parent().play_se("click1")
 	Options.set_locale("en")
 	Options.save()
 
 func _on_lang_jp_pressed() -> void:
+	get_parent().play_se("click1")
 	Options.set_locale("jp")
 	Options.save()
 

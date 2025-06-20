@@ -5,6 +5,8 @@ static var music_volume: int = 100
 static var music_mute: bool = false
 static var sounds_volume: int = 100
 static var sounds_mute: bool = false
+static var ui_volume: int = 100
+static var ui_mute: bool = false
 static var rotate_enemy_cards: bool = false
 static var always_show_atk_boosts: bool = false
 static var disable_block_reminder: bool = false
@@ -29,6 +31,13 @@ static func set_sounds_volume(volume: int):
 	AudioServer.set_bus_volume_db(bus_index, db)
 	AudioServer.set_bus_mute(bus_index, sounds_mute or volume == 0)
 
+static func set_ui_volume(volume: int):
+	ui_volume = volume
+	var db: float = (volume - 100) / 5.0
+	var bus_index = AudioServer.get_bus_index("UI")
+	AudioServer.set_bus_volume_db(bus_index, db)
+	AudioServer.set_bus_mute(bus_index, ui_mute or volume == 0)
+
 static func set_music_mute(value: bool):
 	music_mute = value
 	var bus_index = AudioServer.get_bus_index("Music")
@@ -39,12 +48,19 @@ static func set_sounds_mute(value: bool):
 	var bus_index = AudioServer.get_bus_index("Sounds")
 	AudioServer.set_bus_mute(bus_index, value)
 
+static func set_ui_mute(value: bool):
+	ui_mute = value
+	var bus_index = AudioServer.get_bus_index("UI")
+	AudioServer.set_bus_mute(bus_index, value)
+
 static func to_dict() -> Dictionary:
 	return {
 		"music": music_volume,
 		"music_mute": music_mute,
 		"sounds": sounds_volume,
 		"sounds_mute": sounds_mute,
+		"ui_volume": ui_volume,
+		"ui_mute": ui_mute,
 		"rotate_enemy_cards": rotate_enemy_cards,
 		"always_show_atk_boosts": always_show_atk_boosts,
 		"disable_block_reminder": disable_block_reminder,
@@ -64,6 +80,10 @@ static func load() -> void:
 			set_music_mute(data["music_mute"])
 			set_sounds_volume(data["sounds"])
 			set_sounds_mute(data["sounds_mute"])
+			if "ui_volume" in data:
+				set_ui_volume(data["ui_volume"])
+			if "ui_mute" in data:
+				set_ui_mute(data["ui_mute"])
 			rotate_enemy_cards = data["rotate_enemy_cards"]
 			always_show_atk_boosts = data["always_show_atk_boosts"]
 			disable_block_reminder = data["disable_block_reminder"] if "disable_block_reminder" in data else false

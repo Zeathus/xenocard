@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://btxo3vmrwucln"]
+[gd_scene load_steps=8 format=3 uid="uid://btxo3vmrwucln"]
 
 [ext_resource type="Script" uid="uid://crkboqxuts7vx" path="res://scenes/menu_options.gd" id="1_t45sc"]
 [ext_resource type="Theme" uid="uid://cts0fwcuwbvl0" path="res://theme_default.tres" id="4_soiec"]
+[ext_resource type="AudioStream" uid="uid://c745yitjvm3sy" path="res://audio/se/shoot_1.ogg" id="6_yaf4l"]
+[ext_resource type="AudioStream" uid="uid://b1t0lkg1pl8jv" path="res://audio/se/click1.ogg" id="7_g3ixy"]
 [ext_resource type="Texture2D" uid="uid://bfcdwfmhmx250" path="res://sprites/icons/flag_us.png" id="7_u72o2"]
 [ext_resource type="Texture2D" uid="uid://buoii1820488l" path="res://sprites/icons/flag_jp.png" id="8_6lpfh"]
 [ext_resource type="Texture2D" uid="uid://bq5uf8dxjiv3x" path="res://sprites/icons/discord.png" id="9_picb0"]
@@ -15,6 +17,7 @@ script = ExtResource("1_t45sc")
 position = Vector2(0, 24)
 
 [node name="Languages" type="Node2D" parent="."]
+visible = false
 position = Vector2(832, -448)
 
 [node name="LangUS" type="Button" parent="Languages"]
@@ -174,22 +177,64 @@ metadata/_edit_use_anchors_ = true
 
 [node name="AudioStream" type="AudioStreamPlayer2D" parent="Options/VolumeSounds"]
 position = Vector2(122, 181)
+stream = ExtResource("6_yaf4l")
 bus = &"Sounds"
+
+[node name="VolumeUI" type="HSlider" parent="Options"]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 152.0
+offset_right = 478.0
+offset_bottom = 182.0
+max_value = 200.0
+value = 100.0
+tick_count = 5
+ticks_on_borders = true
+
+[node name="Label" type="Label" parent="Options/VolumeUI"]
+layout_mode = 0
+offset_left = -137.0
+offset_top = 4.0
+offset_right = -33.0
+offset_bottom = 34.0
+text = "UI"
+
+[node name="Value" type="Label" parent="Options/VolumeUI"]
+layout_mode = 0
+offset_left = -129.0
+offset_top = 4.0
+offset_right = -6.0
+offset_bottom = 34.0
+text = "100%"
+horizontal_alignment = 2
+
+[node name="Mute" type="CheckBox" parent="Options/VolumeUI"]
+layout_mode = 0
+offset_left = 317.0
+offset_top = 1.0
+offset_right = 407.0
+offset_bottom = 31.0
+text = "Mute"
+
+[node name="AudioStream" type="AudioStreamPlayer2D" parent="Options/VolumeUI"]
+position = Vector2(122, 181)
+stream = ExtResource("7_g3ixy")
+bus = &"UI"
 
 [node name="UsernameLabel" type="Label" parent="Options"]
 layout_mode = 0
 offset_left = 50.0
-offset_top = 193.0
+offset_top = 249.0
 offset_right = 171.0
-offset_bottom = 223.0
+offset_bottom = 279.0
 text = "Online Name:"
 
 [node name="Username" type="TextEdit" parent="Options"]
 layout_mode = 0
 offset_left = 184.0
-offset_top = 184.0
+offset_top = 240.0
 offset_right = 537.0
-offset_bottom = 227.0
+offset_bottom = 283.0
 placeholder_text = "A-Z, 0-9, and underscores"
 
 [node name="RotateEnemyCards" type="CheckBox" parent="Options"]
@@ -198,13 +243,12 @@ anchors_preset = -1
 anchor_top = 0.130952
 anchor_bottom = 0.130952
 offset_left = 48.0
-offset_top = 168.0
+offset_top = 224.0
 offset_right = 546.0
-offset_bottom = 198.0
+offset_bottom = 254.0
 tooltip_text = "Makes it so that enemy cards will be
 right-side up, not upside down"
 text = "Make enemy cards right-side up"
-metadata/_edit_use_anchors_ = true
 
 [node name="AlwaysShowATKBoosts" type="CheckBox" parent="Options"]
 layout_mode = 1
@@ -212,13 +256,12 @@ anchors_preset = -1
 anchor_top = 0.130952
 anchor_bottom = 0.130952
 offset_left = 48.0
-offset_top = 224.0
+offset_top = 280.0
 offset_right = 555.0
-offset_bottom = 254.0
+offset_bottom = 310.0
 tooltip_text = "Makes ATK bonuses with the \"during the battle phase\"
 condition show on the field stat displays for all phases."
 text = "Show Battle Phase ATK boosts during all phases"
-metadata/_edit_use_anchors_ = true
 
 [node name="DisableBlockReminder" type="CheckBox" parent="Options"]
 layout_mode = 1
@@ -226,13 +269,12 @@ anchors_preset = -1
 anchor_top = 0.214285
 anchor_bottom = 0.214285
 offset_left = 48.0
-offset_top = 224.0
+offset_top = 280.0
 offset_right = 555.0
-offset_bottom = 254.0
+offset_bottom = 310.0
 tooltip_text = "Stop showing a message reminding you of your
 block phase if you make no move in a few seconds."
 text = "Disable Block Phase reminder"
-metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Languages/LangUS" to="." method="_on_lang_us_pressed"]
 [connection signal="pressed" from="Languages/LangJP" to="." method="_on_lang_jp_pressed"]
@@ -243,6 +285,9 @@ metadata/_edit_use_anchors_ = true
 [connection signal="drag_ended" from="Options/VolumeSounds" to="." method="_on_volume_sounds_drag_ended"]
 [connection signal="value_changed" from="Options/VolumeSounds" to="." method="_on_volume_sounds_value_changed"]
 [connection signal="toggled" from="Options/VolumeSounds/Mute" to="." method="_on_sounds_mute_toggled"]
+[connection signal="drag_ended" from="Options/VolumeUI" to="." method="_on_volume_ui_drag_ended"]
+[connection signal="value_changed" from="Options/VolumeUI" to="." method="_on_volume_ui_value_changed"]
+[connection signal="toggled" from="Options/VolumeUI/Mute" to="." method="_on_ui_mute_toggled"]
 [connection signal="text_changed" from="Options/Username" to="." method="_on_username_text_changed"]
 [connection signal="toggled" from="Options/RotateEnemyCards" to="." method="_on_rotate_enemy_cards_toggled"]
 [connection signal="toggled" from="Options/AlwaysShowATKBoosts" to="." method="_on_always_show_atk_boosts_toggled"]
