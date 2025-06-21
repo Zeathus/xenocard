@@ -125,7 +125,6 @@ func queue_event(event: Event):
 			elif hint.type == 1:
 				var confirm_event = EventConfirm.new(game_board, game_board.players[0], "Tutorial", Callable(), Callable(), hint.text)
 				confirm_event.set_yes_only()
-				confirm_event.set_timeout(0)
 				children.push_back(confirm_event)
 	event.parent = self
 	children.push_back(event)

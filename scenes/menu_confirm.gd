@@ -7,14 +7,15 @@ var timeout: float = -1
 var timeout_answer: bool
 
 func _process(delta: float) -> void:
-	if timeout > 0:
-		var old_timeout = timeout
-		timeout = max(timeout - delta, 0)
-		if ceil(old_timeout) != ceil(timeout):
-			$Timer.text = "%d ◷" % [ceil(timeout)]
-		if timeout <= 0:
-			answer = timeout_answer
-			done = true
+	pass
+	#if timeout > 0:
+		#var old_timeout = timeout
+		#timeout = max(timeout - delta, 0)
+		#if ceil(old_timeout) != ceil(timeout):
+			#$Timer.text = "%d ◷" % [ceil(timeout)]
+		#if timeout <= 0:
+			#answer = timeout_answer
+			#done = true
 
 func set_handler(val: Callable):
 	handler = val

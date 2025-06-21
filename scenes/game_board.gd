@@ -398,7 +398,6 @@ func queue_event(event: Event):
 						hint.exec.call(self)
 					var confirm_event = EventConfirm.new(self, players[0], "Tutorial", on_confirm, on_confirm, hint.text)
 					confirm_event.set_yes_only()
-					confirm_event.set_timeout(0)
 					event_queue.push_back(confirm_event)
 		event_queue.push_back(event)
 

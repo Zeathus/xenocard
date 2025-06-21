@@ -406,12 +406,11 @@ disabled = true
 text = "Confirm"
 
 [node name="HostPrompt" type="Panel" parent="."]
-visible = false
 z_index = 20
 offset_left = -300.0
-offset_top = -250.0
+offset_top = -378.0
 offset_right = 300.0
-offset_bottom = 250.0
+offset_bottom = 422.0
 theme = ExtResource("2_oqua5")
 
 [node name="Header" type="Label" parent="HostPrompt"]
@@ -499,23 +498,78 @@ vertical_alignment = 2
 layout_mode = 0
 offset_left = 188.0
 offset_top = 339.0
-offset_right = 446.0
+offset_right = 388.0
 offset_bottom = 375.0
+
+[node name="TimerPhaseLabel" type="Label" parent="HostPrompt"]
+offset_left = 50.0
+offset_top = 417.0
+offset_right = 171.0
+offset_bottom = 447.0
+text = "Phase Timer:"
+
+[node name="TimerPhase" type="LineEdit" parent="HostPrompt"]
+offset_left = 188.0
+offset_top = 408.0
+offset_right = 288.0
+offset_bottom = 452.0
+text = "60"
+placeholder_text = "None"
+max_length = 3
+emoji_menu_enabled = false
+virtual_keyboard_type = 2
+
+[node name="TimerPhaseHelp" type="Label" parent="HostPrompt"]
+offset_left = 184.0
+offset_top = 464.0
+offset_right = 530.0
+offset_bottom = 542.0
+text = "Phases are skipped after this many seconds.
+Leave empty for no timer."
+label_settings = SubResource("LabelSettings_0xd1d")
+
+[node name="TimerActionLabel" type="Label" parent="HostPrompt"]
+offset_left = 50.0
+offset_top = 545.0
+offset_right = 171.0
+offset_bottom = 575.0
+text = "Action Timer:"
+
+[node name="TimerAction" type="LineEdit" parent="HostPrompt"]
+offset_left = 188.0
+offset_top = 536.0
+offset_right = 288.0
+offset_bottom = 580.0
+text = "20"
+placeholder_text = "None"
+max_length = 3
+emoji_menu_enabled = false
+virtual_keyboard_type = 2
+
+[node name="TimerActionHelp" type="Label" parent="HostPrompt"]
+offset_left = 184.0
+offset_top = 592.0
+offset_right = 572.0
+offset_bottom = 670.0
+text = "Actions like selecting cards or countering are
+skipped after this many seconds.
+For some actions a decision is picked at random."
+label_settings = SubResource("LabelSettings_0xd1d")
 
 [node name="HostExit" type="Button" parent="HostPrompt"]
 layout_mode = 0
 offset_left = 342.0
-offset_top = 422.0
+offset_top = 702.0
 offset_right = 482.0
-offset_bottom = 461.0
+offset_bottom = 741.0
 text = "Cancel"
 
 [node name="HostButton" type="Button" parent="HostPrompt"]
 layout_mode = 0
 offset_left = 118.0
-offset_top = 422.0
+offset_top = 702.0
 offset_right = 258.0
-offset_bottom = 461.0
+offset_bottom = 741.0
 text = "Host"
 
 [node name="FailedLabel" type="Label" parent="HostPrompt"]
